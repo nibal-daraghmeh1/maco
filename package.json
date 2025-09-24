@@ -1,0 +1,34 @@
+{
+  "name": "NibalApp",
+  "version": "1.0.0",
+  "author": "Nibal Daraghmeh <your.email@example.com>",
+  "main": "main.js",
+  "scripts": {
+  "minify": "node minify-all.js",
+  "bundle": "esbuild src/app.js --bundle --platform=browser --outfile=dist/app.bundle.js --minify",
+  "package": "npx javascript-obfuscator dist/src --output dist/src --compact true --control-flow-flattening true&& electron-packager . MyApp --overwrite --asar --platform=win32 --arch=x64 --out=release-builds"
+  },
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^24.0.0",
+    "esbuild": "^0.22.0",
+    "javascript-obfuscator": "^4.1.1",
+    "terser": "^5.44.0"
+  },
+  "build": {
+    "appId": "com.nibal.app",
+    "productName": "NibalApp",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist_app/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "dependencies": {
+    "firebase": "^12.3.0"
+  }
+}

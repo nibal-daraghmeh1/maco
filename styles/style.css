@@ -1,0 +1,324 @@
+:root {
+            --bg-primary: #f1f5f9; --bg-secondary: #ffffff; --bg-accent: #e2e8f0;
+            --text-primary: #1e293b; --text-secondary: #64748b; --border-color: #cbd5e1;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --gradient-start: #3b82f6; --gradient-mid: #6366f1; --gradient-end: #8b5cf6;
+            --header-gradient-start: #1e3a8a; --header-gradient-mid: #3b82f6; --header-gradient-end: #0891b2;
+        }
+
+        html.dark {
+            --bg-primary: #0f172a; --bg-secondary: #1e293b; --bg-accent: #334155;
+            --text-primary: #f1f5f9; --text-secondary: #94a3b8; --border-color: #475569;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body { 
+            background-color: var(--bg-primary); 
+            background-image: linear-gradient(180deg, var(--bg-primary) 0%, #e0f2fe 100%);
+            color: var(--text-primary); 
+            transition: background-color 0.3s ease, color 0.3s ease; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; 
+        }
+        html.dark body {
+             background-image: linear-gradient(180deg, var(--bg-primary) 0%, #1e293b 100%);
+        }
+
+        .gradient-bg { 
+            background: linear-gradient(135deg, var(--header-gradient-start) 0%, var(--header-gradient-mid) 50%, var(--header-gradient-end) 100%); 
+        }
+        
+        .card { 
+            background-color: var(--bg-secondary); 
+            border: 1px solid var(--border-color); 
+            box-shadow: 0 4px 6px -1px var(--shadow-color); 
+            transition: all 0.3s ease;
+            border-radius: 0.75rem;
+            border-top: 4px solid transparent;
+            border-image: linear-gradient(to right, var(--gradient-start), var(--gradient-mid), var(--gradient-end)) 1;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px var(--shadow-color);
+        }
+
+        .btn-gradient {
+            background-image: linear-gradient(to right, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+            background-size: 200% auto;
+            color: white;
+            transition: all 0.4s cubic-bezier(.17,.67,.83,.67);
+            border: none;
+        }
+        .btn-gradient:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px 0 rgba(99, 102, 241, 0.35);
+        }
+        
+        .tab-button { background-color: transparent; color: var(--text-secondary); border-bottom: 3px solid transparent; transition: all 0.3s ease; }
+        .tab-button:hover { color: var(--text-primary); }
+        .tab-button.active-tab { color: var(--gradient-mid); border-image: linear-gradient(to right, var(--gradient-start), var(--gradient-mid)) 1; font-weight: 600; }
+        .tab-content { display: none; }
+        .tab-content.active-tab-content { display: block; }
+
+        input, select, textarea { background-color: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); transition: all 0.2s ease-in-out; border-radius: 0.375rem; }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gradient-mid);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        input::placeholder, textarea::placeholder { color: var(--text-secondary); }
+
+        thead { background-color: var(--bg-accent); }
+        
+        /* Font size increase for all table headers */
+        th {
+            font-size: 14px !important;
+            font-weight: 600 !important;
+        }
+
+        /* تحسين أسماء المنتجات فقط */
+        .mainTable tbody .product-name {
+            font-size: 15px !important;
+        }
+        
+        /* تصميم كروت الـ Trains */
+        .train-card {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            margin: 0;
+            background: var(--bg-primary);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .train-card:hover {
+            box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.15);
+        }
+        
+        .train-header {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));
+            color: white;
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+        
+        .train-header:hover {
+            background: linear-gradient(135deg, var(--gradient-mid), var(--gradient-end));
+        }
+        
+        .train-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            padding: 4px;
+        }
+        
+        .train-content {
+            padding: 0;
+            max-height: 4000px; /* Increased max-height for MACO content */
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.3s ease;
+        }
+        
+        .train-content.collapsed {
+            max-height: 0;
+            padding: 0;
+        }
+        
+        .train-content-inner {
+            padding: 24px; /* A bit more padding for the content */
+            background-color: var(--bg-secondary);
+        }
+
+        @media print {
+            .no-print, #productsFilter {
+                display: none !important;
+            }
+        }
+        
+        tbody, .modal-footer { background-color: var(--bg-secondary); }
+        .spinner { border: 8px solid var(--bg-accent); border-top: 8px solid var(--gradient-mid); border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .modal-container, #loader { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        #loader { z-index: 200; background-color: rgba(255, 255, 255, 0.7); backdrop-filter: none; }
+        html.dark #loader { background-color: rgba(0, 0, 0, 0.7); }
+        .modal-content-container { background-color: var(--bg-secondary); margin: auto; padding: 0; border: 1px solid var(--border-color); width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 4px 8px var(--shadow-color); display: flex; flex-direction: column; overflow: hidden; }
+        .modal-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background-image: linear-gradient(to right, var(--bg-accent), transparent); }
+        .modal-header h3 { margin:0; font-size: 1.25rem; font-weight: 600; }
+        .modal-body { padding: 1.5rem; overflow-y: auto; flex-grow: 1; }
+        .modal-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 0.75rem; }
+        
+        .score-badge { padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; display: inline-block; margin-left: 4px; } .score-1, .score-2, .score-3 { background: #dcfce7; color: #166534; } .score-4, .score-5 { background: #fef9c3; color: #713f12; } .score-6 { background: #ffedd5; color: #9a3412; } .score-7 { background: #fee2e2; color: #991b1b; } .score-8 { background: #fecaca; color: #b91c1c; } .score-9 { background: #fbcfe8; color: #831843; } .score-10 { background: #e9d5ff; color: #581c87; } .score-default { background: #e5e7eb; color: #374151; }
+        .rpn-rating-badge { padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; } .rpn-low { background-color: #dcfce7; color: #166534; } .rpn-medium { background-color: #fef9c3; color: #713f12; } .rpn-high { background-color: #fee2e2; color: #991b1b; } .rpn-default { background-color: #e5e7eb; color: #374151; } 
+
+        .hide-pde .pde-col, .hide-ld50 .ld50-col { display: none; }
+        .sortable { cursor: pointer; } .sort-indicator { display: inline-block; width: 1em; text-align: center; }
+        .product-main-row > td { border-bottom: none !important; } .ingredients-sub-row > td { padding-top: 0 !important; }
+        .ingredients-sub-table { background-color: var(--bg-accent); }
+        html.dark .ingredients-sub-table { background-color: rgba(55, 65, 81, 0.5); }
+        .train-header-row > td { background-color: var(--bg-accent); font-weight: bold; font-size: 1.125rem; line-height: 1.75rem; padding: 0.75rem 1rem;}
+        .history-btn:disabled { cursor: not-allowed; opacity: 0.5; }
+
+        /* Machine Group Indicators */
+        .group-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin: 2px;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .group-indicator:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .group-indicator strong {
+            font-weight: 600;
+        }
+
+        .group-indicator em {
+            font-style: normal;
+            opacity: 0.9;
+            margin-left: 4px;
+            font-size: 0.8rem;
+        }
+
+        .individual-machine {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            margin: 2px;
+            box-shadow: 0 2px 4px rgba(100, 116, 139, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .individual-machine:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(100, 116, 139, 0.3);
+        }
+
+        /* Group column styling in machine table */
+        .machine-group-cell {
+            font-weight: 500;
+        }
+
+        .machine-group-cell.grouped {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .machine-group-cell.individual {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* Dark mode support for group indicators */
+        html.dark .group-indicator {
+            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+        }
+
+        html.dark .individual-machine {
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+        }
+
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0.5in;
+            }
+            
+            body { background-color: #fff !important; background-image: none !important; margin: 0 !important; padding: 0 !important; }
+            header, nav, #theme-toggle, .modal-container, #loader, .print-btn, .no-print, #productsFilter { display: none !important; }
+            .only-print { display: block !important; }
+            main { padding: 1rem !important; margin: 0 !important; page-break-before: avoid; }
+            .container { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+            .card { 
+                box-shadow: none !important; 
+                border: 1px solid #ddd !important; 
+                padding: 1rem !important; 
+                page-break-inside: avoid; 
+                border-top: 2px solid #000 !important; 
+                border-image: none !important;
+                margin-bottom: 1rem !important;
+                page-break-before: avoid;
+            }
+             *, *::before, *::after { color: #000 !important; background: transparent !important; box-shadow: none !important; text-shadow: none !important; }
+            h2, h3 { color: #000 !important; border-color: #ddd !important; page-break-after: avoid; }
+            .tab-content { display: none !important; }
+            body.printing-dashboard #dashboard, body.printing-productRegister #productRegister, body.printing-worstCaseProducts #worstCaseProducts, body.printing-summary #summaryReport, body.printing-scoring-system #scoringSystem, body.printing-machines #machineManagement, body.printing-macoForTrains #macoForTrains, body.printing-detergentMaco #detergentMaco, body.printing-trainSummary #trainSummary { display: block !important; page-break-before: avoid; }
+            body.printing-dashboard .grid, body.printing-machines .grid { grid-template-columns: 1fr !important; }
+            body.printing-dashboard #rpnChartContainer { height: 80vh !important; }
+            table { page-break-inside: auto; } tr { page-break-inside: avoid; page-break-after: auto; } thead { display: table-header-group; }
+            #machineManagement .space-y-8, #macoForTrains .space-y-6, #detergentMaco .space-y-8, #trainSummary .space-y-8 { display: block !important; }
+            #machineManagement .card, #macoForTrains .train-card, #detergentMaco .train-card { margin-bottom: 2rem; }
+            
+            /* Train Summary specific styles */
+            body.printing-trainSummary #trainSummaryContainer { display: block !important; }
+            body.printing-trainSummary table { display: table !important; }
+            body.printing-trainSummary tr { display: table-row !important; }
+            body.printing-trainSummary td { display: table-cell !important; }
+            /* Remove any empty space at top */
+            .mt-8 { margin-top: 0 !important; }
+            .py-8 { padding-top: 0 !important; padding-bottom: 1rem !important; }
+            
+            /* Force all train content to be visible when printing MACO view */
+            body.printing-macoForTrains .train-content.collapsed {
+                max-height: none !important;
+                overflow: visible !important;
+                padding: 0 !important;
+            }
+            body.printing-macoForTrains .train-content-inner {
+                padding: 24px !important;
+                background-color: transparent !important;
+            }
+            /* Show all MACO breakdown details when printing */
+            body.printing-macoForTrains [id^="maco-breakdown-details-"].hidden {
+                display: block !important;
+            }
+            /* Hide toggle buttons when printing */
+            body.printing-macoForTrains .train-toggle {
+                display: none !important;
+            }
+            
+            /* Force all train content to be visible when printing Detergent MACO view */
+            body.printing-detergentMaco .train-content.collapsed {
+                max-height: none !important;
+                overflow: visible !important;
+                padding: 0 !important;
+            }
+            body.printing-detergentMaco .train-content-inner {
+                padding: 24px !important;
+                background-color: transparent !important;
+            }
+            /* Hide toggle buttons when printing */
+            body.printing-detergentMaco .train-toggle {
+                display: none !important;
+            }
+        }
+
+        .footer-main {
+    color: var(--text-secondary);
+    background-color: var(--bg-accent);
+}
