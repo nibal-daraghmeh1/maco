@@ -3,8 +3,6 @@ release/
 release/*
 release-builds/
 release-builds/*
-dist/
-dist/*
 *.exe
 *.zip
 *.asar
