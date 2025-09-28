@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MACO Dashboard - Cleaning Validation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js for RPN Graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- SheetJS (xlsx) for Excel Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+
+     <link rel="stylesheet" href="styles/style.css">
+   
+</head>
+<body class="antialiased">
+    <!-- Loader -->
+    <div id="loader"><div class="spinner"></div></div>
+    
+    <!-- Header -->
+    <header class="gradient-bg shadow-lg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">MACO Dashboard</h1>
+                        <p class="text-sm text-white/80 -mt-1">Prepared by Rida</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-2 no-print">
+                    <button id="undo-btn" onclick="undoChange()" title="Undo (Ctrl+Z)" class="history-btn text-white hover:bg-white/20 p-2 rounded-full focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.132 1.94a.5.5 0 0 1 .53.1l3 3a.5.5 0 1 1-.708.708L11.5 3.207V8a4.5 4.5 0 1 1-9 0 3.5 3.5 0 0 0 7 0V6a.5.5 0 0 1 1 0v2a4.5 4.5 0 0 1-9 0 3.5 3.5 0 1 0 7 0V3.5h-1.5a.5.5 0 0 1-.354-.854l2-2a.5.5 0 0 1 .353-.146Z"/></svg>
+                    </button>
+                    <button id="redo-btn" onclick="redoChange()" title="Redo (Ctrl+Y)" class="history-btn text-white hover:bg-white/20 p-2 rounded-full focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146 1.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L13.793 3.5H12.5A3.5 3.5 0 0 0 9 7v1a.5.5 0 0 1-1 0V7a4.5 4.5 0 0 1 4.5-4.5h1.293L13.5 1.854a.5.5 0 0 1 0-.708Z"/><path d="M2.5 5.5A3.5 3.5 0 0 0 6 9v1a.5.5 0 0 0 1 0V9a4.5 4.5 0 0 1 9 0 3.5 3.5 0 0 0-7 0v1a.5.5 0 0 0 1 0V9a3.5 3.5 0 0 0-7 0Z"/></svg>
+                    </button>
+                    <button id="theme-toggle" type="button" class="text-white hover:bg-white/20 p-2 rounded-full focus:outline-none"><svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Tab Navigation -->
+        <div class="border-b" style="border-color: var(--border-color);">
+            <nav class="-mb-px flex flex-wrap gap-2 md:gap-4" aria-label="Tabs">
+                <button onclick="changeTab('dashboard', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium active-tab">Dashboard</button>
+                <button onclick="changeTab('productRegister', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Product Register</button>
+                <button onclick="changeTab('worstCaseProducts', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Worst Case Products</button>
+                <button onclick="changeTab('machineManagement', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Machines</button>
+                <button onclick="changeTab('macoForTrains', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Product MACO Calculation</button>
+                <button onclick="changeTab('detergentMaco', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Detergent MACO Calculation</button>
+                <button onclick="changeTab('dataManagement', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Data Management</button>
+                <button onclick="changeTab('scoringSystem', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Scoring</button>
+                <button onclick="changeTab('trainSummary', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Train Summary</button>
+                <button onclick="changeTab('summaryReport', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Summary</button>
+            </nav>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="mt-8">
+            <!-- New Dashboard Tab -->
+            <div id="dashboard" class="tab-content active-tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6" id="dashboardStats">
+                    <!-- Stats will be rendered here by JS -->
+                </div>
+                <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold">RPN Risk Analysis</h2>
+                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
+                            This chart visualizes the Risk Priority Number (RPN) for each ingredient visible in the 'Worst Case Products' tab, sorted from highest to lowest.
+                        </p>
+                        <div id="rpnChartContainer" class="relative min-h-[400px]"><canvas id="rpnChartCanvas"></canvas><div id="rpnChartPlaceholder" class="absolute inset-0 flex items-center justify-center hidden"><p style="color: var(--text-secondary);">No data to display. Filter data on the Worst Case Products tab.</p></div></div>
+                    </div>
+                     <div class="card p-6">
+                        <h2 class="text-xl font-bold">MACO per Swab per Train</h2>
+                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
+                            This chart compares the final calculated MACO per Swab (in mg/Swab) for each equipment train.
+                        </p>
+                        <div id="macoChartContainer" class="relative min-h-[400px]"><canvas id="macoChartCanvas"></canvas><div id="macoChartPlaceholder" class="absolute inset-0 flex items-center justify-center hidden"><p style="color: var(--text-secondary);">No trains found. Assign machines to products to generate data.</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Register Tab -->
+            <div id="productRegister" class="tab-content">
+                <div class="space-y-8">
+                    <!-- Actions & Filters -->
+                    <div id="productsFilter" class="card p-6 no-print">
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <!-- Actions -->
+                            <div class="flex flex-wrap gap-3">
+                                <button onclick="showAddForm()" class="px-4 py-2 text-sm rounded-lg btn-gradient">+ Add Product</button>
+                                <button onclick="resetFilters('productRegister')" class="px-4 py-2 text-sm rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Reset Filters</button>
+                                <button onclick="printCurrentView('productRegister')" class="print-btn px-4 py-2 text-sm rounded-lg border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Print View</button>
+                                <button onclick="exportToExcel()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                    Export to Excel
+                                </button>
+                            </div>
+                            
+                            <!-- Column Visibility Dropdown -->
+                            <div class="relative">
+                                <button onclick="toggleColumnVisibilityDropdown()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="border-color: var(--border-color); background-color: var(--bg-primary); color: var(--text-primary);">
+                                    <span>Toxicity</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="columnVisibilityDropdown" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg border hidden z-50" style="background-color: var(--bg-primary); border-color: var(--border-color); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);">
+                                    <div class="py-1">
+                                        <button onclick="toggleColumn('pde', 'productRegister')" class="toggle-pde w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-primary);"></button>
+                                        <button onclick="toggleColumn('ld50', 'productRegister')" class="toggle-ld50 w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-primary);"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Table -->
+                    <div class="card p-0 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="mainTable w-full text-sm">
+                                <thead class="border-b" style="border-color: var(--border-color);">
+                                    <tr>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">#</th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortData('date', 'productRegister')">Date <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortData('productCode', 'productRegister')">Product Code <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortData('name', 'productRegister')">Product Name <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-3 text-center text-sm font-semibold uppercase tracking-wider">Train No.</th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Dosage Form</th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortData('batchSizeKg', 'productRegister')">Batch Size (Kg) <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Special Case Product</th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                    <tr class="filter-row no-print">
+                                        <th class="p-1"></th>
+                                        <th class="p-1"></th>
+                                        <th class="p-1 font-normal"><input type="text" oninput="handleSearchAndFilter('productRegister')" placeholder="Filter..." class="filterColProductCode w-full px-2 py-1 border rounded-md text-sm"></th>
+                                        <th class="p-1 font-normal"><input type="text" oninput="handleSearchAndFilter('productRegister')" placeholder="Filter..." class="filterColProductName w-full px-2 py-1 border rounded-md text-sm"></th>
+                                        <th class="p-1 font-normal"><select onchange="handleSearchAndFilter('productRegister')" class="filterColTrainNo w-full px-2 py-1 border rounded-md text-sm"></select></th>
+                                        <th class="p-1 font-normal"><select onchange="handleSearchAndFilter('productRegister')" class="filterColProductType w-full px-2 py-1 border rounded-md text-sm"></select></th>
+                                        <th class="p-1"></th>
+                                        <th class="p-1 font-normal">
+                                            <select onchange="handleSearchAndFilter('productRegister')" class="filterColIsCritical w-full px-2 py-1 border rounded-md text-sm">
+                                                <option value="all">All</option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </th>
+                                        <th class="p-1"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="productsTable divide-y" style="border-color: var(--border-color);"></tbody>
+                            </table>
+                            <div class="noResultsMessage hidden text-center p-8"><p style="color: var(--text-secondary);">No products match your criteria.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Worst Case Products Tab -->
+            <div id="worstCaseProducts" class="tab-content">
+                <div class="space-y-8">
+                    <!-- Controls Section -->
+                    <div class="card p-4 no-print">
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <!-- Product Name Filter -->
+                            <div class="flex items-center gap-2">
+                                <label for="worstCaseProductNameFilter" class="text-sm font-medium" style="color: var(--text-secondary);">Filter by Product Name:</label>
+                                <input type="text" id="worstCaseProductNameFilter" placeholder="Filter..." 
+                                       class="px-2 py-1 border rounded-md text-sm w-64" 
+                                       style="border-color: var(--border-color); background-color: var(--bg-primary); color: var(--text-primary);"
+                                       oninput="handleWorstCaseProductFilter()">
+                            </div>
+                            <!-- Export and Print Buttons -->
+                            <div class="flex items-center gap-2">
+                                <!-- Export Dropdown -->
+                                <div class="relative">
+                                    <button onclick="toggleWorstCaseExportDropdown()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        </svg>
+                                        Export to Excel
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="worstCaseExportDropdown" class="absolute right-0 mt-2 w-64 rounded-md shadow-lg border hidden z-50" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                        <div class="py-1">
+                                            <div class="px-4 py-2 border-b" style="border-color: var(--border-color);">
+                                                <label class="flex items-center text-sm font-medium" style="color: var(--text-primary);">
+                                                    <input type="checkbox" id="exportAllTrainsCheckbox" class="mr-2" onchange="toggleAllTrainsSelection('export')" checked>
+                                                    Export All Trains
+                                                </label>
+                                            </div>
+                                            <div class="px-4 py-2 text-xs" style="color: var(--text-secondary);">Select specific trains:</div>
+                                            <div id="worstCaseExportTrainOptions" class="max-h-40 overflow-y-auto">
+                                                <!-- Train checkbox options will be populated here -->
+                                            </div>
+                                            <div class="border-t p-2" style="border-color: var(--border-color);">
+                                                <button onclick="executeExportSelection()" class="w-full px-3 py-2 text-sm rounded-md text-white btn-gradient">
+                                                    Export Selected
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Print Dropdown -->
+                                <div class="relative">
+                                    <button onclick="toggleWorstCasePrintDropdown()" 
+                                            class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center gap-2" 
+                                            style="color: var(--gradient-mid); border-color: var(--gradient-mid);">
+                                        Print View
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="worstCasePrintDropdown" class="absolute right-0 mt-2 w-64 rounded-md shadow-lg border hidden z-50" style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                        <div class="py-1">
+                                            <div class="px-4 py-2 border-b" style="border-color: var(--border-color);">
+                                                <label class="flex items-center text-sm font-medium" style="color: var(--text-primary);">
+                                                    <input type="checkbox" id="printAllTrainsCheckbox" class="mr-2" onchange="toggleAllTrainsSelection('print')" checked>
+                                                    Print All Trains
+                                                </label>
+                                            </div>
+                                            <div class="px-4 py-2 text-xs" style="color: var(--text-secondary);">Select specific trains:</div>
+                                            <div id="worstCasePrintTrainOptions" class="max-h-40 overflow-y-auto">
+                                                <!-- Train checkbox options will be populated here -->
+                                            </div>
+                                            <div class="border-t p-2" style="border-color: var(--border-color);">
+                                                <button onclick="executePrintSelection()" class="w-full px-3 py-2 text-sm rounded-md text-white btn-gradient">
+                                                    Print Selected
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Container for collapsible train cards -->
+                    <div id="worstCaseTrainsContainer" class="space-y-6"></div>
+                    <p id="noWorstCaseMessage" class="hidden text-center p-8" style="color: var(--text-secondary);">No products match your criteria.</p>
+
+                </div>
+            </div>
+
+            <!-- Machine Management Tab -->
+            <div id="machineManagement" class="tab-content">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Machines Management</h2>
+                    <div class="flex items-center gap-x-4 no-print">
+                         <button onclick="showMachineModal()" class="px-4 py-2 text-sm rounded-lg btn-gradient">+ Add Machine</button>
+                         <button onclick="exportMachinesToExcel()" class="px-4 py-2 text-sm rounded-lg border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Export to Excel</button>
+                         <button onclick="printCurrentView('machines')" class="print-btn px-4 py-2 text-sm rounded-lg border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Print Report</button>
+                    </div>
+                </div>
+                <div id="machinesContainer" class="space-y-8">
+                    <!-- Machines will be rendered here by JS -->
+                </div>
+                <p id="noMachinesMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">
+                    No machines found. Click "+ Add Machine" to get started.
+                </p>
+            </div>
+
+            <!-- MACO for Trains Tab -->
+            <div id="macoForTrains" class="tab-content">
+                 <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Product MACO Calculation for Equipment Trains</h2>
+                    <div class="flex items-center gap-x-4">
+                        <!-- Export Dropdown -->
+                        <div class="relative">
+                            <button onclick="toggleMacoExportDropdown()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2 no-print" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Export to Excel
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="macoExportDropdown" class="hidden absolute right-0 mt-2 w-64 rounded-md shadow-lg z-50" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                <div class="p-2">
+                                    <label class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer border-b" style="color: var(--text-primary); border-color: var(--border-color);">
+                                        <input type="checkbox" id="exportMacoAllTrainsCheckbox" class="mr-2" onchange="toggleAllMacoTrainsSelection('export')">
+                                        <span class="font-semibold">Export All Trains</span>
+                                    </label>
+                                    <div id="macoExportTrainOptions"></div>
+                                    <div class="mt-2 pt-2 border-t" style="border-color: var(--border-color);">
+                                        <button onclick="executeMacoExportSelection()" class="w-full px-4 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700">
+                                            Export Selected
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Print Dropdown -->
+                        <div class="relative">
+                            <button onclick="toggleMacoPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">
+                                Print Report
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="macoPrintDropdown" class="hidden absolute right-0 mt-2 w-64 rounded-md shadow-lg z-50" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                <div class="p-2">
+                                    <label class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer border-b" style="color: var(--text-primary); border-color: var(--border-color);">
+                                        <input type="checkbox" id="printMacoAllTrainsCheckbox" class="mr-2" onchange="toggleAllMacoTrainsSelection('print')">
+                                        <span class="font-semibold">Print All Trains</span>
+                                    </label>
+                                    <div id="macoPrintTrainOptions"></div>
+                                    <div class="mt-2 pt-2 border-t" style="border-color: var(--border-color);">
+                                        <button onclick="executeMacoPrintSelection()" class="w-full px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
+                                            Print Selected
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="trainsContainer" class="space-y-6"></div>
+                <p id="noTrainsMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">No trains to display. Assign machines to products first.</p>
+            </div>
+
+            <!-- Detergent MACO Tab -->
+            <div id="detergentMaco" class="tab-content">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Detergent MACO Calculation</h2>
+                    <div class="flex gap-2">
+                        <div class="relative">
+                            <button onclick="toggleDetergentExportDropdown()" class="px-4 py-2 text-sm rounded-lg border no-print" style="color: #16a34a; border-color: #16a34a;">
+                                <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                                Export to Excel
+                            </button>
+                            <div id="detergentExportDropdown" class="dropdown absolute right-0 mt-2 w-64 hidden bg-white dark:bg-gray-800 border rounded shadow z-50" style="border-color:var(--border-color);">
+                                <div class="p-3">
+                                    <label class="flex items-center mb-2"><input id="exportDetergentAllTrainsCheckbox" type="checkbox" class="mr-2" onclick="toggleAllDetergentTrainsSelection('export')"> Export All Trains</label>
+                                    <div id="detergentExportTrainOptions" style="max-height:240px;overflow:auto"></div>
+                                    <div class="mt-2 pt-2 border-t" style="border-color: var(--border-color);">
+                                        <button onclick="executeDetergentExportSelection()" class="w-full px-4 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700">Export Selected</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <button onclick="toggleDetergentPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Print Report</button>
+                            <div id="detergentPrintDropdown" class="dropdown absolute right-0 mt-2 w-64 hidden bg-white dark:bg-gray-800 border rounded shadow z-50" style="border-color:var(--border-color);">
+                                <div class="p-3">
+                                    <label class="flex items-center mb-2"><input id="printDetergentAllTrainsCheckbox" type="checkbox" class="mr-2" onclick="toggleAllDetergentTrainsSelection('print')"> Print All Trains</label>
+                                    <div id="detergentPrintTrainOptions" style="max-height:240px;overflow:auto"></div>
+                                    <div class="mt-2 pt-2 border-t" style="border-color: var(--border-color);">
+                                        <button onclick="executeDetergentPrintSelection()" class="w-full px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Print Selected</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Input Card -->
+                    <div class="card p-6 no-print">
+                         <h3 class="text-lg font-semibold mb-4 border-b pb-2" style="border-color: var(--border-color);">Detergent & Calculation Parameters</h3>
+                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                             <div class="md:col-span-2">
+                                <div class="flex items-end gap-x-2 mb-2">
+                                    <label class="block text-xs font-medium mb-1 flex-1">Detergent Ingredients</label>
+                                    <div class="w-32">
+                                        <label class="block text-xs font-medium mb-1">LD50</label>
+                                    </div>
+                                    <div class="w-8"></div>
+                                </div>
+                                <div id="detergentIngredientsContainer" class="space-y-2">
+                                    <!-- Dynamic ingredients rendered here -->
+                                </div>
+                                <button type="button" onclick="addDetergentIngredient()" class="mt-2 text-sm px-3 py-1 rounded-md btn-gradient">+ Add Ingredient</button>
+                             </div>
+                             <div>
+                                <label for="bodyWeight" class="block text-xs font-medium mb-1">Average Body Weight (kg)</label>
+                                <input type="number" id="bodyWeight" value="70" oninput="renderDetergentMaco()" class="w-full px-3 py-2 border rounded-lg" style="margin-top: 10px;height: 38px;" min="0">
+                            </div>
+                         </div>
+                    </div>
+                    <!-- Results -->
+                    <div id="detergentMacoResults" class="space-y-6">
+                        <!-- Results will be rendered here -->
+                    </div>
+                    <p id="noTrainsForDetergentMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">No trains to display. Assign machines to products first.</p>
+                </div>
+            </div>
+
+            <!-- Data Management Tab -->
+            <div id="dataManagement" class="tab-content">
+                <div class="card p-6 max-w-2xl mx-auto">
+                    <h2 class="text-xl font-bold mb-4">Data Management</h2>
+                    <p class="mb-6" style="color: var(--text-secondary);">Export your entire database, or import from a JSON backup.</p>
+                    <div class="space-y-4">
+                        <button onclick="exportAllTabsToExcel()" class="w-full flex items-center justify-center gap-x-2 py-2.5 px-4 text-sm font-semibold rounded-lg border" style="color: #16a34a; border-color: #16a34a; background-color: #f0fdf4;">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                            Export All Reports to Excel (Multi-Sheet)
+                        </button>
+                        <button onclick="exportToExcel()" class="w-full flex items-center justify-center gap-x-2 py-2.5 px-4 text-sm font-semibold rounded-lg border" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">Export All Products to Excel (.xlsx)</button>
+                        <button onclick="exportAllToJson()" class="w-full flex items-center justify-center gap-x-2 py-2.5 px-4 text-sm font-semibold rounded-lg border" style="color: #7e22ce; border-color: #7e22ce; background-color: #f5f3ff;">Export All Data to JSON (.json)</button>
+                        <div class="border-t pt-4 mt-4" style="border-color: var(--border-color);">
+                            <label for="json-import-file" class="block text-sm font-medium mb-2">Import from JSON File</label>
+                            <input type="file" id="json-import-file" accept=".json" onchange="importFromJson(event)" class="block w-full text-sm rounded-lg border cursor-pointer file:ml-4 file:py-2 file:px-4 file:rounded-r-lg file:border-0 file:text-sm file:font-semibold" style="color: var(--text-secondary); border-color: var(--border-color); file:background-color: var(--bg-accent); file:color: var(--text-primary);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scoring System Tab -->
+             <div id="scoringSystem" class="tab-content">
+                 <div class="card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Scoring System</h2>
+                        <div class="flex items-center gap-x-4 no-print">
+                            <button id="editScoringBtn" class="px-4 py-2 text-sm rounded-lg">Edit</button>
+                            <button onclick="printCurrentView('scoring-system')" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient">
+                                Print System
+                            </button>
+                        </div>
+                    </div>
+                    <div id="scoringSystemContainer"></div>
+                 </div>
+            </div>
+            
+            <!-- Train Summary Tab -->
+            <div id="trainSummary" class="tab-content">
+                <div class="card p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Equipment Train Summary</h2>
+                        <div class="flex gap-2">
+                            <!-- Export Dropdown -->
+                            <div class="relative">
+                                <button onclick="toggleTrainSummaryExportDropdown()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2 no-print" style="color: #16a34a; border-color: #16a34a;">
+                                    <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Export to Excel
+                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="trainSummaryExportDropdown" class="hidden absolute right-0 mt-2 w-64 rounded-md shadow-lg z-50" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                    <div class="p-2">
+                                        <label class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer border-b" style="color: var(--text-primary); border-color: var(--border-color);">
+                                            <input type="checkbox" id="exportTrainSummaryAllTrainsCheckbox" class="mr-2" onchange="toggleAllTrainSummaryTrainsSelection('export')">
+                                            <span class="font-semibold">Export All Trains</span>
+                                        </label>
+                                        <div id="trainSummaryExportTrainOptions"></div>
+                                        <div class="mt-2 pt-2 border-t" style="border-color: var(--border-color);">
+                                            <button onclick="executeTrainSummaryExportSelection()" class="w-full px-4 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700">
+                                                Export Selected
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Print Dropdown -->
+                            <div class="relative">
+                                <button onclick="toggleTrainSummaryPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient flex items-center gap-2">
+                                    Print Report
+                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="trainSummaryPrintDropdown" class="hidden absolute right-0 mt-2 w-64 rounded-md shadow-lg z-50" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                    <div class="p-2">
+                                        <label class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer border-b" style="color: var(--text-primary); border-color: var(--border-color);">
+                                            <input type="checkbox" id="printTrainSummaryAllTrainsCheckbox" class="mr-2" onchange="toggleAllTrainSummaryTrainsSelection('print')">
+                                            <span class="font-semibold">Print All Trains</span>
+                                        </label>
+                                        <div id="trainSummaryPrintTrainOptions"></div>
+                                        <div class="mt-2 pt-2 border-t" style="border-color: var(--border-color);">
+                                            <button onclick="executeTrainSummaryPrintSelection()" class="w-full px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
+                                                Print Selected
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="trainSummaryContainer" class="space-y-8">
+                        <!-- Train summary cards will be rendered here -->
+                    </div>
+                    <p id="noTrainSummaryMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">No trains to display. Assign machines to products first.</p>
+                </div>
+            </div>
+            
+            <!-- Worst Case Summary Report Tab -->
+            <div id="summaryReport" class="tab-content">
+                <div class="card p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">MACO Worst Case Summary Report</h2>
+                        <div class="flex gap-2">
+                            <button onclick="exportSummaryToExcel()" class="px-4 py-2 text-sm rounded-lg border" style="color: #16a34a; border-color: #16a34a;">
+                                <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                                Export to Excel
+                            </button>
+                            <button onclick="printCurrentView('summary')" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient">
+                                Print Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Top 10 RPN Card -->
+                        <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Top 10 Highest RPN Ingredients</h3>
+                            <div id="topRpnTableContainer" class="mt-3 overflow-hidden rounded-md border border-gray-300 dark:border-gray-600">
+                                <table class="w-full text-sm">
+                                    <thead class="bg-gray-200 dark:bg-gray-700">
+                                        <tr>
+                                            <th class="px-4 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Rank</th>
+                                            <th class="px-4 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Product Name</th>
+                                            <th class="px-4 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Train</th>
+                                            <th class="px-4 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Ingredient</th>
+                                            <th class="px-4 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">RPN</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="topRpnTableBody" class="divide-y divide-gray-200 dark:divide-gray-600" style="background-color: var(--bg-secondary);"></tbody>
+                                </table>
+                            </div>
+                            <p id="noTopRpnMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">No data available to generate RPN list.</p>
+                        </div>
+
+                        <!-- Critical Products Card -->
+                        <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                             <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Special Case Products</h3>
+                             <div id="criticalProductsTableContainer" class="mt-3 overflow-hidden rounded-md border border-gray-300 dark:border-gray-600">
+                                <table class="w-full text-sm">
+                                    <thead class="bg-gray-200 dark:bg-gray-700">
+                                        <tr>
+                                            <th class="px-4 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Product Name</th>
+                                            <th class="px-4 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Reason for Special Case Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="criticalProductsTableBody" class="divide-y divide-gray-200 dark:divide-gray-600" style="background-color: var(--bg-secondary);"></tbody>
+                                </table>
+                            </div>
+                            <p id="noCriticalMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">No products have been manually flagged as special cases.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="addProductModal" class="modal-container">
+        <div class="modal-content-container max-w-4xl">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold">Add New Product</h3>
+                <button type="button" onclick="hideModal('addProductModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <form id="addProductForm" class="modal-body space-y-4"></form>
+            <div class="modal-footer"><button type="button" onclick="hideModal('addProductModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button type="submit" form="addProductForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Add Product</button></div>
+        </div>
+    </div>
+    <div id="editProductModal" class="modal-container">
+        <div class="modal-content-container max-w-4xl">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="editProductModalTitle">Edit Product</h3>
+                <button type="button" onclick="hideModal('editProductModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <form id="editProductForm" class="modal-body space-y-4"></form>
+            <div class="modal-footer"><button type="button" onclick="hideModal('editProductModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button type="submit" form="editProductForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Save Changes</button></div>
+        </div>
+    </div>
+    <div id="editIngredientModal" class="modal-container">
+        <div class="modal-content-container max-w-2xl">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="editIngredientModalTitle">Edit Ingredient</h3>
+                <button type="button" onclick="hideModal('editIngredientModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <form id="editIngredientForm" class="modal-body space-y-4"></form>
+            <div class="modal-footer"><button type="button" onclick="hideModal('editIngredientModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button type="submit" form="editIngredientForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Save Changes</button></div>
+        </div>
+    </div>
+     <div id="machineModal" class="modal-container">
+        <div class="modal-content-container max-w-lg">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="machineModalTitle">Add Machine</h3>
+                <button type="button" onclick="hideModal('machineModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <form id="machineForm" class="modal-body space-y-4">
+                <input type="hidden" id="machineId">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="machineNumber" class="block text-sm font-medium mb-1">Machine Number</label>
+                        <input type="text" id="machineNumber" class="w-full px-3 py-2 border rounded-lg" required>
+                    </div>
+                     <div>
+                        <label for="machineStage" class="block text-sm font-medium mb-1">Machine Stage</label>
+                        <select id="machineStage" class="w-full px-3 py-2 border rounded-lg" required onchange="toggleOtherMachineStage(this, 'otherStageContainer')"></select>
+                    </div>
+                </div>
+                <div id="otherStageContainer" style="display: none;">
+                    <label for="otherMachineStage" class="block text-sm font-medium mb-1">Specify New Stage</label>
+                    <input type="text" id="otherMachineStage" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., Granulation, Encapsulation">
+                </div>
+                <div>
+                    <label for="machineName" class="block text-sm font-medium mb-1">Machine Name</label>
+                    <input type="text" id="machineName" class="w-full px-3 py-2 border rounded-lg" required>
+                </div>
+                <div>
+                    <label for="machineGroup" class="block text-sm font-medium mb-1">Machine Group <span class="text-xs" style="color: var(--text-secondary);">(Optional - for grouping similar machines)</span></label>
+                    <select id="machineGroup" class="w-full px-3 py-2 border rounded-lg" onchange="toggleOtherMachineGroup(this, 'otherGroupContainer')">
+                        <option value="">No Group (Individual Machine)</option>
+                    </select>
+                </div>
+                <div id="otherGroupContainer" style="display: none;">
+                    <label for="otherMachineGroup" class="block text-sm font-medium mb-1">Specify New Group Name</label>
+                    <input type="text" id="otherMachineGroup" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., Custom Equipment Group">
+                </div>
+                 <div>
+                    <label for="machineArea" class="block text-sm font-medium mb-1">Machine Area (cm²)</label>
+                    <input type="number" id="machineArea" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., 120000" min="0" required>
+                </div>
+                <div>
+                    <label for="cleaningSOP" class="block text-sm font-medium mb-1">Cleaning SOP</label>
+                    <input type="text" id="cleaningSOP" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., SOP 002" required>
+                </div>
+            </form>
+            <div class="modal-footer"><button type="button" onclick="hideModal('machineModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button type="submit" form="machineForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Save</button></div>
+        </div>
+    </div>
+     <div id="assignMachinesModal" class="modal-container">
+        <div class="modal-content-container max-w-2xl">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="assignMachinesModalTitle">Assign Machines to Product</h3>
+                <button type="button" onclick="hideModal('assignMachinesModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <form id="assignMachinesForm" class="modal-body">
+                 <input type="hidden" id="assignMachineProductId">
+                 <p class="mb-4" style="color: var(--text-secondary);">Select the machines this product runs on.</p>
+                 <div id="assignMachinesList" class="space-y-4 max-h-96 overflow-y-auto p-4 border rounded-lg" style="border-color: var(--border-color);">
+                    <!-- Machine checkboxes will be inserted here -->
+                 </div>
+            </form>
+            <div class="modal-footer"><button type="button" onclick="hideModal('assignMachinesModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button type="submit" form="assignMachinesForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Save</button></div>
+        </div>
+    </div>
+    <div id="addProductsToMachineModal" class="modal-container">
+        <div class="modal-content-container max-w-xl">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="addProductsToMachineModalTitle">Assign Products to Machine</h3>
+                <button type="button" onclick="hideModal('addProductsToMachineModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <form id="addProductsToMachineForm" class="modal-body">
+                 <input type="hidden" id="addProductsMachineId">
+                 <p class="mb-4" style="color: var(--text-secondary);">Select all products that should be assigned to this machine.</p>
+                 <div id="addProductsToMachineList" class="space-y-2 max-h-72 overflow-y-auto p-2 border rounded-lg" style="border-color: var(--border-color);">
+                    <!-- Product checkboxes will be inserted here -->
+                 </div>
+                 <p id="noAvailableProductsMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">
+                    There are no products registered in the system.
+                </p>
+            </form>
+            <div class="modal-footer"><button type="button" onclick="hideModal('addProductsToMachineModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button id="addProductsToMachineSaveBtn" type="submit" form="addProductsToMachineForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Update Assignments</button></div>
+        </div>
+    </div>
+    <div id="machineProductsModal" class="modal-container">
+        <div class="modal-content-container max-w-4xl">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="machineProductsModalTitle">Products on Machine</h3>
+                <button type="button" onclick="hideModal('machineProductsModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <div id="machineProductsList" class="modal-body"></div>
+            <div class="modal-footer">
+                <div class="flex justify-between items-center w-full">
+                    <div class="flex gap-2">
+                        <button onclick="exportMachineProductsToExcel()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Export to Excel
+                        </button>
+                        <button onclick="printMachineProducts()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                            </svg>
+                            Print
+                        </button>
+                    </div>
+                    <button type="button" onclick="hideModal('machineProductsModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="customAlertModal" class="modal-container">
+        <div class="modal-content-container max-w-sm"><div class="modal-body text-center py-8"><h4 id="customAlertTitle" class="text-lg font-bold mb-2">Alert</h4><p id="customAlertMessage" class="text-sm mb-6" style="color: var(--text-secondary);">Message</p><button id="customAlertButton" class="w-full text-white py-2 rounded-lg btn-gradient">OK</button></div></div>
+    </div>
+
+
+<!-- JAVASCRIPT MODULES - The type="module" attribute is CRITICAL -->
+<!-- For live testing, load individual modules (uncomment as needed) -->
+<script type="module" src="dist/src/app.js"></script>
+<script type="module" src="dist/src/ui.js"></script>
+<script type="module" src="dist/src/state.js"></script>
+<script type="module" src="dist/src/utils.js"></script>
+<script type="module" src="dist/src/productView.js"></script>
+<script type="module" src="dist/src/machineView.js"></script>
+<script type="module" src="dist/src/worstCaseView.js"></script>
+<script type="module" src="dist/src/macoProductView.js"></script>
+<script type="module" src="dist/src/macoDetergentView.js"></script>
+<script type="module" src="dist/src/dashboardView.js"></script>
+<script type="module" src="dist/src/summaryView.js"></script>
+<!-- <script type="module" src="dist/app.bundle.js"></script> -->
+<!-- Keep the bundle for production, comment out for live dev -->
+<!-- <script src="dist/app.bundle.js"></script> -->
+</body>
+<footer class="footer-main no-print py-4 text-center text-xs">
+    All rights reserved &copy; <span id="footerYear"></span> | Prepared by Eng. Raeda
+</footer>
+<script>
+    // Set current year in footer
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>
+</html>
