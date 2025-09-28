@@ -131,8 +131,9 @@ function initializeApp() {
     ui.showLoader();
     try {
         // Prompt for org and user ID (replace with a real login UI for production)
-        let orgId = localStorage.getItem('orgId') || prompt('Enter your organization ID:');
-        let userId = localStorage.getItem('userId') || prompt('Enter your user ID:');
+        // let orgId = localStorage.getItem('orgId') || prompt('Enter your organization ID:');
+        // let userId = localStorage.getItem('userId') || prompt('Enter your user ID:');
+         let orgId, userId;
         if (!orgId) orgId = 'defaultOrg';
         if (!userId) userId = 'defaultUser';
         localStorage.setItem('orgId', orgId);
