@@ -1,0 +1,3 @@
+// creds.js
+export const USER = "admin";
+export const PASS = "Admin@2000";

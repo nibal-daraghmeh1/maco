@@ -20,19 +20,18 @@
       <div class="error" id="errorMsg"></div>
     </form>
   </div>
-  <script>
-    const USER = "admin";
-    const PASS = "admin123";
-    document.getElementById('loginForm').onsubmit = function(e) {
-      e.preventDefault();
-      const u = document.getElementById('username').value;
-      const p = document.getElementById('password').value;
-      if (u === USER && p === PASS) {
-        window.location.href = "index2.html";
-      } else {
-        document.getElementById('errorMsg').textContent = "Invalid credentials";
-      }
-    };
-  </script>
+<script type="module">
+  import { USER, PASS } from './src/creds.js';
+  document.getElementById('loginForm').onsubmit = function(e) {
+    e.preventDefault();
+    const u = document.getElementById('username').value;
+    const p = document.getElementById('password').value;
+    if (u === USER && p === PASS) {
+      window.location.href = "index2.html";
+    } else {
+      document.getElementById('errorMsg').textContent = "Invalid credentials";
+    }
+  };
+</script>
 </body>
 </html>
