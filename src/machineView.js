@@ -151,7 +151,7 @@ export function renderMachinesTable() {
                     <td class="px-4 py-3">${productsCellHTML}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
                         <div class="flex items-center gap-x-2 no-print">
-                            <button onclick="showAddProductsToMachineModal(${machine.id})" class="p-1 text-blue-500" title="Assign Products to this Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></button>
+                            <button onclick="showMachineProductsModal(${machine.id})" class="p-1 text-blue-500" title="Assign Products to this Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></button>
                             <button onclick="showMachineModal(${machine.id})" class="p-1" style="color: var(--text-secondary);" title="Edit Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zM12.879 4.379L11 2.5 4.939 8.561a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.121L12.879 4.379z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></button>
                             <button onclick="deleteMachine(${machine.id})" class="p-1 text-red-500" title="Delete Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3V2h11v1h-11z"/></svg></button>
                         </div>
@@ -627,6 +627,172 @@ export function printMachineProducts() {
         console.error('Error printing machine products:', error);
         alert('Failed to generate print report. Please try again.');
     }
+}
+
+
+// --- Product-Machine Assignment Functions ---
+export function showAssignMachinesModal(productId) {
+  const product = state.products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('assignMachineProductId').value = productId;
+            document.getElementById('assignMachinesModalTitle').textContent = `Assign Machines to: ${product.name}`;
+            
+            const listContainer = document.getElementById('assignMachinesList');
+            listContainer.innerHTML = ''; // Clear previous content
+
+            state.machineStageDisplayOrder.forEach(stage => {
+                let machinesInStage = state.machines.filter(m => m.stage === stage);
+                
+                // Custom sorting logic
+                if (stage === 'Mixing') {
+                    machinesInStage.sort((a, b) => {
+                        const aIsBin = a.name.toLowerCase().includes('bin');
+                        const bIsBin = b.name.toLowerCase().includes('bin');
+                        if (aIsBin && !bIsBin) return -1;
+                        if (!aIsBin && bIsBin) return 1;
+                        if (aIsBin && bIsBin) {
+                            const aNum = parseInt((a.name.match(/\d+/) || [0])[0], 10);
+                            const bNum = parseInt((b.name.match(/\d+/) || [0])[0], 10);
+                            return aNum - bNum;
+                        }
+                        return a.name.localeCompare(b.name);
+                    });
+                } else {
+                    machinesInStage.sort((a, b) => a.name.localeCompare(b.name));
+                }
+
+                if (machinesInStage.length > 0) {
+                    const groupDiv = document.createElement('div');
+                    
+                    const stageHeader = document.createElement('h4');
+                    stageHeader.className = 'text-sm font-bold uppercase tracking-wider pb-1 mb-2 border-b';
+                    stageHeader.style.borderColor = 'var(--border-color)';
+                    stageHeader.style.color = 'var(--text-secondary)';
+                    stageHeader.textContent = stage === 'Other' ? 'Other / Custom Stages' : stage;
+                    groupDiv.appendChild(stageHeader);
+
+                    const machinesGrid = document.createElement('div');
+                    machinesGrid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 pl-2';
+
+                    machinesInStage.forEach(machine => {
+                        const isChecked = product.machineIds && product.machineIds.includes(machine.id);
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'flex items-center';
+                        itemDiv.innerHTML = `
+                            <input type="checkbox" id="machine-check-${machine.id}" value="${machine.id}" ${isChecked ? 'checked' : ''} class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                            <label for="machine-check-${machine.id}" class="ml-2 text-sm font-medium" style="color: var(--text-primary);">${machine.name} <span class="text-xs" style="color:var(--text-secondary)">(${machine.machineNumber})</span></label>
+                        `;
+                        machinesGrid.appendChild(itemDiv);
+                    });
+                    
+                    groupDiv.appendChild(machinesGrid);
+                    listContainer.appendChild(groupDiv);
+                }
+            });
+
+            document.getElementById('assignMachinesModal').style.display = 'flex';
+      
+}
+
+export function saveProductMachines(event) {
+     event.preventDefault();
+            const productId = parseInt(document.getElementById('assignMachineProductId').value);
+            const product = state.products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const selectedIds = [];
+            document.querySelectorAll('#assignMachinesList input[type="checkbox"]:checked').forEach(checkbox => {
+                selectedIds.push(parseInt(checkbox.value));
+            });
+            
+            product.machineIds = selectedIds;
+            saveStateForUndo();
+            hideModal('assignMachinesModal');
+            fullAppRender();
+            showCustomAlert('Success', 'Product machines updated successfully.');
+        }
+     
+
+export function showAddProductsToMachineModal(machineId) {
+            const machine = state.machines.find(m => m.id === machineId);
+            if (!machine) return;
+
+            document.getElementById('addProductsMachineId').value = machineId;
+            document.getElementById('addProductsToMachineModalTitle').textContent = `Assign Products to: ${machine.name}`;
+            
+            const listContainer = document.getElementById('addProductsToMachineList');
+            const noProductsMsg = document.getElementById('noAvailableProductsMessage');
+            const saveBtn = document.getElementById('addProductsToMachineSaveBtn');
+            listContainer.innerHTML = '';
+
+            if (state.products.length > 0) {
+                noProductsMsg.style.display = 'none';
+                listContainer.style.display = 'block';
+                saveBtn.style.display = 'block';
+
+                state.products.sort((a,b) => a.name.localeCompare(b.name)).forEach(p => {
+                    const isAssignedToThisMachine = p.machineIds && p.machineIds.includes(machineId);
+                    const isAssignedToAnyOtherMachine = p.machineIds && p.machineIds.some(id => id !== machineId);
+
+                    let otherAssignmentIndicator = '';
+                    if (isAssignedToAnyOtherMachine) {
+                         otherAssignmentIndicator = `<span class="ml-auto text-xs font-semibold px-1.5 py-0.5 rounded" style="background-color: var(--bg-accent); color: var(--text-secondary);" title="This product is also assigned to other machines.">Linked</span>`;
+                    }
+                    
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center';
+                    div.innerHTML = `
+                        <input type="checkbox" id="product-assign-check-${p.id}" value="${p.id}" ${isAssignedToThisMachine ? 'checked' : ''} class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                        <label for="product-assign-check-${p.id}" class="ml-3 flex-1 flex items-center text-sm font-medium" style="color: var(--text-primary);">
+                            <span>${p.name} <span class="text-xs" style="color:var(--text-secondary)">(${p.productCode})</span></span>
+                            ${otherAssignmentIndicator}
+                        </label>
+                    `;
+                    listContainer.appendChild(div);
+                });
+            } else {
+                noProductsMsg.textContent = 'There are no products registered in the system.';
+                noProductsMsg.style.display = 'block';
+                listContainer.style.display = 'none';
+                saveBtn.style.display = 'none';
+            }
+            
+            document.getElementById('addProductsToMachineModal').style.display = 'flex';
+      
+}
+
+export function saveProductsToMachine(event) {
+     event.preventDefault();
+            const machineId = parseInt(document.getElementById('addProductsMachineId').value);
+            if (isNaN(machineId)) return;
+
+            const selectedProductIds = [];
+            document.querySelectorAll('#addProductsToMachineList input[type="checkbox"]:checked').forEach(checkbox => {
+                selectedProductIds.push(parseInt(checkbox.value));
+            });
+
+            // Iterate through ALL products to sync assignments for this machine
+            state.products.forEach(product => {
+                if (!product.machineIds) {
+                    product.machineIds = [];
+                }
+                const isCurrentlyAssigned = product.machineIds.includes(machineId);
+                const isSelected = selectedProductIds.includes(product.id);
+
+                if (isSelected && !isCurrentlyAssigned) {
+                    // Add assignment if selected but not currently assigned
+                    product.machineIds.push(machineId);
+                } else if (!isSelected && isCurrentlyAssigned) {
+                    // Remove assignment if not selected but currently assigned
+                    product.machineIds = product.machineIds.filter(id => id !== machineId);
+                }
+            });
+
+            saveStateForUndo();
+            fullAppRender();
+            hideModal('addProductsToMachineModal');
+            showCustomAlert('Success', 'Machine assignments updated.');
 }
 
 // Make functions globally available
