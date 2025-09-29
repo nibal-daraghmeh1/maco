@@ -52,7 +52,7 @@ export function renderMacoForTrains() {
         const isCollapsed = true; // All trains start collapsed
         const productTypesInTrain = train.products.map(p => p.productType);
         const worstCaseType = getWorstCaseProductType(productTypesInTrain);
-        const sfConfig = state.safetyFactorConfig[worstCaseType] || safetyFactorConfig['Other'];
+    const sfConfig = state.safetyFactorConfig[worstCaseType] || state.safetyFactorConfig['Other'];
 
         const trainCard = document.createElement('div');
         trainCard.className = 'train-card';
