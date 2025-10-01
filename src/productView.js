@@ -214,20 +214,29 @@ export function showAddForm() {
                                   <div><label class="block text-sm font-medium mb-1">Product Name</label><input type="text" id="addProductName" class="w-full px-3 py-2 border rounded-lg" required></div>
                                   <div><label class="block text-sm font-medium mb-1">Date</label><input type="date" id="addProductDate" class="w-full px-3 py-2 border rounded-lg" required></div>
                               </div>
-                              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                   <div><label class="block text-sm font-medium mb-1">Batch Size (Kg)</label><input type="number" step="0.01" id="addBatchSize" class="w-full px-3 py-2 border rounded-lg" min="0" required></div>
-                                  <div class="md:col-span-2">
-                                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                
+                                  <div>
+                                    <label class="block text-sm font-medium mb-1">Line</label>
+                                                                        <select id="addProductLine" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('addOtherLineContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('addOtherLine').required = this.value === 'Other'; updateDosageFormOptions('add')">
+                                        <option value="" disabled selected>Select a line...</option>
+                                        <option value="Solids">Solids</option>
+                                        <option value="Semisolid">Semisolid</option>
+                                        <option value="Liquids">Liquids</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                                                        <div id="addOtherLineContainer" style="display:none;margin-top:6px;">
+                                                                                <label class="block text-sm font-medium mb-1">Specify Other Line</label>
+                                                                                <input type="text" id="addOtherLine" class="w-full px-3 py-2 border rounded-lg" />
+                                                                        </div>
+                                                                        </div>
+                                  <div>
+                                      <div class="">
                                         <div>
                                             <label class="block text-sm font-medium mb-1">Dosage Form</label>
-                                            <select id="addProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="toggleOtherProductType(this, 'addOtherTypeContainer')">
-                                                <option value="" disabled selected>Select a form...</option>
-                                                <option value="Tablets">Tablets</option>
-                                                <option value="Capsules">Capsules</option>
-                                                <option value="Liquids">Liquids</option>
-                                                <option value="Semisolids">Semisolids</option>
-                                                <option value="Sterile Products">Sterile Products</option>
-                                                <option value="Other">Other</option>
+                                            <select id="addProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('addOtherTypeContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('addOtherProductType').required = this.value === 'Other';">
+                                            <option value="" disabled selected>Select a form...</option>
                                             </select>
                                         </div>
                                         <div id="addOtherTypeContainer" style="display: none;">
@@ -236,6 +245,17 @@ export function showAddForm() {
                                         </div>
                                       </div>
                                   </div>
+                                  <div>
+                    <label class="block text-sm font-medium mb-1">Special Case Product</label>
+                    <select id="editIsCritical" onchange="document.getElementById('editCriticalReasonContainer2').style.display = this.value === 'true' ? 'block' : 'none';" class="w-full px-3 py-2 border rounded-lg">
+                        <option value="false" 'selected' >No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+                <div id="editCriticalReasonContainer2" style="display: none">
+                    <label class="block text-sm font-medium mb-1">Reason for Special Case Status</label>
+                    <textarea id="editCriticalReason" class="w-full px-3 py-2 border rounded-lg" placeholder="Enter reason..."></textarea>
+                </div>
                               </div>
                               <div><div class="flex justify-between items-center mb-4"><h4 class="text-lg font-medium">Active Ingredients</h4><button type="button" onclick="addIngredientFormFields('ingredientsContainer')" class="text-white px-3 py-1 rounded-lg text-sm btn-gradient">+ Add Ingredient</button></div><div id="ingredientsContainer"></div></div>`;
     document.getElementById('ingredientsContainer').innerHTML = '';
@@ -297,17 +317,28 @@ export function showEditProductModal(productId) {
                     <div><label class="block text-sm font-medium mb-1">Product Name</label><input type="text" id="editProductName" value="${product.name}" class="w-full px-3 py-2 border rounded-lg" required></div>
                     <div><label class="block text-sm font-medium mb-1">Date</label><input type="date" id="editProductDate" value="${dateValue}" class="w-full px-3 py-2 border rounded-lg" required></div>
                     <div><label class="block text-sm font-medium mb-1">Batch Size (Kg)</label><input type="number" step="0.01" id="editBatchSize" value="${product.batchSizeKg}" class="w-full px-3 py-2 border rounded-lg" min="0" required></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+  
+                    </div>
+    
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium mb-1">Dosage Form</label>
-                        <select id="editProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="toggleOtherProductType(this, 'editOtherTypeContainer')">
-                            <option value="Tablets">Tablets</option>
-                            <option value="Capsules">Capsules</option>
-                            <option value="Liquids">Liquids</option>
-                            <option value="Semisolids">Semisolids</option>
-                            <option value="Sterile Products">Sterile Products</option>
-                            <option value="Other">Other</option>
+                    <label class="block text-sm font-medium mb-1">Line</label>
+                    <select id="editProductLine" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('editOtherLineContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('editOtherLine').required = this.value === 'Other'; updateDosageFormOptions('edit')">
+                        <option value="" disabled selected>Select a line...</option>
+                        <option value="Solids">Solids</option>
+                        <option value="Semisolid">Semisolid</option>
+                        <option value="Liquids">Liquids</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="editOtherLineContainer" style="display:none;margin-top:6px;">
+                        <label class="block text-sm font-medium mb-1">Specify Other Line</label>
+                        <input type="text" id="editOtherLine" class="w-full px-3 py-2 border rounded-lg">
+                    </div>
+                    </div>
+                    <div>
+                        <label>Dosage Form</label>
+                        <select id="editProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('editOtherTypeContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('editOtherProductType').required = this.value === 'Other';">
+                        <option value="" disabled selected>Select a form...</option>
                         </select>
                     </div>
                     <div id="editOtherTypeContainer" style="display: none;">
@@ -339,21 +370,62 @@ export function showEditProductModal(productId) {
     const ingredientsContainer = form.querySelector('#editIngredientsContainer');
     ingredientsContainer.innerHTML = '';
 
-    // Pre-populate product type/dosage form
+    // Pre-populate product line and then product type/dosage form
+    const lineSelect = form.querySelector('#editProductLine');
     const typeSelect = form.querySelector('#editProductType');
     const otherInput = form.querySelector('#editOtherProductType');
     const otherContainer = form.querySelector('#editOtherTypeContainer');
-    const standardTypes = Array.from(typeSelect.options).map(opt => opt.value);
 
-    if (standardTypes.includes(product.productType)) {
+    // If the product has a saved line, use it. Otherwise try to infer the line
+    // from the saved productType (this helps older records that lack 'line').
+    if (!product.line && product.productType) {
+        const solids = ['Tablets', 'Capsules', 'Powder'];
+        const semisolids = ['Ointment', 'Cream', 'Gel'];
+        const liquids = ['Syrup', 'Solution', 'Suspension'];
+        if (solids.includes(product.productType)) product.line = 'Solids';
+        else if (semisolids.includes(product.productType)) product.line = 'Semisolid';
+        else if (liquids.includes(product.productType)) product.line = 'Liquids';
+        else product.line = '';
+    }
+
+    if (product.line) {
+        // If saved line matches a standard option, select it. Otherwise show 'Other' and fill the text input.
+        const stdLines = Array.from(lineSelect.options).map(o => o.value).filter(Boolean);
+        if (stdLines.includes(product.line)) {
+            lineSelect.value = product.line;
+        } else {
+            lineSelect.value = 'Other';
+            const editOtherLine = form.querySelector('#editOtherLine');
+            if (editOtherLine) {
+                editOtherLine.value = product.line;
+                form.querySelector('#editOtherLineContainer').style.display = 'block';
+                editOtherLine.required = true;
+            }
+        }
+    }
+
+    // Populate dosage form options for the currently selected line
+    try { updateDosageFormOptions('edit'); } catch (e) { /* ignore if not available */ }
+
+    // Now set the dosage form value (or 'Other' handling) after options are populated
+    const standardTypes = Array.from(typeSelect.options).map(opt => opt.value).filter(Boolean);
+    if (product.productType && standardTypes.includes(product.productType)) {
         typeSelect.value = product.productType;
         otherContainer.style.display = 'none';
         otherInput.required = false;
-    } else {
+    } else if (product.productType) {
+        // saved productType isn't in standard list, treat as Other
+        if (!standardTypes.includes('Other')) {
+            typeSelect.innerHTML += '<option value="Other">Other</option>';
+        }
         typeSelect.value = 'Other';
         otherInput.value = product.productType || '';
         otherContainer.style.display = 'block';
         otherInput.required = true;
+    } else {
+        // No saved productType, ensure Other is hidden
+        otherContainer.style.display = 'none';
+        otherInput.required = false;
     }
 
     document.getElementById('editProductModalTitle').textContent = `Edit Product: ${product.name}`;
@@ -377,6 +449,14 @@ export function saveProductChanges(event) {
         }
         productType = otherType;
     }
+
+    // Save edited line (handle 'Other' custom value)
+    let editedLine = document.getElementById('editProductLine').value;
+    if (editedLine === 'Other') {
+        editedLine = document.getElementById('editOtherLine').value.trim();
+        if (!editedLine) { showCustomAlert('Validation Error', 'Please specify the Other Line.'); return; }
+    }
+    product.line = editedLine;
 
     product.productCode = document.getElementById('editProductCode').value;
     product.name = document.getElementById('editProductName').value;
@@ -543,6 +623,12 @@ export function addNewProduct(event) {
     const date = new Date(document.getElementById('addProductDate').value).toISOString(); 
     
     let productType = document.getElementById('addProductType').value;
+    let productLine = document.getElementById('addProductLine').value;
+    if (productLine === 'Other') {
+        const otherLineVal = document.getElementById('addOtherLine').value.trim();
+        if (!otherLineVal) { showCustomAlert('Validation Error', 'Please specify the Other Line.'); return; }
+        productLine = otherLineVal;
+    }
     if (productType === 'Other') {
         const otherType = document.getElementById('addOtherProductType').value.trim();
         if (!otherType) {
@@ -585,7 +671,7 @@ export function addNewProduct(event) {
         state.setNextIngredientId(state.nextIngredientId - activeIngredients.length); // Roll back ID increments
         return; 
     } 
-    const newProduct = { id: state.nextProductId, productCode: productCode, name: productName, batchSizeKg: batchSize, date: date, productType: productType, machineIds: [], activeIngredients: activeIngredients, isCritical: false, criticalReason: '' };
+    const newProduct = { id: state.nextProductId, productCode: productCode, name: productName, batchSizeKg: batchSize, date: date, productType: productType, line: productLine, machineIds: [], activeIngredients: activeIngredients, isCritical: false, criticalReason: '' };
     state.setNextProductId(state.nextProductId + 1);
     
     const newProducts = [...state.products, newProduct];
@@ -594,3 +680,37 @@ export function addNewProduct(event) {
     fullAppRender(); 
     hideModal('addProductModal'); 
 }
+window.updateDosageFormOptions = function(mode) {
+    let line = document.getElementById(mode === 'add' ? 'addProductLine' : 'editProductLine').value;
+    // If the selected value is a custom line (not one of the standard values),
+    // treat it as 'Other' for dosage form population.
+    const standardLines = ['Solids','Semisolid','Liquids','Other','Others'];
+    if (!standardLines.includes(line)) {
+        // show the Other Line input and set the select to 'Other'
+        try {
+            if (mode === 'add') {
+                document.getElementById('addOtherLineContainer').style.display = 'block';
+                document.getElementById('addOtherLine').value = line;
+                document.getElementById('addProductLine').value = 'Other';
+            } else {
+                document.getElementById('editOtherLineContainer').style.display = 'block';
+                document.getElementById('editOtherLine').value = line;
+                document.getElementById('editProductLine').value = 'Other';
+            }
+            line = 'Other';
+        } catch (e) { /* ignore DOM errors */ }
+    }
+  const formSelect = document.getElementById(mode === 'add' ? 'addProductType' : 'editProductType');
+  let options = [];
+  if (line === 'Solids') {
+    options = ['Tablets', 'Capsules', 'Powder', 'Other'];
+  } else if (line === 'Semisolid') {
+    options = ['Ointment', 'Cream', 'Gel', 'Other'];
+  } else if (line === 'Liquids') {
+    options = ['Syrup', 'Solution', 'Suspension', 'Other'];
+    } else if (line === 'Other') {
+        options = ['Other'];
+  }
+  formSelect.innerHTML = '<option value=\"\" disabled selected>Select a form...</option>' +
+    options.map(opt => `<option value=\"${opt}\">${opt}</option>`).join('');
+};

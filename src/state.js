@@ -3,12 +3,12 @@
 
 // --- GLOBAL STATE ---
 export let products = [
-    { id: 1, productCode: "1ATC50001AP", name: "Acetaminophen 500mg", batchSizeKg: 51.08, date: "2023-01-15T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', machineIds: [1, 2, 6, 11, 13, 16], activeIngredients: [{ id: 1, name: "Acetaminophen", therapeuticDose: 500, mdd: 4000, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }] },
-    { id: 2, productCode: "2IBU20011PN", name: "Ibuprofen 200mg", batchSizeKg: 113.51, date: "2023-02-20T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', machineIds: [1, 3, 5, 12, 16], activeIngredients: [{ id: 2, name: "Ibuprofen", therapeuticDose: 200, mdd: 1200, solubility: "Practically insoluble", cleanability: "Medium", pde: 1.2, ld50: 636 }] },
-    { id: 3, productCode: "3CFR18003MX", name: "Cold & Flu Relief", batchSizeKg: 180, date: "2023-03-10T10:00:00.000Z", isCritical: true, criticalReason: 'Stains equipment yellow', productType: 'Tablets', machineIds: [1, 2, 6, 11, 13, 16], activeIngredients: [ { id: 3, name: "Acetaminophen", therapeuticDose: 650, mdd: 3900, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }, { id: 4, name: "Phenylephrine HCl", therapeuticDose: 10, mdd: 60, solubility: "Very soluble", cleanability: "Easy", pde: 0.6, ld50: 350 }, { id: 5, name: "Dextromethorphan HBr", therapeuticDose: 30, mdd: 120, solubility: "Slightly soluble", cleanability: "Medium", pde: 1.0, ld50: 750 } ] },
-    { id: 4, productCode: "4ASA32504AC", name: "Aspirin 325mg", batchSizeKg: 75.5, date: "2023-04-05T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', machineIds: [1, 4, 7, 12, 16], activeIngredients: [{ id: 6, name: "Aspirin", therapeuticDose: 325, mdd: 4000, solubility: "Slightly soluble", cleanability: "Medium", pde: 0.5, ld50: null }] },
-    { id: 5, productCode: "5OME02005PR", name: "Omeprazole 20mg", batchSizeKg: 25.2, date: "2023-05-25T10:00:00.000Z", isCritical: true, criticalReason: 'New API', productType: 'Capsules', machineIds: [1, 5, 9, 14, 15], activeIngredients: [{ id: 7, name: "Omeprazole", therapeuticDose: 20, mdd: 40, solubility: "Practically insoluble", cleanability: "Hard", pde: 0.013, ld50: null }] },
-    { id: 6, productCode: "6PCX00506XP", name: "Potent Compound X", batchSizeKg: 5.0, date: "2023-06-30T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Sterile Products', machineIds: [1, 5, 10, 14, 15], activeIngredients: [{ id: 8, name: "Potent Compound X", therapeuticDose: 1, mdd: 2, solubility: "Slightly soluble", cleanability: "Hard", pde: 0.0005, ld50: 25 }] },
+    { id: 1, productCode: "1ATC50001AP", name: "Acetaminophen 500mg", batchSizeKg: 51.08, date: "2023-01-15T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 2, 6, 11, 13, 16], activeIngredients: [{ id: 1, name: "Acetaminophen", therapeuticDose: 500, mdd: 4000, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }] },
+    { id: 2, productCode: "2IBU20011PN", name: "Ibuprofen 200mg", batchSizeKg: 113.51, date: "2023-02-20T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 3, 5, 12, 16], activeIngredients: [{ id: 2, name: "Ibuprofen", therapeuticDose: 200, mdd: 1200, solubility: "Practically insoluble", cleanability: "Medium", pde: 1.2, ld50: 636 }] },
+    { id: 3, productCode: "3CFR18003MX", name: "Cold & Flu Relief", batchSizeKg: 180, date: "2023-03-10T10:00:00.000Z", isCritical: true, criticalReason: 'Stains equipment yellow', productType: 'Tablets', line: 'Solids Line B', machineIds: [1, 2, 6, 11, 13, 16], activeIngredients: [ { id: 3, name: "Acetaminophen", therapeuticDose: 650, mdd: 3900, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }, { id: 4, name: "Phenylephrine HCl", therapeuticDose: 10, mdd: 60, solubility: "Very soluble", cleanability: "Easy", pde: 0.6, ld50: 350 }, { id: 5, name: "Dextromethorphan HBr", therapeuticDose: 30, mdd: 120, solubility: "Slightly soluble", cleanability: "Medium", pde: 1.0, ld50: 750 } ] },
+    { id: 4, productCode: "4ASA32504AC", name: "Aspirin 325mg", batchSizeKg: 75.5, date: "2023-04-05T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 4, 7, 12, 16], activeIngredients: [{ id: 6, name: "Aspirin", therapeuticDose: 325, mdd: 4000, solubility: "Slightly soluble", cleanability: "Medium", pde: 0.5, ld50: null }] },
+    { id: 5, productCode: "5OME02005PR", name: "Omeprazole 20mg", batchSizeKg: 25.2, date: "2023-05-25T10:00:00.000Z", isCritical: true, criticalReason: 'New API', productType: 'Capsules', line: 'Capsules Line', machineIds: [1, 5, 9, 14, 15], activeIngredients: [{ id: 7, name: "Omeprazole", therapeuticDose: 20, mdd: 40, solubility: "Practically insoluble", cleanability: "Hard", pde: 0.013, ld50: null }] },
+    { id: 6, productCode: "6PCX00506XP", name: "Potent Compound X", batchSizeKg: 5.0, date: "2023-06-30T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Sterile Products', line: 'Sterile Line', machineIds: [1, 5, 10, 14, 15], activeIngredients: [{ id: 8, name: "Potent Compound X", therapeuticDose: 1, mdd: 2, solubility: "Slightly soluble", cleanability: "Hard", pde: 0.0005, ld50: 25 }] },
 ];
 
 export let machines = [
@@ -110,3 +110,53 @@ export function setHistory(newHistory, newIndex) { history = newHistory; history
 export function setMachineStageDisplayOrder(order) { machineStageDisplayOrder = order; }
 export function setScoringWasInEditModeForPrint(wasEditing) { scoringWasInEditModeForPrint = wasEditing; }
 export function setIngredientFormCounter(count) { ingredientFormCounter = count; }
+
+/**
+ * Ensure every product has a `line` property.
+ * If missing, try to infer from productType (backwards-compatibility).
+ * Call this once at app start (or after loading saved state).
+ */
+export function ensureProductsHaveLine() {
+    if (!Array.isArray(exports.products) && !Array.isArray(window.state?.products) && !Array.isArray(products)) {
+        // best-effort: check common names used in this project
+    }
+
+    // Attempt to access the products array from known exports/variables
+    const prodHolder = (typeof state !== 'undefined' && state.products) ? state
+                    : (typeof exports !== 'undefined' && exports.products) ? exports
+                    : (typeof window !== 'undefined' && window.state && window.state.products) ? window.state
+                    : null;
+    if (!prodHolder) return;
+
+    const products = prodHolder.products || [];
+    let changed = false;
+
+    const solids = ['Tablets', 'Capsules', 'Powder'];
+    const semisolids = ['Ointment', 'Cream', 'Gel'];
+    const liquids = ['Syrup', 'Solution', 'Suspension'];
+
+    const migrated = products.map(p => {
+        // if product already has a line (non-empty), keep as is
+        if (p.line !== undefined && p.line !== null && p.line !== '') return p;
+        const copy = Object.assign({}, p);
+        if (copy.productType) {
+            if (solids.includes(copy.productType)) copy.line = 'Solids';
+            else if (semisolids.includes(copy.productType)) copy.line = 'Semisolid';
+            else if (liquids.includes(copy.productType)) copy.line = 'Liquids';
+            else copy.line = ''; // unknown/custom; leave empty so UI can set
+        } else {
+            copy.line = '';
+        }
+        changed = true;
+        return copy;
+    });
+
+    if (changed) {
+        // prefer exported setter if present
+        if (typeof prodHolder.setProducts === 'function') {
+            prodHolder.setProducts(migrated);
+        } else {
+            prodHolder.products = migrated;
+        }
+    }
+}

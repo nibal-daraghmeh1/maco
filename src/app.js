@@ -164,6 +164,14 @@ function initializeApp() {
         // Save the initial loaded state as the first step in the undo/redo history
         ui.saveStateForUndo();
 
+        try {
+            if (typeof state.ensureProductsHaveLine === 'function') {
+                state.ensureProductsHaveLine();
+            }
+        } catch (e) {
+            console.warn('[migration] ensureProductsHaveLine failed', e);
+        }
+        
         // Perform the first full render of the application
         fullAppRender();
 

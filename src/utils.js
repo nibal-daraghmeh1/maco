@@ -72,36 +72,16 @@ export function generateTrainMap() {
 }
 
 /**
- * Gets consolidated train path based on machine groups
+ * Gets consolidated train path based on individual machines
  * @param {Array} machineIds - Array of machine IDs
- * @returns {Array} Consolidated path representing groups and individual machines
+ * @returns {Array} Consolidated path representing individual machines
  */
 function getConsolidatedTrainPath(machineIds) {
-    const consolidatedPath = [];
-    const processedGroups = new Set();
-    
     // Sort machine IDs to ensure consistent ordering
     const sortedMachineIds = [...machineIds].sort((a, b) => a - b);
     
-    sortedMachineIds.forEach(machineId => {
-        const machine = machines.find(m => m.id === machineId);
-        if (!machine) return;
-        
-        if (machine.group && machine.group !== '') {
-            // Machine belongs to a group
-            if (!processedGroups.has(machine.group)) {
-                // First time seeing this group, add it to the path
-                consolidatedPath.push(`group:${machine.group}`);
-                processedGroups.add(machine.group);
-            }
-            // If we've already processed this group, don't add it again
-        } else {
-            // Individual machine (no group)
-            consolidatedPath.push(`machine:${machineId}`);
-        }
-    });
-    
-    return consolidatedPath.sort(); // Sort for consistent train identification
+    // Treat each machine individually - no grouping
+    return sortedMachineIds.map(machineId => `machine:${machineId}`);
 }
 
 export function getProductTrainId(product) {
@@ -114,6 +94,113 @@ export function getProductTrainId(product) {
     const key = JSON.stringify(consolidatedPath);
     
     return trainIdMap.get(key) || 'N/A';
+}
+
+/**
+ * Get unique production line names from the machines array.
+ * Falls back to product.line values if machines do not declare lines.
+ * Returns an array of unique, sorted line names.
+ */
+export function getUniqueLinesFromMachines() {
+    const machineLines = machines.map(m => (m && m.line) ? String(m.line).trim() : null).filter(Boolean);
+    if (machineLines.length > 0) {
+        return [...new Set(machineLines)].sort();
+    }
+
+    // Fallback to product lines
+    const productLines = products.map(p => (p && p.line) ? String(p.line).trim() : null).filter(Boolean);
+    if (productLines.length > 0) {
+        return [...new Set(productLines)].sort();
+    }
+
+    // No lines found - return a sensible default list
+    return ['Default Line'];
+}
+
+/**
+ * Build trains grouped by Production Line, then by Dosage Form.
+ * Each train will have a sequential number (1..N) scoped to the Line and
+ * a reference to the machines and products that belong to it.
+ *
+ * Returned format: [ { line: 'Line A', trains: [ { number: 1, dosageForm: 'Tablets', consolidatedPath, machineIds, products: [...] }, ... ] }, ... ]
+ */
+export function getTrainsGroupedByLine() {
+    // collect all lines from products (use product.line or fallback)
+    const linesSet = new Set();
+    products.forEach(p => linesSet.add((p.line && String(p.line).trim()) || 'Unassigned'));
+    const lines = Array.from(linesSet);
+
+    const result = [];
+
+    lines.forEach(lineName => {
+        const productsInLine = products.filter(p => ((p.line && String(p.line).trim()) || 'Unassigned') === lineName && p.machineIds && p.machineIds.length > 0);
+
+        // group by dosage form (productType)
+        const byDosage = {};
+        productsInLine.forEach(p => {
+            const dtype = p.productType || 'Other';
+            if (!byDosage[dtype]) byDosage[dtype] = [];
+            byDosage[dtype].push(p);
+        });
+
+        // identify trains within each dosage group
+        const trainsForLine = [];
+        Object.keys(byDosage).forEach(dtype => {
+            const map = {};
+            byDosage[dtype].forEach(p => {
+                const consolidatedPath = getConsolidatedTrainPath(p.machineIds);
+                const key = JSON.stringify(consolidatedPath);
+                if (!map[key]) {
+                    map[key] = {
+                        key,
+                        dosageForm: dtype,
+                        consolidatedPath,
+                        machineIds: Array.from(new Set(p.machineIds)).sort((a,b)=>a-b),
+                        products: []
+                    };
+                }
+                map[key].products.push(p);
+            });
+
+            Object.values(map).forEach(t => trainsForLine.push(t));
+        });
+
+        // assign sequential numbers within the line
+        trainsForLine.sort((a,b) => {
+            if (a.dosageForm < b.dosageForm) return -1;
+            if (a.dosageForm > b.dosageForm) return 1;
+            return a.key < b.key ? -1 : (a.key > b.key ? 1 : 0);
+        });
+
+        let counter = 1;
+        trainsForLine.forEach(t => {
+            t.line = lineName;
+            t.number = counter++;
+            // Attach existing train id if available (preserve legacy ids)
+            t.id = trainIdMap.get(t.key) || null;
+        });
+
+        result.push({ line: lineName, trains: trainsForLine });
+    });
+
+    return result;
+}
+
+/**
+ * Returns a mapping of legacy train id -> { line, number }
+ * Useful for displaying user-friendly labels while preserving scalar ids for exports/prints.
+ */
+export function getTrainIdToLineNumberMap() {
+    const map = new Map();
+    const grouped = getTrainsGroupedByLine();
+    grouped.forEach(lineObj => {
+        lineObj.trains.forEach(t => {
+            if (t.id !== null && t.id !== undefined) {
+                map.set(String(t.id), { line: t.line, number: t.number });
+            }
+        });
+    });
+    return map;
 }
 
 // --- SCORING AND RATING LOGIC ---
@@ -465,13 +552,16 @@ export function consolidateMachinesByGroup(machineIds) {
 }
 
 /**
- * Gets the worst-case surface area for grouped machines in a train path
+ * Gets the total surface area for all machines in a train path
  * @param {Array} machineIds - Array of machine IDs in the train path
- * @returns {number} Total worst-case surface area
+ * @returns {number} Total surface area of all machines
  */
 export function getGroupedTrainSurfaceArea(machineIds) {
-    const consolidatedMachines = consolidateMachinesByGroup(machineIds);
-    return consolidatedMachines.reduce((total, machine) => total + machine.area, 0);
+    // Calculate total surface area of all individual machines (no grouping)
+    return machineIds.reduce((total, machineId) => {
+        const machine = machines.find(m => m.id === machineId);
+        return total + (machine ? machine.area : 0);
+    }, 0);
 }
 
 /**
@@ -480,38 +570,21 @@ export function getGroupedTrainSurfaceArea(machineIds) {
  * @returns {Object} Detailed grouping information
  */
 export function getTrainGroupingDetails(machineIds) {
-    const consolidatedMachines = consolidateMachinesByGroup(machineIds);
+    // Since we're not using grouping anymore, treat all machines as individuals
     const groupDetails = {
         totalMachines: machineIds.length,
-        consolidatedUnits: consolidatedMachines.length,
+        consolidatedUnits: machineIds.length, // Same as total machines since no grouping
         groups: [],
         individuals: [],
         totalSurfaceArea: 0,
         worstCaseOptimization: 0
     };
     
-    let originalSurfaceArea = 0;
-    
-    // Calculate original surface area without grouping
+    // Calculate surface area for all individual machines
     machineIds.forEach(machineId => {
         const machine = machines.find(m => m.id === machineId);
         if (machine) {
-            originalSurfaceArea += machine.area;
-        }
-    });
-    
-    // Analyze consolidated machines
-    consolidatedMachines.forEach(machine => {
-        groupDetails.totalSurfaceArea += machine.area;
-        
-        if (machine.isGroup) {
-            groupDetails.groups.push({
-                name: machine.group,
-                machineCount: machine.machineCount,
-                worstCaseArea: machine.area,
-                machines: machine.machines.map(m => ({ id: m.id, name: m.name, area: m.area }))
-            });
-        } else {
+            groupDetails.totalSurfaceArea += machine.area;
             groupDetails.individuals.push({
                 id: machine.id,
                 name: machine.name,
@@ -520,7 +593,8 @@ export function getTrainGroupingDetails(machineIds) {
         }
     });
     
-    groupDetails.worstCaseOptimization = originalSurfaceArea - groupDetails.totalSurfaceArea;
+    // No optimization since we're using all individual machines
+    groupDetails.worstCaseOptimization = 0;
     
     return groupDetails;
 }
@@ -531,15 +605,11 @@ export function getTrainGroupingDetails(machineIds) {
  * @returns {string} Formatted HTML string for display
  */
 export function formatTrainGroupDisplay(machineIds) {
-    const consolidatedMachines = consolidateMachinesByGroup(machineIds);
-    
-    return consolidatedMachines.map(machine => {
-        if (machine.isGroup) {
-            return `<span class="group-indicator" title="Group: ${machine.group} (${machine.machineCount} machines, worst-case area: ${machine.area.toLocaleString()} cm²)">
-                <strong>${machine.group}</strong> <em>(${machine.machineCount}x)</em>
-            </span>`;
-        } else {
-            return `<span class="individual-machine" title="Individual machine: ${machine.name}">${machine.name}</span>`;
-        }
+    // Display individual machines (no grouping)
+    return machineIds.map(machineId => {
+        const machine = machines.find(m => m.id === machineId);
+        const machineName = machine ? machine.name : `Unknown (ID: ${machineId})`;
+        const machineArea = machine ? machine.area : 0;
+        return `<span class="individual-machine" title="Machine: ${machineName} - Area: ${machineArea.toLocaleString()} cm²">${machineName}</span>`;
     }).join(' → ');
 }

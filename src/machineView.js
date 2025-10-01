@@ -641,8 +641,17 @@ export function showAssignMachinesModal(productId) {
             const listContainer = document.getElementById('assignMachinesList');
             listContainer.innerHTML = ''; // Clear previous content
 
+            // If machines have a 'line' property and the product has an assigned line,
+            // only show machines belonging to that line. If no machines declare lines,
+            // fall back to previous behavior.
+            const machinesHaveLine = state.machines.some(m => m.line !== undefined && m.line !== null);
+            const productLine = product.line ? String(product.line).trim() : null;
+
             state.machineStageDisplayOrder.forEach(stage => {
                 let machinesInStage = state.machines.filter(m => m.stage === stage);
+                if (machinesHaveLine && productLine) {
+                    machinesInStage = machinesInStage.filter(m => String(m.line || '') === productLine);
+                }
                 
                 // Custom sorting logic
                 if (stage === 'Mixing') {

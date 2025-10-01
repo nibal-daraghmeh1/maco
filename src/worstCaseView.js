@@ -3,7 +3,7 @@
 // THE FIX: Import the state module
 import * as state from './state.js'; 
 import { hideLoader, updateToggleIcons, showCustomAlert } from './ui.js';
-import { getProductTrainId, calculateScores, getRpnRatingClass, getToxicityPreference } from './utils.js';
+import { getProductTrainId, calculateScores, getRpnRatingClass, getToxicityPreference, getTrainsGroupedByLine } from './utils.js';
 
 
 export function handleSearchAndFilter(tabId) {
@@ -53,37 +53,26 @@ export function updateSortIndicators(tabId) {
 
 
 export function renderWorstCaseByTrain(collapsed=true) {
-  const container = document.getElementById('worstCaseTrainsContainer');
+    const container = document.getElementById('worstCaseTrainsContainer');
     const noResultsMessage = document.getElementById('noWorstCaseMessage');
     container.innerHTML = '';
-    
-    // Initialize viewProducts if it doesn't exist
+
+    // Ensure viewProducts exists
     if (!state.viewProducts['worstCaseProducts']) {
         state.viewProducts['worstCaseProducts'] = [...state.products];
     }
-    
-    // THE FIX: Prefix 'viewProducts' with 'state.'
-    let productsToRender = [...state.viewProducts['worstCaseProducts']];
-    
-    // Check if there are any filtered products first
+
+    const productsToRender = [...state.viewProducts['worstCaseProducts']];
     if (productsToRender.length === 0) {
         noResultsMessage.style.display = 'block';
         container.style.display = 'none';
         return;
     }
-    
-    const productsByTrain = {};
-    productsToRender.forEach(p => {
-        const trainId = getProductTrainId(p);
-        if (trainId === 'N/A') return;
-        if (!productsByTrain[trainId]) {
-            productsByTrain[trainId] = [];
-        }
-        productsByTrain[trainId].push(p);
-    });
 
-    // Check if there are any products with valid train IDs
-    if (Object.keys(productsByTrain).length === 0) {
+    // Build pre-numbered trains grouped by Line and Dosage Form
+    const linesWithTrains = getTrainsGroupedByLine();
+
+    if (!linesWithTrains || linesWithTrains.length === 0) {
         noResultsMessage.style.display = 'block';
         container.style.display = 'none';
         return;
@@ -92,89 +81,93 @@ export function renderWorstCaseByTrain(collapsed=true) {
     noResultsMessage.style.display = 'none';
     container.style.display = 'block';
 
-    const sortedTrainIds = Object.keys(productsByTrain).sort((a, b) => a - b);
+    // Iterate lines (outer loop)
+    linesWithTrains.forEach(lineObj => {
+        const lineHeader = document.createElement('div');
+        lineHeader.className = 'card p-4 mb-4';
+        lineHeader.innerHTML = `<h3 class="text-lg font-bold">${lineObj.line}</h3>`;
+        container.appendChild(lineHeader);
 
-    sortedTrainIds.forEach((trainId, index) => {
-        // Skip this train if we're printing specific trains and this isn't one of them
-        if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
-            if (Array.isArray(window.printSelectedTrain)) {
-                // Multiple trains selected
-                if (!window.printSelectedTrain.includes(String(trainId))) {
-                    return;
-                }
-            } else {
-                // Single train selected (backward compatibility)
-                if (String(trainId) !== String(window.printSelectedTrain)) {
-                    return;
-                }
-            }
-        }
-        
-        const trainProducts = productsByTrain[trainId];
-        // Check if we're in print mode - if so, expand all trains
-        const isPrintMode = document.body.classList.contains('printing-worstCaseProducts');
-        const isCollapsed = isPrintMode || !collapsed ? false : true; // All trains start collapsed unless printing
-
-        const trainCard = document.createElement('div');
-        trainCard.className = 'train-card';
-
-        let cardContentHTML = `
-                <div class="train-header" onclick="toggleTrain('wc-${trainId}')">
-                <span>Train ${trainId} - Worst Case Analysis</span>
-                <button class="train-toggle" id="toggle-wc-${trainId}">${isCollapsed ? '▶' : '▼'}</button>
-                </div>
-                <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-wc-${trainId}">
-                <div class="train-content-inner">
-                    <table class="w-full text-sm mainTable">
-                    <thead style="background: var(--bg-accent);">
-                        <tr>
-                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider sortable cursor-pointer" data-key="productCode"
-                        onclick="(event)=>event.stopPropagation()">
-                            Product Code <span class="sort-indicator"></span>
-                        </th>
-                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider sortable cursor-pointer" data-key="name">
-                            Product Name <span class="sort-indicator"></span>
-                        </th>
-                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider sortable cursor-pointer" data-key="rpn">
-                            Highest RPN <span class="sort-indicator"></span>
-                        </th>
-                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Special Case Product</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y" style="border-color: var(--border-color);">`;
-
-        trainProducts.forEach(p => {
-            const toxicityPreference = getToxicityPreference();
-            const values = p.activeIngredients.map(ing => calculateScores(ing, toxicityPreference).rpn);
-            p.sortValue = values.length > 0 ? Math.max(...values) : 0;
+        // build a lookup of trains by dosageForm for quick access
+        const trainsByDosage = {};
+        lineObj.trains.forEach(t => {
+            if (!trainsByDosage[t.dosageForm]) trainsByDosage[t.dosageForm] = [];
+            trainsByDosage[t.dosageForm].push(t);
         });
 
-        trainProducts.sort((a, b) => {
-            const key = state.sortState.key;
-            const dir = state.sortState.direction === 'asc' ? 1 : -1;
-            let valA, valB;
-            switch (key) {
-                case 'productCode': valA = a.productCode; valB = b.productCode; break;
-                case 'name': valA = a.name; valB = b.name; break;
-                case 'rpn':
-                default:
-                    valA = a.sortValue; valB = b.sortValue;
-            }
-            if (valA < valB) return -1 * dir;
-            if (valA > valB) return 1 * dir;
-            return 0;
-        });
+        // Middle loop: display by Dosage Form
+        Object.keys(trainsByDosage).forEach(dosage => {
+            const dosageDiv = document.createElement('div');
+            dosageDiv.className = 'pl-4 mb-3';
+            dosageDiv.innerHTML = `<h4 class="text-md font-semibold">${dosage}</h4>`;
+            container.appendChild(dosageDiv);
 
-        trainProducts.forEach(product => {
-            const criticalText = product.isCritical ? 'Yes' : 'No';
-            const criticalClass = product.isCritical ? 'text-red-600 font-bold' : '';
+            // find trains for this dosage and render pre-numbered cards
+            trainsByDosage[dosage].forEach(train => {
+                // Skip if printing specific trains and this one isn't selected
+                if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
+                    if (Array.isArray(window.printSelectedTrain)) {
+                        if (!window.printSelectedTrain.includes(String(train.number))) return;
+                    } else {
+                        if (String(train.number) !== String(window.printSelectedTrain)) return;
+                    }
+                }
 
-            cardContentHTML += `
+                const isPrintMode = document.body.classList.contains('printing-worstCaseProducts');
+                const isCollapsed = isPrintMode || !collapsed ? false : true;
+
+                // calculate worst-case values within this train
+                train.products.forEach(p => {
+                    const toxicityPreference = getToxicityPreference();
+                    const values = p.activeIngredients.map(ing => calculateScores(ing, toxicityPreference).rpn);
+                    p.sortValue = values.length > 0 ? Math.max(...values) : 0;
+                });
+
+                train.products.sort((a,b) => {
+                    const key = state.sortState.key;
+                    const dir = state.sortState.direction === 'asc' ? 1 : -1;
+                    let valA, valB;
+                    switch (key) {
+                        case 'productCode': valA = a.productCode; valB = b.productCode; break;
+                        case 'name': valA = a.name; valB = b.name; break;
+                        default: valA = a.sortValue; valB = b.sortValue;
+                    }
+                    if (valA < valB) return -1 * dir;
+                    if (valA > valB) return 1 * dir;
+                    return 0;
+                });
+
+                // Build train card HTML (simplified from maco view)
+                const trainCard = document.createElement('div');
+                trainCard.className = 'train-card mb-3';
+                let html = `
+                    <div class="train-header" onclick="toggleTrain('wc-${lineObj.line}-${train.number}')">
+                        <span>Train ${train.number} - ${train.dosageForm}</span>
+                        <button class="train-toggle" id="toggle-wc-${lineObj.line}-${train.number}">${isCollapsed ? '\u25B6' : '\u25BC'}</button>
+                    </div>
+                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-wc-${lineObj.line}-${train.number}">
+                        <div class="train-content-inner">
+                            <table class="w-full text-sm mainTable">
+                                <thead style="background: var(--bg-accent);">
+                                    <tr>
+                                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider sortable" data-key="productCode">Code <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider sortable" data-key="name">Product Name <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Highest RPN</th>
+                                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Special Case</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y" style="border-color: var(--border-color);">
+                `;
+
+                train.products.forEach(product => {
+                    const criticalText = product.isCritical ? 'Yes' : 'No';
+                    const criticalClass = product.isCritical ? 'text-red-600 font-bold' : '';
+                    html += `
                         <tr class="product-main-row">
                             <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">${product.productCode}</td>
                             <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">
                                 <span class="product-name">${product.name}</span>
-                                <p class="text-xs italic" style="color: var(--text-secondary);">${product.productType || 'N/A'}</p>    
+                                <p class="text-xs italic" style="color: var(--text-secondary);">${product.productType || 'N/A'}</p>
                             </td>
                             <td class="px-3 py-3 text-sm font-bold whitespace-nowrap align-top" style="color: var(--gradient-mid);">${product.sortValue}</td>
                             <td class="px-3 py-3 text-sm align-top">
@@ -182,34 +175,21 @@ export function renderWorstCaseByTrain(collapsed=true) {
                                 ${product.isCritical && product.criticalReason ? `<p class="text-xs italic" style="color: var(--text-secondary); max-width: 150px; white-space: normal;">${product.criticalReason}</p>` : ''}
                             </td>
                         </tr>`;
-
-            const toxicityPreference = getToxicityPreference();
-            const ingredientsToRender = product.activeIngredients.sort((a, b) => calculateScores(b, toxicityPreference).rpn - calculateScores(a, toxicityPreference).rpn);
-
-            if (ingredientsToRender.length > 0) {
-                let subTableHTML = `<tr class="ingredients-sub-row"><td colspan="4"><div class="p-4 ingredients-sub-table rounded-b-lg"><table class="w-full text-sm"><thead class="bg-transparent"><tr class="border-b" style="border-color: var(--border-color);"><th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Ingredient</th><th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">TD Score</th><th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Solubility Score</th><th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Cleanability Score</th><th class="pde-col px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">PDE Score</th><th class="ld50-col px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">LD50 Score</th><th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">RPN</th><th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Rating</th></tr></thead><tbody class="bg-transparent">`;
-
-                ingredientsToRender.forEach(ing => {
-                    const scores = calculateScores(ing, toxicityPreference);
-                    subTableHTML += `<tr><td class="px-3 py-2 font-semibold">${ing.name}</td><td class="px-3 py-2" style="color: var(--text-secondary);">${scores.therapeuticDoseScore}</td><td class="px-3 py-2" style="color: var(--text-secondary);">${scores.solubilityScore}</td><td class="px-3 py-2" style="color: var(--text-secondary);">${scores.cleanabilityScore}</td><td class="pde-col px-3 py-2" style="color: var(--text-secondary);">${scores.pdeScore ?? 'N/A'}</td><td class="ld50-col px-3 py-2" style="color: var(--text-secondary);">${scores.ld50Score ?? 'N/A'}</td><td class="px-3 py-2 font-bold" style="color: var(--gradient-mid);">${scores.rpn}</td><td class="px-3 py-2"><span class="rpn-rating-badge ${getRpnRatingClass(scores.rpnRatingText)}">${scores.rpnRatingText}</span></td></tr>`;
                 });
 
-                subTableHTML += `</tbody></table></div></td></tr>`;
-                cardContentHTML += subTableHTML;
-            }
-        });
+                html += `</tbody></table></div></div>`;
+                trainCard.innerHTML = html;
+                container.appendChild(trainCard);
 
-        cardContentHTML += `</tbody></table></div></div></div>`;
-        trainCard.innerHTML = cardContentHTML;
-        container.appendChild(trainCard);
-        
-        // Add event listeners for sortable headers to prevent event bubbling
-        const sortableHeaders = trainCard.querySelectorAll('th.sortable[data-key]');
-        sortableHeaders.forEach(header => {
-            header.addEventListener('click', function(event) {
-                event.stopPropagation();
-                const key = this.getAttribute('data-key');
-                sortData(key, 'worstCaseProducts');
+                // attach sort handlers
+                const sortableHeaders = trainCard.querySelectorAll('th.sortable[data-key]');
+                sortableHeaders.forEach(header => {
+                    header.addEventListener('click', function(event) {
+                        event.stopPropagation();
+                        const key = this.getAttribute('data-key');
+                        sortData(key, 'worstCaseProducts');
+                    });
+                });
             });
         });
     });
@@ -217,7 +197,7 @@ export function renderWorstCaseByTrain(collapsed=true) {
     updateToggleIcons('worstCaseProducts');
     updateSortIndicators('worstCaseProducts');
     hideLoader();
-    
+
     // Update dropdown options after rendering
     populateWorstCaseTrainOptions();
 }
@@ -344,11 +324,14 @@ function populateWorstCaseTrainOptions() {
     productsToRender.forEach(p => {
         const trainId = getProductTrainId(p);
         if (trainId !== 'N/A') {
-            trainIds.add(trainId);
+            trainIds.add(String(trainId));
         }
     });
-    
-    const sortedTrainIds = Array.from(trainIds).sort((a, b) => a - b);
+
+    const sortedTrainIds = Array.from(trainIds).sort((a, b) => parseInt(a) - parseInt(b));
+
+    // Get mapping for friendly labels
+    const idMap = getTrainIdToLineNumberMap();
     
     // Populate export dropdown with checkboxes
     const exportContainer = document.getElementById('worstCaseExportTrainOptions');
@@ -366,7 +349,8 @@ function populateWorstCaseTrainOptions() {
             checkbox.onchange = () => updateAllTrainsCheckbox('export');
             
             const span = document.createElement('span');
-            span.textContent = `Train ${trainId}`;
+            const mapped = idMap.get(String(trainId));
+            span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${trainId}`;
             
             labelElement.appendChild(checkbox);
             labelElement.appendChild(span);
@@ -390,7 +374,8 @@ function populateWorstCaseTrainOptions() {
             checkbox.onchange = () => updateAllTrainsCheckbox('print');
             
             const span = document.createElement('span');
-            span.textContent = `Train ${trainId}`;
+            const mapped = idMap.get(String(trainId));
+            span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${trainId}`;
             
             labelElement.appendChild(checkbox);
             labelElement.appendChild(span);

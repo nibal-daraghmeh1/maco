@@ -2,22 +2,48 @@
 // js/macoDetergentView.js
 
 import * as state from './state.js';
-import { getTrainData, getWorstCaseProductType } from './utils.js';
+import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine } from './utils.js';
+import * as utils from './utils.js';
 
 export function renderDetergentMaco() {
     const container = document.getElementById('detergentMacoResults');
     const noTrainsMsg = document.getElementById('noTrainsForDetergentMessage');
     container.innerHTML = '';
 
-    let trainData = getTrainData();
+    const baseTrainData = getTrainData(); // computed train metrics keyed by consolidated path
+    const linesWithTrains = getTrainsGroupedByLine(); // pre-numbered trains per line
 
-    // If a print filter is set (from UI.printCurrentView), apply it
-    let trainsToRender = trainData;
+    if (!linesWithTrains || linesWithTrains.length === 0) {
+        noTrainsMsg.style.display = 'block';
+        return;
+    }
+    noTrainsMsg.style.display = 'none';
+
+    // map baseTrainData by key for merging
+    const trainByKey = {};
+    baseTrainData.forEach(t => { if (t.key) trainByKey[t.key] = t; });
+
+    const largestEssaTrain = baseTrainData.length ? baseTrainData.reduce((maxT, currentT) => currentT.essa > maxT.essa ? currentT : maxT) : { id: null, essa: 0 };
+    const globalLargestEssa = largestEssaTrain.essa || 0;
+
+    // Flatten trains for optional filtering later
+    const mergedTrains = [];
+    linesWithTrains.forEach(lineObj => {
+        lineObj.trains.forEach(t => {
+            const computed = trainByKey[t.key];
+            if (!computed || !computed.id) return; // skip trains that have no computed data / id
+            const merged = { ...t, ...computed }; // keep t.number and t.line, but include computed metrics and id
+            mergedTrains.push(merged);
+        });
+    });
+
+    // Filter based on printSelectedTrain if required (support either numeric train.id or new train.number)
+    let trainsToRender = mergedTrains;
     if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
         if (Array.isArray(window.printSelectedTrain)) {
-            trainsToRender = trainData.filter(train => window.printSelectedTrain.includes(String(train.id)));
+            trainsToRender = mergedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)));
         } else {
-            trainsToRender = trainData.filter(train => String(train.id) === String(window.printSelectedTrain));
+            trainsToRender = mergedTrains.filter(train => String(train.id) === String(window.printSelectedTrain));
         }
     }
 
@@ -25,10 +51,8 @@ export function renderDetergentMaco() {
         noTrainsMsg.style.display = 'block';
         return;
     }
-    noTrainsMsg.style.display = 'none';
 
-    const allTrains = getTrainData();
-    const globalLargestEssa = allTrains.length > 0 ? Math.max(...allTrains.map(t => t.essa)) : 0;
+    const idMap = utils.getTrainIdToLineNumberMap();
 
     trainsToRender.forEach((train, index) => {
         const isCollapsed = true; // All trains start collapsed
@@ -38,9 +62,12 @@ export function renderDetergentMaco() {
 
         const card = document.createElement('div');
         card.className = 'train-card'; // Use train-card for consistent collapsible behavior
+        const mapped = idMap.get(String(train.id));
+        const trainHeaderLabel = mapped ? `${mapped.line} — Train ${mapped.number} - Detergent MACO Calculation` : `Train ${train.id} - Detergent MACO Calculation`;
+
         card.innerHTML = `
                     <div class="train-header" onclick="toggleTrain('dm-${train.id}')">
-                        <span>Train ${train.id} - Detergent MACO Calculation</span>
+                        <span>${trainHeaderLabel}</span>
                         <button class="train-toggle" id="toggle-dm-${train.id}">${isCollapsed ? '▶' : '▼'}</button>
                     </div>
                     <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-dm-${train.id}">
@@ -186,7 +213,8 @@ export function populateDetergentTrainOptions() {
                 checkbox.onchange = () => updateAllDetergentTrainsCheckbox('export');
 
                 const span = document.createElement('span');
-                span.textContent = `Train ${train.id}`;
+                const mapped = idMap.get(String(train.id));
+                span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${train.id}`;
 
                 labelElement.appendChild(checkbox);
                 labelElement.appendChild(span);

@@ -982,13 +982,10 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
             });
             
             // Create plain text version of machines for Excel export
-            const machinesListPlainText = utils.consolidateMachinesByGroup(train.machineIds).map(machine => {
-                if (machine.isGroup) {
-                    return `${machine.group} (${machine.machineCount}x)`;
-                } else {
-                    return machine.name;
-                }
-            }).join(' → ');
+            const machinesListPlainText = train.machineIds.map(machineId => {
+                const machine = state.machines.find(m => m.id === machineId);
+                return machine ? machine.name : `Unknown (ID: ${machineId})`;
+            }).join(', ');
             
             const productsList = train.products.map(p => `${p.productCode} - ${p.name}`).join('; ');
             
@@ -1141,13 +1138,10 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
             });
             
             // Create plain text version of machines for Excel export
-            const machinesListPlainText = utils.consolidateMachinesByGroup(train.machineIds).map(machine => {
-                if (machine.isGroup) {
-                    return `${machine.group} (${machine.machineCount}x)`;
-                } else {
-                    return machine.name;
-                }
-            }).join(' → ');
+            const machinesListPlainText = train.machineIds.map(machineId => {
+                const machine = state.machines.find(m => m.id === machineId);
+                return machine ? machine.name : `Unknown (ID: ${machineId})`;
+            }).join(', ');
             
             const productsList = train.products.map(p => `${p.productCode} - ${p.name}`).join('; ');
             
@@ -1263,13 +1257,10 @@ export function exportTrainSummaryToExcel(selectedTrain = 'all') {
             });
             
             // Create plain text version of machines for Excel export
-            const machinesListPlainText = utils.consolidateMachinesByGroup(train.machineIds).map(machine => {
-                if (machine.isGroup) {
-                    return `${machine.group} (${machine.machineCount}x)`;
-                } else {
-                    return machine.name;
-                }
-            }).join(' → ');
+            const machinesListPlainText = train.machineIds.map(machineId => {
+                const machine = state.machines.find(m => m.id === machineId);
+                return machine ? machine.name : `Unknown (ID: ${machineId})`;
+            }).join(', ');
             
             const productsList = train.products.map(p => `${p.productCode} - ${p.name}`).join('; ');
             
@@ -1542,13 +1533,10 @@ export function exportAllTabsToExcel() {
                 });
                 
                 // Create plain text version of machines for Excel export
-                const machinesListPlainText = utils.consolidateMachinesByGroup(train.machineIds).map(machine => {
-                    if (machine.isGroup) {
-                        return `${machine.group} (${machine.machineCount}x)`;
-                    } else {
-                        return machine.name;
-                    }
-                }).join(' → ');
+                const machinesListPlainText = train.machineIds.map(machineId => {
+                const machine = state.machines.find(m => m.id === machineId);
+                return machine ? machine.name : `Unknown (ID: ${machineId})`;
+            }).join(', ');
                 
                 const productsList = train.products.map(p => `${p.productCode} - ${p.name}`).join('; ');
                 
@@ -1615,13 +1603,10 @@ export function exportAllTabsToExcel() {
                     });
                     
                     // Create plain text version of machines for Excel export
-                    const machinesListPlainText = utils.consolidateMachinesByGroup(train.machineIds).map(machine => {
-                        if (machine.isGroup) {
-                            return `${machine.group} (${machine.machineCount}x)`;
-                        } else {
-                            return machine.name;
-                        }
-                    }).join(' → ');
+                    const machinesListPlainText = train.machineIds.map(machineId => {
+                        const machine = state.machines.find(m => m.id === machineId);
+                        return machine ? machine.name : `Unknown (ID: ${machineId})`;
+                    }).join(', ');
                     
                     const productsList = train.products.map(p => `${p.productCode} - ${p.name}`).join('; ');
                     
@@ -1669,13 +1654,10 @@ export function exportAllTabsToExcel() {
                 });
                 
                 // Create plain text version of machines for Excel export
-                const machinesListPlainText = utils.consolidateMachinesByGroup(train.machineIds).map(machine => {
-                    if (machine.isGroup) {
-                        return `${machine.group} (${machine.machineCount}x)`;
-                    } else {
-                        return machine.name;
-                    }
-                }).join(' → ');
+                const machinesListPlainText = train.machineIds.map(machineId => {
+                const machine = state.machines.find(m => m.id === machineId);
+                return machine ? machine.name : `Unknown (ID: ${machineId})`;
+            }).join(', ');
                 
                 const productsList = train.products.map(p => `${p.productCode} - ${p.name}`).join('; ');
                 const productsDetailed = train.products.map(p => `${p.productCode}: ${p.name}`).join('\n');
