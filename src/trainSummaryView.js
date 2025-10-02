@@ -3,7 +3,7 @@
 
 import * as state from './state.js';
 import { hideLoader } from './ui.js';
-import { getTrainData, calculateScores, getMacoPerSwabForTrain, getTrainsGroupedByLine } from './utils.js';
+import { getTrainData, calculateScores, getMacoPerSwabForTrain, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm } from './utils.js';
 import * as utils from './utils.js';
 
 // Helper function to find the worst case product (highest RPN) in a train
@@ -116,6 +116,7 @@ function calculateStudiesNeeded(train) {
     return currentTrainIndex + 1;
 }
 
+
 // Helper function to get MACO value for a train using exact same logic as Product MACO Calculation
 function getMacoValueForTrain(train) {
     try {
@@ -127,10 +128,10 @@ function getMacoValueForTrain(train) {
             return { value: 0, display: 'Not calculated' };
         }
         
-        // Calculate global largest ESSA from all trains (same as Product MACO Calculation)
-        const globalLargestEssa = trainData.length > 0 ? Math.max(...trainData.map(t => t.essa)) : 0;
+        // Calculate largest ESSA from trains in the same line and dosage form
+        const largestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
         
-        if (globalLargestEssa <= 0) {
+        if (largestEssa <= 0) {
             return { value: 0, display: 'Not calculated' };
         }
         
@@ -144,7 +145,7 @@ function getMacoValueForTrain(train) {
         if (matchingTrain.lowestPde !== null) {
             macoHealth = matchingTrain.lowestPde * matchingTrain.minBsMddRatio;
         }
-        const macoVisual = 0.004 * globalLargestEssa;
+        const macoVisual = 0.004 * largestEssa;
 
         const allMacoValues = [
             { name: '0.1% Therapeutic Dose', value: macoDose },
@@ -155,7 +156,7 @@ function getMacoValueForTrain(train) {
 
         const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
         const finalMaco = finalMacoResult.value;
-        const macoPerArea = globalLargestEssa > 0 ? finalMaco / globalLargestEssa : 0;
+        const macoPerArea = largestEssa > 0 ? finalMaco / largestEssa : 0;
         const macoPerSwab = macoPerArea * matchingTrain.assumedSsa;
         
         // Use the exact same display format as Product MACO Calculation
@@ -439,9 +440,11 @@ export function renderTrainSummary() {
                         <div class="font-bold text-orange-600 text-lg mb-2">${group.totalStudies} Studies</div>
                         <button 
                             onclick="toggleStudyBreakdown('${groupKey}')" 
-                            class="px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors duration-200 mb-2"
+                            class="p-1 mb-2" 
+                            style="color: var(--text-secondary);" 
+                            title="View Study Details"
                         >
-                            <span id="toggle-text-${groupKey}">Show Details</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/></svg>
                         </button>
                         <div id="breakdown-${groupKey}" class="text-xs space-y-1 hidden">
                             ${group.studyBreakdown.map(study => `
@@ -511,14 +514,11 @@ export function renderTrainSummary() {
 // Toggle function for study breakdown details
 window.toggleStudyBreakdown = function(groupKey) {
     const breakdown = document.getElementById(`breakdown-${groupKey}`);
-    const toggleText = document.getElementById(`toggle-text-${groupKey}`);
     
     if (breakdown.classList.contains('hidden')) {
         breakdown.classList.remove('hidden');
-        toggleText.textContent = 'Hide Details';
     } else {
         breakdown.classList.add('hidden');
-        toggleText.textContent = 'Show Details';
     }
 };
 

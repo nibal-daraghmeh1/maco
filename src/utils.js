@@ -445,7 +445,29 @@ export function getWorstCaseProductType(types) {
     return 'Other'; 
 }
 
-export function getMacoPerSwabForTrain(train, globalLargestEssa) {
+// Helper function to calculate largest ESSA for trains in the same line and dosage form
+export function getLargestEssaForLineAndDosageForm(targetTrain, allTrains) {
+    // Get the line and dosage form of the target train
+    const targetLine = targetTrain.line;
+    const targetDosageForms = [...new Set(targetTrain.products.map(p => p.productType || 'Other'))];
+    
+    // Filter trains that are in the same line and have overlapping dosage forms
+    const sameLineAndDosageTrains = allTrains.filter(train => {
+        const trainLine = train.line;
+        const trainDosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+        
+        // Check if train is in same line and has any overlapping dosage forms
+        const sameLineCheck = trainLine === targetLine;
+        const overlappingDosageForm = targetDosageForms.some(df => trainDosageForms.includes(df));
+        
+        return sameLineCheck && overlappingDosageForm;
+    });
+    
+    // Return the largest ESSA from filtered trains
+    return sameLineAndDosageTrains.length > 0 ? Math.max(...sameLineAndDosageTrains.map(t => t.essa)) : 0;
+}
+
+export function getMacoPerSwabForTrain(train, largestEssa) {
     const sfConfig = safetyFactorConfig[getWorstCaseProductType(train.products.map(p => p.productType))] || safetyFactorConfig['Other'];
     const sf = sfConfig.max;
     
@@ -455,10 +477,10 @@ export function getMacoPerSwabForTrain(train, globalLargestEssa) {
     if (train.lowestPde !== null) {
         macoHealth = train.lowestPde * train.minBsMddRatio;
     }
-    const macoVisual = (0.004) * globalLargestEssa;
+    const macoVisual = (0.004) * largestEssa;
 
     const finalMaco = Math.min(macoDose, maco10ppm, macoHealth, macoVisual);
-    const macoPerArea = globalLargestEssa > 0 ? finalMaco / globalLargestEssa : 0;
+    const macoPerArea = largestEssa > 0 ? finalMaco / largestEssa : 0;
     return macoPerArea * train.assumedSsa;
 }
 

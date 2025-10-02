@@ -4,30 +4,30 @@
 // --- GLOBAL STATE ---
 export let products = [
     { id: 1, productCode: "1ATC50001AP", name: "Acetaminophen 500mg", batchSizeKg: 51.08, date: "2023-01-15T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 2, 6, 11, 13, 16], activeIngredients: [{ id: 1, name: "Acetaminophen", therapeuticDose: 500, mdd: 4000, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }] },
-    { id: 2, productCode: "2IBU20011PN", name: "Ibuprofen 200mg", batchSizeKg: 113.51, date: "2023-02-20T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 3, 5, 12, 16], activeIngredients: [{ id: 2, name: "Ibuprofen", therapeuticDose: 200, mdd: 1200, solubility: "Practically insoluble", cleanability: "Medium", pde: 1.2, ld50: 636 }] },
-    { id: 3, productCode: "3CFR18003MX", name: "Cold & Flu Relief", batchSizeKg: 180, date: "2023-03-10T10:00:00.000Z", isCritical: true, criticalReason: 'Stains equipment yellow', productType: 'Tablets', line: 'Solids Line B', machineIds: [1, 2, 6, 11, 13, 16], activeIngredients: [ { id: 3, name: "Acetaminophen", therapeuticDose: 650, mdd: 3900, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }, { id: 4, name: "Phenylephrine HCl", therapeuticDose: 10, mdd: 60, solubility: "Very soluble", cleanability: "Easy", pde: 0.6, ld50: 350 }, { id: 5, name: "Dextromethorphan HBr", therapeuticDose: 30, mdd: 120, solubility: "Slightly soluble", cleanability: "Medium", pde: 1.0, ld50: 750 } ] },
+    { id: 2, productCode: "2IBU20011PN", name: "Ibuprofen 200mg", batchSizeKg: 113.51, date: "2023-02-20T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 3, 4, 12, 16], activeIngredients: [{ id: 2, name: "Ibuprofen", therapeuticDose: 200, mdd: 1200, solubility: "Practically insoluble", cleanability: "Medium", pde: 1.2, ld50: 636 }] },
+    { id: 3, productCode: "3CFR18003MX", name: "Cold & Flu Relief", batchSizeKg: 180, date: "2023-03-10T10:00:00.000Z", isCritical: true, criticalReason: 'Stains equipment yellow', productType: 'Tablets', line: 'Solids Line B', machineIds: [1, 8, 16], activeIngredients: [ { id: 3, name: "Acetaminophen", therapeuticDose: 650, mdd: 3900, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }, { id: 4, name: "Phenylephrine HCl", therapeuticDose: 10, mdd: 60, solubility: "Very soluble", cleanability: "Easy", pde: 0.6, ld50: 350 }, { id: 5, name: "Dextromethorphan HBr", therapeuticDose: 30, mdd: 120, solubility: "Slightly soluble", cleanability: "Medium", pde: 1.0, ld50: 750 } ] },
     { id: 4, productCode: "4ASA32504AC", name: "Aspirin 325mg", batchSizeKg: 75.5, date: "2023-04-05T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 4, 7, 12, 16], activeIngredients: [{ id: 6, name: "Aspirin", therapeuticDose: 325, mdd: 4000, solubility: "Slightly soluble", cleanability: "Medium", pde: 0.5, ld50: null }] },
     { id: 5, productCode: "5OME02005PR", name: "Omeprazole 20mg", batchSizeKg: 25.2, date: "2023-05-25T10:00:00.000Z", isCritical: true, criticalReason: 'New API', productType: 'Capsules', line: 'Capsules Line', machineIds: [1, 5, 9, 14, 15], activeIngredients: [{ id: 7, name: "Omeprazole", therapeuticDose: 20, mdd: 40, solubility: "Practically insoluble", cleanability: "Hard", pde: 0.013, ld50: null }] },
-    { id: 6, productCode: "6PCX00506XP", name: "Potent Compound X", batchSizeKg: 5.0, date: "2023-06-30T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Sterile Products', line: 'Sterile Line', machineIds: [1, 5, 10, 14, 15], activeIngredients: [{ id: 8, name: "Potent Compound X", therapeuticDose: 1, mdd: 2, solubility: "Slightly soluble", cleanability: "Hard", pde: 0.0005, ld50: 25 }] },
+    { id: 6, productCode: "6PCX00506XP", name: "Potent Compound X", batchSizeKg: 5.0, date: "2023-06-30T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Sterile Products', line: 'Sterile Line', machineIds: [1, 10, 16], activeIngredients: [{ id: 8, name: "Potent Compound X", therapeuticDose: 1, mdd: 2, solubility: "Slightly soluble", cleanability: "Hard", pde: 0.0005, ld50: 25 }] },
 ];
 
 export let machines = [
-    { id: 1, machineNumber: 'M-001', name: "weighing tool", stage: "Weighing", area: 55000, group: "" },
-    { id: 2, machineNumber: 'M-002', name: "nin mill", stage: "Milling", area: 35000, group: "" },
-    { id: 3, machineNumber: 'M-003', name: "fitz mill", stage: "Milling", area: 42000, group: "" },
-    { id: 4, machineNumber: 'M-004', name: "FBD", stage: "Mixing", area: 120000, group: "" },
-    { id: 5, machineNumber: 'M-005', name: "Glatt", stage: "Mixing", area: 95000, group: "" },
-    { id: 6, machineNumber: 'M-006', name: "Compactor", stage: "Mixing", area: 85000, group: "" },
-    { id: 7, machineNumber: 'M-007', name: "Bin 200", stage: "Mixing", area: 45000, group: "Mixing Bins" },
-    { id: 8, machineNumber: 'M-008', name: "Bin 400", stage: "Mixing", area: 65000, group: "Mixing Bins" },
-    { id: 9, machineNumber: 'M-009', name: "Bin 600", stage: "Mixing", area: 85000, group: "Mixing Bins" },
-    { id: 10, machineNumber: 'M-010', name: "Bin 800", stage: "Mixing", area: 105000, group: "Mixing Bins" },
-    { id: 11, machineNumber: 'M-011', name: "Jcmco", stage: "Compression", area: 150000, group: "Compression Machines" },
-    { id: 12, machineNumber: 'M-012', name: "Natoli", stage: "Compression", area: 165000, group: "Compression Machines" },
-    { id: 13, machineNumber: 'M-013', name: "Korsch", stage: "Compression", area: 180000, group: "Compression Machines" },
-    { id: 14, machineNumber: 'M-014', name: "Coat", stage: "Coating", area: 110000, group: "" },
-    { id: 15, machineNumber: 'M-015', name: "jar filling", stage: "Filling", area: 75000, group: "" },
-    { id: 16, machineNumber: 'M-016', name: "Bliste", stage: "Packing", area: 220000, group: "" }
+    { id: 1, machineNumber: 'M-001', name: "weighing tool", stage: "Weighing", area: 55000, group: "", line: "Shared" },
+    { id: 2, machineNumber: 'M-002', name: "nin mill", stage: "Milling", area: 35000, group: "", line: "Solids Line A" },
+    { id: 3, machineNumber: 'M-003', name: "fitz mill", stage: "Milling", area: 42000, group: "", line: "Solids Line A" },
+    { id: 4, machineNumber: 'M-004', name: "FBD", stage: "Mixing", area: 120000, group: "", line: "Solids Line A" },
+    { id: 5, machineNumber: 'M-005', name: "Glatt", stage: "Mixing", area: 95000, group: "", line: "Capsules Line" },
+    { id: 6, machineNumber: 'M-006', name: "Compactor", stage: "Mixing", area: 85000, group: "", line: "Solids Line A" },
+    { id: 7, machineNumber: 'M-007', name: "Bin 200", stage: "Mixing", area: 45000, group: "Mixing Bins", line: "Solids Line A" },
+    { id: 8, machineNumber: 'M-008', name: "Bin 400", stage: "Mixing", area: 65000, group: "Mixing Bins", line: "Solids Line B" },
+    { id: 9, machineNumber: 'M-009', name: "Bin 600", stage: "Mixing", area: 85000, group: "Mixing Bins", line: "Capsules Line" },
+    { id: 10, machineNumber: 'M-010', name: "Bin 800", stage: "Mixing", area: 105000, group: "Mixing Bins", line: "Sterile Line" },
+    { id: 11, machineNumber: 'M-011', name: "Jcmco", stage: "Compression", area: 150000, group: "Compression Machines", line: "Solids Line A" },
+    { id: 12, machineNumber: 'M-012', name: "Natoli", stage: "Compression", area: 165000, group: "Compression Machines", line: "Solids Line A" },
+    { id: 13, machineNumber: 'M-013', name: "Korsch", stage: "Compression", area: 180000, group: "Compression Machines", line: "Solids Line A" },
+    { id: 14, machineNumber: 'M-014', name: "Coat", stage: "Coating", area: 110000, group: "", line: "Capsules Line" },
+    { id: 15, machineNumber: 'M-015', name: "jar filling", stage: "Filling", area: 75000, group: "", line: "Capsules Line" },
+    { id: 16, machineNumber: 'M-016', name: "Bliste", stage: "Packing", area: 220000, group: "", line: "Shared" }
 ];
 
 export let machineStageDisplayOrder = ['Weighing', 'Mixing', 'Milling', 'Compression', 'Coating', 'Filling', 'Packing', 'Other'];

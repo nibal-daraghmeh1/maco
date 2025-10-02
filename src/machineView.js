@@ -109,6 +109,7 @@ export function renderMachinesTable() {
                             <tr>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('machineNumber')">Number <span class="sort-indicator"></span></th>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('name')">Name <span class="sort-indicator"></span></th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('line')">Line <span class="sort-indicator"></span></th>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('group')">Group <span class="sort-indicator"></span></th>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('area')">Area (cm²) <span class="sort-indicator"></span></th>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('cleaningSOP')">Cleaning SOP <span class="sort-indicator"></span></th>
@@ -141,10 +142,14 @@ export function renderMachinesTable() {
             const groupCellClass = machine.group ? 'machine-group-cell grouped' : 'machine-group-cell individual';
             const groupCellContent = machine.group || '<span style="color: var(--text-secondary); font-style: italic;">Individual</span>';
             
+            // Format line cell with appropriate styling
+            const lineCellContent = machine.line || '<span style="color: var(--text-secondary); font-style: italic;">Not Assigned</span>';
+            
             tableHTML += `
                 <tr>
                     <td class="px-4 py-3 whitespace-nowrap">${machine.machineNumber}</td>
                     <td class="px-4 py-3 font-medium">${machine.name}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">${lineCellContent}</td>
                     <td class="px-4 py-3 whitespace-nowrap ${groupCellClass}">${groupCellContent}</td>
                     <td class="px-4 py-3 whitespace-nowrap">${machine.area.toLocaleString()}</td>
                     <td class="px-4 py-3 whitespace-nowrap">${machine.cleaningSOP || ''}</td>
@@ -174,6 +179,14 @@ export function showMachineModal(id = null) {
             const machineIdInput = document.getElementById('machineId');
             const machineNumberInput = document.getElementById('machineNumber');
             const machineNameInput = document.getElementById('machineName');
+            const machineLineSelect = document.getElementById('machineLine');
+            
+            // Check if the element exists (for backward compatibility)
+            if (!machineLineSelect) {
+                console.error('Machine line select element not found. Please refresh the page.');
+                showCustomAlert('Error', 'Machine line field not found. Please refresh the page to load the updated interface.');
+                return;
+            }
             const machineAreaInput = document.getElementById('machineArea');
             const cleaningSOPInput = document.getElementById('cleaningSOP');
             const machineStageSelect = document.getElementById('machineStage');
@@ -200,6 +213,7 @@ export function showMachineModal(id = null) {
                     machineIdInput.value = machine.id;
                     machineNumberInput.value = machine.machineNumber;
                     machineNameInput.value = machine.name;
+                    machineLineSelect.value = machine.line || '';
                     machineAreaInput.value = machine.area;
                     cleaningSOPInput.value = machine.cleaningSOP || '';
                     
@@ -254,6 +268,12 @@ export function saveMachine(event) {
             const id = document.getElementById('machineId').value;
             const number = document.getElementById('machineNumber').value.trim();
             const name = document.getElementById('machineName').value.trim();
+            const lineElement = document.getElementById('machineLine');
+            if (!lineElement) {
+                showCustomAlert('Error', 'Machine line field not found. Please refresh the page to load the updated interface.');
+                return;
+            }
+            const line = lineElement.value;
             let stage = document.getElementById('machineStage').value;
             const area = parseInt(document.getElementById('machineArea').value, 10);
             const cleaningSOP = document.getElementById('cleaningSOP').value.trim();
@@ -315,7 +335,7 @@ export function saveMachine(event) {
                 }
             }
 
-            if (!number || !name || !stage || isNaN(area) || !cleaningSOP) {
+            if (!number || !name || !line || !stage || isNaN(area) || !cleaningSOP) {
                 showCustomAlert('Error', 'All fields are required.');
                 return;
             }
@@ -338,6 +358,7 @@ export function saveMachine(event) {
                 if (machine) {
                     machine.machineNumber = number;
                     machine.name = name;
+                    machine.line = line;
                     machine.stage = stage;
                     machine.area = area;
                     machine.cleaningSOP = cleaningSOP;
@@ -345,7 +366,7 @@ export function saveMachine(event) {
                 }
             } else { // Add
                 state.setNextMachineId(state.nextMachineId+1);
-                state.machines.push({ id: state.nextMachineId, machineNumber: number, name: name, stage: stage, area: area, cleaningSOP: cleaningSOP, group: group || '' });
+                state.machines.push({ id: state.nextMachineId, machineNumber: number, name: name, line: line, stage: stage, area: area, cleaningSOP: cleaningSOP, group: group || '' });
             }
             saveStateForUndo();
             fullAppRender();
@@ -650,7 +671,11 @@ export function showAssignMachinesModal(productId) {
             state.machineStageDisplayOrder.forEach(stage => {
                 let machinesInStage = state.machines.filter(m => m.stage === stage);
                 if (machinesHaveLine && productLine) {
-                    machinesInStage = machinesInStage.filter(m => String(m.line || '') === productLine);
+                    // Show machines from the same line OR shared machines
+                    machinesInStage = machinesInStage.filter(m => {
+                        const machineLine = String(m.line || '').trim();
+                        return machineLine === productLine || machineLine === "Shared";
+                    });
                 }
                 
                 // Custom sorting logic
@@ -735,12 +760,25 @@ export function showAddProductsToMachineModal(machineId) {
             const saveBtn = document.getElementById('addProductsToMachineSaveBtn');
             listContainer.innerHTML = '';
 
-            if (state.products.length > 0) {
+            // Filter products by line if both machines and products have line properties
+            const machinesHaveLine = state.machines.some(m => m.line !== undefined && m.line !== null);
+            const machineLine = machine.line ? String(machine.line).trim() : null;
+            
+            let availableProducts = state.products;
+            if (machinesHaveLine && machineLine) {
+                // Only show products from the same line, or products without a line (for backward compatibility)
+                availableProducts = state.products.filter(p => {
+                    const productLine = p.line ? String(p.line).trim() : null;
+                    return !productLine || productLine === machineLine || machineLine === "Shared";
+                });
+            }
+
+            if (availableProducts.length > 0) {
                 noProductsMsg.style.display = 'none';
                 listContainer.style.display = 'block';
                 saveBtn.style.display = 'block';
 
-                state.products.sort((a,b) => a.name.localeCompare(b.name)).forEach(p => {
+                availableProducts.sort((a,b) => a.name.localeCompare(b.name)).forEach(p => {
                     const isAssignedToThisMachine = p.machineIds && p.machineIds.includes(machineId);
                     const isAssignedToAnyOtherMachine = p.machineIds && p.machineIds.some(id => id !== machineId);
 
@@ -761,7 +799,10 @@ export function showAddProductsToMachineModal(machineId) {
                     listContainer.appendChild(div);
                 });
             } else {
-                noProductsMsg.textContent = 'There are no products registered in the system.';
+                const message = state.products.length === 0 
+                    ? 'There are no products registered in the system.'
+                    : `No products available for line "${machineLine}". Products must be from the same line as the machine.`;
+                noProductsMsg.textContent = message;
                 noProductsMsg.style.display = 'block';
                 listContainer.style.display = 'none';
                 saveBtn.style.display = 'none';

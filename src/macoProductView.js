@@ -3,7 +3,7 @@
 
 import * as state from './state.js';
 import { hideLoader } from './ui.js';
-import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine } from './utils.js';
+import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm } from './utils.js';
 
 export function renderMacoForTrains() {
     const container = document.getElementById('trainsContainer');
@@ -26,8 +26,7 @@ export function renderMacoForTrains() {
     const trainByKey = {};
     baseTrainData.forEach(t => { if (t.key) trainByKey[t.key] = t; });
 
-    const largestEssaTrain = baseTrainData.length ? baseTrainData.reduce((maxT, currentT) => currentT.essa > maxT.essa ? currentT : maxT) : { id: null, essa: 0 };
-    const globalLargestEssa = largestEssaTrain.essa || 0;
+    // Note: ESSA will be calculated per train based on line and dosage form
 
     // Flatten trains for optional filtering later
     const mergedTrains = [];
@@ -238,7 +237,7 @@ export function renderMacoForTrains() {
                             </div>
                         `;
                 container.appendChild(trainCard);
-                recalculateProductMacoForTrain(train.id, globalLargestEssa);
+                recalculateProductMacoForTrain(train.id);
             });
         });
     });
@@ -288,7 +287,8 @@ export function recalculateProductMacoForTrain(trainId, globalLargestEssa) {
 
     if (globalLargestEssa === undefined) {
         const allTrains = getTrainData();
-        globalLargestEssa = allTrains.length > 0 ? Math.max(...allTrains.map(t => t.essa)) : 0;
+        // Calculate largest ESSA for trains in the same line and dosage form
+        globalLargestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
     }
 
     const sfInput = document.getElementById(`product-sf-input-train-${train.id}`);

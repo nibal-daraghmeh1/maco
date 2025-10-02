@@ -1,7 +1,7 @@
  // Renders the main dashboard with stats and charts
  // js/dashboardView.js
 import { products, machines, macoChartInstance, setMacoChartInstance } from './state.js';
-import { getTrainData, getWorstCaseProductType } from './utils.js'; // Assuming getTrainData is in utils
+import { getTrainData, getWorstCaseProductType, getLargestEssaForLineAndDosageForm } from './utils.js'; // Assuming getTrainData is in utils
 import * as utils from './utils.js';
 import { renderRpnChart } from './worstCaseView.js'; // The RPN chart is on the worst-case tab but shown here too
 import * as state from './state.js';
@@ -72,9 +72,12 @@ export function renderMainDashboard() {
             renderMacoChart();
 }
 
-function getMacoPerSwabForTrain(train, globalLargestEssa) {
-               const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p => p.productType))] || state.safetyFactorConfig['Other'];
+function getMacoPerSwabForTrain(train, allTrains) {
+            const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p => p.productType))] || state.safetyFactorConfig['Other'];
             const sf = sfConfig.max;
+            
+            // Calculate largest ESSA for trains in the same line and dosage form
+            const largestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
             
             const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
             const maco10ppm = 10 * train.minMbsKg;
@@ -82,10 +85,10 @@ function getMacoPerSwabForTrain(train, globalLargestEssa) {
             if (train.lowestPde !== null) {
                 macoHealth = train.lowestPde * train.minBsMddRatio;
             }
-            const macoVisual = (0.004) * globalLargestEssa;
+            const macoVisual = (0.004) * largestEssa;
 
             const finalMaco = Math.min(macoDose, maco10ppm, macoHealth, macoVisual);
-            const macoPerArea = globalLargestEssa > 0 ? finalMaco / globalLargestEssa : 0;
+            const macoPerArea = largestEssa > 0 ? finalMaco / largestEssa : 0;
             return macoPerArea * train.assumedSsa;
 }
 
@@ -105,15 +108,13 @@ export function renderMacoChart() {
             canvas.style.display = 'block';
             placeholder.style.display = 'none';
 
-            const globalLargestEssa = trainData.reduce((max, t) => Math.max(max, t.essa), 0);
-
             // Use friendly labels where available
             const idMap = utils.getTrainIdToLineNumberMap();
             const labels = trainData.map(t => {
                 const mapped = idMap.get(String(t.id));
                 return mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${t.id}`;
             });
-            const data = trainData.map(t => getMacoPerSwabForTrain(t, globalLargestEssa));
+            const data = trainData.map(t => getMacoPerSwabForTrain(t, trainData));
             
             if (macoChartInstance) macoChartInstance.destroy();
             const ctx = canvas.getContext('2d');

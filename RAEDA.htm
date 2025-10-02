@@ -626,6 +626,17 @@
                     <input type="text" id="machineName" class="w-full px-3 py-2 border rounded-lg" required>
                 </div>
                 <div>
+                    <label for="machineLine" class="block text-sm font-medium mb-1">Production Line</label>
+                    <select id="machineLine" class="w-full px-3 py-2 border rounded-lg" required>
+                        <option value="" disabled selected>Select a Line</option>
+                        <option value="Shared">Shared (Available to all lines)</option>
+                        <option value="Solids Line A">Solids Line A</option>
+                        <option value="Solids Line B">Solids Line B</option>
+                        <option value="Capsules Line">Capsules Line</option>
+                        <option value="Sterile Line">Sterile Line</option>
+                    </select>
+                </div>
+                <div>
                     <label for="machineGroup" class="block text-sm font-medium mb-1">Machine Group <span class="text-xs" style="color: var(--text-secondary);">(Optional - for grouping similar machines)</span></label>
                     <select id="machineGroup" class="w-full px-3 py-2 border rounded-lg" onchange="toggleOtherMachineGroup(this, 'otherGroupContainer')">
                         <option value="">No Group (Individual Machine)</option>
