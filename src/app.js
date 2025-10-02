@@ -79,6 +79,7 @@ export function fullAppRender() {
         productView.handleSearchAndFilter('productRegister');
         worstCaseView.handleSearchAndFilter('worstCaseProducts');
         machineView.renderMachinesTable();
+        machineView.updateMachineLineOptionsIfModalOpen(); // Update machine line options if modal is open
         dashboardView.renderMainDashboard();
         macoProductView.renderMacoForTrains();
         addPrintButtonsToTrains(); // Add print buttons after rendering

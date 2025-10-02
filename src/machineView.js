@@ -4,7 +4,50 @@
 import * as state from './state.js';
 import { fullAppRender } from './app.js';
 import { showCustomAlert, hideModal, saveStateForUndo } from './ui.js';
-import { getProductTrainId, getToxicityPreference, calculateScores, getRpnRatingClass } from './utils.js';
+import { getProductTrainId, getToxicityPreference, calculateScores, getRpnRatingClass, getUniqueProductLines } from './utils.js';
+
+/**
+ * Populate the machine line dropdown with current product lines
+ */
+export function populateMachineLineOptions() {
+    const machineLineSelect = document.getElementById('machineLine');
+    if (!machineLineSelect) return;
+    
+    const uniqueLines = getUniqueProductLines();
+    const currentValue = machineLineSelect.value; // Preserve current selection
+    
+    // Clear existing options except the first placeholder
+    machineLineSelect.innerHTML = '<option value="" disabled selected>Select a Line</option>';
+    
+    // Add "Shared" option first
+    machineLineSelect.innerHTML += '<option value="Shared">Shared (Available to all lines)</option>';
+    
+    // Add all unique product lines
+    uniqueLines.forEach(line => {
+        if (line !== 'Shared') { // Don't duplicate Shared
+            machineLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
+        }
+    });
+    
+    // Add "Other" option for custom lines
+    machineLineSelect.innerHTML += '<option value="Other">Other</option>';
+    
+    // Restore previous selection if it still exists
+    if (currentValue && Array.from(machineLineSelect.options).some(opt => opt.value === currentValue)) {
+        machineLineSelect.value = currentValue;
+    }
+}
+
+/**
+ * Update machine line options if the machine modal is currently open
+ * This is called automatically when products are saved to keep the dropdown in sync
+ */
+export function updateMachineLineOptionsIfModalOpen() {
+    const modal = document.getElementById('machineModal');
+    if (modal && modal.style.display !== 'none' && !modal.classList.contains('hidden')) {
+        populateMachineLineOptions();
+    }
+}
 
 export function sortMachines(key) {
     if (state.machineSortState.key === key) {
@@ -187,6 +230,10 @@ export function showMachineModal(id = null) {
                 showCustomAlert('Error', 'Machine line field not found. Please refresh the page to load the updated interface.');
                 return;
             }
+            
+            // Populate line options dynamically based on current product lines
+            populateMachineLineOptions();
+            
             const machineAreaInput = document.getElementById('machineArea');
             const cleaningSOPInput = document.getElementById('cleaningSOP');
             const machineStageSelect = document.getElementById('machineStage');
@@ -213,7 +260,24 @@ export function showMachineModal(id = null) {
                     machineIdInput.value = machine.id;
                     machineNumberInput.value = machine.machineNumber;
                     machineNameInput.value = machine.name;
-                    machineLineSelect.value = machine.line || '';
+                    
+                    // Handle machine line selection (including custom lines)
+                    const machineLine = machine.line || '';
+                    const standardLines = ['Shared', 'Solids', 'Semisolid', 'Liquids'];
+                    if (standardLines.includes(machineLine)) {
+                        machineLineSelect.value = machineLine;
+                    } else if (machineLine) {
+                        // Custom line - set to "Other" and show the custom input
+                        machineLineSelect.value = 'Other';
+                        const otherLineContainer = document.getElementById('machineOtherLineContainer');
+                        const otherLineInput = document.getElementById('machineOtherLine');
+                        if (otherLineContainer && otherLineInput) {
+                            otherLineContainer.style.display = 'block';
+                            otherLineInput.value = machineLine;
+                            otherLineInput.required = true;
+                        }
+                    }
+                    
                     machineAreaInput.value = machine.area;
                     cleaningSOPInput.value = machine.cleaningSOP || '';
                     
@@ -258,6 +322,15 @@ export function showMachineModal(id = null) {
                 document.getElementById('otherMachineStage').required = false;
                 document.getElementById('otherGroupContainer').style.display = 'none';
                 document.getElementById('otherMachineGroup').required = false;
+                
+                // Reset "Other" line container for new machine
+                const otherLineContainer = document.getElementById('machineOtherLineContainer');
+                const otherLineInput = document.getElementById('machineOtherLine');
+                if (otherLineContainer && otherLineInput) {
+                    otherLineContainer.style.display = 'none';
+                    otherLineInput.value = '';
+                    otherLineInput.required = false;
+                }
             }
             document.getElementById('machineModal').style.display = 'flex';
       
@@ -273,7 +346,17 @@ export function saveMachine(event) {
                 showCustomAlert('Error', 'Machine line field not found. Please refresh the page to load the updated interface.');
                 return;
             }
-            const line = lineElement.value;
+            let line = lineElement.value;
+            
+            // Handle custom line
+            if (line === 'Other') {
+                const customLine = document.getElementById('machineOtherLine').value.trim();
+                if (!customLine) {
+                    showCustomAlert('Validation Error', 'Please specify the custom line name.');
+                    return;
+                }
+                line = customLine;
+            }
             let stage = document.getElementById('machineStage').value;
             const area = parseInt(document.getElementById('machineArea').value, 10);
             const cleaningSOP = document.getElementById('cleaningSOP').value.trim();

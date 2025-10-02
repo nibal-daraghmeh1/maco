@@ -97,6 +97,29 @@ export function getProductTrainId(product) {
 }
 
 /**
+ * Get unique production line names from products.
+ * Returns an array of unique, sorted line names including standard and custom lines.
+ */
+export function getUniqueProductLines() {
+    // Standard line options that should always be available
+    const standardLines = ['Solids', 'Semisolid', 'Liquids'];
+    
+    // Get custom lines from existing products
+    const productLines = products.map(p => (p && p.line) ? String(p.line).trim() : null).filter(Boolean);
+    const customLines = productLines.filter(line => !standardLines.includes(line));
+    
+    // Combine standard lines with unique custom lines
+    const allLines = [...standardLines, ...new Set(customLines)].sort();
+    
+    // Always include "Shared" as an option for machines
+    if (!allLines.includes('Shared')) {
+        allLines.push('Shared');
+    }
+    
+    return allLines;
+}
+
+/**
  * Get unique production line names from the machines array.
  * Falls back to product.line values if machines do not declare lines.
  * Returns an array of unique, sorted line names.
@@ -108,13 +131,7 @@ export function getUniqueLinesFromMachines() {
     }
 
     // Fallback to product lines
-    const productLines = products.map(p => (p && p.line) ? String(p.line).trim() : null).filter(Boolean);
-    if (productLines.length > 0) {
-        return [...new Set(productLines)].sort();
-    }
-
-    // No lines found - return a sensible default list
-    return ['Default Line'];
+    return getUniqueProductLines();
 }
 
 /**
