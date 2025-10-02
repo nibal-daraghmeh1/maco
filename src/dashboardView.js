@@ -14,10 +14,12 @@ export function renderMainDashboard() {
             let lowestMacoTrain = { id: 'N/A', finalMaco: Infinity };
             let largestEssaTrain = { id: 'N/A', essa: 0 };
             if (trainData.length > 0) {
-                 const globalLargestEssa = trainData.reduce((max, t) => Math.max(max, t.essa), 0);
                  const finalTrainData = trainData.map(train => {
                     const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p=>p.productType))] || state.safetyFactorConfig['Other'];
                     const sf = sfConfig.max;
+                    
+                    // Calculate line-specific largest ESSA for this train
+                    const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
                     
                     const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
                     const maco10ppm = 10 * train.minMbsKg;
@@ -25,7 +27,7 @@ export function renderMainDashboard() {
                     if (train.lowestPde !== null) {
                         macoHealth = train.lowestPde * train.minBsMddRatio;
                     }
-                    const macoVisual = (0.004) * globalLargestEssa;
+                    const macoVisual = (0.004) * lineLargestEssa;
                     return {...train, finalMaco: Math.min(macoDose, maco10ppm, macoHealth, macoVisual) };
                  });
 

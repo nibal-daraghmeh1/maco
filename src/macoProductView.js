@@ -252,12 +252,8 @@ export function renderMacoForTrains() {
 
     if (finalTrainData.length > 0) {
         const trainWithLowestMaco = finalTrainData.reduce((minT, currentT) => currentT.finalMaco < minT.finalMaco ? currentT : minT);
-        const largestEssaBadge = document.getElementById(`train-badges-${largestEssaTrain.id}`);
         const lowestMacoBadge = document.getElementById(`train-badges-${trainWithLowestMaco.id}`);
         
-        if (largestEssaBadge) {
-            largestEssaBadge.innerHTML += `<span class="text-xs font-semibold px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300">Largest ESSA</span>`;
-        }
         if (lowestMacoBadge) {
             lowestMacoBadge.innerHTML += `<span class="text-xs font-semibold px-2 py-1 rounded-full bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300 ml-2">Lowest MACO</span>`;
         }

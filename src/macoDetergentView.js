@@ -2,7 +2,7 @@
 // js/macoDetergentView.js
 
 import * as state from './state.js';
-import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine } from './utils.js';
+import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm } from './utils.js';
 import * as utils from './utils.js';
 
 export function renderDetergentMaco() {
@@ -23,8 +23,7 @@ export function renderDetergentMaco() {
     const trainByKey = {};
     baseTrainData.forEach(t => { if (t.key) trainByKey[t.key] = t; });
 
-    const largestEssaTrain = baseTrainData.length ? baseTrainData.reduce((maxT, currentT) => currentT.essa > maxT.essa ? currentT : maxT) : { id: null, essa: 0 };
-    const globalLargestEssa = largestEssaTrain.essa || 0;
+    // Note: ESSA will be calculated per train based on line and dosage form
 
     // Flatten trains for optional filtering later
     const mergedTrains = [];
@@ -115,17 +114,18 @@ export function renderDetergentMaco() {
                     </div>
                 `;
         container.appendChild(card);
-        recalculateDetergentMacoForTrain(train.id, globalLargestEssa); // Initial calculation
+        recalculateDetergentMacoForTrain(train.id); // Initial calculation
     });
 }
 
-export function recalculateDetergentMacoForTrain(trainId, globalLargestEssa) {
+export function recalculateDetergentMacoForTrain(trainId, lineLargestEssa) {
     const train = getTrainData().find(t => t.id === trainId);
     if (!train) return;
 
-    if (globalLargestEssa === undefined) {
+    if (lineLargestEssa === undefined) {
         const allTrains = getTrainData();
-        globalLargestEssa = allTrains.length > 0 ? Math.max(...allTrains.map(t => t.essa)) : 0;
+        // Calculate largest ESSA for trains in the same line and dosage form
+        lineLargestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
     }
 
     const ld50Values = state.detergentIngredients.map(i => parseFloat(i.ld50)).filter(ld50 => !isNaN(ld50));
@@ -135,7 +135,7 @@ export function recalculateDetergentMacoForTrain(trainId, globalLargestEssa) {
 
     const adi = (5e-4 * minLd50 * bodyWeight) / sf;
     const maco = adi * train.minBsMddRatio;
-    const macoPerArea = globalLargestEssa > 0 ? maco / globalLargestEssa : 0;
+    const macoPerArea = lineLargestEssa > 0 ? maco / lineLargestEssa : 0;
     const macoPerSwab = macoPerArea * train.assumedSsa;
 
     document.getElementById(`min-ld50-train-${trainId}`).textContent = minLd50.toLocaleString();

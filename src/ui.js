@@ -915,7 +915,7 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
     showLoader();
     
     import('./utils.js').then(utils => {
-        const { getTrainData, getWorstCaseProductType, getMacoPerSwabForTrain } = utils;
+        const { getTrainData, getWorstCaseProductType, getMacoPerSwabForTrain, getLargestEssaForLineAndDosageForm } = utils;
         
         const trainData = getTrainData();
         
@@ -945,9 +945,7 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
         
         const dataForExport = [];
         
-        // Calculate global largest ESSA for MACO calculations
-        const largestEssaTrain = trainData.reduce((maxT, currentT) => currentT.essa > maxT.essa ? currentT : maxT);
-        const globalLargestEssa = largestEssaTrain.essa;
+        // Note: ESSA will be calculated per train based on line and dosage form
         
         trainsToExport.forEach(train => {
             const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
@@ -961,7 +959,9 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
             if (train.lowestPde !== null) {
                 macoHealth = train.lowestPde * train.minBsMddRatio;
             }
-            const macoVisual = 0.004 * globalLargestEssa;
+            // Calculate line-specific largest ESSA for this train
+            const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+            const macoVisual = 0.004 * lineLargestEssa;
             
             const allMacoValues = [
                 { name: '0.1% Therapeutic Dose', value: macoDose },
@@ -972,7 +972,7 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
             
             const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
             const finalMaco = finalMacoResult.value;
-            const macoPerArea = globalLargestEssa > 0 ? finalMaco / globalLargestEssa : 0;
+            const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
             const macoPerSwab = macoPerArea * train.assumedSsa;
             
             // Get machine details with group-based formatting
@@ -1108,8 +1108,7 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
         
         const dataForExport = [];
         
-        // Calculate global largest ESSA for MACO calculations
-        const globalLargestEssa = trainData.length > 0 ? Math.max(...trainData.map(t => t.essa)) : 0;
+        // Note: ESSA will be calculated per train based on line and dosage form
         
         // Get detergent calculation parameters
         const bodyWeight = parseFloat(document.getElementById('bodyWeight')?.value) || 70; // Default 70kg
@@ -1128,7 +1127,9 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
             // Calculate detergent MACO values using the same logic as in the view
             const adi = (5e-4 * minLd50 * bodyWeight) / sf;
             const maco = adi * train.minBsMddRatio;
-            const macoPerArea = globalLargestEssa > 0 ? maco / globalLargestEssa : 0;
+            // Calculate line-specific largest ESSA for this train
+            const lineLargestEssa = utils.getLargestEssaForLineAndDosageForm(train, trainData);
+            const macoPerArea = lineLargestEssa > 0 ? maco / lineLargestEssa : 0;
             const macoPerSwab = macoPerArea * train.assumedSsa;
             
             // Get machine details
@@ -1499,7 +1500,7 @@ export function exportAllTabsToExcel() {
         
         // 1. Product MACO Report
         try {
-            const globalLargestEssa = trainData.reduce((maxT, currentT) => currentT.essa > maxT.essa ? currentT : maxT).essa;
+            // Note: ESSA will be calculated per train based on line and dosage form
             
             const productMacoData = [];
             trainData.forEach(train => {
@@ -1513,7 +1514,9 @@ export function exportAllTabsToExcel() {
                 if (train.lowestPde !== null) {
                     macoHealth = train.lowestPde * train.minBsMddRatio;
                 }
-                const macoVisual = 0.004 * globalLargestEssa;
+                // Calculate line-specific largest ESSA for this train
+                const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+                const macoVisual = 0.004 * lineLargestEssa;
                 
                 const allMacoValues = [
                     { name: '0.1% Therapeutic Dose', value: macoDose },
@@ -1524,7 +1527,7 @@ export function exportAllTabsToExcel() {
                 
                 const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
                 const finalMaco = finalMacoResult.value;
-                const macoPerArea = globalLargestEssa > 0 ? finalMaco / globalLargestEssa : 0;
+                const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
                 const macoPerSwab = macoPerArea * train.assumedSsa;
                 
                 const machines = train.machineIds.map(id => {
@@ -1578,7 +1581,7 @@ export function exportAllTabsToExcel() {
         // 2. Detergent MACO Report
         try {
             if (state.detergentIngredients.length > 0) {
-                const globalLargestEssa = trainData.length > 0 ? Math.max(...trainData.map(t => t.essa)) : 0;
+                // Note: ESSA will be calculated per train based on line and dosage form
                 const bodyWeight = parseFloat(document.getElementById('bodyWeight')?.value) || 70;
                 const ld50Values = state.detergentIngredients.map(i => parseFloat(i.ld50)).filter(ld50 => !isNaN(ld50));
                 const minLd50 = ld50Values.length > 0 ? Math.min(...ld50Values) : 0;
@@ -1594,7 +1597,9 @@ export function exportAllTabsToExcel() {
                     
                     const adi = (5e-4 * minLd50 * bodyWeight) / sf;
                     const maco = adi * train.minBsMddRatio;
-                    const macoPerArea = globalLargestEssa > 0 ? maco / globalLargestEssa : 0;
+                    // Calculate line-specific largest ESSA for this train
+                    const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+                    const macoPerArea = lineLargestEssa > 0 ? maco / lineLargestEssa : 0;
                     const macoPerSwab = macoPerArea * train.assumedSsa;
                     
                     const machines = train.machineIds.map(id => {
