@@ -219,7 +219,7 @@ export function renderMacoForTrains() {
                                                     <li><b>Lowest LTD:</b> ${train.lowestLtd} mg <span class="text-xs" style="color:var(--text-secondary);">(from ${lowestLtdProduct.name})</span></li>
                                                     <li><b>Minimum BS(g)/MDD(g) Ratio:</b> ${train.minBsMddRatio.toLocaleString(undefined, { maximumFractionDigits: 2 })} <span class="text-xs" style="color:var(--text-secondary);">(from ${minRatioProduct.name})</span></li>
                                                     <li><b>Lowest PDE (ADE):</b> ${train.lowestPde !== null ? train.lowestPde + ' mg' : 'N/A'}</li>
-                                                    <li><b>Global Largest ESSA:</b> ${globalLargestEssa.toLocaleString()} cm² (from Train ${largestEssaTrain.id})</li>
+                                                    <li><b>Line Largest ESSA:</b> ${getLargestEssaForLineAndDosageForm(train, baseTrainData).toLocaleString()} cm² (same line & dosage form)</li>
                                                  </ul>
                                                  <div id="maco-breakdown-container-${train.id}" class="divide-y rounded-md border" style="border-color: var(--border-color);"></div>
                                             </div>
@@ -270,7 +270,7 @@ export function renderMacoForTrains() {
     hideLoader();
 }
 
-export function recalculateProductMacoForTrain(trainId, globalLargestEssa) {
+export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
     const train = getTrainData().find(t => t.id === trainId);
     if (!train) return;
 
@@ -285,10 +285,10 @@ export function recalculateProductMacoForTrain(trainId, globalLargestEssa) {
         }
     }
 
-    if (globalLargestEssa === undefined) {
+    if (lineLargestEssa === undefined) {
         const allTrains = getTrainData();
         // Calculate largest ESSA for trains in the same line and dosage form
-        globalLargestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
+        lineLargestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
     }
 
     const sfInput = document.getElementById(`product-sf-input-train-${train.id}`);
@@ -302,7 +302,7 @@ export function recalculateProductMacoForTrain(trainId, globalLargestEssa) {
     if (train.lowestPde !== null) {
         macoHealth = train.lowestPde * train.minBsMddRatio;
     }
-    const macoVisual = 0.004 * globalLargestEssa;
+    const macoVisual = 0.004 * lineLargestEssa;
 
     const allMacoValues = [
         { name: '0.1% Therapeutic Dose', value: macoDose },
@@ -313,7 +313,7 @@ export function recalculateProductMacoForTrain(trainId, globalLargestEssa) {
 
     const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
     const finalMaco = finalMacoResult.value;
-    const macoPerArea = globalLargestEssa > 0 ? finalMaco / globalLargestEssa : 0;
+    const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
     const macoPerSwab = macoPerArea * train.assumedSsa;
 
     // Update the always-visible MACO / Swab element
