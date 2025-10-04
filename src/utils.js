@@ -385,6 +385,19 @@ export function getTrainData() {
     trainArray.forEach(train => {
         // Calculate ESSA using group-based consolidation for accuracy
         train.essa = getGroupedTrainSurfaceArea(train.machineIds);
+        
+        // Assign line based on the most common line among products in this train
+        const productLines = train.products.map(p => p.line).filter(Boolean);
+        if (productLines.length > 0) {
+            // Find the most common line
+            const lineCounts = {};
+            productLines.forEach(line => {
+                lineCounts[line] = (lineCounts[line] || 0) + 1;
+            });
+            train.line = Object.keys(lineCounts).reduce((a, b) => lineCounts[a] > lineCounts[b] ? a : b);
+        } else {
+            train.line = 'Unassigned';
+        }
 
         let worstProductByRpn = null;
         let maxRpn = -1;
@@ -442,6 +455,9 @@ export function getTrainData() {
 
         const pdeValues = train.products.flatMap(p => p.activeIngredients).map(i => i.pde).filter(pde => pde != null);
         train.lowestPde = pdeValues.length > 0 ? Math.min(...pdeValues) : null;
+        
+        const ld50Values = train.products.flatMap(p => p.activeIngredients).map(i => i.ld50).filter(ld50 => ld50 != null);
+        train.lowestLd50 = ld50Values.length > 0 ? Math.min(...ld50Values) : null;
         
         train.assumedSsa = 25;
     });

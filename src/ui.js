@@ -955,20 +955,51 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
             const sf = sfConfig.max;
             const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
             const maco10ppm = 10 * train.minMbsKg;
-            let macoHealth = 'N/A';
-            if (train.lowestPde !== null) {
+            let macoHealth = Infinity;
+            let macoNoel = Infinity;
+            
+            // Check toxicity preference to determine which equations to show
+            const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+            const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+            
+            // Calculate PDE-based MACO if PDE is available and not hidden
+            if (train.lowestPde !== null && !pdeHidden) {
                 macoHealth = train.lowestPde * train.minBsMddRatio;
             }
+            
+            // Calculate NOEL-based MACO if LD50 is available and not hidden
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+                const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+                // Find minimum MDD from all ingredients in the train
+                const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+                const minMdd = Math.min(...allMdds);
+                // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+                macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+            }
+            
             // Calculate line-specific largest ESSA for this train
             const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
             const macoVisual = 0.004 * lineLargestEssa;
             
+            // Build MACO values array conditionally based on toxicity data visibility
             const allMacoValues = [
                 { name: '0.1% Therapeutic Dose', value: macoDose },
-                { name: '10 ppm Criterion', value: maco10ppm },
-                { name: 'Health-Based Limit (ADE)', value: typeof macoHealth === 'number' ? macoHealth : Infinity },
-                { name: 'Visual Clean Limit', value: macoVisual }
+                { name: '10 ppm Criterion', value: maco10ppm }
             ];
+            
+            // Add PDE equation only if PDE is available and not hidden
+            if (train.lowestPde !== null && !pdeHidden) {
+                allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+            }
+            
+            // Add NOEL equation only if LD50 is available and not hidden
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+            }
+            
+            // Always add visual clean limit
+            allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
             
             const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
             const finalMaco = finalMacoResult.value;
@@ -1510,20 +1541,51 @@ export function exportAllTabsToExcel() {
                 const sf = sfConfig.max;
                 const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
                 const maco10ppm = 10 * train.minMbsKg;
-                let macoHealth = 'N/A';
-                if (train.lowestPde !== null) {
+                let macoHealth = Infinity;
+                let macoNoel = Infinity;
+                
+                // Check toxicity preference to determine which equations to show
+                const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+                const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+                
+                // Calculate PDE-based MACO if PDE is available and not hidden
+                if (train.lowestPde !== null && !pdeHidden) {
                     macoHealth = train.lowestPde * train.minBsMddRatio;
                 }
+                
+                // Calculate NOEL-based MACO if LD50 is available and not hidden
+                if (train.lowestLd50 !== null && !ld50Hidden) {
+                    // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+                    const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+                    // Find minimum MDD from all ingredients in the train
+                    const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+                    const minMdd = Math.min(...allMdds);
+                    // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+                    macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+                }
+                
                 // Calculate line-specific largest ESSA for this train
                 const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
                 const macoVisual = 0.004 * lineLargestEssa;
                 
+                // Build MACO values array conditionally based on toxicity data visibility
                 const allMacoValues = [
                     { name: '0.1% Therapeutic Dose', value: macoDose },
-                    { name: '10 ppm Criterion', value: maco10ppm },
-                    { name: 'Health-Based Limit (ADE)', value: typeof macoHealth === 'number' ? macoHealth : Infinity },
-                    { name: 'Visual Clean Limit', value: macoVisual }
+                    { name: '10 ppm Criterion', value: maco10ppm }
                 ];
+                
+                // Add PDE equation only if PDE is available and not hidden
+                if (train.lowestPde !== null && !pdeHidden) {
+                    allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+                }
+                
+                // Add NOEL equation only if LD50 is available and not hidden
+                if (train.lowestLd50 !== null && !ld50Hidden) {
+                    allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+                }
+                
+                // Always add visual clean limit
+                allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
                 
                 const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
                 const finalMaco = finalMacoResult.value;

@@ -142,17 +142,48 @@ function getMacoValueForTrain(train) {
         const macoDose = (matchingTrain.lowestLtd * matchingTrain.minBsMddRatio) / sf;
         const maco10ppm = 10 * matchingTrain.minMbsKg;
         let macoHealth = Infinity;
-        if (matchingTrain.lowestPde !== null) {
+        let macoNoel = Infinity;
+        
+        // Check toxicity preference to determine which equations to show
+        const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+        const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+        
+        // Calculate PDE-based MACO if PDE is available and not hidden
+        if (matchingTrain.lowestPde !== null && !pdeHidden) {
             macoHealth = matchingTrain.lowestPde * matchingTrain.minBsMddRatio;
         }
+        
+        // Calculate NOEL-based MACO if LD50 is available and not hidden
+        if (matchingTrain.lowestLd50 !== null && !ld50Hidden) {
+            // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+            const noel = (matchingTrain.lowestLd50 * 70) / 2000; // NOEL in g
+            // Find minimum MDD from all ingredients in the train
+            const allMdds = matchingTrain.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+            const minMdd = Math.min(...allMdds);
+            // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+            macoNoel = (noel * matchingTrain.minMbsKg * 1000) / (sf * minMdd);
+        }
+        
         const macoVisual = 0.004 * largestEssa;
 
+        // Build MACO values array conditionally based on toxicity data visibility
         const allMacoValues = [
             { name: '0.1% Therapeutic Dose', value: macoDose },
-            { name: '10 ppm Criterion', value: maco10ppm },
-            { name: 'Health-Based Limit (ADE)', value: macoHealth },
-            { name: 'Visual Clean Limit', value: macoVisual }
+            { name: '10 ppm Criterion', value: maco10ppm }
         ];
+        
+        // Add PDE equation only if PDE is available and not hidden
+        if (matchingTrain.lowestPde !== null && !pdeHidden) {
+            allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+        }
+        
+        // Add NOEL equation only if LD50 is available and not hidden
+        if (matchingTrain.lowestLd50 !== null && !ld50Hidden) {
+            allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+        }
+        
+        // Always add visual clean limit
+        allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
 
         const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
         const finalMaco = finalMacoResult.value;
@@ -388,49 +419,49 @@ export function renderTrainSummary() {
         
         // Generate rows for each train in the group
         const trainRows = trainsWithRPN.map(({ train }, index) => {
-            // Get machine details
-            const machines = train.machineIds.map(id => {
-                const machine = state.machines.find(m => m.id === id);
-                return machine ? machine : { id, name: `Unknown (ID: ${id})`, machineNumber: 'N/A' };
-            });
+        // Get machine details
+        const machines = train.machineIds.map(id => {
+            const machine = state.machines.find(m => m.id === id);
+            return machine ? machine : { id, name: `Unknown (ID: ${id})`, machineNumber: 'N/A' };
+        });
 
             // Format machines display (individual machines only)
             const machinesDisplay = machines.map(m => m.name).join(', ');
 
             // Format products display (product names only)
-            const productsDisplay = train.products.map(p => p.name).join(', ');
+        const productsDisplay = train.products.map(p => p.name).join(', ');
 
-            // Combine machines and products
-            const machinesAndProducts = `
-                <div class="mb-2">
-                    <span class="font-semibold text-blue-600">Machines:</span><br>
-                    <span class="text-sm">${machinesDisplay}</span>
+        // Combine machines and products
+        const machinesAndProducts = `
+            <div class="mb-2">
+                <span class="font-semibold text-blue-600">Machines:</span><br>
+                <span class="text-sm">${machinesDisplay}</span>
+            </div>
+            <div>
+                <span class="font-semibold text-purple-600">Products:</span><br>
+                <span class="text-sm">${productsDisplay}</span>
+            </div>
+        `;
+
+        // Get worst case product for this train
+        const worstCaseProduct = getWorstCaseProductForTrain(train);
+        const worstCaseDisplay = worstCaseProduct 
+            ? `
+                <div class="text-sm">
+                    <div class="font-semibold text-orange-600">${worstCaseProduct.productName}</div>
+                    <div class="text-xs text-gray-600">Ingredient: ${worstCaseProduct.ingredientName}</div>
+                    <div class="text-xs font-bold text-red-600">RPN: ${worstCaseProduct.rpn.toFixed(2)}</div>
                 </div>
-                <div>
-                    <span class="font-semibold text-purple-600">Products:</span><br>
-                    <span class="text-sm">${productsDisplay}</span>
-                </div>
-            `;
+            `
+            : '<span class="text-gray-500 text-sm">No data available</span>';
 
-            // Get worst case product for this train
-            const worstCaseProduct = getWorstCaseProductForTrain(train);
-            const worstCaseDisplay = worstCaseProduct 
-                ? `
-                    <div class="text-sm">
-                        <div class="font-semibold text-orange-600">${worstCaseProduct.productName}</div>
-                        <div class="text-xs text-gray-600">Ingredient: ${worstCaseProduct.ingredientName}</div>
-                        <div class="text-xs font-bold text-red-600">RPN: ${worstCaseProduct.rpn.toFixed(2)}</div>
-                    </div>
-                `
-                : '<span class="text-gray-500 text-sm">No data available</span>';
-
-            // Get MACO value for this train
+        // Get MACO value for this train
             const macoResult = getMacoValueForTrain(train);
             const macoDisplay = macoResult.value > 0 
                 ? `<span class="font-semibold text-green-600">${macoResult.display}</span>`
                 : `<span class="text-gray-500">${macoResult.display}</span>`;
 
-            const mapped = idMap.get(String(train.id));
+        const mapped = idMap.get(String(train.id));
             const trainLabel = mapped ? `Train ${mapped.number}` : `T${train.id}`;
 
             // Only show studies cell on the first row, with rowspan for the entire group
@@ -461,24 +492,24 @@ export function renderTrainSummary() {
                    </td>`
                 : '';
 
-            return `
-                <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color);">
+        return `
+            <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color);">
                     <td class="px-4 py-4 text-center" style="color: var(--text-primary);">
                         <span class="font-semibold text-indigo-600">${group.line} - ${group.dosageForm}</span>
                     </td>
-                    <td class="px-4 py-4 text-center font-bold text-lg" style="color: var(--text-primary);">${trainLabel}</td>
-                    <td class="px-4 py-4" style="color: var(--text-primary);">
-                        ${machinesAndProducts}
-                    </td>
-                    <td class="px-4 py-4" style="color: var(--text-primary);">
-                        ${worstCaseDisplay}
-                    </td>
-                    <td class="px-4 py-4 text-center" style="color: var(--text-primary);">
-                        ${macoDisplay}
-                    </td>
+                <td class="px-4 py-4 text-center font-bold text-lg" style="color: var(--text-primary);">${trainLabel}</td>
+                <td class="px-4 py-4" style="color: var(--text-primary);">
+                    ${machinesAndProducts}
+                </td>
+                <td class="px-4 py-4" style="color: var(--text-primary);">
+                    ${worstCaseDisplay}
+                </td>
+                <td class="px-4 py-4 text-center" style="color: var(--text-primary);">
+                    ${macoDisplay}
+                </td>
                     ${studiesCell}
-                </tr>
-            `;
+            </tr>
+        `;
         }).join('');
         
         return trainRows;

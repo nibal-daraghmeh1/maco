@@ -21,6 +21,23 @@ export function renderProducts(tabId) {
 let dataToRender = [...state.viewProducts[tabId]];
 
     dataToRender.sort((a, b) => {
+        // First, group by line and dosage form
+        const lineA = a.line || 'Unassigned';
+        const lineB = b.line || 'Unassigned';
+        const dosageA = a.productType || 'Other';
+        const dosageB = b.productType || 'Other';
+        
+        // Primary sort: by line
+        if (lineA !== lineB) {
+            return lineA.localeCompare(lineB);
+        }
+        
+        // Secondary sort: by dosage form within the same line
+        if (dosageA !== dosageB) {
+            return dosageA.localeCompare(dosageB);
+        }
+        
+        // Tertiary sort: by the selected sort key within the same line and dosage form
         let valA, valB;
         const key = state.sortState.key;
         switch (key) {
@@ -57,6 +74,7 @@ let dataToRender = [...state.viewProducts[tabId]];
                     <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">
                         <span class="product-name">${product.name}</span>
                     </td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" style="color: var(--text-secondary);">${product.line || 'Not Assigned'}</td>
                     <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center" style="color: var(--text-secondary);">${trainIdDisplay}</td>
                     <td class="px-3 py-3 text-sm whitespace-nowrap align-top" style="color: var(--text-secondary);">${product.productType || 'N/A'}</td>
                     <td class="px-3 py-3 text-sm whitespace-nowrap align-top" style="color: var(--text-secondary);">${product.batchSizeKg}</td>
@@ -80,7 +98,7 @@ let dataToRender = [...state.viewProducts[tabId]];
         const ingredientsRow = document.createElement('tr');
         ingredientsRow.className = "ingredients-sub-row";
         const ingredientsCell = document.createElement('td');
-        ingredientsCell.colSpan = 9;
+        ingredientsCell.colSpan = 10;
 
         let subTableHTML = `
                     <div class="p-4 ingredients-sub-table rounded-b-lg">
@@ -149,6 +167,7 @@ export function handleSearchAndFilter(tabId) {
 
     const codeFilter = tabContainer.querySelector('.filterColProductCode').value.toLowerCase();
     const nameFilter = tabContainer.querySelector('.filterColProductName').value.toLowerCase();
+    const lineFilter = tabContainer.querySelector('.filterColLine').value;
     const trainNoFilter = tabContainer.querySelector('.filterColTrainNo').value;
     const productTypeFilter = tabContainer.querySelector('.filterColProductType').value;
     const isCriticalFilter = tabContainer.querySelector('.filterColIsCritical').value;
@@ -162,11 +181,12 @@ export function handleSearchAndFilter(tabId) {
         const trainIdDisplay = trainId !== 'N/A' ? 'T' + trainId : 'N/A';
         const trainNoMatch = (trainNoFilter === 'all') || (trainIdDisplay === trainNoFilter);
         
+        const lineMatch = (lineFilter === 'all') || (product.line === lineFilter);
         const productTypeMatch = (productTypeFilter === 'all') || (product.productType === productTypeFilter);
 
         const isCriticalMatch = (isCriticalFilter === 'all') || (String(product.isCritical) === isCriticalFilter);
 
-        return productCodeMatch && productNameMatch && trainNoMatch && productTypeMatch && isCriticalMatch;
+        return productCodeMatch && productNameMatch && trainNoMatch && lineMatch && productTypeMatch && isCriticalMatch;
     });
      
     renderProducts(tabId);
@@ -210,7 +230,7 @@ export function updateSortIndicators(tabId) {
 export function showAddForm() {
     const form = document.getElementById('addProductForm');
     form.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                  <div><label class="block text-sm font-medium mb-1">Product Code</label><input type="text" id="addProductCode" class="w-full px-3 py-2 border rounded-lg" required placeholder="e.g. 1ABC12345DE" pattern="[0-9]{1}[A-Z]{3}[0-9]{5}[A-Z]{2}"></div>
+                                  <div><label class="block text-sm font-medium mb-1">Product Code</label><input type="text" id="addProductCode" class="w-full px-3 py-2 border rounded-lg" required placeholder="e.g. 1ABC12345DE"></div>
                                   <div><label class="block text-sm font-medium mb-1">Product Name</label><input type="text" id="addProductName" class="w-full px-3 py-2 border rounded-lg" required></div>
                                   <div><label class="block text-sm font-medium mb-1">Date</label><input type="date" id="addProductDate" class="w-full px-3 py-2 border rounded-lg" required></div>
                               </div>
@@ -589,6 +609,10 @@ export function deleteIngredient(productId, ingredientId) {
 export function populateFilterSelects() {
     const productTypeOptions = [...new Set(state.products.map(p => p.productType))].sort();
     populateSelectWithOptions(document.querySelector('.filterColProductType'), null, true, productTypeOptions);
+
+    // Line Filter
+    const lineOptions = [...new Set(state.products.map(p => p.line).filter(Boolean))].sort();
+    populateSelectWithOptions(document.querySelector('.filterColLine'), null, true, lineOptions);
 
     // Train No. Filter
     const trainNoSelect = document.querySelector('.filterColTrainNo');

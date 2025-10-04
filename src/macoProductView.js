@@ -3,7 +3,7 @@
 
 import * as state from './state.js';
 import { hideLoader } from './ui.js';
-import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm } from './utils.js';
+import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference } from './utils.js';
 
 export function renderMacoForTrains() {
     const container = document.getElementById('trainsContainer');
@@ -218,7 +218,9 @@ export function renderMacoForTrains() {
                                                     <li><b>Minimum Batch Size (MBS):</b> ${train.minMbsKg} kg <span class="text-xs" style="color:var(--text-secondary);">(from ${minMbsProduct.name})</span></li>
                                                     <li><b>Lowest LTD:</b> ${train.lowestLtd} mg <span class="text-xs" style="color:var(--text-secondary);">(from ${lowestLtdProduct.name})</span></li>
                                                     <li><b>Minimum BS(g)/MDD(g) Ratio:</b> ${train.minBsMddRatio.toLocaleString(undefined, { maximumFractionDigits: 2 })} <span class="text-xs" style="color:var(--text-secondary);">(from ${minRatioProduct.name})</span></li>
-                                                    <li><b>Lowest PDE (ADE):</b> ${train.lowestPde !== null ? train.lowestPde + ' mg' : 'N/A'}</li>
+                                                    <li><b>Lowest PDE:</b> ${train.lowestPde !== null ? train.lowestPde + ' mg' : 'N/A'}</li>
+                                                    <li><b>Lowest LD50:</b> ${train.lowestLd50 !== null ? train.lowestLd50 + ' mg/kg' : 'N/A'}</li>
+                                                    ${train.lowestLd50 !== null ? `<li><b>NOEL Calculation:</b> (${train.lowestLd50} × 70) ÷ 2000 = <span class="font-semibold">${((train.lowestLd50 * 70) / 2000).toFixed(6)} g</span></li>` : ''}
                                                     <li><b>Line Largest ESSA:</b> ${getLargestEssaForLineAndDosageForm(train, baseTrainData).toLocaleString()} cm² (same line & dosage form)</li>
                                                  </ul>
                                                  <div id="maco-breakdown-container-${train.id}" class="divide-y rounded-md border" style="border-color: var(--border-color);"></div>
@@ -295,17 +297,49 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
     const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
     const maco10ppm = 10 * train.minMbsKg;
     let macoHealth = Infinity;
-    if (train.lowestPde !== null) {
+    let macoNoel = Infinity;
+    
+    // Check toxicity preference to determine which equations to show
+    const toxicityPreference = getToxicityPreference();
+    const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+    const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+    
+    // Calculate PDE-based MACO if PDE is available and not hidden
+    if (train.lowestPde !== null && !pdeHidden) {
         macoHealth = train.lowestPde * train.minBsMddRatio;
     }
+    
+    // Calculate NOEL-based MACO if LD50 is available and not hidden
+    if (train.lowestLd50 !== null && !ld50Hidden) {
+        // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+        const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+        // Find minimum MDD from all ingredients in the train
+        const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+        const minMdd = Math.min(...allMdds);
+        // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+        macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+    }
+    
     const macoVisual = 0.004 * lineLargestEssa;
 
+    // Build MACO values array conditionally based on toxicity data visibility
     const allMacoValues = [
         { name: '0.1% Therapeutic Dose', value: macoDose },
-        { name: '10 ppm Criterion', value: maco10ppm },
-        { name: 'Health-Based Limit (ADE)', value: macoHealth },
-        { name: 'Visual Clean Limit', value: macoVisual }
+        { name: '10 ppm Criterion', value: maco10ppm }
     ];
+    
+    // Add PDE equation only if PDE is available and not hidden
+    if (train.lowestPde !== null && !pdeHidden) {
+        allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+    }
+    
+    // Add NOEL equation only if LD50 is available and not hidden
+    if (train.lowestLd50 !== null && !ld50Hidden) {
+        allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+    }
+    
+    // Always add visual clean limit
+    allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
 
     const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
     const finalMaco = finalMacoResult.value;
@@ -326,8 +360,16 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
                 equation = 'MACO = (<span title="Lowest Therapeutic Dose (mg)">LTD</span> × <span title="Batch Size / Maximum Daily Dose Ratio">BS/MDD Ratio</span>) / <span title="Safety Factor">SF</span>';
             } else if (name === '10 ppm Criterion') {
                 equation = 'MACO = 10 × <span title="Minimum Batch Size (kg)">MBS(kg)</span>';
-            } else if (name === 'Health-Based Limit (ADE)') {
-                equation = 'MACO = <span title="Acceptable Daily Exposure (mg)">ADE</span> × <span title="Batch Size / Maximum Daily Dose Ratio">BS/MDD Ratio</span>';
+            } else if (name === 'Health-Based Limit (PDE)') {
+                equation = 'MACO = <span title="Permitted Daily Exposure (mg)">PDE</span> × <span title="Batch Size / Maximum Daily Dose Ratio">BS/MDD Ratio</span>';
+            } else if (name === 'Health-Based Limit (NOEL)') {
+                // Calculate and display NOEL calculation details
+                const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+                // Find minimum MDD from all ingredients in the train
+                const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+                const minMdd = Math.min(...allMdds);
+                equation = `NOEL = (LD50 × 70 kg) ÷ 2000 = (${train.lowestLd50} × 70) ÷ 2000 = ${noel.toFixed(6)} g<br>
+                           MACO = (NOEL × MBS(kg) × 1000) ÷ (SF × MDD(g)) = (${noel.toFixed(6)} × ${train.minMbsKg} × 1000) ÷ (${sf} × ${minMdd})`;
             } else if (name === 'Visual Clean Limit') {
                 equation = 'MACO = 0.004 × <span title="Equipment Surface Shared Area (cm²)">Largest ESSA</span>';
             }
