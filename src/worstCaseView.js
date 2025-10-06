@@ -6,7 +6,7 @@ import { hideLoader, updateToggleIcons, showCustomAlert } from './ui.js';
 import { getProductTrainId, calculateScores, getRpnRatingClass, getToxicityPreference, getTrainsGroupedByLine } from './utils.js';
 
 
-export function handleSearchAndFilter(tabId) {
+export function handleSearchAndFilter(tabId, lineFilter = null) {
    if (tabId !== 'worstCaseProducts') return;
 
     const productNameFilter = document.getElementById('worstCaseProductNameFilter');
@@ -14,9 +14,11 @@ export function handleSearchAndFilter(tabId) {
     
     // THE FIX: Prefix 'products' and 'viewProducts' with 'state.'
     state.viewProducts[tabId] = state.products.filter(product => {
-        return product.name.toLowerCase().includes(nameFilter);
+        const nameMatch = product.name.toLowerCase().includes(nameFilter);
+        const lineMatch = !lineFilter || product.line === lineFilter;
+        return nameMatch && lineMatch;
     });
-    renderWorstCaseByTrain();
+    renderWorstCaseByTrain(true, lineFilter);
 }
 
 export function handleWorstCaseProductFilter() {
@@ -52,7 +54,7 @@ export function updateSortIndicators(tabId) {
 }
 
 
-export function renderWorstCaseByTrain(collapsed=true) {
+export function renderWorstCaseByTrain(collapsed=true, lineFilter = null) {
     const container = document.getElementById('worstCaseTrainsContainer');
     const noResultsMessage = document.getElementById('noWorstCaseMessage');
     container.innerHTML = '';
@@ -70,7 +72,12 @@ export function renderWorstCaseByTrain(collapsed=true) {
     }
 
     // Build pre-numbered trains grouped by Line and Dosage Form
-    const linesWithTrains = getTrainsGroupedByLine();
+    let linesWithTrains = getTrainsGroupedByLine();
+    
+    // Filter by line if specified
+    if (lineFilter) {
+        linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === lineFilter);
+    }
 
     if (!linesWithTrains || linesWithTrains.length === 0) {
         noResultsMessage.style.display = 'block';

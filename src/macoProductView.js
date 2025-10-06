@@ -5,13 +5,18 @@ import * as state from './state.js';
 import { hideLoader } from './ui.js';
 import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference } from './utils.js';
 
-export function renderMacoForTrains() {
+export function renderMacoForTrains(lineFilter = null) {
     const container = document.getElementById('trainsContainer');
     const noTrainsMsg = document.getElementById('noTrainsMessage');
     container.innerHTML = '';
 
     const baseTrainData = getTrainData(); // computed train metrics keyed by consolidated path
-    const linesWithTrains = getTrainsGroupedByLine(); // pre-numbered trains per line
+    let linesWithTrains = getTrainsGroupedByLine(); // pre-numbered trains per line
+
+    // Filter by line if specified
+    if (lineFilter) {
+        linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === lineFilter);
+    }
 
     if (!linesWithTrains || linesWithTrains.length === 0) {
         noTrainsMsg.style.display = 'block';

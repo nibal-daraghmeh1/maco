@@ -90,9 +90,181 @@ export function fullAppRender() {
 
         // Update any dynamic UI elements, like filter dropdowns
         productView.populateFilterSelects();
+        
+        // Render line navigation
+        renderLineNavigation();
     } catch (error) {
         console.error('Error during full application render:', error);
         ui.hideLoader(); // Ensure loader is hidden on error
+    }
+}
+
+/**
+ * Renders the line navigation sidebar with dynamic line-based menu items
+ */
+export function renderLineNavigation() {
+    const lineNavigation = document.getElementById('lineNavigation');
+    if (!lineNavigation) {
+        console.error('Line navigation element not found');
+        return;
+    }
+
+    // Get unique lines from products
+    const uniqueLines = utils.getUniqueProductLines(state.products);
+    
+    lineNavigation.innerHTML = '';
+    
+    uniqueLines.forEach(line => {
+        if (line === 'Shared') return; // Skip Shared line for navigation
+        
+        const lineDiv = document.createElement('div');
+        lineDiv.className = 'line-nav-item';
+        lineDiv.innerHTML = `
+            <button onclick="toggleLineMenu('${line}')" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center justify-between" style="color: var(--text-primary);">
+                <span>${line}</span>
+                <svg class="w-4 h-4 transform transition-transform" id="arrow-${line}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+            <div id="submenu-${line}" class="hidden ml-4 mt-2 space-y-1">
+                <button onclick="showLineSpecificView('${line}', 'worstCase')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Worst Case Products</button>
+                <button onclick="showLineSpecificView('${line}', 'maco')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Product MACO Calculation</button>
+                <button onclick="showLineSpecificView('${line}', 'detergent')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Detergent MACO Calculation</button>
+                <button onclick="showLineSpecificView('${line}', 'trainSummary')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Train Summary</button>
+            </div>
+        `;
+        lineNavigation.appendChild(lineDiv);
+    });
+}
+
+/**
+ * Toggles the line submenu visibility
+ */
+window.toggleLineMenu = function(line) {
+    const submenu = document.getElementById(`submenu-${line}`);
+    const arrow = document.getElementById(`arrow-${line}`);
+    
+    if (submenu.classList.contains('hidden')) {
+        submenu.classList.remove('hidden');
+        arrow.style.transform = 'rotate(180deg)';
+    } else {
+        submenu.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+    }
+};
+
+/**
+ * Toggles the sidebar visibility
+ */
+window.toggleSidebar = function() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const toggleIcon = document.getElementById('sidebarToggleIcon');
+    const floatingToggle = document.getElementById('floatingToggle');
+    const backdrop = document.getElementById('sidebarBackdrop');
+    
+    if (sidebar.classList.contains('collapsed')) {
+        // Expand sidebar
+        sidebar.classList.remove('collapsed');
+        sidebar.classList.add('w-64');
+        sidebar.classList.remove('w-0');
+        sidebar.classList.remove('mr-0');
+        sidebar.classList.add('mr-8');
+        mainContent.classList.remove('ml-0');
+        toggleIcon.style.transform = 'rotate(0deg)';
+        floatingToggle.classList.add('hidden');
+        
+        // Show backdrop on mobile
+        if (window.innerWidth <= 1024) {
+            backdrop.classList.remove('hidden');
+        }
+    } else {
+        // Collapse sidebar
+        sidebar.classList.add('collapsed');
+        sidebar.classList.remove('w-64');
+        sidebar.classList.add('w-0');
+        sidebar.classList.remove('mr-8');
+        sidebar.classList.add('mr-0');
+        mainContent.classList.add('ml-0');
+        toggleIcon.style.transform = 'rotate(180deg)';
+        floatingToggle.classList.remove('hidden');
+        
+        // Hide backdrop
+        backdrop.classList.add('hidden');
+    }
+};
+
+/**
+ * Shows line-specific view with filtered data
+ */
+window.showLineSpecificView = function(line, viewType) {
+    console.log('showLineSpecificView called with:', line, viewType);
+    
+    // Store the current line filter
+    window.currentLineFilter = line;
+    
+    // Show the appropriate tab content
+    let tabId;
+    switch(viewType) {
+        case 'worstCase':
+            tabId = 'worstCaseProducts';
+            break;
+        case 'maco':
+            tabId = 'macoForTrains';
+            break;
+        case 'detergent':
+            tabId = 'detergentMaco';
+            break;
+        case 'trainSummary':
+            tabId = 'trainSummary';
+            break;
+    }
+    
+    console.log('Switching to tab:', tabId);
+    
+    // Hide all tab contents first
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-tab-content'));
+    
+    // Show the specific tab content
+    const tabContent = document.getElementById(tabId);
+    if (tabContent) {
+        tabContent.classList.add('active-tab-content');
+        console.log('Tab content shown:', tabId);
+    } else {
+        console.error('Tab content not found:', tabId);
+    }
+    
+    // Apply line-specific filtering
+    applyLineFilter(line, viewType);
+};
+
+/**
+ * Applies line-specific filtering to the current view
+ */
+function applyLineFilter(line, viewType) {
+    console.log('applyLineFilter called with:', line, viewType);
+    
+    switch(viewType) {
+        case 'worstCase':
+            // Filter worst case products by line
+            console.log('Filtering worst case products for line:', line);
+            worstCaseView.handleSearchAndFilter('worstCaseProducts', line);
+            break;
+        case 'maco':
+            // Filter MACO calculations by line
+            console.log('Filtering MACO calculations for line:', line);
+            macoProductView.renderMacoForTrains(line);
+            break;
+        case 'detergent':
+            // Filter detergent MACO by line
+            console.log('Filtering detergent MACO for line:', line);
+            macoDetergentView.renderDetergentMaco(line);
+            break;
+        case 'trainSummary':
+            // Filter train summary by line
+            console.log('Filtering train summary for line:', line);
+            trainSummaryView.renderTrainSummary(line);
+            break;
     }
 }
 
@@ -194,6 +366,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // This loop makes all imported functions from your modules available globally.
    window.changeTab = changeTab; // Manually expose the one function not in a module import
    window.printTrain = printTrain; // Expose the new print function
+   window.toggleSidebar = window.toggleSidebar; // Expose the sidebar toggle function
+   window.toggleLineMenu = window.toggleLineMenu; // Expose the line menu toggle function
+   window.showLineSpecificView = window.showLineSpecificView; // Expose the line-specific view function
     window.saveAllDataToLocalStorage = ui.saveAllDataToLocalStorage;
     window.loadAllDataFromLocalStorage = ui.loadAllDataFromLocalStorage;
    
@@ -319,6 +494,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('customAlertButton').onclick = () => ui.hideModal('customAlertModal');
     document.getElementById('editScoringBtn').addEventListener('click', () => scoringView.toggleScoringEditMode(!state.scoringInEditMode));
     
+    // Handle window resize for responsive sidebar
+    window.addEventListener('resize', function() {
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebarBackdrop');
+        
+        if (window.innerWidth > 1024) {
+            // Desktop: hide backdrop
+            backdrop.classList.add('hidden');
+        } else if (!sidebar.classList.contains('collapsed')) {
+            // Mobile: show backdrop if sidebar is open
+            backdrop.classList.remove('hidden');
+        }
+    });
+
     // --- KICKSTART THE APPLICATION ---
     initializeApp();
 });

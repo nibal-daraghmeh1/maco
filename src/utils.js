@@ -100,7 +100,7 @@ export function getProductTrainId(product) {
  * Get unique production line names from products.
  * Returns an array of unique, sorted line names including standard and custom lines.
  */
-export function getUniqueProductLines() {
+export function getUniqueProductLines(products = []) {
     // Standard line options that should always be available
     const standardLines = ['Solids', 'Semisolid', 'Liquids'];
     

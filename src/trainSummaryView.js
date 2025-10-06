@@ -203,13 +203,28 @@ function getMacoValueForTrain(train) {
 }
 
 
-export function renderTrainSummary() {
+export function renderTrainSummary(lineFilter = null) {
+    console.log('renderTrainSummary called with lineFilter:', lineFilter);
+    
     const container = document.getElementById('trainSummaryContainer');
     const noTrainsMsg = document.getElementById('noTrainSummaryMessage');
+    
+    if (!container) {
+        console.error('trainSummaryContainer not found');
+        return;
+    }
+    
     container.innerHTML = '';
 
     // Use the same train generation logic as Worst Case view
-    const linesWithTrains = getTrainsGroupedByLine();
+    let linesWithTrains = getTrainsGroupedByLine();
+    console.log('All lines with trains:', linesWithTrains);
+    
+    // Filter by line if specified
+    if (lineFilter) {
+        linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === lineFilter);
+        console.log('Filtered lines with trains for', lineFilter, ':', linesWithTrains);
+    }
     
     // Flatten all trains from all lines
     const allTrains = [];

@@ -322,3 +322,127 @@
     color: var(--text-secondary);
     background-color: var(--bg-accent);
 }
+
+        /* Sidebar Collapse Styles */
+        #sidebar.collapsed {
+            overflow: hidden;
+        }
+        
+        #sidebar.collapsed .card {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        #sidebar.collapsed #sidebarToggle {
+            position: absolute;
+            top: 1rem;
+            left: 0.5rem;
+            z-index: 10;
+        }
+        
+        #sidebar.collapsed #sidebarToggle .card {
+            opacity: 1;
+            pointer-events: auto;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            margin: 0;
+        }
+        
+        /* Floating toggle button styles */
+        #floatingToggle {
+            backdrop-filter: blur(10px);
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px var(--shadow-color);
+            top: 1.5rem;
+        }
+        
+        #floatingToggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+        }
+        
+        /* Responsive sidebar */
+        @media (max-width: 1024px) {
+            #sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                z-index: 50;
+                background-color: var(--bg-secondary);
+                border-right: 1px solid var(--border-color);
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            #sidebar.collapsed {
+                transform: translateX(-100%);
+            }
+            
+            #mainContent {
+                margin-left: 0 !important;
+                width: 100%;
+            }
+            
+            #floatingToggle {
+                top: 1.5rem;
+                left: 1rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            #sidebar {
+                width: 280px !important;
+            }
+            
+            .flex.mt-8 {
+                flex-direction: column;
+            }
+            
+            #mainContent {
+                margin-top: 0 !important;
+            }
+            
+            /* Make dashboard cards stack better on mobile */
+            .grid.grid-cols-1.md\\:grid-cols-3.lg\\:grid-cols-5 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            /* Adjust card text sizes for mobile */
+            .card h3 {
+                font-size: 0.875rem;
+            }
+            
+            .card .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            .card .text-lg {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Single column on very small screens */
+            .grid.grid-cols-1.md\\:grid-cols-3.lg\\:grid-cols-5 {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Reduce padding on mobile */
+            .container.mx-auto.px-4 {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            
+            /* Make tab navigation wrap better */
+            .flex.flex-wrap.gap-2.md\\:gap-4 {
+                gap: 0.25rem;
+            }
+            
+            .tab-button {
+                padding: 0.5rem 0.25rem;
+                font-size: 0.75rem;
+            }
+        }
