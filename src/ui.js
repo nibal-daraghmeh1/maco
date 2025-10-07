@@ -22,6 +22,7 @@ export function showCustomAlert(title, message) {
 }
 
 export const hideModal = (modalId) => document.getElementById(modalId).style.display = 'none';
+export const showModal = (modalId) => document.getElementById(modalId).style.display = 'flex';
 
 export function saveAllDataToLocalStorage() {
     try {

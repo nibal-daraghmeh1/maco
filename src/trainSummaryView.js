@@ -117,6 +117,60 @@ function calculateStudiesNeeded(train) {
 }
 
 
+// Helper function to get special case products for a specific line
+function getSpecialCaseProductsForLine(line) {
+    const specialCases = [];
+    
+    // Get all products for this line
+    const lineProducts = state.products.filter(product => product.line === line);
+    
+    lineProducts.forEach(product => {
+        if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+            product.activeIngredients.forEach(ingredient => {
+                try {
+                    const scores = calculateScores(ingredient);
+                    // Consider products with RPN >= 100 as special cases
+                    if (scores && scores.rpn >= 100) {
+                        // Get machines that manufacture this product
+                        const productMachines = state.machines.filter(machine => 
+                            product.machineIds && product.machineIds.includes(machine.id)
+                        );
+                        
+                        specialCases.push({
+                            name: product.name,
+                            productCode: product.productCode,
+                            ingredient: ingredient.name,
+                            dosageForm: product.productType,
+                            rpn: scores.rpn,
+                            machines: productMachines.map(machine => machine.name)
+                        });
+                    }
+                } catch (error) {
+                    console.warn('Error calculating scores for ingredient:', ingredient, error);
+                }
+            });
+        }
+    });
+    
+    // Sort by RPN (highest first) and remove duplicates
+    const uniqueSpecialCases = specialCases.reduce((acc, current) => {
+        const existing = acc.find(item => 
+            item.name === current.name && 
+            item.ingredient === current.ingredient
+        );
+        if (!existing) {
+            acc.push(current);
+        } else if (current.rpn > existing.rpn) {
+            // Replace with higher RPN version
+            const index = acc.indexOf(existing);
+            acc[index] = current;
+        }
+        return acc;
+    }, []);
+    
+    return uniqueSpecialCases.sort((a, b) => b.rpn - a.rpn);
+}
+
 // Helper function to get MACO value for a train using exact same logic as Product MACO Calculation
 function getMacoValueForTrain(train) {
     try {
@@ -530,6 +584,35 @@ export function renderTrainSummary(lineFilter = null) {
         return trainRows;
     }).join('');
 
+    // Generate special case products sections for each line
+    let specialCaseSections = '';
+    linesWithTrains.forEach(lineObj => {
+        const lineSpecialCases = getSpecialCaseProductsForLine(lineObj.line);
+        if (lineSpecialCases.length > 0) {
+            specialCaseSections += `
+                <div class="mt-6 mb-4">
+                    <h3 class="text-lg font-semibold mb-3 text-red-600">Special Case Products in ${lineObj.line}</h3>
+                    <div class="space-y-2">
+                        ${lineSpecialCases.map(product => `
+                            <div class="flex items-center justify-between p-3 border rounded-lg" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                                <div class="flex items-center gap-3">
+                                    <span class="font-semibold text-lg">${product.name}</span>
+                                    <span class="text-sm text-gray-600">(${product.ingredient})</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm text-gray-600">Machines:</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        ${product.machines.map(machine => `<span class="px-2 py-1 rounded text-xs" style="background-color: var(--bg-accent); color: var(--text-primary);">${machine}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+    });
+
     container.innerHTML = `
         <div class="overflow-hidden rounded-lg border" style="border-color: var(--border-color);">
             <table class="w-full text-sm">
@@ -548,6 +631,7 @@ export function renderTrainSummary(lineFilter = null) {
                 </tbody>
             </table>
         </div>
+        ${specialCaseSections}
     `;
     
     // Update dropdown options after rendering

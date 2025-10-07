@@ -3,7 +3,7 @@
 
 import * as state from './state.js';
 import { fullAppRender } from './app.js';
-import { showCustomAlert, hideModal, saveStateForUndo } from './ui.js';
+import { showCustomAlert, hideModal, showModal, saveStateForUndo } from './ui.js';
 import { getProductTrainId, getToxicityPreference, calculateScores, getRpnRatingClass, getUniqueProductLines } from './utils.js';
 
 /**
@@ -85,41 +85,28 @@ export function renderMachinesTable() {
     }
     noMachinesMsg.style.display = 'none';
 
-    // Group machines by stage, maintaining display order
-    const machinesByStage = {};
-    state.machineStageDisplayOrder.forEach(stage => {
-        if (stage !== 'Other') {
-            machinesByStage[stage] = [];
-        }
-    });
+    // Group machines by line instead of stage
+    const machinesByLine = {};
     
-    // Add machines to their respective stages and collect custom stages
-    const customStages = [];
+    // Add machines to their respective lines
     state.machines.forEach(machine => {
-        if (state.machineStageDisplayOrder.includes(machine.stage)) {
-            if (machine.stage !== 'Other') {
-                machinesByStage[machine.stage].push(machine);
-            }
-        } else {
-            // Custom stage
-            if (!machinesByStage[machine.stage]) {
-                machinesByStage[machine.stage] = [];
-                customStages.push(machine.stage);
-            }
-            machinesByStage[machine.stage].push(machine);
+        const line = machine.line || 'Unassigned';
+        if (!machinesByLine[line]) {
+            machinesByLine[line] = [];
         }
+        machinesByLine[line].push(machine);
     });
 
-    // Create tables for each stage that has machines
-    Object.keys(machinesByStage).forEach(stage => {
-        const stageKey = stage.toLowerCase().replace(/\s+/g, '');
-        const stageHidden = localStorage.getItem(`machineStage-${stageKey}-hidden`) === 'true';
-        const stageMachines = machinesByStage[stage];
+    // Create tables for each line that has machines
+    Object.keys(machinesByLine).forEach(line => {
+        const lineKey = line.toLowerCase().replace(/\s+/g, '');
+        const lineHidden = localStorage.getItem(`machineLine-${lineKey}-hidden`) === 'true';
+        const lineMachines = machinesByLine[line];
         
-        if (stageMachines.length === 0) return;
+        if (lineMachines.length === 0) return;
 
-        // Sort machines within this stage
-        const sortedMachines = [...stageMachines].sort((a, b) => {
+        // Sort machines within this line
+        const sortedMachines = [...lineMachines].sort((a, b) => {
             const key = state.machineSortState.key;
             const dir = state.machineSortState.direction === 'asc' ? 1 : -1;
             let valA, valB;
@@ -140,19 +127,27 @@ export function renderMachinesTable() {
         
         let tableHTML = `
             <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xl font-bold">${stage} Machines (${stageMachines.length})</h3>
-                <button onclick="toggleStageSection('${stageKey}')" class="text-sm px-3 py-1 rounded border" style="border-color: var(--border-color); color: var(--text-secondary);">
-                    ${stageHidden ? 'Show' : 'Hide'}
-                </button>
+                <h3 class="text-xl font-bold">${line} Line Machines (${lineMachines.length})</h3>
+                <div class="flex items-center gap-2">
+                    <button onclick="showMachineSummary('${line}')" class="text-sm px-3 py-1 rounded border" style="border-color: var(--border-color); color: var(--text-primary); background-color: var(--bg-accent);" title="Show Machine Summary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        Summary
+                    </button>
+                    <button onclick="toggleLineSection('${lineKey}')" class="text-sm px-3 py-1 rounded border" style="border-color: var(--border-color); color: var(--text-secondary);">
+                        ${lineHidden ? 'Show' : 'Hide'}
+                    </button>
+                </div>
             </div>
-            <div id="stage-${stageKey}" ${stageHidden ? 'style="display: none;"' : ''}>
+            <div id="line-${lineKey}" ${lineHidden ? 'style="display: none;"' : ''}>
                 <div class="overflow-x-auto overflow-hidden rounded-md border" style="border-color: var(--border-color);">
                     <table class="w-full text-sm">
                         <thead class="border-b" style="border-color: var(--border-color);">
                             <tr>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('machineNumber')">Number <span class="sort-indicator"></span></th>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('name')">Name <span class="sort-indicator"></span></th>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('line')">Line <span class="sort-indicator"></span></th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('stage')">Stage <span class="sort-indicator"></span></th>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('group')">Group <span class="sort-indicator"></span></th>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('area')">Area (cm²) <span class="sort-indicator"></span></th>
                                 <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('cleaningSOP')">Cleaning SOP <span class="sort-indicator"></span></th>
@@ -185,14 +180,14 @@ export function renderMachinesTable() {
             const groupCellClass = machine.group ? 'machine-group-cell grouped' : 'machine-group-cell individual';
             const groupCellContent = machine.group || '<span style="color: var(--text-secondary); font-style: italic;">Individual</span>';
             
-            // Format line cell with appropriate styling
-            const lineCellContent = machine.line || '<span style="color: var(--text-secondary); font-style: italic;">Not Assigned</span>';
+            // Format stage cell with appropriate styling
+            const stageCellContent = machine.stage || '<span style="color: var(--text-secondary); font-style: italic;">Not Assigned</span>';
             
             tableHTML += `
                 <tr>
                     <td class="px-4 py-3 whitespace-nowrap">${machine.machineNumber}</td>
                     <td class="px-4 py-3 font-medium">${machine.name}</td>
-                    <td class="px-4 py-3 whitespace-nowrap">${lineCellContent}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">${stageCellContent}</td>
                     <td class="px-4 py-3 whitespace-nowrap ${groupCellClass}">${groupCellContent}</td>
                     <td class="px-4 py-3 whitespace-nowrap">${machine.area.toLocaleString()}</td>
                     <td class="px-4 py-3 whitespace-nowrap">${machine.cleaningSOP || ''}</td>
@@ -926,6 +921,270 @@ export function saveProductsToMachine(event) {
             fullAppRender();
             hideModal('addProductsToMachineModal');
             showCustomAlert('Success', 'Machine assignments updated.');
+}
+
+// Toggle line section visibility
+window.toggleLineSection = function(lineKey) {
+    const lineElement = document.getElementById(`line-${lineKey}`);
+    const button = event.target;
+    
+    if (lineElement.style.display === 'none') {
+        lineElement.style.display = 'block';
+        button.textContent = 'Hide';
+        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'false');
+    } else {
+        lineElement.style.display = 'none';
+        button.textContent = 'Show';
+        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'true');
+    }
+};
+
+// Show machine summary modal
+window.showMachineSummary = function(line) {
+    const modal = document.getElementById('machineSummaryModal');
+    const modalTitle = document.getElementById('machineSummaryModalTitle');
+    const modalContent = document.getElementById('machineSummaryContent');
+    
+    // Set modal title
+    modalTitle.textContent = `${line} - Machine Summary`;
+    
+    // Get machines for this line
+    const lineMachines = state.machines.filter(machine => machine.line === line);
+    
+    if (lineMachines.length === 0) {
+        modalContent.innerHTML = '<p class="text-center text-gray-500">No machines found for this line.</p>';
+        showModal('machineSummaryModal');
+        return;
+    }
+    
+    // Calculate summary data
+    const summaryData = calculateMachineSummary(lineMachines);
+    
+    // Generate summary HTML
+    let summaryHTML = `
+        <!-- Shared Worst Case Groups -->
+        <div class="card p-4 mb-6">
+            <h4 class="text-lg font-semibold mb-4 text-blue-600">Machines Sharing Same Worst Case Products</h4>
+            <div class="space-y-4">
+    `;
+    
+    if (summaryData.sharedWorstCaseGroups.length > 0) {
+        summaryData.sharedWorstCaseGroups.forEach(group => {
+            summaryHTML += `
+                <div class="border rounded-lg p-4" style="border-color: var(--border-color);">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <h5 class="font-semibold text-lg">${group.productName}</h5>
+                            <p class="text-sm text-gray-600">${group.ingredient}</p>
+                        </div>
+                        <span class="text-lg font-bold px-3 py-1 rounded" style="background-color: var(--bg-accent); color: var(--text-primary);">
+                            RPN: ${group.rpn}
+                        </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-sm font-medium text-gray-700">Shared Machines:</span>
+                        ${group.machines.map(machine => `<span class="px-2 py-1 rounded border text-sm" style="border-color: var(--border-color); background-color: var(--bg-secondary);">${machine}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        });
+    } else {
+        summaryHTML += '<p class="text-sm text-gray-500">No shared groups found</p>';
+    }
+    
+    summaryHTML += `
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Machine Statistics -->
+            <div class="card p-4">
+                <h4 class="text-lg font-semibold mb-3 text-green-600">Machine Statistics</h4>
+                <div class="space-y-2">
+                    <div class="flex justify-between">
+                        <span>Total Machines:</span>
+                        <span class="font-semibold">${summaryData.totalMachines}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Total Area:</span>
+                        <span class="font-semibold">${summaryData.totalArea.toLocaleString()} cm²</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Avg Products per Machine:</span>
+                        <span class="font-semibold">${summaryData.avgProductsPerMachine.toFixed(1)}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Cases -->
+            <div class="card p-4">
+                <h4 class="text-lg font-semibold mb-3 text-red-600">Special Cases</h4>
+                <div class="space-y-2">
+    `;
+    
+    if (summaryData.specialCases.length > 0) {
+        summaryData.specialCases.forEach(product => {
+            summaryHTML += `
+                <div class="flex items-center justify-between p-2 rounded border" style="border-color: var(--border-color);">
+                    <span class="font-medium">${product.name}</span>
+                    <span class="text-sm px-2 py-1 rounded bg-red-100 text-red-800">RPN: ${product.rpn}</span>
+                </div>
+            `;
+        });
+    } else {
+        summaryHTML += '<p class="text-sm text-gray-500">No special cases found</p>';
+    }
+    
+    summaryHTML += `
+                </div>
+            </div>
+            
+            <!-- Worst Case Products -->
+            <div class="card p-4">
+                <h4 class="text-lg font-semibold mb-3 text-blue-600">Worst Case Products</h4>
+                <div class="space-y-2">
+    `;
+    
+    if (summaryData.worstCaseProducts.length > 0) {
+        summaryData.worstCaseProducts.slice(0, 5).forEach(product => {
+            summaryHTML += `
+                <div class="flex items-center justify-between p-2 rounded border" style="border-color: var(--border-color);">
+                    <span class="font-medium">${product.name}</span>
+                    <span class="text-sm px-2 py-1 rounded" style="background-color: var(--bg-accent);">RPN: ${product.rpn}</span>
+                </div>
+            `;
+        });
+    } else {
+        summaryHTML += '<p class="text-sm text-gray-500">No worst case products found</p>';
+    }
+    
+    summaryHTML += `
+                </div>
+            </div>
+        </div>
+        
+        <!-- Detailed Machine List -->
+        <div class="card p-4">
+            <h4 class="text-lg font-semibold mb-3">Machine Details</h4>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="border-b" style="border-color: var(--border-color);">
+                        <tr>
+                            <th class="px-3 py-2 text-left">Machine</th>
+                            <th class="px-3 py-2 text-left">Stage</th>
+                            <th class="px-3 py-2 text-left">Area</th>
+                            <th class="px-3 py-2 text-left">Products</th>
+                            <th class="px-3 py-2 text-left">Worst Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    `;
+    
+    lineMachines.forEach(machine => {
+        const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(machine.id));
+        const worstProduct = summaryData.machineWorstCases[machine.id] || null;
+        
+        summaryHTML += `
+            <tr class="border-b" style="border-color: var(--border-color);">
+                <td class="px-3 py-2 font-medium text-left">${machine.name}</td>
+                <td class="px-3 py-2 text-left">${machine.stage || 'N/A'}</td>
+                <td class="px-3 py-2 text-left">${machine.area.toLocaleString()} cm²</td>
+                <td class="px-3 py-2 text-left">${assignedProducts.length}</td>
+                <td class="px-3 py-2 text-left">${worstProduct ? `${worstProduct.name} (RPN: ${worstProduct.rpn})` : 'N/A'}</td>
+            </tr>
+        `;
+    });
+    
+    summaryHTML += `
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    
+    modalContent.innerHTML = summaryHTML;
+    showModal('machineSummaryModal');
+};
+
+// Calculate machine summary data
+function calculateMachineSummary(machines) {
+    const summary = {
+        worstCaseProducts: [],
+        specialCases: [],
+        totalMachines: machines.length,
+        totalArea: 0,
+        avgProductsPerMachine: 0,
+        machineWorstCases: {},
+        sharedWorstCaseGroups: []
+    };
+    
+    let totalProducts = 0;
+    
+    machines.forEach(machine => {
+        summary.totalArea += machine.area;
+        
+        const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(machine.id));
+        totalProducts += assignedProducts.length;
+        
+        // Find worst case product for this machine
+        let worstProduct = null;
+        let maxRpn = -1;
+        
+        assignedProducts.forEach(product => {
+            product.activeIngredients.forEach(ingredient => {
+                const { rpn } = calculateScores(ingredient);
+                if (rpn > maxRpn) {
+                    maxRpn = rpn;
+                    worstProduct = {
+                        name: product.name,
+                        rpn: rpn,
+                        ingredient: ingredient.name,
+                        productId: product.id
+                    };
+                }
+            });
+        });
+        
+        if (worstProduct) {
+            summary.machineWorstCases[machine.id] = worstProduct;
+        }
+    });
+    
+    // Group machines by their worst case product
+    const productGroups = {};
+    Object.keys(summary.machineWorstCases).forEach(machineId => {
+        const worstCase = summary.machineWorstCases[machineId];
+        const key = `${worstCase.productId}-${worstCase.ingredient}`;
+        
+        if (!productGroups[key]) {
+            productGroups[key] = {
+                productName: worstCase.name,
+                ingredient: worstCase.ingredient,
+                rpn: worstCase.rpn,
+                machines: []
+            };
+        }
+        
+        const machine = machines.find(m => m.id == machineId);
+        if (machine) {
+            productGroups[key].machines.push(machine.name);
+        }
+    });
+    
+    // Convert to array and sort by RPN
+    summary.sharedWorstCaseGroups = Object.values(productGroups)
+        .sort((a, b) => b.rpn - a.rpn);
+    
+    // Collect all worst case products
+    const allWorstCases = Object.values(summary.machineWorstCases);
+    summary.worstCaseProducts = allWorstCases.sort((a, b) => b.rpn - a.rpn);
+    
+    // Find special cases (high RPN products)
+    summary.specialCases = summary.worstCaseProducts.filter(product => product.rpn >= 100);
+    
+    summary.avgProductsPerMachine = totalProducts / machines.length;
+    
+    return summary;
 }
 
 // Make functions globally available

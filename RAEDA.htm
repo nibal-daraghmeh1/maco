@@ -681,6 +681,25 @@
             <div class="modal-footer"><button type="button" onclick="hideModal('machineModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button type="submit" form="machineForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Save</button></div>
         </div>
     </div>
+    
+    <!-- Machine Summary Modal -->
+    <div id="machineSummaryModal" class="modal-container">
+        <div class="modal-content-container max-w-4xl">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="machineSummaryModalTitle">Machine Summary</h3>
+                <button type="button" onclick="hideModal('machineSummaryModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="machineSummaryContent" class="space-y-6">
+                    <!-- Summary content will be inserted here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="hideModal('machineSummaryModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Close</button>
+            </div>
+        </div>
+    </div>
+    
      <div id="assignMachinesModal" class="modal-container">
         <div class="modal-content-container max-w-2xl">
             <div class="modal-header">
