@@ -142,7 +142,8 @@ function getSpecialCaseProductsForLine(line) {
                             ingredient: ingredient.name,
                             dosageForm: product.productType,
                             rpn: scores.rpn,
-                            machines: productMachines.map(machine => machine.name)
+                            machines: productMachines.map(machine => machine.name),
+                            reason: product.criticalReason || null
                         });
                     }
                 } catch (error) {
@@ -579,7 +580,7 @@ export function renderTrainSummary(lineFilter = null) {
                     ${studiesCell}
             </tr>
         `;
-        }).join('');
+    }).join('');
         
         return trainRows;
     }).join('');
@@ -594,17 +595,25 @@ export function renderTrainSummary(lineFilter = null) {
                     <h3 class="text-lg font-semibold mb-3 text-red-600">Special Case Products in ${lineObj.line}</h3>
                     <div class="space-y-2">
                         ${lineSpecialCases.map(product => `
-                            <div class="flex items-center justify-between p-3 border rounded-lg" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
-                                <div class="flex items-center gap-3">
-                                    <span class="font-semibold text-lg">${product.name}</span>
-                                    <span class="text-sm text-gray-600">(${product.ingredient})</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="text-sm text-gray-600">Machines:</span>
-                                    <div class="flex flex-wrap gap-1">
-                                        ${product.machines.map(machine => `<span class="px-2 py-1 rounded text-xs" style="background-color: var(--bg-accent); color: var(--text-primary);">${machine}</span>`).join('')}
+                            <div class="p-3 border rounded-lg" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <span class="font-semibold text-lg">${product.name}</span>
+                                        <span class="text-sm text-gray-600">(${product.ingredient})</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm text-gray-600">Machines:</span>
+                                        <div class="flex flex-wrap gap-1">
+                                            ${product.machines.map(machine => `<span class="px-2 py-1 rounded text-xs" style="background-color: var(--bg-accent); color: var(--text-primary);">${machine}</span>`).join('')}
+                                        </div>
                                     </div>
                                 </div>
+                                ${product.reason ? `
+                                    <div class="mt-2 p-2 rounded" style="background-color: var(--bg-accent);">
+                                        <span class="text-sm font-medium text-gray-700">Reason:</span>
+                                        <span class="text-sm text-gray-600 ml-2">${product.reason}</span>
+                                    </div>
+                                ` : ''}
                             </div>
                         `).join('')}
                     </div>
