@@ -90,6 +90,7 @@ export function fullAppRender() {
 
         // Update any dynamic UI elements, like filter dropdowns
         productView.populateFilterSelects();
+        productView.populateProductLineDropdowns(); // Update product line dropdowns
         
         // Render line navigation
         renderLineNavigation();

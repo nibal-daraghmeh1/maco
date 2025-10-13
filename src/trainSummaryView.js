@@ -121,55 +121,49 @@ function calculateStudiesNeeded(train) {
 function getSpecialCaseProductsForLine(line) {
     const specialCases = [];
     
-    // Get all products for this line
-    const lineProducts = state.products.filter(product => product.line === line);
+    // Get all products for this line that are marked as critical (special cases)
+    const lineProducts = state.products.filter(product => 
+        product.line === line && product.isCritical === true
+    );
     
     lineProducts.forEach(product => {
         if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+            // Find the ingredient with highest RPN for this product
+            let highestRpnIngredient = null;
+            let highestRpn = 0;
+            
             product.activeIngredients.forEach(ingredient => {
                 try {
                     const scores = calculateScores(ingredient);
-                    // Consider products with RPN >= 100 as special cases
-                    if (scores && scores.rpn >= 100) {
-                        // Get machines that manufacture this product
-                        const productMachines = state.machines.filter(machine => 
-                            product.machineIds && product.machineIds.includes(machine.id)
-                        );
-                        
-                        specialCases.push({
-                            name: product.name,
-                            productCode: product.productCode,
-                            ingredient: ingredient.name,
-                            dosageForm: product.productType,
-                            rpn: scores.rpn,
-                            machines: productMachines.map(machine => machine.name),
-                            reason: product.criticalReason || null
-                        });
+                    if (scores && scores.rpn > highestRpn) {
+                        highestRpn = scores.rpn;
+                        highestRpnIngredient = ingredient;
                     }
                 } catch (error) {
                     console.warn('Error calculating scores for ingredient:', ingredient, error);
                 }
             });
+            
+            if (highestRpnIngredient) {
+                // Get machines that manufacture this product
+                const productMachines = state.machines.filter(machine => 
+                    product.machineIds && product.machineIds.includes(machine.id)
+                );
+                
+                specialCases.push({
+                    name: product.name,
+                    productCode: product.productCode,
+                    ingredient: highestRpnIngredient.name,
+                    dosageForm: product.productType,
+                    rpn: highestRpn,
+                    machines: productMachines.map(machine => machine.name),
+                    reason: product.criticalReason || null
+                });
+            }
         }
     });
     
-    // Sort by RPN (highest first) and remove duplicates
-    const uniqueSpecialCases = specialCases.reduce((acc, current) => {
-        const existing = acc.find(item => 
-            item.name === current.name && 
-            item.ingredient === current.ingredient
-        );
-        if (!existing) {
-            acc.push(current);
-        } else if (current.rpn > existing.rpn) {
-            // Replace with higher RPN version
-            const index = acc.indexOf(existing);
-            acc[index] = current;
-        }
-        return acc;
-    }, []);
-    
-    return uniqueSpecialCases.sort((a, b) => b.rpn - a.rpn);
+    return specialCases.sort((a, b) => b.rpn - a.rpn);
 }
 
 // Helper function to get MACO value for a train using exact same logic as Product MACO Calculation
@@ -396,11 +390,18 @@ export function renderTrainSummary(lineFilter = null) {
         // Create study breakdown with machine coverage logic (using RPN-sorted trains for studies)
         const allMachinesInGroup = new Set();
         trainsInGroup.forEach(train => {
-            train.machineIds.forEach(id => allMachinesInGroup.add(id));
+            if (train.machineIds && train.machineIds.length > 0) {
+                train.machineIds.forEach(id => allMachinesInGroup.add(id));
+            }
         });
         
         // For study calculation, we still need RPN-sorted trains
-        const trainsWithRPNForStudies = trainsInGroup.map(t => {
+        // Filter out trains without machines first
+        const trainsWithMachines = trainsInGroup.filter(t => 
+            t.machineIds && t.machineIds.length > 0
+        );
+        
+        const trainsWithRPNForStudies = trainsWithMachines.map(t => {
             let highestRPN = 0;
             let worstProduct = null;
             let worstIngredient = null;
@@ -427,37 +428,41 @@ export function renderTrainSummary(lineFilter = null) {
         }).sort((a, b) => b.rpn - a.rpn); // Sort by RPN for study calculation
         
         const coveredMachines = new Set();
-        group.studyBreakdown = trainsWithRPNForStudies.map(({ train, rpn, worstProduct, worstIngredient }, index) => {
-            const studyNumber = index + 1;
-            const mapped = idMap.get(String(train.id));
-            const trainLabel = mapped ? `Train ${mapped.number}` : `T${train.id}`;
-            
-            // Calculate which machines this study covers (machines not covered by previous studies)
-            const newMachines = train.machineIds.filter(machineId => 
-                allMachinesInGroup.has(machineId) && !coveredMachines.has(machineId)
-            );
-            
-            // Add these machines to the covered set
-            newMachines.forEach(machineId => coveredMachines.add(machineId));
-            
-            // Get machine names for covered machines only
-            const coveredMachineNames = newMachines.map(id => {
-                const machine = state.machines.find(m => m.id === id);
-                return machine ? machine.name : `Unknown (ID: ${id})`;
-            }).join(', ');
-            
-            return {
-                studyNumber,
-                trainLabel,
-                productName: worstProduct ? worstProduct.name : 'Unknown',
-                ingredientName: worstIngredient ? worstIngredient.name : 'Unknown',
-                rpn: rpn.toFixed(2),
-                machines: coveredMachineNames
-            };
-        });
+        group.studyBreakdown = trainsWithRPNForStudies
+            .filter(({ train }) => train.machineIds && train.machineIds.length > 0) // Only include trains with machines
+            .map(({ train, rpn, worstProduct, worstIngredient }, index) => {
+                const studyNumber = index + 1;
+                const mapped = idMap.get(String(train.id));
+                const trainLabel = mapped ? `Train ${mapped.number}` : `T${train.id}`;
+                
+                // Calculate which machines this study covers (machines not covered by previous studies)
+                const newMachines = train.machineIds.filter(machineId => 
+                    allMachinesInGroup.has(machineId) && !coveredMachines.has(machineId)
+                );
+                
+                // Add these machines to the covered set
+                newMachines.forEach(machineId => coveredMachines.add(machineId));
+                
+                // Get machine names for covered machines only
+                const coveredMachineNames = newMachines.map(id => {
+                    const machine = state.machines.find(m => m.id === id);
+                    return machine ? machine.name : `Unknown (ID: ${id})`;
+                }).join(', ');
+                
+                return {
+                    studyNumber,
+                    trainLabel,
+                    productName: worstProduct ? worstProduct.name : 'Unknown',
+                    ingredientName: worstIngredient ? worstIngredient.name : 'Unknown',
+                    rpn: rpn.toFixed(2),
+                    machines: coveredMachineNames
+                };
+            })
+            .filter(study => study.machines && study.machines.trim() !== '') // Filter out studies with empty machines
+            .map((study, index) => ({ ...study, studyNumber: index + 1 })); // Renumber studies consecutively
         
-        // Total studies = number of trains in the group
-        group.totalStudies = trainsInGroup.length;
+        // Total studies = number of studies that will actually be displayed (with machines)
+        group.totalStudies = group.studyBreakdown.filter(study => study.machines && study.machines.trim() !== '').length;
     });
 
     // Generate table rows grouped by dosage form
@@ -593,29 +598,34 @@ export function renderTrainSummary(lineFilter = null) {
             specialCaseSections += `
                 <div class="mt-6 mb-4">
                     <h3 class="text-lg font-semibold mb-3 text-red-600">Special Case Products in ${lineObj.line}</h3>
-                    <div class="space-y-2">
-                        ${lineSpecialCases.map(product => `
-                            <div class="p-3 border rounded-lg" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div class="flex items-center gap-3">
-                                        <span class="font-semibold text-lg">${product.name}</span>
-                                        <span class="text-sm text-gray-600">(${product.ingredient})</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-sm text-gray-600">Machines:</span>
-                                        <div class="flex flex-wrap gap-1">
-                                            ${product.machines.map(machine => `<span class="px-2 py-1 rounded text-xs" style="background-color: var(--bg-accent); color: var(--text-primary);">${machine}</span>`).join('')}
-                                        </div>
-                                    </div>
-                                </div>
-                                ${product.reason ? `
-                                    <div class="mt-2 p-2 rounded" style="background-color: var(--bg-accent);">
-                                        <span class="text-sm font-medium text-gray-700">Reason:</span>
-                                        <span class="text-sm text-gray-600 ml-2">${product.reason}</span>
-                                    </div>
-                                ` : ''}
-                            </div>
-                        `).join('')}
+                    <div class="overflow-hidden rounded-lg border" style="border-color: var(--border-color);">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-200 dark:bg-gray-700">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Product</th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Machines</th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                                ${lineSpecialCases.map(product => `
+                                    <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color);">
+                                        <td class="px-4 py-3" style="color: var(--text-primary);">
+                                            <div class="font-semibold">${product.name}</div>
+                                            <div class="text-sm text-gray-600">${product.ingredient}</div>
+                                        </td>
+                                        <td class="px-4 py-3" style="color: var(--text-primary);">
+                                            <div class="flex flex-wrap gap-1">
+                                                ${product.machines.map(machine => `<span class="px-2 py-1 rounded text-xs" style="background-color: var(--bg-accent); color: var(--text-primary);">${machine}</span>`).join('')}
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-3" style="color: var(--text-primary);">
+                                            <span class="text-sm">${product.reason || 'No reason provided'}</span>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             `;

@@ -4,7 +4,7 @@
 import * as state from './state.js';
 import { fullAppRender } from './app.js';
 import { showLoader, hideLoader, showCustomAlert, hideModal, saveStateForUndo, updateToggleIcons } from './ui.js';
-import { getProductTrainId, calculateScores, populateSelectWithOptions } from './utils.js';
+import { getProductTrainId, calculateScores, populateSelectWithOptions, getUniqueProductLines } from './utils.js';
 import { renderWorstCaseByTrain } from './worstCaseView.js';
 
 export function renderProducts(tabId) {
@@ -15,51 +15,102 @@ export function renderProducts(tabId) {
 
     const tabContainer = document.getElementById(tabId);
     if (!tabContainer) return;
-    const tbody = tabContainer.querySelector('.productsTable');
-    const noResultsMessage = tabContainer.querySelector('.noResultsMessage');
+    
+    // Clear the container and create separate tables for each line
+    tabContainer.innerHTML = '';
+    
+    let dataToRender = [...state.viewProducts[tabId]];
 
-let dataToRender = [...state.viewProducts[tabId]];
-
-    dataToRender.sort((a, b) => {
-        // First, group by line and dosage form
-        const lineA = a.line || 'Unassigned';
-        const lineB = b.line || 'Unassigned';
-        const dosageA = a.productType || 'Other';
-        const dosageB = b.productType || 'Other';
-        
-        // Primary sort: by line
-        if (lineA !== lineB) {
-            return lineA.localeCompare(lineB);
+    // Group products by line
+    const productsByLine = {};
+    dataToRender.forEach(product => {
+        const line = product.line || 'Unassigned';
+        if (!productsByLine[line]) {
+            productsByLine[line] = [];
         }
-        
-        // Secondary sort: by dosage form within the same line
-        if (dosageA !== dosageB) {
-            return dosageA.localeCompare(dosageB);
-        }
-        
-        // Tertiary sort: by the selected sort key within the same line and dosage form
-        let valA, valB;
-        const key = state.sortState.key;
-        switch (key) {
-            case 'productCode': valA = a.productCode; valB = b.productCode; break;
-            case 'name': valA = a.name; valB = b.name; break;
-            case 'batchSizeKg': valA = a.batchSizeKg; valB = b.batchSizeKg; break;
-            case 'date': valA = new Date(a.date); valB = new Date(b.date); break;
-            default: return 0;
-        }
-
-        const dir = state.sortState.direction === 'asc' ? 1 : -1;
-
-        if (valA < valB) return -1 * dir;
-        if (valA > valB) return 1 * dir;
-        return 0;
+        productsByLine[line].push(product);
     });
 
-    tbody.innerHTML = '';
-    noResultsMessage.style.display = dataToRender.length > 0 ? 'none' : 'block';
-    tbody.style.display = dataToRender.length > 0 ? '' : 'none';
+    // Create separate table for each line
+    Object.keys(productsByLine).sort().forEach(line => {
+        const products = productsByLine[line];
+        
+        // Sort products within this line
+        products.sort((a, b) => {
+            const dosageA = a.productType || 'Other';
+            const dosageB = b.productType || 'Other';
+            
+            // Secondary sort: by dosage form within the same line
+            if (dosageA !== dosageB) {
+                return dosageA.localeCompare(dosageB);
+            }
+            
+            // Tertiary sort: by the selected sort key within the same line and dosage form
+            let valA, valB;
+            const key = state.sortState.key;
+            switch (key) {
+                case 'productCode': valA = a.productCode; valB = b.productCode; break;
+                case 'name': valA = a.name; valB = b.name; break;
+                case 'batchSizeKg': valA = a.batchSizeKg; valB = b.batchSizeKg; break;
+                case 'date': valA = new Date(a.date); valB = new Date(b.date); break;
+                default: return 0;
+            }
 
-    dataToRender.forEach((product, index) => {
+            const dir = state.sortState.direction === 'asc' ? 1 : -1;
+
+            if (valA < valB) return -1 * dir;
+            if (valA > valB) return 1 * dir;
+            return 0;
+        });
+        
+        // Create table container for this line
+        const lineContainer = document.createElement('div');
+        lineContainer.className = 'mb-8';
+        const lineId = line.replace(/\s+/g, '_').toLowerCase();
+        lineContainer.innerHTML = `
+            <div class="mb-4">
+                <div class="flex items-center justify-between cursor-pointer" onclick="toggleLineTable('${lineId}')">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">${line} Line</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">${products.length} product${products.length !== 1 ? 's' : ''}</p>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400 mr-2"></span>
+                        <svg id="toggle-icon-${lineId}" class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div id="table-${lineId}" class="overflow-hidden rounded-lg border transition-all duration-300" style="border-color: var(--border-color);">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-200 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 5%;">#</th>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 10%;">Date</th>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 12%;" onclick="sortData('productCode', '${tabId}')">Product Code <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 15%;" onclick="sortData('name', '${tabId}')">Product Name <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 8%;">Train No.</th>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 10%;" onclick="sortData('productType', '${tabId}')">Dosage Form <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 8%;" onclick="sortData('batchSizeKg', '${tabId}')">Batch Size <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 8%;">Critical</th>
+                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 24%;">Active Ingredients</th>
+                            <th class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 8%;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="productsTable" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                    </tbody>
+                </table>
+            </div>
+        `;
+        
+        tabContainer.appendChild(lineContainer);
+        
+        // Get the tbody for this line's table
+        const tbody = lineContainer.querySelector('.productsTable');
+
+        // Render products for this line
+        products.forEach((product, index) => {
         const productRow = document.createElement('tr');
         productRow.className = "product-main-row";
         const criticalText = product.isCritical ? 'Yes' : 'No';
@@ -68,19 +119,19 @@ let dataToRender = [...state.viewProducts[tabId]];
         const trainIdDisplay = trainId !== 'N/A' ? 'T' + trainId : 'N/A';
 
         productRow.innerHTML = `
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" style="color: var(--text-secondary);">${index + 1}</td>
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" style="color: var(--text-secondary);">${new Date(product.date).toLocaleDateString()}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" >${index + 1}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" >${new Date(product.date).toLocaleDateString()}</td>
                     <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">${product.productCode}</td>
                     <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">
                         <span class="product-name">${product.name}</span>
                     </td>
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" style="color: var(--text-secondary);">${product.line || 'Not Assigned'}</td>
-                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center" style="color: var(--text-secondary);">${trainIdDisplay}</td>
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" style="color: var(--text-secondary);">${product.productType || 'N/A'}</td>
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" style="color: var(--text-secondary);">${product.batchSizeKg}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" >${product.line || 'Not Assigned'}</td>
+                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center" >${trainIdDisplay}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" ${product.productType || 'N/A'}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" >${product.batchSizeKg}</td>
                     <td class="px-3 py-3 text-sm align-top">
                          <span class="${criticalClass}">${criticalText}</span>
-                         ${product.isCritical && product.criticalReason ? `<p class="text-xs italic" style="color: var(--text-secondary); max-width: 200px; white-space: normal;">${product.criticalReason}</p>` : ''}
+                         ${product.isCritical && product.criticalReason ? `<p class="text-xs italic" style=" max-width: 200px; white-space: normal;">${product.criticalReason}</p>` : ''}
                     </td>
                     <td class="px-3 py-3 text-sm whitespace-nowrap align-top">
                         <div class="flex items-center gap-x-2 no-print">
@@ -140,14 +191,31 @@ let dataToRender = [...state.viewProducts[tabId]];
         ingredientsCell.innerHTML = subTableHTML;
         ingredientsRow.appendChild(ingredientsCell);
 
-        tbody.appendChild(productRow);
-        tbody.appendChild(ingredientsRow);
+            tbody.appendChild(productRow);
+            tbody.appendChild(ingredientsRow);
+        });
     });
 
     updateSortIndicators(tabId);
     updateToggleIcons(tabId);
     hideLoader();
 }
+
+// Toggle function for line tables
+window.toggleLineTable = function(lineId) {
+    const table = document.getElementById(`table-${lineId}`);
+    const icon = document.getElementById(`toggle-icon-${lineId}`);
+    
+    if (table && icon) {
+        if (table.style.display === 'none') {
+            table.style.display = 'block';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            table.style.display = 'none';
+            icon.style.transform = 'rotate(-90deg)';
+        }
+    }
+};
 
 export function handleSearchAndFilter(tabId) {
     showLoader();
@@ -165,12 +233,13 @@ export function handleSearchAndFilter(tabId) {
         return;
     }
 
-    const codeFilter = tabContainer.querySelector('.filterColProductCode').value.toLowerCase();
-    const nameFilter = tabContainer.querySelector('.filterColProductName').value.toLowerCase();
-    const lineFilter = tabContainer.querySelector('.filterColLine').value;
-    const trainNoFilter = tabContainer.querySelector('.filterColTrainNo').value;
-    const productTypeFilter = tabContainer.querySelector('.filterColProductType').value;
-    const isCriticalFilter = tabContainer.querySelector('.filterColIsCritical').value;
+    // Get filter elements from the original HTML structure, not from the dynamically created tables
+    const codeFilter = document.querySelector('.filterColProductCode')?.value?.toLowerCase() || '';
+    const nameFilter = document.querySelector('.filterColProductName')?.value?.toLowerCase() || '';
+    const lineFilter = document.querySelector('.filterColLine')?.value || 'all';
+    const trainNoFilter = document.querySelector('.filterColTrainNo')?.value || 'all';
+    const productTypeFilter = document.querySelector('.filterColProductType')?.value || 'all';
+    const isCriticalFilter = document.querySelector('.filterColIsCritical')?.value || 'all';
 
     
     state.viewProducts[tabId] = state.products.filter(product => {
@@ -317,6 +386,9 @@ const isEdit = !!ingredient;
         ingredientDiv.querySelector('select[name="solubility"]').value = ingredient.solubility;
         ingredientDiv.querySelector('select[name="cleanability"]').value = ingredient.cleanability;
     }
+    
+    // Populate the product line dropdowns with all available lines
+    populateProductLineDropdowns();
 }
 
 export function populateDynamicSelectsForElement(element) {
@@ -408,21 +480,7 @@ export function showEditProductModal(productId) {
         else product.line = '';
     }
 
-    if (product.line) {
-        // If saved line matches a standard option, select it. Otherwise show 'Other' and fill the text input.
-        const stdLines = Array.from(lineSelect.options).map(o => o.value).filter(Boolean);
-        if (stdLines.includes(product.line)) {
-            lineSelect.value = product.line;
-        } else {
-            lineSelect.value = 'Other';
-            const editOtherLine = form.querySelector('#editOtherLine');
-            if (editOtherLine) {
-                editOtherLine.value = product.line;
-                form.querySelector('#editOtherLineContainer').style.display = 'block';
-                editOtherLine.required = true;
-            }
-        }
-    }
+    // Line selection will be handled after populateProductLineDropdowns() is called
 
     // Populate dosage form options for the currently selected line
     try { updateDosageFormOptions('edit'); } catch (e) { /* ignore if not available */ }
@@ -450,7 +508,33 @@ export function showEditProductModal(productId) {
 
     document.getElementById('editProductModalTitle').textContent = `Edit Product: ${product.name}`;
     document.getElementById('editProductModal').style.display = 'flex';
-
+    
+    // Populate the product line dropdowns with all available lines
+    populateProductLineDropdowns();
+    
+    // Now handle line selection for edit modal
+    if (product.line) {
+        const lineSelect = form.querySelector('#editProductLine');
+        if (lineSelect) {
+            const availableLines = Array.from(lineSelect.options).map(o => o.value).filter(Boolean);
+            if (availableLines.includes(product.line)) {
+                lineSelect.value = product.line;
+                // Hide the "Other" line field since we found the line in the dropdown
+                const editOtherLineContainer = form.querySelector('#editOtherLineContainer');
+                if (editOtherLineContainer) {
+                    editOtherLineContainer.style.display = 'none';
+                }
+            } else {
+                lineSelect.value = 'Other';
+                const editOtherLine = form.querySelector('#editOtherLine');
+                if (editOtherLine) {
+                    editOtherLine.value = product.line;
+                    form.querySelector('#editOtherLineContainer').style.display = 'block';
+                    editOtherLine.required = true;
+                }
+            }
+        }
+    }
 }
 
 export function saveProductChanges(event) {
@@ -610,9 +694,25 @@ export function populateFilterSelects() {
     const productTypeOptions = [...new Set(state.products.map(p => p.productType))].sort();
     populateSelectWithOptions(document.querySelector('.filterColProductType'), null, true, productTypeOptions);
 
-    // Line Filter
-    const lineOptions = [...new Set(state.products.map(p => p.line).filter(Boolean))].sort();
-    populateSelectWithOptions(document.querySelector('.filterColLine'), null, true, lineOptions);
+    // Line Filter - FORCE UPDATE with all available lines
+    const lineFilterSelect = document.querySelector('.filterColLine');
+    if (lineFilterSelect) {
+        // Get ALL possible lines from both sources
+        const allProductLines = state.products.map(p => p.line).filter(Boolean);
+        const allMachineLines = state.machines.map(m => m.line).filter(Boolean);
+        const allLines = [...new Set([...allProductLines, ...allMachineLines, 'Solids', 'Semisolid', 'Liquids'])].sort();
+        
+        // FORCE clear and rebuild
+        lineFilterSelect.innerHTML = '<option value="all">All</option>';
+        
+        allLines.forEach(line => {
+            if (line && line !== 'Shared') {
+                lineFilterSelect.innerHTML += `<option value="${line}">${line}</option>`;
+            }
+        });
+        
+        lineFilterSelect.innerHTML += '<option value="Other">Other</option>';
+    }
 
     // Train No. Filter
     const trainNoSelect = document.querySelector('.filterColTrainNo');
@@ -624,6 +724,65 @@ export function populateFilterSelects() {
         trainIds.forEach(id => {
             trainNoSelect.innerHTML += `<option value="T${id}">T${id}</option>`;
         });
+    }
+}
+
+// Populate product line dropdowns in add/edit modals
+export function populateProductLineDropdowns() {
+    // Use EXACT same logic as machine line dropdown
+    const productLines = getUniqueProductLines(state.products);
+    const machineLines = [...new Set(state.machines.map(m => m.line).filter(Boolean))];
+    
+    // Combine and deduplicate lines (same as machine dropdown)
+    const allLines = [...new Set([...productLines, ...machineLines])].sort();
+    
+    console.log('=== PRODUCT LINE DROPDOWN DEBUG ===');
+    console.log('Product lines:', productLines);
+    console.log('Machine lines:', machineLines);
+    console.log('All lines:', allLines);
+    
+    // Update add product line dropdown
+    const addLineSelect = document.getElementById('addProductLine');
+    if (addLineSelect) {
+        const currentValue = addLineSelect.value;
+        addLineSelect.innerHTML = '<option value="" disabled selected>Select a Line</option>';
+        
+        // Add all lines except Shared
+        allLines.forEach(line => {
+            if (line !== 'Shared') { // Don't add Shared to product line dropdown
+                addLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
+            }
+        });
+        
+        // Add Other option
+        addLineSelect.innerHTML += '<option value="Other">Other</option>';
+        
+        // Restore selection if still valid
+        if (currentValue && Array.from(addLineSelect.options).some(opt => opt.value === currentValue)) {
+            addLineSelect.value = currentValue;
+        }
+    }
+    
+    // Update edit product line dropdown
+    const editLineSelect = document.getElementById('editProductLine');
+    if (editLineSelect) {
+        const currentValue = editLineSelect.value;
+        editLineSelect.innerHTML = '<option value="" disabled selected>Select a Line</option>';
+        
+        // Add all lines except Shared
+        allLines.forEach(line => {
+            if (line !== 'Shared') { // Don't add Shared to product line dropdown
+                editLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
+            }
+        });
+        
+        // Add Other option
+        editLineSelect.innerHTML += '<option value="Other">Other</option>';
+        
+        // Restore selection if still valid
+        if (currentValue && Array.from(editLineSelect.options).some(opt => opt.value === currentValue)) {
+            editLineSelect.value = currentValue;
+        }
     }
 }
 

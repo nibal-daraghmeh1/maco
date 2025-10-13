@@ -13,7 +13,12 @@ export function populateMachineLineOptions() {
     const machineLineSelect = document.getElementById('machineLine');
     if (!machineLineSelect) return;
     
-    const uniqueLines = getUniqueProductLines();
+    // Get lines from both products and machines
+    const productLines = getUniqueProductLines(state.products);
+    const machineLines = [...new Set(state.machines.map(m => m.line).filter(Boolean))];
+    
+    // Combine and deduplicate lines
+    const allLines = [...new Set([...productLines, ...machineLines])].sort();
     const currentValue = machineLineSelect.value; // Preserve current selection
     
     // Clear existing options except the first placeholder
@@ -22,8 +27,8 @@ export function populateMachineLineOptions() {
     // Add "Shared" option first
     machineLineSelect.innerHTML += '<option value="Shared">Shared (Available to all lines)</option>';
     
-    // Add all unique product lines
-    uniqueLines.forEach(line => {
+    // Add all lines except Shared (which is already added)
+    allLines.forEach(line => {
         if (line !== 'Shared') { // Don't duplicate Shared
             machineLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
         }
@@ -256,22 +261,7 @@ export function showMachineModal(id = null) {
                     machineNumberInput.value = machine.machineNumber;
                     machineNameInput.value = machine.name;
                     
-                    // Handle machine line selection (including custom lines)
-                    const machineLine = machine.line || '';
-                    const standardLines = ['Shared', 'Solids', 'Semisolid', 'Liquids'];
-                    if (standardLines.includes(machineLine)) {
-                        machineLineSelect.value = machineLine;
-                    } else if (machineLine) {
-                        // Custom line - set to "Other" and show the custom input
-                        machineLineSelect.value = 'Other';
-                        const otherLineContainer = document.getElementById('machineOtherLineContainer');
-                        const otherLineInput = document.getElementById('machineOtherLine');
-                        if (otherLineContainer && otherLineInput) {
-                            otherLineContainer.style.display = 'block';
-                            otherLineInput.value = machineLine;
-                            otherLineInput.required = true;
-                        }
-                    }
+                    // Line selection will be handled after populateMachineLineOptions() is called
                     
                     machineAreaInput.value = machine.area;
                     cleaningSOPInput.value = machine.cleaningSOP || '';
@@ -327,8 +317,37 @@ export function showMachineModal(id = null) {
                     otherLineInput.required = false;
                 }
             }
+            
+            // Now handle line selection for edit modal (after dropdown is populated)
+            if (id) {
+                const machine = state.machines.find(m => m.id === id);
+                if (machine && machine.line) {
+                    const machineLine = machine.line;
+                    const machineLineSelect = document.getElementById('machineLine');
+                    if (machineLineSelect) {
+                        const availableLines = Array.from(machineLineSelect.options).map(o => o.value).filter(Boolean);
+                        if (availableLines.includes(machineLine)) {
+                            machineLineSelect.value = machineLine;
+                            // Hide the "Other" line field since we found the line in the dropdown
+                            const otherLineContainer = document.getElementById('machineOtherLineContainer');
+                            if (otherLineContainer) {
+                                otherLineContainer.style.display = 'none';
+                            }
+                        } else {
+                            machineLineSelect.value = 'Other';
+                            const otherLineContainer = document.getElementById('machineOtherLineContainer');
+                            const otherLineInput = document.getElementById('machineOtherLine');
+                            if (otherLineContainer && otherLineInput) {
+                                otherLineContainer.style.display = 'block';
+                                otherLineInput.value = machineLine;
+                                otherLineInput.required = true;
+                            }
+                        }
+                    }
+                }
+            }
+            
             document.getElementById('machineModal').style.display = 'flex';
-      
 }
 
 export function saveMachine(event) {
@@ -965,135 +984,43 @@ window.showMachineSummary = function(line) {
         <!-- Shared Worst Case Groups -->
         <div class="card p-4 mb-6">
             <h4 class="text-lg font-semibold mb-4 text-blue-600">Machines Sharing Same Worst Case Products</h4>
-            <div class="space-y-4">
+            <div class="overflow-hidden rounded-lg border" style="border-color: var(--border-color);">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-200 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Product</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Ingredient</th>
+                            <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">RPN</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Shared Machines</th>
+                        </tr>
+                    </thead>
+                    <tbody style="border-color: var(--border-color); background-color: var(--bg-secondary);">
     `;
     
     if (summaryData.sharedWorstCaseGroups.length > 0) {
         summaryData.sharedWorstCaseGroups.forEach(group => {
             summaryHTML += `
-                <div class="border rounded-lg p-4" style="border-color: var(--border-color);">
-                    <div class="flex items-center justify-between mb-3">
-                        <div>
-                            <h5 class="font-semibold text-lg">${group.productName}</h5>
-                            <p class="text-sm text-gray-600">${group.ingredient}</p>
+                <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color);">
+                    <td class="px-4 py-3 font-semibold" style="color: var(--text-primary);">${group.productName}</td>
+                    <td class="px-4 py-3" style="color: var(--text-primary);">${group.ingredient}</td>
+                    <td class="px-4 py-3 text-center" style="color: var(--text-primary);">
+                        <span class="px-2 py-1 rounded text-sm font-bold" style="background-color: var(--bg-accent); color: var(--text-primary);">${group.rpn}</span>
+                    </td>
+                    <td class="px-4 py-3" style="color: var(--text-primary);">
+                        <div class="flex flex-wrap gap-1">
+                            ${group.machines.map(machine => `<span class="px-2 py-1 rounded border text-xs" style="border-color: var(--border-color); background-color: var(--bg-secondary);">${machine}</span>`).join('')}
                         </div>
-                        <span class="text-lg font-bold px-3 py-1 rounded" style="background-color: var(--bg-accent); color: var(--text-primary);">
-                            RPN: ${group.rpn}
-                        </span>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-sm font-medium text-gray-700">Shared Machines:</span>
-                        ${group.machines.map(machine => `<span class="px-2 py-1 rounded border text-sm" style="border-color: var(--border-color); background-color: var(--bg-secondary);">${machine}</span>`).join('')}
-                    </div>
-                </div>
+                    </td>
+                </tr>
             `;
         });
     } else {
-        summaryHTML += '<p class="text-sm text-gray-500">No shared groups found</p>';
-    }
-    
-    summaryHTML += `
-            </div>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Machine Statistics -->
-            <div class="card p-4">
-                <h4 class="text-lg font-semibold mb-3 text-green-600">Machine Statistics</h4>
-                <div class="space-y-2">
-                    <div class="flex justify-between">
-                        <span>Total Machines:</span>
-                        <span class="font-semibold">${summaryData.totalMachines}</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span>Total Area:</span>
-                        <span class="font-semibold">${summaryData.totalArea.toLocaleString()} cm²</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span>Avg Products per Machine:</span>
-                        <span class="font-semibold">${summaryData.avgProductsPerMachine.toFixed(1)}</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Special Cases -->
-            <div class="card p-4">
-                <h4 class="text-lg font-semibold mb-3 text-red-600">Special Cases</h4>
-                <div class="space-y-2">
-    `;
-    
-    if (summaryData.specialCases.length > 0) {
-        summaryData.specialCases.forEach(product => {
-            summaryHTML += `
-                <div class="flex items-center justify-between p-2 rounded border" style="border-color: var(--border-color);">
-                    <span class="font-medium">${product.name}</span>
-                    <span class="text-sm px-2 py-1 rounded bg-red-100 text-red-800">RPN: ${product.rpn}</span>
-                </div>
-            `;
-        });
-    } else {
-        summaryHTML += '<p class="text-sm text-gray-500">No special cases found</p>';
-    }
-    
-    summaryHTML += `
-                </div>
-            </div>
-            
-            <!-- Worst Case Products -->
-            <div class="card p-4">
-                <h4 class="text-lg font-semibold mb-3 text-blue-600">Worst Case Products</h4>
-                <div class="space-y-2">
-    `;
-    
-    if (summaryData.worstCaseProducts.length > 0) {
-        summaryData.worstCaseProducts.slice(0, 5).forEach(product => {
-            summaryHTML += `
-                <div class="flex items-center justify-between p-2 rounded border" style="border-color: var(--border-color);">
-                    <span class="font-medium">${product.name}</span>
-                    <span class="text-sm px-2 py-1 rounded" style="background-color: var(--bg-accent);">RPN: ${product.rpn}</span>
-                </div>
-            `;
-        });
-    } else {
-        summaryHTML += '<p class="text-sm text-gray-500">No worst case products found</p>';
-    }
-    
-    summaryHTML += `
-                </div>
-            </div>
-        </div>
-        
-        <!-- Detailed Machine List -->
-        <div class="card p-4">
-            <h4 class="text-lg font-semibold mb-3">Machine Details</h4>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead class="border-b" style="border-color: var(--border-color);">
-                        <tr>
-                            <th class="px-3 py-2 text-left">Machine</th>
-                            <th class="px-3 py-2 text-left">Stage</th>
-                            <th class="px-3 py-2 text-left">Area</th>
-                            <th class="px-3 py-2 text-left">Products</th>
-                            <th class="px-3 py-2 text-left">Worst Case</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-    `;
-    
-    lineMachines.forEach(machine => {
-        const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(machine.id));
-        const worstProduct = summaryData.machineWorstCases[machine.id] || null;
-        
         summaryHTML += `
-            <tr class="border-b" style="border-color: var(--border-color);">
-                <td class="px-3 py-2 font-medium text-left">${machine.name}</td>
-                <td class="px-3 py-2 text-left">${machine.stage || 'N/A'}</td>
-                <td class="px-3 py-2 text-left">${machine.area.toLocaleString()} cm²</td>
-                <td class="px-3 py-2 text-left">${assignedProducts.length}</td>
-                <td class="px-3 py-2 text-left">${worstProduct ? `${worstProduct.name} (RPN: ${worstProduct.rpn})` : 'N/A'}</td>
+            <tr>
+                <td colspan="4" class="px-4 py-8 text-center text-gray-500">No shared groups found</td>
             </tr>
         `;
-    });
+    }
     
     summaryHTML += `
                     </tbody>

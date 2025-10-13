@@ -27,7 +27,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between py-6">
                 <div class="flex items-center flex-1">
-                    <h1 class="text-2xl font-bold text-white" style="padding-left: 2%;">MACO Dashboard</h1>
+                    <h1 class="text-2xl font-bold text-white"style="padding-left: 2%;">MACO Dashboard</h1>
                 </div>
                 <div class="flex items-center gap-x-2 no-print ml-4">
                     <button id="undo-btn" onclick="undoChange()" title="Undo (Ctrl+Z)" class="history-btn text-white hover:bg-white/20 p-2 rounded-full focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
@@ -84,9 +84,6 @@
 
             <!-- Tab Content -->
             <div id="mainContent" class="flex-1 transition-all duration-300 ease-in-out">
-
-        <!-- Tab Content -->
-        <div class="mt-8">
             <!-- New Dashboard Tab -->
             <div id="dashboard" class="tab-content active-tab-content">
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6" id="dashboardStats">
@@ -467,8 +464,8 @@
             </div>
             
             <!-- Train Summary Tab -->
-            <div id="trainSummary" class="tab-content">
-                <div class="card p-6">
+            <div id="trainSummary" class="tab-content" style="  width: 116%; margin-left: -6%;">
+                <div class="card p-5">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-xl font-bold">Equipment Train Summary</h2>
                         <div class="flex gap-2">
@@ -653,14 +650,14 @@
                 </div>
                 <div>
                     <label for="machineLine" class="block text-sm font-medium mb-1">Production Line</label>
-                    <select id="machineLine" class="w-full px-3 py-2 border rounded-lg" required>
+                    <select id="machineLine" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('machineOtherLineContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('machineOtherLine').required = this.value === 'Other';">
                         <option value="" disabled selected>Select a Line</option>
-                        <option value="Shared">Shared (Available to all lines)</option>
-                        <option value="Solids Line A">Solids Line A</option>
-                        <option value="Solids Line B">Solids Line B</option>
-                        <option value="Capsules Line">Capsules Line</option>
-                        <option value="Sterile Line">Sterile Line</option>
+                        <!-- Options will be populated dynamically based on product lines -->
                     </select>
+                    <div id="machineOtherLineContainer" style="display:none;margin-top:6px;">
+                        <label class="block text-sm font-medium mb-1">Specify Other Line</label>
+                        <input type="text" id="machineOtherLine" class="w-full px-3 py-2 border rounded-lg" placeholder="Enter custom line name" />
+                    </div>
                 </div>
                 <div>
                     <label for="machineGroup" class="block text-sm font-medium mb-1">Machine Group <span class="text-xs" style="color: var(--text-secondary);">(Optional - for grouping similar machines)</span></label>
