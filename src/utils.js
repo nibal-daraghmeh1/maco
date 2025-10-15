@@ -668,3 +668,31 @@ export function formatTrainGroupDisplay(machineIds) {
         return `<span class="individual-machine" title="Machine: ${machineName} - Area: ${machineArea.toLocaleString()} cm²">${machineName}</span>`;
     }).join(' → ');
 }
+
+// Consistent train ordering function for all views
+export function getConsistentTrainOrder(trains) {
+    return trains.sort((a, b) => {
+        // First sort by line
+        if (a.line !== b.line) {
+            const lineOrder = ['Solids', 'Semisolid', 'Liquids', 'Other'];
+            const aIndex = lineOrder.indexOf(a.line) !== -1 ? lineOrder.indexOf(a.line) : lineOrder.length;
+            const bIndex = lineOrder.indexOf(b.line) !== -1 ? lineOrder.indexOf(b.line) : lineOrder.length;
+            if (aIndex !== bIndex) return aIndex - bIndex;
+        }
+        
+        // Then sort by dosage form based on lowest train ID within each dosage form
+        if (a.dosageForm !== b.dosageForm) {
+            // Find the lowest train ID for each dosage form
+            const aDosageTrains = trains.filter(t => t.line === a.line && t.dosageForm === a.dosageForm);
+            const bDosageTrains = trains.filter(t => t.line === b.line && t.dosageForm === b.dosageForm);
+            
+            const aMinId = Math.min(...aDosageTrains.map(t => t.id));
+            const bMinId = Math.min(...bDosageTrains.map(t => t.id));
+            
+            if (aMinId !== bMinId) return aMinId - bMinId;
+        }
+        
+        // Finally sort by train ID
+        return a.id - b.id;
+    });
+}

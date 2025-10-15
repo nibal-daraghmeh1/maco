@@ -446,3 +446,83 @@
                 font-size: 0.75rem;
             }
         }
+
+        .main-container {
+            max-width: 95% !important;
+        }
+
+        @media (min-width: 1000px) {
+            .main-container {
+                max-width: 100% !important;
+            }
+        }
+
+        @media (min-width: 1360px) {
+            .main-container {
+                max-width: 95% !important;
+            }
+        }
+
+        @media (min-width: 1536px) {
+            .main-container {
+                max-width: 88% !important;
+            }
+        }
+    
+        #mainContent {
+            margin-top: 12px !important;
+        }
+
+        /* Print styles - hide sidebar and menu elements */
+        @media print {
+            #sidebar {
+                display: none !important;
+            }
+            
+            #sidebarToggle {
+                display: none !important;
+            }
+            
+            #floatingToggle {
+                display: none !important;
+            }
+            
+            #sidebarBackdrop {
+                display: none !important;
+            }
+            
+            /* Hide top navigation menu */
+            nav {
+                display: none !important;
+            }
+            
+            .border-b {
+                display: none !important;
+            }
+            
+            /* Hide header */
+            header {
+                display: none !important;
+            }
+            
+            /* Ensure main content takes full width when printing */
+            .flex {
+                display: block !important;
+            }
+            
+            .flex-1 {
+                width: 100% !important;
+                margin-left: 0 !important;
+            }
+            
+            /* Hide other non-printable elements */
+            .no-print {
+                display: none !important;
+            }
+            
+            /* Remove padding/margin from main content when printing */
+            main {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+        }

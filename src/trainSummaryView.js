@@ -3,7 +3,7 @@
 
 import * as state from './state.js';
 import { hideLoader } from './ui.js';
-import { getTrainData, calculateScores, getMacoPerSwabForTrain, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm } from './utils.js';
+import { getTrainData, calculateScores, getMacoPerSwabForTrain, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder } from './utils.js';
 import * as utils from './utils.js';
 
 // Helper function to find the worst case product (highest RPN) in a train
@@ -286,24 +286,27 @@ export function renderTrainSummary(lineFilter = null) {
         });
     });
 
-    if (allTrains.length === 0) {
+    // Apply consistent train ordering
+    const orderedTrains = getConsistentTrainOrder(allTrains);
+
+    if (orderedTrains.length === 0) {
         noTrainsMsg.style.display = 'block';
         container.style.display = 'none';
         return;
     }
 
     // Filter trains if specific trains are selected for printing
-    let trainsToRender = allTrains;
+    let trainsToRender = orderedTrains;
     if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
         console.log('Filtering trains for print:', window.printSelectedTrain);
-        console.log('Available trains:', allTrains.map(t => t.id));
+        console.log('Available trains:', orderedTrains.map(t => t.id));
         
         if (Array.isArray(window.printSelectedTrain)) {
             // Multiple trains selected
-            trainsToRender = allTrains.filter(train => window.printSelectedTrain.includes(String(train.id)));
+            trainsToRender = orderedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)));
         } else {
             // Single train selected (backward compatibility)
-            trainsToRender = allTrains.filter(train => String(train.id) === String(window.printSelectedTrain));
+            trainsToRender = orderedTrains.filter(train => String(train.id) === String(window.printSelectedTrain));
         }
         
         console.log('Filtered trains:', trainsToRender.map(t => t.id));
@@ -350,8 +353,27 @@ export function renderTrainSummary(lineFilter = null) {
         groupedTrains[groupKey].trains.push(train);
     });
 
+    // Sort groups by line first, then by lowest train number within each dosage form
+    const sortedGroupKeys = Object.keys(groupedTrains).sort((a, b) => {
+        const groupA = groupedTrains[a];
+        const groupB = groupedTrains[b];
+        
+        // First sort by line
+        if (groupA.line !== groupB.line) {
+            const lineOrder = ['Solids', 'Semisolid', 'Liquids', 'Other'];
+            const aIndex = lineOrder.indexOf(groupA.line) !== -1 ? lineOrder.indexOf(groupA.line) : lineOrder.length;
+            const bIndex = lineOrder.indexOf(groupB.line) !== -1 ? lineOrder.indexOf(groupB.line) : lineOrder.length;
+            if (aIndex !== bIndex) return aIndex - bIndex;
+        }
+        
+        // Then sort by lowest train number within each dosage form
+        const aMinNumber = Math.min(...groupA.trains.map(t => t.number));
+        const bMinNumber = Math.min(...groupB.trains.map(t => t.number));
+        return aMinNumber - bMinNumber;
+    });
+
     // Calculate total studies for each group and create study breakdown
-    Object.keys(groupedTrains).forEach(groupKey => {
+    sortedGroupKeys.forEach(groupKey => {
         const group = groupedTrains[groupKey];
         const trainsInGroup = group.trains;
         
@@ -466,7 +488,7 @@ export function renderTrainSummary(lineFilter = null) {
     });
 
     // Generate table rows grouped by dosage form
-    const tableRows = Object.keys(groupedTrains).map(groupKey => {
+    const tableRows = sortedGroupKeys.map(groupKey => {
         const group = groupedTrains[groupKey];
         const trainsInGroup = group.trains;
         
@@ -637,12 +659,12 @@ export function renderTrainSummary(lineFilter = null) {
             <table class="w-full text-sm">
                 <thead class="bg-gray-200 dark:bg-gray-700">
                     <tr>
-                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 15%;">Line - Dosage Form</th>
-                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 10%;">Train</th>
+                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 13%;">Line - Dosage Form</th>
+                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 9%;">Train</th>
                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 35%;">Machines & Products</th>
                         <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 20%;">Worst Case Product</th>
-                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 12%;">MACO</th>
-                               <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); border-left: 2px solid var(--border-color); width: 8%;">Studies Needed</th>
+                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 10%;">MACO</th>
+                               <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); border-left: 2px solid var(--border-color); width: 13%;">Studies Needed</th>
                     </tr>
                 </thead>
                 <tbody style="border-color: var(--border-color); background-color: var(--bg-secondary);">

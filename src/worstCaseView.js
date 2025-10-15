@@ -3,7 +3,7 @@
 // THE FIX: Import the state module
 import * as state from './state.js'; 
 import { hideLoader, updateToggleIcons, showCustomAlert } from './ui.js';
-import { getProductTrainId, calculateScores, getRpnRatingClass, getToxicityPreference, getTrainsGroupedByLine } from './utils.js';
+import { getProductTrainId, calculateScores, getRpnRatingClass, getToxicityPreference, getTrainsGroupedByLine, getConsistentTrainOrder } from './utils.js';
 
 
 export function handleSearchAndFilter(tabId, lineFilter = null) {
@@ -88,29 +88,60 @@ export function renderWorstCaseByTrain(collapsed=true, lineFilter = null) {
     noResultsMessage.style.display = 'none';
     container.style.display = 'block';
 
-    // Iterate lines (outer loop)
+    // Flatten all trains and apply consistent ordering
+    const allTrains = [];
     linesWithTrains.forEach(lineObj => {
+        lineObj.trains.forEach(train => {
+            allTrains.push({
+                ...train,
+                line: train.line
+            });
+        });
+    });
+
+    // Apply consistent train ordering
+    const orderedTrains = getConsistentTrainOrder(allTrains);
+
+    // Group trains by line and dosage form for display
+    const groupedByLine = {};
+    orderedTrains.forEach(train => {
+        const line = train.line || 'Unassigned';
+        const dosageForm = train.dosageForm || 'Other';
+        
+        if (!groupedByLine[line]) {
+            groupedByLine[line] = {};
+        }
+        if (!groupedByLine[line][dosageForm]) {
+            groupedByLine[line][dosageForm] = [];
+        }
+        groupedByLine[line][dosageForm].push(train);
+    });
+
+    // Iterate lines (outer loop)
+    Object.keys(groupedByLine).forEach(lineName => {
         const lineHeader = document.createElement('div');
-        lineHeader.className = 'card p-4 mb-4';
-        lineHeader.innerHTML = `<h3 class="text-lg font-bold">${lineObj.line}</h3>`;
+        lineHeader.className = 'mb-4';
+        lineHeader.innerHTML = `<h3 class="text-lg font-bold">${lineName}</h3>`;
         container.appendChild(lineHeader);
 
-        // build a lookup of trains by dosageForm for quick access
-        const trainsByDosage = {};
-        lineObj.trains.forEach(t => {
-            if (!trainsByDosage[t.dosageForm]) trainsByDosage[t.dosageForm] = [];
-            trainsByDosage[t.dosageForm].push(t);
+        const byDosage = groupedByLine[lineName];
+        // Sort dosage forms by their lowest train number
+        const sortedDosageForms = Object.keys(byDosage).sort((a, b) => {
+            const aTrains = byDosage[a];
+            const bTrains = byDosage[b];
+            const aMinNumber = Math.min(...aTrains.map(t => t.number));
+            const bMinNumber = Math.min(...bTrains.map(t => t.number));
+            return aMinNumber - bMinNumber;
         });
-
-        // Middle loop: display by Dosage Form
-        Object.keys(trainsByDosage).forEach(dosage => {
+        
+        sortedDosageForms.forEach(dosage => {
             const dosageDiv = document.createElement('div');
             dosageDiv.className = 'pl-4 mb-3';
             dosageDiv.innerHTML = `<h4 class="text-md font-semibold">${dosage}</h4>`;
             container.appendChild(dosageDiv);
 
             // find trains for this dosage and render pre-numbered cards
-            trainsByDosage[dosage].forEach(train => {
+            byDosage[dosage].forEach(train => {
                 // Skip if printing specific trains and this one isn't selected
                 if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
                     if (Array.isArray(window.printSelectedTrain)) {
@@ -148,11 +179,11 @@ export function renderWorstCaseByTrain(collapsed=true, lineFilter = null) {
                 const trainCard = document.createElement('div');
                 trainCard.className = 'train-card mb-3';
                 let html = `
-                    <div class="train-header" onclick="toggleTrain('wc-${lineObj.line}-${train.number}')">
-                        <span>Train ${train.number} - ${train.dosageForm}</span>
-                        <button class="train-toggle" id="toggle-wc-${lineObj.line}-${train.number}">${isCollapsed ? '\u25B6' : '\u25BC'}</button>
+                    <div class="train-header" onclick="toggleTrain('wc-${train.line}-${train.number}')">
+                        <span>Train ${train.number}</span>
+                        <button class="train-toggle" id="toggle-wc-${train.line}-${train.number}">${isCollapsed ? '\u25B6' : '\u25BC'}</button>
                     </div>
-                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-wc-${lineObj.line}-${train.number}">
+                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-wc-${train.line}-${train.number}">
                         <div class="train-content-inner">
                             <table class="w-full text-sm mainTable">
                                 <thead style="background: var(--bg-accent);">

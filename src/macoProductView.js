@@ -3,7 +3,7 @@
 
 import * as state from './state.js';
 import { hideLoader } from './ui.js';
-import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference } from './utils.js';
+import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference, getConsistentTrainOrder } from './utils.js';
 
 export function renderMacoForTrains(lineFilter = null) {
     const container = document.getElementById('trainsContainer');
@@ -44,13 +44,16 @@ export function renderMacoForTrains(lineFilter = null) {
         });
     });
 
+    // Apply consistent train ordering
+    const orderedTrains = getConsistentTrainOrder(mergedTrains);
+
     // Filter based on printSelectedTrain if required (support either numeric train.id or new train.number)
-    let trainsToRender = mergedTrains;
+    let trainsToRender = orderedTrains;
     if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
         if (Array.isArray(window.printSelectedTrain)) {
-            trainsToRender = mergedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)) || window.printSelectedTrain.includes(String(train.number)));
+            trainsToRender = orderedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)) || window.printSelectedTrain.includes(String(train.number)));
         } else {
-            trainsToRender = mergedTrains.filter(train => String(train.id) === String(window.printSelectedTrain) || String(train.number) === String(window.printSelectedTrain));
+            trainsToRender = orderedTrains.filter(train => String(train.id) === String(window.printSelectedTrain) || String(train.number) === String(window.printSelectedTrain));
         }
     }
 
@@ -70,7 +73,7 @@ export function renderMacoForTrains(lineFilter = null) {
     Object.keys(groupedByLine).forEach(lineName => {
         const lineSection = document.createElement('div');
         lineSection.className = 'mb-6';
-        lineSection.innerHTML = `<h3 class="text-lg font-bold mb-2">${lineName} - MACO</h3>`;
+        lineSection.innerHTML = `<h3 class="text-lg font-bold mb-2">${lineName}</h3>`;
         container.appendChild(lineSection);
 
         // group trains by dosage
@@ -80,7 +83,16 @@ export function renderMacoForTrains(lineFilter = null) {
             byDosage[t.dosageForm].push(t);
         });
 
-        Object.keys(byDosage).forEach(dosage => {
+        // Sort dosage forms by their lowest train number
+        const sortedDosageForms = Object.keys(byDosage).sort((a, b) => {
+            const aTrains = byDosage[a];
+            const bTrains = byDosage[b];
+            const aMinNumber = Math.min(...aTrains.map(t => t.number));
+            const bMinNumber = Math.min(...bTrains.map(t => t.number));
+            return aMinNumber - bMinNumber;
+        });
+        
+        sortedDosageForms.forEach(dosage => {
             const dosageHeader = document.createElement('div');
             dosageHeader.className = 'pl-4 mb-3';
             dosageHeader.innerHTML = `<h4 class="text-md font-semibold">${dosage}</h4>`;
@@ -144,7 +156,7 @@ export function renderMacoForTrains(lineFilter = null) {
 
                 trainCard.innerHTML = `
                             <div class="train-header" onclick="toggleTrain('pm-${train.id}')">
-                                <span>Train ${train.number} - Product MACO Calculation</span>
+                                <span>Train ${train.number} </span>
                                 <button class="train-toggle" id="toggle-pm-${train.id}">${isCollapsed ? '▶' : '▼'}</button>
                             </div>
                             <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-pm-${train.id}">
@@ -226,7 +238,12 @@ export function renderMacoForTrains(lineFilter = null) {
                                                     <li><b>Lowest PDE:</b> ${train.lowestPde !== null ? train.lowestPde + ' mg' : 'N/A'}</li>
                                                     <li><b>Lowest LD50:</b> ${train.lowestLd50 !== null ? train.lowestLd50 + ' mg/kg' : 'N/A'}</li>
                                                     ${train.lowestLd50 !== null ? `<li><b>NOEL Calculation:</b> (${train.lowestLd50} × 70) ÷ 2000 = <span class="font-semibold">${((train.lowestLd50 * 70) / 2000).toFixed(6)} g</span></li>` : ''}
-                                                    <li><b>Line Largest ESSA:</b> ${getLargestEssaForLineAndDosageForm(train, baseTrainData).toLocaleString()} cm² (same line & dosage form)</li>
+                                                    <li><b>Line Largest ESSA:</b> ${(() => {
+                                                        const largestEssa = getLargestEssaForLineAndDosageForm(train, baseTrainData);
+                                                        const trainWithLargestEssa = baseTrainData.find(t => t.line === train.line && t.essa === largestEssa);
+                                                        const trainLabel = trainWithLargestEssa ? `Train ${trainWithLargestEssa.id}` : '';
+                                                        return `${largestEssa.toLocaleString()} cm² ${trainLabel ? `(from ${trainLabel})` : '(same line & dosage form)'}`;
+                                                    })()} </li>
                                                  </ul>
                                                  <div id="maco-breakdown-container-${train.id}" class="divide-y rounded-md border" style="border-color: var(--border-color);"></div>
                                             </div>
@@ -368,13 +385,7 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
             } else if (name === 'Health-Based Limit (PDE)') {
                 equation = 'MACO = <span title="Permitted Daily Exposure (mg)">PDE</span> × <span title="Batch Size / Maximum Daily Dose Ratio">BS/MDD Ratio</span>';
             } else if (name === 'Health-Based Limit (NOEL)') {
-                // Calculate and display NOEL calculation details
-                const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
-                // Find minimum MDD from all ingredients in the train
-                const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
-                const minMdd = Math.min(...allMdds);
-                equation = `NOEL = (LD50 × 70 kg) ÷ 2000 = (${train.lowestLd50} × 70) ÷ 2000 = ${noel.toFixed(6)} g<br>
-                           MACO = (NOEL × MBS(kg) × 1000) ÷ (SF × MDD(g)) = (${noel.toFixed(6)} × ${train.minMbsKg} × 1000) ÷ (${sf} × ${minMdd})`;
+                equation = 'MACO = (<span title="No Observed Effect Level (g)">NOEL</span> × <span title="Minimum Batch Size (kg)">MBS(kg)</span> × 1000) / (<span title="Safety Factor">SF</span> × <span title="Minimum Daily Dose (g)">MDD(g)</span>)';
             } else if (name === 'Visual Clean Limit') {
                 equation = 'MACO = 0.004 × <span title="Equipment Surface Shared Area (cm²)">Largest ESSA</span>';
             }

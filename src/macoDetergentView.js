@@ -2,7 +2,7 @@
 // js/macoDetergentView.js
 
 import * as state from './state.js';
-import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm } from './utils.js';
+import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder } from './utils.js';
 import * as utils from './utils.js';
 
 export function renderDetergentMaco(lineFilter = null) {
@@ -41,13 +41,16 @@ export function renderDetergentMaco(lineFilter = null) {
         });
     });
 
+    // Apply consistent train ordering
+    const orderedTrains = getConsistentTrainOrder(mergedTrains);
+
     // Filter based on printSelectedTrain if required (support either numeric train.id or new train.number)
-    let trainsToRender = mergedTrains;
+    let trainsToRender = orderedTrains;
     if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
         if (Array.isArray(window.printSelectedTrain)) {
-            trainsToRender = mergedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)));
+            trainsToRender = orderedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)));
         } else {
-            trainsToRender = mergedTrains.filter(train => String(train.id) === String(window.printSelectedTrain));
+            trainsToRender = orderedTrains.filter(train => String(train.id) === String(window.printSelectedTrain));
         }
     }
 
@@ -58,7 +61,44 @@ export function renderDetergentMaco(lineFilter = null) {
 
     const idMap = utils.getTrainIdToLineNumberMap();
 
-    trainsToRender.forEach((train, index) => {
+    // Group trains by line and dosage form for consistent display
+    const groupedByLine = {};
+    trainsToRender.forEach(train => {
+        const line = train.line || 'Unassigned';
+        const dosageForm = train.dosageForm || 'Other';
+        
+        if (!groupedByLine[line]) {
+            groupedByLine[line] = {};
+        }
+        if (!groupedByLine[line][dosageForm]) {
+            groupedByLine[line][dosageForm] = [];
+        }
+        groupedByLine[line][dosageForm].push(train);
+    });
+
+    Object.keys(groupedByLine).forEach(lineName => {
+        const lineSection = document.createElement('div');
+        lineSection.className = 'mb-6';
+        lineSection.innerHTML = `<h3 class="text-lg font-semibold mb-4" style="color: var(--text-primary);">${lineName}</h3>`;
+        container.appendChild(lineSection);
+
+        const byDosage = groupedByLine[lineName];
+        // Sort dosage forms by their lowest train number
+        const sortedDosageForms = Object.keys(byDosage).sort((a, b) => {
+            const aTrains = byDosage[a];
+            const bTrains = byDosage[b];
+            const aMinNumber = Math.min(...aTrains.map(t => t.number));
+            const bMinNumber = Math.min(...bTrains.map(t => t.number));
+            return aMinNumber - bMinNumber;
+        });
+        
+        sortedDosageForms.forEach(dosage => {
+            const dosageHeader = document.createElement('div');
+            dosageHeader.className = 'mb-4';
+            dosageHeader.innerHTML = `<h4 class="text-md font-medium mb-3" style="color: var(--text-secondary);">${dosage}</h4>`;
+            container.appendChild(dosageHeader);
+
+            byDosage[dosage].forEach(train => {
         const isCollapsed = true; // All trains start collapsed
         const productTypesInTrain = train.products.map(p => p.productType);
         const worstCaseType = getWorstCaseProductType(productTypesInTrain);
@@ -67,7 +107,7 @@ export function renderDetergentMaco(lineFilter = null) {
         const card = document.createElement('div');
         card.className = 'train-card'; // Use train-card for consistent collapsible behavior
         const mapped = idMap.get(String(train.id));
-        const trainHeaderLabel = mapped ? `${mapped.line} — Train ${mapped.number} - Detergent MACO Calculation` : `Train ${train.id} - Detergent MACO Calculation`;
+        const trainHeaderLabel = mapped ? `Train ${mapped.number}` : `Train ${train.id}`;
 
         card.innerHTML = `
                     <div class="train-header" onclick="toggleTrain('dm-${train.id}')">
@@ -120,6 +160,8 @@ export function renderDetergentMaco(lineFilter = null) {
                 `;
         container.appendChild(card);
         recalculateDetergentMacoForTrain(train.id); // Initial calculation
+            });
+        });
     });
 }
 

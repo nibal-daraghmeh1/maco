@@ -22,6 +22,7 @@ import * as scoringView from './scoringView.js';
 // Attach functions to window for live testing with script modules
 window.changeTab = changeTab;
 window.printTrain = printTrain;
+window.sortData = productView.sortData;
 /**
  * Adds a print button to each train container in the MACO view.
  */
@@ -155,12 +156,40 @@ window.toggleLineMenu = function(line) {
 };
 
 /**
+ * Initializes the sidebar state on app load
+ */
+function initializeSidebarState() {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const floatingToggle = document.getElementById('floatingToggle');
+    
+    // Start with sidebar open (not collapsed)
+    if (sidebar) {
+        sidebar.classList.remove('collapsed');
+    }
+    
+    // Show sidebar toggle with collapse icon, hide floating toggle
+    if (sidebarToggle) {
+        sidebarToggle.classList.remove('hidden');
+        sidebarToggle.innerHTML = `
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+            </svg>
+        `;
+    }
+    
+    if (floatingToggle) {
+        floatingToggle.classList.add('hidden');
+    }
+}
+
+/**
  * Toggles the sidebar visibility
  */
 window.toggleSidebar = function() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
-    const toggleIcon = document.getElementById('sidebarToggleIcon');
+    const sidebarToggle = document.getElementById('sidebarToggle');
     const floatingToggle = document.getElementById('floatingToggle');
     const backdrop = document.getElementById('sidebarBackdrop');
     
@@ -172,8 +201,20 @@ window.toggleSidebar = function() {
         sidebar.classList.remove('mr-0');
         sidebar.classList.add('mr-8');
         mainContent.classList.remove('ml-0');
-        toggleIcon.style.transform = 'rotate(0deg)';
-        floatingToggle.classList.add('hidden');
+        
+        // Show sidebar toggle, hide floating toggle
+        if (sidebarToggle) {
+            sidebarToggle.classList.remove('hidden');
+            // Set collapse icon for sidebar toggle
+            sidebarToggle.innerHTML = `
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+                </svg>
+            `;
+        }
+        if (floatingToggle) {
+            floatingToggle.classList.add('hidden');
+        }
         
         // Show backdrop on mobile
         if (window.innerWidth <= 1024) {
@@ -187,8 +228,20 @@ window.toggleSidebar = function() {
         sidebar.classList.remove('mr-8');
         sidebar.classList.add('mr-0');
         mainContent.classList.add('ml-0');
-        toggleIcon.style.transform = 'rotate(180deg)';
-        floatingToggle.classList.remove('hidden');
+        
+        // Hide sidebar toggle, show floating toggle
+        if (sidebarToggle) {
+            sidebarToggle.classList.add('hidden');
+        }
+        if (floatingToggle) {
+            floatingToggle.classList.remove('hidden');
+            // Set hamburger icon for floating toggle
+            floatingToggle.innerHTML = `
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            `;
+        }
         
         // Hide backdrop
         backdrop.classList.add('hidden');
@@ -348,6 +401,9 @@ function initializeApp() {
         
         // Perform the first full render of the application
         fullAppRender();
+
+        // Initialize sidebar state
+        initializeSidebarState();
 
         // Perform any final UI setup after the initial render
         ui.updateToggleIcons('productRegister');

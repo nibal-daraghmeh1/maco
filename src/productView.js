@@ -16,10 +16,11 @@ export function renderProducts(tabId) {
     const tabContainer = document.getElementById(tabId);
     if (!tabContainer) return;
     
-    // Clear the container and create separate tables for each line
-    tabContainer.innerHTML = '';
-    
-    let dataToRender = [...state.viewProducts[tabId]];
+    // Clear only the table content, not the entire container (to preserve filters and buttons)
+    const existingTables = tabContainer.querySelectorAll('.line-table');
+    existingTables.forEach(table => table.remove());
+
+let dataToRender = [...state.viewProducts[tabId]];
 
     // Group products by line
     const productsByLine = {};
@@ -37,20 +38,13 @@ export function renderProducts(tabId) {
         
         // Sort products within this line
         products.sort((a, b) => {
-            const dosageA = a.productType || 'Other';
-            const dosageB = b.productType || 'Other';
-            
-            // Secondary sort: by dosage form within the same line
-            if (dosageA !== dosageB) {
-                return dosageA.localeCompare(dosageB);
-            }
-            
-            // Tertiary sort: by the selected sort key within the same line and dosage form
+            // Primary sort: by the selected sort key
             let valA, valB;
             const key = state.sortState.key;
             switch (key) {
                 case 'productCode': valA = a.productCode; valB = b.productCode; break;
                 case 'name': valA = a.name; valB = b.name; break;
+                case 'productType': valA = a.productType || 'Other'; valB = b.productType || 'Other'; break;
                 case 'batchSizeKg': valA = a.batchSizeKg; valB = b.batchSizeKg; break;
                 case 'date': valA = new Date(a.date); valB = new Date(b.date); break;
                 default: return 0;
@@ -60,13 +54,38 @@ export function renderProducts(tabId) {
 
             if (valA < valB) return -1 * dir;
             if (valA > valB) return 1 * dir;
+            
+            // Secondary sort: by dosage form if primary sort is equal
+            const dosageA = a.productType || 'Other';
+            const dosageB = b.productType || 'Other';
+            if (dosageA !== dosageB) {
+                return dosageA.localeCompare(dosageB);
+            }
+            
             return 0;
         });
-        
+
         // Create table container for this line
         const lineContainer = document.createElement('div');
-        lineContainer.className = 'mb-8';
+        lineContainer.className = 'mb-8 line-table';
         const lineId = line.replace(/\s+/g, '_').toLowerCase();
+        
+        // Add event listeners for sorting after table is created
+        setTimeout(() => {
+            const sortableHeaders = lineContainer.querySelectorAll('th.sortable');
+            sortableHeaders.forEach(th => {
+                th.addEventListener('click', function() {
+                    const onclickAttr = this.getAttribute('onclick');
+                    if (onclickAttr) {
+                        const keyMatch = onclickAttr.match(/'(.*?)'/);
+                        if (keyMatch) {
+                            const key = keyMatch[1];
+                            sortData(key, 'productRegister');
+                        }
+                    }
+                });
+            });
+        }, 100);
         lineContainer.innerHTML = `
             <div class="mb-4">
                 <div class="flex items-center justify-between cursor-pointer" onclick="toggleLineTable('${lineId}')">
@@ -86,16 +105,16 @@ export function renderProducts(tabId) {
                 <table class="w-full text-sm">
                     <thead class="bg-gray-200 dark:bg-gray-700">
                         <tr>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 5%;">#</th>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 10%;">Date</th>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 12%;" onclick="sortData('productCode', '${tabId}')">Product Code <span class="sort-indicator"></span></th>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 15%;" onclick="sortData('name', '${tabId}')">Product Name <span class="sort-indicator"></span></th>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 8%;">Train No.</th>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 10%;" onclick="sortData('productType', '${tabId}')">Dosage Form <span class="sort-indicator"></span></th>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 8%;" onclick="sortData('batchSizeKg', '${tabId}')">Batch Size <span class="sort-indicator"></span></th>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 8%;">Critical</th>
-                            <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 24%;">Active Ingredients</th>
-                            <th class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); width: 8%;">Actions</th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">#</th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">Date</th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary);font-weight: bold !important; cursor: pointer;" onclick="sortData('productCode', 'productRegister')">Product Code <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important; cursor: pointer;" onclick="sortData('name', 'productRegister')">Product Name <span class="sort-indicator"></span></th>
+                        
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">Train No.</th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary);font-weight: bold !important; cursor: pointer;" onclick="sortData('productType', 'productRegister')">Dosage Form <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important; cursor: pointer;" onclick="sortData('batchSizeKg', 'productRegister')">Batch Size <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">Critical</th>
+                            <th class="px-3 py-3 text-center text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="productsTable" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
@@ -119,17 +138,16 @@ export function renderProducts(tabId) {
         const trainIdDisplay = trainId !== 'N/A' ? 'T' + trainId : 'N/A';
 
         productRow.innerHTML = `
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" >${index + 1}</td>
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" >${new Date(product.date).toLocaleDateString()}</td>
-                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">${product.productCode}</td>
-                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${index + 1}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${new Date(product.date).toLocaleDateString()}</td>
+                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center">${product.productCode}</td>
+                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center">
                         <span class="product-name">${product.name}</span>
                     </td>
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" >${product.line || 'Not Assigned'}</td>
                     <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center" >${trainIdDisplay}</td>
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" ${product.productType || 'N/A'}</td>
-                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top" >${product.batchSizeKg}</td>
-                    <td class="px-3 py-3 text-sm align-top">
+                      <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${product.productType || 'N/A'}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${product.batchSizeKg}</td>
+                    <td class="px-3 py-3 text-sm align-top text-center">
                          <span class="${criticalClass}">${criticalText}</span>
                          ${product.isCritical && product.criticalReason ? `<p class="text-xs italic" style=" max-width: 200px; white-space: normal;">${product.criticalReason}</p>` : ''}
                     </td>
@@ -155,7 +173,7 @@ export function renderProducts(tabId) {
                     <div class="p-4 ingredients-sub-table rounded-b-lg">
                         <table class="w-full text-xs">
                             <thead class="bg-transparent">
-                                <tr class="border-b" style="border-color: var(--border-color);">
+                                <tr class="border-b" style="border-color: var(--border-color); background-color: rgb(188 194 208 / 45%)">
                                     <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">Ingredient</th>
                                     <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">TD (mg)</th>
                                     <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">MDD (g/day)</th>
@@ -191,8 +209,8 @@ export function renderProducts(tabId) {
         ingredientsCell.innerHTML = subTableHTML;
         ingredientsRow.appendChild(ingredientsCell);
 
-            tbody.appendChild(productRow);
-            tbody.appendChild(ingredientsRow);
+        tbody.appendChild(productRow);
+        tbody.appendChild(ingredientsRow);
         });
     });
 
@@ -262,7 +280,6 @@ export function handleSearchAndFilter(tabId) {
 }
 
 export function sortData(key, tabId) {
-  // THE FIX IS HERE: Add 'state.' prefix to all uses of 'sortState'
     if (state.sortState.key === key) {
         state.sortState.direction = state.sortState.direction === 'asc' ? 'desc' : 'asc';
     } else {
@@ -275,24 +292,41 @@ export function sortData(key, tabId) {
     
     if (tabId === 'worstCaseProducts') {
         renderWorstCaseByTrain();
+    } else if (tabId === 'productRegister') {
+        // For product register, re-render all line tables with sorting
+        renderProducts(tabId);
+        updateSortIndicators(tabId);
     } else {
         renderProducts(tabId);
+        updateSortIndicators(tabId);
     }
 }
 
-export function updateSortIndicators(tabId) {
-  const tabContainer = document.getElementById(tabId);
-    if (!tabContainer || tabId === 'worstCaseProducts') return; 
-    tabContainer.querySelectorAll('.mainTable th.sortable').forEach(th => {
-        const indicator = th.querySelector('.sort-indicator');
-        const key = th.getAttribute('onclick').match(/'(.*?)'/)[1];
 
-        // THE FIX IS HERE:
-        if (key === state.sortState.key) {
-            indicator.textContent = state.sortState.direction === 'asc' ? '▲' : '▼';
-        } else {
-            indicator.textContent = '';
-        }
+export function updateSortIndicators(tabId) {
+    const tabContainer = document.getElementById(tabId);
+    if (!tabContainer || tabId === 'worstCaseProducts') return; 
+    
+    // Update indicators for both main table and line tables
+    const allTables = tabContainer.querySelectorAll('table');
+    allTables.forEach(table => {
+        table.querySelectorAll('th.sortable').forEach(th => {
+            const indicator = th.querySelector('.sort-indicator');
+            if (indicator) {
+                const onclickAttr = th.getAttribute('onclick');
+                if (onclickAttr) {
+                    const keyMatch = onclickAttr.match(/'(.*?)'/);
+                    if (keyMatch) {
+                        const key = keyMatch[1];
+                        if (key === state.sortState.key) {
+                            indicator.textContent = state.sortState.direction === 'asc' ? '▲' : '▼';
+                        } else {
+                            indicator.textContent = '';
+                        }
+                    }
+                }
+            }
+        });
     });
 }
 
@@ -508,7 +542,7 @@ export function showEditProductModal(productId) {
 
     document.getElementById('editProductModalTitle').textContent = `Edit Product: ${product.name}`;
     document.getElementById('editProductModal').style.display = 'flex';
-    
+
     // Populate the product line dropdowns with all available lines
     populateProductLineDropdowns();
     

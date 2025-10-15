@@ -42,48 +42,49 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Tab Navigation -->
-        <div class="border-b" style="border-color: var(--border-color);">
-            <nav class="-mb-px flex flex-wrap gap-2 md:gap-4" aria-label="Tabs">
-                <button onclick="changeTab('dashboard', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium active-tab">Dashboard</button>
-                <button onclick="changeTab('productRegister', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Product Register</button>
-                <button onclick="changeTab('machineManagement', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Machines</button>
-                <button onclick="changeTab('scoringSystem', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Scoring</button>
-                <button onclick="changeTab('dataManagement', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Data Management</button>
-            </nav>
-        </div>
-
-        <!-- Backdrop overlay for mobile sidebar -->
-        <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
-
-        <!-- Floating Toggle Button (hidden by default) -->
-        <button id="floatingToggle" onclick="toggleSidebar()" class="fixed top-4 left-4 z-50 p-2 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 hidden" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
-
-        <!-- Left Sidebar for Line Navigation -->
-        <div class="flex mt-8">
-            <div id="sidebar" class="w-64 mr-8 transition-all duration-300 ease-in-out">
-                <div class="card p-4">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold" style="color: var(--text-primary);">Production Lines</h3>
-                        <button id="sidebarToggle" onclick="toggleSidebar()" class="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-secondary);">
-                            <svg id="sidebarToggleIcon" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div id="lineNavigation" class="space-y-2">
-                        <!-- Line navigation will be populated dynamically -->
-                    </div>
+    <!-- Main Layout with Sidebar -->
+    <div class="flex">
+        <!-- Left Sidebar -->
+        <div id="sidebar" class="w-64 bg-white dark:bg-gray-800 shadow-lg border-r" style="border-color: var(--border-color); min-height: calc(100vh - 80px);">
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Production Lines</h2>
+                    <button id="sidebarToggle" onclick="toggleSidebar()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="lineNavigation" class="space-y-2">
+                    <!-- Line navigation will be populated by JavaScript -->
                 </div>
             </div>
+        </div>
 
-            <!-- Tab Content -->
-            <div id="mainContent" class="flex-1 transition-all duration-300 ease-in-out">
+        <!-- Main Content Area -->
+        <div class="flex-1">
+            <main class="container main-container mx-auto px-4 sm:px-6 lg:px-8 py-8" >
+                <!-- Tab Navigation -->
+                <div class="border-b" style="border-color: var(--border-color);">
+                    <nav class="-mb-px flex flex-wrap gap-2 md:gap-4" aria-label="Tabs">
+                        <button onclick="changeTab('dashboard', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium active-tab">Dashboard</button>
+                        <button onclick="changeTab('productRegister', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Product Register</button>
+                        <button onclick="changeTab('machineManagement', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Machines</button>
+                        <button onclick="changeTab('scoringSystem', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Scoring</button>
+                        <button onclick="changeTab('dataManagement', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Data Management</button>
+                    </nav>
+                </div>
+
+                <!-- Backdrop overlay for mobile sidebar -->
+                <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+                <!-- Floating Toggle Button (hidden by default) -->
+                <button id="floatingToggle" onclick="toggleSidebar()" class="fixed top-4 left-4 z-50 p-2 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 hidden" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
+                    <!-- Icon will be set by JavaScript -->
+                </button>
+
+                <!-- Tab Content -->
+                <div id="mainContent" class="transition-all duration-300 ease-in-out">
             <!-- New Dashboard Tab -->
             <div id="dashboard" class="tab-content active-tab-content">
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6" id="dashboardStats">
@@ -91,13 +92,44 @@
                 </div>
                 <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div class="card p-6">
+                        <h2 class="text-xl font-bold">Studies Distribution by Dosage Form</h2>
+                        <p class="text-sm mb-6" style="color: var(--text-secondary);">
+                            Shows the distribution of studies across different dosage forms (Tablets, Capsules, etc.).
+                        </p>
+                        <div class="relative min-h-[400px]">
+                            <canvas id="dosageFormPieChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold">Top Products by RPN Score</h2>
+                        <p class="text-sm mb-6" style="color: var(--text-secondary);">
+                            Displays the top 10 products with highest RPN scores, helping identify the most challenging cleaning scenarios.
+                        </p>
+                        <div class="relative min-h-[400px]">
+                            <canvas id="topRpnProductsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold">Final MACO Comparison by Train</h2>
+                        <p class="text-sm mb-6" style="color: var(--text-secondary);">
+                            Compares the final calculated MACO values across all trains using logarithmic scale for better visualization of differences.
+                        </p>
+                        <div class="relative min-h-[400px]">
+                            <canvas id="finalMacoComparisonChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card p-6">
                         <h2 class="text-xl font-bold">RPN Risk Analysis</h2>
                          <p class="text-sm mb-6" style="color: var(--text-secondary);">
                             This chart visualizes the Risk Priority Number (RPN) for each ingredient visible in the 'Worst Case Products' tab, sorted from highest to lowest.
                         </p>
                         <div id="rpnChartContainer" class="relative min-h-[400px]"><canvas id="rpnChartCanvas"></canvas><div id="rpnChartPlaceholder" class="absolute inset-0 flex items-center justify-center hidden"><p style="color: var(--text-secondary);">No data to display. Filter data on the Worst Case Products tab.</p></div></div>
                     </div>
-                     <div class="card p-6">
+                </div>
+                <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card p-6">
                         <h2 class="text-xl font-bold">MACO per Swab per Train</h2>
                          <p class="text-sm mb-6" style="color: var(--text-secondary);">
                             This chart compares the final calculated MACO per Swab (in mg/Swab) for each equipment train.
@@ -109,7 +141,7 @@
 
             <!-- Product Register Tab -->
             <div id="productRegister" class="tab-content">
-                <div class="space-y-8">
+                <div class="space-y-8" style="margin-bottom: 9px;">
                     <!-- Actions & Filters -->
                     <div id="productsFilter" class="card p-6 no-print">
                         <div class="flex flex-wrap items-center justify-between gap-4">
@@ -156,9 +188,9 @@
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Line</th>
                                         <th class="px-3 py-3 text-center text-sm font-semibold uppercase tracking-wider">Train No.</th>
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Dosage Form</th>
-                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortData('batchSizeKg', 'productRegister')">Batch Size (Kg) <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider " ><span class="sort-indicator"></span></th>
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Special Case Product</th>
-                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Actions</th>
+                                        <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider"></th>
                                     </tr>
                                     <tr class="filter-row no-print">
                                         <th class="p-1"></th>
@@ -464,7 +496,7 @@
             </div>
             
             <!-- Train Summary Tab -->
-            <div id="trainSummary" class="tab-content" style="  width: 116%; margin-left: -6%;">
+            <div id="trainSummary" class="tab-content" >
                 <div class="card p-5">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-xl font-bold">Equipment Train Summary</h2>
@@ -649,14 +681,39 @@
                     <input type="text" id="machineName" class="w-full px-3 py-2 border rounded-lg" required>
                 </div>
                 <div>
-                    <label for="machineLine" class="block text-sm font-medium mb-1">Production Line</label>
-                    <select id="machineLine" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('machineOtherLineContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('machineOtherLine').required = this.value === 'Other';">
-                        <option value="" disabled selected>Select a Line</option>
-                        <!-- Options will be populated dynamically based on product lines -->
-                    </select>
-                    <div id="machineOtherLineContainer" style="display:none;margin-top:6px;">
-                        <label class="block text-sm font-medium mb-1">Specify Other Line</label>
-                        <input type="text" id="machineOtherLine" class="w-full px-3 py-2 border rounded-lg" placeholder="Enter custom line name" />
+                    <label class="block text-sm font-medium mb-1">Machine Line Assignment</label>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="flex items-center">
+                                <input type="radio" name="machineLineType" value="specific" checked onchange="toggleMachineLineOptions()" class="mr-2">
+                                <span class="text-sm">Specific Line(s)</span>
+                            </label>
+                        </div>
+                        <div id="specificLineOptions" class="ml-6 space-y-2">
+                            <div>
+                                <label for="machineLine" class="block text-sm font-medium mb-1">Primary Line</label>
+                                <select id="machineLine" class="w-full px-3 py-2 border rounded-lg" onchange="document.getElementById('machineOtherLineContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('machineOtherLine').required = this.value === 'Other';">
+                                    <option value="" disabled selected>Select Primary Line</option>
+                                    <!-- Options will be populated dynamically based on product lines -->
+                                </select>
+                                <div id="machineOtherLineContainer" style="display:none;margin-top:6px;">
+                                    <label class="block text-sm font-medium mb-1">Specify Other Line</label>
+                                    <input type="text" id="machineOtherLine" class="w-full px-3 py-2 border rounded-lg" placeholder="Enter custom line name" />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Additional Lines (Optional)</label>
+                                <div id="additionalLinesContainer" class="space-y-2">
+                                    <!-- Additional line checkboxes will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="flex items-center">
+                                <input type="radio" name="machineLineType" value="shared" onchange="toggleMachineLineOptions()" class="mr-2">
+                                <span class="text-sm">Shared with All Lines</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -759,6 +816,7 @@
                         </button>
                     </div>
                     <button type="button" onclick="hideModal('machineProductsModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Close</button>
+                </div>
                 </div>
             </div>
         </div>

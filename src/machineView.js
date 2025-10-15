@@ -22,16 +22,11 @@ export function populateMachineLineOptions() {
     const currentValue = machineLineSelect.value; // Preserve current selection
     
     // Clear existing options except the first placeholder
-    machineLineSelect.innerHTML = '<option value="" disabled selected>Select a Line</option>';
+    machineLineSelect.innerHTML = '<option value="" disabled selected>Select Primary Line</option>';
     
-    // Add "Shared" option first
-    machineLineSelect.innerHTML += '<option value="Shared">Shared (Available to all lines)</option>';
-    
-    // Add all lines except Shared (which is already added)
+    // Add all lines
     allLines.forEach(line => {
-        if (line !== 'Shared') { // Don't duplicate Shared
-            machineLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
-        }
+        machineLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
     });
     
     // Add "Other" option for custom lines
@@ -40,6 +35,86 @@ export function populateMachineLineOptions() {
     // Restore previous selection if it still exists
     if (currentValue && Array.from(machineLineSelect.options).some(opt => opt.value === currentValue)) {
         machineLineSelect.value = currentValue;
+    }
+    
+    // Populate additional lines checkboxes
+    populateAdditionalLinesCheckboxes();
+    
+    // Add event listener to primary line dropdown
+    machineLineSelect.addEventListener('change', updateAdditionalLinesCheckboxes);
+}
+
+/**
+ * Populate additional lines checkboxes
+ */
+export function populateAdditionalLinesCheckboxes() {
+    const container = document.getElementById('additionalLinesContainer');
+    if (!container) return;
+    
+    // Get lines from both products and machines
+    const productLines = getUniqueProductLines(state.products);
+    const machineLines = [...new Set(state.machines.map(m => m.line).filter(Boolean))];
+    const allLines = [...new Set([...productLines, ...machineLines])].sort();
+    
+    container.innerHTML = '';
+    
+    allLines.forEach(line => {
+        const checkboxDiv = document.createElement('div');
+        checkboxDiv.className = 'flex items-center';
+        checkboxDiv.innerHTML = `
+            <input type="checkbox" id="additionalLine_${line}" value="${line}" class="mr-2" onchange="updateAdditionalLinesCheckboxes()">
+            <label for="additionalLine_${line}" class="text-sm">${line}</label>
+        `;
+        container.appendChild(checkboxDiv);
+    });
+    
+    // Update checkboxes based on primary line selection
+    updateAdditionalLinesCheckboxes();
+}
+
+/**
+ * Update additional lines checkboxes based on primary line selection
+ */
+window.updateAdditionalLinesCheckboxes = function() {
+    const primaryLineSelect = document.getElementById('machineLine');
+    const additionalCheckboxes = document.querySelectorAll('#additionalLinesContainer input[type="checkbox"]');
+    
+    if (!primaryLineSelect || !additionalCheckboxes.length) return;
+    
+    const selectedPrimaryLine = primaryLineSelect.value;
+    
+    additionalCheckboxes.forEach(checkbox => {
+        const lineValue = checkbox.value;
+        const isPrimaryLine = lineValue === selectedPrimaryLine;
+        
+        if (isPrimaryLine) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            checkbox.parentElement.style.opacity = '0.5';
+            checkbox.parentElement.style.cursor = 'not-allowed';
+        } else {
+            checkbox.disabled = false;
+            checkbox.parentElement.style.opacity = '1';
+            checkbox.parentElement.style.cursor = 'pointer';
+        }
+    });
+}
+
+/**
+ * Toggle machine line options based on radio button selection
+ */
+window.toggleMachineLineOptions = function() {
+    const specificOptions = document.getElementById('specificLineOptions');
+    const lineTypeRadios = document.querySelectorAll('input[name="machineLineType"]');
+    
+    if (!specificOptions || !lineTypeRadios.length) return;
+    
+    const selectedType = Array.from(lineTypeRadios).find(radio => radio.checked)?.value;
+    
+    if (selectedType === 'shared') {
+        specificOptions.style.display = 'none';
+    } else {
+        specificOptions.style.display = 'block';
     }
 }
 
@@ -95,11 +170,23 @@ export function renderMachinesTable() {
     
     // Add machines to their respective lines
     state.machines.forEach(machine => {
-        const line = machine.line || 'Unassigned';
-        if (!machinesByLine[line]) {
-            machinesByLine[line] = [];
+        const primaryLine = machine.line || 'Unassigned';
+        
+        // Add to primary line
+        if (!machinesByLine[primaryLine]) {
+            machinesByLine[primaryLine] = [];
         }
-        machinesByLine[line].push(machine);
+        machinesByLine[primaryLine].push(machine);
+        
+        // Add to additional lines if they exist
+        if (machine.additionalLines && machine.additionalLines.length > 0) {
+            machine.additionalLines.forEach(additionalLine => {
+                if (!machinesByLine[additionalLine]) {
+                    machinesByLine[additionalLine] = [];
+                }
+                machinesByLine[additionalLine].push(machine);
+            });
+        }
     });
 
     // Create tables for each line that has machines
@@ -263,6 +350,44 @@ export function showMachineModal(id = null) {
                     
                     // Line selection will be handled after populateMachineLineOptions() is called
                     
+                    // Handle line assignment type and additional lines
+                    if (machine.line === 'Shared') {
+                        document.querySelector('input[name="machineLineType"][value="shared"]').checked = true;
+                        document.getElementById('specificLineOptions').style.display = 'none';
+                    } else {
+                        document.querySelector('input[name="machineLineType"][value="specific"]').checked = true;
+                        document.getElementById('specificLineOptions').style.display = 'block';
+                        
+                        // Set primary line
+                        if (machineLineSelect.options.length > 0) {
+                            const lineOption = Array.from(machineLineSelect.options).find(opt => opt.value === machine.line);
+                            if (lineOption) {
+                                machineLineSelect.value = machine.line;
+                            } else {
+                                // Custom line not in dropdown
+                                machineLineSelect.value = 'Other';
+                                document.getElementById('machineOtherLineContainer').style.display = 'block';
+                                document.getElementById('machineOtherLine').value = machine.line;
+                                document.getElementById('machineOtherLine').required = true;
+                            }
+                        }
+                        
+                        // Set additional lines
+                        if (machine.additionalLines && machine.additionalLines.length > 0) {
+                            machine.additionalLines.forEach(line => {
+                                const checkbox = document.getElementById(`additionalLine_${line}`);
+                                if (checkbox) {
+                                    checkbox.checked = true;
+                                }
+                            });
+                        }
+                        
+                        // Update checkboxes after setting values
+                        setTimeout(() => {
+                            updateAdditionalLinesCheckboxes();
+                        }, 100);
+                    }
+                    
                     machineAreaInput.value = machine.area;
                     cleaningSOPInput.value = machine.cleaningSOP || '';
                     
@@ -355,21 +480,36 @@ export function saveMachine(event) {
             const id = document.getElementById('machineId').value;
             const number = document.getElementById('machineNumber').value.trim();
             const name = document.getElementById('machineName').value.trim();
-            const lineElement = document.getElementById('machineLine');
-            if (!lineElement) {
-                showCustomAlert('Error', 'Machine line field not found. Please refresh the page to load the updated interface.');
-                return;
-            }
-            let line = lineElement.value;
+            // Get line assignment type
+            const lineTypeRadios = document.querySelectorAll('input[name="machineLineType"]');
+            const selectedType = Array.from(lineTypeRadios).find(radio => radio.checked)?.value;
             
-            // Handle custom line
-            if (line === 'Other') {
-                const customLine = document.getElementById('machineOtherLine').value.trim();
-                if (!customLine) {
-                    showCustomAlert('Validation Error', 'Please specify the custom line name.');
+            let line = '';
+            let additionalLines = [];
+            
+            if (selectedType === 'shared') {
+                line = 'Shared';
+            } else {
+                const lineElement = document.getElementById('machineLine');
+                if (!lineElement) {
+                    showCustomAlert('Error', 'Machine line field not found. Please refresh the page to load the updated interface.');
                     return;
                 }
-                line = customLine;
+                line = lineElement.value;
+                
+                // Handle custom line
+                if (line === 'Other') {
+                    const customLine = document.getElementById('machineOtherLine').value.trim();
+                    if (!customLine) {
+                        showCustomAlert('Validation Error', 'Please specify the custom line name.');
+                        return;
+                    }
+                    line = customLine;
+                }
+                
+                // Get additional lines
+                const additionalCheckboxes = document.querySelectorAll('#additionalLinesContainer input[type="checkbox"]:checked');
+                additionalLines = Array.from(additionalCheckboxes).map(cb => cb.value);
             }
             let stage = document.getElementById('machineStage').value;
             const area = parseInt(document.getElementById('machineArea').value, 10);
@@ -456,6 +596,7 @@ export function saveMachine(event) {
                     machine.machineNumber = number;
                     machine.name = name;
                     machine.line = line;
+                    machine.additionalLines = additionalLines;
                     machine.stage = stage;
                     machine.area = area;
                     machine.cleaningSOP = cleaningSOP;
@@ -463,7 +604,17 @@ export function saveMachine(event) {
                 }
             } else { // Add
                 state.setNextMachineId(state.nextMachineId+1);
-                state.machines.push({ id: state.nextMachineId, machineNumber: number, name: name, line: line, stage: stage, area: area, cleaningSOP: cleaningSOP, group: group || '' });
+                state.machines.push({ 
+                    id: state.nextMachineId, 
+                    machineNumber: number, 
+                    name: name, 
+                    line: line, 
+                    additionalLines: additionalLines,
+                    stage: stage, 
+                    area: area, 
+                    cleaningSOP: cleaningSOP, 
+                    group: group || '' 
+                });
             }
             saveStateForUndo();
             fullAppRender();
@@ -768,10 +919,13 @@ export function showAssignMachinesModal(productId) {
             state.machineStageDisplayOrder.forEach(stage => {
                 let machinesInStage = state.machines.filter(m => m.stage === stage);
                 if (machinesHaveLine && productLine) {
-                    // Show machines from the same line OR shared machines
+                    // Show machines from the same line OR shared machines OR machines with additional lines
                     machinesInStage = machinesInStage.filter(m => {
                         const machineLine = String(m.line || '').trim();
-                        return machineLine === productLine || machineLine === "Shared";
+                        const isShared = machineLine === "Shared";
+                        const isSameLine = machineLine === productLine;
+                        const hasAdditionalLine = m.additionalLines && m.additionalLines.includes(productLine);
+                        return isSameLine || isShared || hasAdditionalLine;
                     });
                 }
                 
@@ -1008,7 +1162,11 @@ window.showMachineSummary = function(line) {
                     </td>
                     <td class="px-4 py-3" style="color: var(--text-primary);">
                         <div class="flex flex-wrap gap-1">
-                            ${group.machines.map(machine => `<span class="px-2 py-1 rounded border text-xs" style="border-color: var(--border-color); background-color: var(--bg-secondary);">${machine}</span>`).join('')}
+                            ${group.machines.map(machineName => {
+                                const machine = lineMachines.find(m => m.name === machineName);
+                                const groupInfo = machine && machine.group ? ` (${machine.group})` : '';
+                                return `<span class="px-2 py-1 rounded border text-xs" style="border-color: var(--border-color); background-color: var(--bg-secondary);">${machineName}${groupInfo}</span>`;
+                            }).join('')}
                         </div>
                     </td>
                 </tr>
