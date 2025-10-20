@@ -12,12 +12,14 @@ class SimplifiedMachineCoverageTable {
         this.selectedTrains = [];
         this.allTrains = [];
         this.machines = [];
+        // Darker, high-contrast colors starting with RED for highest risk
         this.studyColors = [
-            '#E3F2FD', // Light Blue for Study 1
-            '#E8F5E8', // Light Green for Study 2
-            '#FFF3E0', // Light Orange for Study 3
-            '#F3E5F5', // Light Purple for Study 4
-            '#E0F2F1'  // Light Teal for Study 5
+            '#f87171', // Study 1 - Red
+            '#f59e0b', // Study 2 - Orange
+            '#facc15', // Study 3 - Yellow
+            '#34d399', // Study 4 - Green
+            '#60a5fa', // Study 5 - Blue
+            '#a78bfa'  // Study 6 - Purple
         ];
     }
 
@@ -257,6 +259,7 @@ class SimplifiedMachineCoverageTable {
                 <th>Product Group</th>
                 <th>Worst Case Product</th>
                 <th>RPN</th>
+                <th>Study No.</th>
                 ${machineHeaders}
                 <th>Selected for Study</th>
             </tr>
@@ -271,17 +274,14 @@ class SimplifiedMachineCoverageTable {
         const rows = this.allTrains.map(train => {
             const selectedTrain = this.selectedTrains.find(st => st.trainId === train.trainId);
             const studyColor = selectedTrain ? selectedTrain.studyColor : null;
-            const rowStyle = studyColor ? `style="background-color: ${studyColor};"` : '';
+            const metaStyle = studyColor ? `style="background-color: ${studyColor};"` : '';
             
             const machineCells = this.machines.map(machine => {
                 const isUsed = train.usedMachines.includes(machine);
-                let fillColor = '#ffffff';
-                if (isUsed) {
-                    // Use color of the study that first covered this machine
-                    const firstCover = this.selectedTrains.find(st => st.newMachinesCovered.includes(machine));
-                    fillColor = firstCover ? firstCover.studyColor : '#f1f5f9';
-                }
-                return `<td class="machine-cell" style="background-color: ${fillColor};"></td>`;
+                const isNewCoverage = selectedTrain && selectedTrain.newMachinesCovered && selectedTrain.newMachinesCovered.includes(machine);
+                const fillColor = isNewCoverage ? studyColor : '#ffffff';
+                const mark = isUsed ? '✓' : '';
+                return `<td class="machine-cell" style="background-color: ${fillColor}; text-align:center; font-weight:700;">${mark}</td>`;
             }).join('');
             
             const selectedText = selectedTrain ? 'Yes' : 'No';
@@ -289,11 +289,12 @@ class SimplifiedMachineCoverageTable {
             const wcp = train.worstCaseProduct || '-';
             
             return `
-            <tr ${rowStyle}>
-                <td class="train-label">${train.trainId}</td>
-                <td>${group}</td>
-                <td>${wcp}</td>
-                <td>${train.rpn}</td>
+            <tr>
+                <td class="train-label" ${metaStyle}>${train.trainId}</td>
+                <td ${metaStyle}>${group}</td>
+                <td ${metaStyle}>${wcp}</td>
+                <td ${metaStyle}>${train.rpn}</td>
+                <td ${metaStyle}>${selectedTrain ? selectedTrain.studyNumber : '-'}</td>
                 ${machineCells}
                 <td>${selectedText}</td>
             </tr>`;
@@ -372,22 +373,31 @@ export function createHorizontalMachineCoverageTable() {
         trainData = trainData.filter(t => (t.line || t.productLine) === currentLine);
     }
     
-    // Convert train data to product data format
-    const productData = convertTrainDataToProductData(trainData, allMachines);
+    // Helper to render a single line section
+    const renderLineSection = (lineName, trainsForLine) => {
+        // Build machine list only used by this line's trains (for compact width)
+        const usedMachineIds = new Set();
+        trainsForLine.forEach(t => (t.machineIds || []).forEach(id => usedMachineIds.add(id)));
+        const machinesForLine = allMachines.filter(m => usedMachineIds.has(m.id));
+        
+        const dataForLine = convertTrainDataToProductData(trainsForLine, machinesForLine);
+        const table = new SimplifiedMachineCoverageTable();
+        table._lineContext = lineName;
+        return table.generateTable(dataForLine);
+    };
     
-    // Store context for header text (line name)
-    productData.__context = { line: currentLine };
+    if (currentLine) {
+        return renderLineSection(currentLine, trainData);
+    }
     
-    console.log('Machine Coverage Data:', {
-        trainData: trainData.length,
-        allMachines: allMachines.length,
-        trains: (productData.trains || []).length
+    // No specific line selected: render a section per line similar to Product MACO/Train Summary
+    const lineNames = [...new Set(trainData.map(t => (t.line || t.productLine) || 'Unassigned'))];
+    let html = '';
+    lineNames.forEach(line => {
+        const trainsForLine = trainData.filter(t => (t.line || t.productLine) === line);
+        html += renderLineSection(line, trainsForLine);
     });
-    
-    const coverageTable = new SimplifiedMachineCoverageTable();
-    // Pass line context into instance for header rendering
-    coverageTable._lineContext = currentLine;
-    return coverageTable.generateTable(productData);
+    return html;
 }
 
 function getAllMachines() {

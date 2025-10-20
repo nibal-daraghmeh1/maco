@@ -137,6 +137,7 @@ export function renderLineNavigation() {
                 <button onclick="showLineSpecificView('${line}', 'maco')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Product MACO Calculation</button>
                 <button onclick="showLineSpecificView('${line}', 'detergent')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Detergent MACO Calculation</button>
                 <button onclick="showLineSpecificView('${line}', 'trainSummary')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Train Summary</button>
+                <button onclick="showLineSpecificView('${line}', 'coverage')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Machine Coverage</button>
             </div>
         `;
         lineNavigation.appendChild(lineDiv);
@@ -276,6 +277,9 @@ window.showLineSpecificView = function(line, viewType) {
         case 'trainSummary':
             tabId = 'trainSummary';
             break;
+        case 'coverage':
+            tabId = 'machineCoverage';
+            break;
     }
     
     console.log('Switching to tab:', tabId);
@@ -323,6 +327,15 @@ function applyLineFilter(line, viewType) {
             console.log('Filtering train summary for line:', line);
             trainSummaryView.renderTrainSummary(line);
             break;
+        case 'coverage':
+            console.log('Filtering machine coverage for line:', line);
+            {
+                const container = document.getElementById('machineCoverageContainer');
+                if (container) {
+                    container.innerHTML = machineCoverageView.createHorizontalMachineCoverageTable();
+                }
+            }
+            break;
     }
 }
 
@@ -350,6 +363,12 @@ function changeTab(tabId, element) {
     if (tabId === 'detergentMaco') { macoDetergentView.renderDetergentMaco(); }
     if (tabId === 'productRegister' || tabId === 'worstCaseProducts') {
         productView.handleSearchAndFilter(tabId);
+    }
+    if (tabId === 'machineCoverage') {
+        const container = document.getElementById('machineCoverageContainer');
+        if (container) {
+            container.innerHTML = machineCoverageView.createHorizontalMachineCoverageTable();
+        }
     }
 }
 

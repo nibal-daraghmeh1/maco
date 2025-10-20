@@ -137,17 +137,17 @@
                         <div id="macoChartContainer" class="relative min-h-[400px]"><canvas id="macoChartCanvas"></canvas><div id="macoChartPlaceholder" class="absolute inset-0 flex items-center justify-center hidden"><p style="color: var(--text-secondary);">No trains found. Assign machines to products to generate data.</p></div></div>
                     </div>
                 </div>
-                
-                <!-- Machine Coverage Table -->
+            </div>
+
+            <!-- Machine Coverage Tab -->
+            <div id="machineCoverage" class="tab-content">
                 <div class="mt-8">
                     <div class="card p-6">
                         <h2 class="text-xl font-bold mb-4">Machine Coverage Analysis</h2>
                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
-                            Interactive table showing which machines are used by each train, with smart coloring to highlight study selection logic.
+                            Shows machine coverage per line. Use the left menu to choose a line.
                         </p>
-                        <div id="machineCoverageContainer">
-                            <!-- Machine coverage table will be rendered here -->
-                        </div>
+                        <div id="machineCoverageContainer"></div>
                     </div>
                 </div>
             </div>
