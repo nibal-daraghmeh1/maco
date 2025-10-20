@@ -48,6 +48,11 @@
             transition: all 0.4s cubic-bezier(.17,.67,.83,.67);
             border: none;
         }
+
+        /* Proper Case Input Styling */
+        .proper-case-input {
+            text-transform: capitalize;
+        }
         .btn-gradient:hover {
             background-position: right center;
             transform: translateY(-2px);
@@ -525,4 +530,8 @@
                 padding: 0 !important;
                 margin: 0 !important;
             }
+        }
+
+        #dashboardStats{
+            width: fit-content;
         }

@@ -30,7 +30,7 @@ export let machines = [
     { id: 16, machineNumber: 'M-016', name: "Bliste", stage: "Packing", area: 220000, group: "", line: "Shared" }
 ];
 
-export let machineStageDisplayOrder = ['Weighing', 'Mixing', 'Milling', 'Compression', 'Coating', 'Filling', 'Packing', 'Other'];
+export let machineStageDisplayOrder = ['Weighing', 'Mixing', 'Compression', 'Coating', 'Filling', 'Checking', 'Labeling', 'Packing', 'Other'];
 
 // Machine group options for grouping similar machines
 export let machineGroups = [

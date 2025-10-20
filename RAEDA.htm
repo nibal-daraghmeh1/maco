@@ -27,7 +27,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between py-6">
                 <div class="flex items-center flex-1">
-                    <h1 class="text-2xl font-bold text-white"style="padding-left: 2.5%;">MACO Dashboard</h1>
+                    <h1 class="text-xl font-bold text-white"style="padding-left: 2.5%;">Digital Worst case selection and MACO calculation</h1>
                 </div>
                 <div class="flex items-center gap-x-2 no-print ml-4">
                     <button id="undo-btn" onclick="undoChange()" title="Undo (Ctrl+Z)" class="history-btn text-white hover:bg-white/20 p-2 rounded-full focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
@@ -87,7 +87,7 @@
                 <div id="mainContent" class="transition-all duration-300 ease-in-out">
             <!-- New Dashboard Tab -->
             <div id="dashboard" class="tab-content active-tab-content">
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6" id="dashboardStats">
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4" id="dashboardStats">
                     <!-- Stats will be rendered here by JS -->
                 </div>
                 <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -137,6 +137,19 @@
                         <div id="macoChartContainer" class="relative min-h-[400px]"><canvas id="macoChartCanvas"></canvas><div id="macoChartPlaceholder" class="absolute inset-0 flex items-center justify-center hidden"><p style="color: var(--text-secondary);">No trains found. Assign machines to products to generate data.</p></div></div>
                     </div>
                 </div>
+                
+                <!-- Machine Coverage Table -->
+                <div class="mt-8">
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold mb-4">Machine Coverage Analysis</h2>
+                        <p class="text-sm mb-6" style="color: var(--text-secondary);">
+                            Interactive table showing which machines are used by each train, with smart coloring to highlight study selection logic.
+                        </p>
+                        <div id="machineCoverageContainer">
+                            <!-- Machine coverage table will be rendered here -->
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Product Register Tab -->
@@ -149,12 +162,17 @@
                             <div class="flex flex-wrap gap-3">
                                 <button onclick="showAddForm()" class="px-4 py-2 text-sm rounded-lg btn-gradient">+ Add Product</button>
                                 <button onclick="resetFilters('productRegister')" class="px-4 py-2 text-sm rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Reset Filters</button>
-                                <button onclick="printCurrentView('productRegister')" class="print-btn px-4 py-2 text-sm rounded-lg border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Print View</button>
-                                <button onclick="exportToExcel()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
+                                <button onclick="printCurrentView('productRegister')" class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center justify-center" style="color: var(--gradient-mid); border-color: var(--gradient-mid);" title="Print View">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                    </svg>
+                                </button>
+                                <button onclick="exportToExcel()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                     Export to Excel
+                                 
                                 </button>
                             </div>
                             
@@ -186,8 +204,8 @@
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortData('productCode', 'productRegister')">Product Code <span class="sort-indicator"></span></th>
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortData('name', 'productRegister')">Product Name <span class="sort-indicator"></span></th>
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Line</th>
-                                        <th class="px-3 py-3 text-center text-sm font-semibold uppercase tracking-wider">Train No.</th>
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Dosage Form</th>
+                                        <th class="px-3 py-3 text-center text-sm font-semibold uppercase tracking-wider">Train No.</th>
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider " ><span class="sort-indicator"></span></th>
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider">Special Case Product</th>
                                         <th class="px-3 py-3 text-left text-sm font-semibold uppercase tracking-wider"></th>
@@ -198,8 +216,8 @@
                                         <th class="p-1 font-normal"><input type="text" oninput="handleSearchAndFilter('productRegister')" placeholder="Filter..." class="filterColProductCode w-full px-2 py-1 border rounded-md text-sm"></th>
                                         <th class="p-1 font-normal"><input type="text" oninput="handleSearchAndFilter('productRegister')" placeholder="Filter..." class="filterColProductName w-full px-2 py-1 border rounded-md text-sm"></th>
                                         <th class="p-1 font-normal"><select onchange="handleSearchAndFilter('productRegister')" class="filterColLine w-full px-2 py-1 border rounded-md text-sm"></select></th>
-                                        <th class="p-1 font-normal"><select onchange="handleSearchAndFilter('productRegister')" class="filterColTrainNo w-full px-2 py-1 border rounded-md text-sm"></select></th>
                                         <th class="p-1 font-normal"><select onchange="handleSearchAndFilter('productRegister')" class="filterColProductType w-full px-2 py-1 border rounded-md text-sm"></select></th>
+                                        <th class="p-1 font-normal"><select onchange="handleSearchAndFilter('productRegister')" class="filterColTrainNo w-full px-2 py-1 border rounded-md text-sm"></select></th>
                                         <th class="p-1"></th>
                                         <th class="p-1 font-normal">
                                             <select onchange="handleSearchAndFilter('productRegister')" class="filterColIsCritical w-full px-2 py-1 border rounded-md text-sm">
@@ -238,13 +256,11 @@
                                 <!-- Export Dropdown -->
                                 <div class="relative">
                                     <button onclick="toggleWorstCaseExportDropdown()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                         </svg>
                                         Export to Excel
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                        </svg>
+                                     
                                     </button>
                                     <div id="worstCaseExportDropdown" class="absolute right-0 mt-2 w-64 rounded-md shadow-lg border hidden z-50" style="background-color: var(--bg-primary); border-color: var(--border-color);">
                                         <div class="py-1">
@@ -270,10 +286,12 @@
                                 <!-- Print Dropdown -->
                                 <div class="relative">
                                     <button onclick="toggleWorstCasePrintDropdown()" 
-                                            class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center gap-2" 
-                                            style="color: var(--gradient-mid); border-color: var(--gradient-mid);">
-                                        Print View
+                                            class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center justify-center" 
+                                            style="color: var(--gradient-mid); border-color: var(--gradient-mid);" title="Print View">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                        </svg>
+                                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                         </svg>
                                     </button>
@@ -314,8 +332,18 @@
                     <h2 class="text-2xl font-bold">Machines Management</h2>
                     <div class="flex items-center gap-x-4 no-print">
                          <button onclick="showMachineModal()" class="px-4 py-2 text-sm rounded-lg btn-gradient">+ Add Machine</button>
-                         <button onclick="exportMachinesToExcel()" class="px-4 py-2 text-sm rounded-lg border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Export to Excel</button>
-                         <button onclick="printCurrentView('machines')" class="print-btn px-4 py-2 text-sm rounded-lg border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Print Report</button>
+                         <button onclick="exportMachinesToExcel()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                             Export to Excel
+                           
+                         </button>
+                         <button onclick="printCurrentView('machines')" class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center justify-center" style="color: var(--gradient-mid); border-color: var(--gradient-mid);" title="Print Report">
+                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                             </svg>
+                         </button>
                     </div>
                 </div>
                 <div id="machinesContainer" class="space-y-8">
@@ -334,10 +362,11 @@
                         <!-- Export Dropdown -->
                         <div class="relative">
                             <button onclick="toggleMacoExportDropdown()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2 no-print" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                 </svg>
                                 Export to Excel
+                              
                                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
@@ -360,8 +389,10 @@
                         
                         <!-- Print Dropdown -->
                         <div class="relative">
-                            <button onclick="toggleMacoPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">
-                                Print Report
+                            <button onclick="toggleMacoPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center justify-center" style="color: var(--gradient-mid); border-color: var(--gradient-mid);" title="Print Report">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                </svg>
                                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
@@ -394,7 +425,7 @@
                     <div class="flex gap-2">
                         <div class="relative">
                             <button onclick="toggleDetergentExportDropdown()" class="px-4 py-2 text-sm rounded-lg border no-print" style="color: #16a34a; border-color: #16a34a;">
-                                <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                 </svg>
                                 Export to Excel
@@ -411,7 +442,11 @@
                         </div>
 
                         <div class="relative">
-                            <button onclick="toggleDetergentPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Print Report</button>
+                            <button onclick="toggleDetergentPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg border flex items-center justify-center" style="color: var(--gradient-mid); border-color: var(--gradient-mid);" title="Print Report">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                </svg>
+                            </button>
                             <div id="detergentPrintDropdown" class="dropdown absolute right-0 mt-2 w-64 hidden bg-white dark:bg-gray-800 border rounded shadow z-50" style="border-color:var(--border-color);">
                                 <div class="p-3">
                                     <label class="flex items-center mb-2"><input id="printDetergentAllTrainsCheckbox" type="checkbox" class="mr-2" onclick="toggleAllDetergentTrainsSelection('print')"> Print All Trains</label>
@@ -486,8 +521,10 @@
                         <h2 class="text-xl font-bold">Scoring System</h2>
                         <div class="flex items-center gap-x-4 no-print">
                             <button id="editScoringBtn" class="px-4 py-2 text-sm rounded-lg">Edit</button>
-                            <button onclick="printCurrentView('scoring-system')" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient">
-                                Print System
+                            <button onclick="printCurrentView('scoring-system')" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient flex items-center justify-center" title="Print System">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -504,13 +541,11 @@
                             <!-- Export Dropdown -->
                             <div class="relative">
                                 <button onclick="toggleTrainSummaryExportDropdown()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2 no-print" style="color: #16a34a; border-color: #16a34a;">
-                                    <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                     Export to Excel
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
+                                   
                                 </button>
                                 <div id="trainSummaryExportDropdown" class="hidden absolute right-0 mt-2 w-64 rounded-md shadow-lg z-50" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                     <div class="p-2">
@@ -530,8 +565,10 @@
                             
                             <!-- Print Dropdown -->
                             <div class="relative">
-                                <button onclick="toggleTrainSummaryPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient flex items-center gap-2">
-                                    Print Report
+                                <button onclick="toggleTrainSummaryPrintDropdown()" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient flex items-center justify-center" title="Print Report">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                    </svg>
                                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
@@ -567,14 +604,17 @@
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-xl font-bold">MACO Worst Case Summary Report</h2>
                         <div class="flex gap-2">
-                            <button onclick="exportSummaryToExcel()" class="px-4 py-2 text-sm rounded-lg border" style="color: #16a34a; border-color: #16a34a;">
-                                <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <button onclick="exportSummaryToExcel()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: #16a34a; border-color: #16a34a;">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                 </svg>
                                 Export to Excel
+                              
                             </button>
-                            <button onclick="printCurrentView('summary')" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient">
-                                Print Report
+                            <button onclick="printCurrentView('summary')" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient flex items-center justify-center" title="Print Report">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -665,7 +705,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="machineNumber" class="block text-sm font-medium mb-1">Machine Number</label>
-                        <input type="text" id="machineNumber" class="w-full px-3 py-2 border rounded-lg" required>
+                        <input type="text" id="machineNumber" class="w-full px-3 py-2 border rounded-lg no-proper-case" required>
                     </div>
                      <div>
                         <label for="machineStage" class="block text-sm font-medium mb-1">Machine Stage</label>
@@ -674,7 +714,7 @@
                 </div>
                 <div id="otherStageContainer" style="display: none;">
                     <label for="otherMachineStage" class="block text-sm font-medium mb-1">Specify New Stage</label>
-                    <input type="text" id="otherMachineStage" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., Granulation, Encapsulation">
+                    <input type="text" id="otherMachineStage" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="e.g., Granulation, Encapsulation">
                 </div>
                 <div>
                     <label for="machineName" class="block text-sm font-medium mb-1">Machine Name</label>
@@ -698,7 +738,7 @@
                                 </select>
                                 <div id="machineOtherLineContainer" style="display:none;margin-top:6px;">
                                     <label class="block text-sm font-medium mb-1">Specify Other Line</label>
-                                    <input type="text" id="machineOtherLine" class="w-full px-3 py-2 border rounded-lg" placeholder="Enter custom line name" />
+                                    <input type="text" id="machineOtherLine" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="Enter custom line name" />
                                 </div>
                             </div>
                             <div>
@@ -724,7 +764,7 @@
                 </div>
                 <div id="otherGroupContainer" style="display: none;">
                     <label for="otherMachineGroup" class="block text-sm font-medium mb-1">Specify New Group Name</label>
-                    <input type="text" id="otherMachineGroup" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., Custom Equipment Group">
+                    <input type="text" id="otherMachineGroup" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="e.g., Custom Equipment Group">
                 </div>
                  <div>
                     <label for="machineArea" class="block text-sm font-medium mb-1">Machine Area (cm²)</label>
@@ -732,7 +772,7 @@
                 </div>
                 <div>
                     <label for="cleaningSOP" class="block text-sm font-medium mb-1">Cleaning SOP</label>
-                    <input type="text" id="cleaningSOP" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., SOP 002" required>
+                    <input type="text" id="cleaningSOP" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="e.g., SOP 002" required>
                 </div>
             </form>
             <div class="modal-footer"><button type="button" onclick="hideModal('machineModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button type="submit" form="machineForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Save</button></div>
@@ -803,10 +843,11 @@
                 <div class="flex justify-between items-center w-full">
                     <div class="flex gap-2">
                         <button onclick="exportMachineProductsToExcel()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: #15803d; border-color: #15803d; background-color: #f0fdf4;">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                             Export to Excel
+                           
                         </button>
                         <button onclick="printMachineProducts()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -182,19 +182,31 @@ export function getTrainsGroupedByLine() {
             Object.values(map).forEach(t => trainsForLine.push(t));
         });
 
-        // assign sequential numbers within the line
+        // assign sequential numbers within each dosage form
         trainsForLine.sort((a,b) => {
             if (a.dosageForm < b.dosageForm) return -1;
             if (a.dosageForm > b.dosageForm) return 1;
             return a.key < b.key ? -1 : (a.key > b.key ? 1 : 0);
         });
 
-        let counter = 1;
+        // Group by dosage form and assign numbers within each group
+        const byDosageForm = {};
         trainsForLine.forEach(t => {
-            t.line = lineName;
-            t.number = counter++;
-            // Attach existing train id if available (preserve legacy ids)
-            t.id = trainIdMap.get(t.key) || null;
+            if (!byDosageForm[t.dosageForm]) {
+                byDosageForm[t.dosageForm] = [];
+            }
+            byDosageForm[t.dosageForm].push(t);
+        });
+
+        // Assign sequential numbers within each dosage form
+        Object.keys(byDosageForm).forEach(dosageForm => {
+            let counter = 1;
+            byDosageForm[dosageForm].forEach(t => {
+                t.line = lineName;
+                t.number = counter++;
+                // Attach existing train id if available (preserve legacy ids)
+                t.id = trainIdMap.get(t.key) || null;
+            });
         });
 
         result.push({ line: lineName, trains: trainsForLine });
@@ -694,5 +706,63 @@ export function getConsistentTrainOrder(trains) {
         
         // Finally sort by train ID
         return a.id - b.id;
+    });
+}
+
+// --- PROPER CASE INPUT HANDLING ---
+export function applyProperCase(inputElement) {
+    if (!inputElement) return;
+    
+    // List of words that should remain lowercase
+    const lowercaseWords = ['cm', 'mg', 'kg', 'g', 'ml', 'l', 'ppm', 'ppb', 'mcg', 'iu', 'ui', 'mcg/kg', 'mg/kg', 'g/kg'];
+    
+    // List of words that should remain uppercase
+    const uppercaseWords = ['MACO', 'PDE', 'LD50', 'NOEL', 'ADE', 'RPN', 'ESSA', 'MDD', 'BS', 'API', 'FDA', 'EMA', 'ICH', 'GMP', 'SOP', 'QA', 'QC', 'R&D', 'IT', 'HR', 'CEO', 'CTO', 'CFO', 'VP', 'GM', 'PM', 'BA', 'UI', 'UX', 'API', 'SQL', 'HTML', 'CSS', 'JS', 'PHP', 'ASP', 'JSP', 'XML', 'JSON', 'REST', 'SOAP', 'HTTP', 'HTTPS', 'FTP', 'SFTP', 'SSH', 'SSL', 'TLS', 'IP', 'URL', 'URI', 'DNS', 'TCP', 'UDP', 'VPN', 'LAN', 'WAN', 'WIFI', 'GPS', 'RFID', 'NFC', 'USB', 'HDMI', 'VGA', 'DVI', 'SATA', 'PCI', 'AGP', 'RAM', 'ROM', 'CPU', 'GPU', 'SSD', 'HDD', 'CD', 'DVD', 'BD', 'USB', 'HDMI', 'VGA', 'DVI', 'SATA', 'PCI', 'AGP', 'RAM', 'ROM', 'CPU', 'GPU', 'SSD', 'HDD', 'CD', 'DVD', 'BD'];
+    
+    inputElement.addEventListener('input', function(e) {
+        const value = e.target.value;
+        const words = value.split(' ');
+        
+        const processedWords = words.map(word => {
+            // Check if word should remain lowercase
+            if (lowercaseWords.includes(word.toLowerCase())) {
+                return word.toLowerCase();
+            }
+            
+            // Check if word should remain uppercase
+            if (uppercaseWords.includes(word.toUpperCase())) {
+                return word.toUpperCase();
+            }
+            
+            // Apply proper case (first letter uppercase, rest lowercase)
+            if (word.length > 0) {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }
+            
+            return word;
+        });
+        
+        const newValue = processedWords.join(' ');
+        
+        // Only update if the value actually changed
+        if (newValue !== value) {
+            e.target.value = newValue;
+        }
+    });
+}
+
+// Function to initialize proper case for all relevant inputs
+export function initializeProperCaseInputs() {
+    // Find all input fields that should have proper case
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
+    
+    inputs.forEach(input => {
+        // Skip inputs that shouldn't have proper case (like product codes, numbers, etc.)
+        const skipClasses = ['no-proper-case', 'product-code', 'numeric', 'email'];
+        const shouldSkip = skipClasses.some(cls => input.classList.contains(cls));
+        
+        if (!shouldSkip) {
+            applyProperCase(input);
+        }
     });
 }

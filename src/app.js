@@ -16,6 +16,7 @@ import * as dashboardView from './dashboardView.js';
 import * as summaryView from './summaryView.js';
 import * as trainSummaryView from './trainSummaryView.js';
 import * as scoringView from './scoringView.js';
+import * as machineCoverageView from './machineCoverageView.js';
 // Firestore functions removed; use only localStorage functions from ui.js if needed
 
 // --- 2. ORCHESTRATION ---
@@ -82,6 +83,9 @@ export function fullAppRender() {
         machineView.renderMachinesTable();
         machineView.updateMachineLineOptionsIfModalOpen(); // Update machine line options if modal is open
         dashboardView.renderMainDashboard();
+        
+        // Initialize proper case inputs after rendering
+        utils.initializeProperCaseInputs();
         macoProductView.renderMacoForTrains();
         addPrintButtonsToTrains(); // Add print buttons after rendering
         macoDetergentView.renderDetergentMaco();
@@ -401,6 +405,9 @@ function initializeApp() {
         
         // Perform the first full render of the application
         fullAppRender();
+
+        // Initialize proper case inputs
+        utils.initializeProperCaseInputs();
 
         // Initialize sidebar state
         initializeSidebarState();

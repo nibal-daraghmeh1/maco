@@ -98,6 +98,18 @@ export function renderMacoForTrains(lineFilter = null) {
             dosageHeader.innerHTML = `<h4 class="text-md font-semibold">${dosage}</h4>`;
             container.appendChild(dosageHeader);
 
+            // Find the train with largest ESSA in this dosage group
+            const trainsInDosage = byDosage[dosage];
+            const largestEssaTrain = trainsInDosage.reduce((max, train) => 
+                train.essa > max.essa ? train : max, trainsInDosage[0]);
+            
+            // Find the train with lowest MACO in this dosage group
+            const lowestMacoTrain = trainsInDosage.reduce((min, train) => {
+                const trainMaco = train.finalMaco || 0;
+                const minMaco = min.finalMaco || 0;
+                return trainMaco < minMaco ? train : min;
+            }, trainsInDosage[0]);
+            
             byDosage[dosage].forEach(train => {
                 const isCollapsed = true;
                 const productTypesInTrain = train.products.map(p => p.productType);
@@ -156,8 +168,20 @@ export function renderMacoForTrains(lineFilter = null) {
 
                 trainCard.innerHTML = `
                             <div class="train-header" onclick="toggleTrain('pm-${train.id}')">
-                                <span>Train ${train.number} </span>
-                                <button class="train-toggle" id="toggle-pm-${train.id}">${isCollapsed ? '▶' : '▼'}</button>
+                                <span>Train ${train.number}</span>
+                                <div class="flex items-center gap-2">
+                                    ${train.id === largestEssaTrain.id ? `
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-200 text-gray-700 border border-gray-300">
+                                            🏆 Largest ESSA: ${train.essa.toLocaleString()} cm²
+                                        </span>
+                                    ` : ''}
+                                    ${train.id === lowestMacoTrain.id ? `
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-200 text-blue-700 border border-blue-300">
+                                            🎯 Lowest MACO: ${(train.finalMaco || 0).toExponential(4)} mg/swab
+                                        </span>
+                                    ` : ''}
+                                    <button class="train-toggle" id="toggle-pm-${train.id}">${isCollapsed ? '▶' : '▼'}</button>
+                                </div>
                             </div>
                             <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-pm-${train.id}">
                                 <div class="train-content-inner space-y-6">
@@ -239,9 +263,9 @@ export function renderMacoForTrains(lineFilter = null) {
                                                     <li><b>Lowest LD50:</b> ${train.lowestLd50 !== null ? train.lowestLd50 + ' mg/kg' : 'N/A'}</li>
                                                     ${train.lowestLd50 !== null ? `<li><b>NOEL Calculation:</b> (${train.lowestLd50} × 70) ÷ 2000 = <span class="font-semibold">${((train.lowestLd50 * 70) / 2000).toFixed(6)} g</span></li>` : ''}
                                                     <li><b>Line Largest ESSA:</b> ${(() => {
-                                                        const largestEssa = getLargestEssaForLineAndDosageForm(train, baseTrainData);
-                                                        const trainWithLargestEssa = baseTrainData.find(t => t.line === train.line && t.essa === largestEssa);
-                                                        const trainLabel = trainWithLargestEssa ? `Train ${trainWithLargestEssa.id}` : '';
+                                                        const largestEssa = getLargestEssaForLineAndDosageForm(train, mergedTrains);
+                                                        const trainWithLargestEssa = mergedTrains.find(t => t.line === train.line && t.essa === largestEssa);
+                                                        const trainLabel = trainWithLargestEssa && trainWithLargestEssa.number ? `Train ${trainWithLargestEssa.number}` : '';
                                                         return `${largestEssa.toLocaleString()} cm² ${trainLabel ? `(from ${trainLabel})` : '(same line & dosage form)'}`;
                                                     })()} </li>
                                                  </ul>
@@ -260,6 +284,7 @@ export function renderMacoForTrains(lineFilter = null) {
                                 </div>
                             </div>
                         `;
+                
                 container.appendChild(trainCard);
                 recalculateProductMacoForTrain(train.id);
             });

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Coverage Table Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+        }
+        
+        .machine-coverage-container {
+            padding: 20px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        .horizontal-coverage-table {
+            border-collapse: collapse;
+            width: 100%;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .horizontal-coverage-table th {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .machine-header {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            min-width: 40px;
+            max-width: 40px;
+        }
+        
+        .train-header, .product-group-header, .worst-case-header, .rpn-header, .selected-header {
+            min-width: 120px;
+        }
+        
+        .horizontal-coverage-table td {
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .train-cell {
+            font-weight: 600;
+            background-color: #f8fafc;
+        }
+        
+        .machine-cell {
+            min-width: 40px;
+            font-weight: bold;
+        }
+        
+        .machine-used {
+            background-color: #e2e8f0;
+        }
+        
+        .study-1-row {
+            background-color: #e0f2fe !important;
+        }
+        
+        .study-2-row {
+            background-color: #dcfce7 !important;
+        }
+        
+        .study-3-row {
+            background-color: #fef9c3 !important;
+        }
+        
+        .study-1-machine {
+            background-color: #0ea5e9 !important;
+            color: white !important;
+        }
+        
+        .study-2-machine {
+            background-color: #22c55e !important;
+            color: white !important;
+        }
+        
+        .study-3-machine {
+            background-color: #eab308 !important;
+            color: white !important;
+        }
+        
+        .study-summary, .coverage-stats {
+            background-color: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .overflow-x-auto {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold mb-8">Machine Coverage Table Test</h1>
+        
+        <div id="machineCoverageContainer">
+            <!-- Table will be rendered here -->
+        </div>
+        
+        <div class="mt-8">
+            <button onclick="loadTestData()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                Load Test Data
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Sample test data
+        const testTrainData = [
+            {
+                id: "Train 1",
+                products: [
+                    { name: "Product A", activeIngredients: [{ severity: 4, occurrence: 3, detection: 2 }] }
+                ],
+                machineIds: ["M-01", "M-02", "M-04"],
+                productType: "Tablets"
+            },
+            {
+                id: "Train 2", 
+                products: [
+                    { name: "Product B", activeIngredients: [{ severity: 3, occurrence: 2, detection: 3 }] }
+                ],
+                machineIds: ["M-03", "M-05"],
+                productType: "Tablets"
+            },
+            {
+                id: "Train 3",
+                products: [
+                    { name: "Product C", activeIngredients: [{ severity: 5, occurrence: 4, detection: 4 }] }
+                ],
+                machineIds: ["M-02", "M-06"],
+                productType: "Capsules"
+            }
+        ];
+
+        const testAllMachines = [
+            { id: "M-01", name: "Weighing Machine", machineNumber: "M-01" },
+            { id: "M-02", name: "Mixing Machine", machineNumber: "M-02" },
+            { id: "M-03", name: "Compression Machine", machineNumber: "M-03" },
+            { id: "M-04", name: "Coating Machine", machineNumber: "M-04" },
+            { id: "M-05", name: "Filling Machine", machineNumber: "M-05" },
+            { id: "M-06", name: "Checking Machine", machineNumber: "M-06" }
+        ];
+
+        const testSelectedTrains = ["Train 1", "Train 3"];
+
+        function loadTestData() {
+            const container = document.getElementById('machineCoverageContainer');
+            container.innerHTML = generateTestTable();
+        }
+
+        function generateTestTable() {
+            // Create coverage map to track which machines are covered by which study
+            const machineCoverage = new Map();
+            
+            // Process selected trains in order
+            testSelectedTrains.forEach((trainId, studyIndex) => {
+                const train = testTrainData.find(t => t.id === trainId);
+                if (train && train.machineIds) {
+                    train.machineIds.forEach(machineId => {
+                        if (!machineCoverage.has(machineId)) {
+                            machineCoverage.set(machineId, studyIndex);
+                        }
+                    });
+                }
+            });
+            
+            // Generate HTML
+            let html = `
+                <div class="machine-coverage-container">
+                    <h3 class="text-xl font-bold mb-4">Machine Coverage Analysis</h3>
+                    <div class="overflow-x-auto">
+                        <table class="horizontal-coverage-table">
+                            <thead>
+                                <tr>
+                                    <th class="train-header">Train</th>
+                                    <th class="product-group-header">Product Group</th>
+                                    <th class="worst-case-header">Worst Case Product</th>
+                                    <th class="rpn-header">RPN</th>
+            `;
+            
+            // Add machine headers
+            testAllMachines.forEach(machine => {
+                html += `<th class="machine-header">${machine.machineNumber}</th>`;
+            });
+            
+            html += `
+                                    <th class="selected-header">Selected for Study</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+            
+            // Add train rows
+            testTrainData.forEach(train => {
+                const isSelected = testSelectedTrains.includes(train.id);
+                const studyIndex = testSelectedTrains.indexOf(train.id);
+                const studyColors = [
+                    { name: 'Study 1', bg: '#e0f2fe', cell: '#0ea5e9' },
+                    { name: 'Study 2', bg: '#dcfce7', cell: '#22c55e' },
+                    { name: 'Study 3', bg: '#fef9c3', cell: '#eab308' }
+                ];
+                const studyColor = studyIndex >= 0 ? studyColors[studyIndex] : null;
+                
+                // Get train info
+                const productGroup = train.productType ? train.productType.toUpperCase() : 'N/A';
+                const worstCaseProduct = train.products && train.products.length > 0 ? train.products[0].name : 'N/A';
+                const highestRpn = train.products && train.products.length > 0 ? 
+                    train.products[0].activeIngredients.reduce((max, ing) => Math.max(max, ing.severity * ing.occurrence * ing.detection), 0) : 0;
+                
+                // Row styling
+                const rowClass = isSelected ? `study-${studyIndex + 1}-row` : '';
+                const rowStyle = studyColor ? `background-color: ${studyColor.bg};` : '';
+                
+                html += `
+                    <tr class="${rowClass}" style="${rowStyle}">
+                        <td class="train-cell font-semibold">${train.id}</td>
+                        <td class="product-group-cell">${productGroup}</td>
+                        <td class="worst-case-cell">${worstCaseProduct}</td>
+                        <td class="rpn-cell font-bold">${highestRpn}</td>
+                `;
+                
+                // Add machine cells
+                testAllMachines.forEach(machine => {
+                    const usesMachine = train.machineIds && train.machineIds.includes(machine.id);
+                    const coverageStudyIndex = machineCoverage.get(machine.id);
+                    const coverageColor = coverageStudyIndex !== undefined ? studyColors[coverageStudyIndex] : null;
+                    
+                    let cellClass = 'machine-cell';
+                    let cellStyle = '';
+                    
+                    if (usesMachine) {
+                        if (coverageColor) {
+                            cellClass += ` study-${coverageStudyIndex + 1}-machine`;
+                            cellStyle = `background-color: ${coverageColor.cell}; color: white;`;
+                        } else {
+                            cellClass += ' machine-used';
+                            cellStyle = 'background-color: #e2e8f0;';
+                        }
+                    }
+                    
+                    html += `<td class="${cellClass}" style="${cellStyle}">${usesMachine ? '✓' : ''}</td>`;
+                });
+                
+                // Selected for study column
+                const selectedText = isSelected ? 'Yes' : 'No';
+                const selectedClass = isSelected ? 'text-green-600 font-bold' : 'text-gray-500';
+                html += `<td class="selected-cell ${selectedClass}">${selectedText}</td>`;
+                
+                html += '</tr>';
+            });
+            
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Summary Section -->
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="study-summary">
+                            <h4 class="text-lg font-semibold mb-3">Study Summary</h4>
+                            <div class="space-y-2">
+            `;
+            
+            // Generate study summary
+            testSelectedTrains.forEach((trainId, index) => {
+                const train = testTrainData.find(t => t.id === trainId);
+                const productName = train && train.products && train.products.length > 0 ? train.products[0].name : 'Unknown';
+                const color = studyColors[index];
+                html += `
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 rounded" style="background-color: ${color.cell};"></div>
+                        <span class="text-sm">${color.name}: ${trainId} (${productName})</span>
+                    </div>
+                `;
+            });
+            
+            html += `
+                            </div>
+                        </div>
+                        
+                        <div class="coverage-stats">
+                            <h4 class="text-lg font-semibold mb-3">Coverage Statistics</h4>
+                            <div class="space-y-2 text-sm">
+                                <div>Total Trains: ${testTrainData.length}</div>
+                                <div>Selected for Study: ${testSelectedTrains.length}</div>
+                                <div>Machines Covered: ${machineCoverage.size}</div>
+                                <div>Coverage Rate: ${Math.round((machineCoverage.size / testAllMachines.length) * 100)}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return html;
+        }
+
+        // Load test data on page load
+        window.onload = function() {
+            loadTestData();
+        };
+    </script>
+</body>
+</html>

@@ -201,6 +201,40 @@ export function renderMachinesTable() {
         const sortedMachines = [...lineMachines].sort((a, b) => {
             const key = state.machineSortState.key;
             const dir = state.machineSortState.direction === 'asc' ? 1 : -1;
+            
+            // If sorting by stage, use the stage display order
+            if (key === 'stage') {
+                const stageOrder = state.machineStageDisplayOrder;
+                const aIndex = stageOrder.indexOf(a.stage || '');
+                const bIndex = stageOrder.indexOf(b.stage || '');
+                
+                // If both stages are in the order, sort by their position
+                if (aIndex !== -1 && bIndex !== -1) {
+                    return (aIndex - bIndex) * dir;
+                }
+                // If only one is in the order, prioritize it
+                if (aIndex !== -1 && bIndex === -1) return -1 * dir;
+                if (aIndex === -1 && bIndex !== -1) return 1 * dir;
+                // If neither is in the order, sort alphabetically
+                return String(a.stage || '').localeCompare(String(b.stage || '')) * dir;
+            }
+            
+            // Default sorting: first by stage order, then by the selected key
+            const stageOrder = state.machineStageDisplayOrder;
+            const aStageIndex = stageOrder.indexOf(a.stage || '');
+            const bStageIndex = stageOrder.indexOf(b.stage || '');
+            
+            // If both have stages in the order, sort by stage first
+            if (aStageIndex !== -1 && bStageIndex !== -1) {
+                if (aStageIndex !== bStageIndex) {
+                    return aStageIndex - bStageIndex;
+                }
+            }
+            // If only one has a stage in the order, prioritize it
+            else if (aStageIndex !== -1 && bStageIndex === -1) return -1;
+            else if (aStageIndex === -1 && bStageIndex !== -1) return 1;
+            
+            // Then sort by the selected key
             let valA, valB;
             if (key === 'area') {
                 valA = a.area;
@@ -662,6 +696,19 @@ export function showMachineProductsModal(machineId) {
             const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(machineId));
             
             if (assignedProducts.length > 0) {
+                // First, calculate the overall highest RPN among all products on this machine
+                const toxicityPreference = getToxicityPreference();
+                let overallHighestRPN = 0;
+                
+                assignedProducts.forEach(p => {
+                    p.activeIngredients.forEach(ing => {
+                        const scores = calculateScores(ing, toxicityPreference);
+                        if (scores.rpn > overallHighestRPN) {
+                            overallHighestRPN = scores.rpn;
+                        }
+                    });
+                });
+                
                 let productListHTML = '<div class="divide-y" style="border-color: var(--border-color);">';
                 assignedProducts.forEach((p, index) => {
                     const trainId = getProductTrainId(p);
@@ -671,7 +718,6 @@ export function showMachineProductsModal(machineId) {
                     const dateFormatted = new Date(p.date).toLocaleDateString();
                     
                     // Calculate highest RPN for the product
-                    const toxicityPreference = getToxicityPreference();
                     let highestRPN = 0;
                     let highestRPNRating = 'N/A';
                     
@@ -684,6 +730,7 @@ export function showMachineProductsModal(machineId) {
                     });
                     
                     const rpnClass = getRpnRatingClass(highestRPNRating);
+                    const isHighestRPN = (highestRPN === overallHighestRPN);
                     
                     productListHTML += `
                         <div class="py-3 px-2">
@@ -692,7 +739,7 @@ export function showMachineProductsModal(machineId) {
                                 <span class="text-xs px-2 py-1 rounded" style="background-color: var(--bg-accent); color: var(--text-secondary);">${p.productCode}</span>
                             </div>
                             <div class="text-xs flex flex-wrap gap-4">
-                                <span ><strong>Highest RPN:</strong> <span class="${rpnClass}" style="font-weight: bold;">${highestRPN.toFixed(1)}</span></span>
+                                <span ><strong>${isHighestRPN ? 'Highest RPN:' : 'RPN:'}</strong> <span class="${rpnClass}" style="font-weight: bold;">${highestRPN.toFixed(1)}</span></span>
                                 <span><strong>Special Case Product:</strong> <span class="${criticalClass}">${criticalText}</span></span>
                                 ${p.isCritical && p.criticalReason ? `<span class="text-xs italic" style="color: var(--text-secondary);">Reason: ${p.criticalReason}</span>` : ''}
                             </div>
@@ -1158,14 +1205,16 @@ window.showMachineSummary = function(line) {
                     <td class="px-4 py-3 font-semibold" style="color: var(--text-primary);">${group.productName}</td>
                     <td class="px-4 py-3" style="color: var(--text-primary);">${group.ingredient}</td>
                     <td class="px-4 py-3 text-center" style="color: var(--text-primary);">
-                        <span class="px-2 py-1 rounded text-sm font-bold" style="background-color: var(--bg-accent); color: var(--text-primary);">${group.rpn}</span>
+                        <span class="px-2 py-1 rounded text-sm font-bold" style="background-color: var(--bg-accent); color: var(--text-primary);">
+                            ${group.isHighestRpn ? 'Highest RPN: ' : 'RPN: '}${group.rpn}
+                        </span>
                     </td>
                     <td class="px-4 py-3" style="color: var(--text-primary);">
                         <div class="flex flex-wrap gap-1">
                             ${group.machines.map(machineName => {
                                 const machine = lineMachines.find(m => m.name === machineName);
                                 const groupInfo = machine && machine.group ? ` (${machine.group})` : '';
-                                return `<span class="px-2 py-1 rounded border text-xs" style="border-color: var(--border-color); background-color: var(--bg-secondary);">${machineName}${groupInfo}</span>`;
+                                return `<span class="px-2 py-1 rounded border text-xs" style="border-color: var(--border-color); background-color: var(--bg-secondary);">${machineName}<strong>${groupInfo}</strong></span>`;
                             }).join('')}
                         </div>
                     </td>
@@ -1259,6 +1308,14 @@ function calculateMachineSummary(machines) {
     // Convert to array and sort by RPN
     summary.sharedWorstCaseGroups = Object.values(productGroups)
         .sort((a, b) => b.rpn - a.rpn);
+    
+    // Mark the highest RPN groups (all groups with the same highest RPN value)
+    if (summary.sharedWorstCaseGroups.length > 0) {
+        const highestRpn = summary.sharedWorstCaseGroups[0].rpn;
+        summary.sharedWorstCaseGroups.forEach(group => {
+            group.isHighestRpn = (group.rpn === highestRpn);
+        });
+    }
     
     // Collect all worst case products
     const allWorstCases = Object.values(summary.machineWorstCases);

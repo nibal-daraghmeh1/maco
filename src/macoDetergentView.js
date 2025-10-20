@@ -241,8 +241,9 @@ export function updateDetergentIngredient(id, field, value) {
 // Populate detergent train selection dropdowns for export/print
 export function populateDetergentTrainOptions() {
     import('./utils.js').then(utils => {
-        const { getTrainData } = utils;
+        const { getTrainData, getTrainIdToLineNumberMap } = utils;
         const trainData = getTrainData();
+        const idMap = getTrainIdToLineNumberMap();
 
         // Export options
         const exportContainer = document.getElementById('detergentExportTrainOptions');
@@ -285,7 +286,8 @@ export function populateDetergentTrainOptions() {
                 checkbox.onchange = () => updateAllDetergentTrainsCheckbox('print');
 
                 const span = document.createElement('span');
-                span.textContent = `Train ${train.id}`;
+                const mapped = idMap.get(String(train.id));
+                span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${train.id}`;
 
                 labelElement.appendChild(checkbox);
                 labelElement.appendChild(span);

@@ -258,6 +258,31 @@ export function handleSearchAndFilter(tabId) {
     const trainNoFilter = document.querySelector('.filterColTrainNo')?.value || 'all';
     const productTypeFilter = document.querySelector('.filterColProductType')?.value || 'all';
     const isCriticalFilter = document.querySelector('.filterColIsCritical')?.value || 'all';
+    
+    // Update train number options based on selected line and dosage form
+    updateTrainNumberOptions(lineFilter, productTypeFilter);
+    
+    // Add event listeners to Line and Dosage Form filters to update Train No. options
+    const lineSelect = document.querySelector('.filterColLine');
+    const productTypeSelect = document.querySelector('.filterColProductType');
+    
+    if (lineSelect && !lineSelect.hasAttribute('data-listener-added')) {
+        lineSelect.addEventListener('change', function() {
+            const selectedLine = this.value;
+            const selectedDosageForm = document.querySelector('.filterColProductType')?.value || 'all';
+            updateTrainNumberOptions(selectedLine, selectedDosageForm);
+        });
+        lineSelect.setAttribute('data-listener-added', 'true');
+    }
+    
+    if (productTypeSelect && !productTypeSelect.hasAttribute('data-listener-added')) {
+        productTypeSelect.addEventListener('change', function() {
+            const selectedDosageForm = this.value;
+            const selectedLine = document.querySelector('.filterColLine')?.value || 'all';
+            updateTrainNumberOptions(selectedLine, selectedDosageForm);
+        });
+        productTypeSelect.setAttribute('data-listener-added', 'true');
+    }
 
     
     state.viewProducts[tabId] = state.products.filter(product => {
@@ -277,6 +302,57 @@ export function handleSearchAndFilter(tabId) {
     });
      
     renderProducts(tabId);
+}
+
+// Function to update train number options based on selected line and dosage form
+export function updateTrainNumberOptions(selectedLine, selectedDosageForm) {
+    const trainNoSelect = document.querySelector('.filterColTrainNo');
+    if (!trainNoSelect) return;
+    
+    // Get all products that match the selected line and dosage form
+    let filteredProducts = state.products;
+    
+    if (selectedLine !== 'all') {
+        filteredProducts = filteredProducts.filter(product => product.line === selectedLine);
+    }
+    
+    if (selectedDosageForm !== 'all') {
+        filteredProducts = filteredProducts.filter(product => product.productType === selectedDosageForm);
+    }
+    
+    // Get unique train numbers from filtered products
+    const trainNumbers = new Set();
+    filteredProducts.forEach(product => {
+        const trainId = getProductTrainId(product);
+        if (trainId !== 'N/A') {
+            trainNumbers.add('T' + trainId);
+        }
+    });
+    
+    // Convert to array and sort
+    const sortedTrainNumbers = Array.from(trainNumbers).sort((a, b) => {
+        const numA = parseInt(a.replace('T', ''));
+        const numB = parseInt(b.replace('T', ''));
+        return numA - numB;
+    });
+    
+    // Update the select options
+    const currentValue = trainNoSelect.value;
+    trainNoSelect.innerHTML = '<option value="all">All</option>';
+    
+    sortedTrainNumbers.forEach(trainNo => {
+        const option = document.createElement('option');
+        option.value = trainNo;
+        option.textContent = trainNo;
+        trainNoSelect.appendChild(option);
+    });
+    
+    // Restore the selected value if it's still valid
+    if (sortedTrainNumbers.includes(currentValue)) {
+        trainNoSelect.value = currentValue;
+    } else {
+        trainNoSelect.value = 'all';
+    }
 }
 
 export function sortData(key, tabId) {
@@ -333,7 +409,7 @@ export function updateSortIndicators(tabId) {
 export function showAddForm() {
     const form = document.getElementById('addProductForm');
     form.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                  <div><label class="block text-sm font-medium mb-1">Product Code</label><input type="text" id="addProductCode" class="w-full px-3 py-2 border rounded-lg" required placeholder="e.g. 1ABC12345DE"></div>
+                                  <div><label class="block text-sm font-medium mb-1">Product Code</label><input type="text" id="addProductCode" class="w-full px-3 py-2 border rounded-lg no-proper-case" required placeholder="e.g. 1ABC12345DE"></div>
                                   <div><label class="block text-sm font-medium mb-1">Product Name</label><input type="text" id="addProductName" class="w-full px-3 py-2 border rounded-lg" required></div>
                                   <div><label class="block text-sm font-medium mb-1">Date</label><input type="date" id="addProductDate" class="w-full px-3 py-2 border rounded-lg" required></div>
                               </div>
@@ -351,7 +427,7 @@ export function showAddForm() {
                                     </select>
                                                                         <div id="addOtherLineContainer" style="display:none;margin-top:6px;">
                                                                                 <label class="block text-sm font-medium mb-1">Specify Other Line</label>
-                                                                                <input type="text" id="addOtherLine" class="w-full px-3 py-2 border rounded-lg" />
+                                                                                <input type="text" id="addOtherLine" class="w-full px-3 py-2 border rounded-lg no-proper-case" />
                                                                         </div>
                                                                         </div>
                                   <div>
@@ -364,7 +440,7 @@ export function showAddForm() {
                                         </div>
                                         <div id="addOtherTypeContainer" style="display: none;">
                                             <label class="block text-sm font-medium mb-1">Specify Other Form</label>
-                                            <input type="text" id="addOtherProductType" class="w-full px-3 py-2 border rounded-lg">
+                                            <input type="text" id="addOtherProductType" class="w-full px-3 py-2 border rounded-lg no-proper-case">
                                         </div>
                                       </div>
                                   </div>
@@ -386,6 +462,11 @@ export function showAddForm() {
     addIngredientFormFields('ingredientsContainer');
     document.getElementById('addProductDate').value = new Date().toISOString().split('T')[0];
     document.getElementById('addProductModal').style.display = 'flex';
+    
+    // Initialize proper case for dynamically created inputs
+    import('./utils.js').then(utils => {
+        utils.initializeProperCaseInputs();
+    }).catch(error => console.error('Error initializing proper case:', error));
 }
 
 export function addIngredientFormFields(containerId, ingredient = null) {
@@ -423,6 +504,11 @@ const isEdit = !!ingredient;
     
     // Populate the product line dropdowns with all available lines
     populateProductLineDropdowns();
+    
+    // Initialize proper case for dynamically created inputs
+    import('./utils.js').then(utils => {
+        utils.initializeProperCaseInputs();
+    }).catch(error => console.error('Error initializing proper case:', error));
 }
 
 export function populateDynamicSelectsForElement(element) {
@@ -439,7 +525,7 @@ export function showEditProductModal(productId) {
     form.innerHTML = `
                 <input type="hidden" id="editProductId" value="${product.id}">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div><label class="block text-sm font-medium mb-1">Product Code</label><input type="text" id="editProductCode" value="${product.productCode}" class="w-full px-3 py-2 border rounded-lg" required></div>
+                    <div><label class="block text-sm font-medium mb-1">Product Code</label><input type="text" id="editProductCode" value="${product.productCode}" class="w-full px-3 py-2 border rounded-lg no-proper-case" required></div>
                     <div><label class="block text-sm font-medium mb-1">Product Name</label><input type="text" id="editProductName" value="${product.name}" class="w-full px-3 py-2 border rounded-lg" required></div>
                     <div><label class="block text-sm font-medium mb-1">Date</label><input type="date" id="editProductDate" value="${dateValue}" class="w-full px-3 py-2 border rounded-lg" required></div>
                     <div><label class="block text-sm font-medium mb-1">Batch Size (Kg)</label><input type="number" step="0.01" id="editBatchSize" value="${product.batchSizeKg}" class="w-full px-3 py-2 border rounded-lg" min="0" required></div>
@@ -458,7 +544,7 @@ export function showEditProductModal(productId) {
                     </select>
                     <div id="editOtherLineContainer" style="display:none;margin-top:6px;">
                         <label class="block text-sm font-medium mb-1">Specify Other Line</label>
-                        <input type="text" id="editOtherLine" class="w-full px-3 py-2 border rounded-lg">
+                        <input type="text" id="editOtherLine" class="w-full px-3 py-2 border rounded-lg no-proper-case">
                     </div>
                     </div>
                     <div>
@@ -469,7 +555,7 @@ export function showEditProductModal(productId) {
                     </div>
                     <div id="editOtherTypeContainer" style="display: none;">
                         <label class="block text-sm font-medium mb-1">Specify Other Form</label>
-                        <input type="text" id="editOtherProductType" class="w-full px-3 py-2 border rounded-lg">
+                        <input type="text" id="editOtherProductType" class="w-full px-3 py-2 border rounded-lg no-proper-case">
                     </div>
                 </div>
                 <div>
@@ -569,6 +655,11 @@ export function showEditProductModal(productId) {
             }
         }
     }
+    
+    // Initialize proper case for dynamically created inputs
+    import('./utils.js').then(utils => {
+        utils.initializeProperCaseInputs();
+    }).catch(error => console.error('Error initializing proper case:', error));
 }
 
 export function saveProductChanges(event) {
@@ -748,7 +839,7 @@ export function populateFilterSelects() {
         lineFilterSelect.innerHTML += '<option value="Other">Other</option>';
     }
 
-    // Train No. Filter
+    // Train No. Filter - Initialize with all train numbers
     const trainNoSelect = document.querySelector('.filterColTrainNo');
     if (trainNoSelect) {
         const trainIds = [...new Set(state.products.map(p => getProductTrainId(p))
@@ -759,6 +850,11 @@ export function populateFilterSelects() {
             trainNoSelect.innerHTML += `<option value="T${id}">T${id}</option>`;
         });
     }
+    
+    // Initialize train number options based on current filter values
+    const currentLine = document.querySelector('.filterColLine')?.value || 'all';
+    const currentDosageForm = document.querySelector('.filterColProductType')?.value || 'all';
+    updateTrainNumberOptions(currentLine, currentDosageForm);
 }
 
 // Populate product line dropdowns in add/edit modals
