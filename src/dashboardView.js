@@ -5,7 +5,7 @@ import { getTrainData, getWorstCaseProductType, getLargestEssaForLineAndDosageFo
 import * as utils from './utils.js';
 import { renderRpnChart } from './worstCaseView.js'; // The RPN chart is on the worst-case tab but shown here too
 import * as state from './state.js';
-import { createHorizontalMachineCoverageTable, getMachineCoverageStyles } from './machineCoverageView.js';
+import { createHorizontalMachineCoverageTable } from './machineCoverageView.js';
 
 export function renderMainDashboard() {
          const statsContainer = document.getElementById('dashboardStats');
@@ -430,15 +430,6 @@ export function renderMachineCoverageTable() {
     const container = document.getElementById('machineCoverageContainer');
     if (!container) return;
     
-    // Add styles
-    const styleElement = document.getElementById('machineCoverageStyles');
-    if (!styleElement) {
-        const style = document.createElement('div');
-        style.id = 'machineCoverageStyles';
-        style.innerHTML = getMachineCoverageStyles();
-        document.head.appendChild(style);
-    }
-    
-    // Generate and display the table
+    // Generate and display the table (styles are included in the HTML)
     container.innerHTML = createHorizontalMachineCoverageTable();
 }
