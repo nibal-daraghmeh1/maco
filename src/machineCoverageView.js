@@ -163,11 +163,14 @@ class SimplifiedMachineCoverageTable {
             min-width: 24px;
             max-width: 24px;
             white-space: nowrap;
+            transform: rotate(180deg); /* bottom-to-top */
+            transform-origin: center;
         }
         
         .coverage-table th:first-child {
             text-align: left;
-            min-width: 200px;
+            min-width: 90px;
+            max-width: 120px;
         }
         
         .coverage-table th:nth-child(2) {
@@ -185,6 +188,10 @@ class SimplifiedMachineCoverageTable {
             text-align: left;
             font-weight: 500;
             color: #212529;
+            width: 90px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .coverage-table td:nth-child(2) {
@@ -330,10 +337,12 @@ class SimplifiedMachineCoverageTable {
      * @returns {string} HTML string for stats
      */
     generateSummaryStats() {
-        const totalProducts = this.allTrains.length;
-        const selectedCount = this.selectedTrains.length;
-        const totalMachines = this.machines.length;
-        const savingsPercent = Math.round((1 - selectedCount / totalProducts) * 100);
+        const totalProducts = Number(this.allTrains?.length || 0);
+        const selectedCount = Number(this.selectedTrains?.length || 0);
+        const totalMachines = Number(this.machines?.length || 0);
+        const savingsPercent = totalProducts > 0
+            ? Math.round((1 - selectedCount / totalProducts) * 100)
+            : 0;
         
         return `
         <div class="summary-stats">
