@@ -157,6 +157,13 @@ class SimplifiedMachineCoverageTable {
             border: 1px solid #dee2e6;
             font-size: 13px;
         }
+        .coverage-table th.machine-header {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            min-width: 24px;
+            max-width: 24px;
+            white-space: nowrap;
+        }
         
         .coverage-table th:first-child {
             text-align: left;
@@ -249,7 +256,7 @@ class SimplifiedMachineCoverageTable {
      */
     generateTableHeader() {
         const machineHeaders = this.machines.map(machine => 
-            `<th>${machine}</th>`
+            `<th class="machine-header">${machine}</th>`
         ).join('');
         
         return `
@@ -437,10 +444,10 @@ function convertTrainDataToProductData(trainData, allMachines) {
             });
         }
         
-        // Map machine ids to numbers
+        // Map machine ids to names (vertical headers)
         const usedMachines = (train.machineIds || []).map(id => {
             const m = allMachines.find(x => x.id === id);
-            return m ? m.machineNumber : null;
+            return m ? m.name : null;
         }).filter(Boolean);
         
         data.trains.push({
