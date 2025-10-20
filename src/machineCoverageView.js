@@ -9,8 +9,8 @@ import { products, machines } from './state.js';
 
 class SimplifiedMachineCoverageTable {
     constructor() {
-        this.selectedProducts = [];
-        this.allProducts = [];
+        this.selectedTrains = [];
+        this.allTrains = [];
         this.machines = [];
         this.studyColors = [
             '#E3F2FD', // Light Blue for Study 1
@@ -39,37 +39,36 @@ class SimplifiedMachineCoverageTable {
      * @param {Object} data - Raw input data
      */
     processData(data) {
-        // Extract all products sorted by RPN (highest first)
-        this.allProducts = data.products.sort((a, b) => b.rpn - a.rpn);
+        // Trains sorted by RPN (highest first)
+        this.allTrains = data.trains.sort((a, b) => b.rpn - a.rpn);
         
         // Extract unique machines
-        this.machines = [...new Set(data.products.flatMap(p => p.machines))].sort();
+        this.machines = [...new Set(data.trains.flatMap(t => t.usedMachines))].sort();
         
         // Apply machine coverage algorithm
-        this.selectProductsForStudy();
+        this.selectTrainsForStudy();
     }
 
     /**
      * Apply the machine coverage selection algorithm
      */
-    selectProductsForStudy() {
+    selectTrainsForStudy() {
         const coveredMachines = new Set();
         const allMachines = new Set(this.machines);
         let studyIndex = 0;
 
-        // Reset selected products
-        this.selectedProducts = [];
+        // Reset selected trains
+        this.selectedTrains = [];
 
-        // Iterate through products by RPN (highest first)
-        for (const product of this.allProducts) {
-            // Check if this product covers any uncovered machines
-            const productMachines = new Set(product.machines);
-            const newMachines = [...productMachines].filter(m => !coveredMachines.has(m));
+        // Iterate through trains by RPN (highest first)
+        for (const train of this.allTrains) {
+            const trainMachines = new Set(train.usedMachines);
+            const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
             
             if (newMachines.length > 0) {
-                // This product covers new machines, select it for study
-                this.selectedProducts.push({
-                    ...product,
+                // Select train for study
+                this.selectedTrains.push({
+                    ...train,
                     studyNumber: studyIndex + 1,
                     studyColor: this.studyColors[studyIndex % this.studyColors.length],
                     newMachinesCovered: newMachines
@@ -184,17 +183,8 @@ class SimplifiedMachineCoverageTable {
             color: #495057;
         }
         
-        .coverage-table .machine-covered {
-            background: #28a745;
-            color: white;
-            font-weight: 600;
-            border-radius: 3px;
-        }
-        
-        .coverage-table .machine-not-covered {
-            background: #f8f9fa;
-            color: #6c757d;
-        }
+        /* Cells colored per study; empty cells are white */
+        .coverage-table .machine-cell { min-width: 28px; height: 24px; }
         
         .study-legend {
             display: flex;
@@ -263,9 +253,12 @@ class SimplifiedMachineCoverageTable {
         return `
         <thead>
             <tr>
-                <th>Product Name</th>
+                <th>Train</th>
+                <th>Product Group</th>
+                <th>Worst Case Product</th>
                 <th>RPN</th>
                 ${machineHeaders}
+                <th>Selected for Study</th>
             </tr>
         </thead>`;
     }
@@ -275,23 +268,34 @@ class SimplifiedMachineCoverageTable {
      * @returns {string} HTML string for body
      */
     generateTableBody() {
-        const rows = this.allProducts.map(product => {
-            const selectedProduct = this.selectedProducts.find(sp => sp.name === product.name);
-            const rowStyle = selectedProduct ? 
-                `style="background-color: ${selectedProduct.studyColor};"` : '';
+        const rows = this.allTrains.map(train => {
+            const selectedTrain = this.selectedTrains.find(st => st.trainId === train.trainId);
+            const studyColor = selectedTrain ? selectedTrain.studyColor : null;
+            const rowStyle = studyColor ? `style="background-color: ${studyColor};"` : '';
             
             const machineCells = this.machines.map(machine => {
-                const isUsed = product.machines.includes(machine);
-                const cellClass = isUsed ? 'machine-covered' : 'machine-not-covered';
-                const cellContent = isUsed ? '✓' : '';
-                return `<td class="${cellClass}">${cellContent}</td>`;
+                const isUsed = train.usedMachines.includes(machine);
+                let fillColor = '#ffffff';
+                if (isUsed) {
+                    // Use color of the study that first covered this machine
+                    const firstCover = this.selectedTrains.find(st => st.newMachinesCovered.includes(machine));
+                    fillColor = firstCover ? firstCover.studyColor : '#f1f5f9';
+                }
+                return `<td class="machine-cell" style="background-color: ${fillColor};"></td>`;
             }).join('');
+            
+            const selectedText = selectedTrain ? 'Yes' : 'No';
+            const group = train.productGroup || '-';
+            const wcp = train.worstCaseProduct || '-';
             
             return `
             <tr ${rowStyle}>
-                <td>${product.name}</td>
-                <td>${product.rpn}</td>
+                <td class="train-label">${train.trainId}</td>
+                <td>${group}</td>
+                <td>${wcp}</td>
+                <td>${train.rpn}</td>
                 ${machineCells}
+                <td>${selectedText}</td>
             </tr>`;
         }).join('');
         
@@ -303,10 +307,10 @@ class SimplifiedMachineCoverageTable {
      * @returns {string} HTML string for legend
      */
     generateStudyLegend() {
-        const legendItems = this.selectedProducts.map(product => 
+        const legendItems = this.selectedTrains.map(train => 
             `<div class="legend-item">
-                <div class="legend-color" style="background-color: ${product.studyColor};"></div>
-                <span>Study ${product.studyNumber}: ${product.name}</span>
+                <div class="legend-color" style="background-color: ${train.studyColor};"></div>
+                <span>Study ${train.studyNumber}: ${train.trainId} (${train.worstCaseProduct || '-'})</span>
             </div>`
         ).join('');
         
@@ -318,8 +322,8 @@ class SimplifiedMachineCoverageTable {
      * @returns {string} HTML string for stats
      */
     generateSummaryStats() {
-        const totalProducts = this.allProducts.length;
-        const selectedCount = this.selectedProducts.length;
+        const totalProducts = this.allTrains.length;
+        const selectedCount = this.selectedTrains.length;
         const totalMachines = this.machines.length;
         const savingsPercent = Math.round((1 - selectedCount / totalProducts) * 100);
         
@@ -349,25 +353,40 @@ class SimplifiedMachineCoverageTable {
      * @returns {string} Line and dosage form string
      */
     getLineAndDosageForm() {
-        // This should be passed from the parent component
-        return "Line 1 - Tablets"; // Default value
+        // Prefer injected context from caller (current selected line)
+        if (this._lineContext) {
+            return `${this._lineContext}`;
+        }
+        return "All Lines";
     }
 }
 
 export function createHorizontalMachineCoverageTable() {
-    const trainData = getTrainData();
+    // Get full train data
+    let trainData = getTrainData();
     const allMachines = getAllMachines();
+    
+    // Apply current line filter to reflect Train Summary behavior
+    const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+    if (currentLine) {
+        trainData = trainData.filter(t => (t.line || t.productLine) === currentLine);
+    }
     
     // Convert train data to product data format
     const productData = convertTrainDataToProductData(trainData, allMachines);
     
+    // Store context for header text (line name)
+    productData.__context = { line: currentLine };
+    
     console.log('Machine Coverage Data:', {
         trainData: trainData.length,
         allMachines: allMachines.length,
-        products: productData.products.length
+        trains: (productData.trains || []).length
     });
     
     const coverageTable = new SimplifiedMachineCoverageTable();
+    // Pass line context into instance for header rendering
+    coverageTable._lineContext = currentLine;
     return coverageTable.generateTable(productData);
 }
 
@@ -388,47 +407,42 @@ function getAllMachines() {
 }
 
 function convertTrainDataToProductData(trainData, allMachines) {
-    const productData = {
-        products: []
-    };
+    const data = { trains: [] };
     
-    // Convert each train to products
     trainData.forEach(train => {
-        if (train.products && train.products.length > 0) {
+        // Determine worst case product and highest RPN in train
+        let worstProduct = null;
+        let highestRpn = 0;
+        if (train.products) {
             train.products.forEach(product => {
-                // Calculate highest RPN for this product
-                let highestRpn = 0;
                 if (product.activeIngredients) {
                     product.activeIngredients.forEach(ingredient => {
                         const rpn = calculateRPN(ingredient);
-                        console.log(`Product: ${product.name}, Ingredient: ${ingredient.name}, Solubility: ${ingredient.solubility}, Cleanability: ${ingredient.cleanability}, RPN: ${rpn}`);
                         if (rpn > highestRpn) {
                             highestRpn = rpn;
+                            worstProduct = product.name;
                         }
                     });
                 }
-                
-                // Get machine numbers for this product
-                const productMachines = [];
-                if (product.machineIds) {
-                    product.machineIds.forEach(machineId => {
-                        const machine = allMachines.find(m => m.id === machineId);
-                        if (machine) {
-                            productMachines.push(machine.machineNumber);
-                        }
-                    });
-                }
-                
-                productData.products.push({
-                    name: product.name,
-                    rpn: highestRpn,
-                    machines: productMachines
-                });
             });
         }
+        
+        // Map machine ids to numbers
+        const usedMachines = (train.machineIds || []).map(id => {
+            const m = allMachines.find(x => x.id === id);
+            return m ? m.machineNumber : null;
+        }).filter(Boolean);
+        
+        data.trains.push({
+            trainId: train.id ? `Train ${train.number || train.id}` : (train.trainId || 'Train'),
+            productGroup: train.productType || (train.products && train.products[0]?.productType) || '-',
+            worstCaseProduct: worstProduct || '-',
+            rpn: highestRpn,
+            usedMachines
+        });
     });
     
-    return productData;
+    return data;
 }
 
 function calculateRPN(ingredient) {
