@@ -48,15 +48,19 @@ export let detergentIngredients = [{ id: 1, name: 'Default Detergent', ld50: 500
 export let nextDetergentIngredientId = 2;
 
 export const safetyFactorConfig = {
-    'Sterile Products': { min: 1000, max: 10000, route: 'Sterile' },
+    'Sterile Products': { min: 1000, max: 10000, route: 'Parenteral' },
     'Semisolids': { min: 10, max: 100, route: 'Topical' },
     'Tablets': { min: 100, max: 1000, route: 'Oral' },
     'Capsules': { min: 100, max: 1000, route: 'Oral' },
     'Liquids': { min: 100, max: 1000, route: 'Oral' },
-    'Other': { min: 100, max: 1000, route: 'Oral' }
+    'Other': { min: 100, max: 1000, route: 'Oral' },
+    'Suppository': { min: 100, max: 1000, route: 'Rectal' },
+    'Sterile Ointment': { min: 100, max: 1000, route: 'Ophthalmic' },
+    'Spray': { min: 1000, max: 10000, route: 'Inhalation' },
 };
 
-export const productTypeHierarchy = ['Sterile Products', 'Semisolids', 'Tablets', 'Capsules', 'Liquids', 'Other'];
+export const productTypeHierarchy = ['Sterile Products', 'Semisolids', 'Tablets', 'Capsules', 
+    'Liquids', 'Other', 'Suppository', 'Sterile Ointment', 'Spray'];
 
 export let viewProducts = {
     productRegister: [],

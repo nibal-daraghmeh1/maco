@@ -4,7 +4,7 @@
  * Based on the cleaner mockup design
  */
 
-import { getTrainData } from './utils.js';
+import { getTrainData, getTrainIdToLineNumberMap } from './utils.js';
 import { products, machines } from './state.js';
 
 class SimplifiedMachineCoverageTable {
@@ -459,8 +459,13 @@ function convertTrainDataToProductData(trainData, allMachines) {
             return m ? m.name : null;
         }).filter(Boolean);
         
+        // Get proper train numbering
+        const idMap = getTrainIdToLineNumberMap();
+        const mapped = idMap.get(String(train.id));
+        const trainNumber = mapped ? mapped.number : train.id;
+        
         data.trains.push({
-            trainId: train.id ? `Train ${train.number || train.id}` : (train.trainId || 'Train'),
+            trainId: train.id ? `Train ${trainNumber}` : (train.trainId || 'Train'),
             productGroup: train.productType || (train.products && train.products[0]?.productType) || '-',
             worstCaseProduct: worstProduct || '-',
             rpn: highestRpn,

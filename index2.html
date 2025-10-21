@@ -63,7 +63,7 @@
 
         <!-- Main Content Area -->
         <div class="flex-1">
-            <main class="container main-container mx-auto px-4 sm:px-6 lg:px-8 py-8" >
+            <main class="container main-container mx-auto px-4 sm:px-6 lg:px-8 py-8" style="padding-top: 5px;">
                 <!-- Tab Navigation -->
                 <div class="border-b" style="border-color: var(--border-color);">
                     <nav class="-mb-px flex flex-wrap gap-2 md:gap-4" aria-label="Tabs">
@@ -72,6 +72,7 @@
                         <button onclick="changeTab('machineManagement', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Machines</button>
                         <button onclick="changeTab('scoringSystem', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Scoring</button>
                         <button onclick="changeTab('dataManagement', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Data Management</button>
+                        <button onclick="changeTab('qa', this)" class="tab-button whitespace-nowrap py-3 px-2 md:py-4 md:px-1 text-xs md:text-sm font-medium">Q&A</button>
                     </nav>
                 </div>
 
@@ -87,56 +88,72 @@
                 <div id="mainContent" class="transition-all duration-300 ease-in-out">
             <!-- New Dashboard Tab -->
             <div id="dashboard" class="tab-content active-tab-content">
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4" id="dashboardStats">
+                <div class="flex flex-col md:flex-row lg:flex-row gap-4 justify-center items-center" style="justify-self: center;" id="dashboardStats">
                     <!-- Stats will be rendered here by JS -->
                 </div>
-                <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="card p-6">
-                        <h2 class="text-xl font-bold">Studies Distribution by Dosage Form</h2>
-                        <p class="text-sm mb-6" style="color: var(--text-secondary);">
-                            Shows the distribution of studies across different dosage forms (Tablets, Capsules, etc.).
+                <div class="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-4">
+                    <div class="card p-4">
+                        <h2 class="text-lg font-bold">Trains Distribution</h2>
+                        <p class="text-xs mb-4" style="color: var(--text-secondary);">
+                            Distribution of dosage forms across lines.
                         </p>
-                        <div class="relative min-h-[400px]">
+                        <div class="relative min-h-[200px]">
                             <canvas id="dosageFormPieChart"></canvas>
                         </div>
                     </div>
-                    <div class="card p-6">
-                        <h2 class="text-xl font-bold">Top Products by RPN Score</h2>
-                        <p class="text-sm mb-6" style="color: var(--text-secondary);">
-                            Displays the top 10 products with highest RPN scores, helping identify the most challenging cleaning scenarios.
+                    <div class="card p-4">
+                        <h2 class="text-lg font-bold">Studies Distribution</h2>
+                        <p class="text-xs mb-4" style="color: var(--text-secondary);">
+                            Studies per line and dosage form.
                         </p>
-                        <div class="relative min-h-[400px]">
-                            <canvas id="topRpnProductsChart"></canvas>
+                        <div class="relative min-h-[200px]">
+                            <canvas id="studiesPieChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card p-4">
+                        <h2 class="text-lg font-bold">Minimum MACO</h2>
+                        <p class="text-xs mb-4" style="color: var(--text-secondary);">
+                            Minimum MACO by dosage form.
+                        </p>
+                        <div class="relative min-h-[200px]">
+                            <canvas id="minMacosPieChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card p-4">
+                        <h2 class="text-lg font-bold">Special Cases</h2>
+                        <p class="text-xs mb-4" style="color: var(--text-secondary);">
+                            Special case products distribution.
+                        </p>
+                        <div class="relative min-h-[200px]">
+                            <canvas id="specialCasesPieChart"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div class="card p-6">
-                        <h2 class="text-xl font-bold">Final MACO Comparison by Train</h2>
+                        <h2 class="text-xl font-bold">Trains by Line and Dosage Form</h2>
                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
-                            Compares the final calculated MACO values across all trains using logarithmic scale for better visualization of differences.
+                            Shows all trains grouped by line and dosage form, with each train's MACO per swab value.
                         </p>
                         <div class="relative min-h-[400px]">
-                            <canvas id="finalMacoComparisonChart"></canvas>
+                            <canvas id="trainsByLineAndDosageChart"></canvas>
                         </div>
                     </div>
                     <div class="card p-6">
-                        <h2 class="text-xl font-bold">RPN Risk Analysis</h2>
-                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
-                            This chart visualizes the Risk Priority Number (RPN) for each ingredient visible in the 'Worst Case Products' tab, sorted from highest to lowest.
+                        <h2 class="text-xl font-bold">Highest RPN by Train</h2>
+                        <p class="text-sm mb-6" style="color: var(--text-secondary);">
+                            Shows the highest RPN value for each train along with the product name.
                         </p>
-                        <div id="rpnChartContainer" class="relative min-h-[400px]"><canvas id="rpnChartCanvas"></canvas><div id="rpnChartPlaceholder" class="absolute inset-0 flex items-center justify-center hidden"><p style="color: var(--text-secondary);">No data to display. Filter data on the Worst Case Products tab.</p></div></div>
+                        <div class="relative min-h-[400px]">
+                            <canvas id="highestRpnByTrainChart"></canvas>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="card p-6">
-                        <h2 class="text-xl font-bold">MACO per Swab per Train</h2>
-                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
-                            This chart compares the final calculated MACO per Swab (in mg/Swab) for each equipment train.
-                        </p>
-                        <div id="macoChartContainer" class="relative min-h-[400px]"><canvas id="macoChartCanvas"></canvas><div id="macoChartPlaceholder" class="absolute inset-0 flex items-center justify-center hidden"><p style="color: var(--text-secondary);">No trains found. Assign machines to products to generate data.</p></div></div>
-                    </div>
-                </div>
+            </div>
+
+            <!-- Q&A Tab -->
+            <div id="qa" class="tab-content">
+                <div id="qaContainer"></div>
             </div>
 
             <!-- Machine Coverage Tab -->
@@ -148,6 +165,19 @@
                             Shows machine coverage per line. Use the left menu to choose a line.
                         </p>
                         <div id="machineCoverageContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Line Report Tab -->
+            <div id="lineReport" class="tab-content">
+                <div class="mt-8">
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold mb-4">Line Report</h2>
+                        <p class="text-sm mb-6" style="color: var(--text-secondary);">
+                            Generate comprehensive cleaning validation reports for each line. Use the left menu to choose a line.
+                        </p>
+                        <div id="lineReportContainer"></div>
                     </div>
                 </div>
             </div>
@@ -869,17 +899,21 @@
 
 <!-- JAVASCRIPT MODULES - The type="module" attribute is CRITICAL -->
 <!-- For live testing, load individual modules (uncomment as needed) -->
-<script type="module" src="src/app.js"></script>
-<script type="module" src="src/ui.js"></script>
-<script type="module" src="src/state.js"></script>
-<script type="module" src="src/utils.js"></script>
-<script type="module" src="src/productView.js"></script>
-<script type="module" src="src/machineView.js"></script>
-<script type="module" src="src/worstCaseView.js"></script>
-<script type="module" src="src/macoProductView.js"></script>
-<script type="module" src="src/macoDetergentView.js"></script>
-<script type="module" src="src/dashboardView.js"></script>
-<script type="module" src="src/summaryView.js"></script>
+<script type="module" src="dist/src/app.js"></script>
+<script type="module" src="dist/src/ui.js"></script>
+<script type="module" src="dist/src/state.js"></script>
+<script type="module" src="dist/src/utils.js"></script>
+<script type="module" src="dist/src/productView.js"></script>
+<script type="module" src="dist/src/machineView.js"></script>
+<script type="module" src="dist/src/worstCaseView.js"></script>
+<script type="module" src="dist/src/macoProductView.js"></script>
+<script type="module" src="dist/src/macoDetergentView.js"></script>
+<script type="module" src="dist/src/dashboardView.js"></script>
+<script type="module" src="dist/src/summaryView.js"></script>
+<script type="module" src="dist/src/qaView.js"></script>
+<!-- PDF Generation Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <!-- <script type="module" src="dist/app.bundle.js"></script> -->
 <!-- Keep the bundle for production, comment out for live dev -->
 <!-- <script src="dist/app.bundle.js"></script> -->

@@ -4,7 +4,7 @@
 import * as state from './state.js';
 import { fullAppRender } from './app.js';
 import { showCustomAlert, hideModal, showModal, saveStateForUndo } from './ui.js';
-import { getProductTrainId, getToxicityPreference, calculateScores, getRpnRatingClass, getUniqueProductLines } from './utils.js';
+import { getProductTrainId, getProductTrainNumber, getToxicityPreference, calculateScores, getRpnRatingClass, getUniqueProductLines } from './utils.js';
 
 /**
  * Populate the machine line dropdown with current product lines
@@ -711,8 +711,8 @@ export function showMachineProductsModal(machineId) {
                 
                 let productListHTML = '<div class="divide-y" style="border-color: var(--border-color);">';
                 assignedProducts.forEach((p, index) => {
-                    const trainId = getProductTrainId(p);
-                    const trainIdDisplay = trainId !== 'N/A' ? 'T' + trainId : 'N/A';
+                    const trainNumber = getProductTrainNumber(p);
+                    const trainIdDisplay = trainNumber !== 'N/A' ? 'T' + trainNumber : 'N/A';
                     const criticalText = p.isCritical ? 'Yes' : 'No';
                     const criticalClass = p.isCritical ? 'text-red-600 font-bold' : '';
                     const dateFormatted = new Date(p.date).toLocaleDateString();

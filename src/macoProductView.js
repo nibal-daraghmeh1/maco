@@ -103,12 +103,74 @@ export function renderMacoForTrains(lineFilter = null) {
             const largestEssaTrain = trainsInDosage.reduce((max, train) => 
                 train.essa > max.essa ? train : max, trainsInDosage[0]);
             
+            // Calculate MACO for each train first to find the lowest
+            const trainsWithMaco = trainsInDosage.map(train => {
+                const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p => p.productType))] || state.safetyFactorConfig['Other'];
+                const sf = sfConfig.max;
+                
+                const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+                const maco10ppm = 10 * train.minMbsKg;
+                let macoHealth = Infinity;
+                let macoNoel = Infinity;
+                
+                // Check toxicity data visibility preferences
+                const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+                const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+                
+                // Calculate PDE-based MACO if PDE is available and not hidden
+                if (train.lowestPde !== null && !pdeHidden) {
+                    macoHealth = train.lowestPde * train.minBsMddRatio;
+                }
+                
+                // Calculate NOEL-based MACO if LD50 is available and not hidden
+                if (train.lowestLd50 !== null && !ld50Hidden) {
+                    // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+                    const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+                    // Find minimum MDD from all ingredients in the train
+                    const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+                    const minMdd = Math.min(...allMdds);
+                    // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+                    macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+                }
+                
+                // Calculate line-specific largest ESSA for this train
+                const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainsInDosage);
+                const macoVisual = 0.004 * lineLargestEssa;
+                
+                // Build MACO values array conditionally based on toxicity data visibility
+                const allMacoValues = [
+                    { name: '0.1% Therapeutic Dose', value: macoDose },
+                    { name: '10 ppm Criterion', value: maco10ppm }
+                ];
+                
+                // Add PDE equation only if PDE is available and not hidden
+                if (train.lowestPde !== null && !pdeHidden) {
+                    allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+                }
+                
+                // Add NOEL equation only if LD50 is available and not hidden
+                if (train.lowestLd50 !== null && !ld50Hidden) {
+                    allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+                }
+                
+                // Always add visual clean limit
+                allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
+                
+                // Find the minimum MACO
+                const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+                const finalMaco = finalMacoResult.value;
+                
+                // Calculate MACO per swab
+                const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+                const macoPerSwab = macoPerArea * train.assumedSsa;
+                
+                return { ...train, finalMaco: macoPerSwab };
+            });
+            
             // Find the train with lowest MACO in this dosage group
-            const lowestMacoTrain = trainsInDosage.reduce((min, train) => {
-                const trainMaco = train.finalMaco || 0;
-                const minMaco = min.finalMaco || 0;
-                return trainMaco < minMaco ? train : min;
-            }, trainsInDosage[0]);
+            const lowestMacoTrain = trainsWithMaco.reduce((min, train) => {
+                return train.finalMaco < min.finalMaco ? train : min;
+            }, trainsWithMaco[0]);
             
             byDosage[dosage].forEach(train => {
                 const isCollapsed = true;
@@ -177,7 +239,7 @@ export function renderMacoForTrains(lineFilter = null) {
                                     ` : ''}
                                     ${train.id === lowestMacoTrain.id ? `
                                         <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-200 text-blue-700 border border-blue-300">
-                                            🎯 Lowest MACO: ${(train.finalMaco || 0).toExponential(4)} mg/swab
+                                            🎯 Lowest MACO: ${lowestMacoTrain.finalMaco.toFixed(4)} mg/Swab
                                         </span>
                                     ` : ''}
                                     <button class="train-toggle" id="toggle-pm-${train.id}">${isCollapsed ? '▶' : '▼'}</button>

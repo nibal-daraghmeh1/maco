@@ -5,7 +5,7 @@
 
 import * as state from './state.js';
 import { fullAppRender } from './app.js'; // Use a forward declaration if needed, or better, pass it as an argument. For simplicity, we import it.
-import { generateTrainMap } from './utils.js';
+import { generateTrainMap, getTrainIdToLineNumberMap, getProductTrainNumber } from './utils.js';
 import { toggleScoringEditMode } from './scoringView.js';
 import { renderRpnChart } from './worstCaseView.js';
 import { renderMacoChart } from './dashboardView.js';
@@ -446,7 +446,7 @@ export function exportToExcel() {
                 criticalText = `Yes${product.criticalReason ? `: ${product.criticalReason}` : ''}`;
             }
             
-            const trainId = getProductTrainId(product);
+            const trainId = getProductTrainNumber(product);
             const productDate = product.date ? new Date(product.date).toLocaleDateString() : '';
             
             // Add main product row with basic info and no ingredient details
@@ -677,7 +677,7 @@ export function exportWorstCaseToExcel(selectedTrain = 'all') {
         // Group products by train for export
         const productsByTrain = {};
         productsToExport.forEach(product => {
-            const trainId = getProductTrainId(product);
+            const trainId = getProductTrainNumber(product);
             if (trainId === 'N/A') return;
             if (!productsByTrain[trainId]) {
                 productsByTrain[trainId] = [];
@@ -1028,7 +1028,7 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
             
             // Add train summary row
             dataForExport.push({
-                'Train': `T${train.id}`,
+                'Train': `T${getTrainIdToLineNumberMap().get(String(train.id))?.number || train.id}`,
                 'Total Products': train.products.length,
                 'Total Machines': machines.length,
                 'Total Area (ESSA) cm²': train.essa.toLocaleString(),
@@ -1185,7 +1185,7 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
             
             // Add train summary row
             dataForExport.push({
-                'Train': `T${train.id}`,
+                'Train': `T${getTrainIdToLineNumberMap().get(String(train.id))?.number || train.id}`,
                 'Total Products': train.products.length,
                 'Total Machines': machines.length,
                 'Total Area (ESSA) cm²': train.essa.toLocaleString(),
@@ -1303,7 +1303,7 @@ export function exportTrainSummaryToExcel(selectedTrain = 'all') {
             
             // Add train summary row
             dataForExport.push({
-                'Train ID': `T${train.id}`,
+                'Train ID': `T${getTrainIdToLineNumberMap().get(String(train.id))?.number || train.id}`,
                 'Products Count': train.products.length,
                 'Machines Count': machines.length,
                 'Total Area (ESSA) cm²': train.essa.toLocaleString(),
@@ -1380,7 +1380,7 @@ export function exportSummaryToExcel() {
         
         // Prepare Top 10 RPN data
         const top10Rpn = state.products.flatMap(product => {
-            const trainId = getProductTrainId(product);
+            const trainId = getProductTrainNumber(product);
             return product.activeIngredients.map(ing => ({
                 productName: product.name,
                 productCode: product.productCode,
@@ -1438,7 +1438,7 @@ export function exportSummaryToExcel() {
                 'Batch Size (kg)': product.batchSizeKg,
                 'MDD (mg)': product.mddMg,
                 'Critical Reason': product.criticalReason || 'No reason provided',
-                'Train': getProductTrainId(product) !== 'N/A' ? `T${getProductTrainId(product)}` : 'N/A'
+                'Train': getProductTrainNumber(product) !== 'N/A' ? `T${getProductTrainNumber(product)}` : 'N/A'
             }));
 
             const criticalWorksheet = XLSX.utils.json_to_sheet(criticalData);
@@ -1460,7 +1460,7 @@ export function exportSummaryToExcel() {
 
         // Create All Products Summary worksheet
         const allProductsData = state.products.map(product => {
-            const trainId = getProductTrainId(product);
+            const trainId = getProductTrainNumber(product);
             const highestRpnIngredient = product.activeIngredients.reduce((max, ing) => {
                 const rpn = calculateScores(ing).rpn;
                 return rpn > max.rpn ? { ...ing, rpn } : max;
@@ -1611,7 +1611,7 @@ export function exportAllTabsToExcel() {
                     'N/A';
                 
                 productMacoData.push({
-                    'Train': `T${train.id}`,
+                    'Train': `T${getTrainIdToLineNumberMap().get(String(train.id))?.number || train.id}`,
                     'Total Products': train.products.length,
                     'Total Machines': machines.length,
                     'Total Area (ESSA) cm²': train.essa.toLocaleString(),
@@ -1683,7 +1683,7 @@ export function exportAllTabsToExcel() {
                         'N/A';
                     
                     detergentMacoData.push({
-                        'Train': `T${train.id}`,
+                        'Train': `T${getTrainIdToLineNumberMap().get(String(train.id))?.number || train.id}`,
                         'Total Products': train.products.length,
                         'Total Machines': machines.length,
                         'Total Area (ESSA) cm²': train.essa.toLocaleString(),
@@ -1732,7 +1732,7 @@ export function exportAllTabsToExcel() {
                 const machinesDetailed = machines.map(m => `${m.machineNumber}: ${m.name}`).join('\n');
                 
                 trainSummaryData.push({
-                    'Train ID': `T${train.id}`,
+                    'Train ID': `T${getTrainIdToLineNumberMap().get(String(train.id))?.number || train.id}`,
                     'Products Count': train.products.length,
                     'Machines Count': machines.length,
                     'Total Area (ESSA) cm²': train.essa.toLocaleString(),
@@ -1760,7 +1760,7 @@ export function exportAllTabsToExcel() {
         // 4. Top 10 RPN
         try {
             const top10Rpn = state.products.flatMap(product => {
-                const trainId = getProductTrainId(product);
+                const trainId = getProductTrainNumber(product);
                 return product.activeIngredients.map(ing => ({
                     productName: product.name,
                     productCode: product.productCode,
@@ -1798,7 +1798,7 @@ export function exportAllTabsToExcel() {
                     'Batch Size (kg)': product.batchSizeKg,
                     'MDD (mg)': product.mddMg,
                     'Critical Reason': product.criticalReason || 'No reason provided',
-                    'Train': getProductTrainId(product) !== 'N/A' ? `T${getProductTrainId(product)}` : 'N/A'
+                    'Train': getProductTrainNumber(product) !== 'N/A' ? `T${getProductTrainNumber(product)}` : 'N/A'
                 }));
 
                 const criticalWorksheet = XLSX.utils.json_to_sheet(criticalData);
@@ -1811,7 +1811,7 @@ export function exportAllTabsToExcel() {
         // 6. All Products Overview
         try {
             const allProductsData = state.products.map(product => {
-                const trainId = getProductTrainId(product);
+                const trainId = getProductTrainNumber(product);
                 const highestRpnIngredient = product.activeIngredients.reduce((max, ing) => {
                     const rpn = calculateScores(ing).rpn;
                     return rpn > max.rpn ? { ...ing, rpn } : max;
@@ -1842,7 +1842,7 @@ export function exportAllTabsToExcel() {
         try {
             const productRegisterData = [];
             state.products.forEach(product => {
-                const trainId = getProductTrainId(product);
+                const trainId = getProductTrainNumber(product);
                 
                 // Add main product row
                 const baseProductData = {

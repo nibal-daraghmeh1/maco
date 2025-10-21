@@ -97,6 +97,21 @@ export function getProductTrainId(product) {
 }
 
 /**
+ * Get the proper train number for a product (using the new numbering system)
+ */
+export function getProductTrainNumber(product) {
+    const trainId = getProductTrainId(product);
+    if (trainId === 'N/A') {
+        return 'N/A';
+    }
+    
+    // Get the proper train number from the mapping
+    const idMap = getTrainIdToLineNumberMap();
+    const mapped = idMap.get(String(trainId));
+    return mapped ? mapped.number : trainId;
+}
+
+/**
  * Get unique production line names from products.
  * Returns an array of unique, sorted line names including standard and custom lines.
  */
@@ -393,6 +408,13 @@ export function getTrainData() {
     trainArray.sort((a, b) => a.id - b.id);
 
     if (trainArray.length === 0) return [];
+
+    // Assign proper train numbers using the new numbering system
+    const idMap = getTrainIdToLineNumberMap();
+    trainArray.forEach(train => {
+        const mapped = idMap.get(String(train.id));
+        train.number = mapped ? mapped.number : train.id;
+    });
 
     trainArray.forEach(train => {
         // Calculate ESSA using group-based consolidation for accuracy

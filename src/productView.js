@@ -4,7 +4,7 @@
 import * as state from './state.js';
 import { fullAppRender } from './app.js';
 import { showLoader, hideLoader, showCustomAlert, hideModal, saveStateForUndo, updateToggleIcons } from './ui.js';
-import { getProductTrainId, calculateScores, populateSelectWithOptions, getUniqueProductLines } from './utils.js';
+import { getProductTrainId, getProductTrainNumber, calculateScores, populateSelectWithOptions, getUniqueProductLines } from './utils.js';
 import { renderWorstCaseByTrain } from './worstCaseView.js';
 
 export function renderProducts(tabId) {
@@ -134,8 +134,8 @@ let dataToRender = [...state.viewProducts[tabId]];
         productRow.className = "product-main-row";
         const criticalText = product.isCritical ? 'Yes' : 'No';
         const criticalClass = product.isCritical ? 'text-red-600 font-bold' : '';
-        const trainId = getProductTrainId(product);
-        const trainIdDisplay = trainId !== 'N/A' ? 'T' + trainId : 'N/A';
+        const trainNumber = getProductTrainNumber(product);
+        const trainIdDisplay = trainNumber !== 'N/A' ? 'T' + trainNumber : 'N/A';
 
         productRow.innerHTML = `
                     <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${index + 1}</td>
@@ -289,8 +289,8 @@ export function handleSearchAndFilter(tabId) {
         const productCodeMatch = product.productCode.toLowerCase().includes(codeFilter);
         const productNameMatch = product.name.toLowerCase().includes(nameFilter);
 
-        const trainId = getProductTrainId(product);
-        const trainIdDisplay = trainId !== 'N/A' ? 'T' + trainId : 'N/A';
+        const trainNumber = getProductTrainNumber(product);
+        const trainIdDisplay = trainNumber !== 'N/A' ? 'T' + trainNumber : 'N/A';
         const trainNoMatch = (trainNoFilter === 'all') || (trainIdDisplay === trainNoFilter);
         
         const lineMatch = (lineFilter === 'all') || (product.line === lineFilter);
@@ -323,9 +323,9 @@ export function updateTrainNumberOptions(selectedLine, selectedDosageForm) {
     // Get unique train numbers from filtered products
     const trainNumbers = new Set();
     filteredProducts.forEach(product => {
-        const trainId = getProductTrainId(product);
-        if (trainId !== 'N/A') {
-            trainNumbers.add('T' + trainId);
+        const trainNumber = getProductTrainNumber(product);
+        if (trainNumber !== 'N/A') {
+            trainNumbers.add('T' + trainNumber);
         }
     });
     
@@ -842,7 +842,7 @@ export function populateFilterSelects() {
     // Train No. Filter - Initialize with all train numbers
     const trainNoSelect = document.querySelector('.filterColTrainNo');
     if (trainNoSelect) {
-        const trainIds = [...new Set(state.products.map(p => getProductTrainId(p))
+        const trainIds = [...new Set(state.products.map(p => getProductTrainNumber(p))
             .filter(id => id !== 'N/A'))]
             .sort((a, b) => a - b);
         trainNoSelect.innerHTML = '<option value="all">All</option>';

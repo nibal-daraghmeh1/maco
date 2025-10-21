@@ -4,9 +4,9 @@
   "author": "Nibal Daraghmeh <your.email@example.com>",
   "main": "main.js",
   "scripts": {
-  "minify": "node minify-all.js",
-  "bundle": "esbuild src/app.js --bundle --platform=browser --outfile=dist/app.bundle.js --minify",
-  "package": "npx javascript-obfuscator dist/src --output dist/src --compact true --control-flow-flattening true&& electron-packager . MyApp --overwrite --asar --platform=win32 --arch=x64 --out=release-builds"
+    "minify": "node minify-all.js",
+    "bundle": "esbuild src/app.js --bundle --platform=browser --outfile=dist/app.bundle.js --minify",
+    "package": "npx javascript-obfuscator dist/src --output dist/src --compact true --control-flow-flattening true&& electron-packager . MyApp --overwrite --asar --platform=win32 --arch=x64 --out=release-builds"
   },
   "devDependencies": {
     "electron": "^25.0.0",
@@ -29,6 +29,8 @@
     }
   },
   "dependencies": {
-    "firebase": "^12.3.0"
+    "firebase": "^12.3.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.3"
   }
 }

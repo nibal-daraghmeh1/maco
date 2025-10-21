@@ -17,9 +17,14 @@ import * as summaryView from './summaryView.js';
 import * as trainSummaryView from './trainSummaryView.js';
 import * as scoringView from './scoringView.js';
 import * as machineCoverageView from './machineCoverageView.js';
+import { renderLineReport } from './lineReportView.js';
+import { QAView } from './qaView.js';
 // Firestore functions removed; use only localStorage functions from ui.js if needed
 
 // --- 2. ORCHESTRATION ---
+// Initialize Q&A view
+const qaView = new QAView();
+
 // Attach functions to window for live testing with script modules
 window.changeTab = changeTab;
 window.printTrain = printTrain;
@@ -84,6 +89,14 @@ export function fullAppRender() {
         machineView.updateMachineLineOptionsIfModalOpen(); // Update machine line options if modal is open
         dashboardView.renderMainDashboard();
         
+        // Initialize Q&A system with current app data
+        const appData = {
+            products: state.products,
+            machines: state.machines,
+            trains: utils.getTrainsGroupedByLine()
+        };
+        qaView.initialize(appData);
+        
         // Initialize proper case inputs after rendering
         utils.initializeProperCaseInputs();
         macoProductView.renderMacoForTrains();
@@ -138,6 +151,7 @@ export function renderLineNavigation() {
                 <button onclick="showLineSpecificView('${line}', 'detergent')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Detergent MACO Calculation</button>
                 <button onclick="showLineSpecificView('${line}', 'trainSummary')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Train Summary</button>
                 <button onclick="showLineSpecificView('${line}', 'coverage')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Machine Coverage</button>
+                <button onclick="showLineSpecificView('${line}', 'lineReport')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Report</button>
             </div>
         `;
         lineNavigation.appendChild(lineDiv);
@@ -280,6 +294,9 @@ window.showLineSpecificView = function(line, viewType) {
         case 'coverage':
             tabId = 'machineCoverage';
             break;
+        case 'lineReport':
+            tabId = 'lineReport';
+            break;
     }
     
     console.log('Switching to tab:', tabId);
@@ -336,6 +353,10 @@ function applyLineFilter(line, viewType) {
                 }
             }
             break;
+        case 'lineReport':
+            console.log('Generate report for line:', line);
+            renderLineReport(line);
+            break;
     }
 }
 
@@ -369,6 +390,9 @@ function changeTab(tabId, element) {
         if (container) {
             container.innerHTML = machineCoverageView.createHorizontalMachineCoverageTable();
         }
+    }
+    if (tabId === 'qa') {
+        qaView.render();
     }
 }
 
@@ -590,7 +614,233 @@ document.addEventListener('DOMContentLoaded', function() {
             backdrop.classList.remove('hidden');
         }
     });
-
+    
     // --- KICKSTART THE APPLICATION ---
     initializeApp();
+    
+    // Check if PDF libraries are loaded after a delay
+    setTimeout(() => {
+        console.log('Checking PDF libraries...');
+        console.log('jsPDF available:', !!window.jsPDF);
+        console.log('html2canvas available:', !!window.html2canvas);
+        if (window.jsPDF) {
+            console.log('jsPDF version:', window.jsPDF.version || 'unknown');
+        }
+        
+        // If libraries are not loaded, try to load them dynamically
+        if (!window.jsPDF || !window.html2canvas) {
+            console.log('PDF libraries not loaded, attempting to load dynamically...');
+            loadPDFLibrariesDynamically();
+        }
+    }, 2000);
 });
+
+// Function to load html2pdf library dynamically
+async function loadHtml2PdfLibrary() {
+    if (!window.html2pdf) {
+        const html2pdfScript = document.createElement('script');
+        html2pdfScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+        html2pdfScript.onload = () => {
+            console.log('html2pdf loaded dynamically');
+        };
+        html2pdfScript.onerror = () => {
+            console.error('Failed to load html2pdf from CDN');
+        };
+        document.head.appendChild(html2pdfScript);
+        
+        // Wait for library to load
+        return new Promise((resolve) => {
+            const checkLibrary = () => {
+                if (window.html2pdf) {
+                    resolve();
+                } else {
+                    setTimeout(checkLibrary, 100);
+                }
+            };
+            checkLibrary();
+        });
+    }
+}
+
+// Function to load PDF libraries dynamically (legacy)
+function loadPDFLibrariesDynamically() {
+    // Try to load jsPDF
+    if (!window.jsPDF) {
+        const jsPDFScript = document.createElement('script');
+        jsPDFScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        jsPDFScript.onload = () => {
+            console.log('jsPDF loaded dynamically');
+            // Fix the global reference - try different possible names
+            window.jsPDF = window.jspdf?.jsPDF || window.jsPDF || window.jspdf;
+        };
+        jsPDFScript.onerror = () => {
+            console.error('Failed to load jsPDF from CDN');
+        };
+        document.head.appendChild(jsPDFScript);
+    }
+
+    // Try to load html2canvas
+    if (!window.html2canvas) {
+        const html2canvasScript = document.createElement('script');
+        html2canvasScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        html2canvasScript.onload = () => {
+            console.log('html2canvas loaded dynamically');
+        };
+        html2canvasScript.onerror = () => {
+            console.error('Failed to load html2canvas from CDN');
+        };
+        document.head.appendChild(html2canvasScript);
+    }
+}
+
+// Test function to create a simple PDF
+window.testSimplePDF = function() {
+    try {
+        let PDFConstructor = null;
+        if (window.jspdf && window.jspdf.jsPDF) {
+            PDFConstructor = window.jspdf.jsPDF;
+        } else if (window.jsPDF && window.jsPDF.jsPDF) {
+            PDFConstructor = window.jsPDF.jsPDF;
+        } else if (window.jsPDF) {
+            PDFConstructor = window.jsPDF;
+        }
+        
+        if (!PDFConstructor) {
+            console.log('❌ No PDF constructor available');
+            return false;
+        }
+        
+        console.log('✅ PDF constructor found, creating test PDF...');
+        
+        const pdf = new PDFConstructor('p', 'mm', 'a4');
+        pdf.text('Test PDF Generation', 20, 20);
+        pdf.text('This is a test to verify PDF creation works.', 20, 30);
+        pdf.text('If you can see this, the PDF generation is working!', 20, 40);
+        
+        const filename = 'test-pdf-' + Date.now() + '.pdf';
+        pdf.save(filename);
+        
+        console.log('✅ Test PDF created and saved:', filename);
+        return true;
+        
+    } catch (error) {
+        console.error('❌ Test PDF creation failed:', error);
+        return false;
+    }
+};
+
+// Test function to check report content visibility
+window.testReportContent = function() {
+    const reportContainer = document.querySelector('#lineReportContainer .report-container');
+    if (!reportContainer) {
+        console.log('❌ No report container found');
+        return false;
+    }
+    
+    console.log('✅ Report container found');
+    console.log('Report container dimensions:', {
+        width: reportContainer.offsetWidth,
+        height: reportContainer.offsetHeight,
+        scrollWidth: reportContainer.scrollWidth,
+        scrollHeight: reportContainer.scrollHeight
+    });
+    
+    console.log('Report content preview:', reportContainer.innerHTML.substring(0, 300) + '...');
+    
+    // Check if container is visible
+    const styles = window.getComputedStyle(reportContainer);
+    console.log('Visibility styles:', {
+        display: styles.display,
+        visibility: styles.visibility,
+        opacity: styles.opacity,
+        position: styles.position
+    });
+    
+    return true;
+};
+
+// Test function to check PDF library availability
+window.testPDFLibraries = function() {
+    console.log('Testing PDF libraries...');
+    console.log('jsPDF available:', !!window.jsPDF);
+    console.log('html2canvas available:', !!window.html2canvas);
+    
+    // Check for jsPDF constructor
+    let PDFConstructor = null;
+    if (window.jspdf && window.jspdf.jsPDF) {
+        PDFConstructor = window.jspdf.jsPDF;
+        console.log('Found jsPDF constructor: window.jspdf.jsPDF');
+    } else if (window.jsPDF && window.jsPDF.jsPDF) {
+        PDFConstructor = window.jsPDF.jsPDF;
+        console.log('Found jsPDF constructor: window.jsPDF.jsPDF');
+    } else if (window.jsPDF) {
+        PDFConstructor = window.jsPDF;
+        console.log('Found jsPDF constructor: window.jsPDF');
+    }
+    
+    if (PDFConstructor) {
+        console.log('jsPDF constructor type:', typeof PDFConstructor);
+        try {
+            const testPdf = new PDFConstructor('p', 'mm', 'a4');
+            console.log('✅ jsPDF constructor works!');
+            testPdf.text('Test', 10, 10);
+            console.log('✅ jsPDF text method works!');
+        } catch (error) {
+            console.error('❌ jsPDF constructor failed:', error.message);
+        }
+    } else {
+        console.log('❌ No jsPDF constructor found');
+    }
+    
+    if (window.html2canvas) {
+        console.log('html2canvas available:', typeof window.html2canvas);
+    }
+    
+    // Check for alternative names
+    console.log('window.jspdf available:', !!window.jspdf);
+    console.log('Available PDF-related globals:', Object.keys(window).filter(k => k.toLowerCase().includes('pdf')));
+    console.log('Available canvas-related globals:', Object.keys(window).filter(k => k.toLowerCase().includes('canvas')));
+    
+    return {
+        jsPDF: !!window.jsPDF,
+        html2canvas: !!window.html2canvas,
+        jspdf: !!window.jspdf,
+        PDFConstructor: PDFConstructor
+    };
+};
+
+// Global function to force restore export button
+window.forceRestoreExportButton = function() {
+    const exportButton = document.querySelector('button[onclick="exportToPDF()"], button[onclick="window.exportToPDF()"]');
+    if (exportButton) {
+        console.log('Force restoring export button');
+        exportButton.disabled = false;
+        exportButton.style.opacity = '';
+        exportButton.style.cursor = '';
+        exportButton.style.backgroundColor = '';
+        // Try to restore original text if we can find it
+        if (exportButton.innerHTML.includes('Generating PDF')) {
+            exportButton.innerHTML = '📄 Export to PDF';
+        }
+    }
+};
+
+// Global PDF export function for reports - opens in new window
+window.exportToPDF = async function exportToPDF() {
+    // Get the current line from the URL or state
+    const currentLine = window.currentLineFilter || 'Solids';
+    console.log('Opening report window for line:', currentLine);
+    
+    try {
+        // Import the lineReportView module
+        const lineReportModule = await import('./lineReportView.js');
+        
+        // Generate the report in a new window (original behavior)
+        const generator = new lineReportModule.CleaningValidationReportGenerator();
+        generator.generateReport(currentLine, 'All');
+        
+    } catch (error) {
+        console.error('Error opening report window:', error);
+        alert('Error opening report. Please try again.');
+    }
+};
