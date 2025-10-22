@@ -22,13 +22,142 @@ import { QAView } from './qaView.js';
 // Firestore functions removed; use only localStorage functions from ui.js if needed
 
 // --- 2. ORCHESTRATION ---
-// Initialize Q&A view
-const qaView = new QAView();
+// Initialize Q&A view with application data
+const qaView = new QAView({
+    products: state.products,
+    machines: state.machines,
+    trains: [], // Will be populated by train data
+    lines: [],
+    dosageForms: [],
+    selectedStudies: [],
+    macoCalculations: []
+}, {
+    debugMode: false,
+    confidenceThreshold: 0.3 // Normal threshold
+});
 
 // Attach functions to window for live testing with script modules
 window.changeTab = changeTab;
 window.printTrain = printTrain;
 window.sortData = productView.sortData;
+
+// Global PDF export function
+window.exportToPDFDirect = function() {
+    try {
+        // Check if PDF libraries are available
+        if (typeof html2pdf === 'undefined') {
+            console.error('html2pdf library not loaded');
+            alert('PDF export library not available. Please refresh the page and try again.');
+            return;
+        }
+
+        // Find the report content container instead of using document.body
+        let element = document.querySelector('.report-container');
+        if (!element) {
+            element = document.querySelector('#lineReportContainer');
+        }
+        if (!element) {
+            element = document.querySelector('.report-content');
+        }
+        if (!element) {
+            // Fallback to body but hide navigation elements
+            element = document.body;
+            // Temporarily hide navigation elements
+            const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+            navElements.forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+
+        const opt = {
+            margin: [0.5, 0.5, 0.5, 0.5],
+            filename: 'cleaning_validation_report.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { 
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                logging: false,
+                letterRendering: true
+            },
+            jsPDF: { 
+                unit: 'in', 
+                format: 'a4', 
+                orientation: 'portrait',
+                compress: true
+            },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        // Show loading indicator
+        const button = document.querySelector('.btn-pdf');
+        if (button) {
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏳ Generating PDF...';
+            button.disabled = true;
+
+            // Generate PDF directly
+            html2pdf().set(opt).from(element).save().then(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                console.log('PDF generated successfully');
+                
+                // Restore navigation elements if they were hidden
+                const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+                navElements.forEach(el => {
+                    el.style.display = '';
+                });
+            }).catch((error) => {
+                console.error('PDF generation failed:', error);
+                button.innerHTML = originalText;
+                button.disabled = false;
+                alert('PDF generation failed: ' + error.message);
+                
+                // Restore navigation elements if they were hidden
+                const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+                navElements.forEach(el => {
+                    el.style.display = '';
+                });
+            });
+        } else {
+            // Generate PDF directly without button feedback
+            html2pdf().set(opt).from(element).save().then(() => {
+                console.log('PDF generated successfully');
+                
+                // Restore navigation elements if they were hidden
+                const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+                navElements.forEach(el => {
+                    el.style.display = '';
+                });
+            }).catch((error) => {
+                console.error('PDF generation failed:', error);
+                alert('PDF generation failed: ' + error.message);
+                
+                // Restore navigation elements if they were hidden
+                const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+                navElements.forEach(el => {
+                    el.style.display = '';
+                });
+            });
+        }
+
+    } catch (error) {
+        console.error('Error in exportToPDFDirect:', error);
+        alert('PDF export failed: ' + error.message);
+        
+        // Restore navigation elements if they were hidden
+        const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+        navElements.forEach(el => {
+            el.style.display = '';
+        });
+    }
+};
+
+// Legacy function for backward compatibility
+window.exportToPDF = function() {
+    window.exportToPDFDirect();
+};
 /**
  * Adds a print button to each train container in the MACO view.
  */

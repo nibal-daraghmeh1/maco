@@ -153,7 +153,7 @@ class CleaningValidationReportGenerator {
         return `<section class="section"><h2>Selected Studies</h2><table class="data-table"><thead><tr><th>Study</th><th>Product</th><th>RPN</th><th>All Machines</th><th>New Machines</th><th>Justification</th></tr></thead><tbody>${rows}</tbody></table></section>`;
     }
 
-    generateExportButtons() { return `<div class="export-section no-print"><h3>Export Options</h3><div class="export-buttons"><button onclick="window.print()" class="btn-export btn-print">🖨️ Print</button><button onclick="exportToPDF()" class="btn-export btn-pdf">📄 Export to PDF</button></div></div>`; }
+    generateExportButtons() { return `<div class="export-section no-print"><h3>Export Options</h3><div class="export-buttons"><button onclick="window.print()" class="btn-export btn-print">🖨️ Print</button><button onclick="exportToPDFDirect()" class="btn-export btn-pdf">📄 Export to PDF</button></div></div>`; }
 
     getReportCSS() {
         return `body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;background:#f8f9fa}.report-container{max-width:1100px;margin:0 auto;background:#fff;padding:32px;box-shadow:0 0 20px rgba(0,0,0,0.08)}.report-header{text-align:center;border-bottom:3px solid #1976d2;padding-bottom:18px;margin-bottom:28px}.report-header h1{color:#1976d2;margin:0 0 6px}.report-header h2{color:#666;margin:0 0 10px;font-weight:500}.report-meta{display:flex;gap:24px;justify-content:center;color:#666}.section{margin-bottom:28px}.section h2{color:#1976d2;border-bottom:2px solid #e0e0e0;padding-bottom:8px;margin-bottom:14px}.summary-table,.data-table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}.summary-table th,.summary-table td,.data-table th,.data-table td{border:1px solid #ddd;padding:10px;text-align:left}.summary-table th,.data-table th{background:#1976d2;color:#fff}.data-table tbody tr:nth-child(even){background:#f8f9fa}.highlight{background:#fff3cd;font-weight:700}.success{background:#d4edda;color:#155724;font-weight:700}.export-section{margin-top:28px;text-align:center}.export-buttons{display:flex;gap:15px;justify-content:center;margin-top:15px}.btn-export{padding:10px 18px;border:none;border-radius:6px;color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s ease}.btn-export:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.2)}.btn-print{background:#6c757d}.btn-pdf{background:#dc3545}`;
@@ -161,17 +161,66 @@ class CleaningValidationReportGenerator {
 
     getReportJavaScript() { 
         return `
-        // Check if PDF libraries are available
-        function checkPDFLibraries() {
-            if (!window.jsPDF) {
-                throw new Error('jsPDF library not loaded. Please refresh the page and try again.');
-            }
-            if (!window.html2canvas) {
-                throw new Error('html2canvas library not loaded. Please refresh the page and try again.');
+        // Direct PDF export function without print dialog
+        function exportToPDFDirect() {
+            try {
+                // Check if PDF libraries are available
+                if (typeof html2pdf === 'undefined') {
+                    console.error('html2pdf library not loaded');
+                    alert('PDF export library not available. Please refresh the page and try again.');
+                    return;
+                }
+
+                const element = document.body;
+                const opt = {
+                    margin: [0.5, 0.5, 0.5, 0.5],
+                    filename: 'cleaning_validation_report.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { 
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: '#ffffff',
+                        logging: false,
+                        letterRendering: true
+                    },
+                    jsPDF: { 
+                        unit: 'in', 
+                        format: 'a4', 
+                        orientation: 'portrait',
+                        compress: true
+                    },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+
+                // Show loading indicator
+                const button = document.querySelector('.btn-pdf');
+                const originalText = button.innerHTML;
+                button.innerHTML = '⏳ Generating PDF...';
+                button.disabled = true;
+
+                // Generate PDF directly
+                html2pdf().set(opt).from(element).save().then(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    console.log('PDF generated successfully');
+                }).catch((error) => {
+                    console.error('PDF generation failed:', error);
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    alert('PDF generation failed: ' + error.message);
+                });
+
+            } catch (error) {
+                console.error('Error in exportToPDFDirect:', error);
+                alert('PDF export failed: ' + error.message);
             }
         }
-        
-        // PDF export function is now globally available in app.js
+
+        // Legacy function for backward compatibility
+        function exportToPDF() {
+            exportToPDFDirect();
+        }
         
         // Add smooth scrolling for better UX
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -189,13 +238,8 @@ class CleaningValidationReportGenerator {
     openReportWindow(html) { 
         const w = window.open('', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes'); 
         
-        // Replace export button with print button
-        const enhancedHtml = html.replace(
-            /<button[^>]*onclick="exportToPDF\(\)"[^>]*>.*?<\/button>/g,
-            `<button onclick="window.print()" class="btn-export btn-pdf" style="background: #dc2626; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; margin: 10px;">
-                🖨️ Print / Save as PDF
-            </button>`
-        );
+        // Keep the original export button functionality
+        const enhancedHtml = html;
         
         w.document.write(`
             <!DOCTYPE html>
@@ -268,13 +312,20 @@ class CleaningValidationReportGenerator {
                         font-weight: bold;
                     }
                     @media print {
-                        .report-header {
+                        .report-header, .action-buttons, .export-section, .no-print {
                             display: none !important;
                         }
-                        body { 
-                            margin: 0; 
-                            font-size: 12px;
-                        }
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
+                    body { 
+                        margin: 0; 
+                        padding: 0;
+                        font-size: 12px;
+                        background: white;
+                    }
+                    .report-container {
+                        margin: 0;
+                        padding: 0;
+                    }
                         .data-table, .summary-table {
                             page-break-inside: avoid;
                             font-size: 11px;
@@ -286,6 +337,10 @@ class CleaningValidationReportGenerator {
                         }
                         h1, h2, h3 {
                             page-break-after: avoid;
+                        }
+                        .report-content {
+                            margin: 0;
+                            padding: 0;
                         }
                     }
                 </style>
@@ -305,6 +360,8 @@ class CleaningValidationReportGenerator {
                 <div class="report-content">
                     ${enhancedHtml}
                 </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
                 <script>
                     // Auto-focus for easy printing
                     window.onload = function() {
@@ -345,7 +402,7 @@ class CleaningValidationReportGenerator {
         <div class="report-header">
               ${this.generateExportButtons()}
         </div>
-            <div class="report-container" style="max-width: 100%; margin: 0; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <div class="report-container" style="max-width: 100%; margin: 0; padding: 0; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                 ${this.generateReportHeader(data.groupInfo)}
                 ${this.generateExecutiveSummary(data.summary)}
                 ${this.generateGroupingStrategy(data.trains)}
@@ -353,11 +410,13 @@ class CleaningValidationReportGenerator {
           
             </div>
             <style>
-                .report-container { font-family: 'Segoe UI', Tahoma, Verdana, sans-serif; }
-                .report-header { text-align: center; border-bottom: 3px solid #1976d2; padding-bottom: 18px; margin-bottom: 28px; }
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+                body { margin: 0; padding: 0; }
+                .report-container { font-family: 'Segoe UI', Tahoma, Verdana, sans-serif; margin: 0; padding: 0; }
+                .report-header { text-align: center; border-bottom: 3px solid #1976d2; padding-bottom: 18px; margin: 0; }
                 .report-header h1 { color: #1976d2; margin: 0 0 6px; font-size: 2em; }
                 .report-header h2 { color: #666; margin: 0 0 10px; font-weight: 500; font-size: 1.5em; }
-                .report-meta { display: flex; gap: 24px; justify-content: center; color: #666; margin-top: 10px; }
+                .report-meta { display: flex; gap: 24px; justify-content: center; color: #666; margin: 0; }
                 .section { margin-bottom: 28px; }
                 .section h2 { color: #1976d2; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px; margin-bottom: 14px; font-size: 1.3em; }
                 .summary-table, .data-table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 12px; }
@@ -372,6 +431,22 @@ class CleaningValidationReportGenerator {
                 .btn-export:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
                 .btn-print { background: #6c757d; }
                 .btn-pdf { background: #dc3545; }
+                
+                /* Hide navigation elements in print view */
+                @media print {
+                    .header, .main-nav, .sidebar, .export-section, .no-print {
+                        display: none !important;
+                    }
+                    body {
+                        margin: 0;
+                        padding: 0;
+                        background: white;
+                    }
+                    .report-content {
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
             </style>
         `;
     }
