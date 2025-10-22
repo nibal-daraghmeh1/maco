@@ -447,6 +447,26 @@ class CleaningValidationReportGenerator {
                         padding: 0;
                     }
                 }
+                
+                /* Ensure content doesn't get cut off */
+                .section {
+                    page-break-inside: avoid;
+                    break-inside: avoid;
+                    margin-bottom: 20px;
+                }
+                .data-table, .summary-table {
+                    page-break-inside: auto;
+                    break-inside: auto;
+                    width: 100%;
+                }
+                .data-table tr, .summary-table tr {
+                    page-break-inside: avoid;
+                    break-inside: avoid;
+                }
+                h1, h2, h3 {
+                    page-break-after: avoid;
+                    break-after: avoid;
+                }
             </style>
         `;
     }

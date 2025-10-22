@@ -70,7 +70,7 @@ window.exportToPDFDirect = function() {
         }
 
         const opt = {
-            margin: [0.5, 0.5, 0.5, 0.5],
+            margin: [0.3, 0.3, 0.3, 0.3],
             filename: 'cleaning_validation_report.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { 
