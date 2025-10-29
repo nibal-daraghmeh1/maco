@@ -715,8 +715,8 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa, dosageF
         selectedLimitCard.innerHTML = `
             <div class="text-center">
                 <p class="text-sm font-semibold mb-2" style="color:var(--text-secondary);">Selected Limit: ${finalMacoResult.name}</p>
-                <p class="text-lg font-extrabold" style="color:var(--gradient-mid);" id="final-maco-val-${uniqueTrainId}" data-value="${finalMaco}">${finalMaco.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mg</p>
-                ${finalMacoResult.name === '10 ppm Criterion' ? `<p class="text-sm mt-1" style="color:var(--text-secondary);">10 ppm Criterion: ${ppmValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mg</p>` : ''}
+                <p class="text-lg font-extrabold" style="color:var(--gradient-mid);" id="final-maco-val-${uniqueTrainId}" data-value="${finalMaco}">${formatSmallNumber(finalMaco, 'mg')}</p>
+                ${finalMacoResult.name === '10 ppm Criterion' ? `<p class="text-sm mt-1" style="color:var(--text-secondary);">10 ppm Criterion: ${formatSmallNumber(ppmValue, 'mg')}</p>` : ''}
             </div>
         `;
         breakdownContainer.appendChild(selectedLimitCard);
