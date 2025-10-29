@@ -8,6 +8,28 @@ import { fullAppRender } from './app.js'; // Use a forward declaration if needed
 import { generateTrainMap, getTrainIdToLineNumberMap, getProductTrainNumber } from './utils.js';
 import { toggleScoringEditMode } from './scoringView.js';
 import { renderRpnChart } from './worstCaseView.js';
+
+// Smart number formatting that avoids showing 0 when there's actually a value
+function formatSmallNumber(value, unit = '') {
+    if (value === 0 || value === null || value === undefined || isNaN(value)) {
+        return `0${unit ? ' ' + unit : ''}`;
+    }
+    
+    const absValue = Math.abs(value);
+    
+    // For very small values, use scientific notation
+    if (absValue < 0.0001) {
+        return `${value.toExponential(3)}${unit ? ' ' + unit : ''}`;
+    }
+    // For small values, show enough decimal places to see the value
+    else if (absValue < 0.01) {
+        return `${value.toFixed(6)}${unit ? ' ' + unit : ''}`;
+    }
+    // For regular values, use 4 decimal places
+    else {
+        return `${value.toFixed(4)}${unit ? ' ' + unit : ''}`;
+    }
+}
 import { renderMacoChart } from './dashboardView.js';
 
 const loader = document.getElementById('loader');
@@ -1048,7 +1070,7 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
                 'Selected MACO Method': finalMacoResult.name,
                 'Final MACO (mg)': finalMaco.toFixed(2),
                 'MACO per Area (mg/cm²)': macoPerArea.toExponential(3),
-                'MACO per Swab (mg/Swab)': macoPerSwab.toFixed(4)
+                'MACO per Swab (mg/Swab)': formatSmallNumber(macoPerSwab)
             });
         });
         
@@ -1203,7 +1225,7 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
                 'ADI (mg)': adi.toFixed(4),
                 'MACO (mg)': maco.toFixed(2),
                 'MACO per Area (mg/cm²)': macoPerArea.toExponential(3),
-                'MACO per Swab (mg/Swab)': macoPerSwab.toFixed(4)
+                'MACO per Swab (mg/Swab)': formatSmallNumber(macoPerSwab)
             });
         });
         
@@ -1631,7 +1653,7 @@ export function exportAllTabsToExcel() {
                     'Selected MACO Method': finalMacoResult.name,
                     'Final MACO (mg)': finalMaco.toFixed(2),
                     'MACO per Area (mg/cm²)': macoPerArea.toExponential(3),
-                    'MACO per Swab (mg/Swab)': macoPerSwab.toFixed(4)
+                    'MACO per Swab (mg/Swab)': formatSmallNumber(macoPerSwab)
                 });
             });
             
@@ -1701,7 +1723,7 @@ export function exportAllTabsToExcel() {
                         'ADI (mg)': adi.toFixed(4),
                         'MACO (mg)': maco.toFixed(2),
                         'MACO per Area (mg/cm²)': macoPerArea.toExponential(3),
-                        'MACO per Swab (mg/Swab)': macoPerSwab.toFixed(4)
+                        'MACO per Swab (mg/Swab)': formatSmallNumber(macoPerSwab)
                     });
                 });
                 

@@ -5,6 +5,28 @@ import * as state from './state.js';
 import { hideLoader } from './ui.js';
 import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference, getConsistentTrainOrder, calculateScores, getRpnRatingText } from './utils.js';
 
+// Smart number formatting that avoids showing 0 when there's actually a value
+function formatSmallNumber(value, unit = '') {
+    if (value === 0 || value === null || value === undefined || isNaN(value)) {
+        return `0${unit ? ' ' + unit : ''}`;
+    }
+    
+    const absValue = Math.abs(value);
+    
+    // For very small values, use scientific notation
+    if (absValue < 0.0001) {
+        return `${value.toExponential(3)}${unit ? ' ' + unit : ''}`;
+    }
+    // For small values, show enough decimal places to see the value
+    else if (absValue < 0.01) {
+        return `${value.toFixed(6)}${unit ? ' ' + unit : ''}`;
+    }
+    // For regular values, use 4 decimal places
+    else {
+        return `${value.toFixed(4)}${unit ? ' ' + unit : ''}`;
+    }
+}
+
 export function renderMacoForTrains(lineFilter = null) {
     const container = document.getElementById('trainsContainer');
     const noTrainsMsg = document.getElementById('noTrainsMessage');
@@ -337,7 +359,7 @@ export function renderMacoForTrains(lineFilter = null) {
                                     ` : ''}
                                     ${train.id === lowestMacoTrain.id ? `
                                         <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-200 text-blue-700 border border-blue-300">
-                                            🎯 Lowest MACO: ${lowestMacoTrain.finalMaco.toFixed(4)} mg/Swab
+                                            🎯 Lowest MACO: ${formatSmallNumber(lowestMacoTrain.finalMaco, 'mg/Swab')}
                                         </span>
                                     ` : ''}
                                     <button class="train-toggle" id="toggle-pm-${uniqueTrainId}">${isCollapsed ? '▶' : '▼'}</button>
@@ -647,7 +669,7 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa, dosageF
     // Update the always-visible MACO / Swab element
     const macoPerSwabMainElement = document.getElementById(`maco-per-swab-main-${uniqueTrainId}`);
     if (macoPerSwabMainElement) {
-        macoPerSwabMainElement.textContent = `${macoPerSwab.toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })} mg/Swab`;
+        macoPerSwabMainElement.textContent = formatSmallNumber(macoPerSwab, 'mg/Swab');
     }
 
     const breakdownContainer = document.getElementById(`maco-breakdown-container-${uniqueTrainId}`);

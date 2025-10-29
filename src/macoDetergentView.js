@@ -5,6 +5,28 @@ import * as state from './state.js';
 import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder } from './utils.js';
 import * as utils from './utils.js';
 
+// Smart number formatting that avoids showing 0 when there's actually a value
+function formatSmallNumber(value, unit = '') {
+    if (value === 0 || value === null || value === undefined || isNaN(value)) {
+        return `0${unit ? ' ' + unit : ''}`;
+    }
+    
+    const absValue = Math.abs(value);
+    
+    // For very small values, use scientific notation
+    if (absValue < 0.0001) {
+        return `${value.toExponential(3)}${unit ? ' ' + unit : ''}`;
+    }
+    // For small values, show enough decimal places to see the value
+    else if (absValue < 0.01) {
+        return `${value.toFixed(6)}${unit ? ' ' + unit : ''}`;
+    }
+    // For regular values, use 4 decimal places
+    else {
+        return `${value.toFixed(4)}${unit ? ' ' + unit : ''}`;
+    }
+}
+
 export function renderDetergentMaco(lineFilter = null) {
     const container = document.getElementById('detergentMacoResults');
     const noTrainsMsg = document.getElementById('noTrainsForDetergentMessage');
@@ -222,7 +244,7 @@ export function recalculateDetergentMacoForTrain(trainId, lineLargestEssa, dosag
     if (adiElement) adiElement.textContent = `${adi.toFixed(4)} mg`;
     if (macoElement) macoElement.textContent = `${maco.toFixed(2)} mg`;
     if (macoAreaElement) macoAreaElement.textContent = `${macoPerArea.toExponential(3)} mg/cm²`;
-    if (macoSwabElement) macoSwabElement.textContent = `${macoPerSwab.toFixed(4)} mg/swab`;
+    if (macoSwabElement) macoSwabElement.textContent = formatSmallNumber(macoPerSwab, 'mg/swab');
 
     // Log if elements are missing
     if (!minLd50Element) console.warn(`Element min-ld50-train-${uniqueTrainId} not found`);
