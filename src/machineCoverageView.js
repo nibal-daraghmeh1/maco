@@ -4,7 +4,7 @@
  * Based on the cleaner mockup design
  */
 
-import { getTrainData, getTrainIdToLineNumberMap } from './utils.js';
+import { getTrainData, getTrainIdToLineNumberMap, countStudiesForTrains, getConsistentTrainOrder, calculateScores } from './utils.js';
 import { products, machines } from './state.js';
 
 class SimplifiedMachineCoverageTable {
@@ -41,8 +41,40 @@ class SimplifiedMachineCoverageTable {
      * @param {Object} data - Raw input data
      */
     processData(data) {
-        // Trains sorted by RPN (highest first)
-        this.allTrains = data.trains.sort((a, b) => b.rpn - a.rpn);
+        // Group trains by dosage form (same logic as train summary)
+        const dosageGroups = {};
+        data.trains.forEach(train => {
+            const dosageForm = train.productGroup || 'Unknown';
+            if (!dosageGroups[dosageForm]) {
+                dosageGroups[dosageForm] = [];
+            }
+            dosageGroups[dosageForm].push(train);
+        });
+        
+        // Process each dosage form group separately and apply consistent train ordering
+        const dosageFormGroups = [];
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const trainsInGroup = dosageGroups[dosageForm];
+            dosageFormGroups.push({ dosageForm, trains: trainsInGroup });
+        });
+        
+        // Apply consistent train ordering within each dosage form group
+        dosageFormGroups.forEach(group => {
+            group.trains = getConsistentTrainOrder(group.trains);
+        });
+        
+        // Combine back into single array maintaining dosage form grouping
+        this.allTrains = [];
+        dosageFormGroups.forEach(group => {
+            // Sort by train ID within each dosage form group (like train summary)
+            const sortedTrains = group.trains.sort((a, b) => {
+                // Extract train number from trainId (e.g., "Train 1" -> 1)
+                const aNum = parseInt(a.trainId?.replace(/\D/g, '') || '0');
+                const bNum = parseInt(b.trainId?.replace(/\D/g, '') || '0');
+                return aNum - bNum;
+            });
+            this.allTrains.push(...sortedTrains);
+        });
         
         // Extract unique machines
         this.machines = [...new Set(data.trains.flatMap(t => t.usedMachines))].sort();
@@ -55,37 +87,68 @@ class SimplifiedMachineCoverageTable {
      * Apply the machine coverage selection algorithm
      */
     selectTrainsForStudy() {
-        const coveredMachines = new Set();
-        const allMachines = new Set(this.machines);
-        let studyIndex = 0;
-
-        // Reset selected trains
+        // Group trains by dosage form (like train summary)
+        const dosageGroups = {};
+        this.allTrains.forEach(train => {
+            const dosageForm = train.productGroup || 'Unknown';
+            if (!dosageGroups[dosageForm]) {
+                dosageGroups[dosageForm] = [];
+            }
+            dosageGroups[dosageForm].push(train);
+        });
+        
+        // Process each dosage form group separately (EXACTLY like train summary)
         this.selectedTrains = [];
-
-        // Iterate through trains by RPN (highest first)
-        for (const train of this.allTrains) {
-            const trainMachines = new Set(train.usedMachines);
-            const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
+        let globalStudyIndex = 0;
+        
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const trainsInGroup = dosageGroups[dosageForm];
+            const machinesInGroup = [...new Set(trainsInGroup.flatMap(t => t.usedMachines))];
+            const coveredMachines = new Set();
             
-            if (newMachines.length > 0) {
-                // Select train for study
-                this.selectedTrains.push({
-                    ...train,
-                    studyNumber: studyIndex + 1,
-                    studyColor: this.studyColors[studyIndex % this.studyColors.length],
-                    newMachinesCovered: newMachines
-                });
+            // Sort by RPN (highest first) within dosage form group (EXACTLY like train summary)
+            const trainsWithRPN = trainsInGroup.map(train => ({
+                train,
+                rpn: train.rpn || 0
+            })).sort((a, b) => b.rpn - a.rpn);
+            
+            console.log(`Machine Coverage: Processing ${trainsInGroup.length} trains in dosage form: ${dosageForm}`);
+            console.log(`Machine Coverage: RPN-sorted order:`, trainsWithRPN.map(t => {
+                const internalId = t.train.trainInternalId || t.train.originalTrain?.id;
+                return `${t.train.trainId} (Internal ID: ${internalId}, RPN: ${t.rpn})`;
+            }));
+            
+            for (const { train, rpn } of trainsWithRPN) {
+                const trainMachines = new Set(train.usedMachines);
+                const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
+                const internalId = train.trainInternalId || train.originalTrain?.id;
                 
-                // Add covered machines
-                newMachines.forEach(machine => coveredMachines.add(machine));
-                studyIndex++;
+                console.log(`Machine Coverage: Checking train ${train.trainId} (Internal ID: ${internalId}) - RPN: ${rpn}, new machines: ${newMachines.length}`);
                 
-                // Stop if all machines are covered
-                if (coveredMachines.size === allMachines.size) {
-                    break;
+                if (newMachines.length > 0) {
+                    globalStudyIndex++;
+                    console.log(`Machine Coverage: Selected train ${train.trainId} for study ${globalStudyIndex}`);
+                    
+                    this.selectedTrains.push({
+                        ...train,
+                        studyNumber: globalStudyIndex,
+                        studyColor: this.studyColors[(globalStudyIndex - 1) % this.studyColors.length],
+                        newMachinesCovered: newMachines,
+                        trainInternalId: internalId
+                    });
+                    
+                    newMachines.forEach(machine => coveredMachines.add(machine));
+                    
+                    if (coveredMachines.size === machinesInGroup.length) {
+                        break;
+                    }
+                } else {
+                    console.log(`Machine Coverage: Skipped train ${train.trainId} - no new machines`);
                 }
             }
-        }
+        });
+        
+        console.log(`Machine Coverage: Selected ${this.selectedTrains.length} studies total`);
     }
 
     /**
@@ -286,7 +349,16 @@ class SimplifiedMachineCoverageTable {
      */
     generateTableBody() {
         const rows = this.allTrains.map(train => {
-            const selectedTrain = this.selectedTrains.find(st => st.trainId === train.trainId);
+            // Match by internal ID and productGroup for proper train matching
+            const selectedTrain = this.selectedTrains.find(st => {
+                const trainInternalId = train.trainInternalId || train.originalTrain?.id;
+                const stInternalId = st.trainInternalId || st.originalTrain?.id;
+                
+                if (trainInternalId && stInternalId && trainInternalId === stInternalId) {
+                    return st.productGroup === train.productGroup;
+                }
+                return false;
+            });
             const studyColor = selectedTrain ? selectedTrain.studyColor : null;
             const metaStyle = studyColor ? `style="background-color: ${studyColor};"` : '';
             
@@ -301,6 +373,9 @@ class SimplifiedMachineCoverageTable {
             const selectedText = selectedTrain ? 'Yes' : 'No';
             const group = train.productGroup || '-';
             const wcp = train.worstCaseProduct || '-';
+            
+            console.log(`Train ${train.trainId} (${train.productGroup}): selectedTrain =`, selectedTrain);
+            console.log(`Train ${train.trainId} (${train.productGroup}): newMachinesCovered =`, selectedTrain?.newMachinesCovered);
             
             return `
             <tr>
@@ -337,12 +412,18 @@ class SimplifiedMachineCoverageTable {
      * @returns {string} HTML string for stats
      */
     generateSummaryStats() {
+        // Use the actual study selection count from the algorithm
+        const selectedCount = this.selectedTrains.filter(study => 
+            study.newMachinesCovered && study.newMachinesCovered.length > 0
+        ).length;
+        
         const totalProducts = Number(this.allTrains?.length || 0);
-        const selectedCount = Number(this.selectedTrains?.length || 0);
         const totalMachines = Number(this.machines?.length || 0);
         const savingsPercent = totalProducts > 0
             ? Math.round((1 - selectedCount / totalProducts) * 100)
             : 0;
+        
+        console.log(`Machine Coverage Stats: ${selectedCount} studies from ${totalProducts} trains`);
         
         return `
         <div class="summary-stats">
@@ -436,23 +517,6 @@ function convertTrainDataToProductData(trainData, allMachines) {
     const data = { trains: [] };
     
     trainData.forEach(train => {
-        // Determine worst case product and highest RPN in train
-        let worstProduct = null;
-        let highestRpn = 0;
-        if (train.products) {
-            train.products.forEach(product => {
-                if (product.activeIngredients) {
-                    product.activeIngredients.forEach(ingredient => {
-                        const rpn = calculateRPN(ingredient);
-                        if (rpn > highestRpn) {
-                            highestRpn = rpn;
-                            worstProduct = product.name;
-                        }
-                    });
-                }
-            });
-        }
-        
         // Map machine ids to names (vertical headers)
         const usedMachines = (train.machineIds || []).map(id => {
             const m = allMachines.find(x => x.id === id);
@@ -464,12 +528,47 @@ function convertTrainDataToProductData(trainData, allMachines) {
         const mapped = idMap.get(String(train.id));
         const trainNumber = mapped ? mapped.number : train.id;
         
-        data.trains.push({
-            trainId: train.id ? `Train ${trainNumber}` : (train.trainId || 'Train'),
-            productGroup: train.productType || (train.products && train.products[0]?.productType) || '-',
-            worstCaseProduct: worstProduct || '-',
-            rpn: highestRpn,
-            usedMachines
+        // Get unique dosage forms in this train (same logic as train summary)
+        const dosageForms = [...new Set((train.products || []).map(p => p.productType || 'Unknown'))];
+        
+        // Create separate entry for each dosage form (like train summary)
+        dosageForms.forEach(dosageForm => {
+            // Find worst case product and highest RPN for this specific dosage form
+            let worstProduct = null;
+            let highestRpn = 0;
+            
+            const productsInDosageForm = (train.products || []).filter(p => (p.productType || 'Unknown') === dosageForm);
+            
+            productsInDosageForm.forEach(product => {
+                if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                    product.activeIngredients.forEach(ingredient => {
+                        try {
+                            const scores = calculateScores(ingredient);
+                            const rpn = scores?.rpn || 0;
+                            if (rpn > highestRpn) {
+                                highestRpn = rpn;
+                                worstProduct = product.name;
+                            }
+                        } catch (error) {
+                            console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                        }
+                    });
+                }
+            });
+            
+            // Create unique train identifier that includes dosage form
+            const uniqueTrainId = `${trainNumber}-${dosageForm}`;
+            
+            data.trains.push({
+                trainId: train.id ? `Train ${trainNumber}` : (train.trainId || 'Train'),
+                uniqueId: uniqueTrainId, // Add unique identifier
+                productGroup: dosageForm,
+                worstCaseProduct: worstProduct || '-',
+                rpn: highestRpn,
+                usedMachines,
+                originalTrain: train, // Keep reference to original train
+                trainInternalId: train.id // Add internal ID for matching
+            });
         });
     });
     

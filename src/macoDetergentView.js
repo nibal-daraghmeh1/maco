@@ -10,6 +10,9 @@ export function renderDetergentMaco(lineFilter = null) {
     const noTrainsMsg = document.getElementById('noTrainsForDetergentMessage');
     container.innerHTML = '';
 
+    // Initialize detergent ingredients list when tab loads
+    renderDetergentIngredientsList();
+
     const baseTrainData = getTrainData(); // computed train metrics keyed by consolidated path
     let linesWithTrains = getTrainsGroupedByLine(); // pre-numbered trains per line
 
@@ -108,13 +111,15 @@ export function renderDetergentMaco(lineFilter = null) {
         card.className = 'train-card'; // Use train-card for consistent collapsible behavior
         const mapped = idMap.get(String(train.id));
         const trainHeaderLabel = mapped ? `Train ${mapped.number}` : `Train ${train.id}`;
+        // Create unique ID that includes dosage form to avoid conflicts
+        const uniqueTrainId = `${train.id}-${train.dosageForm || 'unknown'}`;
 
         card.innerHTML = `
-                    <div class="train-header" onclick="toggleTrain('dm-${train.id}')">
-                        <span>${trainHeaderLabel}</span>
-                        <button class="train-toggle" id="toggle-dm-${train.id}">${isCollapsed ? '▶' : '▼'}</button>
+                    <div class="train-header" onclick="toggleTrain('dm-${uniqueTrainId}')">
+                        <span>${trainHeaderLabel} - ${train.dosageForm || 'Unknown'}</span>
+                        <button class="train-toggle" id="toggle-dm-${uniqueTrainId}">${isCollapsed ? '▶' : '▼'}</button>
                     </div>
-                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-dm-${train.id}">
+                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-dm-${uniqueTrainId}">
                         <div class="train-content-inner space-y-3">
                             <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
                                
@@ -122,52 +127,55 @@ export function renderDetergentMaco(lineFilter = null) {
                                     Based on products in the train, the minimum (Batch Size / MDD) ratio is: <b>${train.minBsMddRatio.toLocaleString(undefined, { maximumFractionDigits: 2 })}</b>.
                                 </p>
                                 <p class="text-xs mt-1" style="color:var(--text-secondary);">
-                                    Min LD50 = <b><span id="min-ld50-train-${train.id}">...</span> mg/kg</b>
+                                    Min LD50 = <b><span id="min-ld50-train-${uniqueTrainId}">...</span> mg/kg</b>
                                 </p>
                             </div>
 
                             <div class="p-3 rounded-md border" style="border-color:var(--border-color)">
-                                <label for="sf-input-train-${train.id}" class="block text-sm font-small mb-1">Safety Factor (SF)</label>
+                                <label for="sf-input-train-${uniqueTrainId}" class="block text-sm font-small mb-1">Safety Factor (SF)</label>
                                 <input type="number" 
-                                    id="sf-input-train-${train.id}" 
+                                    id="sf-input-train-${uniqueTrainId}" 
                                     class="w-full px-2 py-2 border rounded-md text-sm"
                                     value="${sfConfig.max}" 
                                     min="${sfConfig.min}" 
                                     max="${sfConfig.max}" 
-                                    oninput="recalculateDetergentMacoForTrain(${train.id})"
+                                    oninput="recalculateDetergentMacoForTrain(${train.id}, undefined, '${train.dosageForm || 'unknown'}')"
                                     onchange="clampSafetyFactor(this, ${train.id})">
                                 <p class="text-xs mt-1" style="color:var(--text-secondary);">Range for ${sfConfig.route} route: ${sfConfig.min.toLocaleString()} - ${sfConfig.max.toLocaleString()}</p>
                             </div>
                             
                             <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
                                 <p class="font-mono text-xs" style="color:var(--text-secondary);">ADI = (5e-4 * LD50 * BW) / SF</p>
-                                <p><b  class="text-sm">Acceptable Daily Intake (ADI):</b> <span  class="text-sm" id="adi-value-train-${train.id}">...</span></p>
+                                <p><b  class="text-sm">Acceptable Daily Intake (ADI):</b> <span  class="text-sm" id="adi-value-train-${uniqueTrainId}">...</span></p>
                             </div>
                             <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
                                 <p class="font-mono text-xs" style="color:var(--text-secondary);">MACO = (ADI * Min BS/MDD Ratio)</p>
-                                <p><b  class="text-sm">MACO:</b> <span  class="text-sm" id="maco-value-train-${train.id}">...</span></p>
+                                <p><b  class="text-sm">MACO:</b> <span  class="text-sm" id="maco-value-train-${uniqueTrainId}">...</span></p>
                             </div>
                             <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
                                 <p class="font-mono text-xs" style="color:var(--text-secondary);">MACO/Area = MACO / Global Largest ESSA</p>
-                                <p><b  class="text-sm">MACO per Area:</b> <span class="text-sm"id="macoarea-value-train-${train.id}">...</span></p>
+                                <p><b  class="text-sm">MACO per Area:</b> <span class="text-sm"id="macoarea-value-train-${uniqueTrainId}">...</span></p>
                             </div>
                             <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
                                 <p class="font-mono text-xs" style="color:var(--text-secondary);">MACO/Swab = (MACO/Area) * SSA</p>
-                                <p><b class="text-sm">MACO per Swab:</b> <span  class="text-sm" id="macoswab-value-train-${train.id}">...</span></p>
+                                <p><b class="text-sm">MACO per Swab:</b> <span  class="text-sm" id="macoswab-value-train-${uniqueTrainId}">...</span></p>
                             </div>
                         </div>
                     </div>
                 `;
         container.appendChild(card);
-        recalculateDetergentMacoForTrain(train.id); // Initial calculation
+        recalculateDetergentMacoForTrain(train.id, undefined, train.dosageForm || 'unknown'); // Initial calculation
             });
         });
     });
 }
 
-export function recalculateDetergentMacoForTrain(trainId, lineLargestEssa) {
+export function recalculateDetergentMacoForTrain(trainId, lineLargestEssa, dosageForm) {
     const train = getTrainData().find(t => t.id === trainId);
     if (!train) return;
+    
+    // Create unique train ID that includes dosage form
+    const uniqueTrainId = `${trainId}-${dosageForm || 'unknown'}`;
 
     if (lineLargestEssa === undefined) {
         const allTrains = getTrainData();
@@ -177,19 +185,51 @@ export function recalculateDetergentMacoForTrain(trainId, lineLargestEssa) {
 
     const ld50Values = state.detergentIngredients.map(i => parseFloat(i.ld50)).filter(ld50 => !isNaN(ld50));
     const minLd50 = ld50Values.length > 0 ? Math.min(...ld50Values) : 0;
-    const bodyWeight = parseFloat(document.getElementById('bodyWeight').value) || 0;
-    const sf = parseFloat(document.getElementById(`sf-input-train-${trainId}`).value) || 1;
+    const bodyWeight = parseFloat(document.getElementById('bodyWeight')?.value) || 70; // Default to 70 if not found
+    const sf = parseFloat(document.getElementById(`sf-input-train-${uniqueTrainId}`)?.value) || 1;
+
+    console.log(`=== DETERGENT MACO CALCULATION DEBUG - Train ${trainId} ===`);
+    console.log(`Detergent ingredients:`, state.detergentIngredients);
+    console.log(`LD50 values:`, ld50Values);
+    console.log(`Min LD50: ${minLd50}`);
+    console.log(`Body weight: ${bodyWeight}`);
+    console.log(`Safety factor: ${sf}`);
+    console.log(`Train minBsMddRatio: ${train.minBsMddRatio}`);
+    console.log(`Line largest ESSA: ${lineLargestEssa}`);
+    console.log(`Train assumedSsa: ${train.assumedSsa}`);
 
     const adi = (5e-4 * minLd50 * bodyWeight) / sf;
+    console.log(`ADI calculation: (5e-4 * ${minLd50} * ${bodyWeight}) / ${sf} = ${adi}`);
+    
     const maco = adi * train.minBsMddRatio;
+    console.log(`MACO calculation: ${adi} * ${train.minBsMddRatio} = ${maco}`);
+    
     const macoPerArea = lineLargestEssa > 0 ? maco / lineLargestEssa : 0;
+    console.log(`MACO per Area: ${maco} / ${lineLargestEssa} = ${macoPerArea}`);
+    
     const macoPerSwab = macoPerArea * train.assumedSsa;
+    console.log(`MACO per Swab: ${macoPerArea} * ${train.assumedSsa} = ${macoPerSwab}`);
+    console.log(`=== END DETERGENT MACO CALCULATION DEBUG ===`);
 
-    document.getElementById(`min-ld50-train-${trainId}`).textContent = minLd50.toLocaleString();
-    document.getElementById(`adi-value-train-${trainId}`).textContent = `${adi.toFixed(4)} mg`;
-    document.getElementById(`maco-value-train-${trainId}`).textContent = `${maco.toFixed(2)} mg`;
-    document.getElementById(`macoarea-value-train-${trainId}`).textContent = `${macoPerArea.toExponential(3)} mg/cm²`;
-    document.getElementById(`macoswab-value-train-${trainId}`).textContent = `${macoPerSwab.toFixed(4)} mg/swab`;
+    // Check if elements exist before updating
+    const minLd50Element = document.getElementById(`min-ld50-train-${uniqueTrainId}`);
+    const adiElement = document.getElementById(`adi-value-train-${uniqueTrainId}`);
+    const macoElement = document.getElementById(`maco-value-train-${uniqueTrainId}`);
+    const macoAreaElement = document.getElementById(`macoarea-value-train-${uniqueTrainId}`);
+    const macoSwabElement = document.getElementById(`macoswab-value-train-${uniqueTrainId}`);
+
+    if (minLd50Element) minLd50Element.textContent = minLd50.toLocaleString();
+    if (adiElement) adiElement.textContent = `${adi.toFixed(4)} mg`;
+    if (macoElement) macoElement.textContent = `${maco.toFixed(2)} mg`;
+    if (macoAreaElement) macoAreaElement.textContent = `${macoPerArea.toExponential(3)} mg/cm²`;
+    if (macoSwabElement) macoSwabElement.textContent = `${macoPerSwab.toFixed(4)} mg/swab`;
+
+    // Log if elements are missing
+    if (!minLd50Element) console.warn(`Element min-ld50-train-${uniqueTrainId} not found`);
+    if (!adiElement) console.warn(`Element adi-value-train-${uniqueTrainId} not found`);
+    if (!macoElement) console.warn(`Element maco-value-train-${uniqueTrainId} not found`);
+    if (!macoAreaElement) console.warn(`Element macoarea-value-train-${uniqueTrainId} not found`);
+    if (!macoSwabElement) console.warn(`Element macoswab-value-train-${uniqueTrainId} not found`);
 
 }
 
@@ -413,3 +453,10 @@ window.toggleAllDetergentTrainsSelection = toggleAllDetergentTrainsSelection;
 window.updateAllDetergentTrainsCheckbox = updateAllDetergentTrainsCheckbox;
 window.executeDetergentExportSelection = executeDetergentExportSelection;
 window.executeDetergentPrintSelection = executeDetergentPrintSelection;
+
+// Expose detergent ingredient functions
+window.renderDetergentIngredientsList = renderDetergentIngredientsList;
+window.addDetergentIngredient = addDetergentIngredient;
+window.removeDetergentIngredient = removeDetergentIngredient;
+window.updateDetergentIngredient = updateDetergentIngredient;
+window.recalculateDetergentMacoForTrain = recalculateDetergentMacoForTrain;

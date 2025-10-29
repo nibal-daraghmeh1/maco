@@ -3,15 +3,14 @@
 
 import * as state from './state.js';
 import { hideLoader } from './ui.js';
-import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference, getConsistentTrainOrder } from './utils.js';
+import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference, getConsistentTrainOrder, calculateScores, getRpnRatingText } from './utils.js';
 
 export function renderMacoForTrains(lineFilter = null) {
     const container = document.getElementById('trainsContainer');
     const noTrainsMsg = document.getElementById('noTrainsMessage');
     container.innerHTML = '';
 
-    const baseTrainData = getTrainData(); // computed train metrics keyed by consolidated path
-    let linesWithTrains = getTrainsGroupedByLine(); // pre-numbered trains per line
+    let linesWithTrains = getTrainsGroupedByLine(); // pre-numbered trains per line with proper dosage form separation
 
     // Filter by line if specified
     if (lineFilter) {
@@ -27,25 +26,122 @@ export function renderMacoForTrains(lineFilter = null) {
     noTrainsMsg.style.display = 'none';
     container.style.display = 'block';
 
-    // map baseTrainData by key for merging
-    const trainByKey = {};
-    baseTrainData.forEach(t => { if (t.key) trainByKey[t.key] = t; });
+    // Get full train data for calculations and merge it properly
+    const fullTrainData = getTrainData();
+    const fullTrainByKey = {};
+    fullTrainData.forEach(t => { if (t.key) fullTrainByKey[t.key] = t; });
 
-    // Note: ESSA will be calculated per train based on line and dosage form
-
-    // Flatten trains for optional filtering later
-    const mergedTrains = [];
+    // Flatten trains and enhance with calculated metrics while preserving dosage form separation
+    const enhancedTrains = [];
     linesWithTrains.forEach(lineObj => {
-        lineObj.trains.forEach(t => {
-            const computed = trainByKey[t.key];
-            if (!computed || !computed.id) return; // skip trains that have no computed data / id
-            const merged = { ...t, ...computed }; // keep t.number and t.line, but include computed metrics and id
-            mergedTrains.push(merged);
+        lineObj.trains.forEach(train => {
+            // Find full train data by key, but keep dosage form separation
+            const fullTrain = fullTrainByKey[train.key];
+            
+            if (!fullTrain) return; // Skip if no calculated data available
+            
+            // Create enhanced train with calculated metrics but filtered products
+            const enhancedTrain = {
+                ...train,  // Keep dosage form separation and numbering from getTrainsGroupedByLine
+                id: fullTrain.id,  // Use ID from full train data
+                essa: fullTrain.essa,
+                lowestLtd: null,
+                lowestPde: null, 
+                lowestLd50: null,
+                minBsMddRatio: null,
+                minMbsKg: null,
+                assumedSsa: fullTrain.assumedSsa || 25,
+                // Products are already filtered by dosage form in getTrainsGroupedByLine
+            };
+            
+            // Calculate metrics for this specific dosage form's products
+            let lowestLtd = Infinity;
+            let lowestLtdProductId = null;
+            let lowestPde = Infinity;
+            let lowestLd50 = Infinity;
+            let minMbsKg = Infinity;
+            let minMbsProductId = null;
+            let minRatioProductId = null;
+            let worstProductByRpn = null;
+            let maxRpn = -1;
+            
+            const productRatios = [];
+            
+            enhancedTrain.products.forEach(product => {
+                // Find min batch size
+                if (product.batchSizeKg < minMbsKg) {
+                    minMbsKg = product.batchSizeKg;
+                    minMbsProductId = product.id;
+                }
+                
+                // Calculate product ratio and find ingredients data
+                product.activeIngredients.forEach(ingredient => {
+                    // Lowest therapeutic dose
+                    if (ingredient.therapeuticDose < lowestLtd) {
+                        lowestLtd = ingredient.therapeuticDose;
+                        lowestLtdProductId = product.id;
+                    }
+                    
+                    // Lowest PDE
+                    if (ingredient.pde && ingredient.pde < lowestPde) {
+                        lowestPde = ingredient.pde;
+                    }
+                    
+                    // Lowest LD50
+                    if (ingredient.ld50 && ingredient.ld50 < lowestLd50) {
+                        lowestLd50 = ingredient.ld50;
+                    }
+                    
+                    // Calculate BS/MDD ratio
+                    const ratio = (product.batchSizeKg * 1000) / (ingredient.mdd / 1000);
+                    productRatios.push({ productId: product.id, ratio });
+                    
+                    // Calculate RPN for worst-case product identification
+                    try {
+                        const scores = calculateScores(ingredient);
+                        const rpn = scores?.rpn || 0;
+                        if (rpn > maxRpn) {
+                            maxRpn = rpn;
+                            worstProductByRpn = { 
+                                productName: product.name, 
+                                ingredientName: ingredient.name, 
+                                rpn: maxRpn, 
+                                rating: getRpnRatingText(maxRpn) 
+                            };
+                        }
+                    } catch (error) {
+                        console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                    }
+                });
+            });
+            
+            // Set calculated values
+            enhancedTrain.lowestLtd = isFinite(lowestLtd) ? lowestLtd : 0;
+            enhancedTrain.lowestLtdProductId = lowestLtdProductId;
+            enhancedTrain.lowestPde = isFinite(lowestPde) ? lowestPde : null;
+            enhancedTrain.lowestLd50 = isFinite(lowestLd50) ? lowestLd50 : null;
+            enhancedTrain.minMbsKg = isFinite(minMbsKg) ? minMbsKg : 0;
+            enhancedTrain.minMbsProductId = minMbsProductId;
+            enhancedTrain.worstProductRpn = worstProductByRpn; // Add RPN data
+            
+            // Find minimum ratio
+            if (productRatios.length > 0) {
+                const minRatio = productRatios.reduce((min, current) => 
+                    current.ratio < min.ratio ? current : min
+                );
+                enhancedTrain.minBsMddRatio = minRatio.ratio;
+                enhancedTrain.minRatioProductId = minRatio.productId;
+            } else {
+                enhancedTrain.minBsMddRatio = 0;
+                enhancedTrain.minRatioProductId = null;
+            }
+            
+            enhancedTrains.push(enhancedTrain);
         });
     });
 
     // Apply consistent train ordering
-    const orderedTrains = getConsistentTrainOrder(mergedTrains);
+    const orderedTrains = getConsistentTrainOrder(enhancedTrains);
 
     // Filter based on printSelectedTrain if required (support either numeric train.id or new train.number)
     let trainsToRender = orderedTrains;
@@ -180,7 +276,9 @@ export function renderMacoForTrains(lineFilter = null) {
 
                 const trainCard = document.createElement('div');
                 trainCard.className = 'train-card';
-                trainCard.id = `product-maco-train-${train.id}`;
+                // Create unique ID that includes dosage form to avoid conflicts
+                const uniqueTrainId = `${train.id}-${train.dosageForm || 'unknown'}`;
+                trainCard.id = `product-maco-train-${uniqueTrainId}`;
 
                 const machineNames = formatTrainDisplayForMaco(train.machineIds);
 
@@ -229,8 +327,8 @@ export function renderMacoForTrains(lineFilter = null) {
                 const minMbsProduct = state.products.find(p => p.id === train.minMbsProductId) || { name: 'N/A' };
 
                 trainCard.innerHTML = `
-                            <div class="train-header" onclick="toggleTrain('pm-${train.id}')">
-                                <span>Train ${train.number}</span>
+                            <div class="train-header" onclick="toggleTrain('pm-${uniqueTrainId}')">
+                                <span>Train ${train.number} - ${train.dosageForm || 'Unknown'}</span>
                                 <div class="flex items-center gap-2">
                                     ${train.id === largestEssaTrain.id ? `
                                         <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-200 text-gray-700 border border-gray-300">
@@ -242,10 +340,10 @@ export function renderMacoForTrains(lineFilter = null) {
                                             🎯 Lowest MACO: ${lowestMacoTrain.finalMaco.toFixed(4)} mg/Swab
                                         </span>
                                     ` : ''}
-                                    <button class="train-toggle" id="toggle-pm-${train.id}">${isCollapsed ? '▶' : '▼'}</button>
+                                    <button class="train-toggle" id="toggle-pm-${uniqueTrainId}">${isCollapsed ? '▶' : '▼'}</button>
                                 </div>
                             </div>
-                            <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-pm-${train.id}">
+                            <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-pm-${uniqueTrainId}">
                                 <div class="train-content-inner space-y-6">
                                     <!-- Train Details -->
                                     <div>
@@ -308,9 +406,9 @@ export function renderMacoForTrains(lineFilter = null) {
                                         <div class="space-y-4">
 
                                              <h4 class="text-md font-semibold">MACO Calculation Breakdown</h4>
-                                             <button id="breakdown-toggle-btn-${train.id}" onclick="toggleMacoBreakdown(${train.id})" class="w-full text-sm py-2 px-4 rounded-md border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Show MACO Calculation Breakdown</button>
+                                             <button id="breakdown-toggle-btn-${uniqueTrainId}" onclick="toggleMacoBreakdown('${uniqueTrainId}')" class="w-full text-sm py-2 px-4 rounded-md border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Show MACO Calculation Breakdown</button>
                                              
-                                             <div id="maco-breakdown-details-${train.id}" class="hidden space-y-4">
+                                             <div id="maco-breakdown-details-${uniqueTrainId}" class="hidden space-y-4">
                                                  <div class="p-4 rounded-lg" style="background-color: var(--bg-accent);">
                                                     <p class="text-sm"><b>Worst-Case Dosage Form:</b> ${worstCaseType}</p>
                                                     <p class="text-xs mt-1" style="color:var(--text-secondary);">Range for ${sfConfig.route} route: ${sfConfig.min.toLocaleString()} - ${sfConfig.max.toLocaleString()}</p>
@@ -325,20 +423,20 @@ export function renderMacoForTrains(lineFilter = null) {
                                                     <li><b>Lowest LD50:</b> ${train.lowestLd50 !== null ? train.lowestLd50 + ' mg/kg' : 'N/A'}</li>
                                                     ${train.lowestLd50 !== null ? `<li><b>NOEL Calculation:</b> (${train.lowestLd50} × 70) ÷ 2000 = <span class="font-semibold">${((train.lowestLd50 * 70) / 2000).toFixed(6)} g</span></li>` : ''}
                                                     <li><b>Line Largest ESSA:</b> ${(() => {
-                                                        const largestEssa = getLargestEssaForLineAndDosageForm(train, mergedTrains);
-                                                        const trainWithLargestEssa = mergedTrains.find(t => t.line === train.line && t.essa === largestEssa);
+                                                        const largestEssa = getLargestEssaForLineAndDosageForm(train, trainsToRender);
+                                                        const trainWithLargestEssa = trainsToRender.find(t => t.line === train.line && t.essa === largestEssa);
                                                         const trainLabel = trainWithLargestEssa && trainWithLargestEssa.number ? `Train ${trainWithLargestEssa.number}` : '';
                                                         return `${largestEssa.toLocaleString()} cm² ${trainLabel ? `(from ${trainLabel})` : '(same line & dosage form)'}`;
                                                     })()} </li>
                                                  </ul>
-                                                 <div id="maco-breakdown-container-${train.id}" class="divide-y rounded-md border" style="border-color: var(--border-color);"></div>
+                                                 <div id="maco-breakdown-container-${uniqueTrainId}" class="divide-y rounded-md border" style="border-color: var(--border-color);"></div>
                                             </div>
                                             
                                             <!-- Always visible MACO / Swab value - always at the bottom -->
                                             <div class="p-4 rounded-lg border mt-4" style="border-color:var(--gradient-mid);">
                                                 <div class="text-center">
                                                     <p class="text-sm" style="color:var(--text-secondary);">MACO / Swab (assuming ${train.assumedSsa} cm² area)</p>
-                                                    <p class="text-lg font-bold" id="maco-per-swab-main-${train.id}" style="color:var(--gradient-mid);">...</p>
+                                                    <p class="text-lg font-bold" id="maco-per-swab-main-${uniqueTrainId}" style="color:var(--gradient-mid);">...</p>
                                                 </div>
                                             </div>
                                             </div>
@@ -348,13 +446,14 @@ export function renderMacoForTrains(lineFilter = null) {
                         `;
                 
                 container.appendChild(trainCard);
-                recalculateProductMacoForTrain(train.id);
+                recalculateProductMacoForTrain(train.id, undefined, train.dosageForm);
             });
         });
     });
 
     const finalTrainData = trainsToRender.map(train => {
-        const finalMacoElement = document.getElementById(`final-maco-val-${train.id}`);
+        const uniqueTrainId = `${train.id}-${train.dosageForm || 'unknown'}`;
+        const finalMacoElement = document.getElementById(`final-maco-val-${uniqueTrainId}`);
         if (finalMacoElement && finalMacoElement.dataset.value) {
             return { ...train, finalMaco: parseFloat(finalMacoElement.dataset.value) };
         }
@@ -377,14 +476,104 @@ export function renderMacoForTrains(lineFilter = null) {
     hideLoader();
 }
 
-export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
-    const train = getTrainData().find(t => t.id === trainId);
+export function recalculateProductMacoForTrain(trainId, lineLargestEssa, dosageForm) {
+    // Find the train from the enhanced trains that match both ID and dosage form
+    const trainLines = getTrainsGroupedByLine();
+    let train = null;
+    
+    for (const lineObj of trainLines) {
+        for (const t of lineObj.trains) {
+            if (t.id === trainId && t.dosageForm === dosageForm) {
+                // Re-calculate metrics for this specific dosage form
+                const fullTrainData = getTrainData();
+                const fullTrain = fullTrainData.find(ft => ft.key === t.key);
+                
+                if (fullTrain) {
+                    // Create enhanced train with calculated metrics for this dosage form
+                    train = {
+                        ...t,
+                        id: fullTrain.id,
+                        essa: fullTrain.essa,
+                        assumedSsa: fullTrain.assumedSsa || 25,
+                    };
+                    
+                    // Calculate metrics for this specific dosage form's products
+                    let lowestLtd = Infinity;
+                    let lowestPde = Infinity;
+                    let lowestLd50 = Infinity;
+                    let minMbsKg = Infinity;
+                    let minMbsProductId = null;
+                    
+                    const productRatios = [];
+                    
+                    train.products.forEach(product => {
+                        if (product.batchSizeKg < minMbsKg) {
+                            minMbsKg = product.batchSizeKg;
+                            minMbsProductId = product.id;
+                        }
+                        
+                        product.activeIngredients.forEach(ingredient => {
+                            if (ingredient.therapeuticDose < lowestLtd) {
+                                lowestLtd = ingredient.therapeuticDose;
+                            }
+                            if (ingredient.pde && ingredient.pde < lowestPde) {
+                                lowestPde = ingredient.pde;
+                            }
+                            if (ingredient.ld50 && ingredient.ld50 < lowestLd50) {
+                                lowestLd50 = ingredient.ld50;
+                            }
+                            
+                            const ratio = (product.batchSizeKg * 1000) / (ingredient.mdd / 1000);
+                            productRatios.push(ratio);
+                        });
+                    });
+                    
+                    // Calculate RPN for worst-case product identification
+                    let worstProductByRpn = null;
+                    let maxRpn = -1;
+                    
+                    train.products.forEach(product => {
+                        product.activeIngredients.forEach(ingredient => {
+                            try {
+                                const scores = calculateScores(ingredient);
+                                const rpn = scores?.rpn || 0;
+                                if (rpn > maxRpn) {
+                                    maxRpn = rpn;
+                                    worstProductByRpn = { 
+                                        productName: product.name, 
+                                        ingredientName: ingredient.name, 
+                                        rpn: maxRpn, 
+                                        rating: getRpnRatingText(maxRpn) 
+                                    };
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                            }
+                        });
+                    });
+                    
+                    train.lowestLtd = isFinite(lowestLtd) ? lowestLtd : 0;
+                    train.lowestPde = isFinite(lowestPde) ? lowestPde : null;
+                    train.lowestLd50 = isFinite(lowestLd50) ? lowestLd50 : null;
+                    train.minMbsKg = isFinite(minMbsKg) ? minMbsKg : 0;
+                    train.minMbsProductId = minMbsProductId;
+                    train.minBsMddRatio = productRatios.length > 0 ? Math.min(...productRatios) : 0;
+                    train.worstProductRpn = worstProductByRpn; // Add RPN data
+                }
+                break;
+            }
+        }
+        if (train) break;
+    }
+    
     if (!train) return;
 
-    // Get the train number from the original train data
-    const linesWithTrains = getTrainsGroupedByLine();
+    // Create unique train ID that includes dosage form to match DOM elements
+    const uniqueTrainId = `${trainId}-${dosageForm || 'unknown'}`;
+
+    // Get the train number from the original train data  
     let trainNumber = trainId; // fallback to trainId if not found
-    for (const lineObj of linesWithTrains) {
+    for (const lineObj of trainLines) {
         const foundTrain = lineObj.trains.find(t => t.id === trainId);
         if (foundTrain && foundTrain.number) {
             trainNumber = foundTrain.number;
@@ -399,7 +588,7 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
     }
 
     const sfInput = document.getElementById(`product-sf-input-train-${train.id}`);
-    const sf = parseFloat(sfInput.value);
+    const sf = parseFloat(sfInput?.value) || 1000; // Default safety factor
 
     if (isNaN(sf)) return;
 
@@ -456,12 +645,12 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
     const macoPerSwab = macoPerArea * train.assumedSsa;
 
     // Update the always-visible MACO / Swab element
-    const macoPerSwabMainElement = document.getElementById(`maco-per-swab-main-${train.id}`);
+    const macoPerSwabMainElement = document.getElementById(`maco-per-swab-main-${uniqueTrainId}`);
     if (macoPerSwabMainElement) {
         macoPerSwabMainElement.textContent = `${macoPerSwab.toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })} mg/Swab`;
     }
 
-    const breakdownContainer = document.getElementById(`maco-breakdown-container-${train.id}`);
+    const breakdownContainer = document.getElementById(`maco-breakdown-container-${uniqueTrainId}`);
     if (breakdownContainer) {
         breakdownContainer.innerHTML = allMacoValues.map(({ value, name }) => {
             let equation = '';
@@ -504,7 +693,7 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
         selectedLimitCard.innerHTML = `
             <div class="text-center">
                 <p class="text-sm font-semibold mb-2" style="color:var(--text-secondary);">Selected Limit: ${finalMacoResult.name}</p>
-                <p class="text-lg font-extrabold" style="color:var(--gradient-mid);" id="final-maco-val-${train.id}" data-value="${finalMaco}">${finalMaco.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mg</p>
+                <p class="text-lg font-extrabold" style="color:var(--gradient-mid);" id="final-maco-val-${uniqueTrainId}" data-value="${finalMaco}">${finalMaco.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mg</p>
                 ${finalMacoResult.name === '10 ppm Criterion' ? `<p class="text-sm mt-1" style="color:var(--text-secondary);">10 ppm Criterion: ${ppmValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} mg</p>` : ''}
             </div>
         `;
@@ -517,7 +706,7 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa) {
         finalMacoCard.innerHTML = `
             <h5 class="text-sm font-semibold mb-2">Final MACO Limits for Train ${trainNumber}</h5>
             <div class="space-y-3">
-                <div><p class="text-sm" style="color:var(--text-secondary);">MACO / Area</p><p class="text-md font-bold" id="maco-per-area-val-${train.id}">${macoPerArea.toExponential(3)} mg/cm²</p></div>
+                <div><p class="text-sm" style="color:var(--text-secondary);">MACO / Area</p><p class="text-md font-bold" id="maco-per-area-val-${uniqueTrainId}">${macoPerArea.toExponential(3)} mg/cm²</p></div>
             </div>
         `;
         breakdownContainer.appendChild(finalMacoCard);

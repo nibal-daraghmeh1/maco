@@ -50,7 +50,7 @@ function getWorstCaseProductForTrain(train) {
     return worstProduct;
 }
 
-// Helper function to calculate number of studies needed for a train
+// Helper function to calculate number of studies needed for a train using machine coverage algorithm
 function calculateStudiesNeeded(train) {
     if (!train || !train.products || train.products.length === 0) {
         return 0;
@@ -105,15 +105,29 @@ function calculateStudiesNeeded(train) {
         return { train: t, rpn: highestRPN };
     }).sort((a, b) => b.rpn - a.rpn); // Sort by RPN descending (highest first)
 
-    // Find the position of current train in the RPN-sorted list
-    const currentTrainIndex = trainsWithRPN.findIndex(t => t.train.id === train.id);
-    if (currentTrainIndex === -1) {
-        return 0;
+    // Use machine coverage algorithm to determine if this train would be selected
+    const coveredMachines = new Set();
+    let studyIndex = 0;
+    
+    for (const { train: t } of trainsWithRPN) {
+        const trainMachines = new Set(t.machineIds || []);
+        const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
+        
+        if (newMachines.length > 0) {
+            studyIndex++;
+            
+            // If this is the current train, return its study number
+            if (t.id === train.id) {
+                return studyIndex;
+            }
+            
+            // Add covered machines
+            newMachines.forEach(machine => coveredMachines.add(machine));
+        }
     }
-
-    // Calculate studies needed for this train based on its RPN ranking
-    // Train with highest RPN gets study 1, second highest gets study 2, etc.
-    return currentTrainIndex + 1;
+    
+    // If train wasn't selected, return 0
+    return 0;
 }
 
 
@@ -450,42 +464,76 @@ export function renderTrainSummary(lineFilter = null) {
         }).sort((a, b) => b.rpn - a.rpn); // Sort by RPN for study calculation
         
         const coveredMachines = new Set();
-        group.studyBreakdown = trainsWithRPNForStudies
-            .filter(({ train }) => train.machineIds && train.machineIds.length > 0) // Only include trains with machines
-            .map(({ train, rpn, worstProduct, worstIngredient }, index) => {
-                const studyNumber = index + 1;
-                const mapped = idMap.get(String(train.id));
-                const trainLabel = mapped ? `Train ${mapped.number}` : `T${train.id}`;
-                
-                // Calculate which machines this study covers (machines not covered by previous studies)
-                const newMachines = train.machineIds.filter(machineId => 
+        const studyBreakdown = [];
+        let studyIndex = 0;
+        
+        console.log(`Train Summary: Processing ${trainsWithRPNForStudies.length} trains for line ${groupKey}`);
+        console.log(`Train Summary: All machines in line:`, Array.from(allMachinesInGroup));
+        
+        // Use machine coverage algorithm (same as machine coverage view)
+        for (const { train, rpn, worstProduct, worstIngredient } of trainsWithRPNForStudies) {
+            if (train.machineIds && train.machineIds.length > 0) {
+                const trainMachines = new Set(train.machineIds);
+                const newMachines = [...trainMachines].filter(machineId => 
                     allMachinesInGroup.has(machineId) && !coveredMachines.has(machineId)
                 );
                 
-                // Add these machines to the covered set
-                newMachines.forEach(machineId => coveredMachines.add(machineId));
+                console.log(`Train Summary: Train ${train.id} - RPN: ${rpn}`);
+                console.log(`Train Summary: Train machines:`, Array.from(trainMachines));
+                console.log(`Train Summary: New machines:`, newMachines);
+                console.log(`Train Summary: Currently covered:`, Array.from(coveredMachines));
                 
-                // Get machine names for covered machines only
-                const coveredMachineNames = newMachines.map(id => {
-                    const machine = state.machines.find(m => m.id === id);
-                    return machine ? machine.name : `Unknown (ID: ${id})`;
-                }).join(', ');
-                
-                return {
-                    studyNumber,
-                    trainLabel,
-                    productName: worstProduct ? worstProduct.name : 'Unknown',
-                    ingredientName: worstIngredient ? worstIngredient.name : 'Unknown',
-                    rpn: rpn.toFixed(2),
-                    machines: coveredMachineNames
-                };
-            })
-            .filter(study => study.machines && study.machines.trim() !== '') // Filter out studies with empty machines
-            .map((study, index) => ({ ...study, studyNumber: index + 1 })); // Renumber studies consecutively
+                if (newMachines.length > 0) {
+                    studyIndex++;
+                    const mapped = idMap.get(String(train.id));
+                    const trainLabel = mapped ? `Train ${mapped.number}` : `T${train.id}`;
+                    
+                    // Get machine names for covered machines only
+                    const coveredMachineNames = newMachines.map(id => {
+                        const machine = state.machines.find(m => m.id === id);
+                        return machine ? machine.name : `Unknown (ID: ${id})`;
+                    }).join(', ');
+                    
+                    studyBreakdown.push({
+                        studyNumber: studyIndex,
+                        trainLabel,
+                        productName: worstProduct ? worstProduct.name : 'Unknown',
+                        ingredientName: worstIngredient ? worstIngredient.name : 'Unknown',
+                        rpn: rpn.toFixed(2),
+                        machines: coveredMachineNames
+                    });
+                    
+                    console.log(`Train Summary: Selected train ${train.id} for study ${studyIndex}`);
+                    
+                    // Add these machines to the covered set
+                    newMachines.forEach(machineId => coveredMachines.add(machineId));
+                    console.log(`Train Summary: Now covered ${coveredMachines.size}/${allMachinesInGroup.size} machines`);
+                    
+                    // Stop if all machines are covered
+                    if (coveredMachines.size === allMachinesInGroup.size) {
+                        console.log(`Train Summary: All machines covered, stopping selection`);
+                        break;
+                    }
+                } else {
+                    console.log(`Train Summary: Skipped train ${train.id} - no new machines`);
+                }
+            }
+        }
+        
+        group.studyBreakdown = studyBreakdown;
+        console.log(`Train Summary: Selected ${studyBreakdown.length} studies for line ${groupKey}`);
         
         // Total studies = number of studies that will actually be displayed (with machines)
-        group.totalStudies = group.studyBreakdown.filter(study => study.machines && study.machines.trim() !== '').length;
+        group.totalStudies = studyBreakdown.length;
+        
+        console.log(`Train Summary: Total studies for ${groupKey}: ${group.totalStudies}`);
     });
+
+    // Log total studies across all groups
+    const totalStudiesAcrossAllGroups = sortedGroupKeys.reduce((total, groupKey) => {
+        return total + (groupedTrains[groupKey].totalStudies || 0);
+    }, 0);
+    console.log(`Train Summary: Total studies across all groups: ${totalStudiesAcrossAllGroups}`);
 
     // Generate table rows grouped by dosage form
     const tableRows = sortedGroupKeys.map(groupKey => {

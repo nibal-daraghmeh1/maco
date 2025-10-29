@@ -21,6 +21,78 @@ export function getToxicityPreference() {
     }
 }
 
+// --- CENTRALIZED STUDY COUNTING LOGIC ---
+export function countStudiesForTrains(trains) {
+    if (!trains || trains.length === 0) {
+        return 0;
+    }
+
+    // Group trains by dosage form
+    const dosageGroups = {};
+    trains.forEach(train => {
+        const dosageForm = train.productType || (train.products && train.products[0]?.productType) || 'Unknown';
+        if (!dosageGroups[dosageForm]) {
+            dosageGroups[dosageForm] = [];
+        }
+        dosageGroups[dosageForm].push(train);
+    });
+
+    let totalStudies = 0;
+    
+    // Process each dosage form group separately
+    Object.keys(dosageGroups).forEach(dosageForm => {
+        const trainsInGroup = dosageGroups[dosageForm];
+        const allMachines = new Set(trainsInGroup.flatMap(t => t.machineIds || []));
+        
+        // Calculate RPN and sort
+        const trainsWithRPN = trainsInGroup.map(train => {
+            let highestRPN = 0;
+            if (train.products && train.products.length > 0) {
+                train.products.forEach(product => {
+                    if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                        product.activeIngredients.forEach(ingredient => {
+                            try {
+                                const rpn = calculateScores(ingredient).rpn;
+                                if (rpn > highestRPN) {
+                                    highestRPN = rpn;
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                            }
+                        });
+                    }
+                });
+            }
+            return { train, rpn: highestRPN };
+        }).sort((a, b) => b.rpn - a.rpn);
+        
+        // Apply machine coverage algorithm
+        const coveredMachines = new Set();
+        let studiesNeeded = 0;
+        
+        for (const { train } of trainsWithRPN) {
+            if (train.machineIds && train.machineIds.length > 0) {
+                const trainMachines = new Set(train.machineIds);
+                const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
+                
+                if (newMachines.length > 0) {
+                    studiesNeeded++;
+                    newMachines.forEach(m => coveredMachines.add(m));
+                    
+                    // Stop if all machines are covered
+                    if (coveredMachines.size === allMachines.size) {
+                        break;
+                    }
+                }
+            }
+        }
+        
+        totalStudies += studiesNeeded;
+    });
+    
+    return totalStudies;
+}
+
 // --- CENTRALIZED TRAIN LOGIC ---
 export function generateTrainMap() {
     // Store existing train mappings to preserve them

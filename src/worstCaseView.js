@@ -178,12 +178,14 @@ export function renderWorstCaseByTrain(collapsed=true, lineFilter = null) {
                 // Build train card HTML (simplified from maco view)
                 const trainCard = document.createElement('div');
                 trainCard.className = 'train-card mb-3';
+                // Create unique ID that includes dosage form to avoid conflicts
+                const uniqueTrainId = `${train.line}-${train.number}-${train.dosageForm || 'unknown'}`;
                 let html = `
-                    <div class="train-header" onclick="toggleTrain('wc-${train.line}-${train.number}')">
-                        <span>Train ${train.number}</span>
-                        <button class="train-toggle" id="toggle-wc-${train.line}-${train.number}">${isCollapsed ? '\u25B6' : '\u25BC'}</button>
+                    <div class="train-header" onclick="toggleTrain('wc-${uniqueTrainId}')">
+                        <span>Train ${train.number} - ${train.dosageForm || 'Unknown'}</span>
+                        <button class="train-toggle" id="toggle-wc-${uniqueTrainId}">${isCollapsed ? '\u25B6' : '\u25BC'}</button>
                     </div>
-                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-wc-${train.line}-${train.number}">
+                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-wc-${uniqueTrainId}">
                         <div class="train-content-inner">
                             <table class="w-full text-sm mainTable">
                                 <thead style="background: var(--bg-accent);">

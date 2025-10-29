@@ -57,10 +57,30 @@ export const safetyFactorConfig = {
     'Suppository': { min: 100, max: 1000, route: 'Rectal' },
     'Sterile Ointment': { min: 100, max: 1000, route: 'Ophthalmic' },
     'Spray': { min: 1000, max: 10000, route: 'Inhalation' },
+    // Add specific product types that map to main categories
+    'Ampoules': { min: 1000, max: 10000, route: 'Parenteral' },
+    'Vials': { min: 1000, max: 10000, route: 'Parenteral' },
+    'Injections': { min: 1000, max: 10000, route: 'Parenteral' },
+    'Cream': { min: 10, max: 100, route: 'Topical' },
+    'Ointment': { min: 10, max: 100, route: 'Topical' },
+    'Gel': { min: 10, max: 100, route: 'Topical' },
+    'Lotion': { min: 10, max: 100, route: 'Topical' },
 };
 
-export const productTypeHierarchy = ['Sterile Products', 'Semisolids', 'Tablets', 'Capsules', 
-    'Liquids', 'Other', 'Suppository', 'Sterile Ointment', 'Spray'];
+export const productTypeHierarchy = [
+    // Sterile products (highest priority)
+    'Ampoules', 'Vials', 'Injections', 'Sterile Products', 
+    // Semisolids
+    'Cream', 'Ointment', 'Gel', 'Lotion', 'Semisolids',
+    // Oral solids
+    'Tablets', 'Capsules', 
+    // Liquids
+    'Liquids',
+    // Specialized
+    'Suppository', 'Sterile Ointment', 'Spray',
+    // Fallback
+    'Other'
+];
 
 export let viewProducts = {
     productRegister: [],

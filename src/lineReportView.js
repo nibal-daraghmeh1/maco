@@ -1,5 +1,5 @@
 // Line Report View - generates a printable report per line using in-app data
-import { getTrainData, getLargestEssaForLineAndDosageForm, getWorstCaseProductType } from './utils.js';
+import { getTrainData, getLargestEssaForLineAndDosageForm, getWorstCaseProductType, countStudiesForTrains, calculateScores } from './utils.js';
 import { machines, safetyFactorConfig } from './state.js';
 
 class CleaningValidationReportGenerator {
@@ -22,37 +22,56 @@ class CleaningValidationReportGenerator {
         const allTrainData = getTrainData();
         const trainsForLine = allTrainData.filter(t => (t.line || t.productLine) === lineId);
 
-        // Build usedMachines (names) per train
-        const trainDtos = trainsForLine.map(t => {
+        // Build usedMachines (names) per train and handle multiple dosage forms
+        const trainDtos = [];
+        trainsForLine.forEach(t => {
             const usedMachineNames = (t.machineIds || []).map(id => {
                 const m = machines.find(x => x.id === id);
                 return m ? m.name : null;
             }).filter(Boolean);
 
-            // Worst case product and RPN proxy (max ingredient RPN equivalent used elsewhere)
-            let worstProduct = '-';
-            let worstRpn = 0;
-            if (t.products) {
-                t.products.forEach(p => {
-                    (p.activeIngredients || []).forEach(ing => {
-                        const rpn = this.calcRpn(ing);
-                        if (rpn > worstRpn) { worstRpn = rpn; worstProduct = p.name; }
-                    });
+            // Get unique dosage forms in this train (same logic as machine coverage and train summary)
+            const dosageForms = [...new Set((t.products || []).map(p => p.productType || 'Unknown'))];
+            
+            // Create separate entry for each dosage form (like train summary and machine coverage)
+            dosageForms.forEach(dosageForm => {
+                // Find worst case product and highest RPN for this specific dosage form
+                let worstProduct = '-';
+                let worstRpn = 0;
+                
+                const productsInDosageForm = (t.products || []).filter(p => (p.productType || 'Unknown') === dosageForm);
+                
+                productsInDosageForm.forEach(p => {
+                    if (p.activeIngredients && Array.isArray(p.activeIngredients)) {
+                        p.activeIngredients.forEach(ing => {
+                            try {
+                                const scores = calculateScores(ing);
+                                const rpn = scores?.rpn || 0;
+                                if (rpn > worstRpn) {
+                                    worstRpn = rpn;
+                                    worstProduct = p.name;
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ing, error);
+                            }
+                        });
+                    }
                 });
-            }
 
-            // Calculate MACO for this train
-            const macoValue = this.calculateMacoForTrain(t, allTrainData);
+                // Calculate MACO for this train
+                const macoValue = this.calculateMacoForTrain(t, allTrainData);
 
-            return {
-                trainId: `Train ${t.number || t.id}`,
-                products: (t.products || []).map(p => p.name),
-                machines: usedMachineNames,
-                worstCaseProduct: worstProduct,
-                worstCaseRPN: worstRpn,
-                macoValue: macoValue,
-                machineIds: t.machineIds || []
-            };
+                trainDtos.push({
+                    trainId: `Train ${t.number || t.id}`,
+                    products: productsInDosageForm.map(p => p.name), // Only products in this dosage form
+                    machines: usedMachineNames,
+                    worstCaseProduct: worstProduct,
+                    worstCaseRPN: worstRpn,
+                    macoValue: macoValue,
+                    machineIds: t.machineIds || [],
+                    productType: dosageForm // Specific dosage form for this entry
+                });
+            });
         });
 
         // Select studies to cover machines (same logic as coverage view)
@@ -64,14 +83,21 @@ class CleaningValidationReportGenerator {
             const m = machines.find(x => x.id === id); return m ? m.name : null;
         }).filter(Boolean);
 
+        // Use the actual study selection count from the algorithm
+        const studyCount = selectedStudies.filter(study => 
+            study.newMachinesCovered && study.newMachinesCovered.length > 0
+        ).length;
+        
+        console.log(`Report: Final study count: ${studyCount} (from ${selectedStudies.length} total)`);
+        
         return {
             groupInfo: { lineName: lineId, dosageForm, reportDate: new Date().toLocaleDateString(), reviewer: 'System Generated' },
             summary: {
                 totalProducts: trainDtos.reduce((acc, t) => acc + t.products.length, 0),
                 totalTrains: trainDtos.length,
                 totalMachines: machineNames.length,
-                requiredStudies: selectedStudies.length,
-                savingsPercentage: trainDtos.length > 0 ? Math.round(((trainDtos.length - selectedStudies.length) / trainDtos.length) * 100) : 0,
+                requiredStudies: studyCount,
+                savingsPercentage: trainDtos.length > 0 ? Math.round(((trainDtos.length - studyCount) / trainDtos.length) * 100) : 0,
                 lowestMaco: trainDtos.length > 0 ? Math.min(...trainDtos.map(t => t.macoValue)) : 0
             },
             trains: trainDtos,
@@ -82,11 +108,6 @@ class CleaningValidationReportGenerator {
         };
     }
 
-    calcRpn(ing) {
-        const sol = ing.solubility === 'Freely soluble' ? 1 : ing.solubility === 'Soluble' ? 2 : ing.solubility === 'Slightly soluble' ? 3 : 4;
-        const clean = ing.cleanability === 'Easy' ? 1 : ing.cleanability === 'Medium' ? 2 : 3;
-        return sol * clean;
-    }
 
     calculateMacoForTrain(train, allTrains) {
         try {
@@ -113,21 +134,67 @@ class CleaningValidationReportGenerator {
     }
 
     selectStudies(trains) {
-        const allMachines = Array.from(new Set(trains.flatMap(t => t.machines)));
-        const covered = new Set();
-        const sorted = [...trains].sort((a, b) => b.worstCaseRPN - a.worstCaseRPN);
-        const studies = [];
-        let idx = 1;
-        for (const t of sorted) {
-            const newMs = t.machines.filter(m => !covered.has(m));
-            if (newMs.length > 0) {
-                studies.push({ studyNumber: idx, productName: t.worstCaseProduct, rpn: t.worstCaseRPN, machinesCovered: t.machines, newMachinesCovered: newMs, justification: 'Covers uncovered machines' });
-                newMs.forEach(m => covered.add(m));
-                idx++;
-                if (covered.size === allMachines.length) break;
+        // Group trains by dosage form (same logic as train summary)
+        const dosageGroups = {};
+        trains.forEach(train => {
+            // Extract dosage form from train data (same logic as machine coverage view)
+            const dosageForm = train.productType || (train.products && train.products.length > 0 ? 
+                train.products[0].productType : null) || 'Unknown';
+            if (!dosageGroups[dosageForm]) {
+                dosageGroups[dosageForm] = [];
             }
-        }
-        return studies;
+            dosageGroups[dosageForm].push(train);
+        });
+        
+        const allStudies = [];
+        let globalStudyIndex = 1;
+        
+        console.log(`Report: Processing ${trains.length} trains for study selection`);
+        
+        // Process each dosage form group separately
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const trainsInGroup = dosageGroups[dosageForm];
+            const allMachines = Array.from(new Set(trainsInGroup.flatMap(t => t.machines)));
+            const covered = new Set();
+            const sorted = [...trainsInGroup].sort((a, b) => b.worstCaseRPN - a.worstCaseRPN);
+            
+            console.log(`Report: Processing ${trainsInGroup.length} trains in dosage form: ${dosageForm}`);
+            console.log(`Report: All machines in ${dosageForm}:`, allMachines);
+            
+            for (const t of sorted) {
+                const newMs = t.machines.filter(m => !covered.has(m));
+                console.log(`Report: Train ${t.trainId} (${dosageForm}) - RPN: ${t.worstCaseRPN}`);
+                console.log(`Report: Train machines:`, t.machines);
+                console.log(`Report: New machines:`, newMs);
+                console.log(`Report: Currently covered:`, Array.from(covered));
+                
+                if (newMs.length > 0) {
+                    allStudies.push({ 
+                        studyNumber: globalStudyIndex, 
+                        productName: t.worstCaseProduct, 
+                        rpn: t.worstCaseRPN, 
+                        machinesCovered: t.machines, 
+                        newMachinesCovered: newMs, 
+                        justification: 'Covers uncovered machines',
+                        trainId: t.trainId,
+                        dosageForm: dosageForm
+                    });
+                    console.log(`Report: Selected train ${t.trainId} for study ${globalStudyIndex}`);
+                    newMs.forEach(m => covered.add(m));
+                    globalStudyIndex++;
+                    console.log(`Report: Now covered ${covered.size}/${allMachines.length} machines in ${dosageForm}`);
+                    if (covered.size === allMachines.length) {
+                        console.log(`Report: All machines covered in ${dosageForm}, moving to next group`);
+                        break;
+                    }
+                } else {
+                    console.log(`Report: Skipped train ${t.trainId} - no new machines`);
+                }
+            }
+        });
+        
+        console.log(`Report: Selected ${allStudies.length} studies from ${trains.length} trains`);
+        return allStudies;
     }
 
     // HTML assembly (compact) - reusing structure from user-provided template
@@ -348,7 +415,7 @@ class CleaningValidationReportGenerator {
             <body>
                 <div class="report-header">
                     <h1 style="margin: 0 0 10px 0; color: #333;">Cleaning Validation Report</h1>
-                    <div class="action-buttons">
+                    <div class="action-buttons">    
                         <button onclick="window.print()" class="btn btn-print">
                             🖨️ Print
                         </button>

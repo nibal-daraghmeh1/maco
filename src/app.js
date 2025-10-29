@@ -101,7 +101,7 @@ window.exportToPDFDirect = function() {
             html2pdf().set(opt).from(element).save().then(() => {
                 button.innerHTML = originalText;
                 button.disabled = false;
-                console.log('PDF generated successfully');
+
                 
                 // Restore navigation elements if they were hidden
                 const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
@@ -123,8 +123,7 @@ window.exportToPDFDirect = function() {
         } else {
             // Generate PDF directly without button feedback
             html2pdf().set(opt).from(element).save().then(() => {
-                console.log('PDF generated successfully');
-                
+                    
                 // Restore navigation elements if they were hidden
                 const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
                 navElements.forEach(el => {
@@ -400,7 +399,6 @@ window.toggleSidebar = function() {
  * Shows line-specific view with filtered data
  */
 window.showLineSpecificView = function(line, viewType) {
-    console.log('showLineSpecificView called with:', line, viewType);
     
     // Store the current line filter
     window.currentLineFilter = line;
@@ -428,7 +426,7 @@ window.showLineSpecificView = function(line, viewType) {
             break;
     }
     
-    console.log('Switching to tab:', tabId);
+ 
     
     // Hide all tab contents first
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-tab-content'));
@@ -437,7 +435,7 @@ window.showLineSpecificView = function(line, viewType) {
     const tabContent = document.getElementById(tabId);
     if (tabContent) {
         tabContent.classList.add('active-tab-content');
-        console.log('Tab content shown:', tabId);
+        
     } else {
         console.error('Tab content not found:', tabId);
     }
@@ -450,31 +448,30 @@ window.showLineSpecificView = function(line, viewType) {
  * Applies line-specific filtering to the current view
  */
 function applyLineFilter(line, viewType) {
-    console.log('applyLineFilter called with:', line, viewType);
-    
+
     switch(viewType) {
         case 'worstCase':
             // Filter worst case products by line
-            console.log('Filtering worst case products for line:', line);
+            
             worstCaseView.handleSearchAndFilter('worstCaseProducts', line);
             break;
         case 'maco':
             // Filter MACO calculations by line
-            console.log('Filtering MACO calculations for line:', line);
+        
             macoProductView.renderMacoForTrains(line);
             break;
         case 'detergent':
             // Filter detergent MACO by line
-            console.log('Filtering detergent MACO for line:', line);
+           
             macoDetergentView.renderDetergentMaco(line);
             break;
         case 'trainSummary':
             // Filter train summary by line
-            console.log('Filtering train summary for line:', line);
+         
             trainSummaryView.renderTrainSummary(line);
             break;
         case 'coverage':
-            console.log('Filtering machine coverage for line:', line);
+            
             {
                 const container = document.getElementById('machineCoverageContainer');
                 if (container) {
@@ -483,7 +480,7 @@ function applyLineFilter(line, viewType) {
             }
             break;
         case 'lineReport':
-            console.log('Generate report for line:', line);
+            
             renderLineReport(line);
             break;
     }
@@ -749,16 +746,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check if PDF libraries are loaded after a delay
     setTimeout(() => {
-        console.log('Checking PDF libraries...');
-        console.log('jsPDF available:', !!window.jsPDF);
-        console.log('html2canvas available:', !!window.html2canvas);
-        if (window.jsPDF) {
-            console.log('jsPDF version:', window.jsPDF.version || 'unknown');
-        }
-        
+       
+
         // If libraries are not loaded, try to load them dynamically
         if (!window.jsPDF || !window.html2canvas) {
-            console.log('PDF libraries not loaded, attempting to load dynamically...');
             loadPDFLibrariesDynamically();
         }
     }, 2000);
@@ -770,7 +761,7 @@ async function loadHtml2PdfLibrary() {
         const html2pdfScript = document.createElement('script');
         html2pdfScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
         html2pdfScript.onload = () => {
-            console.log('html2pdf loaded dynamically');
+        
         };
         html2pdfScript.onerror = () => {
             console.error('Failed to load html2pdf from CDN');
@@ -798,7 +789,6 @@ function loadPDFLibrariesDynamically() {
         const jsPDFScript = document.createElement('script');
         jsPDFScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
         jsPDFScript.onload = () => {
-            console.log('jsPDF loaded dynamically');
             // Fix the global reference - try different possible names
             window.jsPDF = window.jspdf?.jsPDF || window.jsPDF || window.jspdf;
         };
@@ -812,9 +802,7 @@ function loadPDFLibrariesDynamically() {
     if (!window.html2canvas) {
         const html2canvasScript = document.createElement('script');
         html2canvasScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-        html2canvasScript.onload = () => {
-            console.log('html2canvas loaded dynamically');
-        };
+ 
         html2canvasScript.onerror = () => {
             console.error('Failed to load html2canvas from CDN');
         };
@@ -839,7 +827,6 @@ window.testSimplePDF = function() {
             return false;
         }
         
-        console.log('✅ PDF constructor found, creating test PDF...');
         
         const pdf = new PDFConstructor('p', 'mm', 'a4');
         pdf.text('Test PDF Generation', 20, 20);
@@ -849,7 +836,6 @@ window.testSimplePDF = function() {
         const filename = 'test-pdf-' + Date.now() + '.pdf';
         pdf.save(filename);
         
-        console.log('✅ Test PDF created and saved:', filename);
         return true;
         
     } catch (error) {
@@ -866,70 +852,35 @@ window.testReportContent = function() {
         return false;
     }
     
-    console.log('✅ Report container found');
-    console.log('Report container dimensions:', {
-        width: reportContainer.offsetWidth,
-        height: reportContainer.offsetHeight,
-        scrollWidth: reportContainer.scrollWidth,
-        scrollHeight: reportContainer.scrollHeight
-    });
-    
-    console.log('Report content preview:', reportContainer.innerHTML.substring(0, 300) + '...');
-    
-    // Check if container is visible
-    const styles = window.getComputedStyle(reportContainer);
-    console.log('Visibility styles:', {
-        display: styles.display,
-        visibility: styles.visibility,
-        opacity: styles.opacity,
-        position: styles.position
-    });
     
     return true;
 };
 
 // Test function to check PDF library availability
 window.testPDFLibraries = function() {
-    console.log('Testing PDF libraries...');
-    console.log('jsPDF available:', !!window.jsPDF);
-    console.log('html2canvas available:', !!window.html2canvas);
+
     
     // Check for jsPDF constructor
     let PDFConstructor = null;
     if (window.jspdf && window.jspdf.jsPDF) {
         PDFConstructor = window.jspdf.jsPDF;
-        console.log('Found jsPDF constructor: window.jspdf.jsPDF');
     } else if (window.jsPDF && window.jsPDF.jsPDF) {
         PDFConstructor = window.jsPDF.jsPDF;
-        console.log('Found jsPDF constructor: window.jsPDF.jsPDF');
     } else if (window.jsPDF) {
         PDFConstructor = window.jsPDF;
-        console.log('Found jsPDF constructor: window.jsPDF');
     }
     
     if (PDFConstructor) {
-        console.log('jsPDF constructor type:', typeof PDFConstructor);
         try {
             const testPdf = new PDFConstructor('p', 'mm', 'a4');
-            console.log('✅ jsPDF constructor works!');
             testPdf.text('Test', 10, 10);
-            console.log('✅ jsPDF text method works!');
         } catch (error) {
             console.error('❌ jsPDF constructor failed:', error.message);
         }
     } else {
         console.log('❌ No jsPDF constructor found');
     }
-    
-    if (window.html2canvas) {
-        console.log('html2canvas available:', typeof window.html2canvas);
-    }
-    
-    // Check for alternative names
-    console.log('window.jspdf available:', !!window.jspdf);
-    console.log('Available PDF-related globals:', Object.keys(window).filter(k => k.toLowerCase().includes('pdf')));
-    console.log('Available canvas-related globals:', Object.keys(window).filter(k => k.toLowerCase().includes('canvas')));
-    
+ 
     return {
         jsPDF: !!window.jsPDF,
         html2canvas: !!window.html2canvas,
@@ -942,7 +893,7 @@ window.testPDFLibraries = function() {
 window.forceRestoreExportButton = function() {
     const exportButton = document.querySelector('button[onclick="exportToPDF()"], button[onclick="window.exportToPDF()"]');
     if (exportButton) {
-        console.log('Force restoring export button');
+
         exportButton.disabled = false;
         exportButton.style.opacity = '';
         exportButton.style.cursor = '';
@@ -958,7 +909,6 @@ window.forceRestoreExportButton = function() {
 window.exportToPDF = async function exportToPDF() {
     // Get the current line from the URL or state
     const currentLine = window.currentLineFilter || 'Solids';
-    console.log('Opening report window for line:', currentLine);
     
     try {
         // Import the lineReportView module

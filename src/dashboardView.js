@@ -634,7 +634,7 @@ function renderTrainsDistributionPieChart() {
             maintainAspectRatio: false,
             plugins: {
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Trains Distribution by Line and Dosage Form',
                     font: { size: 16, weight: 'bold' }
                 },
@@ -730,7 +730,7 @@ function renderStudiesDistributionPieChart() {
             maintainAspectRatio: false,
             plugins: {
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Studies Distribution by Line and Dosage Form',
                     font: { size: 16, weight: 'bold' }
                 },
@@ -827,7 +827,7 @@ function renderSpecialCasesDistributionPieChart() {
             maintainAspectRatio: false,
             plugins: {
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Special Cases Distribution by Line and Dosage Form',
                     font: { size: 16, weight: 'bold' }
                 },
@@ -972,7 +972,7 @@ function renderMinMacosDistributionPieChart() {
                 maintainAspectRatio: false,
                 plugins: {
                     title: {
-                        display: true,
+                        display: false,
                         text: 'Minimum MACO by Line and Dosage Form',
                         font: { size: 16, weight: 'bold' }
                     },
@@ -1195,7 +1195,7 @@ function renderTrainsByLineAndDosageChart() {
             maintainAspectRatio: false,
             plugins: {
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Individual Trains by Line and Dosage Form (MACO per Swab)',
                     font: { size: 16, weight: 'bold' }
                 },
@@ -1362,7 +1362,7 @@ function renderHighestRpnByTrainChart() {
             maintainAspectRatio: false,
             plugins: {
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Highest RPN by Train (with Product Name)',
                     font: { size: 16, weight: 'bold' }
                 },
