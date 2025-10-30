@@ -995,22 +995,29 @@ export function addNewProduct(event) {
 }
 window.updateDosageFormOptions = function(mode) {
     let line = document.getElementById(mode === 'add' ? 'addProductLine' : 'editProductLine').value;
-    // If the selected value is a custom line (not one of the standard values),
-    // treat it as 'Other' for dosage form population.
-    const standardLines = ['Solids','Semisolid','Liquids','Other','Others'];
-    if (!standardLines.includes(line)) {
-        // show the Other Line input and set the select to 'Other'
+    
+    // Only treat as 'Other' if user explicitly selected 'Other', not if they selected an existing custom line
+    if (line === 'Other') {
+        // show the Other Line input
         try {
             if (mode === 'add') {
                 document.getElementById('addOtherLineContainer').style.display = 'block';
-                document.getElementById('addOtherLine').value = line;
-                document.getElementById('addProductLine').value = 'Other';
+                document.getElementById('addOtherLine').required = true;
             } else {
                 document.getElementById('editOtherLineContainer').style.display = 'block';
-                document.getElementById('editOtherLine').value = line;
-                document.getElementById('editProductLine').value = 'Other';
+                document.getElementById('editOtherLine').required = true;
             }
-            line = 'Other';
+        } catch (e) { /* ignore DOM errors */ }
+    } else {
+        // Hide the Other Line input for existing lines (including custom ones)
+        try {
+            if (mode === 'add') {
+                document.getElementById('addOtherLineContainer').style.display = 'none';
+                document.getElementById('addOtherLine').required = false;
+            } else {
+                document.getElementById('editOtherLineContainer').style.display = 'none';
+                document.getElementById('editOtherLine').required = false;
+            }
         } catch (e) { /* ignore DOM errors */ }
     }
   const formSelect = document.getElementById(mode === 'add' ? 'addProductType' : 'editProductType');
@@ -1021,8 +1028,27 @@ window.updateDosageFormOptions = function(mode) {
     options = ['Ointment', 'Cream', 'Gel', 'Other'];
   } else if (line === 'Liquids') {
     options = ['Syrup', 'Solution', 'Suspension', 'Other'];
-    } else if (line === 'Other') {
-        options = ['Other'];
+  } else if (line === 'Other') {
+    options = ['Other'];
+  } else {
+    // For custom/existing lines that aren't standard, get existing dosage forms from that line
+    const existingDosageForms = [...new Set(
+      state.products
+        .filter(p => p.line === line)
+        .map(p => p.productType)
+        .filter(Boolean)
+    )].sort();
+    
+    // Include existing forms and always include 'Other' for flexibility
+    options = [...existingDosageForms];
+    if (!options.includes('Other')) {
+      options.push('Other');
+    }
+    
+    // If no existing forms, provide generic options
+    if (existingDosageForms.length === 0) {
+      options = ['Tablets', 'Capsules', 'Powder', 'Ointment', 'Cream', 'Gel', 'Syrup', 'Solution', 'Suspension', 'Other'];
+    }
   }
   formSelect.innerHTML = '<option value=\"\" disabled selected>Select a form...</option>' +
     options.map(opt => `<option value=\"${opt}\">${opt}</option>`).join('');

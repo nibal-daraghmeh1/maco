@@ -2,6 +2,28 @@
 import { getTrainData, getLargestEssaForLineAndDosageForm, getWorstCaseProductType, countStudiesForTrains, calculateScores } from './utils.js';
 import { machines, safetyFactorConfig } from './state.js';
 
+// Smart number formatting that avoids showing 0 when there's actually a value
+function formatSmallNumber(value, unit = '') {
+    if (value === 0 || value === null || value === undefined || isNaN(value)) {
+        return `0${unit ? ' ' + unit : ''}`;
+    }
+    
+    const absValue = Math.abs(value);
+    
+    // For very small values, use scientific notation
+    if (absValue < 0.0001) {
+        return `${value.toExponential(3)}${unit ? ' ' + unit : ''}`;
+    }
+    // For small values, show enough decimal places to see the value
+    else if (absValue < 0.01) {
+        return `${value.toFixed(6)}${unit ? ' ' + unit : ''}`;
+    }
+    // For regular values, use 4 decimal places
+    else {
+        return `${value.toFixed(4)}${unit ? ' ' + unit : ''}`;
+    }
+}
+
 class CleaningValidationReportGenerator {
     constructor() { this.reportData = null; }
 
@@ -69,9 +91,38 @@ class CleaningValidationReportGenerator {
                     worstCaseRPN: worstRpn,
                     macoValue: macoValue,
                     machineIds: t.machineIds || [],
-                    productType: dosageForm // Specific dosage form for this entry
+                    productType: dosageForm, // Specific dosage form for this entry
+                    line: t.line || 'Unassigned', // Add line for sorting
+                    trainNumber: t.number || t.id, // Add train number for sorting
+                    trainInternalId: t.id // Add internal ID for sorting
                 });
             });
+        });
+
+        // Apply consistent train ordering (exact same as train summary view)
+        trainDtos.sort((a, b) => {
+            // First sort by line with specific order
+            if (a.line !== b.line) {
+                const lineOrder = ['Solids', 'Semisolid', 'Liquids', 'Other'];
+                const aIndex = lineOrder.indexOf(a.line) !== -1 ? lineOrder.indexOf(a.line) : lineOrder.length;
+                const bIndex = lineOrder.indexOf(b.line) !== -1 ? lineOrder.indexOf(b.line) : lineOrder.length;
+                if (aIndex !== bIndex) return aIndex - bIndex;
+            }
+            
+            // Then sort by dosage form using lowest train number within each dosage form (same as train summary)
+            if (a.productType !== b.productType) {
+                // Find all trains in this line for each dosage form to get the minimum train number
+                const aDosageFormTrains = trainDtos.filter(t => t.line === a.line && t.productType === a.productType);
+                const bDosageFormTrains = trainDtos.filter(t => t.line === b.line && t.productType === b.productType);
+                
+                const aMinNumber = Math.min(...aDosageFormTrains.map(t => t.trainInternalId));
+                const bMinNumber = Math.min(...bDosageFormTrains.map(t => t.trainInternalId));
+                
+                if (aMinNumber !== bMinNumber) return aMinNumber - bMinNumber;
+            }
+            
+            // Finally sort by train number/ID
+            return a.trainInternalId - b.trainInternalId;
         });
 
         // Select studies to cover machines (same logic as coverage view)
@@ -147,16 +198,16 @@ class CleaningValidationReportGenerator {
         });
         
         const allStudies = [];
-        let globalStudyIndex = 1;
         
         console.log(`Report: Processing ${trains.length} trains for study selection`);
         
-        // Process each dosage form group separately
+        // Process each dosage form group separately (same as train summary - reset study numbering per group)
         Object.keys(dosageGroups).forEach(dosageForm => {
             const trainsInGroup = dosageGroups[dosageForm];
             const allMachines = Array.from(new Set(trainsInGroup.flatMap(t => t.machines)));
             const covered = new Set();
             const sorted = [...trainsInGroup].sort((a, b) => b.worstCaseRPN - a.worstCaseRPN);
+            let studyIndexInGroup = 0; // Reset study numbering for each dosage form group (same as train summary)
             
             console.log(`Report: Processing ${trainsInGroup.length} trains in dosage form: ${dosageForm}`);
             console.log(`Report: All machines in ${dosageForm}:`, allMachines);
@@ -169,8 +220,9 @@ class CleaningValidationReportGenerator {
                 console.log(`Report: Currently covered:`, Array.from(covered));
                 
                 if (newMs.length > 0) {
+                    studyIndexInGroup++; // Increment within this dosage form group
                     allStudies.push({ 
-                        studyNumber: globalStudyIndex, 
+                        studyNumber: studyIndexInGroup, 
                         productName: t.worstCaseProduct, 
                         rpn: t.worstCaseRPN, 
                         machinesCovered: t.machines, 
@@ -179,9 +231,8 @@ class CleaningValidationReportGenerator {
                         trainId: t.trainId,
                         dosageForm: dosageForm
                     });
-                    console.log(`Report: Selected train ${t.trainId} for study ${globalStudyIndex}`);
+                    console.log(`Report: Selected train ${t.trainId} for study ${studyIndexInGroup} in ${dosageForm}`);
                     newMs.forEach(m => covered.add(m));
-                    globalStudyIndex++;
                     console.log(`Report: Now covered ${covered.size}/${allMachines.length} machines in ${dosageForm}`);
                     if (covered.size === allMachines.length) {
                         console.log(`Report: All machines covered in ${dosageForm}, moving to next group`);
@@ -207,23 +258,44 @@ class CleaningValidationReportGenerator {
     }
 
     generateExecutiveSummary(s) {
-        return `<section class="section"><h2>Executive Summary</h2><table class="summary-table"><tr><td><strong>Total Products</strong></td><td>${s.totalProducts}</td></tr><tr><td><strong>Total Trains</strong></td><td>${s.totalTrains}</td></tr><tr><td><strong>Total Machines</strong></td><td>${s.totalMachines}</td></tr><tr><td><strong>Required Studies</strong></td><td class="highlight">${s.requiredStudies}</td></tr><tr><td><strong>Efficiency Savings</strong></td><td class="success">${s.savingsPercentage}%</td></tr><tr><td><strong>Lowest MACO</strong></td><td class="highlight">${s.lowestMaco.toFixed(2)} mg</td></tr></table></section>`;
+        const savedStudies = s.totalTrains - s.requiredStudies;
+        const efficiencyNote = `${s.savingsPercentage}% <br><small style="color:#666;font-weight:normal;font-size:0.85em;">(Saved ${savedStudies} studies: ${s.totalTrains} trains reduced to ${s.requiredStudies} studies)</small>`;
+        return `<section class="section"><h2>Executive Summary</h2><table class="summary-table"><tr><td><strong>Total Products</strong></td><td>${s.totalProducts}</td></tr><tr><td><strong>Total Trains</strong></td><td>${s.totalTrains}</td></tr><tr><td><strong>Total Machines</strong></td><td>${s.totalMachines}</td></tr><tr><td><strong>Required Studies</strong></td><td class="highlight">${s.requiredStudies}</td></tr><tr><td><strong>Efficiency Savings</strong></td><td class="success">${efficiencyNote}</td></tr><tr><td><strong>Lowest MACO</strong></td><td class="highlight">${formatSmallNumber(s.lowestMaco, 'mg')}</td></tr></table></section>`;
     }
 
     generateGroupingStrategy(trains) {
-        const rows = trains.map(t => `<tr><td>${t.trainId}</td><td>${t.products.join(', ')}</td><td>${t.machines.join(', ')}</td><td class="highlight">${t.worstCaseProduct}</td><td>${t.worstCaseRPN}</td><td class="highlight">${t.macoValue.toFixed(2)} mg</td></tr>`).join('');
+        const rows = trains.map(t => `<tr><td>${t.trainId}</td><td>${t.products.join(', ')}</td><td>${t.machines.join(', ')}</td><td class="highlight">${t.worstCaseProduct}</td><td>${t.worstCaseRPN}</td><td class="highlight">${formatSmallNumber(t.macoValue, 'mg')}</td></tr>`).join('');
         return `<section class="section"><h2>Grouping Strategy</h2><table class="data-table"><thead><tr><th>Train</th><th>Products</th><th>Machines</th><th>Worst Case</th><th>RPN</th><th>Product MACO</th></tr></thead><tbody>${rows}</tbody></table></section>`;
     }
 
     generateWorstCaseSelection(studies) {
-        const rows = studies.map(s => `<tr><td>Study ${s.studyNumber}</td><td class="highlight">${s.productName}</td><td>${s.rpn}</td><td>${s.machinesCovered.join(', ')}</td><td>${s.newMachinesCovered.join(', ')}</td><td>${s.justification}</td></tr>`).join('');
-        return `<section class="section"><h2>Selected Studies</h2><table class="data-table"><thead><tr><th>Study</th><th>Product</th><th>RPN</th><th>All Machines</th><th>New Machines</th><th>Justification</th></tr></thead><tbody>${rows}</tbody></table></section>`;
+        // Group studies by dosage form for better presentation (same as train summary grouping)
+        const studiesByDosageForm = {};
+        studies.forEach(s => {
+            if (!studiesByDosageForm[s.dosageForm]) {
+                studiesByDosageForm[s.dosageForm] = [];
+            }
+            studiesByDosageForm[s.dosageForm].push(s);
+        });
+        
+        let tableContent = '';
+        Object.keys(studiesByDosageForm).forEach(dosageForm => {
+            const studiesInGroup = studiesByDosageForm[dosageForm];
+            // Add dosage form group header
+            tableContent += `<tr class="group-header"><td colspan="6"><strong>${dosageForm}</strong></td></tr>`;
+            // Add studies in this group
+            studiesInGroup.forEach(s => {
+                tableContent += `<tr><td>Study ${s.studyNumber}</td><td class="highlight">${s.productName}</td><td>${s.rpn}</td><td>${s.machinesCovered.join(', ')}</td><td>${s.newMachinesCovered.join(', ')}</td><td>${s.justification}</td></tr>`;
+            });
+        });
+        
+        return `<section class="section"><h2>Selected Studies</h2><table class="data-table"><thead><tr><th>Study</th><th>Product</th><th>RPN</th><th>All Machines</th><th>New Machines</th><th>Justification</th></tr></thead><tbody>${tableContent}</tbody></table></section>`;
     }
 
     generateExportButtons() { return `<div class="export-section no-print"><h3>Export Options</h3><div class="export-buttons"><button onclick="window.print()" class="btn-export btn-print">🖨️ Print</button><button onclick="exportToPDFDirect()" class="btn-export btn-pdf">📄 Export to PDF</button></div></div>`; }
 
     getReportCSS() {
-        return `body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;background:#f8f9fa}.report-container{max-width:1100px;margin:0 auto;background:#fff;padding:32px;box-shadow:0 0 20px rgba(0,0,0,0.08)}.report-header{text-align:center;border-bottom:3px solid #1976d2;padding-bottom:18px;margin-bottom:28px}.report-header h1{color:#1976d2;margin:0 0 6px}.report-header h2{color:#666;margin:0 0 10px;font-weight:500}.report-meta{display:flex;gap:24px;justify-content:center;color:#666}.section{margin-bottom:28px}.section h2{color:#1976d2;border-bottom:2px solid #e0e0e0;padding-bottom:8px;margin-bottom:14px}.summary-table,.data-table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}.summary-table th,.summary-table td,.data-table th,.data-table td{border:1px solid #ddd;padding:10px;text-align:left}.summary-table th,.data-table th{background:#1976d2;color:#fff}.data-table tbody tr:nth-child(even){background:#f8f9fa}.highlight{background:#fff3cd;font-weight:700}.success{background:#d4edda;color:#155724;font-weight:700}.export-section{margin-top:28px;text-align:center}.export-buttons{display:flex;gap:15px;justify-content:center;margin-top:15px}.btn-export{padding:10px 18px;border:none;border-radius:6px;color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s ease}.btn-export:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.2)}.btn-print{background:#6c757d}.btn-pdf{background:#dc3545}`;
+        return `body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;background:#f8f9fa}.report-container{max-width:1100px;margin:0 auto;background:#fff;padding:32px;box-shadow:0 0 20px rgba(0,0,0,0.08)}.report-header{text-align:center;border-bottom:3px solid #1976d2;padding-bottom:18px;margin-bottom:28px}.report-header h1{color:#1976d2;margin:0 0 6px}.report-header h2{color:#666;margin:0 0 10px;font-weight:500}.report-meta{display:flex;gap:24px;justify-content:center;color:#666}.section{margin-bottom:28px}.section h2{color:#1976d2;border-bottom:2px solid #e0e0e0;padding-bottom:8px;margin-bottom:14px}.summary-table,.data-table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}.summary-table th,.summary-table td,.data-table th,.data-table td{border:1px solid #ddd;padding:10px;text-align:left}.summary-table th,.data-table th{background:#1976d2;color:#fff}.data-table tbody tr:nth-child(even){background:#f8f9fa}.data-table .group-header{background:#e3f2fd;color:#1976d2;font-weight:bold;border-top:2px solid #1976d2}.highlight{background:#fff3cd;font-weight:700}.success{background:#d4edda;color:#155724;font-weight:700}.export-section{margin-top:28px;text-align:center}.export-buttons{display:flex;gap:15px;justify-content:center;margin-top:15px}.btn-export{padding:10px 18px;border:none;border-radius:6px;color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s ease}.btn-export:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.2)}.btn-print{background:#6c757d}.btn-pdf{background:#dc3545}`;
     }
 
     getReportJavaScript() { 

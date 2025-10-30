@@ -1063,12 +1063,12 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
                 'Min BS/MDD Ratio': train.minBsMddRatio.toFixed(2),
                 'Lowest PDE (mg)': train.lowestPde !== null ? train.lowestPde : 'N/A',
                 'Worst-Case Product (by RPN)': worstRpnInfo,
-                'MACO - Therapeutic Dose (mg)': macoDose.toFixed(2),
-                'MACO - 10 ppm (mg)': maco10ppm.toFixed(2),
-                'MACO - Health-Based (mg)': typeof macoHealth === 'number' ? macoHealth.toFixed(2) : 'N/A',
-                'MACO - Visual Clean (mg)': macoVisual.toFixed(2),
+                'MACO - Therapeutic Dose (mg)': formatSmallNumber(macoDose),
+                'MACO - 10 ppm (mg)': formatSmallNumber(maco10ppm),
+                'MACO - Health-Based (mg)': typeof macoHealth === 'number' ? formatSmallNumber(macoHealth) : 'N/A',
+                'MACO - Visual Clean (mg)': formatSmallNumber(macoVisual),
                 'Selected MACO Method': finalMacoResult.name,
-                'Final MACO (mg)': finalMaco.toFixed(2),
+                'Final MACO (mg)': formatSmallNumber(finalMaco),
                 'MACO per Area (mg/cm²)': macoPerArea.toExponential(3),
                 'MACO per Swab (mg/Swab)': formatSmallNumber(macoPerSwab)
             });
@@ -1223,7 +1223,7 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
                 'Min BS/MDD Ratio': train.minBsMddRatio.toFixed(2),
                 'Worst-Case Product (by RPN)': worstRpnInfo,
                 'ADI (mg)': adi.toFixed(4),
-                'MACO (mg)': maco.toFixed(2),
+                'MACO (mg)': formatSmallNumber(maco),
                 'MACO per Area (mg/cm²)': macoPerArea.toExponential(3),
                 'MACO per Swab (mg/Swab)': formatSmallNumber(macoPerSwab)
             });
@@ -1646,12 +1646,12 @@ export function exportAllTabsToExcel() {
                     'Min BS/MDD Ratio': train.minBsMddRatio.toFixed(2),
                     'Lowest PDE (mg)': train.lowestPde !== null ? train.lowestPde : 'N/A',
                     'Worst-Case Product (by RPN)': worstRpnInfo,
-                    'MACO - Therapeutic Dose (mg)': macoDose.toFixed(2),
-                    'MACO - 10 ppm (mg)': maco10ppm.toFixed(2),
-                    'MACO - Health-Based (mg)': typeof macoHealth === 'number' ? macoHealth.toFixed(2) : 'N/A',
-                    'MACO - Visual Clean (mg)': macoVisual.toFixed(2),
+                    'MACO - Therapeutic Dose (mg)': formatSmallNumber(macoDose),
+                    'MACO - 10 ppm (mg)': formatSmallNumber(maco10ppm),
+                    'MACO - Health-Based (mg)': typeof macoHealth === 'number' ? formatSmallNumber(macoHealth) : 'N/A',
+                    'MACO - Visual Clean (mg)': formatSmallNumber(macoVisual),
                     'Selected MACO Method': finalMacoResult.name,
-                    'Final MACO (mg)': finalMaco.toFixed(2),
+                    'Final MACO (mg)': formatSmallNumber(finalMaco),
                     'MACO per Area (mg/cm²)': macoPerArea.toExponential(3),
                     'MACO per Swab (mg/Swab)': formatSmallNumber(macoPerSwab)
                 });
@@ -1721,7 +1721,7 @@ export function exportAllTabsToExcel() {
                         'Min BS/MDD Ratio': train.minBsMddRatio.toFixed(2),
                         'Worst-Case Product (by RPN)': worstRpnInfo,
                         'ADI (mg)': adi.toFixed(4),
-                        'MACO (mg)': maco.toFixed(2),
+                        'MACO (mg)': formatSmallNumber(maco),
                         'MACO per Area (mg/cm²)': macoPerArea.toExponential(3),
                         'MACO per Swab (mg/Swab)': formatSmallNumber(macoPerSwab)
                     });

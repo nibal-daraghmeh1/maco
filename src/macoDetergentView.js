@@ -242,7 +242,7 @@ export function recalculateDetergentMacoForTrain(trainId, lineLargestEssa, dosag
 
     if (minLd50Element) minLd50Element.textContent = minLd50.toLocaleString();
     if (adiElement) adiElement.textContent = `${adi.toFixed(4)} mg`;
-    if (macoElement) macoElement.textContent = `${maco.toFixed(2)} mg`;
+    if (macoElement) macoElement.textContent = formatSmallNumber(maco, 'mg');
     if (macoAreaElement) macoAreaElement.textContent = `${macoPerArea.toExponential(3)} mg/cm²`;
     if (macoSwabElement) macoSwabElement.textContent = formatSmallNumber(macoPerSwab, 'mg/swab');
 

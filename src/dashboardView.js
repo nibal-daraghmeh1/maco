@@ -7,6 +7,924 @@ import { renderRpnChart } from './worstCaseView.js'; // The RPN chart is on the 
 import * as state from './state.js';
 import { createHorizontalMachineCoverageTable } from './machineCoverageView.js';
 
+// Central color management for consistent colors across all charts
+const CHART_COLORS = [
+    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', 
+    '#FF9F40', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
+    '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE',
+    '#85C1E9', '#F8C471', '#82E0AA', '#F1948A', '#AED6F1'
+];
+
+// Global cached color mapping to ensure consistency across all charts
+let globalColorMapping = null;
+
+// Create consistent color mapping for lines (cached)
+function initializeColorMapping() {
+    if (globalColorMapping) {
+        return globalColorMapping;
+    }
+    
+    const colorMapping = new Map();
+    let colorIndex = 0;
+    
+    // Get all unique lines from train data
+    const trainData = getTrainData();
+    const lines = new Set();
+    
+    trainData.forEach(train => {
+        const line = train.line || 'Unassigned';
+        lines.add(line);
+    });
+    
+    // Sort lines for consistent ordering
+    const sortedLines = Array.from(lines).sort();
+    
+    console.log('Creating color mapping for lines:', sortedLines);
+    
+    // Assign colors to each line (all dosage forms in same line get same color)
+    sortedLines.forEach(line => {
+        const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
+        colorMapping.set(line, color);
+        console.log(`${line} -> ${color}`);
+        colorIndex++;
+    });
+    
+    globalColorMapping = colorMapping;
+    return colorMapping;
+}
+
+// Get color for a specific line (all dosage forms in same line get same color)
+function getColorForCombination(line, dosageForm) {
+    const colorMapping = initializeColorMapping();
+    const color = colorMapping.get(line) || CHART_COLORS[0];
+    console.log(`Getting color for ${line} - ${dosageForm}: ${color} (using line color)`);
+    return color;
+}
+
+// Reset color mapping (call when data changes)
+export function resetColorMapping() {
+    console.log('Resetting color mapping for consistency');
+    globalColorMapping = null;
+}
+
+// Chart expand functionality
+let expandedChartInstance = null;
+
+export function expandChart(chartId, chartTitle) {
+    const modal = document.getElementById('chartExpandModal');
+    const modalTitle = document.getElementById('chartExpandModalTitle');
+    const expandedCanvas = document.getElementById('expandedChart');
+    
+    // Set modal title
+    modalTitle.textContent = chartTitle;
+    
+    // Show modal
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Destroy any existing expanded chart
+    if (expandedChartInstance) {
+        expandedChartInstance.destroy();
+        expandedChartInstance = null;
+    }
+    
+    // Recreate the chart in the modal with larger size
+    setTimeout(() => {
+        recreateChartInModal(chartId, expandedCanvas);
+    }, 100);
+}
+
+export function closeChartExpandModal() {
+    const modal = document.getElementById('chartExpandModal');
+    
+    // Destroy expanded chart
+    if (expandedChartInstance) {
+        expandedChartInstance.destroy();
+        expandedChartInstance = null;
+    }
+    
+    // Hide modal
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function recreateChartInModal(originalChartId, expandedCanvas) {
+    const ctx = expandedCanvas.getContext('2d');
+    
+    // Map chart IDs to their recreation functions
+    const chartRecreationMap = {
+        'dosageFormPieChart': () => recreateTrainsDistributionChart(ctx),
+        'studiesPieChart': () => recreateStudiesDistributionChart(ctx),
+        'specialCasesPieChart': () => recreateSpecialCasesChart(ctx),
+        'minMacosPieChart': () => recreateMinMacosChart(ctx),
+        'trainsByLineAndDosageChart': () => recreateTrainsByLineChart(ctx),
+        'highestRpnByTrainChart': () => recreateHighestRpnChart(ctx)
+    };
+    
+    const recreationFunction = chartRecreationMap[originalChartId];
+    if (recreationFunction) {
+        expandedChartInstance = recreationFunction();
+    } else {
+        console.warn(`No recreation function found for chart: ${originalChartId}`);
+    }
+}
+
+// Recreation functions for each chart type
+function recreateTrainsDistributionChart(ctx) {
+    // Initialize color mapping for consistency
+    initializeColorMapping();
+    
+    // Use the same data source as the original chart
+    const distribution = getTrainsDistributionByLineAndDosageForm();
+    
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    const linesInLegend = new Set();
+
+    // Process each line and dosage form combination with consistent colors
+    Object.keys(distribution).forEach(line => {
+        const lineData = distribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+
+        // Add each dosage form as a separate slice with consistent colors
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+
+    return new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Trains Distribution',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        generateLabels: function(chart) {
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value} train${value !== 1 ? 's' : ''}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function recreateStudiesDistributionChart(ctx) {
+    initializeColorMapping();
+    
+    // Use the same data source as the original chart
+    const studiesDistribution = getStudiesDistributionByLineAndDosageForm();
+
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    const linesInLegend = new Set();
+
+    // Process each line and dosage form combination with consistent colors
+    Object.keys(studiesDistribution).forEach(line => {
+        const lineData = studiesDistribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+
+        // Add each dosage form as a separate slice with consistent colors
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+
+    return new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Studies Distribution',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        generateLabels: function(chart) {
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value} ${value === 1 ? 'study' : 'studies'}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function recreateSpecialCasesChart(ctx) {
+    initializeColorMapping();
+    
+    // Use the same data source as the original chart
+    const specialCasesDistribution = getSpecialCasesDistributionByLineAndDosageForm();
+
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    const linesInLegend = new Set();
+
+    Object.keys(specialCasesDistribution).forEach(line => {
+        const lineData = specialCasesDistribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+
+    if (labels.length === 0) {
+        // No special cases - show placeholder
+        labels.push('No Special Cases');
+        data.push(1);
+        backgroundColors.push('#e5e7eb');
+        borderColors.push('#fff');
+    }
+
+    return new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Special Cases Distribution',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        generateLabels: function(chart) {
+                            if (labels[0] === 'No Special Cases') {
+                                return [{
+                                    text: 'No Special Cases',
+                                    fillStyle: '#e5e7eb',
+                                    strokeStyle: '#e5e7eb',
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                }];
+                            }
+                            
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value} special case${value !== 1 ? 's' : ''}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function recreateMinMacosChart(ctx) {
+    initializeColorMapping();
+    
+    // Use the same data source as the original chart
+    const minMacosDistribution = getMinMacosDistributionByLineAndDosageForm();
+
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    const linesInLegend = new Set();
+
+    Object.keys(minMacosDistribution).forEach(line => {
+        const lineData = minMacosDistribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+
+        Object.keys(lineData).forEach(dosageForm => {
+            const value = lineData[dosageForm];
+            if (value && value > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(value);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+
+    return new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Minimum MACO Distribution',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        generateLabels: function(chart) {
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value.toFixed(6)} mg/Swab`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function recreateTrainsByLineChart(ctx) {
+    initializeColorMapping();
+    
+    const trainData = getTrainData();
+    if (trainData.length === 0) {
+        return null;
+    }
+    
+    // Use the same grouping logic as the original chart
+    const groupedData = {};
+    const allLines = new Set();
+    const allDosageForms = new Set();
+    
+    trainData.forEach(train => {
+        const line = train.line || 'Unassigned';
+        const dosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+        
+        allLines.add(line);
+        dosageForms.forEach(dosageForm => {
+            allDosageForms.add(dosageForm);
+            
+            if (!groupedData[line]) {
+                groupedData[line] = {};
+            }
+            if (!groupedData[line][dosageForm]) {
+                groupedData[line][dosageForm] = [];
+            }
+            
+            // Calculate MACO per swab for this train (same logic as original)
+            const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p=>p.productType))] || state.safetyFactorConfig['Other'];
+            const sf = sfConfig.max;
+            const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+            
+            const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+            const maco10ppm = 10 * train.minMbsKg;
+            let macoHealth = Infinity;
+            let macoNoel = Infinity;
+            
+            const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+            const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+            
+            if (train.lowestPde !== null && !pdeHidden) {
+                macoHealth = train.lowestPde * train.minBsMddRatio;
+            }
+            
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                const noel = (train.lowestLd50 * 70) / 2000;
+                const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000));
+                const minMdd = Math.min(...allMdds);
+                macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+            }
+            
+            const macoVisual = 0.004 * lineLargestEssa;
+            
+            const allMacoValues = [
+                { name: '0.1% Therapeutic Dose', value: macoDose },
+                { name: '10 ppm Criterion', value: maco10ppm }
+            ];
+            
+            if (train.lowestPde !== null && !pdeHidden) {
+                allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+            }
+            
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+            }
+            
+            allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
+            
+            const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+            const finalMaco = finalMacoResult.value;
+            const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+            const macoPerSwab = macoPerArea * train.assumedSsa;
+            
+            // Get proper train numbering
+            const idMap = getTrainIdToLineNumberMap();
+            const mapped = idMap.get(String(train.id));
+            const trainNumber = mapped ? mapped.number : train.id;
+            
+            groupedData[line][dosageForm].push({
+                trainId: train.id,
+                trainName: `Train ${trainNumber}`,
+                macoPerSwab: macoPerSwab
+            });
+        });
+    });
+    
+    // Prepare data for Chart.js - Show individual trains with correct labels (exact same as original)
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Create a flat structure: [line-dosageForm-train] combinations (same as original)
+    const flatTrainData = [];
+    
+    Array.from(allLines).sort().forEach(line => {
+        const lineData = groupedData[line] || {};
+        const dosageForms = Object.keys(lineData).sort();
+        
+        dosageForms.forEach(dosageForm => {
+            const trains = lineData[dosageForm] || [];
+            trains.forEach(train => {
+                flatTrainData.push({
+                    line: line,
+                    dosageForm: dosageForm,
+                    trainName: train.trainName,
+                    macoPerSwab: train.macoPerSwab
+                });
+            });
+        });
+    });
+    
+    // Sort trains by line, then dosage form, then train number (same as original)
+    flatTrainData.sort((a, b) => {
+        if (a.line !== b.line) return a.line.localeCompare(b.line);
+        if (a.dosageForm !== b.dosageForm) return a.dosageForm.localeCompare(b.dosageForm);
+        return a.trainName.localeCompare(b.trainName);
+    });
+    
+    // Create single dataset with all trains using consistent colors (same as original)
+    flatTrainData.forEach(item => {
+        labels.push(`${item.line} - ${item.dosageForm} - ${item.trainName}`);
+        data.push(item.macoPerSwab);
+        const color = getColorForCombination(item.line, item.dosageForm);
+        backgroundColors.push(color);
+        borderColors.push(color);
+    });
+    
+    // Create datasets for legend (one per line with dosage forms) (same as original)
+    const uniqueLines = [...new Set(flatTrainData.map(item => item.line))].sort();
+    const datasets = uniqueLines.map(line => {
+        // Find all dosage forms for this line
+        const dosageFormsInLine = new Set();
+        flatTrainData.forEach(item => {
+            if (item.line === line) {
+                dosageFormsInLine.add(item.dosageForm);
+            }
+        });
+        
+        const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+        const legendText = `${line}: ${dosageFormsList}`;
+        
+        return {
+            label: legendText,
+            data: [], // Empty data, just for legend
+            backgroundColor: getColorForCombination(line, 'dummy'),
+            borderColor: getColorForCombination(line, 'dummy'),
+            borderWidth: 1
+        };
+    });
+    
+    // Add the main dataset with all data
+    datasets.push({
+        label: 'Trains',
+        data: data,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+    });
+
+    return new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Trains by Line and Dosage Form',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        filter: function(legendItem) {
+                            return legendItem.text !== 'Trains';
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const datasetLabel = context.dataset.label || '';
+                            const value = context.parsed.y;
+                            return `${datasetLabel}: ${value.toFixed(6)} mg/Swab`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Trains (Line - Dosage Form - Train Number)'
+                    },
+                    ticks: {
+                        maxRotation: 45,
+                        minRotation: 45
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'MACO per Swab (mg/Swab)'
+                    },
+                    type: 'logarithmic'
+                }
+            }
+        }
+    });
+}
+
+function recreateHighestRpnChart(ctx) {
+    initializeColorMapping();
+    
+    const trainData = getTrainData();
+    if (trainData.length === 0) {
+        return null;
+    }
+    
+    // Calculate highest RPN for each train (same logic as original)
+    const trainRpnData = [];
+    
+    trainData.forEach(train => {
+        let highestRpn = 0;
+        let highestRpnProduct = null;
+        let highestRpnIngredient = null;
+        
+        // Find the highest RPN across all products in this train
+        train.products.forEach(product => {
+            if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                product.activeIngredients.forEach(ingredient => {
+                    try {
+                        const scores = calculateScores(ingredient);
+                        const rpn = scores?.rpn || 0;
+                        if (rpn && rpn > highestRpn) {
+                            highestRpn = rpn;
+                            highestRpnProduct = product.name;
+                            highestRpnIngredient = ingredient.name;
+                        }
+                    } catch (error) {
+                        console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                    }
+                });
+            }
+        });
+        
+        if (highestRpn > 0) {
+            // Get proper train numbering
+            const idMap = getTrainIdToLineNumberMap();
+            const mapped = idMap.get(String(train.id));
+            const trainNumber = mapped ? mapped.number : train.id;
+            
+            trainRpnData.push({
+                line: train.line || 'Unassigned',
+                dosageForm: train.products.length > 0 ? train.products[0].productType || 'Other' : 'Other',
+                trainName: `Train ${trainNumber}`,
+                highestRpn: highestRpn,
+                productName: highestRpnProduct,
+                ingredientName: highestRpnIngredient
+            });
+        }
+    });
+
+    // Sort by line, then dosage form, then train number (same as original)
+    trainRpnData.sort((a, b) => {
+        if (a.line !== b.line) return a.line.localeCompare(b.line);
+        if (a.dosageForm !== b.dosageForm) return a.dosageForm.localeCompare(b.dosageForm);
+        return a.trainName.localeCompare(b.trainName);
+    });
+    
+    // Prepare chart data (same as original)
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Create labels and data with consistent colors (same as original)
+    trainRpnData.forEach(item => {
+        labels.push(`${item.line} - ${item.dosageForm} - ${item.trainName}`);
+        data.push(item.highestRpn);
+        const color = getColorForCombination(item.line, item.dosageForm);
+        backgroundColors.push(color);
+        borderColors.push(color);
+    });
+    
+    // Create datasets for legend (one per line with dosage forms) (same as original)
+    const uniqueLines = [...new Set(trainRpnData.map(item => item.line))].sort();
+    const datasets = uniqueLines.map(line => {
+        // Find all dosage forms for this line
+        const dosageFormsInLine = new Set();
+        trainRpnData.forEach(item => {
+            if (item.line === line) {
+                dosageFormsInLine.add(item.dosageForm);
+            }
+        });
+        
+        const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+        const legendText = `${line}: ${dosageFormsList}`;
+        
+        return {
+            label: legendText,
+            data: [], // Empty data, just for legend
+            backgroundColor: getColorForCombination(line, 'dummy'),
+            borderColor: getColorForCombination(line, 'dummy'),
+            borderWidth: 1
+        };
+    });
+    
+    // Add the main dataset with all data
+    datasets.push({
+        label: 'Trains',
+        data: data,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+    });
+
+    return new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Highest RPN by Train',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        filter: function(legendItem) {
+                            return legendItem.text !== 'Trains';
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const index = context.dataIndex;
+                            const item = trainRpnData[index];
+                            if (item) {
+                                return `${item.trainName}: RPN ${item.highestRpn} (${item.productName})`;
+                            }
+                            return `${context.dataset.label}: ${context.parsed.y}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Trains (Line - Dosage Form - Train Number)'
+                    },
+                    ticks: {
+                        maxRotation: 45,
+                        minRotation: 45
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Highest RPN Value'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
 /**
  * Calculate the total number of studies required using the machine coverage algorithm
  */
@@ -87,9 +1005,12 @@ function calculateTotalRequiredStudies() {
 }
 
 export function renderMainDashboard() {
-         const statsContainer = document.getElementById('dashboardStats');
-            statsContainer.innerHTML = '';
-            const trainData = getTrainData();
+    // Reset color mapping to ensure consistency when data changes
+    resetColorMapping();
+    
+    const statsContainer = document.getElementById('dashboardStats');
+    statsContainer.innerHTML = '';
+    const trainData = getTrainData();
             
             let lowestMacoTrain = { id: 'N/A', finalMaco: Infinity };
             let largestEssaTrain = { id: 'N/A', essa: 0 };
@@ -171,7 +1092,8 @@ function getHighestRpnProduct() {
     products.forEach(product => {
         if (product.activeIngredients && product.activeIngredients.length > 0) {
             product.activeIngredients.forEach(ingredient => {
-                const rpn = calculateRpn(ingredient);
+                const scores = calculateScores(ingredient);
+                const rpn = scores?.rpn || 0;
                 if (rpn > highestRpn) {
                     highestRpn = rpn;
                     highestProduct = { name: product.name, rpn: rpn };
@@ -282,7 +1204,8 @@ function getStudiesDistributionByLineAndDosageForm() {
                         if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
                             product.activeIngredients.forEach(ingredient => {
                                 try {
-                                    const rpn = calculateRpn(ingredient);
+                                    const scores = calculateScores(ingredient);
+                const rpn = scores?.rpn || 0;
                                     if (rpn && rpn > highestRPN) {
                                         highestRPN = rpn;
                                     }
@@ -554,21 +1477,13 @@ function getMinMacosDistributionByLineAndDosageForm() {
     return distribution;
 }
 
-function calculateRpn(ingredient) {
-    // Simple RPN calculation - you may need to adjust based on your actual formula
-    const solubility = ingredient.solubility === 'Freely soluble' ? 1 : 
-                     ingredient.solubility === 'Soluble' ? 2 :
-                     ingredient.solubility === 'Slightly soluble' ? 3 : 4;
-    
-    const cleanability = ingredient.cleanability === 'Easy' ? 1 :
-                        ingredient.cleanability === 'Medium' ? 2 : 3;
-    
-    return solubility * cleanability;
-}
 
 function renderTrainsDistributionPieChart() {
     const canvas = document.getElementById('dosageFormPieChart');
     if (!canvas) return;
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
     
     const distribution = getTrainsDistributionByLineAndDosageForm();
     const ctx = canvas.getContext('2d');
@@ -584,32 +1499,26 @@ function renderTrainsDistributionPieChart() {
     const backgroundColors = [];
     const borderColors = [];
     
-    // Define colors for different lines (each line gets one color)
-    const lineColors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF9F80', '#80FF80'];
+    // Keep separate slices but prepare for grouped legend
+    const linesInLegend = new Set();
     
-    let lineColorIndex = 0;
-    
-    // Process each line and dosage form combination
+    // Process each line and dosage form combination with consistent colors
     Object.keys(distribution).forEach(line => {
         const lineData = distribution[line];
         if (!lineData || typeof lineData !== 'object') return;
         
-        // Get the color for this line (all dosage forms in this line will use the same color)
-        const lineColor = lineColors[lineColorIndex % lineColors.length];
-        
-        // Add each dosage form as a separate segment with the same line color
+        // Add each dosage form as a separate slice with consistent colors
         Object.keys(lineData).forEach(dosageForm => {
             const count = lineData[dosageForm];
             if (count && count > 0) {
                 const label = `${line} - ${dosageForm}`;
                 labels.push(label);
                 data.push(count);
-                backgroundColors.push(lineColor);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
                 borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
             }
         });
-        
-        lineColorIndex++;
     });
     
     // Check if we have any data to display
@@ -645,6 +1554,31 @@ function renderTrainsDistributionPieChart() {
                         usePointStyle: true,
                         font: {
                             size: 12
+                        },
+                        generateLabels: function(chart) {
+                            // Create grouped legend showing line names with their dosage forms
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                // Find all dosage forms for this line
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
                         }
                     }
                 },
@@ -666,6 +1600,9 @@ function renderStudiesDistributionPieChart() {
     const canvas = document.getElementById('studiesPieChart');
     if (!canvas) return;
     
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
     const studiesDistribution = getStudiesDistributionByLineAndDosageForm();
     const ctx = canvas.getContext('2d');
     
@@ -680,32 +1617,26 @@ function renderStudiesDistributionPieChart() {
     const backgroundColors = [];
     const borderColors = [];
     
-    // Define colors for different lines (each line gets one color)
-    const lineColors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF9F80', '#80FF80'];
+    // Keep separate slices but prepare for grouped legend
+    const linesInLegend = new Set();
     
-    let lineColorIndex = 0;
-    
-    // Process each line and dosage form combination
+    // Process each line and dosage form combination with consistent colors
     Object.keys(studiesDistribution).forEach(line => {
         const lineData = studiesDistribution[line];
         if (!lineData || typeof lineData !== 'object') return;
         
-        // Get the color for this line (all dosage forms in this line will use the same color)
-        const lineColor = lineColors[lineColorIndex % lineColors.length];
-        
-        // Add each dosage form as a separate segment with the same line color
+        // Add each dosage form as a separate slice with consistent colors
         Object.keys(lineData).forEach(dosageForm => {
             const count = lineData[dosageForm];
             if (count && count > 0) {
                 const label = `${line} - ${dosageForm}`;
                 labels.push(label);
                 data.push(count); // Actual number of studies needed
-                backgroundColors.push(lineColor);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
                 borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
             }
         });
-        
-        lineColorIndex++;
     });
     
     // Check if we have any data to display
@@ -742,6 +1673,31 @@ function renderStudiesDistributionPieChart() {
                         usePointStyle: true,
                         font: {
                             size: 12
+                        },
+                        generateLabels: function(chart) {
+                            // Create grouped legend showing line names with their dosage forms
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                // Find all dosage forms for this line
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',  
+                                    hidden: false
+                                };
+                            });
                         }
                     }
                 },
@@ -763,6 +1719,9 @@ function renderSpecialCasesDistributionPieChart() {
     const canvas = document.getElementById('specialCasesPieChart');
     if (!canvas) return;
     
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
     const specialCasesDistribution = getSpecialCasesDistributionByLineAndDosageForm();
     const ctx = canvas.getContext('2d');
     
@@ -777,32 +1736,26 @@ function renderSpecialCasesDistributionPieChart() {
     const backgroundColors = [];
     const borderColors = [];
     
-    // Define colors for different lines (each line gets one color)
-    const lineColors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF9F80', '#80FF80'];
+    // Keep separate slices but prepare for grouped legend
+    const linesInLegend = new Set();
     
-    let lineColorIndex = 0;
-    
-    // Process each line and dosage form combination
+    // Process each line and dosage form combination with consistent colors
     Object.keys(specialCasesDistribution).forEach(line => {
         const lineData = specialCasesDistribution[line];
         if (!lineData || typeof lineData !== 'object') return;
         
-        // Get the color for this line (all dosage forms in this line will use the same color)
-        const lineColor = lineColors[lineColorIndex % lineColors.length];
-        
-        // Add each dosage form as a separate segment with the same line color
+        // Add each dosage form as a separate slice with consistent colors
         Object.keys(lineData).forEach(dosageForm => {
             const count = lineData[dosageForm];
             if (count && count > 0) {
                 const label = `${line} - ${dosageForm}`;
                 labels.push(label);
                 data.push(count); // Number of special case products
-                backgroundColors.push(lineColor);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
                 borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
             }
         });
-        
-        lineColorIndex++;
     });
     
     // Check if we have any data to display
@@ -839,6 +1792,31 @@ function renderSpecialCasesDistributionPieChart() {
                         usePointStyle: true,
                         font: {
                             size: 12
+                        },
+                        generateLabels: function(chart) {
+                            // Create grouped legend showing line names with their dosage forms
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                // Find all dosage forms for this line
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
                         }
                     }
                 },
@@ -885,7 +1863,9 @@ function renderSpecialCasesDistributionPieChart() {
 function renderMinMacosDistributionPieChart() {
     console.log('renderMinMacosDistributionPieChart called');
     const canvas = document.getElementById('minMacosPieChart');
- 
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
     
     console.log('Rendering minimum MACO chart...');
     const minMacosDistribution = getMinMacosDistributionByLineAndDosageForm();
@@ -903,12 +1883,10 @@ function renderMinMacosDistributionPieChart() {
     const backgroundColors = [];
     const borderColors = [];
     
-    // Define colors for different lines (each line gets one color)
-    const lineColors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF9F80', '#80FF80'];
+    // Keep separate slices but prepare for grouped legend
+    const linesInLegend = new Set();
     
-    let lineColorIndex = 0;
-    
-    // Process each line and dosage form combination
+    // Process each line and dosage form combination with consistent colors
     console.log('Processing distribution data...');
     Object.keys(minMacosDistribution).forEach(line => {
         const lineData = minMacosDistribution[line];
@@ -918,27 +1896,24 @@ function renderMinMacosDistributionPieChart() {
             return;
         }
         
-        // Get the color for this line (all dosage forms in this line will use the same color)
-        const lineColor = lineColors[lineColorIndex % lineColors.length];
-        console.log(`Line ${line} color: ${lineColor}`);
-        
-        // Add each dosage form as a separate segment with the same line color
+        // Add each dosage form as a separate segment with consistent colors
         Object.keys(lineData).forEach(dosageForm => {
             const macoValue = lineData[dosageForm];
             console.log(`Processing ${line} - ${dosageForm}: MACO value = ${macoValue}`);
             if (macoValue && macoValue > 0 && !isNaN(macoValue) && isFinite(macoValue)) {
                 const label = `${line} - ${dosageForm}`;
+                const color = getColorForCombination(line, dosageForm);
+                console.log(`Line ${line} - ${dosageForm} color: ${color}`);
                 labels.push(label);
                 data.push(macoValue); // Minimum MACO value
-                backgroundColors.push(lineColor);
+                backgroundColors.push(color);
                 borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
                 console.log(`Added segment: ${label} = ${macoValue}`);
             } else {
                 console.log(`Skipping ${line} - ${dosageForm}: Invalid MACO value (${macoValue})`);
             }
         });
-        
-        lineColorIndex++;
     });
     
     console.log('Final chart data:', { labels, data, backgroundColors, borderColors });
@@ -984,6 +1959,31 @@ function renderMinMacosDistributionPieChart() {
                             usePointStyle: true,
                             font: {
                                 size: 12
+                            },
+                            generateLabels: function(chart) {
+                                // Create grouped legend showing line names with their dosage forms
+                                const uniqueLines = Array.from(linesInLegend).sort();
+                                return uniqueLines.map(line => {
+                                    // Find all dosage forms for this line
+                                    const dosageFormsInLine = new Set();
+                                    labels.forEach((label, index) => {
+                                        if (label.startsWith(line + ' - ')) {
+                                            const dosageForm = label.replace(line + ' - ', '');
+                                            dosageFormsInLine.add(dosageForm);
+                                        }
+                                    });
+                                    
+                                    const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                    const legendText = `${line}: ${dosageFormsList}`;
+                                    
+                                    return {
+                                        text: legendText,
+                                        fillStyle: getColorForCombination(line, 'dummy'),
+                                        strokeStyle: getColorForCombination(line, 'dummy'),
+                                        pointStyle: 'circle',
+                                        hidden: false
+                                    };
+                                });
                             }
                         }
                     },
@@ -1022,6 +2022,9 @@ function renderTrainsByLineAndDosageChart() {
         console.log('Canvas element not found: trainsByLineAndDosageChart - skipping chart');
         return;
     }
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
     
     const trainData = getTrainData();
     if (trainData.length === 0) {
@@ -1115,7 +2118,6 @@ function renderTrainsByLineAndDosageChart() {
     const data = [];
     const backgroundColors = [];
     const borderColors = [];
-    const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF9F80', '#80FF80'];
     
     // Create a flat structure: [line-dosageForm-train] combinations
     const flatTrainData = [];
@@ -1144,29 +2146,37 @@ function renderTrainsByLineAndDosageChart() {
         return a.trainName.localeCompare(b.trainName);
     });
     
-    // Create dosage form color mapping
-    const dosageFormColors = {};
-    const uniqueDosageForms = [...new Set(flatTrainData.map(item => item.dosageForm))].sort();
-    uniqueDosageForms.forEach((dosageForm, index) => {
-        dosageFormColors[dosageForm] = colors[index % colors.length];
-    });
-    
-    // Create single dataset with all trains
+    // Create single dataset with all trains using consistent colors
     flatTrainData.forEach(item => {
         labels.push(`${item.line} - ${item.dosageForm} - ${item.trainName}`);
         data.push(item.macoPerSwab);
-        backgroundColors.push(dosageFormColors[item.dosageForm]);
-        borderColors.push(dosageFormColors[item.dosageForm]);
+        const color = getColorForCombination(item.line, item.dosageForm);
+        backgroundColors.push(color);
+        borderColors.push(color);
     });
     
-    // Create datasets for legend (one per dosage form)
-    const datasets = uniqueDosageForms.map(dosageForm => ({
-        label: dosageForm,
-        data: [], // Empty data, just for legend
-        backgroundColor: dosageFormColors[dosageForm],
-        borderColor: dosageFormColors[dosageForm],
-        borderWidth: 1
-    }));
+    // Create datasets for legend (one per line with dosage forms)
+    const uniqueLines = [...new Set(flatTrainData.map(item => item.line))].sort();
+    const datasets = uniqueLines.map(line => {
+        // Find all dosage forms for this line
+        const dosageFormsInLine = new Set();
+        flatTrainData.forEach(item => {
+            if (item.line === line) {
+                dosageFormsInLine.add(item.dosageForm);
+            }
+        });
+        
+        const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+        const legendText = `${line}: ${dosageFormsList}`;
+        
+        return {
+            label: legendText,
+            data: [], // Empty data, just for legend
+            backgroundColor: getColorForCombination(line, 'dummy'),
+            borderColor: getColorForCombination(line, 'dummy'),
+            borderWidth: 1
+        };
+    });
     
     // Add the main dataset with all data
     datasets.push({
@@ -1246,6 +2256,9 @@ function renderHighestRpnByTrainChart() {
         return;
     }
     
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
     const trainData = getTrainData();
     if (trainData.length === 0) {
         console.log('No train data available for highest RPN chart');
@@ -1265,7 +2278,8 @@ function renderHighestRpnByTrainChart() {
             if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
                 product.activeIngredients.forEach(ingredient => {
                     try {
-                        const rpn = calculateRpn(ingredient);
+                        const scores = calculateScores(ingredient);
+                const rpn = scores?.rpn || 0;
                         if (rpn && rpn > highestRpn) {
                             highestRpn = rpn;
                             highestRpnProduct = product.name;
@@ -1309,31 +2323,38 @@ function renderHighestRpnByTrainChart() {
     const data = [];
     const backgroundColors = [];
     const borderColors = [];
-    const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF9F80', '#80FF80'];
     
-    // Create dosage form color mapping
-    const dosageFormColors = {};
-    const uniqueDosageForms = [...new Set(trainRpnData.map(item => item.dosageForm))].sort();
-    uniqueDosageForms.forEach((dosageForm, index) => {
-        dosageFormColors[dosageForm] = colors[index % colors.length];
-    });
-    
-    // Create labels and data
+    // Create labels and data with consistent colors
     trainRpnData.forEach(item => {
         labels.push(`${item.line} - ${item.dosageForm} - ${item.trainName}`);
         data.push(item.highestRpn);
-        backgroundColors.push(dosageFormColors[item.dosageForm]);
-        borderColors.push(dosageFormColors[item.dosageForm]);
+        const color = getColorForCombination(item.line, item.dosageForm);
+        backgroundColors.push(color);
+        borderColors.push(color);
     });
     
-    // Create datasets for legend (one per dosage form)
-    const datasets = uniqueDosageForms.map(dosageForm => ({
-        label: dosageForm,
-        data: [], // Empty data, just for legend
-        backgroundColor: dosageFormColors[dosageForm],
-        borderColor: dosageFormColors[dosageForm],
-        borderWidth: 1
-    }));
+    // Create datasets for legend (one per line with dosage forms)
+    const uniqueLines = [...new Set(trainRpnData.map(item => item.line))].sort();
+    const datasets = uniqueLines.map(line => {
+        // Find all dosage forms for this line
+        const dosageFormsInLine = new Set();
+        trainRpnData.forEach(item => {
+            if (item.line === line) {
+                dosageFormsInLine.add(item.dosageForm);
+            }
+        });
+        
+        const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+        const legendText = `${line}: ${dosageFormsList}`;
+        
+        return {
+            label: legendText,
+            data: [], // Empty data, just for legend
+            backgroundColor: getColorForCombination(line, 'dummy'),
+            borderColor: getColorForCombination(line, 'dummy'),
+            borderWidth: 1
+        };
+    });
     
     // Add the main dataset with all data
     datasets.push({
@@ -1418,8 +2439,13 @@ function renderTopRpnProductsChart() {
         if (product.activeIngredients && product.activeIngredients.length > 0) {
             let maxRpn = 0;
             product.activeIngredients.forEach(ingredient => {
-                const rpn = calculateRpn(ingredient);
-                if (rpn > maxRpn) maxRpn = rpn;
+                try {
+                    const scores = calculateScores(ingredient);
+                    const rpn = scores?.rpn || 0;
+                    if (rpn > maxRpn) maxRpn = rpn;
+                } catch (error) {
+                    console.warn('Error calculating RPN:', error);
+                }
             });
             if (maxRpn > 0) {
                 productRpnData.push({ name: product.name, rpn: maxRpn });

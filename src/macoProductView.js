@@ -692,7 +692,7 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa, dosageF
                     <div class="p-3 ${finalMacoResult.value === value ? 'font-bold' : ''}" style="${finalMacoResult.value === value ? 'background-color: #dcfce7; color: #166534;' : ''}">
                         <div class="flex justify-between items-start mb-1">
                             <span class="text-sm font-medium">${name}</span>
-                            <span class="text-sm text-right">${isFinite(value) ? value.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' mg' : 'N/A'} ${finalMacoResult.value === value ? '<span class="text-xs ml-2">✓</span>' : ''}</span>
+                            <span class="text-sm text-right">${isFinite(value) ? formatSmallNumber(value, 'mg') : 'N/A'} ${finalMacoResult.value === value ? '<span class="text-xs ml-2">✓</span>' : ''}</span>
                         </div>
                         <div class="text-xs font-mono bg-gray-100 dark:bg-gray-700 p-2 rounded mt-1" style="color: var(--text-secondary);">
                             ${equation}

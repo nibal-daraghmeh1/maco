@@ -348,7 +348,42 @@ class SimplifiedMachineCoverageTable {
      * @returns {string} HTML string for body
      */
     generateTableBody() {
-        const rows = this.allTrains.map(train => {
+        // Sort trains by study number (ascending): Study 1, Study 2, Study 3, then non-selected trains
+        const sortedTrains = [...this.allTrains].sort((a, b) => {
+            const aSelected = this.selectedTrains.find(st => {
+                const aInternalId = a.trainInternalId || a.originalTrain?.id;
+                const stInternalId = st.trainInternalId || st.originalTrain?.id;
+                
+                if (aInternalId && stInternalId && aInternalId === stInternalId) {
+                    return st.productGroup === a.productGroup;
+                }
+                return false;
+            });
+            
+            const bSelected = this.selectedTrains.find(st => {
+                const bInternalId = b.trainInternalId || b.originalTrain?.id;
+                const stInternalId = st.trainInternalId || st.originalTrain?.id;
+                
+                if (bInternalId && stInternalId && bInternalId === stInternalId) {
+                    return st.productGroup === b.productGroup;
+                }
+                return false;
+            });
+            
+            // Both selected: sort by study number ascending (Study 1, Study 2, Study 3...)
+            if (aSelected && bSelected) {
+                return aSelected.studyNumber - bSelected.studyNumber;
+            }
+            
+            // Selected trains (studies) come first
+            if (aSelected && !bSelected) return -1;
+            if (!aSelected && bSelected) return 1;
+            
+            // For non-selected trains, maintain original order
+            return 0;
+        });
+        
+        const rows = sortedTrains.map(train => {
             // Match by internal ID and productGroup for proper train matching
             const selectedTrain = this.selectedTrains.find(st => {
                 const trainInternalId = train.trainInternalId || train.originalTrain?.id;

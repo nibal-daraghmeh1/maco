@@ -92,8 +92,15 @@
                     <!-- Stats will be rendered here by JS -->
                 </div>
                 <div class="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-4">
-                    <div class="card p-4">
-                        <h2 class="text-lg font-bold">Trains Distribution</h2>
+                    <div class="card p-4 chart-card">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-bold">Trains Distribution</h2>
+                            <button onclick="expandChart('dosageFormPieChart', 'Trains Distribution')" class="chart-expand-btn p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title="Expand Chart">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <p class="text-xs mb-4" style="color: var(--text-secondary);">
                             Distribution of dosage forms across lines.
                         </p>
@@ -101,8 +108,15 @@
                             <canvas id="dosageFormPieChart"></canvas>
                         </div>
                     </div>
-                    <div class="card p-4">
-                        <h2 class="text-lg font-bold">Studies Distribution</h2>
+                    <div class="card p-4 chart-card">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-bold">Studies Distribution</h2>
+                            <button onclick="expandChart('studiesPieChart', 'Studies Distribution')" class="chart-expand-btn p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title="Expand Chart">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <p class="text-xs mb-4" style="color: var(--text-secondary);">
                             Studies per line and dosage form.
                         </p>
@@ -110,8 +124,15 @@
                             <canvas id="studiesPieChart"></canvas>
                         </div>
                     </div>
-                    <div class="card p-4">
-                        <h2 class="text-lg font-bold">Minimum MACO</h2>
+                    <div class="card p-4 chart-card">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-bold">Minimum MACO</h2>
+                            <button onclick="expandChart('minMacosPieChart', 'Minimum MACO')" class="chart-expand-btn p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title="Expand Chart">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <p class="text-xs mb-4" style="color: var(--text-secondary);">
                             Minimum MACO by dosage form.
                         </p>
@@ -119,8 +140,15 @@
                             <canvas id="minMacosPieChart"></canvas>
                         </div>
                     </div>
-                    <div class="card p-4">
-                        <h2 class="text-lg font-bold">Special Cases</h2>
+                    <div class="card p-4 chart-card">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-bold">Special Cases</h2>
+                            <button onclick="expandChart('specialCasesPieChart', 'Special Cases')" class="chart-expand-btn p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title="Expand Chart">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <p class="text-xs mb-4" style="color: var(--text-secondary);">
                             Special case products distribution.
                         </p>
@@ -130,8 +158,15 @@
                     </div>
                 </div>
                 <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="card p-6">
-                        <h2 class="text-xl font-bold">Trains by Line and Dosage Form</h2>
+                    <div class="card p-6 chart-card">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold">Trains by Line and Dosage Form</h2>
+                            <button onclick="expandChart('trainsByLineAndDosageChart', 'Trains by Line and Dosage Form')" class="chart-expand-btn p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title="Expand Chart">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
                             Shows all trains grouped by line and dosage form, with each train's MACO per swab value.
                         </p>
@@ -139,8 +174,15 @@
                             <canvas id="trainsByLineAndDosageChart"></canvas>
                         </div>
                     </div>
-                    <div class="card p-6">
-                        <h2 class="text-xl font-bold">Highest RPN by Train</h2>
+                    <div class="card p-6 chart-card">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold">Highest RPN by Train</h2>
+                            <button onclick="expandChart('highestRpnByTrainChart', 'Highest RPN by Train')" class="chart-expand-btn p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title="Expand Chart">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
                             Shows the highest RPN value for each train along with the product name.
                         </p>
@@ -538,7 +580,7 @@
                         <button onclick="exportAllToJson()" class="w-full flex items-center justify-center gap-x-2 py-2.5 px-4 text-sm font-semibold rounded-lg border" style="color: #7e22ce; border-color: #7e22ce; background-color: #f5f3ff;">Export All Data to JSON (.json)</button>
                         <div class="border-t pt-4 mt-4" style="border-color: var(--border-color);">
                             <label for="json-import-file" class="block text-sm font-medium mb-2">Import from JSON File</label>
-                            <input type="file" id="json-import-file" accept=".json" onchange="importFromJson(event)" class="block w-full text-sm rounded-lg border cursor-pointer file:ml-4 file:py-2 file:px-4 file:rounded-r-lg file:border-0 file:text-sm file:font-semibold" style="color: var(--text-secondary); border-color: var(--border-color); file:background-color: var(--bg-accent); file:color: var(--text-primary);">
+                            <input type="file" id="json-import-file" accept=".json" onchange="importFromJson(event)" class="block w-full text-sm rounded-lg border cursor-pointer" style="color: var(--text-secondary); border-color: var(--border-color);">
                         </div>
                     </div>
                 </div>
@@ -692,6 +734,24 @@
             </div>
         </div>
     </main>
+
+    <!-- Chart Expand Modal -->
+    <div id="chartExpandModal" class="modal-container">
+        <div class="modal-content-container chart-expand-modal">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="chartExpandModalTitle">Chart View</h3>
+                <button type="button" onclick="closeChartExpandModal()" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <div class="modal-body chart-expand-body">
+                <div class="chart-expand-container">
+                    <canvas id="expandedChart"></canvas>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="closeChartExpandModal()" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Close</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Modals -->
     <div id="addProductModal" class="modal-container">
@@ -908,9 +968,36 @@
 <script type="module" src="dist/src/worstCaseView.js"></script>
 <script type="module" src="dist/src/macoProductView.js"></script>
 <script type="module" src="dist/src/macoDetergentView.js"></script>
-<script type="module" src="dist/src/dashboardView.js"></script>
 <script type="module" src="dist/src/summaryView.js"></script>
 <script type="module" src="dist/src/qaView.js"></script>
+
+<!-- Dashboard View with Chart Expand Functions -->
+<script type="module">
+import * as dashboardView from './dist/src/dashboardView.js';
+
+// Ensure chart expand functions are globally available immediately
+window.expandChart = function(chartId, chartTitle) {
+    if (dashboardView.expandChart) {
+        dashboardView.expandChart(chartId, chartTitle);
+    } else {
+        console.error('expandChart function not available');
+    }
+};
+
+window.closeChartExpandModal = function() {
+    if (dashboardView.closeChartExpandModal) {
+        dashboardView.closeChartExpandModal();
+    } else {
+        console.error('closeChartExpandModal function not available');
+    }
+};
+
+// Debug logging
+console.log('Chart expand functions exposed globally:', {
+    expandChart: typeof window.expandChart,
+    closeChartExpandModal: typeof window.closeChartExpandModal
+});
+</script>
 <!-- PDF Generation Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
