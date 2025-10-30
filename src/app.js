@@ -209,6 +209,9 @@ export function fullAppRender() {
     try {
         // Generate the train map first, as many other renders depend on it.
         utils.generateTrainMap();
+        
+        // Reset color mapping to ensure consistent colors after data changes
+        dashboardView.resetColorMapping();
 
         // Re-render each major view/tab
         productView.handleSearchAndFilter('productRegister');
@@ -499,7 +502,10 @@ function changeTab(tabId, element) {
     element.classList.add('active-tab');
 
     // Call the specific rendering function for the activated tab
-    if (tabId === 'dashboard') { dashboardView.renderMainDashboard(); }
+    if (tabId === 'dashboard') { 
+        dashboardView.resetColorMapping(); // Reset colors for fresh assignment
+        dashboardView.renderMainDashboard(); 
+    }
     if (tabId === 'summaryReport') { summaryView.renderSummaryReport(); }
     if (tabId === 'trainSummary') { trainSummaryView.renderTrainSummary(); }
     if (tabId === 'machineManagement') { machineView.renderMachinesTable(); }

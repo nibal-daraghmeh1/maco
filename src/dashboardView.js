@@ -7,12 +7,16 @@ import { renderRpnChart } from './worstCaseView.js'; // The RPN chart is on the 
 import * as state from './state.js';
 import { createHorizontalMachineCoverageTable } from './machineCoverageView.js';
 
-// Central color management for consistent colors across all charts
+// Central color management for consistent colors across all charts - Extended palette for more unique colors
 const CHART_COLORS = [
     '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', 
     '#FF9F40', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
     '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE',
-    '#85C1E9', '#F8C471', '#82E0AA', '#F1948A', '#AED6F1'
+    '#85C1E9', '#F8C471', '#82E0AA', '#F1948A', '#AED6F1',
+    '#E74C3C', '#3498DB', '#F39C12', '#27AE60', '#8E44AD',
+    '#E67E22', '#1ABC9C', '#34495E', '#F1C40F', '#E91E63',
+    '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4',
+    '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B'
 ];
 
 // Global cached color mapping to ensure consistency across all charts
@@ -32,22 +36,31 @@ function initializeColorMapping() {
     const lines = new Set();
     
     trainData.forEach(train => {
-        const line = train.line || 'Unassigned';
+        const line = train.line || train.productLine || 'Unassigned';
         lines.add(line);
     });
     
-    // Sort lines for consistent ordering
+    // Sort lines for consistent ordering, ensuring each gets a unique color
     const sortedLines = Array.from(lines).sort();
     
     console.log('Creating color mapping for lines:', sortedLines);
     
-    // Assign colors to each line (all dosage forms in same line get same color)
-    sortedLines.forEach(line => {
-        const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
+    // Assign colors to each line ensuring no duplicates
+    sortedLines.forEach((line, index) => {
+        const color = CHART_COLORS[index % CHART_COLORS.length];
         colorMapping.set(line, color);
-        console.log(`${line} -> ${color}`);
+        console.log(`Line "${line}" -> Color ${color} (index: ${index})`);
         colorIndex++;
     });
+    
+    // Verify no duplicate colors were assigned
+    const assignedColors = Array.from(colorMapping.values());
+    const uniqueColors = [...new Set(assignedColors)];
+    if (assignedColors.length !== uniqueColors.length) {
+        console.warn('WARNING: Duplicate colors detected in mapping!');
+        console.log('Assigned colors:', assignedColors);
+        console.log('Unique colors:', uniqueColors);
+    }
     
     globalColorMapping = colorMapping;
     return colorMapping;
