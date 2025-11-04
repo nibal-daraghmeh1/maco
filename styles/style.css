@@ -254,6 +254,16 @@
                 margin: 0.5in;
             }
             
+            /* Override page size for machine coverage specifically */
+            body.printing-machineCoverage {
+                page: A4;
+            }
+            
+            @page A4 {
+                size: A4 landscape;
+                margin: 0.5in 0.3in;
+            }
+            
             body { background-color: #fff !important; background-image: none !important; margin: 0 !important; padding: 0 !important; }
             header, nav, #theme-toggle, .modal-container, #loader, .print-btn, .no-print, #productsFilter { display: none !important; }
             .only-print { display: block !important; }
@@ -272,7 +282,7 @@
              *, *::before, *::after { color: #000 !important; background: transparent !important; box-shadow: none !important; text-shadow: none !important; }
             h2, h3 { color: #000 !important; border-color: #ddd !important; page-break-after: avoid; }
             .tab-content { display: none !important; }
-            body.printing-dashboard #dashboard, body.printing-productRegister #productRegister, body.printing-worstCaseProducts #worstCaseProducts, body.printing-summary #summaryReport, body.printing-scoring-system #scoringSystem, body.printing-machines #machineManagement, body.printing-macoForTrains #macoForTrains, body.printing-detergentMaco #detergentMaco, body.printing-trainSummary #trainSummary { display: block !important; page-break-before: avoid; }
+            body.printing-dashboard #dashboard, body.printing-productRegister #productRegister, body.printing-worstCaseProducts #worstCaseProducts, body.printing-summary #summaryReport, body.printing-scoring-system #scoringSystem, body.printing-machines #machineManagement, body.printing-macoForTrains #macoForTrains, body.printing-detergentMaco #detergentMaco, body.printing-trainSummary #trainSummary, body.printing-machineCoverage #machineCoverage, body.printing-report #lineReport { display: block !important; page-break-before: avoid; }
             body.printing-dashboard .grid, body.printing-machines .grid { grid-template-columns: 1fr !important; }
             body.printing-dashboard #rpnChartContainer { height: 80vh !important; }
             table { page-break-inside: auto; } tr { page-break-inside: avoid; page-break-after: auto; } thead { display: table-header-group; }
@@ -281,6 +291,7 @@
             
             /* Train Summary specific styles */
             body.printing-trainSummary #trainSummaryContainer { display: block !important; }
+            body.printing-report #lineReportContainer { display: block !important; }
             body.printing-trainSummary table { display: table !important; }
             body.printing-trainSummary tr { display: table-row !important; }
             body.printing-trainSummary td { display: table-cell !important; }
@@ -320,6 +331,272 @@
             /* Hide toggle buttons when printing */
             body.printing-detergentMaco .train-toggle {
                 display: none !important;
+            }
+            
+            /* Machine Coverage specific print styles */
+            body.printing-machineCoverage #machineCoverageContainer {
+                display: block !important;
+                margin: 0 !important;
+                padding: 5px !important;
+                background: white !important;
+                overflow: visible !important;
+                width: 100% !important;
+            }
+            
+            body.printing-machineCoverage main {
+                padding: 0.5rem !important;
+            }
+            
+            body.printing-machineCoverage .machine-coverage-title {
+                font-size: 12px !important;
+                margin-bottom: 5px !important;
+                text-align: center !important;
+            }
+            
+            
+            body.printing-machineCoverage .machine-coverage-container {
+                margin: 0 !important;
+                padding: 10px !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                max-width: 100% !important;
+                background: white !important;
+            }
+            
+            body.printing-machineCoverage .coverage-table {
+                border-collapse: collapse !important;
+                width: 100% !important;
+                font-size: 7px !important;
+                display: table !important;
+                table-layout: fixed !important;
+            }
+            
+            body.printing-machineCoverage .coverage-table th,
+            body.printing-machineCoverage .coverage-table td {
+                border: 1px solid #000 !important;
+                padding: 2px !important;
+                background: white !important;
+                color: black !important;
+                display: table-cell !important;
+                word-wrap: break-word !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                white-space: nowrap !important;
+            }
+            
+            /* Specific column widths for machine coverage table */
+            body.printing-machineCoverage .coverage-table th:first-child,
+            body.printing-machineCoverage .coverage-table td:first-child {
+                width: 8% !important;
+                white-space: nowrap !important;
+            }
+            
+            body.printing-machineCoverage .coverage-table th:nth-child(2),
+            body.printing-machineCoverage .coverage-table td:nth-child(2) {
+                width: 10% !important;
+            }
+            
+            body.printing-machineCoverage .coverage-table th:nth-child(3),
+            body.printing-machineCoverage .coverage-table td:nth-child(3) {
+                width: 12% !important;
+            }
+            
+            body.printing-machineCoverage .coverage-table th:nth-child(4),
+            body.printing-machineCoverage .coverage-table td:nth-child(4) {
+                width: 6% !important;
+            }
+            
+            body.printing-machineCoverage .coverage-table th:nth-child(5),
+            body.printing-machineCoverage .coverage-table td:nth-child(5) {
+                width: 6% !important;
+            }
+            
+            /* Machine columns - make them narrow */
+            body.printing-machineCoverage .coverage-table th:nth-child(n+6):nth-child(-n+20),
+            body.printing-machineCoverage .coverage-table td:nth-child(n+6):nth-child(-n+20) {
+                width: 4% !important;
+                text-align: center !important;
+                font-size: 8px !important;
+            }
+            
+            /* Rotate machine column headers for better fit */
+            body.printing-machineCoverage .coverage-table th:nth-child(n+6) {
+                writing-mode: vertical-rl !important;
+                text-orientation: mixed !important;
+                height: 60px !important;
+                padding: 1px !important;
+                font-size: 6px !important;
+            }
+            
+            body.printing-machineCoverage .coverage-table th {
+                background: #f0f0f0 !important;
+                font-weight: bold !important;
+            }
+            
+            /* Line Report specific print styles - Hide navigation and UI, show only report */
+            body.printing-report header,
+            body.printing-report #sidebar,
+            body.printing-report nav,
+            body.printing-report .border-b,
+            body.printing-report #sidebarBackdrop,
+            body.printing-report #floatingToggle,
+            body.printing-report #loader,
+            body.printing-report #theme-toggle {
+                display: none !important;
+                visibility: hidden !important;
+            }
+            
+            body.printing-report #lineReportContainer {
+                margin: 0 !important;
+                padding: 20px !important;
+                width: 100% !important;
+                overflow: visible !important;
+                background: white !important;
+                display: block !important;
+                visibility: visible !important;
+            }
+            
+            body.printing-report #lineReport {
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+            }
+            
+            body.printing-report .report-container {
+                max-width: none !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 20px !important;
+                box-shadow: none !important;
+                background: white !important;
+            }
+            
+            /* Specific table display rules for line report */
+            body.printing-report .summary-table,
+            body.printing-report .data-table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                margin: 10px 0 !important;
+                page-break-inside: avoid !important;
+                display: table !important;
+                visibility: visible !important;
+            }
+            
+            body.printing-report .summary-table thead,
+            body.printing-report .data-table thead,
+            body.printing-report .summary-table tbody,
+            body.printing-report .data-table tbody {
+                display: table-row-group !important;
+                visibility: visible !important;
+            }
+            
+            body.printing-report .summary-table tr,
+            body.printing-report .data-table tr {
+                display: table-row !important;
+                visibility: visible !important;
+            }
+            
+            body.printing-report .summary-table th,
+            body.printing-report .summary-table td,
+            body.printing-report .data-table th,
+            body.printing-report .data-table td {
+                border: 1px solid #000 !important;
+                padding: 6px !important;
+                font-size: 12px !important;
+                background: white !important;
+                color: black !important;
+                display: table-cell !important;
+            }
+            
+            body.printing-report .summary-table th,
+            body.printing-report .data-table th {
+                background: #f0f0f0 !important;
+                font-weight: bold !important;
+            }
+            
+            body.printing-report .section {
+                margin-bottom: 15px !important;
+                page-break-inside: avoid !important;
+            }
+            
+            body.printing-report .section h2 {
+                font-size: 14px !important;
+                margin-bottom: 8px !important;
+                color: #000 !important;
+                border-bottom: 1px solid #000 !important;
+                padding-bottom: 4px !important;
+            }
+            
+            body.printing-report .report-header h1 {
+                font-size: 16px !important;
+                color: #000 !important;
+                margin-bottom: 5px !important;
+            }
+            
+            body.printing-report .report-header h2 {
+                font-size: 12px !important;
+                color: #000 !important;
+            }
+            
+            body.printing-report .group-header {
+                background: #e0e0e0 !important;
+                font-weight: bold !important;
+            }
+            
+            body.printing-report .export-section,
+            body.printing-report .no-print,
+            body.printing-report .btn-export,
+            body.printing-report .btn-print,
+            body.printing-report .action-buttons {
+                display: none !important;
+            }
+            
+            /* Ensure all report content is visible */
+            body.printing-report .section,
+            body.printing-report .report-header,
+            body.printing-report .report-content {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            /* Hide ALL other tab contents except line report */
+            body.printing-report .tab-content:not(#lineReport) {
+                display: none !important;
+            }
+            
+            /* Hide the tab navigation bar */
+            body.printing-report .border-b {
+                display: none !important;
+            }
+            
+            /* Clean up the main content area */
+            body.printing-report main {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            body.printing-report .flex {
+                display: block !important;
+            }
+            
+            body.printing-report .container {
+                max-width: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            /* Show only the line report tab */
+            body.printing-report #lineReport {
+                display: block !important;
+                visibility: visible !important;
+            }
+            
+            /* Clean body styling for print */
+            body.printing-report {
+                background: white !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
         }
 
@@ -592,4 +869,80 @@
                 min-height: 400px;
                 padding: 10px;
             }
+        }
+
+        /* =====================
+           SOP MANAGEMENT STYLES
+           ===================== */
+        .sop-section {
+            margin-bottom: 10px;
+        }
+
+        .sop-section input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .sop-section input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .sop-upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .sop-upload-area:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .sop-uploaded-file {
+            background-color: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        .current-sop-display {
+            background-color: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .current-sop-display .sop-text {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .current-sop-display .sop-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .current-sop-display .sop-actions button {
+            padding: 4px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .current-sop-display .sop-actions button:hover {
+            background-color: rgba(59, 130, 246, 0.2);
         }

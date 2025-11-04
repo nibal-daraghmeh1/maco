@@ -186,6 +186,54 @@ class SimplifiedMachineCoverageTable {
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
+        @media print {
+            .machine-coverage-container {
+                margin: 0;
+                padding: 10px;
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+                background: white !important;
+                color: black !important;
+                page-break-inside: avoid;
+            }
+            
+            .coverage-table {
+                border-collapse: collapse !important;
+                width: 100% !important;
+                font-size: 10px !important;
+            }
+            
+            .coverage-table th,
+            .coverage-table td {
+                border: 1px solid #000 !important;
+                padding: 4px !important;
+                background: white !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .coverage-table th {
+                background: #f0f0f0 !important;
+                font-weight: bold !important;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            .coverage-header h2 {
+                color: black !important;
+                font-size: 16px !important;
+            }
+            
+            .coverage-description {
+                color: #333 !important;
+                font-size: 12px !important;
+            }
+        }
+        
         .coverage-header h2 {
             color: #1a1a1a;
             font-size: 24px;

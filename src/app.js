@@ -280,7 +280,7 @@ export function renderLineNavigation() {
                 <button onclick="showLineSpecificView('${line}', 'worstCase')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Worst Case Products</button>
                 <button onclick="showLineSpecificView('${line}', 'maco')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Product MACO Calculation</button>
                 <button onclick="showLineSpecificView('${line}', 'detergent')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Detergent MACO Calculation</button>
-                <button onclick="showLineSpecificView('${line}', 'trainSummary')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Train Summary</button>
+                <button onclick="showLineSpecificView('${line}', 'trainSummary')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Trains Summary</button>
                 <button onclick="showLineSpecificView('${line}', 'coverage')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Machine Coverage</button>
                 <button onclick="showLineSpecificView('${line}', 'lineReport')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Report</button>
             </div>
@@ -429,18 +429,72 @@ window.showLineSpecificView = function(line, viewType) {
             break;
     }
     
- 
+    // Clear all sidebar menu highlighting first
+    document.querySelectorAll('.line-nav-item button').forEach(btn => {
+        btn.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300', 'bg-blue-50', 'dark:bg-blue-950', 'text-blue-700', 'dark:text-blue-200');
+    });
+    document.querySelectorAll('.line-nav-item div button').forEach(btn => {
+        btn.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300');
+    });
     
-    // Hide all tab contents first
+    // Highlight the selected sidebar menu item and its parent line button
+    const activeSubmenuButton = document.querySelector(`button[onclick="showLineSpecificView('${line}', '${viewType}')"]`);
+    if (activeSubmenuButton) {
+        activeSubmenuButton.classList.add('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300');
+    }
+    
+    // Also highlight the parent line button to show which line is active
+    const parentLineButton = document.querySelector(`button[onclick="toggleLineMenu('${line}')"]`);
+    if (parentLineButton) {
+        parentLineButton.classList.add('bg-blue-50', 'dark:bg-blue-950', 'text-blue-700', 'dark:text-blue-200');
+    }
+    
+    // Update active tab state
+    state.setActiveTabId(tabId);
+    
+    // Hide all tab contents first and clear top menu highlighting
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-tab-content'));
+    document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active-tab'));
     
     // Show the specific tab content
     const tabContent = document.getElementById(tabId);
     if (tabContent) {
         tabContent.classList.add('active-tab-content');
         
+        // Find and highlight the corresponding top tab button if it exists
+        const correspondingTabButton = document.querySelector(`[onclick*="changeTab('${tabId}'"]`);
+        if (correspondingTabButton) {
+            correspondingTabButton.classList.add('active-tab');
+        }
+        
     } else {
         console.error('Tab content not found:', tabId);
+    }
+    
+    // Call the specific rendering function for the activated tab (same as changeTab)
+    if (tabId === 'dashboard') { 
+        dashboardView.resetColorMapping();
+        dashboardView.renderMainDashboard(); 
+    }
+    if (tabId === 'summaryReport') { summaryView.renderSummaryReport(); }
+    if (tabId === 'trainSummary') { trainSummaryView.renderTrainSummary(); }
+    if (tabId === 'machineManagement') { machineView.renderMachinesTable(); }
+    if (tabId === 'macoForTrains') { 
+        macoProductView.renderMacoForTrains(); 
+        addPrintButtonsToTrains();
+    }
+    if (tabId === 'detergentMaco') { macoDetergentView.renderDetergentMaco(); }
+    if (tabId === 'productRegister' || tabId === 'worstCaseProducts') {
+        productView.handleSearchAndFilter(tabId);
+    }
+    if (tabId === 'machineCoverage') {
+        const container = document.getElementById('machineCoverageContainer');
+        if (container) {
+            container.innerHTML = machineCoverageView.createHorizontalMachineCoverageTable();
+        }
+    }
+    if (tabId === 'qa') {
+        qaView.render();
     }
     
     // Apply line-specific filtering
@@ -495,6 +549,17 @@ function applyLineFilter(line, viewType) {
  * @param {HTMLElement} element The clicked tab button element.
  */
 function changeTab(tabId, element) {
+    // Clear line filter when switching via top menu
+    window.currentLineFilter = null;
+    
+    // Clear all sidebar menu highlighting when top menu is used
+    document.querySelectorAll('.line-nav-item button').forEach(btn => {
+        btn.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300', 'bg-blue-50', 'dark:bg-blue-950', 'text-blue-700', 'dark:text-blue-200');
+    });
+    document.querySelectorAll('.line-nav-item div button').forEach(btn => {
+        btn.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300');
+    });
+    
     state.setActiveTabId(tabId);
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-tab-content'));
     document.getElementById(tabId).classList.add('active-tab-content');

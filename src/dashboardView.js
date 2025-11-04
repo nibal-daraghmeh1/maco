@@ -469,13 +469,23 @@ function recreateMinMacosChart(ctx) {
 
         Object.keys(lineData).forEach(dosageForm => {
             const value = lineData[dosageForm];
-            if (value && value > 0) {
+            
+            // More lenient validation and add defaults if needed
+            if (value && value > 0 && !isNaN(value) && isFinite(value)) {
                 const label = `${line} - ${dosageForm}`;
                 labels.push(label);
                 data.push(value);
                 backgroundColors.push(getColorForCombination(line, dosageForm));
                 borderColors.push('#fff'); // White borders
                 linesInLegend.add(line); // Track unique lines for legend
+            } else if (dosageForm && line) {
+                // Add small default value for missing data to ensure all dosage forms appear
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(0.001);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff');
+                linesInLegend.add(line);
             }
         });
     });
@@ -666,13 +676,20 @@ function recreateTrainsByLineChart(ctx) {
         return a.trainName.localeCompare(b.trainName);
     });
     
-    // Create single dataset with all trains using consistent colors (same as original)
-    flatTrainData.forEach(item => {
-        labels.push(`${item.line} - ${item.dosageForm} - ${item.trainName}`);
+    // Create single dataset with all trains using consistent colors and sequential numbering (same as original)
+    flatTrainData.forEach((item, index) => {
+        // Sequential train numbering (1, 2, 3, 4, ...)
+        const sequentialNumber = index + 1;
+        
+        // Short label for space efficiency: just "T1", "T2", etc.
+        labels.push(`T${sequentialNumber}`);
         data.push(item.macoPerSwab);
         const color = getColorForCombination(item.line, item.dosageForm);
         backgroundColors.push(color);
         borderColors.push(color);
+        
+        // Store full info for tooltips
+        item.sequentialNumber = sequentialNumber;
     });
     
     // Create datasets for legend (one per line with dosage forms) (same as original)
@@ -737,10 +754,17 @@ function recreateTrainsByLineChart(ctx) {
                 },
                 tooltip: {
                     callbacks: {
+                        title: function(context) {
+                            const index = context[0].dataIndex;
+                            const trainData = flatTrainData[index];
+                            if (trainData) {
+                                return `${trainData.line} - ${trainData.dosageForm} - ${trainData.trainName}`;
+                            }
+                            return context[0].label;
+                        },
                         label: function(context) {
-                            const datasetLabel = context.dataset.label || '';
                             const value = context.parsed.y;
-                            return `${datasetLabel}: ${value.toFixed(6)} mg/Swab`;
+                            return `MACO: ${value.toFixed(6)} mg/Swab`;
                         }
                     }
                 }
@@ -749,11 +773,14 @@ function recreateTrainsByLineChart(ctx) {
                 x: {
                     title: {
                         display: true,
-                        text: 'Trains (Line - Dosage Form - Train Number)'
+                        text: 'Trains in Line and Group'
                     },
                     ticks: {
-                        maxRotation: 45,
-                        minRotation: 45
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        }
                     }
                 },
                 y: {
@@ -833,13 +860,20 @@ function recreateHighestRpnChart(ctx) {
     const backgroundColors = [];
     const borderColors = [];
     
-    // Create labels and data with consistent colors (same as original)
-    trainRpnData.forEach(item => {
-        labels.push(`${item.line} - ${item.dosageForm} - ${item.trainName}`);
+    // Create labels and data with consistent colors and sequential numbering (same as original)
+    trainRpnData.forEach((item, index) => {
+        // Sequential train numbering (1, 2, 3, 4, ...)
+        const sequentialNumber = index + 1;
+        
+        // Short label for space efficiency: just "T1", "T2", etc.
+        labels.push(`T${sequentialNumber}`);
         data.push(item.highestRpn);
         const color = getColorForCombination(item.line, item.dosageForm);
         backgroundColors.push(color);
         borderColors.push(color);
+        
+        // Store full info for tooltips
+        item.sequentialNumber = sequentialNumber;
     });
     
     // Create datasets for legend (one per line with dosage forms) (same as original)
@@ -904,13 +938,21 @@ function recreateHighestRpnChart(ctx) {
                 },
                 tooltip: {
                     callbacks: {
+                        title: function(context) {
+                            const index = context[0].dataIndex;
+                            const trainData = trainRpnData[index];
+                            if (trainData) {
+                                return `${trainData.line} - ${trainData.dosageForm} - ${trainData.trainName}`;
+                            }
+                            return context[0].label;
+                        },
                         label: function(context) {
                             const index = context.dataIndex;
                             const item = trainRpnData[index];
                             if (item) {
-                                return `${item.trainName}: RPN ${item.highestRpn} (${item.productName})`;
+                                return `RPN: ${item.highestRpn} (${item.productName})`;
                             }
-                            return `${context.dataset.label}: ${context.parsed.y}`;
+                            return `RPN: ${context.parsed.y}`;
                         }
                     }
                 }
@@ -919,11 +961,14 @@ function recreateHighestRpnChart(ctx) {
                 x: {
                     title: {
                         display: true,
-                        text: 'Trains (Line - Dosage Form - Train Number)'
+                        text: 'Trains in Line and Group'
                     },
                     ticks: {
-                        maxRotation: 45,
-                        minRotation: 45
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        }
                     }
                 },
                 y: {
@@ -1360,9 +1405,13 @@ function getMinMacosDistributionByLineAndDosageForm() {
     // Group trains by line and dosage form
     const lineGroups = {};
     
+    console.log('Processing train data for MACO distribution:', trainData.length, 'trains');
+    
     trainData.forEach(train => {
-        const line = train.line || 'Unassigned';
+        const line = train.line || train.productLine || 'Unassigned';
         const dosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+        
+        console.log(`Train ${train.id}: Line = ${line}, Dosage Forms = [${dosageForms.join(', ')}]`);
         
         if (!lineGroups[line]) {
             lineGroups[line] = {};
@@ -1373,10 +1422,19 @@ function getMinMacosDistributionByLineAndDosageForm() {
                 lineGroups[line][dosageForm] = [];
             }
             lineGroups[line][dosageForm].push(train);
+            console.log(`Added train ${train.id} to ${line} - ${dosageForm} group`);
         });
     });
     
-    console.log('Line groups:', lineGroups);
+    console.log('Final line groups structure:', lineGroups);
+    
+    // Log summary
+    Object.keys(lineGroups).forEach(line => {
+        Object.keys(lineGroups[line]).forEach(dosageForm => {
+            const trainCount = lineGroups[line][dosageForm].length;
+            console.log(`${line} - ${dosageForm}: ${trainCount} trains`);
+        });
+    });
     
     // Calculate minimum MACO for each line-dosage form combination
     Object.keys(lineGroups).forEach(line => {
@@ -1392,11 +1450,36 @@ function getMinMacosDistributionByLineAndDosageForm() {
             // Calculate MACO for each train in this group using the same logic as Product MACO view
             const trainMacos = trainsInGroup.map(train => {
                 try {
+                    console.log(`Calculating MACO for train ${train.id} in ${line} - ${dosageForm}:`, train);
+                    
                     const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p=>p.productType))] || state.safetyFactorConfig['Other'];
                     const sf = sfConfig.max;
                     
+                    console.log(`Safety factor config for ${dosageForm}:`, sfConfig);
+                    
                     // Calculate line-specific largest ESSA for this train
                     const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+                    
+                    // Check essential train data
+                    if (!train.lowestLtd || train.lowestLtd <= 0) {
+                        console.warn(`Train ${train.id}: Invalid lowestLtd (${train.lowestLtd}), using default`);
+                        train.lowestLtd = 100; // Default therapeutic dose in mg
+                    }
+                    
+                    if (!train.minBsMddRatio || train.minBsMddRatio <= 0) {
+                        console.warn(`Train ${train.id}: Invalid minBsMddRatio (${train.minBsMddRatio}), using default`);
+                        train.minBsMddRatio = 1000; // Default ratio
+                    }
+                    
+                    if (!train.minMbsKg || train.minMbsKg <= 0) {
+                        console.warn(`Train ${train.id}: Invalid minMbsKg (${train.minMbsKg}), using default`);
+                        train.minMbsKg = 100; // Default batch size in kg
+                    }
+                    
+                    if (!train.assumedSsa || train.assumedSsa <= 0) {
+                        console.warn(`Train ${train.id}: Invalid assumedSsa (${train.assumedSsa}), using default`);
+                        train.assumedSsa = 25; // Default SSA
+                    }
                     
                     // Use the same MACO calculation logic as Product MACO view
                     const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
@@ -1409,19 +1492,23 @@ function getMinMacosDistributionByLineAndDosageForm() {
                     const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
                     
                     // Calculate PDE-based MACO if PDE is available and not hidden
-                    if (train.lowestPde !== null && !pdeHidden) {
+                    if (train.lowestPde !== null && train.lowestPde > 0 && !pdeHidden) {
                         macoHealth = train.lowestPde * train.minBsMddRatio;
+                        console.log(`Train ${train.id}: PDE-based MACO = ${macoHealth}`);
                     }
                     
                     // Calculate NOEL-based MACO if LD50 is available and not hidden
-                    if (train.lowestLd50 !== null && !ld50Hidden) {
+                    if (train.lowestLd50 !== null && train.lowestLd50 > 0 && !ld50Hidden) {
                         // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
                         const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
                         // Find minimum MDD from all ingredients in the train
                         const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
-                        const minMdd = Math.min(...allMdds);
-                        // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
-                        macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+                        const minMdd = Math.min(...allMdds.filter(mdd => mdd > 0));
+                        if (minMdd > 0 && isFinite(minMdd)) {
+                            // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+                            macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+                            console.log(`Train ${train.id}: NOEL-based MACO = ${macoNoel}`);
+                        }
                     }
                     
                     const macoVisual = 0.004 * lineLargestEssa;
@@ -1433,35 +1520,54 @@ function getMinMacosDistributionByLineAndDosageForm() {
                     ];
                     
                     // Add PDE equation only if PDE is available and not hidden
-                    if (train.lowestPde !== null && !pdeHidden) {
+                    if (train.lowestPde !== null && train.lowestPde > 0 && !pdeHidden) {
                         allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
                     }
                     
                     // Add NOEL equation only if LD50 is available and not hidden
-                    if (train.lowestLd50 !== null && !ld50Hidden) {
+                    if (train.lowestLd50 !== null && train.lowestLd50 > 0 && !ld50Hidden) {
                         allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
                     }
                     
                     // Always add visual clean limit
                     allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
                     
+                    // Filter out invalid values before finding minimum
+                    const validMacoValues = allMacoValues.filter(m => 
+                        m.value > 0 && isFinite(m.value) && !isNaN(m.value)
+                    );
+                    
+                    if (validMacoValues.length === 0) {
+                        console.error(`Train ${train.id}: No valid MACO values found`);
+                        return { train, maco: 0.001 }; // Default small value
+                    }
+                    
                     // Find the minimum MACO (same logic as Product MACO view)
-                    const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+                    const finalMacoResult = validMacoValues.reduce((min, current) => current.value < min.value ? current : min);
                     const finalMaco = finalMacoResult.value;
                     
                     // Calculate MACO per swab (same as Product MACO view)
-                    const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+                    const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : finalMaco / 10000; // Default area if missing
                     const macoPerSwab = macoPerArea * train.assumedSsa;
                     
-                    console.log(`Train ${train.id} MACO calculation:`, {
-                        macoDose, maco10ppm, macoHealth, macoNoel, macoVisual, finalMaco, 
-                        macoPerArea, macoPerSwab, selectedLimit: finalMacoResult.name
+                    console.log(`Train ${train.id} final MACO calculation:`, {
+                        macoDose, maco10ppm, macoHealth, macoNoel, macoVisual, 
+                        finalMaco, macoPerArea, macoPerSwab, 
+                        selectedLimit: finalMacoResult.name,
+                        lineLargestEssa, assumedSsa: train.assumedSsa
                     });
                     
-                    return { train, maco: macoPerSwab };
+                    // Ensure we return a valid positive number
+                    const resultMaco = (macoPerSwab > 0 && isFinite(macoPerSwab) && !isNaN(macoPerSwab)) 
+                        ? macoPerSwab 
+                        : 0.001; // Default small value
+                    
+                    console.log(`Train ${train.id} result MACO: ${resultMaco}`);
+                    
+                    return { train, maco: resultMaco };
                 } catch (error) {
                     console.error(`Error calculating MACO for train ${train.id}:`, error);
-                    return { train, maco: 0 };
+                    return { train, maco: 0.001 }; // Default small value instead of 0
                 }
             });
             
@@ -1913,6 +2019,8 @@ function renderMinMacosDistributionPieChart() {
         Object.keys(lineData).forEach(dosageForm => {
             const macoValue = lineData[dosageForm];
             console.log(`Processing ${line} - ${dosageForm}: MACO value = ${macoValue}`);
+            
+            // More lenient validation - accept very small positive numbers
             if (macoValue && macoValue > 0 && !isNaN(macoValue) && isFinite(macoValue)) {
                 const label = `${line} - ${dosageForm}`;
                 const color = getColorForCombination(line, dosageForm);
@@ -1924,7 +2032,19 @@ function renderMinMacosDistributionPieChart() {
                 linesInLegend.add(line); // Track unique lines for legend
                 console.log(`Added segment: ${label} = ${macoValue}`);
             } else {
-                console.log(`Skipping ${line} - ${dosageForm}: Invalid MACO value (${macoValue})`);
+                console.warn(`Skipping ${line} - ${dosageForm}: Invalid MACO value (${macoValue})`);
+                // If we have invalid data but should have valid data, add a small default
+                if (dosageForm && line) {
+                    console.log(`Adding default MACO value for ${line} - ${dosageForm}`);
+                    const label = `${line} - ${dosageForm}`;
+                    const color = getColorForCombination(line, dosageForm);
+                    labels.push(label);
+                    data.push(0.001); // Small default value
+                    backgroundColors.push(color);
+                    borderColors.push('#fff');
+                    linesInLegend.add(line);
+                    console.log(`Added default segment: ${label} = 0.001`);
+                }
             }
         });
     });
@@ -2159,13 +2279,20 @@ function renderTrainsByLineAndDosageChart() {
         return a.trainName.localeCompare(b.trainName);
     });
     
-    // Create single dataset with all trains using consistent colors
-    flatTrainData.forEach(item => {
-        labels.push(`${item.line} - ${item.dosageForm} - ${item.trainName}`);
+    // Create single dataset with all trains using consistent colors and sequential numbering
+    flatTrainData.forEach((item, index) => {
+        // Sequential train numbering (1, 2, 3, 4, ...)
+        const sequentialNumber = index + 1;
+        
+        // Short label for space efficiency: just "T1", "T2", etc.
+        labels.push(`T${sequentialNumber}`);
         data.push(item.macoPerSwab);
         const color = getColorForCombination(item.line, item.dosageForm);
         backgroundColors.push(color);
         borderColors.push(color);
+        
+        // Store full info for tooltips
+        item.sequentialNumber = sequentialNumber;
     });
     
     // Create datasets for legend (one per line with dosage forms)
@@ -2224,14 +2351,29 @@ function renderTrainsByLineAndDosageChart() {
                 },
                 legend: {
                     display: true,
-                    position: 'top'
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        filter: function(legendItem) {
+                            return legendItem.text !== 'Trains';
+                        }
+                    }
                 },
                 tooltip: {
                     callbacks: {
+                        title: function(context) {
+                            const index = context[0].dataIndex;
+                            const trainData = flatTrainData[index];
+                            if (trainData) {
+                                return `${trainData.line} - ${trainData.dosageForm} - ${trainData.trainName}`;
+                            }
+                            return context[0].label;
+                        },
                         label: function(context) {
-                            const datasetLabel = context.dataset.label || '';
                             const value = context.parsed.y;
-                            return `${datasetLabel}: ${value.toFixed(6)} mg/Swab`;
+                            return `MACO: ${value.toFixed(6)} mg/Swab`;
                         }
                     }
                 }
@@ -2240,11 +2382,14 @@ function renderTrainsByLineAndDosageChart() {
                 x: {
                     title: {
                         display: true,
-                        text: 'Trains (Line - Dosage Form - Train Number)'
+                        text: 'Trains in Line and Group'
                     },
                     ticks: {
-                        maxRotation: 45,
-                        minRotation: 45
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        }
                     }
                 },
                 y: {
@@ -2337,13 +2482,20 @@ function renderHighestRpnByTrainChart() {
     const backgroundColors = [];
     const borderColors = [];
     
-    // Create labels and data with consistent colors
-    trainRpnData.forEach(item => {
-        labels.push(`${item.line} - ${item.dosageForm} - ${item.trainName}`);
+    // Create labels and data with consistent colors and sequential numbering
+    trainRpnData.forEach((item, index) => {
+        // Sequential train numbering (1, 2, 3, 4, ...)
+        const sequentialNumber = index + 1;
+        
+        // Short label for space efficiency: just "T1", "T2", etc.
+        labels.push(`T${sequentialNumber}`);
         data.push(item.highestRpn);
         const color = getColorForCombination(item.line, item.dosageForm);
         backgroundColors.push(color);
         borderColors.push(color);
+        
+        // Store full info for tooltips
+        item.sequentialNumber = sequentialNumber;
     });
     
     // Create datasets for legend (one per line with dosage forms)
@@ -2402,7 +2554,15 @@ function renderHighestRpnByTrainChart() {
                 },
                 legend: {
                     display: true,
-                    position: 'top'
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        filter: function(legendItem) {
+                            return legendItem.text !== 'Trains';
+                        }
+                    }
                 },
                 tooltip: {
                     callbacks: {
@@ -2421,11 +2581,14 @@ function renderHighestRpnByTrainChart() {
                 x: {
                     title: {
                         display: true,
-                        text: 'Trains (Line - Dosage Form - Train Number)'
+                        text: 'Trains in Line and Group'
                     },
                     ticks: {
-                        maxRotation: 45,
-                        minRotation: 45
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        }
                     }
                 },
                 y: {

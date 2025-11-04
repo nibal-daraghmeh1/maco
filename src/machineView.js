@@ -6,6 +6,10 @@ import { fullAppRender } from './app.js';
 import { showCustomAlert, hideModal, showModal, saveStateForUndo } from './ui.js';
 import { getProductTrainId, getProductTrainNumber, getToxicityPreference, calculateScores, getRpnRatingClass, getUniqueProductLines } from './utils.js';
 
+// Global variables for SOP file management
+let currentSOPFile = null;
+let currentSOPData = null;
+
 /**
  * Populate the machine line dropdown with current product lines
  */
@@ -316,7 +320,7 @@ export function renderMachinesTable() {
                     <td class="px-4 py-3 whitespace-nowrap">${stageCellContent}</td>
                     <td class="px-4 py-3 whitespace-nowrap ${groupCellClass}">${groupCellContent}</td>
                     <td class="px-4 py-3 whitespace-nowrap">${machine.area.toLocaleString()}</td>
-                    <td class="px-4 py-3 whitespace-nowrap">${machine.cleaningSOP || ''}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">${formatSOPDisplay(machine.cleaningSOP)}</td>
                     <td class="px-4 py-3">${productsCellHTML}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
                         <div class="flex items-center gap-x-2 no-print">
@@ -423,7 +427,10 @@ export function showMachineModal(id = null) {
                     }
                     
                     machineAreaInput.value = machine.area;
-                    cleaningSOPInput.value = machine.cleaningSOP || '';
+                    
+                    // Initialize SOP handlers and load SOP data
+                    initializeSOPHandlers();
+                    loadSOPData(machine);
                     
                     const otherContainer = document.getElementById('otherStageContainer');
                     const otherInput = document.getElementById('otherMachineStage');
@@ -475,6 +482,10 @@ export function showMachineModal(id = null) {
                     otherLineInput.value = '';
                     otherLineInput.required = false;
                 }
+                
+                // Initialize SOP handlers for new machine
+                initializeSOPHandlers();
+                loadSOPData({}); // Empty object for new machine
             }
             
             // Now handle line selection for edit modal (after dropdown is populated)
@@ -547,7 +558,15 @@ export function saveMachine(event) {
             }
             let stage = document.getElementById('machineStage').value;
             const area = parseInt(document.getElementById('machineArea').value, 10);
-            const cleaningSOP = document.getElementById('cleaningSOP').value.trim();
+            
+            // Get SOP data using the new enhanced functionality
+            let cleaningSOPData;
+            try {
+                cleaningSOPData = getCurrentSOPData();
+            } catch (error) {
+                showCustomAlert('SOP Error', error.message);
+                return;
+            }
             let group = document.getElementById('machineGroup').value;
 
             // Handle custom stage
@@ -606,7 +625,7 @@ export function saveMachine(event) {
                 }
             }
 
-            if (!number || !name || !line || !stage || isNaN(area) || !cleaningSOP) {
+            if (!number || !name || !line || !stage || isNaN(area) || !cleaningSOPData) {
                 showCustomAlert('Error', 'All fields are required.');
                 return;
             }
@@ -633,7 +652,7 @@ export function saveMachine(event) {
                     machine.additionalLines = additionalLines;
                     machine.stage = stage;
                     machine.area = area;
-                    machine.cleaningSOP = cleaningSOP;
+                    machine.cleaningSOP = cleaningSOPData;
                     machine.group = group || '';
                 }
             } else { // Add
@@ -646,7 +665,7 @@ export function saveMachine(event) {
                     additionalLines: additionalLines,
                     stage: stage, 
                     area: area, 
-                    cleaningSOP: cleaningSOP, 
+                    cleaningSOP: cleaningSOPData, 
                     group: group || '' 
                 });
             }
@@ -1329,6 +1348,331 @@ function calculateMachineSummary(machines) {
     return summary;
 }
 
+// ========== SOP MANAGEMENT FUNCTIONS ==========
+
+/**
+ * Format SOP display for machine table
+ */
+function formatSOPDisplay(sopData) {
+    if (!sopData) return '';
+    
+    // Handle legacy string format
+    if (typeof sopData === 'string') {
+        return sopData;
+    }
+    
+    // Handle new object format
+    switch (sopData.type) {
+        case 'text':
+            return sopData.value || '';
+        case 'upload':
+            return `📎 ${sopData.fileName || 'File Attached'}`;
+        case 'link':
+            const linkText = sopData.value || '';
+            const shortLink = linkText.length > 30 ? linkText.substring(0, 30) + '...' : linkText;
+            return `🔗 ${shortLink}`;
+        default:
+            return sopData.value || '';
+    }
+}
+
+/**
+ * Initialize SOP method selection handlers
+ */
+export function initializeSOPHandlers() {
+    const methodRadios = document.querySelectorAll('input[name="sopMethod"]');
+    
+    methodRadios.forEach(radio => {
+        radio.addEventListener('change', handleSOPMethodChange);
+    });
+}
+
+/**
+ * Handle SOP method selection change
+ */
+function handleSOPMethodChange(event) {
+    const selectedMethod = event.target.value;
+    
+    // Hide all sections
+    document.getElementById('sopTextSection').style.display = 'none';
+    document.getElementById('sopUploadSection').style.display = 'none';
+    document.getElementById('sopLinkSection').style.display = 'none';
+    
+    // Show selected section
+    switch (selectedMethod) {
+        case 'text':
+            document.getElementById('sopTextSection').style.display = 'block';
+            document.getElementById('cleaningSOP').required = true;
+            document.getElementById('sopFileUpload').required = false;
+            document.getElementById('sopFileLink').required = false;
+            break;
+        case 'upload':
+            document.getElementById('sopUploadSection').style.display = 'block';
+            document.getElementById('cleaningSOP').required = false;
+            document.getElementById('sopFileUpload').required = false; // Will validate manually
+            document.getElementById('sopFileLink').required = false;
+            break;
+        case 'link':
+            document.getElementById('sopLinkSection').style.display = 'block';
+            document.getElementById('cleaningSOP').required = false;
+            document.getElementById('sopFileUpload').required = false;
+            document.getElementById('sopFileLink').required = true;
+            break;
+    }
+}
+
+/**
+ * Handle SOP file upload
+ */
+function handleSOPFileUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    // Validate file type
+    const allowedTypes = ['.pdf', '.doc', '.docx', '.txt'];
+    const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+    
+    if (!allowedTypes.includes(fileExtension)) {
+        showCustomAlert('Invalid File Type', 
+            'Please upload a PDF, DOC, DOCX, or TXT file.');
+        event.target.value = '';
+        return;
+    }
+    
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+        showCustomAlert('File Too Large', 
+            'File size must be less than 10MB.');
+        event.target.value = '';
+        return;
+    }
+    
+    // Read file as base64
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        currentSOPFile = {
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            data: e.target.result
+        };
+        
+        // Update UI
+        document.getElementById('sopUploadArea').style.display = 'none';
+        document.getElementById('sopUploadedFile').style.display = 'block';
+        document.getElementById('sopFileName').textContent = file.name;
+    };
+    reader.onerror = function() {
+        showCustomAlert('Upload Error', 'Failed to read the file.');
+        event.target.value = '';
+    };
+    reader.readAsDataURL(file);
+}
+
+/**
+ * Remove uploaded SOP file
+ */
+function removeSOPFile() {
+    currentSOPFile = null;
+    document.getElementById('sopFileUpload').value = '';
+    document.getElementById('sopUploadArea').style.display = 'block';
+    document.getElementById('sopUploadedFile').style.display = 'none';
+    document.getElementById('sopFileName').textContent = '';
+}
+
+/**
+ * Load existing SOP data into the form
+ */
+function loadSOPData(machine) {
+    // Reset form
+    document.getElementById('sopMethodText').checked = true;
+    document.getElementById('currentSOPDisplay').style.display = 'none';
+    handleSOPMethodChange({ target: { value: 'text' } });
+    
+    // Clear any previous data
+    currentSOPFile = null;
+    currentSOPData = null;
+    removeSOPFile();
+    
+    if (!machine.cleaningSOP || typeof machine.cleaningSOP === 'string') {
+        // Legacy format or empty - convert to new format
+        const legacySOP = machine.cleaningSOP || '';
+        document.getElementById('cleaningSOP').value = legacySOP;
+        return;
+    }
+    
+    // Handle new format
+    const sopData = machine.cleaningSOP;
+    currentSOPData = sopData;
+    
+    switch (sopData.type) {
+        case 'text':
+            document.getElementById('sopMethodText').checked = true;
+            document.getElementById('cleaningSOP').value = sopData.value || '';
+            handleSOPMethodChange({ target: { value: 'text' } });
+            break;
+            
+        case 'upload':
+            if (sopData.fileName && sopData.fileData) {
+                document.getElementById('sopMethodUpload').checked = true;
+                handleSOPMethodChange({ target: { value: 'upload' } });
+                
+                // Show existing file
+                currentSOPFile = {
+                    name: sopData.fileName,
+                    data: sopData.fileData
+                };
+                document.getElementById('sopUploadArea').style.display = 'none';
+                document.getElementById('sopUploadedFile').style.display = 'block';
+                document.getElementById('sopFileName').textContent = sopData.fileName;
+            }
+            break;
+            
+        case 'link':
+            document.getElementById('sopMethodLink').checked = true;
+            document.getElementById('sopFileLink').value = sopData.value || '';
+            handleSOPMethodChange({ target: { value: 'link' } });
+            break;
+    }
+    
+    // Show current SOP display if editing
+    if (sopData.type && sopData.value || sopData.fileName) {
+        showCurrentSOPDisplay(sopData);
+    }
+}
+
+/**
+ * Show current SOP display for existing machines
+ */
+function showCurrentSOPDisplay(sopData) {
+    const currentSOPDisplay = document.getElementById('currentSOPDisplay');
+    const currentSOPText = document.getElementById('currentSOPText');
+    const openSOPBtn = document.getElementById('openSOPBtn');
+    
+    currentSOPDisplay.style.display = 'block';
+    
+    switch (sopData.type) {
+        case 'text':
+            currentSOPText.textContent = `SOP Reference: ${sopData.value}`;
+            openSOPBtn.style.display = 'none';
+            break;
+        case 'upload':
+            currentSOPText.textContent = `Uploaded File: ${sopData.fileName}`;
+            openSOPBtn.style.display = 'inline-block';
+            break;
+        case 'link':
+            currentSOPText.textContent = `File Link: ${sopData.value}`;
+            openSOPBtn.style.display = 'inline-block';
+            break;
+        default:
+            // Legacy format
+            currentSOPText.textContent = `SOP: ${sopData}`;
+            openSOPBtn.style.display = 'none';
+    }
+}
+
+/**
+ * Get current SOP data from form
+ */
+function getCurrentSOPData() {
+    const selectedMethod = document.querySelector('input[name="sopMethod"]:checked').value;
+    
+    switch (selectedMethod) {
+        case 'text':
+            const textValue = document.getElementById('cleaningSOP').value.trim();
+            if (!textValue) {
+                throw new Error('Please enter a SOP reference.');
+            }
+            return {
+                type: 'text',
+                value: textValue,
+                fileName: null,
+                fileData: null
+            };
+            
+        case 'upload':
+            if (!currentSOPFile) {
+                throw new Error('Please upload a SOP file.');
+            }
+            return {
+                type: 'upload',
+                value: currentSOPFile.name,
+                fileName: currentSOPFile.name,
+                fileData: currentSOPFile.data
+            };
+            
+        case 'link':
+            const linkValue = document.getElementById('sopFileLink').value.trim();
+            if (!linkValue) {
+                throw new Error('Please enter a file link or path.');
+            }
+            return {
+                type: 'link',
+                value: linkValue,
+                fileName: null,
+                fileData: null
+            };
+            
+        default:
+            throw new Error('Please select a SOP method.');
+    }
+}
+
+/**
+ * Open current SOP (for files and links)
+ */
+function openCurrentSOP() {
+    if (!currentSOPData) return;
+    
+    switch (currentSOPData.type) {
+        case 'upload':
+            if (currentSOPData.fileData) {
+                // Create blob URL and open in new tab
+                const byteCharacters = atob(currentSOPData.fileData.split(',')[1]);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray]);
+                const url = URL.createObjectURL(blob);
+                window.open(url, '_blank');
+                
+                // Clean up the URL after a delay
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+            }
+            break;
+            
+        case 'link':
+            if (currentSOPData.value) {
+                // Try to open as URL first
+                try {
+                    if (currentSOPData.value.startsWith('http://') || currentSOPData.value.startsWith('https://')) {
+                        window.open(currentSOPData.value, '_blank');
+                    } else {
+                        // For file paths, try to open with file protocol
+                        window.open('file:///' + currentSOPData.value.replace(/\\/g, '/'), '_blank');
+                    }
+                } catch (error) {
+                    showCustomAlert('Cannot Open File', 
+                        'Unable to open the linked file. Please check the file path or URL.');
+                }
+            }
+            break;
+    }
+}
+
+/**
+ * Edit current SOP
+ */
+function editCurrentSOP() {
+    document.getElementById('currentSOPDisplay').style.display = 'none';
+}
+
 // Make functions globally available
 window.exportMachineProductsToExcel = exportMachineProductsToExcel;
 window.printMachineProducts = printMachineProducts;
+window.handleSOPFileUpload = handleSOPFileUpload;
+window.removeSOPFile = removeSOPFile;
+window.openCurrentSOP = openCurrentSOP;
+window.editCurrentSOP = editCurrentSOP;

@@ -593,7 +593,7 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa, dosageF
     // Create unique train ID that includes dosage form to match DOM elements
     const uniqueTrainId = `${trainId}-${dosageForm || 'unknown'}`;
 
-    // Get the train number from the original train data  
+    // Get the train number from the original train data
     let trainNumber = trainId; // fallback to trainId if not found
     for (const lineObj of trainLines) {
         const foundTrain = lineObj.trains.find(t => t.id === trainId);

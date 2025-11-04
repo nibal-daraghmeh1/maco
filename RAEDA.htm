@@ -202,7 +202,22 @@
             <div id="machineCoverage" class="tab-content">
                 <div class="mt-8">
                     <div class="card p-6">
-                        <h2 class="text-xl font-bold mb-4">Machine Coverage Analysis</h2>
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-xl font-bold">Machine Coverage Analysis</h2>
+                            <div class="flex gap-2">
+                                <button onclick="exportMachineCoverageToExcel()" class="px-4 py-2 text-sm rounded-lg border flex items-center gap-2 no-print" style="color: #16a34a; border-color: #16a34a;">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Export to Excel
+                                </button>
+                                <button onclick="printCurrentView('machineCoverage')" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient flex items-center justify-center no-print" title="Print Machine Coverage">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                         <p class="text-sm mb-6" style="color: var(--text-secondary);">
                             Shows machine coverage per line. Use the left menu to choose a line.
                         </p>
@@ -608,7 +623,7 @@
             <div id="trainSummary" class="tab-content" >
                 <div class="card p-5">
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-xl font-bold">Equipment Train Summary</h2>
+                        <h2 class="text-xl font-bold">Equipment Trains Summary</h2>
                         <div class="flex gap-2">
                             <!-- Export Dropdown -->
                             <div class="relative">
@@ -861,8 +876,94 @@
                     <input type="number" id="machineArea" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., 120000" min="0" required>
                 </div>
                 <div>
-                    <label for="cleaningSOP" class="block text-sm font-medium mb-1">Cleaning SOP</label>
-                    <input type="text" id="cleaningSOP" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="e.g., SOP 002" required>
+                    <label class="block text-sm font-medium mb-1">Cleaning SOP</label>
+                    
+                    <!-- SOP Method Selection -->
+                    <div class="mb-3">
+                        <div class="flex space-x-4 mb-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="sopMethod" value="text" id="sopMethodText" class="mr-2" checked>
+                                <span class="text-sm">Text Reference</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sopMethod" value="upload" id="sopMethodUpload" class="mr-2">
+                                <span class="text-sm">Upload File</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sopMethod" value="link" id="sopMethodLink" class="mr-2">
+                                <span class="text-sm">File Link</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Text Reference (Default) -->
+                    <div id="sopTextSection" class="sop-section">
+                        <input type="text" id="cleaningSOP" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="e.g., SOP-002, Cleaning Procedure #3" required>
+                    </div>
+
+                    <!-- File Upload Section -->
+                    <div id="sopUploadSection" class="sop-section" style="display: none;">
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                            <input type="file" id="sopFileUpload" class="hidden" accept=".pdf,.doc,.docx,.txt" onchange="handleSOPFileUpload(event)">
+                            <div id="sopUploadArea" onclick="document.getElementById('sopFileUpload').click()" class="cursor-pointer">
+                                <svg class="mx-auto h-12 w-12 text-gray-400 mb-2" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <p class="text-sm text-gray-600">Click to upload SOP document</p>
+                                <p class="text-xs text-gray-500 mt-1">PDF, DOC, DOCX, TXT files supported</p>
+                            </div>
+                            <div id="sopUploadedFile" class="mt-2" style="display: none;">
+                                <div class="flex items-center justify-center p-2 bg-green-50 border border-green-200 rounded">
+                                    <svg class="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span id="sopFileName" class="text-sm text-green-700"></span>
+                                    <button type="button" onclick="removeSOPFile()" class="ml-2 text-red-500 hover:text-red-700">
+                                        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File Link Section -->
+                    <div id="sopLinkSection" class="sop-section" style="display: none;">
+                        <div class="space-y-2">
+                            <input type="text" id="sopFileLink" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="e.g., \\\\server\\SOPs\\cleaning-sop-002.pdf or https://company.com/sops/cleaning-002.pdf">
+                            <p class="text-xs text-gray-500">
+                                Enter file path (network drive) or URL to the SOP document
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Current SOP Display (for existing machines) -->
+                    <div id="currentSOPDisplay" class="mt-2" style="display: none;">
+                        <div class="p-2 bg-blue-50 border border-blue-200 rounded">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <svg class="h-4 w-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span id="currentSOPText" class="text-sm text-blue-700"></span>
+                                </div>
+                                <div class="flex space-x-1">
+                                    <button type="button" id="openSOPBtn" onclick="openCurrentSOP()" class="text-blue-500 hover:text-blue-700 p-1" style="display: none;" title="Open SOP">
+                                        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                            <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                                        </svg>
+                                    </button>
+                                    <button type="button" onclick="editCurrentSOP()" class="text-blue-500 hover:text-blue-700 p-1" title="Edit SOP">
+                                        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.828-2.828z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
             <div class="modal-footer"><button type="button" onclick="hideModal('machineModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button type="submit" form="machineForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Save</button></div>

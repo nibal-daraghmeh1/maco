@@ -1,6 +1,6 @@
 // Line Report View - generates a printable report per line using in-app data
 import { getTrainData, getLargestEssaForLineAndDosageForm, getWorstCaseProductType, countStudiesForTrains, calculateScores } from './utils.js';
-import { machines, safetyFactorConfig } from './state.js';
+import { machines, safetyFactorConfig, products } from './state.js';
 
 // Smart number formatting that avoids showing 0 when there's actually a value
 function formatSmallNumber(value, unit = '') {
@@ -250,7 +250,7 @@ class CleaningValidationReportGenerator {
 
     // HTML assembly (compact) - reusing structure from user-provided template
     generateHTMLReport(data) {
-        return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cleaning Validation Report - ${data.groupInfo.lineName}</title><style>${this.getReportCSS()}</style></head><body><div class="report-container">${this.generateReportHeader(data.groupInfo)}${this.generateExecutiveSummary(data.summary)}${this.generateGroupingStrategy(data.trains)}${this.generateWorstCaseSelection(data.selectedStudies)}${this.generateExportButtons()}</div><script>${this.getReportJavaScript()}</script></body></html>`;
+        return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cleaning Validation Report - ${data.groupInfo.lineName}</title><style>${this.getReportCSS()}</style></head><body><div class="report-container">${this.generateReportHeader(data.groupInfo)}${this.generateExecutiveSummary(data.summary)}${this.generateGroupingStrategy(data.trains)}${this.generateWorstCaseSelection(data.selectedStudies)}${this.generateSpecialCaseProducts(data.groupInfo.line)}${this.generateExportButtons()}</div><script>${this.getReportJavaScript()}</script></body></html>`;
     }
 
     generateReportHeader(g) {
@@ -292,7 +292,104 @@ class CleaningValidationReportGenerator {
         return `<section class="section"><h2>Selected Studies</h2><table class="data-table"><thead><tr><th>Study</th><th>Product</th><th>RPN</th><th>All Machines</th><th>New Machines</th><th>Justification</th></tr></thead><tbody>${tableContent}</tbody></table></section>`;
     }
 
-    generateExportButtons() { return `<div class="export-section no-print"><h3>Export Options</h3><div class="export-buttons"><button onclick="window.print()" class="btn-export btn-print">🖨️ Print</button><button onclick="exportToPDFDirect()" class="btn-export btn-pdf">📄 Export to PDF</button></div></div>`; }
+    generateSpecialCaseProducts(line) {
+        // Get special case products for this line (isCritical === true)
+        const specialCaseProducts = [];
+        
+        const lineProducts = products.filter(product => 
+            product.line === line && product.isCritical === true
+        );
+        
+        lineProducts.forEach(product => {
+            if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                // Find the ingredient with highest RPN for this product
+                let highestRpnIngredient = null;
+                let highestRpn = 0;
+                
+                product.activeIngredients.forEach(ingredient => {
+                    try {
+                        const scores = calculateScores(ingredient);
+                        if (scores && scores.rpn > highestRpn) {
+                            highestRpn = scores.rpn;
+                            highestRpnIngredient = ingredient;
+                        }
+                    } catch (error) {
+                        console.warn('Error calculating scores for ingredient:', ingredient, error);
+                    }
+                });
+                
+                if (highestRpnIngredient) {
+                    // Get machines that manufacture this product
+                    const productMachines = machines.filter(machine => 
+                        product.machineIds && product.machineIds.includes(machine.id)
+                    );
+                    
+                    specialCaseProducts.push({
+                        name: product.name,
+                        productCode: product.productCode,
+                        ingredient: highestRpnIngredient.name,
+                        dosageForm: product.productType,
+                        rpn: highestRpn,
+                        machines: productMachines.map(machine => machine.name),
+                        reason: product.criticalReason || 'High Risk'
+                    });
+                }
+            }
+        });
+        
+        // Sort by RPN descending
+        specialCaseProducts.sort((a, b) => b.rpn - a.rpn);
+        
+        if (specialCaseProducts.length === 0) {
+            return `<section class="section">
+                <h2 style="color: #16a34a;">Special Case Products</h2>
+                <p style="padding: 20px; text-align: center; background: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; color: #0369a1;">
+                    ✅ No special case products identified for this line.
+                </p>
+            </section>`;
+        }
+        
+        let tableContent = '';
+        specialCaseProducts.forEach(product => {
+            const machinesList = product.machines.length > 0 ? product.machines.join(', ') : 'No machines assigned';
+            tableContent += `
+                <tr>
+                    <td><strong>${product.productCode}</strong></td>
+                    <td class="highlight">${product.name}</td>
+                    <td>${product.dosageForm}</td>
+                    <td>${product.ingredient}</td>
+                    <td style="text-align: center; font-weight: bold; ${product.rpn >= 100 ? 'color: #dc2626; background: #fef2f2;' : 'color: #ea580c; background: #fff7ed;'}">${product.rpn}</td>
+                    <td>${machinesList}</td>
+                    <td style="color: #dc2626;">${product.reason}</td>
+                </tr>
+            `;
+        });
+        
+        return `<section class="section">
+            <h2 style="color: #dc2626;">⚠️ Special Case Products</h2>
+            <p style="margin-bottom: 15px; padding: 12px; background: #fef2f2; border-left: 4px solid #dc2626; color: #7f1d1d; border-radius: 4px;">
+                <strong>Note:</strong> These products require special attention due to high risk factors and have been designated as critical products.
+            </p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Dosage Form</th>
+                        <th>Critical Ingredient</th>
+                        <th>RPN</th>
+                        <th>Machines</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableContent}
+                </tbody>
+            </table>
+        </section>`;
+    }
+
+    generateExportButtons() { return `<div class="export-section no-print"><h3>Export Options</h3><div class="export-buttons"><button onclick="printCurrentView('lineReport')" class="btn-export btn-print">🖨️ Print</button><button onclick="exportToPDFDirect()" class="btn-export btn-pdf">📄 Export to PDF</button></div></div>`; }
 
     getReportCSS() {
         return `body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;background:#f8f9fa}.report-container{max-width:1100px;margin:0 auto;background:#fff;padding:32px;box-shadow:0 0 20px rgba(0,0,0,0.08)}.report-header{text-align:center;border-bottom:3px solid #1976d2;padding-bottom:18px;margin-bottom:28px}.report-header h1{color:#1976d2;margin:0 0 6px}.report-header h2{color:#666;margin:0 0 10px;font-weight:500}.report-meta{display:flex;gap:24px;justify-content:center;color:#666}.section{margin-bottom:28px}.section h2{color:#1976d2;border-bottom:2px solid #e0e0e0;padding-bottom:8px;margin-bottom:14px}.summary-table,.data-table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}.summary-table th,.summary-table td,.data-table th,.data-table td{border:1px solid #ddd;padding:10px;text-align:left}.summary-table th,.data-table th{background:#1976d2;color:#fff}.data-table tbody tr:nth-child(even){background:#f8f9fa}.data-table .group-header{background:#e3f2fd;color:#1976d2;font-weight:bold;border-top:2px solid #1976d2}.highlight{background:#fff3cd;font-weight:700}.success{background:#d4edda;color:#155724;font-weight:700}.export-section{margin-top:28px;text-align:center}.export-buttons{display:flex;gap:15px;justify-content:center;margin-top:15px}.btn-export{padding:10px 18px;border:none;border-radius:6px;color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s ease}.btn-export:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.2)}.btn-print{background:#6c757d}.btn-pdf{background:#dc3545}`;
@@ -488,10 +585,10 @@ class CleaningValidationReportGenerator {
                 <div class="report-header">
                     <h1 style="margin: 0 0 10px 0; color: #333;">Cleaning Validation Report</h1>
                     <div class="action-buttons">    
-                        <button onclick="window.print()" class="btn btn-print">
+                        <button onclick="printCurrentView('lineReport')" class="btn btn-print">
                             🖨️ Print
                         </button>
-                        <button onclick="window.print()" class="btn btn-export">
+                        <button onclick="printCurrentView('lineReport')" class="btn btn-export">
                             📄 Save as PDF
                         </button>
                     </div>
@@ -546,6 +643,7 @@ class CleaningValidationReportGenerator {
                 ${this.generateExecutiveSummary(data.summary)}
                 ${this.generateGroupingStrategy(data.trains)}
                 ${this.generateWorstCaseSelection(data.selectedStudies)}
+                ${this.generateSpecialCaseProducts(data.groupInfo.line)}
           
             </div>
             <style>

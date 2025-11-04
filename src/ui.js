@@ -317,6 +317,108 @@ export function printCurrentView(viewName, selectedTrain = 'all') {
             console.error('Error loading train summary view:', error);
             alert('Error loading train summary: ' + error.message);
         });
+    } else if (viewName === 'machineCoverage') {
+        // Machine Coverage printing - ensure content is loaded first
+        console.log('Printing machine coverage');
+        
+        // Check if machine coverage container has content
+        const container = document.getElementById('machineCoverageContainer');
+        if (!container || container.innerHTML.trim() === '') {
+            console.warn('Machine coverage container is empty, regenerating...');
+            
+            // Regenerate the machine coverage table
+            import('./machineCoverageView.js').then(machineCoverageView => {
+                const tableHTML = machineCoverageView.createHorizontalMachineCoverageTable();
+                if (container) {
+                    container.innerHTML = tableHTML;
+                }
+                
+                // Wait for content to render, then print
+                setTimeout(() => {
+                    const updatedContainer = document.getElementById('machineCoverageContainer');
+                    if (updatedContainer && updatedContainer.innerHTML.trim() !== '') {
+                        console.log('Machine coverage content loaded, printing...');
+                        window.print();
+                    } else {
+                        console.error('Machine coverage content still empty');
+                        alert('No machine coverage data to print. Please ensure you have created trains first.');
+                    }
+                }, 500);
+            }).catch(error => {
+                console.error('Error loading machine coverage for print:', error);
+                alert('Error loading machine coverage data for printing.');
+            });
+        } else {
+            // Content exists, print after short delay
+            setTimeout(() => {
+                console.log('Machine coverage content found, printing...');
+                window.print();
+            }, 200);
+        }
+    } else if (viewName === 'lineReport' || viewName === 'report') {
+        // Line Report printing - ensure content is loaded and properly rendered
+        console.log('Printing line report');
+        
+        // Check if line report container has content
+        const container = document.getElementById('lineReportContainer');
+        if (!container || container.innerHTML.trim() === '') {
+            console.warn('Line report container is empty, checking for current line filter...');
+            
+            // Check if we have a current line filter to regenerate the report
+            const currentLine = window.currentLineFilter;
+            if (!currentLine || currentLine === 'all') {
+                alert('No line report data to print. Please select a line from the left menu first.');
+                return;
+            }
+            
+            console.log('Regenerating line report for:', currentLine);
+            
+            // Import and regenerate the line report
+            import('./lineReportView.js').then(lineReportModule => {
+                lineReportModule.renderLineReport(currentLine);
+                
+                // Wait for content to render, then print
+                setTimeout(() => {
+                    const updatedContainer = document.getElementById('lineReportContainer');
+                    if (updatedContainer && updatedContainer.innerHTML.trim() !== '') {
+                        console.log('Line report content regenerated, printing...');
+                        
+                        // Add report-specific print class for styling
+                        document.body.classList.add('printing-report');
+                        
+                        setTimeout(() => {
+                            window.print();
+                            
+                            // Remove print class after printing
+                            setTimeout(() => {
+                                document.body.classList.remove('printing-report');
+                            }, 1000);
+                        }, 300);
+                    } else {
+                        console.error('Line report content still empty after regeneration');
+                        alert('Unable to generate line report for printing. Please try selecting the line again.');
+                    }
+                }, 500);
+            }).catch(error => {
+                console.error('Error loading line report for print:', error);
+                alert('Error loading line report for printing.');
+            });
+        } else {
+            // Content exists, add print class and print
+            console.log('Line report content found, printing...');
+            
+            // Add report-specific print class for styling
+            document.body.classList.add('printing-report');
+            
+            setTimeout(() => {
+                window.print();
+                
+                // Remove print class after printing
+                setTimeout(() => {
+                    document.body.classList.remove('printing-report');
+                }, 1000);
+            }, 300);
+        }
     } else {
         setTimeout(() => {
             window.print();
@@ -1391,6 +1493,146 @@ export function exportTrainSummaryToExcel(selectedTrain = 'all') {
         console.error('Error exporting Train Summary to Excel:', error);
         hideLoader();
         showCustomAlert("Error", "Failed to export Train Summary data to Excel.");
+    });
+}
+
+export function exportMachineCoverageToExcel() {
+    showLoader();
+    
+    Promise.all([
+        import('./utils.js'),
+        import('./machineCoverageView.js')
+    ]).then(([utils, machineCoverageModule]) => {
+        const { getTrainData } = utils;
+        const { createHorizontalMachineCoverageTable } = machineCoverageModule;
+        
+        let trainData = getTrainData();
+        
+        if (trainData.length === 0) {
+            hideLoader();
+            showCustomAlert("No Data", "There are no trains to export. Assign machines to products first.");
+            return;
+        }
+        
+        // Apply current line filter if exists
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            trainData = trainData.filter(t => (t.line || t.productLine) === currentLine);
+        }
+        
+        if (trainData.length === 0) {
+            hideLoader();
+            showCustomAlert("No Data", "No trains found for the selected line.");
+            return;
+        }
+        
+        const dataForExport = [];
+        
+        // Get all machines
+        const allMachineIds = new Set();
+        trainData.forEach(t => (t.machineIds || []).forEach(id => allMachineIds.add(id)));
+        
+        const machineList = Array.from(allMachineIds).map(id => {
+            const machine = state.machines.find(m => m.id === id);
+            return machine ? { id: machine.id, name: machine.name } : null;
+        }).filter(Boolean).sort((a, b) => a.name.localeCompare(b.name));
+        
+        // Process train data by dosage form
+        trainData.forEach(train => {
+            const dosageForms = [...new Set((train.products || []).map(p => p.productType || 'Unknown'))];
+            
+            dosageForms.forEach(dosageForm => {
+                // Find worst case product for this dosage form
+                let worstProduct = '-';
+                let highestRpn = 0;
+                
+                const productsInDosageForm = (train.products || []).filter(p => (p.productType || 'Unknown') === dosageForm);
+                
+                productsInDosageForm.forEach(product => {
+                    if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                        product.activeIngredients.forEach(ingredient => {
+                            try {
+                                const scores = utils.calculateScores(ingredient);
+                                const rpn = scores?.rpn || 0;
+                                if (rpn > highestRpn) {
+                                    highestRpn = rpn;
+                                    worstProduct = product.name;
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                            }
+                        });
+                    }
+                });
+                
+                // Get machine usage for this train
+                const trainMachines = (train.machineIds || []).map(id => {
+                    const machine = state.machines.find(m => m.id === id);
+                    return machine ? machine.name : null;
+                }).filter(Boolean);
+                
+                const rowData = {
+                    'Train ID': `Train ${train.number || train.id}`,
+                    'Line': train.line || train.productLine || 'Unassigned',
+                    'Dosage Form': dosageForm,
+                    'Worst Case Product': worstProduct,
+                    'RPN': highestRpn,
+                    'Used Machines': trainMachines.join(', '),
+                    'Products': productsInDosageForm.map(p => p.name).join(', ')
+                };
+                
+                // Add machine coverage columns (Y/N for each machine)
+                machineList.forEach(machine => {
+                    rowData[`Machine: ${machine.name}`] = trainMachines.includes(machine.name) ? 'Y' : 'N';
+                });
+                
+                dataForExport.push(rowData);
+            });
+        });
+        
+        if (dataForExport.length === 0) {
+            hideLoader();
+            showCustomAlert("No Data", "No machine coverage data available for export.");
+            return;
+        }
+        
+        // Create Excel workbook
+        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils.json_to_sheet(dataForExport);
+        
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Machine Coverage Report");
+        
+        // Set column widths for better readability
+        const colWidths = [
+            { wch: 12 },  // Train ID
+            { wch: 15 },  // Line
+            { wch: 15 },  // Dosage Form
+            { wch: 25 },  // Worst Case Product
+            { wch: 8 },   // RPN
+            { wch: 40 },  // Used Machines
+            { wch: 40 },  // Products
+            ...machineList.map(() => ({ wch: 15 })) // Machine columns
+        ];
+        worksheet['!cols'] = colWidths;
+        
+        // Generate filename
+        const timestamp = new Date().toISOString().split('T')[0];
+        let filename = 'Machine_Coverage_Report';
+        
+        if (currentLine) {
+            filename += `_${currentLine.replace(/\s+/g, '_')}`;
+        }
+        
+        filename += `_${timestamp}.xlsx`;
+        XLSX.writeFile(workbook, filename);
+        
+        hideLoader();
+        showCustomAlert("Success", "Machine Coverage data exported to Excel successfully!");
+        
+    }).catch(error => {
+        console.error('Error exporting Machine Coverage to Excel:', error);
+        hideLoader();
+        showCustomAlert("Error", "Failed to export Machine Coverage data to Excel.");
     });
 }
 
