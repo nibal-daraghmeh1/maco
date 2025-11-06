@@ -666,6 +666,21 @@ export function recalculateProductMacoForTrain(trainId, lineLargestEssa, dosageF
     const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
     const macoPerSwab = macoPerArea * train.assumedSsa;
 
+    // Debug logging for MACO calculation comparison
+    console.log(`🔧 MacoProductView MACO calculation for Train ${trainId} (${dosageForm}):`, {
+        finalMaco: finalMaco,
+        lineLargestEssa: lineLargestEssa,
+        assumedSsa: train.assumedSsa,
+        macoPerArea: macoPerArea,
+        macoPerSwab: macoPerSwab,
+        macoDose: macoDose,
+        maco10ppm: maco10ppm,
+        macoHealth: macoHealth,
+        macoNoel: macoNoel,
+        macoVisual: macoVisual,
+        selectedLimit: finalMacoResult.name
+    });
+
     // Update the always-visible MACO / Swab element
     const macoPerSwabMainElement = document.getElementById(`maco-per-swab-main-${uniqueTrainId}`);
     if (macoPerSwabMainElement) {

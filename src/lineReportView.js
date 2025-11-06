@@ -58,8 +58,8 @@ class CleaningValidationReportGenerator {
             // Create separate entry for each dosage form (like train summary and machine coverage)
             dosageForms.forEach(dosageForm => {
                 // Find worst case product and highest RPN for this specific dosage form
-                let worstProduct = '-';
-                let worstRpn = 0;
+            let worstProduct = '-';
+            let worstRpn = 0;
                 
                 const productsInDosageForm = (t.products || []).filter(p => (p.productType || 'Unknown') === dosageForm);
                 
@@ -80,16 +80,16 @@ class CleaningValidationReportGenerator {
                     }
                 });
 
-                // Calculate MACO for this train
-                const macoValue = this.calculateMacoForTrain(t, allTrainData);
+            // Calculate MACO for this train
+            const macoValue = this.calculateMacoForTrain(t, allTrainData);
 
                 trainDtos.push({
-                    trainId: `Train ${t.number || t.id}`,
+                trainId: `Train ${t.number || t.id}`,
                     products: productsInDosageForm.map(p => p.name), // Only products in this dosage form
-                    machines: usedMachineNames,
-                    worstCaseProduct: worstProduct,
-                    worstCaseRPN: worstRpn,
-                    macoValue: macoValue,
+                machines: usedMachineNames,
+                worstCaseProduct: worstProduct,
+                worstCaseRPN: worstRpn,
+                macoValue: macoValue,
                     machineIds: t.machineIds || [],
                     productType: dosageForm, // Specific dosage form for this entry
                     line: t.line || 'Unassigned', // Add line for sorting
@@ -141,15 +141,40 @@ class CleaningValidationReportGenerator {
         
         console.log(`Report: Final study count: ${studyCount} (from ${selectedStudies.length} total)`);
         
+        // Calculate lowest MACO per dosage form group
+        const lowestMacoByGroup = {};
+        if (trainDtos.length > 0) {
+            // Group trains by dosage form
+            const trainsByDosageForm = {};
+            trainDtos.forEach(train => {
+                const dosageForm = train.productType || 'Unknown';
+                if (!trainsByDosageForm[dosageForm]) {
+                    trainsByDosageForm[dosageForm] = [];
+                }
+                trainsByDosageForm[dosageForm].push(train);
+            });
+            
+            // Calculate lowest MACO for each dosage form
+            Object.keys(trainsByDosageForm).forEach(dosageForm => {
+                const trainsInGroup = trainsByDosageForm[dosageForm];
+                if (trainsInGroup.length > 0) {
+                    lowestMacoByGroup[dosageForm] = Math.min(...trainsInGroup.map(t => t.macoValue));
+                }
+            });
+        }
+
+        console.log(`Report: Lowest MACO by group:`, lowestMacoByGroup);
+
         return {
-            groupInfo: { lineName: lineId, dosageForm, reportDate: new Date().toLocaleDateString(), reviewer: 'System Generated' },
+            groupInfo: { lineName: lineId, line: lineId, dosageForm, reportDate: new Date().toLocaleDateString(), reviewer: 'System Generated' },
             summary: {
                 totalProducts: trainDtos.reduce((acc, t) => acc + t.products.length, 0),
                 totalTrains: trainDtos.length,
                 totalMachines: machineNames.length,
                 requiredStudies: studyCount,
                 savingsPercentage: trainDtos.length > 0 ? Math.round(((trainDtos.length - studyCount) / trainDtos.length) * 100) : 0,
-                lowestMaco: trainDtos.length > 0 ? Math.min(...trainDtos.map(t => t.macoValue)) : 0
+                lowestMaco: trainDtos.length > 0 ? Math.min(...trainDtos.map(t => t.macoValue)) : 0,
+                lowestMacoByGroup: lowestMacoByGroup
             },
             trains: trainDtos,
             selectedStudies,
@@ -171,15 +196,58 @@ class CleaningValidationReportGenerator {
             const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
             const maco10ppm = 10 * train.minMbsKg;
             let macoHealth = Infinity;
-            if (train.lowestPde !== null) {
+            let macoNoel = Infinity;
+            
+            // Check toxicity preference settings (same as macoProductView)
+            const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+            const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+            
+            // Calculate PDE-based MACO if PDE is available and not hidden
+            if (train.lowestPde !== null && !pdeHidden) {
                 macoHealth = train.lowestPde * train.minBsMddRatio;
             }
+            
+            // Calculate NOEL-based MACO if LD50 is available and not hidden (same as macoProductView)
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+                // Find minimum MDD from all ingredients in the train
+                const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+                if (allMdds.length > 0) {
+                    const minMdd = Math.min(...allMdds);
+                    macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+                }
+            }
+            
             const macoVisual = (0.004) * lineLargestEssa;
             
-            const finalMaco = Math.min(macoDose, maco10ppm, macoHealth, macoVisual);
-            return finalMaco;
+            // Include both health limits in comparison (same as macoProductView)
+            const finalMaco = Math.min(macoDose, maco10ppm, macoHealth, macoNoel, macoVisual);
+            
+            // Calculate MACO per swab (same calculation as used in dashboard and MACO views)
+            const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+            const macoPerSwab = macoPerArea * (train.assumedSsa || 25); // Use assumedSsa or default 25
+            
+            // Debug logging for MACO calculation comparison
+            console.log(`🔍 LineReport MACO calculation for Train ${train.id}:`, {
+                finalMaco: finalMaco,
+                lineLargestEssa: lineLargestEssa,
+                assumedSsa: train.assumedSsa || 25,
+                macoPerArea: macoPerArea,
+                macoPerSwab: macoPerSwab,
+                macoDose: macoDose,
+                maco10ppm: maco10ppm,
+                macoHealth: macoHealth,
+                macoNoel: macoNoel,
+                macoVisual: macoVisual,
+                pdeHidden: pdeHidden,
+                ld50Hidden: ld50Hidden,
+                lowestPde: train.lowestPde,
+                lowestLd50: train.lowestLd50
+            });
+            
+            return macoPerSwab;
         } catch (error) {
-            console.error('Error calculating MACO for train:', error);
+            console.error('Error calculating MACO per swab for train:', error);
             return 0;
         }
     }
@@ -260,12 +328,27 @@ class CleaningValidationReportGenerator {
     generateExecutiveSummary(s) {
         const savedStudies = s.totalTrains - s.requiredStudies;
         const efficiencyNote = `${s.savingsPercentage}% <br><small style="color:#666;font-weight:normal;font-size:0.85em;">(Saved ${savedStudies} studies: ${s.totalTrains} trains reduced to ${s.requiredStudies} studies)</small>`;
-        return `<section class="section"><h2>Executive Summary</h2><table class="summary-table"><tr><td><strong>Total Products</strong></td><td>${s.totalProducts}</td></tr><tr><td><strong>Total Trains</strong></td><td>${s.totalTrains}</td></tr><tr><td><strong>Total Machines</strong></td><td>${s.totalMachines}</td></tr><tr><td><strong>Required Studies</strong></td><td class="highlight">${s.requiredStudies}</td></tr><tr><td><strong>Efficiency Savings</strong></td><td class="success">${efficiencyNote}</td></tr><tr><td><strong>Lowest MACO</strong></td><td class="highlight">${formatSmallNumber(s.lowestMaco, 'mg')}</td></tr></table></section>`;
+        
+        // Generate lowest MACO rows for each dosage form group
+        let lowestMacoRows = '';
+        if (s.lowestMacoByGroup && Object.keys(s.lowestMacoByGroup).length > 0) {
+            // Sort dosage forms for consistent display
+            const sortedDosageForms = Object.keys(s.lowestMacoByGroup).sort();
+            lowestMacoRows = sortedDosageForms.map(dosageForm => {
+                const lowestMaco = s.lowestMacoByGroup[dosageForm];
+                return `<tr><td><strong>Lowest MACO (${dosageForm})</strong></td><td class="highlight">${formatSmallNumber(lowestMaco, 'mg/Swab')}</td></tr>`;
+            }).join('');
+        } else {
+            // Fallback to overall lowest MACO if no group data available
+            lowestMacoRows = `<tr><td><strong>Lowest MACO per Swab</strong></td><td class="highlight">${formatSmallNumber(s.lowestMaco, 'mg/Swab')}</td></tr>`;
+        }
+        
+        return `<section class="section"><h2>Executive Summary</h2><table class="summary-table"><tr><td><strong>Total Products</strong></td><td>${s.totalProducts}</td></tr><tr><td><strong>Total Trains</strong></td><td>${s.totalTrains}</td></tr><tr><td><strong>Total Machines</strong></td><td>${s.totalMachines}</td></tr><tr><td><strong>Required Studies</strong></td><td class="highlight">${s.requiredStudies}</td></tr><tr><td><strong>Efficiency Savings</strong></td><td class="success">${efficiencyNote}</td></tr>${lowestMacoRows}</table></section>`;
     }
 
     generateGroupingStrategy(trains) {
-        const rows = trains.map(t => `<tr><td>${t.trainId}</td><td>${t.products.join(', ')}</td><td>${t.machines.join(', ')}</td><td class="highlight">${t.worstCaseProduct}</td><td>${t.worstCaseRPN}</td><td class="highlight">${formatSmallNumber(t.macoValue, 'mg')}</td></tr>`).join('');
-        return `<section class="section"><h2>Grouping Strategy</h2><table class="data-table"><thead><tr><th>Train</th><th>Products</th><th>Machines</th><th>Worst Case</th><th>RPN</th><th>Product MACO</th></tr></thead><tbody>${rows}</tbody></table></section>`;
+        const rows = trains.map(t => `<tr><td>${t.trainId}</td><td>${t.products.join(', ')}</td><td>${t.machines.join(', ')}</td><td class="highlight">${t.worstCaseProduct}</td><td>${t.worstCaseRPN}</td><td class="highlight">${formatSmallNumber(t.macoValue, 'mg/Swab')}</td></tr>`).join('');
+        return `<section class="section"><h2>Grouping Strategy</h2><table class="data-table"><thead><tr><th>Train</th><th>Products</th><th>Machines</th><th>Worst Case</th><th>RPN</th><th>Product MACO per Swab</th></tr></thead><tbody>${rows}</tbody></table></section>`;
     }
 
     generateWorstCaseSelection(studies) {
@@ -296,9 +379,34 @@ class CleaningValidationReportGenerator {
         // Get special case products for this line (isCritical === true)
         const specialCaseProducts = [];
         
-        const lineProducts = products.filter(product => 
-            product.line === line && product.isCritical === true
-        );
+        // Handle line filtering - support both exact match and partial match
+        // For "Solids" it should match "Solids Line A", "Solids Line B", etc.
+        const lineProducts = products.filter(product => {
+            if (!product.isCritical) return false;
+            
+            const productLine = product.line || '';
+            
+            // Exact match first
+            if (productLine === line) return true;
+            
+            // Partial match for grouped lines (e.g., "Solids" matches "Solids Line A")
+            if (line && productLine.toLowerCase().startsWith(line.toLowerCase())) return true;
+            
+            // Handle common line groupings
+            const lineGroupings = {
+                'Solids': ['Solids Line A', 'Solids Line B', 'Tablets Line', 'Capsules Line'],
+                'Semisolid': ['Semisolid Line', 'Cream Line', 'Ointment Line'],
+                'Liquids': ['Liquid Line', 'Sterile Line'],
+                'Sterile': ['Sterile Line']
+            };
+            
+            const matchingLines = lineGroupings[line] || [];
+            return matchingLines.includes(productLine);
+        });
+        
+        // Debug logging
+        console.log(`Special case products search for line: "${line}" - Found ${lineProducts.length} products:`, 
+            lineProducts.map(p => p.name));
         
         lineProducts.forEach(product => {
             if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
@@ -719,5 +827,8 @@ export { CleaningValidationReportGenerator };
 
 // Expose for debugging
 window.renderLineReport = renderLineReport;
+
+// Test function to debug special case filtering (for debugging only)
+// window.testSpecialCaseFiltering = function(line) { ... };
 
 

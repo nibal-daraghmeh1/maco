@@ -946,3 +946,21 @@
         .current-sop-display .sop-actions button:hover {
             background-color: rgba(59, 130, 246, 0.2);
         }
+
+        /* SOP Attachment Link Styles for clickable attachments */
+        .sop-attachment-link {
+            cursor: pointer;
+            color: var(--accent-color, #1976d2);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            border-radius: 3px;
+            padding: 1px 2px;
+        }
+
+        .sop-attachment-link:hover {
+            color: var(--primary-darker, #0d47a1);
+            text-decoration: none;
+            transform: translateY(-1px);
+            background-color: rgba(25, 118, 210, 0.1);
+        }

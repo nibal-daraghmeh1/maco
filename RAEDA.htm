@@ -878,27 +878,34 @@
                 <div>
                     <label class="block text-sm font-medium mb-1">Cleaning SOP</label>
                     
-                    <!-- SOP Method Selection -->
+                    <!-- SOP Name (Always Required) -->
                     <div class="mb-3">
+                        <label for="sopName" class="block text-sm font-medium mb-1">SOP Name/Reference *</label>
+                        <input type="text" id="sopName" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="e.g., SOP-002, Cleaning Procedure #3" required>
+                    </div>
+
+                    <!-- Attachment Method Selection -->
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium mb-1">Attachment (Optional)</label>
                         <div class="flex space-x-4 mb-2">
                             <label class="flex items-center">
-                                <input type="radio" name="sopMethod" value="text" id="sopMethodText" class="mr-2" checked>
-                                <span class="text-sm">Text Reference</span>
+                                <input type="radio" name="sopAttachmentMethod" value="none" id="sopAttachmentNone" class="mr-2" checked>
+                                <span class="text-sm">No Attachment</span>
                             </label>
                             <label class="flex items-center">
-                                <input type="radio" name="sopMethod" value="upload" id="sopMethodUpload" class="mr-2">
+                                <input type="radio" name="sopAttachmentMethod" value="upload" id="sopAttachmentUpload" class="mr-2">
                                 <span class="text-sm">Upload File</span>
                             </label>
                             <label class="flex items-center">
-                                <input type="radio" name="sopMethod" value="link" id="sopMethodLink" class="mr-2">
+                                <input type="radio" name="sopAttachmentMethod" value="link" id="sopAttachmentLink" class="mr-2">
                                 <span class="text-sm">File Link</span>
                             </label>
                         </div>
                     </div>
 
-                    <!-- Text Reference (Default) -->
-                    <div id="sopTextSection" class="sop-section">
-                        <input type="text" id="cleaningSOP" class="w-full px-3 py-2 border rounded-lg no-proper-case" placeholder="e.g., SOP-002, Cleaning Procedure #3" required>
+                    <!-- No Attachment Section (Default) -->
+                    <div id="sopNoAttachmentSection" class="sop-section">
+                        <p class="text-sm text-gray-500 italic">SOP name/reference only (no additional attachment)</p>
                     </div>
 
                     <!-- File Upload Section -->

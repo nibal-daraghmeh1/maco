@@ -320,7 +320,7 @@ export function renderMachinesTable() {
                     <td class="px-4 py-3 whitespace-nowrap">${stageCellContent}</td>
                     <td class="px-4 py-3 whitespace-nowrap ${groupCellClass}">${groupCellContent}</td>
                     <td class="px-4 py-3 whitespace-nowrap">${machine.area.toLocaleString()}</td>
-                    <td class="px-4 py-3 whitespace-nowrap">${formatSOPDisplay(machine.cleaningSOP)}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">${formatSOPDisplay(machine.cleaningSOP, machine.id)}</td>
                     <td class="px-4 py-3">${productsCellHTML}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
                         <div class="flex items-center gap-x-2 no-print">
@@ -1353,7 +1353,7 @@ function calculateMachineSummary(machines) {
 /**
  * Format SOP display for machine table
  */
-function formatSOPDisplay(sopData) {
+function formatSOPDisplay(sopData, machineId) {
     if (!sopData) return '';
     
     // Handle legacy string format
@@ -1361,16 +1361,41 @@ function formatSOPDisplay(sopData) {
         return sopData;
     }
     
-    // Handle new object format
+    // Handle new format with sopName + attachment
+    if (sopData.sopName) {
+        let display = sopData.sopName;
+        let clickableContent = '';
+        
+        switch (sopData.attachmentType) {
+            case 'upload':
+                if (sopData.fileName) {
+                    clickableContent = `<span class="sop-attachment-link" onclick="openMachineSOPFile(${machineId})" title="Click to open: ${sopData.fileName}" style="cursor: pointer; color: #1976d2; text-decoration: none;"> 📎</span>`;
+                    display += clickableContent;
+                }
+                break;
+            case 'link':
+                if (sopData.attachmentValue) {
+                    clickableContent = `<span class="sop-attachment-link" onclick="openMachineSOPFile(${machineId})" title="Click to open link" style="cursor: pointer; color: #1976d2; text-decoration: none;"> 🔗</span>`;
+                    display += clickableContent;
+                }
+                break;
+            // 'none' or no attachment - just show the name
+        }
+        
+        return display;
+    }
+    
+    // Handle old object format (backwards compatibility)
     switch (sopData.type) {
         case 'text':
             return sopData.value || '';
         case 'upload':
-            return `📎 ${sopData.fileName || 'File Attached'}`;
+            const fileName = sopData.fileName || 'File Attached';
+            return `<span class="sop-attachment-link" onclick="openMachineSOPFile(${machineId})" title="Click to open: ${fileName}" style="cursor: pointer; color: #1976d2; text-decoration: none;">📎</span> ${fileName}`;
         case 'link':
             const linkText = sopData.value || '';
             const shortLink = linkText.length > 30 ? linkText.substring(0, 30) + '...' : linkText;
-            return `🔗 ${shortLink}`;
+            return `<span class="sop-attachment-link" onclick="openMachineSOPFile(${machineId})" title="Click to open link" style="cursor: pointer; color: #1976d2; text-decoration: none;">🔗</span> ${shortLink}`;
         default:
             return sopData.value || '';
     }
@@ -1380,41 +1405,38 @@ function formatSOPDisplay(sopData) {
  * Initialize SOP method selection handlers
  */
 export function initializeSOPHandlers() {
-    const methodRadios = document.querySelectorAll('input[name="sopMethod"]');
+    const attachmentMethodRadios = document.querySelectorAll('input[name="sopAttachmentMethod"]');
     
-    methodRadios.forEach(radio => {
-        radio.addEventListener('change', handleSOPMethodChange);
+    attachmentMethodRadios.forEach(radio => {
+        radio.addEventListener('change', handleSOPAttachmentMethodChange);
     });
 }
 
 /**
- * Handle SOP method selection change
+ * Handle SOP attachment method selection change
  */
-function handleSOPMethodChange(event) {
+function handleSOPAttachmentMethodChange(event) {
     const selectedMethod = event.target.value;
     
     // Hide all sections
-    document.getElementById('sopTextSection').style.display = 'none';
+    document.getElementById('sopNoAttachmentSection').style.display = 'none';
     document.getElementById('sopUploadSection').style.display = 'none';
     document.getElementById('sopLinkSection').style.display = 'none';
     
-    // Show selected section
+    // Show selected section and manage required fields
     switch (selectedMethod) {
-        case 'text':
-            document.getElementById('sopTextSection').style.display = 'block';
-            document.getElementById('cleaningSOP').required = true;
+        case 'none':
+            document.getElementById('sopNoAttachmentSection').style.display = 'block';
             document.getElementById('sopFileUpload').required = false;
             document.getElementById('sopFileLink').required = false;
             break;
         case 'upload':
             document.getElementById('sopUploadSection').style.display = 'block';
-            document.getElementById('cleaningSOP').required = false;
             document.getElementById('sopFileUpload').required = false; // Will validate manually
             document.getElementById('sopFileLink').required = false;
             break;
         case 'link':
             document.getElementById('sopLinkSection').style.display = 'block';
-            document.getElementById('cleaningSOP').required = false;
             document.getElementById('sopFileUpload').required = false;
             document.getElementById('sopFileLink').required = true;
             break;
@@ -1485,19 +1507,24 @@ function removeSOPFile() {
  */
 function loadSOPData(machine) {
     // Reset form
-    document.getElementById('sopMethodText').checked = true;
+    document.getElementById('sopAttachmentNone').checked = true;
     document.getElementById('currentSOPDisplay').style.display = 'none';
-    handleSOPMethodChange({ target: { value: 'text' } });
+    handleSOPAttachmentMethodChange({ target: { value: 'none' } });
     
     // Clear any previous data
     currentSOPFile = null;
     currentSOPData = null;
     removeSOPFile();
     
-    if (!machine.cleaningSOP || typeof machine.cleaningSOP === 'string') {
-        // Legacy format or empty - convert to new format
-        const legacySOP = machine.cleaningSOP || '';
-        document.getElementById('cleaningSOP').value = legacySOP;
+    if (!machine.cleaningSOP) {
+        // New machine - set empty values
+        document.getElementById('sopName').value = '';
+        return;
+    }
+    
+    if (typeof machine.cleaningSOP === 'string') {
+        // Legacy format - convert to new format
+        document.getElementById('sopName').value = machine.cleaningSOP;
         return;
     }
     
@@ -1505,17 +1532,20 @@ function loadSOPData(machine) {
     const sopData = machine.cleaningSOP;
     currentSOPData = sopData;
     
-    switch (sopData.type) {
-        case 'text':
-            document.getElementById('sopMethodText').checked = true;
-            document.getElementById('cleaningSOP').value = sopData.value || '';
-            handleSOPMethodChange({ target: { value: 'text' } });
+    // Set SOP name (always required)
+    document.getElementById('sopName').value = sopData.sopName || '';
+    
+    // Set attachment method and data
+    switch (sopData.attachmentType) {
+        case 'none':
+            document.getElementById('sopAttachmentNone').checked = true;
+            handleSOPAttachmentMethodChange({ target: { value: 'none' } });
             break;
             
         case 'upload':
             if (sopData.fileName && sopData.fileData) {
-                document.getElementById('sopMethodUpload').checked = true;
-                handleSOPMethodChange({ target: { value: 'upload' } });
+                document.getElementById('sopAttachmentUpload').checked = true;
+                handleSOPAttachmentMethodChange({ target: { value: 'upload' } });
                 
                 // Show existing file
                 currentSOPFile = {
@@ -1529,14 +1559,19 @@ function loadSOPData(machine) {
             break;
             
         case 'link':
-            document.getElementById('sopMethodLink').checked = true;
-            document.getElementById('sopFileLink').value = sopData.value || '';
-            handleSOPMethodChange({ target: { value: 'link' } });
+            document.getElementById('sopAttachmentLink').checked = true;
+            document.getElementById('sopFileLink').value = sopData.attachmentValue || '';
+            handleSOPAttachmentMethodChange({ target: { value: 'link' } });
             break;
+            
+        default:
+            // Legacy or text format
+            document.getElementById('sopAttachmentNone').checked = true;
+            handleSOPAttachmentMethodChange({ target: { value: 'none' } });
     }
     
     // Show current SOP display if editing
-    if (sopData.type && sopData.value || sopData.fileName) {
+    if (sopData.sopName || sopData.fileName || sopData.attachmentValue) {
         showCurrentSOPDisplay(sopData);
     }
 }
@@ -1551,6 +1586,43 @@ function showCurrentSOPDisplay(sopData) {
     
     currentSOPDisplay.style.display = 'block';
     
+    // Handle new format
+    if (sopData.sopName) {
+        let displayText = `SOP: ${sopData.sopName}`;
+        
+        switch (sopData.attachmentType) {
+            case 'upload':
+                if (sopData.fileName) {
+                    displayText += ` (📎 ${sopData.fileName})`;
+                    openSOPBtn.style.display = 'inline-block';
+                } else {
+                    openSOPBtn.style.display = 'none';
+                }
+                break;
+            case 'link':
+                if (sopData.attachmentValue) {
+                    displayText += ` (🔗 Link attached)`;
+                    openSOPBtn.style.display = 'inline-block';
+                } else {
+                    openSOPBtn.style.display = 'none';
+                }
+                break;
+            default:
+                openSOPBtn.style.display = 'none';
+        }
+        
+        currentSOPText.textContent = displayText;
+        return;
+    }
+    
+    // Handle legacy format
+    if (typeof sopData === 'string') {
+        currentSOPText.textContent = `SOP: ${sopData}`;
+        openSOPBtn.style.display = 'none';
+        return;
+    }
+    
+    // Handle old format (backwards compatibility)
     switch (sopData.type) {
         case 'text':
             currentSOPText.textContent = `SOP Reference: ${sopData.value}`;
@@ -1565,7 +1637,6 @@ function showCurrentSOPDisplay(sopData) {
             openSOPBtn.style.display = 'inline-block';
             break;
         default:
-            // Legacy format
             currentSOPText.textContent = `SOP: ${sopData}`;
             openSOPBtn.style.display = 'none';
     }
@@ -1575,47 +1646,51 @@ function showCurrentSOPDisplay(sopData) {
  * Get current SOP data from form
  */
 function getCurrentSOPData() {
-    const selectedMethod = document.querySelector('input[name="sopMethod"]:checked').value;
+    // Get SOP name (always required)
+    const sopName = document.getElementById('sopName').value.trim();
+    if (!sopName) {
+        throw new Error('Please enter a SOP name/reference.');
+    }
     
-    switch (selectedMethod) {
-        case 'text':
-            const textValue = document.getElementById('cleaningSOP').value.trim();
-            if (!textValue) {
-                throw new Error('Please enter a SOP reference.');
-            }
-            return {
-                type: 'text',
-                value: textValue,
-                fileName: null,
-                fileData: null
-            };
+    // Get attachment method
+    const selectedAttachmentMethod = document.querySelector('input[name="sopAttachmentMethod"]:checked').value;
+    
+    const sopData = {
+        sopName: sopName,
+        attachmentType: selectedAttachmentMethod
+    };
+    
+    switch (selectedAttachmentMethod) {
+        case 'none':
+            sopData.attachmentValue = null;
+            sopData.fileName = null;
+            sopData.fileData = null;
+            break;
             
         case 'upload':
             if (!currentSOPFile) {
                 throw new Error('Please upload a SOP file.');
             }
-            return {
-                type: 'upload',
-                value: currentSOPFile.name,
-                fileName: currentSOPFile.name,
-                fileData: currentSOPFile.data
-            };
+            sopData.attachmentValue = currentSOPFile.name;
+            sopData.fileName = currentSOPFile.name;
+            sopData.fileData = currentSOPFile.data;
+            break;
             
         case 'link':
             const linkValue = document.getElementById('sopFileLink').value.trim();
             if (!linkValue) {
                 throw new Error('Please enter a file link or path.');
             }
-            return {
-                type: 'link',
-                value: linkValue,
-                fileName: null,
-                fileData: null
-            };
+            sopData.attachmentValue = linkValue;
+            sopData.fileName = null;
+            sopData.fileData = null;
+            break;
             
         default:
-            throw new Error('Please select a SOP method.');
+            throw new Error('Please select an attachment method.');
     }
+    
+    return sopData;
 }
 
 /**
@@ -1624,22 +1699,114 @@ function getCurrentSOPData() {
 function openCurrentSOP() {
     if (!currentSOPData) return;
     
+    // Handle new format
+    if (currentSOPData.attachmentType) {
+        switch (currentSOPData.attachmentType) {
+            case 'upload':
+                if (currentSOPData.fileData) {
+                    try {
+                        // Determine MIME type based on file extension
+                        const fileName = currentSOPData.fileName || '';
+                        const extension = fileName.toLowerCase().split('.').pop();
+                        let mimeType = 'application/octet-stream'; // Default fallback
+                        
+                        switch (extension) {
+                            case 'pdf':
+                                mimeType = 'application/pdf';
+                                break;
+                            case 'doc':
+                                mimeType = 'application/msword';
+                                break;
+                            case 'docx':
+                                mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                                break;
+                            case 'txt':
+                                mimeType = 'text/plain';
+                                break;
+                        }
+                        
+                        // Create blob URL and open in new tab
+                        const byteCharacters = atob(currentSOPData.fileData.split(',')[1]);
+                        const byteNumbers = new Array(byteCharacters.length);
+                        for (let i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        const byteArray = new Uint8Array(byteNumbers);
+                        const blob = new Blob([byteArray], { type: mimeType });
+                        const url = URL.createObjectURL(blob);
+                        window.open(url, '_blank');
+                        
+                        // Clean up the URL after a delay
+                        setTimeout(() => URL.revokeObjectURL(url), 5000);
+                    } catch (error) {
+                        console.error('Error opening SOP file:', error);
+                        showCustomAlert('Error', 'Unable to open the SOP file. The file may be corrupted.');
+                    }
+                }
+                break;
+                
+            case 'link':
+                if (currentSOPData.attachmentValue) {
+                    // Try to open as URL first
+                    try {
+                        if (currentSOPData.attachmentValue.startsWith('http://') || currentSOPData.attachmentValue.startsWith('https://')) {
+                            window.open(currentSOPData.attachmentValue, '_blank');
+                        } else {
+                            // For file paths, try to open with file protocol
+                            window.open('file:///' + currentSOPData.attachmentValue.replace(/\\/g, '/'), '_blank');
+                        }
+                    } catch (error) {
+                        showCustomAlert('Cannot Open File', 
+                            'Unable to open the linked file. Please check the file path or URL.');
+                    }
+                }
+                break;
+        }
+        return;
+    }
+    
+    // Handle old format (backwards compatibility)
     switch (currentSOPData.type) {
         case 'upload':
             if (currentSOPData.fileData) {
-                // Create blob URL and open in new tab
-                const byteCharacters = atob(currentSOPData.fileData.split(',')[1]);
-                const byteNumbers = new Array(byteCharacters.length);
-                for (let i = 0; i < byteCharacters.length; i++) {
-                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                try {
+                    // Determine MIME type based on file extension
+                    const fileName = currentSOPData.fileName || '';
+                    const extension = fileName.toLowerCase().split('.').pop();
+                    let mimeType = 'application/octet-stream'; // Default fallback
+                    
+                    switch (extension) {
+                        case 'pdf':
+                            mimeType = 'application/pdf';
+                            break;
+                        case 'doc':
+                            mimeType = 'application/msword';
+                            break;
+                        case 'docx':
+                            mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                            break;
+                        case 'txt':
+                            mimeType = 'text/plain';
+                            break;
+                    }
+                    
+                    // Create blob URL and open in new tab
+                    const byteCharacters = atob(currentSOPData.fileData.split(',')[1]);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: mimeType });
+                    const url = URL.createObjectURL(blob);
+                    window.open(url, '_blank');
+                    
+                    // Clean up the URL after a delay
+                    setTimeout(() => URL.revokeObjectURL(url), 5000);
+                } catch (error) {
+                    console.error('Error opening SOP file:', error);
+                    showCustomAlert('Error', 'Unable to open the SOP file. The file may be corrupted.');
                 }
-                const byteArray = new Uint8Array(byteNumbers);
-                const blob = new Blob([byteArray]);
-                const url = URL.createObjectURL(blob);
-                window.open(url, '_blank');
-                
-                // Clean up the URL after a delay
-                setTimeout(() => URL.revokeObjectURL(url), 1000);
             }
             break;
             
@@ -1668,6 +1835,168 @@ function openCurrentSOP() {
 function editCurrentSOP() {
     document.getElementById('currentSOPDisplay').style.display = 'none';
 }
+
+/**
+ * Open SOP file for a specific machine (from the machine table)
+ */
+window.openMachineSOPFile = function(machineId) {
+    const machine = state.machines.find(m => m.id === machineId);
+    if (!machine || !machine.cleaningSOP) {
+        showCustomAlert('No SOP Found', 'No SOP file is attached to this machine.');
+        return;
+    }
+    
+    const sopData = machine.cleaningSOP;
+    
+    // Handle new format
+    if (sopData.attachmentType) {
+        switch (sopData.attachmentType) {
+            case 'upload':
+                if (sopData.fileData) {
+                    try {
+                        // Determine MIME type based on file extension
+                        const fileName = sopData.fileName || '';
+                        const extension = fileName.toLowerCase().split('.').pop();
+                        let mimeType = 'application/octet-stream'; // Default fallback
+                        
+                        switch (extension) {
+                            case 'pdf':
+                                mimeType = 'application/pdf';
+                                break;
+                            case 'doc':
+                                mimeType = 'application/msword';
+                                break;
+                            case 'docx':
+                                mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                                break;
+                            case 'txt':
+                                mimeType = 'text/plain';
+                                break;
+                        }
+                        
+                        // Create blob URL and open in new tab
+                        const byteCharacters = atob(sopData.fileData.split(',')[1]);
+                        const byteNumbers = new Array(byteCharacters.length);
+                        for (let i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        const byteArray = new Uint8Array(byteNumbers);
+                        const blob = new Blob([byteArray], { type: mimeType });
+                        const url = URL.createObjectURL(blob);
+                        window.open(url, '_blank');
+                        
+                        // Clean up the URL after a delay
+                        setTimeout(() => URL.revokeObjectURL(url), 5000);
+                    } catch (error) {
+                        console.error('Error opening SOP file:', error);
+                        showCustomAlert('Error', 'Unable to open the SOP file. The file may be corrupted.');
+                    }
+                } else {
+                    showCustomAlert('No File Found', 'No file data is available for this SOP.');
+                }
+                break;
+                
+            case 'link':
+                if (sopData.attachmentValue) {
+                    try {
+                        // Try to open as URL first
+                        if (sopData.attachmentValue.startsWith('http://') || sopData.attachmentValue.startsWith('https://')) {
+                            window.open(sopData.attachmentValue, '_blank');
+                        } else {
+                            // For file paths, try to open with file protocol
+                            window.open('file:///' + sopData.attachmentValue.replace(/\\/g, '/'), '_blank');
+                        }
+                    } catch (error) {
+                        console.error('Error opening SOP link:', error);
+                        showCustomAlert('Cannot Open Link', 
+                            'Unable to open the linked file. Please check the file path or URL.');
+                    }
+                } else {
+                    showCustomAlert('No Link Found', 'No link is available for this SOP.');
+                }
+                break;
+                
+            case 'none':
+            default:
+                showCustomAlert('No Attachment', 'This SOP has no attached file or link.');
+                break;
+        }
+        return;
+    }
+    
+    // Handle old format (backwards compatibility)
+    switch (sopData.type) {
+        case 'upload':
+            if (sopData.fileData) {
+                try {
+                    // Determine MIME type based on file extension
+                    const fileName = sopData.fileName || '';
+                    const extension = fileName.toLowerCase().split('.').pop();
+                    let mimeType = 'application/octet-stream'; // Default fallback
+                    
+                    switch (extension) {
+                        case 'pdf':
+                            mimeType = 'application/pdf';
+                            break;
+                        case 'doc':
+                            mimeType = 'application/msword';
+                            break;
+                        case 'docx':
+                            mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                            break;
+                        case 'txt':
+                            mimeType = 'text/plain';
+                            break;
+                    }
+                    
+                    // Create blob URL and open in new tab
+                    const byteCharacters = atob(sopData.fileData.split(',')[1]);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: mimeType });
+                    const url = URL.createObjectURL(blob);
+                    window.open(url, '_blank');
+                    
+                    // Clean up the URL after a delay
+                    setTimeout(() => URL.revokeObjectURL(url), 5000);
+                } catch (error) {
+                    console.error('Error opening SOP file:', error);
+                    showCustomAlert('Error', 'Unable to open the SOP file. The file may be corrupted.');
+                }
+            } else {
+                showCustomAlert('No File Found', 'No file data is available for this SOP.');
+            }
+            break;
+            
+        case 'link':
+            if (sopData.value) {
+                try {
+                    // Try to open as URL first
+                    if (sopData.value.startsWith('http://') || sopData.value.startsWith('https://')) {
+                        window.open(sopData.value, '_blank');
+                    } else {
+                        // For file paths, try to open with file protocol
+                        window.open('file:///' + sopData.value.replace(/\\/g, '/'), '_blank');
+                    }
+                } catch (error) {
+                    console.error('Error opening SOP link:', error);
+                    showCustomAlert('Cannot Open Link', 
+                        'Unable to open the linked file. Please check the file path or URL.');
+                }
+            } else {
+                showCustomAlert('No Link Found', 'No link is available for this SOP.');
+            }
+            break;
+            
+        case 'text':
+        default:
+            showCustomAlert('No Attachment', 'This SOP is a text reference only with no attached file.');
+            break;
+    }
+};
 
 // Make functions globally available
 window.exportMachineProductsToExcel = exportMachineProductsToExcel;

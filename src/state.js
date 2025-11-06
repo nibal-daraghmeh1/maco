@@ -12,22 +12,22 @@ export let products = [
 ];
 
 export let machines = [
-    { id: 1, machineNumber: 'M-001', name: "weighing tool", stage: "Weighing", area: 55000, group: "", line: "Shared", cleaningSOP: { type: 'text', value: 'SOP-001', fileName: null, fileData: null } },
-    { id: 2, machineNumber: 'M-002', name: "nin mill", stage: "Milling", area: 35000, group: "", line: "Solids Line A", cleaningSOP: { type: 'text', value: 'SOP-002', fileName: null, fileData: null } },
-    { id: 3, machineNumber: 'M-003', name: "fitz mill", stage: "Milling", area: 42000, group: "", line: "Solids Line A", cleaningSOP: { type: 'text', value: 'SOP-003', fileName: null, fileData: null } },
-    { id: 4, machineNumber: 'M-004', name: "FBD", stage: "Mixing", area: 120000, group: "", line: "Solids Line A", cleaningSOP: { type: 'text', value: 'SOP-004', fileName: null, fileData: null } },
-    { id: 5, machineNumber: 'M-005', name: "Glatt", stage: "Mixing", area: 95000, group: "", line: "Capsules Line", cleaningSOP: { type: 'text', value: 'SOP-005', fileName: null, fileData: null } },
-    { id: 6, machineNumber: 'M-006', name: "Compactor", stage: "Mixing", area: 85000, group: "", line: "Solids Line A", cleaningSOP: { type: 'text', value: 'SOP-006', fileName: null, fileData: null } },
-    { id: 7, machineNumber: 'M-007', name: "Bin 200", stage: "Mixing", area: 45000, group: "Mixing Bins", line: "Solids Line A", cleaningSOP: { type: 'text', value: 'SOP-007', fileName: null, fileData: null } },
-    { id: 8, machineNumber: 'M-008', name: "Bin 400", stage: "Mixing", area: 65000, group: "Mixing Bins", line: "Solids Line B", cleaningSOP: { type: 'text', value: 'SOP-008', fileName: null, fileData: null } },
-    { id: 9, machineNumber: 'M-009', name: "Bin 600", stage: "Mixing", area: 85000, group: "Mixing Bins", line: "Capsules Line", cleaningSOP: { type: 'text', value: 'SOP-009', fileName: null, fileData: null } },
-    { id: 10, machineNumber: 'M-010', name: "Bin 800", stage: "Mixing", area: 105000, group: "Mixing Bins", line: "Sterile Line", cleaningSOP: { type: 'text', value: 'SOP-010', fileName: null, fileData: null } },
-    { id: 11, machineNumber: 'M-011', name: "Jcmco", stage: "Compression", area: 150000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { type: 'text', value: 'SOP-011', fileName: null, fileData: null } },
-    { id: 12, machineNumber: 'M-012', name: "Natoli", stage: "Compression", area: 165000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { type: 'text', value: 'SOP-012', fileName: null, fileData: null } },
-    { id: 13, machineNumber: 'M-013', name: "Korsch", stage: "Compression", area: 180000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { type: 'text', value: 'SOP-013', fileName: null, fileData: null } },
-    { id: 14, machineNumber: 'M-014', name: "Coat", stage: "Coating", area: 110000, group: "", line: "Capsules Line", cleaningSOP: { type: 'text', value: 'SOP-014', fileName: null, fileData: null } },
-    { id: 15, machineNumber: 'M-015', name: "jar filling", stage: "Filling", area: 75000, group: "", line: "Capsules Line", cleaningSOP: { type: 'text', value: 'SOP-015', fileName: null, fileData: null } },
-    { id: 16, machineNumber: 'M-016', name: "Bliste", stage: "Packing", area: 220000, group: "", line: "Shared", cleaningSOP: { type: 'text', value: 'SOP-016', fileName: null, fileData: null } }
+    { id: 1, machineNumber: 'M-001', name: "weighing tool", stage: "Weighing", area: 55000, group: "", line: "Shared", cleaningSOP: { sopName: 'SOP-001', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 2, machineNumber: 'M-002', name: "nin mill", stage: "Milling", area: 35000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-002', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 3, machineNumber: 'M-003', name: "fitz mill", stage: "Milling", area: 42000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-003', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 4, machineNumber: 'M-004', name: "FBD", stage: "Mixing", area: 120000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-004', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 5, machineNumber: 'M-005', name: "Glatt", stage: "Mixing", area: 95000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-005', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 6, machineNumber: 'M-006', name: "Compactor", stage: "Mixing", area: 85000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-006', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 7, machineNumber: 'M-007', name: "Bin 200", stage: "Mixing", area: 45000, group: "Mixing Bins", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-007', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 8, machineNumber: 'M-008', name: "Bin 400", stage: "Mixing", area: 65000, group: "Mixing Bins", line: "Solids Line B", cleaningSOP: { sopName: 'SOP-008', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 9, machineNumber: 'M-009', name: "Bin 600", stage: "Mixing", area: 85000, group: "Mixing Bins", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-009', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 10, machineNumber: 'M-010', name: "Bin 800", stage: "Mixing", area: 105000, group: "Mixing Bins", line: "Sterile Line", cleaningSOP: { sopName: 'SOP-010', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 11, machineNumber: 'M-011', name: "Jcmco", stage: "Compression", area: 150000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-011', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 12, machineNumber: 'M-012', name: "Natoli", stage: "Compression", area: 165000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-012', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 13, machineNumber: 'M-013', name: "Korsch", stage: "Compression", area: 180000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-013', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 14, machineNumber: 'M-014', name: "Coat", stage: "Coating", area: 110000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-014', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 15, machineNumber: 'M-015', name: "jar filling", stage: "Filling", area: 75000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-015', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
+    { id: 16, machineNumber: 'M-016', name: "Bliste", stage: "Packing", area: 220000, group: "", line: "Shared", cleaningSOP: { sopName: 'SOP-016', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } }
 ];
 
 export let machineStageDisplayOrder = ['Weighing', 'Mixing', 'Compression', 'Coating', 'Filling', 'Checking', 'Labeling', 'Packing', 'Other'];
