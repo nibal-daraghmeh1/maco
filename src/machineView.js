@@ -325,6 +325,7 @@ export function renderMachinesTable() {
                     <td class="px-4 py-3 whitespace-nowrap">
                         <div class="flex items-center gap-x-2 no-print">
                             <button onclick="showAddProductsToMachineModal(${machine.id})" class="p-1 text-blue-500" title="Assign Products to this Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></button>
+                            <button onclick="generateSampleLocationReport(${machine.id})" class="p-1 text-purple-600" title="Generate Sample Location Report"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M3 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/></svg></button>
                             <button onclick="showMachineModal(${machine.id})" class="p-1" style="color: var(--text-secondary);" title="Edit Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zM12.879 4.379L11 2.5 4.939 8.561a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.121L12.879 4.379z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></button>
                             <button onclick="deleteMachine(${machine.id})" class="p-1 text-red-500" title="Delete Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3V2h11v1h-11z"/></svg></button>
                         </div>
@@ -1998,6 +1999,224 @@ window.openMachineSOPFile = function(machineId) {
     }
 };
 
+// Calculate RPN for a sample location
+function calculateLocationRPN(location) {
+    // RPN = Hard to Clean × Accessibility for Cleaning × Accessibility for Sampling × Visibility
+    return location.hardToClean * location.accessibilityForCleaning * location.accessibilityForSampling * location.visibility;
+}
+
+// Determine number of samples based on RPN using the scoring criteria
+function getNumberOfSamples(rpn) {
+    // Synchronous fallback based on standard ranges
+    if (rpn >= 1 && rpn <= 27) return 1;
+    else if (rpn >= 36 && rpn <= 54) return 2;
+    else if (rpn >= 81) return 3;
+    else return 1; // Default
+}
+
+// Generate Sample Location Report for a machine
+export function generateSampleLocationReport(machineId) {
+    import('./ui.js').then(ui => {
+        const { showLoader, hideLoader, showCustomAlert } = ui;
+        
+        showLoader();
+        
+        try {
+            const machine = state.machines.find(m => m.id === parseInt(machineId));
+            if (!machine) {
+                throw new Error('Machine not found');
+            }
+            
+            if (!machine.sampleLocations || machine.sampleLocations.length === 0) {
+                showCustomAlert("No Sample Locations", `No sample locations defined for ${machine.name}. Please contact administrator to add sample location data.`);
+                return;
+            }
+            
+            // Create a new window for the report
+            const reportWindow = window.open('', '_blank', 'width=1200,height=800');
+            
+            // Calculate RPN and samples for each location
+            const processedLocations = machine.sampleLocations.map(location => {
+                const rpn = calculateLocationRPN(location);
+                const samples = getNumberOfSamples(rpn);
+                return {
+                    ...location,
+                    rpn: rpn,
+                    numberOfSamples: samples
+                };
+            });
+            
+            // Generate HTML report
+            const reportHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Location Report - ${machine.name}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .report-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+        .report-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .equipment-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #2563eb;
+        }
+        .description {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .sample-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 12px;
+        }
+        .sample-table th,
+        .sample-table td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .sample-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .sample-table td {
+            background-color: white;
+        }
+        .location-cell {
+            text-align: left;
+            font-weight: bold;
+            min-width: 120px;
+        }
+        .material-cell {
+            text-align: left;
+            min-width: 100px;
+        }
+        .rpn-cell {
+            background-color: #fef3c7;
+            font-weight: bold;
+        }
+        .samples-cell {
+            background-color: #dbeafe;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        .print-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .print-btn:hover {
+            background-color: #1d4ed8;
+        }
+        @media print {
+            .print-btn { display: none; }
+            body { background-color: white; }
+            .report-container { 
+                box-shadow: none; 
+                padding: 0;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <button class="print-btn" onclick="window.print()">🖨️ Print Report</button>
+        
+        <div class="report-header">
+            <div class="report-title">Sample Location and Number of Samples</div>
+        </div>
+        
+        <div class="equipment-name">Equipment Name: ${machine.name.toUpperCase()}</div>
+        <div class="description">
+            Determine the Number of samples must be taken from each location in this machine according to RPN study.
+        </div>
+        
+        <table class="sample-table">
+            <thead>
+                <tr>
+                    <th class="location-cell">Location</th>
+                    <th class="material-cell">Material of Construction</th>
+                    <th>Area<br/>(cm²)</th>
+                    <th>Hard to Clean</th>
+                    <th>Not Accessible<br/>for Cleaning</th>
+                    <th>Not Accessible<br/>for Sampling</th>
+                    <th>Not Visible</th>
+                    <th>RPN</th>
+                    <th>No. of samples</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${processedLocations.map(location => `
+                    <tr>
+                        <td class="location-cell">${location.location}</td>
+                        <td class="material-cell">${location.material}</td>
+                        <td>${location.area || '_'}</td>
+                        <td>${location.hardToClean}</td>
+                        <td>${location.accessibilityForCleaning}</td>
+                        <td>${location.accessibilityForSampling}</td>
+                        <td>${location.visibility}</td>
+                        <td class="rpn-cell">${location.rpn}</td>
+                        <td class="samples-cell">${location.numberOfSamples}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 30px; font-size: 12px; color: #666;">
+            <p><strong>Note:</strong> RPN is calculated as: Hard to Clean × Not Accessible for Cleaning × Not Accessible for Sampling × Not Visible</p>
+            <p><strong>Sample Guidelines:</strong> 1-27 RPN = 1 Sample | 36-54 RPN = 2 Samples | 81+ RPN = 3 Samples</p>
+        </div>
+    </div>
+</body>
+</html>`;
+            
+            reportWindow.document.write(reportHTML);
+            reportWindow.document.close();
+            
+        } catch (error) {
+            console.error('Error generating sample location report:', error);
+            showCustomAlert("Error", "Failed to generate sample location report: " + error.message);
+        } finally {
+            hideLoader();
+        }
+    });
+}
+
 // Make functions globally available
 window.exportMachineProductsToExcel = exportMachineProductsToExcel;
 window.printMachineProducts = printMachineProducts;
@@ -2005,3 +2224,4 @@ window.handleSOPFileUpload = handleSOPFileUpload;
 window.removeSOPFile = removeSOPFile;
 window.openCurrentSOP = openCurrentSOP;
 window.editCurrentSOP = editCurrentSOP;
+window.generateSampleLocationReport = generateSampleLocationReport;

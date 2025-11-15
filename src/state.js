@@ -12,22 +12,76 @@ export let products = [
 ];
 
 export let machines = [
-    { id: 1, machineNumber: 'M-001', name: "weighing tool", stage: "Weighing", area: 55000, group: "", line: "Shared", cleaningSOP: { sopName: 'SOP-001', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 2, machineNumber: 'M-002', name: "nin mill", stage: "Milling", area: 35000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-002', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 3, machineNumber: 'M-003', name: "fitz mill", stage: "Milling", area: 42000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-003', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 4, machineNumber: 'M-004', name: "FBD", stage: "Mixing", area: 120000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-004', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 5, machineNumber: 'M-005', name: "Glatt", stage: "Mixing", area: 95000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-005', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 6, machineNumber: 'M-006', name: "Compactor", stage: "Mixing", area: 85000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-006', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 7, machineNumber: 'M-007', name: "Bin 200", stage: "Mixing", area: 45000, group: "Mixing Bins", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-007', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 8, machineNumber: 'M-008', name: "Bin 400", stage: "Mixing", area: 65000, group: "Mixing Bins", line: "Solids Line B", cleaningSOP: { sopName: 'SOP-008', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 9, machineNumber: 'M-009', name: "Bin 600", stage: "Mixing", area: 85000, group: "Mixing Bins", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-009', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 10, machineNumber: 'M-010', name: "Bin 800", stage: "Mixing", area: 105000, group: "Mixing Bins", line: "Sterile Line", cleaningSOP: { sopName: 'SOP-010', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 11, machineNumber: 'M-011', name: "Jcmco", stage: "Compression", area: 150000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-011', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 12, machineNumber: 'M-012', name: "Natoli", stage: "Compression", area: 165000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-012', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 13, machineNumber: 'M-013', name: "Korsch", stage: "Compression", area: 180000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-013', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 14, machineNumber: 'M-014', name: "Coat", stage: "Coating", area: 110000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-014', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 15, machineNumber: 'M-015', name: "jar filling", stage: "Filling", area: 75000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-015', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } },
-    { id: 16, machineNumber: 'M-016', name: "Bliste", stage: "Packing", area: 220000, group: "", line: "Shared", cleaningSOP: { sopName: 'SOP-016', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null } }
+    { 
+        id: 1, 
+        machineNumber: 'M-001', 
+        name: "weighing tool", 
+        stage: "Weighing", 
+        area: 55000, 
+        group: "", 
+        line: "Shared", 
+        cleaningSOP: { sopName: 'SOP-001', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
+        sampleLocations: [
+            { location: "Scale Platform", material: "Stainless steel", area: 2500, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 },
+            { location: "Load Cell Area", material: "Stainless steel", area: 800, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
+            { location: "Display Unit", material: "Plastic/Steel", area: 400, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 },
+            { location: "Calibration Weights Holder", material: "Stainless steel", area: 600, hardToClean: 2, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 2 }
+        ]
+    },
+    { 
+        id: 2, 
+        machineNumber: 'M-002', 
+        name: "nin mill", 
+        stage: "Milling", 
+        area: 35000, 
+        group: "", 
+        line: "Solids Line A", 
+        cleaningSOP: { sopName: 'SOP-002', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
+        sampleLocations: [
+            { location: "Left blade edge", material: "Stainless steel", area: 3136, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 1 },
+            { location: "Blade holder surface", material: "Stainless steel", area: 2000, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
+            { location: "Blades box inside", material: "Stainless steel", area: 1500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
+            { location: "Right blade edge", material: "Stainless steel", area: 3136, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 1 },
+            { location: "Nin mill Stainless Steel sieve", material: "Stainless steel", area: 1904, hardToClean: 3, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
+            { location: "External Hopper", material: "Stainless steel", area: 5596, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 3 },
+            { location: "Inlet Hopper", material: "Stainless steel", area: 3000, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
+            { location: "Inlet Valve", material: "Stainless steel", area: 800, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
+            { location: "Discharge Tube", material: "Stainless steel", area: 1200, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
+            { location: "Wall", material: "_", area: null, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 }
+        ]
+    },
+    { id: 3, machineNumber: 'M-003', name: "fitz mill", stage: "Milling", area: 42000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-003', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { 
+        id: 4, 
+        machineNumber: 'M-004', 
+        name: "FBD", 
+        stage: "Mixing", 
+        area: 120000, 
+        group: "", 
+        line: "Solids Line A", 
+        cleaningSOP: { sopName: 'SOP-004', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
+        sampleLocations: [
+            { location: "Product Bowl Interior", material: "Stainless steel", area: 8500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
+            { location: "Air Distribution Plate", material: "Stainless steel", area: 1200, hardToClean: 3, accessibilityForCleaning: 3, accessibilityForSampling: 2, visibility: 3 },
+            { location: "Expansion Chamber", material: "Stainless steel", area: 4500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
+            { location: "Filter Bags", material: "Polyester/PTFE", area: 2400, hardToClean: 3, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
+            { location: "Inlet Air Ducts", material: "Stainless steel", area: 1800, hardToClean: 2, accessibilityForCleaning: 3, accessibilityForSampling: 3, visibility: 3 },
+            { location: "Discharge Valve", material: "Stainless steel", area: 600, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
+            { location: "Product Container", material: "Stainless steel", area: 3200, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 }
+        ]
+    },
+    { id: 5, machineNumber: 'M-005', name: "Glatt", stage: "Mixing", area: 95000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-005', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 6, machineNumber: 'M-006', name: "Compactor", stage: "Mixing", area: 85000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-006', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 7, machineNumber: 'M-007', name: "Bin 200", stage: "Mixing", area: 45000, group: "Mixing Bins", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-007', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 8, machineNumber: 'M-008', name: "Bin 400", stage: "Mixing", area: 65000, group: "Mixing Bins", line: "Solids Line B", cleaningSOP: { sopName: 'SOP-008', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 9, machineNumber: 'M-009', name: "Bin 600", stage: "Mixing", area: 85000, group: "Mixing Bins", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-009', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 10, machineNumber: 'M-010', name: "Bin 800", stage: "Mixing", area: 105000, group: "Mixing Bins", line: "Sterile Line", cleaningSOP: { sopName: 'SOP-010', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 11, machineNumber: 'M-011', name: "Jcmco", stage: "Compression", area: 150000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-011', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 12, machineNumber: 'M-012', name: "Natoli", stage: "Compression", area: 165000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-012', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 13, machineNumber: 'M-013', name: "Korsch", stage: "Compression", area: 180000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-013', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 14, machineNumber: 'M-014', name: "Coat", stage: "Coating", area: 110000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-014', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 15, machineNumber: 'M-015', name: "jar filling", stage: "Filling", area: 75000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-015', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 16, machineNumber: 'M-016', name: "Bliste", stage: "Packing", area: 220000, group: "", line: "Shared", cleaningSOP: { sopName: 'SOP-016', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] }
 ];
 
 export let machineStageDisplayOrder = ['Weighing', 'Mixing', 'Compression', 'Coating', 'Filling', 'Checking', 'Labeling', 'Packing', 'Other'];
@@ -110,6 +164,10 @@ export let scoringCriteria = {
     cleanability: { title: "Cleanability Rating", defaultScore: 2, type: "exactMatch", criteria: [ { text: "Easy", score: 1 }, { text: "Medium", score: 2 }, { text: "Hard", score: 3 } ] },
     toxicityLd50: { title: "Toxicity Rating (LD50)", defaultScore: 3, type: "range", criteria: [ { text: ">5000 mg/kg", score: 1, lowerBound: 5000, comparison: "greater_exclusive" }, { text: "500-5000 mg/kg", score: 2, lowerBound: 500, upperBound: 5000, comparison: "between_inclusive_both" }, { text: "50-499 mg/kg", score: 3, lowerBound: 50, upperBound: 499, comparison: "between_inclusive_both" }, { text: "1-49 mg/kg", score: 4, lowerBound: 1, upperBound: 49, comparison: "between_inclusive_both" }, { text: "<1 mg/kg", score: 5, upperBound: 1, comparison: "less_exclusive" } ] },
     toxicityPde: { title: "PDE Rating (mg/day)", defaultScore: 3, type: "range", criteria: [ { text: "≤ 0.001", score: 10, upperBound: 0.001, comparison: "less_inclusive" }, { text: ">0.001 – ≤0.01", score: 9, lowerBound: 0.001, upperBound: 0.01, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">0.01 – ≤0.1", score: 8, lowerBound: 0.01, upperBound: 0.1, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">0.1 – ≤1", score: 7, lowerBound: 0.1, upperBound: 1, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">1 – ≤10", score: 6, lowerBound: 1, upperBound: 10, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">10 – ≤100", score: 5, lowerBound: 10, upperBound: 100, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">100 – ≤1000", score: 4, lowerBound: 100, upperBound: 1000, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">1000", score: 3, lowerBound: 1000, comparison: "greater_exclusive"} ] },
+    hardToClean: { title: "Hard to Clean Rating", defaultScore: 2, type: "exactMatch", criteria: [ { text: "Low", score: 1 }, { text: "Medium", score: 2 }, { text: "High", score: 3 } ] },
+    accessibility: { title: "Accessibility Rating", defaultScore: 2, type: "exactMatch", criteria: [ { text: "Low", score: 1 }, { text: "Medium", score: 2 }, { text: "High", score: 3 } ] },
+    visibility: { title: "Visibility Rating", defaultScore: 2, type: "exactMatch", criteria: [ { text: "Low", score: 1 }, { text: "Medium", score: 2 }, { text: "High", score: 3 } ] },
+    numberOfSamples: { title: "Number of Samples (RPN Based)", defaultScore: 1, type: "rpn_samples", criteria: [ { text: "1-27 RPN = 1 Sample", samples: 1, rpnMin: 1, rpnMax: 27 }, { text: "36-54 RPN = 2 Samples", samples: 2, rpnMin: 36, rpnMax: 54 }, { text: "81 RPN = 3 Samples", samples: 3, rpnMin: 81, rpnMax: 81 } ] },
     rpnRating: { title: "RPN Rating", type: "rpn_threshold", criteria: [ { rangeDescription: "1-20", rating: "Low", min: 1, max: 20 },{ rangeDescription: "21-50", rating: "Medium", min: 21, max: 50 },{ rangeDescription: "51 and more", rating: "High", min: 51, max: Infinity } ] }
 };
 

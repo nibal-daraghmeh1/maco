@@ -68,7 +68,23 @@ export function loadAllDataFromLocalStorage() {
 
     if (savedProducts) { try { state.setProducts(JSON.parse(savedProducts)); } catch (e) { console.error("Error loading products", e); } }
     if (savedMachines) { try { state.setMachines(JSON.parse(savedMachines)); } catch (e) { console.error("Error loading machines", e); } }
-    if (savedCriteria) { try { state.setScoringCriteria(JSON.parse(savedCriteria)); } catch (e) { console.error("Error loading scoring criteria", e); } }
+    
+    // Check if saved criteria has the new scoring criteria, if not, use defaults
+    if (savedCriteria) { 
+        try { 
+            const parsedCriteria = JSON.parse(savedCriteria);
+            // Check if new criteria exist
+            if (!parsedCriteria.hardToClean || !parsedCriteria.accessibility || !parsedCriteria.visibility || !parsedCriteria.numberOfSamples) {
+                console.log("Missing new scoring criteria, using defaults from state");
+                // Don't load from localStorage, keep the new criteria from state.js
+            } else {
+                state.setScoringCriteria(parsedCriteria); 
+            }
+        } catch (e) { 
+            console.error("Error loading scoring criteria", e); 
+        } 
+    }
+    
     if (savedDetergents) { try { state.setDetergentIngredients(JSON.parse(savedDetergents)); } catch (e) { console.error("Error loading detergent ingredients", e); } }
     if (savedStageOrder) { try { state.setMachineStageDisplayOrder(JSON.parse(savedStageOrder)); } catch (e) { console.error("Error loading machine stage order", e); } }
 }
@@ -681,6 +697,32 @@ export function importFromJson(event) {
     const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function (e) { try { const data = JSON.parse(e.target.result); if (data && data.products && data.scoringCriteria && data.machines) { state.setProducts(data.products); state.setMachines(data.machines); state.setScoringCriteria(data.scoringCriteria); if (data.detergentIngredients) state.setDetergentIngredients(data.detergentIngredients); saveStateForUndo(); fullAppRender(); showCustomAlert("Success", "Data imported successfully."); } else { showCustomAlert("Error", "Invalid JSON file structure."); } } catch (err) { showCustomAlert("Error", "Failed to parse JSON file."); } finally { event.target.value = ''; } }; reader.readAsText(file);
 }
 
+// Reset scoring criteria to defaults (includes new criteria)
+export function resetScoringCriteriaToDefaults() {
+    showLoader();
+    try {
+        // Remove the localStorage item to force using new defaults
+        localStorage.removeItem('macoScoringCriteria');
+        
+        // The criteria will be loaded from state.js defaults
+        import('./state.js').then(stateModule => {
+            // Force reload the page to apply the new criteria
+            showCustomAlert("Reset Complete", "Scoring criteria has been reset to include new criteria. The page will refresh.");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        });
+    } catch (error) {
+        console.error('Error resetting scoring criteria:', error);
+        showCustomAlert("Error", "Failed to reset scoring criteria. Please try refreshing the page manually.");
+    } finally {
+        hideLoader();
+    }
+}
+
+// Expose the reset function globally
+window.resetScoringCriteriaToDefaults = resetScoringCriteriaToDefaults;
+
 
 // --- FORM HELPERS ---
 export function toggleOtherProductType(selectElement, containerId) {
@@ -785,67 +827,75 @@ export function exportWorstCaseToExcel(selectedTrain = 'all') {
     showLoader();
     
     import('./utils.js').then(utils => {
-        const { getProductTrainId, calculateScores, getToxicityPreference } = utils;
+        const { getTrainsGroupedByLine, getConsistentTrainOrder, calculateScores, getToxicityPreference } = utils;
         
         const dataForExport = [];
         
-        // Get the current filtered products from worst case view
-        let productsToExport = state.viewProducts['worstCaseProducts'] || state.products;
+        // Use the same data source as renderWorstCaseByTrain
+        let linesWithTrains = getTrainsGroupedByLine();
         
-        if (productsToExport.length === 0) {
+        // Apply the same line filtering logic as the view
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        if (!linesWithTrains || linesWithTrains.length === 0) {
             hideLoader();
-            showCustomAlert("No Data", "There are no products in the worst case view to export.");
+            showCustomAlert("No Data", "There are no trains to export for the current line selection.");
             return;
         }
         
-        // Group products by train for export
-        const productsByTrain = {};
-        productsToExport.forEach(product => {
-            const trainId = getProductTrainNumber(product);
-            if (trainId === 'N/A') return;
-            if (!productsByTrain[trainId]) {
-                productsByTrain[trainId] = [];
-            }
-            productsByTrain[trainId].push(product);
+        // Flatten all trains and apply consistent ordering (same as view)
+        const allTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                allTrains.push({
+                    ...train,
+                    line: train.line
+                });
+            });
         });
         
-        // Filter by selected trains
-        let trainsToExport = productsByTrain;
+        // Apply consistent train ordering (same as view)
+        const orderedTrains = getConsistentTrainOrder(allTrains);
+        
+        // Sort trains by number for consistent Excel export
+        orderedTrains.sort((a, b) => (a.number || a.id) - (b.number || b.id));
+        
+        if (orderedTrains.length === 0) {
+            hideLoader();
+            showCustomAlert("No Data", "There are no trains to export for the current selection.");
+            return;
+        }
+        
+        // Filter by selected trains if specified
+        let trainsToExport = orderedTrains;
         if (selectedTrain !== 'all') {
-            trainsToExport = {};
             if (Array.isArray(selectedTrain)) {
                 // Multiple trains selected
-                selectedTrain.forEach(trainId => {
-                    if (productsByTrain[trainId]) {
-                        trainsToExport[trainId] = productsByTrain[trainId];
-                    }
-                });
+                trainsToExport = orderedTrains.filter(train => selectedTrain.includes(String(train.number)));
             } else {
                 // Single train selected (backward compatibility)
-                if (productsByTrain[selectedTrain]) {
-                    trainsToExport = { [selectedTrain]: productsByTrain[selectedTrain] };
-                }
+                trainsToExport = orderedTrains.filter(train => String(train.number) === String(selectedTrain));
             }
             
-            if (Object.keys(trainsToExport).length === 0) {
+            if (trainsToExport.length === 0) {
                 hideLoader();
                 const trainText = Array.isArray(selectedTrain) ? `Trains ${selectedTrain.join(', ')}` : `Train ${selectedTrain}`;
-                showCustomAlert("No Data", `${trainText} not found or has no products.`);
+                showCustomAlert("No Data", `${trainText} not found in current line selection.`);
                 return;
             }
         }
         
         const toxicityPreference = getToxicityPreference();
         
-        // Sort trains by ID
-        const sortedTrainIds = Object.keys(trainsToExport).sort((a, b) => a - b);
-        
-        sortedTrainIds.forEach(trainId => {
-            const trainProducts = trainsToExport[trainId];
+        trainsToExport.forEach(train => {
+            const trainProducts = train.products;
             
             // Add train header row
             dataForExport.push({
-                "Train": `Train ${trainId} - Worst Case Analysis`,
+                "Train": `Train ${train.number} - Worst Case Analysis`,
                 "Product Code": '',
                 "Product Name": '',
                 "Highest RPN": '',
@@ -1040,25 +1090,60 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
     showLoader();
     
     import('./utils.js').then(utils => {
-        const { getTrainData, getWorstCaseProductType, getMacoPerSwabForTrain, getLargestEssaForLineAndDosageForm } = utils;
+        const { getTrainData, getTrainsGroupedByLine, getWorstCaseProductType, getMacoPerSwabForTrain, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder } = utils;
         
-        const trainData = getTrainData();
+        // Use the same data source as renderMacoForTrains
+        let linesWithTrains = getTrainsGroupedByLine();
         
-        if (trainData.length === 0) {
+        // Apply the same line filtering logic as the view
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        if (!linesWithTrains || linesWithTrains.length === 0) {
             hideLoader();
-            showCustomAlert("No Data", "There are no trains to export. Assign machines to products first.");
+            showCustomAlert("No Data", "There are no trains to export for the current line selection.");
             return;
         }
         
+        // Get full train data for calculations and merge it properly (same as view)
+        const fullTrainData = getTrainData();
+        const fullTrainByKey = {};
+        fullTrainData.forEach(t => { if (t.key) fullTrainByKey[t.key] = t; });
+        
+        // Flatten trains and enhance with calculated metrics (same as view)
+        const enhancedTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                const fullTrain = fullTrainByKey[train.key];
+                if (!fullTrain) return;
+                
+                const enhancedTrain = {
+                    ...train,
+                    id: fullTrain.id,
+                    essa: fullTrain.essa,
+                    // Add other properties from fullTrain as needed
+                    ...fullTrain
+                };
+                enhancedTrains.push(enhancedTrain);
+            });
+        });
+        
+        // Apply consistent train ordering (same as view)
+        let trainsToExport = getConsistentTrainOrder(enhancedTrains);
+        
+        // Sort trains by number for consistent Excel export
+        trainsToExport.sort((a, b) => (a.number || a.id) - (b.number || b.id));
+        
         // Filter trains based on selection
-        let trainsToExport = trainData;
         if (selectedTrain !== 'all') {
             if (Array.isArray(selectedTrain)) {
                 // Multiple trains selected
-                trainsToExport = trainData.filter(train => selectedTrain.includes(String(train.id)));
+                trainsToExport = trainsToExport.filter(train => selectedTrain.includes(String(train.id)));
             } else {
                 // Single train selected (backward compatibility)
-                trainsToExport = trainData.filter(train => String(train.id) === String(selectedTrain));
+                trainsToExport = trainsToExport.filter(train => String(train.id) === String(selectedTrain));
             }
         }
         
@@ -1237,22 +1322,57 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
     showLoader();
     
     import('./utils.js').then(utils => {
-        const { getTrainData, getWorstCaseProductType } = utils;
+        const { getTrainData, getTrainsGroupedByLine, getWorstCaseProductType, getConsistentTrainOrder } = utils;
         
-        let trainData = getTrainData();
+        // Use the same data source as renderDetergentMaco
+        const baseTrainData = getTrainData();
+        let linesWithTrains = getTrainsGroupedByLine();
+
+        // Apply the same line filtering logic as the view
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+
+        if (!linesWithTrains || linesWithTrains.length === 0) {
+            hideLoader();
+            showCustomAlert("No Data", "There are no trains to export for the current line selection.");
+            return;
+        }
+
+        // Map baseTrainData by key for merging (same as view)
+        const trainByKey = {};
+        baseTrainData.forEach(t => { if (t.key) trainByKey[t.key] = t; });
+
+        // Flatten trains for processing (same as view)
+        const mergedTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(t => {
+                const computed = trainByKey[t.key];
+                if (!computed || !computed.id) return;
+                const merged = { ...t, ...computed };
+                mergedTrains.push(merged);
+            });
+        });
+
+        // Apply consistent train ordering (same as view)
+        let trainsToExport = getConsistentTrainOrder(mergedTrains);
+
+        // Sort trains by number for consistent Excel export
+        trainsToExport.sort((a, b) => (a.number || a.id) - (b.number || b.id));
 
         // Filter trains if a selection was provided
         if (selectedTrain !== 'all') {
             if (Array.isArray(selectedTrain)) {
-                trainData = trainData.filter(train => selectedTrain.includes(String(train.id)));
+                trainsToExport = trainsToExport.filter(train => selectedTrain.includes(String(train.id)));
             } else {
-                trainData = trainData.filter(train => String(train.id) === String(selectedTrain));
+                trainsToExport = trainsToExport.filter(train => String(train.id) === String(selectedTrain));
             }
         }
         
-        if (trainData.length === 0) {
+        if (trainsToExport.length === 0) {
             hideLoader();
-            showCustomAlert("No Data", "There are no trains to export. Assign machines to products first.");
+            showCustomAlert("No Data", "There are no trains to export for the current selection.");
             return;
         }
         
@@ -1272,7 +1392,7 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
         const minLd50 = ld50Values.length > 0 ? Math.min(...ld50Values) : 0;
         const detergentNames = state.detergentIngredients.map(i => i.name).filter(name => name.trim() !== '').join(', ');
         
-        trainData.forEach(train => {
+        trainsToExport.forEach(train => {
             const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
             const sfConfig = state.safetyFactorConfig[worstCaseType] || state.safetyFactorConfig['Other'];
             
@@ -1284,7 +1404,7 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
             const adi = (5e-4 * minLd50 * bodyWeight) / sf;
             const maco = adi * train.minBsMddRatio;
             // Calculate line-specific largest ESSA for this train
-            const lineLargestEssa = utils.getLargestEssaForLineAndDosageForm(train, trainData);
+            const lineLargestEssa = utils.getLargestEssaForLineAndDosageForm(train, trainsToExport);
             const macoPerArea = lineLargestEssa > 0 ? maco / lineLargestEssa : 0;
             const macoPerSwab = macoPerArea * train.assumedSsa;
             
@@ -1376,25 +1496,58 @@ export function exportTrainSummaryToExcel(selectedTrain = 'all') {
     showLoader();
     
     import('./utils.js').then(utils => {
-        const { getTrainData } = utils;
+        const { getTrainData, getTrainsGroupedByLine, getConsistentTrainOrder } = utils;
         
-        const trainData = getTrainData();
+        // Use the same filtering logic as other export functions
+        let linesWithTrains = getTrainsGroupedByLine();
         
-        if (trainData.length === 0) {
+        // Apply current line filter
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        if (!linesWithTrains || linesWithTrains.length === 0) {
             hideLoader();
-            showCustomAlert("No Data", "There are no trains to export. Assign machines to products first.");
+            showCustomAlert("No Data", "There are no trains to export for the current line selection.");
             return;
         }
         
+        // Get full train data for merging
+        const fullTrainData = getTrainData();
+        const fullTrainByKey = {};
+        fullTrainData.forEach(t => { if (t.key) fullTrainByKey[t.key] = t; });
+        
+        // Flatten and get enhanced trains
+        const enhancedTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                const fullTrain = fullTrainByKey[train.key];
+                if (fullTrain) {
+                    const enhancedTrain = { ...train, id: fullTrain.id, ...fullTrain };
+                    enhancedTrains.push(enhancedTrain);
+                }
+            });
+        });
+        
+        if (enhancedTrains.length === 0) {
+            hideLoader();
+            showCustomAlert("No Data", "There are no trains to export for the current line selection.");
+            return;
+        }
+        
+        // Order and sort trains
+        let trainsToExport = getConsistentTrainOrder(enhancedTrains);
+        trainsToExport.sort((a, b) => (a.number || a.id) - (b.number || b.id)); // Sort by train number
+        
         // Filter trains based on selection
-        let trainsToExport = trainData;
         if (selectedTrain !== 'all') {
             if (Array.isArray(selectedTrain)) {
                 // Multiple trains selected
-                trainsToExport = trainData.filter(train => selectedTrain.includes(String(train.id)));
+                trainsToExport = trainsToExport.filter(train => selectedTrain.includes(String(train.id)));
             } else {
                 // Single train selected (backward compatibility)
-                trainsToExport = trainData.filter(train => String(train.id) === String(selectedTrain));
+                trainsToExport = trainsToExport.filter(train => String(train.id) === String(selectedTrain));
             }
         }
         

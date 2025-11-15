@@ -27,6 +27,45 @@ function formatSmallNumber(value, unit = '') {
     }
 }
 
+// Group-level expand/collapse functionality for dosage form groups
+window.toggleDosageGroup = function(groupId) {
+    const contentElement = document.getElementById(`group-content-${groupId}`);
+    const toggleElement = document.getElementById(`group-toggle-${groupId}`);
+    
+    if (!contentElement || !toggleElement) {
+        console.warn(`Group elements not found for groupId: ${groupId}`);
+        return;
+    }
+    
+    const isCurrentlyCollapsed = contentElement.classList.contains('collapsed');
+    
+    if (isCurrentlyCollapsed) {
+        // Expand the group
+        contentElement.classList.remove('collapsed');
+        toggleElement.textContent = '▼';
+        toggleElement.style.transform = 'rotate(0deg)';
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Remove maxHeight after animation completes to allow dynamic resizing
+        setTimeout(() => {
+            if (!contentElement.classList.contains('collapsed')) {
+                contentElement.style.maxHeight = 'none';
+            }
+        }, 300);
+    } else {
+        // Collapse the group
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Force reflow and then start collapsing
+        requestAnimationFrame(() => {
+            contentElement.classList.add('collapsed');
+            toggleElement.textContent = '▶';
+            toggleElement.style.transform = 'rotate(-90deg)';
+            contentElement.style.maxHeight = '0px';
+        });
+    }
+};
+
 export function renderMacoForTrains(lineFilter = null) {
     const container = document.getElementById('trainsContainer');
     const noTrainsMsg = document.getElementById('noTrainsMessage');
@@ -211,10 +250,31 @@ export function renderMacoForTrains(lineFilter = null) {
         });
         
         sortedDosageForms.forEach(dosage => {
+            // Create unique group ID for this dosage form
+            const groupId = `${lineName.replace(/\s+/g, '')}-${dosage.replace(/\s+/g, '')}`;
+            const isGroupCollapsed = false; // Default to expanded
+            
+            // Create clickable dosage form header with expand/collapse functionality
             const dosageHeader = document.createElement('div');
-            dosageHeader.className = 'pl-4 mb-3';
-            dosageHeader.innerHTML = `<h4 class="text-md font-semibold">${dosage}</h4>`;
+            dosageHeader.className = 'dosage-group-header pl-4 mb-3 cursor-pointer select-none';
+            dosageHeader.onclick = () => toggleDosageGroup(groupId);
+            dosageHeader.innerHTML = `
+                <div class="flex items-center justify-between py-2 px-3 rounded-lg border transition-all hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color); background-color: transparent;">
+                    <h4 class="text-md font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+                        <span class="group-toggle-icon transition-transform duration-200" id="group-toggle-${groupId}">${isGroupCollapsed ? '▶' : '▼'}</span>
+                        ${dosage}
+                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: var(--bg-accent); color: var(--text-secondary);">${byDosage[dosage].length} train${byDosage[dosage].length !== 1 ? 's' : ''}</span>
+                    </h4>
+                </div>
+            `;
             container.appendChild(dosageHeader);
+            
+            // Create container for all trains in this dosage form group
+            const trainsContainer = document.createElement('div');
+            trainsContainer.className = `dosage-group-content transition-all duration-300 ${isGroupCollapsed ? 'collapsed' : ''}`;
+            trainsContainer.id = `group-content-${groupId}`;
+            trainsContainer.style.overflow = 'hidden';
+            container.appendChild(trainsContainer);
 
             // Find the train with largest ESSA in this dosage group
             const trainsInDosage = byDosage[dosage];
@@ -467,7 +527,7 @@ export function renderMacoForTrains(lineFilter = null) {
                             </div>
                         `;
                 
-                container.appendChild(trainCard);
+                trainsContainer.appendChild(trainCard);
                 recalculateProductMacoForTrain(train.id, undefined, train.dosageForm);
             });
         });
@@ -795,15 +855,40 @@ export function toggleMacoPrintDropdown() {
 
 function populateMacoTrainOptions() {
     import('./utils.js').then(utils => {
-        const { getTrainData, getTrainIdToLineNumberMap } = utils;
-        const trainData = getTrainData();
+        const { getTrainData, getTrainsGroupedByLine, getTrainIdToLineNumberMap } = utils;
+        
+        // Use the same filtering logic as renderMacoForTrains
+        let linesWithTrains = getTrainsGroupedByLine();
+        
+        // Apply current line filter (same as view)
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        // Get full train data for ID mapping
+        const fullTrainData = getTrainData();
+        const fullTrainByKey = {};
+        fullTrainData.forEach(t => { if (t.key) fullTrainByKey[t.key] = t; });
+        
+        // Flatten and get only visible trains (same as view)
+        const visibleTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                const fullTrain = fullTrainByKey[train.key];
+                if (fullTrain) {
+                    visibleTrains.push({ ...train, id: fullTrain.id });
+                }
+            });
+        });
+        
         const idMap = getTrainIdToLineNumberMap();
         
         // Populate export dropdown with checkboxes
         const exportContainer = document.getElementById('macoExportTrainOptions');
         if (exportContainer) {
             exportContainer.innerHTML = '';
-            trainData.forEach(train => {
+            visibleTrains.forEach(train => {
                 const labelElement = document.createElement('label');
                 labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
                 labelElement.style.color = 'var(--text-primary)';
@@ -816,7 +901,8 @@ function populateMacoTrainOptions() {
                 
                 const span = document.createElement('span');
                 const mapped = idMap.get(String(train.id));
-                span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${train.id}`;
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = mapped ? `${dosageForm} — Train ${mapped.number}` : `${dosageForm} — Train ${train.number}`;
                 
                 labelElement.appendChild(checkbox);
                 labelElement.appendChild(span);
@@ -828,7 +914,7 @@ function populateMacoTrainOptions() {
         const printContainer = document.getElementById('macoPrintTrainOptions');
         if (printContainer) {
             printContainer.innerHTML = '';
-            trainData.forEach(train => {
+            visibleTrains.forEach(train => {
                 const labelElement = document.createElement('label');
                 labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
                 labelElement.style.color = 'var(--text-primary)';
@@ -841,7 +927,8 @@ function populateMacoTrainOptions() {
                 
                 const span = document.createElement('span');
                 const mapped = idMap.get(String(train.id));
-                span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${train.id}`;
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = mapped ? `${dosageForm} — Train ${mapped.number}` : `${dosageForm} — Train ${train.number}`;
                 
                 labelElement.appendChild(checkbox);
                 labelElement.appendChild(span);

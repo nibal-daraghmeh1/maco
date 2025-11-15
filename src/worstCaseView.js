@@ -5,6 +5,45 @@ import * as state from './state.js';
 import { hideLoader, updateToggleIcons, showCustomAlert } from './ui.js';
 import { getProductTrainId, calculateScores, getRpnRatingClass, getToxicityPreference, getTrainsGroupedByLine, getConsistentTrainOrder } from './utils.js';
 
+// Group-level expand/collapse functionality for dosage form groups in Worst Case view
+window.toggleWorstCaseDosageGroup = function(groupId) {
+    const contentElement = document.getElementById(`wc-group-content-${groupId}`);
+    const toggleElement = document.getElementById(`wc-group-toggle-${groupId}`);
+    
+    if (!contentElement || !toggleElement) {
+        console.warn(`Worst Case group elements not found for groupId: ${groupId}`);
+        return;
+    }
+    
+    const isCurrentlyCollapsed = contentElement.classList.contains('collapsed');
+    
+    if (isCurrentlyCollapsed) {
+        // Expand the group
+        contentElement.classList.remove('collapsed');
+        toggleElement.textContent = '▼';
+        toggleElement.style.transform = 'rotate(0deg)';
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Remove maxHeight after animation completes to allow dynamic resizing
+        setTimeout(() => {
+            if (!contentElement.classList.contains('collapsed')) {
+                contentElement.style.maxHeight = 'none';
+            }
+        }, 300);
+    } else {
+        // Collapse the group
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Force reflow and then start collapsing
+        requestAnimationFrame(() => {
+            contentElement.classList.add('collapsed');
+            toggleElement.textContent = '▶';
+            toggleElement.style.transform = 'rotate(-90deg)';
+            contentElement.style.maxHeight = '0px';
+        });
+    }
+};
+
 
 export function handleSearchAndFilter(tabId, lineFilter = null) {
    if (tabId !== 'worstCaseProducts') return;
@@ -135,10 +174,31 @@ export function renderWorstCaseByTrain(collapsed=true, lineFilter = null) {
         });
         
         sortedDosageForms.forEach(dosage => {
-            const dosageDiv = document.createElement('div');
-            dosageDiv.className = 'pl-4 mb-3';
-            dosageDiv.innerHTML = `<h4 class="text-md font-semibold">${dosage}</h4>`;
-            container.appendChild(dosageDiv);
+            // Create unique group ID for this dosage form
+            const groupId = `${lineName.replace(/\s+/g, '')}-${dosage.replace(/\s+/g, '')}`;
+            const isGroupCollapsed = false; // Default to expanded
+            
+            // Create clickable dosage form header with expand/collapse functionality
+            const dosageHeader = document.createElement('div');
+            dosageHeader.className = 'dosage-group-header pl-4 mb-3 cursor-pointer select-none';
+            dosageHeader.onclick = () => toggleWorstCaseDosageGroup(groupId);
+            dosageHeader.innerHTML = `
+                <div class="flex items-center justify-between py-2 px-3 rounded-lg border transition-all hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color); background-color: transparent;">
+                    <h4 class="text-md font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+                        <span class="group-toggle-icon transition-transform duration-200" id="wc-group-toggle-${groupId}">${isGroupCollapsed ? '▶' : '▼'}</span>
+                        ${dosage}
+                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: var(--bg-accent); color: var(--text-secondary);">${byDosage[dosage].length} train${byDosage[dosage].length !== 1 ? 's' : ''}</span>
+                    </h4>
+                </div>
+            `;
+            container.appendChild(dosageHeader);
+            
+            // Create container for all trains in this dosage form group
+            const trainsContainer = document.createElement('div');
+            trainsContainer.className = `dosage-group-content transition-all duration-300 ${isGroupCollapsed ? 'collapsed' : ''}`;
+            trainsContainer.id = `wc-group-content-${groupId}`;
+            trainsContainer.style.overflow = 'hidden';
+            container.appendChild(trainsContainer);
 
             // find trains for this dosage and render pre-numbered cards
             byDosage[dosage].forEach(train => {
@@ -219,7 +279,7 @@ export function renderWorstCaseByTrain(collapsed=true, lineFilter = null) {
 
                 html += `</tbody></table></div></div>`;
                 trainCard.innerHTML = html;
-                container.appendChild(trainCard);
+                trainsContainer.appendChild(trainCard);
 
                 // attach sort handlers
                 const sortableHeaders = trainCard.querySelectorAll('th.sortable[data-key]');
@@ -356,72 +416,87 @@ export function toggleWorstCasePrintDropdown() {
 }
 
 function populateWorstCaseTrainOptions() {
-    // Get current filtered products
-    const productsToRender = state.viewProducts['worstCaseProducts'] || state.products;
-    
-    // Get unique train IDs
-    const trainIds = new Set();
-    productsToRender.forEach(p => {
-        const trainId = getProductTrainId(p);
-        if (trainId !== 'N/A') {
-            trainIds.add(String(trainId));
+    import('./utils.js').then(utils => {
+        const { getTrainsGroupedByLine, getConsistentTrainOrder, getTrainIdToLineNumberMap } = utils;
+        
+        // Use the same filtering logic as renderWorstCaseByTrain
+        let linesWithTrains = getTrainsGroupedByLine();
+        
+        // Apply current line filter (same as view)
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
         }
+        
+        // Flatten all trains and apply consistent ordering (same as view)
+        const allTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                allTrains.push({
+                    ...train,
+                    line: train.line
+                });
+            });
+        });
+        
+        // Apply consistent train ordering (same as view)
+        const visibleTrains = getConsistentTrainOrder(allTrains);
+        
+        // Get mapping for friendly labels
+        const idMap = getTrainIdToLineNumberMap();
+    
+        // Populate export dropdown with checkboxes
+        const exportContainer = document.getElementById('worstCaseExportTrainOptions');
+        if (exportContainer) {
+            exportContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 export-train-checkbox';
+                checkbox.value = train.number;
+                checkbox.onchange = () => updateAllTrainsCheckbox('export');
+                
+                const span = document.createElement('span');
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                exportContainer.appendChild(labelElement);
+            });
+        }
+        
+        // Populate print dropdown with checkboxes
+        const printContainer = document.getElementById('worstCasePrintTrainOptions');
+        if (printContainer) {
+            printContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 print-train-checkbox';
+                checkbox.value = train.number;
+                checkbox.onchange = () => updateAllTrainsCheckbox('print');
+                
+                const span = document.createElement('span');
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                printContainer.appendChild(labelElement);
+            });
+        }
+    }).catch(error => {
+        console.error('Error populating worst case train options:', error);
     });
-
-    const sortedTrainIds = Array.from(trainIds).sort((a, b) => parseInt(a) - parseInt(b));
-
-    // Get mapping for friendly labels
-    const idMap = getTrainIdToLineNumberMap();
-    
-    // Populate export dropdown with checkboxes
-    const exportContainer = document.getElementById('worstCaseExportTrainOptions');
-    if (exportContainer) {
-        exportContainer.innerHTML = '';
-        sortedTrainIds.forEach(trainId => {
-            const labelElement = document.createElement('label');
-            labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
-            labelElement.style.color = 'var(--text-primary)';
-            
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'mr-2 export-train-checkbox';
-            checkbox.value = trainId;
-            checkbox.onchange = () => updateAllTrainsCheckbox('export');
-            
-            const span = document.createElement('span');
-            const mapped = idMap.get(String(trainId));
-            span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${trainId}`;
-            
-            labelElement.appendChild(checkbox);
-            labelElement.appendChild(span);
-            exportContainer.appendChild(labelElement);
-        });
-    }
-    
-    // Populate print dropdown with checkboxes
-    const printContainer = document.getElementById('worstCasePrintTrainOptions');
-    if (printContainer) {
-        printContainer.innerHTML = '';
-        sortedTrainIds.forEach(trainId => {
-            const labelElement = document.createElement('label');
-            labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
-            labelElement.style.color = 'var(--text-primary)';
-            
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'mr-2 print-train-checkbox';
-            checkbox.value = trainId;
-            checkbox.onchange = () => updateAllTrainsCheckbox('print');
-            
-            const span = document.createElement('span');
-            const mapped = idMap.get(String(trainId));
-            span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${trainId}`;
-            
-            labelElement.appendChild(checkbox);
-            labelElement.appendChild(span);
-            printContainer.appendChild(labelElement);
-        });
-    }
 }
 
 // Multi-select train functions

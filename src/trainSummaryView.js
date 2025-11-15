@@ -771,55 +771,86 @@ export function toggleTrainSummaryPrintDropdown() {
 }
 
 function populateTrainSummaryTrainOptions() {
-    const trainData = getTrainData();
-    
-    // Populate export dropdown with checkboxes
-    const exportContainer = document.getElementById('trainSummaryExportTrainOptions');
-    if (exportContainer) {
-        exportContainer.innerHTML = '';
-        trainData.forEach(train => {
-            const labelElement = document.createElement('label');
-            labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
-            labelElement.style.color = 'var(--text-primary)';
-            
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'mr-2 export-trainsummary-train-checkbox';
-            checkbox.value = train.id;
-            checkbox.onchange = () => updateAllTrainSummaryTrainsCheckbox('export');
-            
-            const span = document.createElement('span');
-            span.textContent = `Train ${train.id}`;
-            
-            labelElement.appendChild(checkbox);
-            labelElement.appendChild(span);
-            exportContainer.appendChild(labelElement);
+    import('./utils.js').then(utils => {
+        const { getTrainsGroupedByLine, getTrainData } = utils;
+        
+        // Use the same filtering logic as other tabs
+        let linesWithTrains = getTrainsGroupedByLine();
+        
+        // Apply current line filter (same as view)
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        // Get full train data for ID mapping
+        const fullTrainData = getTrainData();
+        const fullTrainByKey = {};
+        fullTrainData.forEach(t => { if (t.key) fullTrainByKey[t.key] = t; });
+        
+        // Flatten and get only visible trains (same as view)
+        const visibleTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                const fullTrain = fullTrainByKey[train.key];
+                if (fullTrain) {
+                    visibleTrains.push({ ...train, id: fullTrain.id, number: fullTrain.number || fullTrain.id });
+                }
+            });
         });
-    }
-    
-    // Populate print dropdown with checkboxes
-    const printContainer = document.getElementById('trainSummaryPrintTrainOptions');
-    if (printContainer) {
-        printContainer.innerHTML = '';
-        trainData.forEach(train => {
-            const labelElement = document.createElement('label');
-            labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
-            labelElement.style.color = 'var(--text-primary)';
-            
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'mr-2 print-trainsummary-train-checkbox';
-            checkbox.value = train.id;
-            checkbox.onchange = () => updateAllTrainSummaryTrainsCheckbox('print');
-            
-            const span = document.createElement('span');
-            span.textContent = `Train ${train.id}`;
-            
-            labelElement.appendChild(checkbox);
-            labelElement.appendChild(span);
-            printContainer.appendChild(labelElement);
-        });
-    }
+        
+        // Populate export dropdown with checkboxes
+        const exportContainer = document.getElementById('trainSummaryExportTrainOptions');
+        if (exportContainer) {
+            exportContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 export-trainsummary-train-checkbox';
+                checkbox.value = train.id;
+                checkbox.onchange = () => updateAllTrainSummaryTrainsCheckbox('export');
+                
+                const span = document.createElement('span');
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                exportContainer.appendChild(labelElement);
+            });
+        }
+        
+        // Populate print dropdown with checkboxes
+        const printContainer = document.getElementById('trainSummaryPrintTrainOptions');
+        if (printContainer) {
+            printContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 print-trainsummary-train-checkbox';
+                checkbox.value = train.id;
+                checkbox.onchange = () => updateAllTrainSummaryTrainsCheckbox('print');
+                
+                const span = document.createElement('span');
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                printContainer.appendChild(labelElement);
+            });
+        }
+    }).catch(error => {
+        console.error('Error populating train summary train options:', error);
+    });
 }
 
 // Multi-select train functions for Train Summary

@@ -5,6 +5,45 @@ import * as state from './state.js';
 import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder } from './utils.js';
 import * as utils from './utils.js';
 
+// Group-level expand/collapse functionality for dosage form groups in Detergent MACO view
+window.toggleDetergentDosageGroup = function(groupId) {
+    const contentElement = document.getElementById(`dm-group-content-${groupId}`);
+    const toggleElement = document.getElementById(`dm-group-toggle-${groupId}`);
+    
+    if (!contentElement || !toggleElement) {
+        console.warn(`Detergent MACO group elements not found for groupId: ${groupId}`);
+        return;
+    }
+    
+    const isCurrentlyCollapsed = contentElement.classList.contains('collapsed');
+    
+    if (isCurrentlyCollapsed) {
+        // Expand the group
+        contentElement.classList.remove('collapsed');
+        toggleElement.textContent = '▼';
+        toggleElement.style.transform = 'rotate(0deg)';
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Remove maxHeight after animation completes to allow dynamic resizing
+        setTimeout(() => {
+            if (!contentElement.classList.contains('collapsed')) {
+                contentElement.style.maxHeight = 'none';
+            }
+        }, 300);
+    } else {
+        // Collapse the group
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Force reflow and then start collapsing
+        requestAnimationFrame(() => {
+            contentElement.classList.add('collapsed');
+            toggleElement.textContent = '▶';
+            toggleElement.style.transform = 'rotate(-90deg)';
+            contentElement.style.maxHeight = '0px';
+        });
+    }
+};
+
 // Smart number formatting that avoids showing 0 when there's actually a value
 function formatSmallNumber(value, unit = '') {
     if (value === 0 || value === null || value === undefined || isNaN(value)) {
@@ -118,10 +157,31 @@ export function renderDetergentMaco(lineFilter = null) {
         });
         
         sortedDosageForms.forEach(dosage => {
+            // Create unique group ID for this dosage form
+            const groupId = `${lineName.replace(/\s+/g, '')}-${dosage.replace(/\s+/g, '')}`;
+            const isGroupCollapsed = false; // Default to expanded
+            
+            // Create clickable dosage form header with expand/collapse functionality
             const dosageHeader = document.createElement('div');
-            dosageHeader.className = 'mb-4';
-            dosageHeader.innerHTML = `<h4 class="text-md font-medium mb-3" style="color: var(--text-secondary);">${dosage}</h4>`;
+            dosageHeader.className = 'dosage-group-header mb-4 cursor-pointer select-none';
+            dosageHeader.onclick = () => toggleDetergentDosageGroup(groupId);
+            dosageHeader.innerHTML = `
+                <div class="flex items-center justify-between py-2 px-3 rounded-lg border transition-all hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color); background-color: transparent;">
+                    <h4 class="text-md font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+                        <span class="group-toggle-icon transition-transform duration-200" id="dm-group-toggle-${groupId}">${isGroupCollapsed ? '▶' : '▼'}</span>
+                        ${dosage}
+                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: var(--bg-accent); color: var(--text-secondary);">${byDosage[dosage].length} train${byDosage[dosage].length !== 1 ? 's' : ''}</span>
+                    </h4>
+                </div>
+            `;
             container.appendChild(dosageHeader);
+            
+            // Create container for all trains in this dosage form group
+            const trainsContainer = document.createElement('div');
+            trainsContainer.className = `dosage-group-content transition-all duration-300 ${isGroupCollapsed ? 'collapsed' : ''}`;
+            trainsContainer.id = `dm-group-content-${groupId}`;
+            trainsContainer.style.overflow = 'hidden';
+            container.appendChild(trainsContainer);
 
             byDosage[dosage].forEach(train => {
         const isCollapsed = true; // All trains start collapsed
@@ -185,7 +245,7 @@ export function renderDetergentMaco(lineFilter = null) {
                         </div>
                     </div>
                 `;
-        container.appendChild(card);
+        trainsContainer.appendChild(card);
         recalculateDetergentMacoForTrain(train.id, undefined, train.dosageForm || 'unknown'); // Initial calculation
             });
         });
@@ -303,15 +363,42 @@ export function updateDetergentIngredient(id, field, value) {
 // Populate detergent train selection dropdowns for export/print
 export function populateDetergentTrainOptions() {
     import('./utils.js').then(utils => {
-        const { getTrainData, getTrainIdToLineNumberMap } = utils;
-        const trainData = getTrainData();
+        const { getTrainData, getTrainsGroupedByLine, getTrainIdToLineNumberMap, getConsistentTrainOrder } = utils;
+        
+        // Use the same filtering logic as renderDetergentMaco
+        let linesWithTrains = getTrainsGroupedByLine();
+        
+        // Apply current line filter (same as view)
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        // Get full train data for mapping (same as view)
+        const baseTrainData = getTrainData();
+        const trainByKey = {};
+        baseTrainData.forEach(t => { if (t.key) trainByKey[t.key] = t; });
+
+        // Flatten trains for processing (same as view)
+        const mergedTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(t => {
+                const computed = trainByKey[t.key];
+                if (!computed || !computed.id) return;
+                const merged = { ...t, ...computed };
+                mergedTrains.push(merged);
+            });
+        });
+
+        // Apply consistent train ordering (same as view)
+        const visibleTrains = getConsistentTrainOrder(mergedTrains);
         const idMap = getTrainIdToLineNumberMap();
 
         // Export options
         const exportContainer = document.getElementById('detergentExportTrainOptions');
         if (exportContainer) {
             exportContainer.innerHTML = '';
-            trainData.forEach(train => {
+            visibleTrains.forEach(train => {
                 const labelElement = document.createElement('label');
                 labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
                 labelElement.style.color = 'var(--text-primary)';
@@ -324,7 +411,8 @@ export function populateDetergentTrainOptions() {
 
                 const span = document.createElement('span');
                 const mapped = idMap.get(String(train.id));
-                span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${train.id}`;
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = mapped ? `${dosageForm} — Train ${mapped.number}` : `${dosageForm} — Train ${train.number}`;
 
                 labelElement.appendChild(checkbox);
                 labelElement.appendChild(span);
@@ -336,7 +424,7 @@ export function populateDetergentTrainOptions() {
         const printContainer = document.getElementById('detergentPrintTrainOptions');
         if (printContainer) {
             printContainer.innerHTML = '';
-            trainData.forEach(train => {
+            visibleTrains.forEach(train => {
                 const labelElement = document.createElement('label');
                 labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
                 labelElement.style.color = 'var(--text-primary)';
@@ -349,7 +437,8 @@ export function populateDetergentTrainOptions() {
 
                 const span = document.createElement('span');
                 const mapped = idMap.get(String(train.id));
-                span.textContent = mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${train.id}`;
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = mapped ? `${dosageForm} — Train ${mapped.number}` : `${dosageForm} — Train ${train.number}`;
 
                 labelElement.appendChild(checkbox);
                 labelElement.appendChild(span);

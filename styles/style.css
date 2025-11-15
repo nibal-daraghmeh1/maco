@@ -166,6 +166,7 @@
         
         .score-badge { padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; display: inline-block; margin-left: 4px; } .score-1, .score-2, .score-3 { background: #dcfce7; color: #166534; } .score-4, .score-5 { background: #fef9c3; color: #713f12; } .score-6 { background: #ffedd5; color: #9a3412; } .score-7 { background: #fee2e2; color: #991b1b; } .score-8 { background: #fecaca; color: #b91c1c; } .score-9 { background: #fbcfe8; color: #831843; } .score-10 { background: #e9d5ff; color: #581c87; } .score-default { background: #e5e7eb; color: #374151; }
         .rpn-rating-badge { padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; } .rpn-low { background-color: #dcfce7; color: #166534; } .rpn-medium { background-color: #fef9c3; color: #713f12; } .rpn-high { background-color: #fee2e2; color: #991b1b; } .rpn-default { background-color: #e5e7eb; color: #374151; } 
+        .samples-badge { padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; background-color: #dbeafe; color: #1e40af; } 
 
         .hide-pde .pde-col, .hide-ld50 .ld50-col { display: none; }
         .sortable { cursor: pointer; } .sort-indicator { display: inline-block; width: 1em; text-align: center; }
@@ -963,4 +964,41 @@
             text-decoration: none;
             transform: translateY(-1px);
             background-color: rgba(25, 118, 210, 0.1);
+        }
+
+        /* Dosage Form Group Expand/Collapse Styles */
+        .dosage-group-header {
+            transition: all 0.2s ease;
+        }
+
+        .dosage-group-header:hover {
+            transform: translateY(-1px);
+        }
+
+        .dosage-group-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: none;
+            opacity: 1;
+        }
+
+        .dosage-group-content.collapsed {
+            max-height: 0 !important;
+            opacity: 0;
+            margin-bottom: 0;
+        }
+
+        .group-toggle-icon {
+            transition: transform 0.2s ease;
+            display: inline-block;
+            min-width: 12px;
+            text-align: center;
+        }
+
+        /* Enhanced train card spacing when in groups */
+        .dosage-group-content .train-card {
+            margin-bottom: 1rem;
+        }
+
+        .dosage-group-content .train-card:last-child {
+            margin-bottom: 0;
         }

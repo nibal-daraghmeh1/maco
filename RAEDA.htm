@@ -358,7 +358,7 @@
                                                 </label>
                                             </div>
                                             <div class="px-4 py-2 text-xs" style="color: var(--text-secondary);">Select specific trains:</div>
-                                            <div id="worstCaseExportTrainOptions" class="max-h-40 overflow-y-auto">
+                                            <div id="worstCaseExportTrainOptions" class="max-h-96 overflow-y-auto">
                                                 <!-- Train checkbox options will be populated here -->
                                             </div>
                                             <div class="border-t p-2" style="border-color: var(--border-color);">
@@ -391,7 +391,7 @@
                                                 </label>
                                             </div>
                                             <div class="px-4 py-2 text-xs" style="color: var(--text-secondary);">Select specific trains:</div>
-                                            <div id="worstCasePrintTrainOptions" class="max-h-40 overflow-y-auto">
+                                            <div id="worstCasePrintTrainOptions" class="max-h-96 overflow-y-auto">
                                                 <!-- Train checkbox options will be populated here -->
                                             </div>
                                             <div class="border-t p-2" style="border-color: var(--border-color);">
@@ -608,6 +608,12 @@
                         <h2 class="text-xl font-bold">Scoring System</h2>
                         <div class="flex items-center gap-x-4 no-print">
                             <button id="editScoringBtn" class="px-4 py-2 text-sm rounded-lg">Edit</button>
+                            <button onclick="resetScoringCriteriaToDefaults()" class="px-4 py-2 text-sm rounded-lg bg-orange-500 hover:bg-orange-600 text-white flex items-center gap-2" title="Reset to Latest Criteria">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                                Reset Criteria
+                            </button>
                             <button onclick="printCurrentView('scoring-system')" class="print-btn px-4 py-2 text-sm rounded-lg btn-gradient flex items-center justify-center" title="Print System">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
@@ -640,7 +646,7 @@
                                             <input type="checkbox" id="exportTrainSummaryAllTrainsCheckbox" class="mr-2" onchange="toggleAllTrainSummaryTrainsSelection('export')">
                                             <span class="font-semibold">Export All Trains</span>
                                         </label>
-                                        <div id="trainSummaryExportTrainOptions"></div>
+                                        <div id="trainSummaryExportTrainOptions" class="max-h-96 overflow-y-auto"></div>
                                         <div class="mt-2 pt-2 border-t" style="border-color: var(--border-color);">
                                             <button onclick="executeTrainSummaryExportSelection()" class="w-full px-4 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700">
                                                 Export Selected
@@ -666,7 +672,7 @@
                                             <input type="checkbox" id="printTrainSummaryAllTrainsCheckbox" class="mr-2" onchange="toggleAllTrainSummaryTrainsSelection('print')">
                                             <span class="font-semibold">Print All Trains</span>
                                         </label>
-                                        <div id="trainSummaryPrintTrainOptions"></div>
+                                        <div id="trainSummaryPrintTrainOptions" class="max-h-96 overflow-y-auto"></div>
                                         <div class="mt-2 pt-2 border-t" style="border-color: var(--border-color);">
                                             <button onclick="executeTrainSummaryPrintSelection()" class="w-full px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
                                                 Print Selected
