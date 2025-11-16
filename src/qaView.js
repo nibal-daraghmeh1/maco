@@ -1444,48 +1444,94 @@ class QAView {
      * Handle safety factor questions
      */
     async handleSafetyFactorQuestions(question, entities, context, analysis) {
-        let response = "## 🛡️ Safety Factors Guide\n\n";
+        // Import safety factor configuration from state
+        const stateModule = await import('./state.js');
+        const { routeSafetyFactors, dosageFormToRouteMap } = stateModule;
+        
+        let response = "## 🛡️ Safety Factors - Complete Summary\n\n";
 
+        // Generate table from routeSafetyFactors data
         response += `### **📋 Safety Factors by Route of Administration**\n\n`;
-        response += `| Route | Range | Typical Value | Risk Level |\n`;
-        response += `|-------|-------|---------------|------------|\n`;
-        response += `| **Topical** | 10-100 | 50 | 🟢 Low |\n`;
-        response += `| **Oral** | 100-1,000 | 1,000 | 🟢 Standard |\n`;
-        response += `| **Suppository** | 100-1,000 | 1,000 | 🟢 Standard |\n`;
-        response += `| **Ophthalmic** | 1,000-10,000 | 5,000 | 🟡 High |\n`;
-        response += `| **Inhalation** | 1,000-10,000 | 10,000 | 🔴 Very High |\n`;
-        response += `| **Parenteral** | 1,000-10,000 | 10,000 | 🔴 Very High |\n\n`;
+        response += `| Route | Safety Factor Range | Risk Level |\n`;
+        response += `|-------|---------------------|------------|\n`;
+        
+        // Sort routes by risk level (Very High first, then High, Standard, Low)
+        const riskOrder = { 'Very High': 0, 'High': 1, 'Standard': 2, 'Low': 3 };
+        const sortedRoutes = Object.entries(routeSafetyFactors).sort((a, b) => {
+            const orderA = riskOrder[a[1].riskLevel] ?? 999;
+            const orderB = riskOrder[b[1].riskLevel] ?? 999;
+            if (orderA !== orderB) return orderA - orderB;
+            return a[1].route.localeCompare(b[1].route);
+        });
 
-        response += `### **👥 Population Multipliers**\n\n`;
-        response += `| Population | Multiplier | Justification |\n`;
-        response += `|------------|------------|---------------|\n`;
-        response += `| **Healthy Adults** | 1-2 | Standard population |\n`;
-        response += `| **Pediatric** | 5-10 | Higher sensitivity |\n`;
-        response += `| **Geriatric** | 2-5 | Reduced metabolism |\n`;
-        response += `| **Pregnant** | 5-10 | Fetal protection |\n`;
-        response += `| **Immunocompromised** | 5-10 | Increased vulnerability |\n\n`;
+        sortedRoutes.forEach(([key, config]) => {
+            const riskEmoji = config.riskLevel === 'Very High' ? '🔴' : 
+                            config.riskLevel === 'High' ? '🟡' : 
+                            config.riskLevel === 'Standard' ? '🟢' : '🟢';
+            response += `| **${config.route}** | ${config.min.toLocaleString()} - ${config.max.toLocaleString()} | ${riskEmoji} ${config.riskLevel} |\n`;
+        });
 
-        response += `### **💊 Drug Category Multipliers**\n\n`;
-        response += `| Drug Type | Multiplier | Examples |\n`;
-        response += `|-----------|------------|----------|\n`;
-        response += `| **Standard** | 1-5 | Common medications |\n`;
-        response += `| **Highly Potent** | 10-100 | Opioids, steroids |\n`;
-        response += `| **Hormones** | 100-1,000 | Estrogen, testosterone |\n`;
-        response += `| **Cytotoxic** | 1,000-10,000 | Chemotherapy agents |\n`;
-        response += `| **Allergenic** | 100-1,000 | Penicillins, sulfonamides |\n\n`;
+        response += `\n`;
 
-        response += `### **🧮 Final Calculation**\n\n`;
-        response += `**Formula:** Final SF = Base SF × Population Multiplier × Drug Category Multiplier\n\n`;
-        response += `**Examples:**\n`;
-        response += `- **Standard oral drug:** 1,000 × 1 × 1 = **1,000**\n`;
-        response += `- **Pediatric injectable:** 10,000 × 5 × 1 = **50,000**\n`;
-        response += `- **Cytotoxic inhalation:** 10,000 × 1 × 1,000 = **10,000,000**\n\n`;
+        // Generate dosage form to route mapping table
+        response += `### **💊 Dosage Form to Route Mapping**\n\n`;
+        response += `| Dosage Form | Route | Safety Factor Range | Risk Level |\n`;
+        response += `|-------------|-------|---------------------|------------|\n`;
 
-        response += `### **📚 Regulatory References**\n\n`;
-        response += `- **FDA Guide (1993):** Validation of Cleaning Processes\n`;
-        response += `- **EMA Guideline (2014):** Health-Based Exposure Limits\n`;
-        response += `- **ICH Q3D (2022):** Elemental Impurities\n`;
-        response += `- **PIC/S Guide (2007):** Cleaning Validation\n`;
+        // Group dosage forms by route
+        const routeGroups = {};
+        Object.entries(dosageFormToRouteMap).forEach(([dosageForm, routeKey]) => {
+            if (!routeGroups[routeKey]) {
+                routeGroups[routeKey] = [];
+            }
+            routeGroups[routeKey].push(dosageForm);
+        });
+
+        // Sort routes by risk level
+        const sortedRouteKeys = Object.keys(routeGroups).sort((a, b) => {
+            const orderA = riskOrder[routeSafetyFactors[a]?.riskLevel] ?? 999;
+            const orderB = riskOrder[routeSafetyFactors[b]?.riskLevel] ?? 999;
+            if (orderA !== orderB) return orderA - orderB;
+            return routeSafetyFactors[a]?.route.localeCompare(routeSafetyFactors[b]?.route || '') || 0;
+        });
+
+        sortedRouteKeys.forEach(routeKey => {
+            const routeConfig = routeSafetyFactors[routeKey];
+            if (!routeConfig) return;
+            
+            const dosageForms = routeGroups[routeKey].sort();
+            const riskEmoji = routeConfig.riskLevel === 'Very High' ? '🔴' : 
+                            routeConfig.riskLevel === 'High' ? '🟡' : 
+                            routeConfig.riskLevel === 'Standard' ? '🟢' : '🟢';
+            
+            dosageForms.forEach((dosageForm, index) => {
+                if (index === 0) {
+                    // First row shows route info
+                    response += `| **${dosageForm}** | **${routeConfig.route}** | ${routeConfig.min.toLocaleString()} - ${routeConfig.max.toLocaleString()} | ${riskEmoji} ${routeConfig.riskLevel} |\n`;
+                } else {
+                    // Subsequent rows for same route show only dosage form
+                    response += `| **${dosageForm}** | ${routeConfig.route} | ${routeConfig.min.toLocaleString()} - ${routeConfig.max.toLocaleString()} | ${riskEmoji} ${routeConfig.riskLevel} |\n`;
+                }
+            });
+        });
+
+        response += `\n`;
+
+        // Add summary statistics
+        response += `### **📊 Summary Statistics**\n\n`;
+        response += `- **Total Routes:** ${Object.keys(routeSafetyFactors).length}\n`;
+        response += `- **Total Dosage Forms:** ${Object.keys(dosageFormToRouteMap).length}\n`;
+        response += `- **Very High Risk Routes:** ${sortedRoutes.filter(([_, config]) => config.riskLevel === 'Very High').length}\n`;
+        response += `- **Standard Risk Routes:** ${sortedRoutes.filter(([_, config]) => config.riskLevel === 'Standard').length}\n`;
+        response += `- **Low Risk Routes:** ${sortedRoutes.filter(([_, config]) => config.riskLevel === 'Low').length}\n\n`;
+
+        response += `### **ℹ️ How Safety Factors Are Used**\n\n`;
+        response += `Safety factors are automatically determined based on the **dosage form** of your product:\n\n`;
+        response += `1. **Select Dosage Form** → System maps to Route of Administration\n`;
+        response += `2. **Route Determines Range** → Safety factor range is set (e.g., 100-1,000 for Oral)\n`;
+        response += `3. **Default Value** → Maximum value from range is used (e.g., 1,000 for Oral)\n`;
+        response += `4. **User Can Adjust** → Safety factor can be adjusted within the allowed range\n\n`;
+        response += `**Example:** A product with dosage form "Tablets" → Maps to "Oral" route → Safety factor range: 100-1,000 → Default: 1,000\n\n`;
 
         return response;
     }

@@ -1,1 +1,361 @@
-const a13_0x367a06=a13_0x5c2d;(function(_0x55e212,_0x479ecf){const _0x15c5c1=a13_0x5c2d,_0x1df7a2=_0x55e212();while(!![]){try{const _0x3ea772=-parseInt(_0x15c5c1(0x134))/0x1*(parseInt(_0x15c5c1(0x180))/0x2)+-parseInt(_0x15c5c1(0x17e))/0x3+parseInt(_0x15c5c1(0x175))/0x4+parseInt(_0x15c5c1(0x19d))/0x5+-parseInt(_0x15c5c1(0x16b))/0x6*(-parseInt(_0x15c5c1(0x1a2))/0x7)+-parseInt(_0x15c5c1(0x174))/0x8+-parseInt(_0x15c5c1(0x15c))/0x9*(-parseInt(_0x15c5c1(0x191))/0xa);if(_0x3ea772===_0x479ecf)break;else _0x1df7a2['push'](_0x1df7a2['shift']());}catch(_0x47a705){_0x1df7a2['push'](_0x1df7a2['shift']());}}}(a13_0x4769,0x9a8cb));export let products=[{'id':0x1,'productCode':a13_0x367a06(0x17c),'name':a13_0x367a06(0x10d),'batchSizeKg':51.08,'date':a13_0x367a06(0x1a4),'isCritical':!0x1,'criticalReason':'','productType':'Tablets','line':a13_0x367a06(0x143),'machineIds':[0x1,0x2,0x6,0xb,0xd,0x10],'activeIngredients':[{'id':0x1,'name':a13_0x367a06(0xef),'therapeuticDose':0x1f4,'mdd':0xfa0,'solubility':a13_0x367a06(0xfd),'cleanability':a13_0x367a06(0x12c),'pde':12.5,'ld50':0x798}]},{'id':0x2,'productCode':a13_0x367a06(0x11a),'name':a13_0x367a06(0x189),'batchSizeKg':113.51,'date':'2023-02-20T10:00:00.000Z','isCritical':!0x1,'criticalReason':'','productType':a13_0x367a06(0x185),'line':a13_0x367a06(0x143),'machineIds':[0x1,0x3,0x4,0xc,0x10],'activeIngredients':[{'id':0x2,'name':'Ibuprofen','therapeuticDose':0xc8,'mdd':0x4b0,'solubility':a13_0x367a06(0x1a5),'cleanability':'Medium','pde':1.2,'ld50':0x27c}]},{'id':0x3,'productCode':a13_0x367a06(0xff),'name':'Cold\x20&\x20Flu\x20Relief','batchSizeKg':0xb4,'date':a13_0x367a06(0xe1),'isCritical':!0x0,'criticalReason':a13_0x367a06(0x19a),'productType':a13_0x367a06(0x185),'line':a13_0x367a06(0xf6),'machineIds':[0x1,0x8,0x10],'activeIngredients':[{'id':0x3,'name':a13_0x367a06(0xef),'therapeuticDose':0x28a,'mdd':0xf3c,'solubility':a13_0x367a06(0xfd),'cleanability':'Easy','pde':12.5,'ld50':0x798},{'id':0x4,'name':a13_0x367a06(0xfc),'therapeuticDose':0xa,'mdd':0x3c,'solubility':a13_0x367a06(0xec),'cleanability':a13_0x367a06(0x12c),'pde':0.6,'ld50':0x15e},{'id':0x5,'name':a13_0x367a06(0x1ab),'therapeuticDose':0x1e,'mdd':0x78,'solubility':a13_0x367a06(0x18b),'cleanability':'Medium','pde':0x1,'ld50':0x2ee}]},{'id':0x4,'productCode':'4ASA32504AC','name':a13_0x367a06(0xe7),'batchSizeKg':75.5,'date':a13_0x367a06(0xe5),'isCritical':!0x1,'criticalReason':'','productType':a13_0x367a06(0x185),'line':a13_0x367a06(0x143),'machineIds':[0x1,0x4,0x7,0xc,0x10],'activeIngredients':[{'id':0x6,'name':a13_0x367a06(0x115),'therapeuticDose':0x145,'mdd':0xfa0,'solubility':'Slightly\x20soluble','cleanability':a13_0x367a06(0x103),'pde':0.5,'ld50':null}]},{'id':0x5,'productCode':'5OME02005PR','name':'Omeprazole\x2020mg','batchSizeKg':25.2,'date':a13_0x367a06(0x142),'isCritical':!0x0,'criticalReason':'New\x20API','productType':a13_0x367a06(0x152),'line':a13_0x367a06(0x15a),'machineIds':[0x1,0x5,0x9,0xe,0xf],'activeIngredients':[{'id':0x7,'name':a13_0x367a06(0x12b),'therapeuticDose':0x14,'mdd':0x28,'solubility':a13_0x367a06(0x1a5),'cleanability':a13_0x367a06(0x167),'pde':0.013,'ld50':null}]},{'id':0x6,'productCode':a13_0x367a06(0x136),'name':a13_0x367a06(0x183),'batchSizeKg':0x5,'date':a13_0x367a06(0xf3),'isCritical':!0x1,'criticalReason':'','productType':a13_0x367a06(0x16e),'line':'Sterile\x20Line','machineIds':[0x1,0xa,0x10],'activeIngredients':[{'id':0x8,'name':a13_0x367a06(0x183),'therapeuticDose':0x1,'mdd':0x2,'solubility':a13_0x367a06(0x18b),'cleanability':a13_0x367a06(0x167),'pde':0.0005,'ld50':0x19}]}];export let machines=[{'id':0x1,'machineNumber':a13_0x367a06(0x106),'name':a13_0x367a06(0x16c),'stage':a13_0x367a06(0x110),'area':0xd6d8,'group':'','line':a13_0x367a06(0x128),'cleaningSOP':{'sopName':a13_0x367a06(0x171),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[{'location':a13_0x367a06(0x1a8),'material':a13_0x367a06(0x13b),'area':0x9c4,'hardToClean':0x1,'accessibilityForCleaning':0x1,'accessibilityForSampling':0x1,'visibility':0x1},{'location':a13_0x367a06(0x193),'material':a13_0x367a06(0x13b),'area':0x320,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x2,'visibility':0x2},{'location':a13_0x367a06(0x161),'material':a13_0x367a06(0x121),'area':0x190,'hardToClean':0x1,'accessibilityForCleaning':0x1,'accessibilityForSampling':0x1,'visibility':0x1},{'location':'Calibration\x20Weights\x20Holder','material':'Stainless\x20steel','area':0x258,'hardToClean':0x2,'accessibilityForCleaning':0x1,'accessibilityForSampling':0x2,'visibility':0x2}]},{'id':0x2,'machineNumber':'M-002','name':a13_0x367a06(0x154),'stage':a13_0x367a06(0x1ad),'area':0x88b8,'group':'','line':'Solids\x20Line\x20A','cleaningSOP':{'sopName':a13_0x367a06(0x135),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[{'location':a13_0x367a06(0x105),'material':a13_0x367a06(0x13b),'area':0xc40,'hardToClean':0x1,'accessibilityForCleaning':0x1,'accessibilityForSampling':0x2,'visibility':0x1},{'location':'Blade\x20holder\x20surface','material':a13_0x367a06(0x13b),'area':0x7d0,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x2,'visibility':0x3},{'location':'Blades\x20box\x20inside','material':a13_0x367a06(0x13b),'area':0x5dc,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x1,'visibility':0x2},{'location':a13_0x367a06(0x187),'material':a13_0x367a06(0x13b),'area':0xc40,'hardToClean':0x1,'accessibilityForCleaning':0x1,'accessibilityForSampling':0x2,'visibility':0x1},{'location':a13_0x367a06(0x188),'material':'Stainless\x20steel','area':0x770,'hardToClean':0x3,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x2,'visibility':0x3},{'location':a13_0x367a06(0x12e),'material':a13_0x367a06(0x13b),'area':0x15dc,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x1,'visibility':0x3},{'location':a13_0x367a06(0x190),'material':a13_0x367a06(0x13b),'area':0xbb8,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x2,'visibility':0x3},{'location':a13_0x367a06(0x13d),'material':a13_0x367a06(0x13b),'area':0x320,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x2,'visibility':0x2},{'location':a13_0x367a06(0x130),'material':a13_0x367a06(0x13b),'area':0x4b0,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x1,'visibility':0x2},{'location':a13_0x367a06(0x1ae),'material':'_','area':null,'hardToClean':0x1,'accessibilityForCleaning':0x1,'accessibilityForSampling':0x1,'visibility':0x1}]},{'id':0x3,'machineNumber':a13_0x367a06(0x10b),'name':a13_0x367a06(0x194),'stage':'Milling','area':0xa410,'group':'','line':a13_0x367a06(0x143),'cleaningSOP':{'sopName':a13_0x367a06(0x156),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0x4,'machineNumber':a13_0x367a06(0xe9),'name':a13_0x367a06(0x18a),'stage':'Mixing','area':0x1d4c0,'group':'','line':a13_0x367a06(0x143),'cleaningSOP':{'sopName':a13_0x367a06(0x127),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[{'location':'Product\x20Bowl\x20Interior','material':'Stainless\x20steel','area':0x2134,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x1,'visibility':0x2},{'location':a13_0x367a06(0x10a),'material':a13_0x367a06(0x13b),'area':0x4b0,'hardToClean':0x3,'accessibilityForCleaning':0x3,'accessibilityForSampling':0x2,'visibility':0x3},{'location':a13_0x367a06(0x168),'material':a13_0x367a06(0x13b),'area':0x1194,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x2,'visibility':0x2},{'location':a13_0x367a06(0x17a),'material':a13_0x367a06(0x10f),'area':0x960,'hardToClean':0x3,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x1,'visibility':0x2},{'location':a13_0x367a06(0x123),'material':a13_0x367a06(0x13b),'area':0x708,'hardToClean':0x2,'accessibilityForCleaning':0x3,'accessibilityForSampling':0x3,'visibility':0x3},{'location':a13_0x367a06(0xe3),'material':a13_0x367a06(0x13b),'area':0x258,'hardToClean':0x2,'accessibilityForCleaning':0x2,'accessibilityForSampling':0x2,'visibility':0x2},{'location':a13_0x367a06(0x197),'material':'Stainless\x20steel','area':0xc80,'hardToClean':0x1,'accessibilityForCleaning':0x1,'accessibilityForSampling':0x1,'visibility':0x1}]},{'id':0x5,'machineNumber':'M-005','name':a13_0x367a06(0x15b),'stage':a13_0x367a06(0x104),'area':0x17318,'group':'','line':a13_0x367a06(0x15a),'cleaningSOP':{'sopName':a13_0x367a06(0x12f),'attachmentType':'none','attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0x6,'machineNumber':a13_0x367a06(0x160),'name':'Compactor','stage':a13_0x367a06(0x104),'area':0x14c08,'group':'','line':a13_0x367a06(0x143),'cleaningSOP':{'sopName':'SOP-006','attachmentType':'none','attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0x7,'machineNumber':a13_0x367a06(0xfe),'name':a13_0x367a06(0x111),'stage':a13_0x367a06(0x104),'area':0xafc8,'group':a13_0x367a06(0x129),'line':'Solids\x20Line\x20A','cleaningSOP':{'sopName':a13_0x367a06(0x13c),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0x8,'machineNumber':a13_0x367a06(0xf4),'name':a13_0x367a06(0x11f),'stage':'Mixing','area':0xfde8,'group':a13_0x367a06(0x129),'line':'Solids\x20Line\x20B','cleaningSOP':{'sopName':a13_0x367a06(0x107),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0x9,'machineNumber':a13_0x367a06(0x100),'name':a13_0x367a06(0x108),'stage':a13_0x367a06(0x104),'area':0x14c08,'group':a13_0x367a06(0x129),'line':'Capsules\x20Line','cleaningSOP':{'sopName':a13_0x367a06(0x141),'attachmentType':'none','attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0xa,'machineNumber':a13_0x367a06(0x182),'name':'Bin\x20800','stage':a13_0x367a06(0x104),'area':0x19a28,'group':a13_0x367a06(0x129),'line':a13_0x367a06(0x17f),'cleaningSOP':{'sopName':'SOP-010','attachmentType':'none','attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0xb,'machineNumber':a13_0x367a06(0xea),'name':'Jcmco','stage':a13_0x367a06(0xe0),'area':0x249f0,'group':a13_0x367a06(0xf1),'line':'Solids\x20Line\x20A','cleaningSOP':{'sopName':a13_0x367a06(0x10e),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0xc,'machineNumber':a13_0x367a06(0x198),'name':a13_0x367a06(0x178),'stage':a13_0x367a06(0xe0),'area':0x28488,'group':a13_0x367a06(0xf1),'line':a13_0x367a06(0x143),'cleaningSOP':{'sopName':a13_0x367a06(0x15d),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0xd,'machineNumber':'M-013','name':a13_0x367a06(0x196),'stage':a13_0x367a06(0xe0),'area':0x2bf20,'group':a13_0x367a06(0xf1),'line':a13_0x367a06(0x143),'cleaningSOP':{'sopName':a13_0x367a06(0x144),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0xe,'machineNumber':a13_0x367a06(0x151),'name':a13_0x367a06(0x1aa),'stage':a13_0x367a06(0x199),'area':0x1adb0,'group':'','line':a13_0x367a06(0x15a),'cleaningSOP':{'sopName':a13_0x367a06(0x163),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0xf,'machineNumber':'M-015','name':a13_0x367a06(0x150),'stage':a13_0x367a06(0x102),'area':0x124f8,'group':'','line':'Capsules\x20Line','cleaningSOP':{'sopName':a13_0x367a06(0x16f),'attachmentType':a13_0x367a06(0xfa),'attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]},{'id':0x10,'machineNumber':'M-016','name':a13_0x367a06(0x16a),'stage':'Packing','area':0x35b60,'group':'','line':a13_0x367a06(0x128),'cleaningSOP':{'sopName':a13_0x367a06(0x18c),'attachmentType':'none','attachmentValue':null,'fileName':null,'fileData':null},'sampleLocations':[]}];export let machineStageDisplayOrder=[a13_0x367a06(0x110),a13_0x367a06(0x104),a13_0x367a06(0xe0),'Coating',a13_0x367a06(0x102),a13_0x367a06(0x17d),a13_0x367a06(0x1a0),'Packing',a13_0x367a06(0x176)];export let machineGroups=[a13_0x367a06(0x129),a13_0x367a06(0xf1),'Milling\x20Equipment','Granulators',a13_0x367a06(0x155),a13_0x367a06(0x165),a13_0x367a06(0x14b),'Filling\x20Equipment'];export let detergentIngredients=[{'id':0x1,'name':a13_0x367a06(0x139),'ld50':0x1388}];export let nextDetergentIngredientId=0x2;export const safetyFactorConfig={'Sterile\x20Products':{'min':0x3e8,'max':0x2710,'route':a13_0x367a06(0x148)},'Semisolids':{'min':0xa,'max':0x64,'route':a13_0x367a06(0x140)},'Tablets':{'min':0x64,'max':0x3e8,'route':a13_0x367a06(0x145)},'Capsules':{'min':0x64,'max':0x3e8,'route':'Oral'},'Liquids':{'min':0x64,'max':0x3e8,'route':'Oral'},'Other':{'min':0x64,'max':0x3e8,'route':a13_0x367a06(0x145)},'Suppository':{'min':0x64,'max':0x3e8,'route':a13_0x367a06(0x181)},'Sterile\x20Ointment':{'min':0x64,'max':0x3e8,'route':'Ophthalmic'},'Spray':{'min':0x3e8,'max':0x2710,'route':a13_0x367a06(0x124)},'Ampoules':{'min':0x3e8,'max':0x2710,'route':a13_0x367a06(0x148)},'Vials':{'min':0x3e8,'max':0x2710,'route':a13_0x367a06(0x148)},'Injections':{'min':0x3e8,'max':0x2710,'route':a13_0x367a06(0x148)},'Cream':{'min':0xa,'max':0x64,'route':a13_0x367a06(0x140)},'Ointment':{'min':0xa,'max':0x64,'route':'Topical'},'Gel':{'min':0xa,'max':0x64,'route':'Topical'},'Lotion':{'min':0xa,'max':0x64,'route':a13_0x367a06(0x140)}};export const productTypeHierarchy=[a13_0x367a06(0xf5),a13_0x367a06(0x117),a13_0x367a06(0xed),a13_0x367a06(0x16e),'Cream',a13_0x367a06(0x1ac),'Gel',a13_0x367a06(0x11d),a13_0x367a06(0x116),a13_0x367a06(0x185),a13_0x367a06(0x152),a13_0x367a06(0x113),a13_0x367a06(0x138),'Sterile\x20Ointment',a13_0x367a06(0x18e),a13_0x367a06(0x176)];export let viewProducts={'productRegister':[],'worstCaseProducts':[]};export let nextProductId=products[a13_0x367a06(0x159)]>0x0?Math['max'](...products[a13_0x367a06(0x132)](_0x44f951=>_0x44f951['id']))+0x1:0x1;export let nextIngredientId=products[a13_0x367a06(0x159)]>0x0?Math[a13_0x367a06(0xf8)](...products[a13_0x367a06(0x18f)](_0x123574=>_0x123574[a13_0x367a06(0x126)]['map'](_0x4b6379=>_0x4b6379['id'])))+0x1:0x1;export let nextMachineId=machines['length']>0x0?Math[a13_0x367a06(0xf8)](...machines[a13_0x367a06(0x132)](_0x16c6b7=>_0x16c6b7['id']))+0x1:0x1;export let ingredientFormCounter=0x0;export let rpnChartInstance;export let macoChartInstance;export let scoringInEditMode=!0x1;export let sortState={'key':a13_0x367a06(0x166),'direction':a13_0x367a06(0x169)};export let machineSortState={'key':'name','direction':a13_0x367a06(0xf7)};export let activeTabId='dashboard';export let trainIdMap=new Map();export let history=[];export let historyIndex=-0x1;export let scoringCriteria={'solubility':{'title':a13_0x367a06(0x112),'defaultScore':0x3,'type':a13_0x367a06(0x1a6),'criteria':[{'text':'Very\x20soluble','score':0x1},{'text':'Freely\x20soluble','score':0x2},{'text':a13_0x367a06(0x14e),'score':0x3},{'text':a13_0x367a06(0x16d),'score':0x4},{'text':a13_0x367a06(0x18b),'score':0x5},{'text':a13_0x367a06(0x184),'score':0x6},{'text':a13_0x367a06(0x1a5),'score':0x7},{'text':a13_0x367a06(0x158),'score':0x7}]},'therapeuticDose':{'title':a13_0x367a06(0x1a3),'defaultScore':0x3,'type':a13_0x367a06(0x157),'criteria':[{'text':a13_0x367a06(0xf0),'score':0x1,'lowerBound':0x3e8,'comparison':a13_0x367a06(0x12a)},{'text':a13_0x367a06(0x125),'score':0x2,'lowerBound':0x64,'upperBound':0x3e8,'comparison':a13_0x367a06(0x19b)},{'text':'10-99\x20mg','score':0x3,'lowerBound':0xa,'upperBound':0x63,'comparison':a13_0x367a06(0x19b)},{'text':a13_0x367a06(0x19e),'score':0x4,'lowerBound':0x1,'upperBound':0x9,'comparison':a13_0x367a06(0x19b)},{'text':a13_0x367a06(0x192),'score':0x5,'upperBound':0x1,'comparison':a13_0x367a06(0x101)}]},'cleanability':{'title':'Cleanability\x20Rating','defaultScore':0x2,'type':a13_0x367a06(0x1a6),'criteria':[{'text':a13_0x367a06(0x12c),'score':0x1},{'text':a13_0x367a06(0x103),'score':0x2},{'text':'Hard','score':0x3}]},'toxicityLd50':{'title':'Toxicity\x20Rating\x20(LD50)','defaultScore':0x3,'type':a13_0x367a06(0x157),'criteria':[{'text':'>5000\x20mg/kg','score':0x1,'lowerBound':0x1388,'comparison':a13_0x367a06(0x12a)},{'text':a13_0x367a06(0x177),'score':0x2,'lowerBound':0x1f4,'upperBound':0x1388,'comparison':a13_0x367a06(0x19b)},{'text':a13_0x367a06(0x13f),'score':0x3,'lowerBound':0x32,'upperBound':0x1f3,'comparison':a13_0x367a06(0x19b)},{'text':a13_0x367a06(0x11c),'score':0x4,'lowerBound':0x1,'upperBound':0x31,'comparison':a13_0x367a06(0x19b)},{'text':a13_0x367a06(0x119),'score':0x5,'upperBound':0x1,'comparison':a13_0x367a06(0x101)}]},'toxicityPde':{'title':a13_0x367a06(0x114),'defaultScore':0x3,'type':'range','criteria':[{'text':'≤\x200.001','score':0xa,'upperBound':0.001,'comparison':a13_0x367a06(0x11b)},{'text':a13_0x367a06(0x14c),'score':0x9,'lowerBound':0.001,'upperBound':0.01,'comparison':a13_0x367a06(0x164)},{'text':'>0.01\x20–\x20≤0.1','score':0x8,'lowerBound':0.01,'upperBound':0.1,'comparison':a13_0x367a06(0x164)},{'text':a13_0x367a06(0x14f),'score':0x7,'lowerBound':0.1,'upperBound':0x1,'comparison':a13_0x367a06(0x164)},{'text':a13_0x367a06(0x173),'score':0x6,'lowerBound':0x1,'upperBound':0xa,'comparison':'between_exclusive_lower_inclusive_upper'},{'text':a13_0x367a06(0x17b),'score':0x5,'lowerBound':0xa,'upperBound':0x64,'comparison':'between_exclusive_lower_inclusive_upper'},{'text':a13_0x367a06(0x172),'score':0x4,'lowerBound':0x64,'upperBound':0x3e8,'comparison':a13_0x367a06(0x164)},{'text':a13_0x367a06(0x146),'score':0x3,'lowerBound':0x3e8,'comparison':a13_0x367a06(0x12a)}]},'hardToClean':{'title':'Hard\x20to\x20Clean\x20Rating','defaultScore':0x2,'type':a13_0x367a06(0x1a6),'criteria':[{'text':a13_0x367a06(0xee),'score':0x1},{'text':a13_0x367a06(0x103),'score':0x2},{'text':a13_0x367a06(0x118),'score':0x3}]},'accessibility':{'title':a13_0x367a06(0x186),'defaultScore':0x2,'type':'exactMatch','criteria':[{'text':a13_0x367a06(0xee),'score':0x1},{'text':a13_0x367a06(0x103),'score':0x2},{'text':a13_0x367a06(0x118),'score':0x3}]},'visibility':{'title':a13_0x367a06(0x131),'defaultScore':0x2,'type':a13_0x367a06(0x1a6),'criteria':[{'text':a13_0x367a06(0xee),'score':0x1},{'text':a13_0x367a06(0x103),'score':0x2},{'text':a13_0x367a06(0x118),'score':0x3}]},'numberOfSamples':{'title':a13_0x367a06(0x170),'defaultScore':0x1,'type':a13_0x367a06(0x137),'criteria':[{'text':a13_0x367a06(0x122),'samples':0x1,'rpnMin':0x1,'rpnMax':0x1b},{'text':a13_0x367a06(0x10c),'samples':0x2,'rpnMin':0x24,'rpnMax':0x36},{'text':a13_0x367a06(0x153),'samples':0x3,'rpnMin':0x51,'rpnMax':0x51}]},'rpnRating':{'title':a13_0x367a06(0xeb),'type':'rpn_threshold','criteria':[{'rangeDescription':a13_0x367a06(0x147),'rating':a13_0x367a06(0xee),'min':0x1,'max':0x14},{'rangeDescription':a13_0x367a06(0x133),'rating':'Medium','min':0x15,'max':0x32},{'rangeDescription':'51\x20and\x20more','rating':'High','min':0x33,'max':0x1/0x0}]}};export let scoringWasInEditModeForPrint=!0x1;function a13_0x4769(){const _0x330ac6=['between_inclusive_both','kOeBb','1548335moBoXF','1-9\x20mg','Kobod','Labeling','Solution','36302wMQgqF','Therapeutic\x20Dose\x20Rating','2023-01-15T10:00:00.000Z','Practically\x20insoluble','exactMatch','products','Scale\x20Platform','assign','Coat','Dextromethorphan\x20HBr','Ointment','Milling','Wall','Compression','2023-03-10T10:00:00.000Z','setProducts','Discharge\x20Valve','isArray','2023-04-05T10:00:00.000Z','FmKNN','Aspirin\x20325mg','Syrup','M-004','M-011','RPN\x20Rating','Very\x20soluble','Injections','Low','Acetaminophen','>1000\x20mg','Compression\x20Machines','zUoYO','2023-06-30T10:00:00.000Z','M-008','Ampoules','Solids\x20Line\x20B','asc','max','line','none','PDbIc','Phenylephrine\x20HCl','Freely\x20soluble','M-007','3CFR18003MX','M-009','less_exclusive','Filling','Medium','Mixing','Left\x20blade\x20edge','M-001','SOP-008','Bin\x20600','Suspension','Air\x20Distribution\x20Plate','M-003','36-54\x20RPN\x20=\x202\x20Samples','Acetaminophen\x20500mg','SOP-011','Polyester/PTFE','Weighing','Bin\x20200','Solubility\x20Rating','Liquids','PDE\x20Rating\x20(mg/day)','Aspirin','Semisolids','Vials','High','<1\x20mg/kg','2IBU20011PN','less_inclusive','1-49\x20mg/kg','Lotion','DWWxg','Bin\x20400','ylWgX','Plastic/Steel','1-27\x20RPN\x20=\x201\x20Sample','Inlet\x20Air\x20Ducts','Inhalation','100-1000\x20mg','activeIngredients','SOP-004','Shared','Mixing\x20Bins','greater_exclusive','Omeprazole','Easy','uNRYq','External\x20Hopper','SOP-005','Discharge\x20Tube','Visibility\x20Rating','map','21-50','4989aZuIlg','SOP-002','6PCX00506XP','rpn_samples','Suppository','Default\x20Detergent','LUsiN','Stainless\x20steel','SOP-007','Inlet\x20Valve','Powder','50-499\x20mg/kg','Topical','SOP-009','2023-05-25T10:00:00.000Z','Solids\x20Line\x20A','SOP-013','Oral','>1000','1-20','Parenteral','undefined','KhipG','Weighing\x20Equipment','>0.001\x20–\x20≤0.01','productType','Soluble','>0.1\x20–\x20≤1','jar\x20filling','M-014','Capsules','81\x20RPN\x20=\x203\x20Samples','nin\x20mill','Coating\x20Equipment','SOP-003','range','Insoluble','length','Capsules\x20Line','Glatt','117Tsefzq','SOP-012','Cream','Ghdta','M-006','Display\x20Unit','rXISj','SOP-014','between_exclusive_lower_inclusive_upper','Packaging\x20Equipment','rpn','Hard','Expansion\x20Chamber','desc','Bliste','984xzcxCW','weighing\x20tool','Sparingly\x20soluble','Sterile\x20Products','SOP-015','Number\x20of\x20Samples\x20(RPN\x20Based)','SOP-001','>100\x20–\x20≤1000','>1\x20–\x20≤10','829656vAGPrF','1752080ltyvnZ','Other','500-5000\x20mg/kg','Natoli','includes','Filter\x20Bags','>10\x20–\x20≤100','1ATC50001AP','Checking','3215184qZbRQY','Sterile\x20Line','306WaazdN','Rectal','M-010','Potent\x20Compound\x20X','Very\x20slightly\x20soluble','Tablets','Accessibility\x20Rating','Right\x20blade\x20edge','Nin\x20mill\x20Stainless\x20Steel\x20sieve','Ibuprofen\x20200mg','FBD','Slightly\x20soluble','SOP-016','VZJWs','Spray','flatMap','Inlet\x20Hopper','748920ceepQD','<1\x20mg','Load\x20Cell\x20Area','fitz\x20mill','state','Korsch','Product\x20Container','M-012','Coating','Stains\x20equipment\x20yellow'];a13_0x4769=function(){return _0x330ac6;};return a13_0x4769();}export function setProducts(_0x3dabe3){products=_0x3dabe3;}export function setMachines(_0x4f6ecd){machines=_0x4f6ecd;}export function setDetergentIngredients(_0x494793){detergentIngredients=_0x494793;}export function setScoringCriteria(_0x5af54b){scoringCriteria=_0x5af54b;}export function setNextProductId(_0x5a861b){nextProductId=_0x5a861b;}function a13_0x5c2d(_0x1ad8a8,_0x2012b3){const _0x47693d=a13_0x4769();return a13_0x5c2d=function(_0x5c2de3,_0x1e3d12){_0x5c2de3=_0x5c2de3-0xe0;let _0xf12398=_0x47693d[_0x5c2de3];return _0xf12398;},a13_0x5c2d(_0x1ad8a8,_0x2012b3);}export function setNextIngredientId(_0x16e860){nextIngredientId=_0x16e860;}export function setNextMachineId(_0x6e222e){nextMachineId=_0x6e222e;}export function setNextDetergentIngredientId(_0x59b727){nextDetergentIngredientId=_0x59b727;}export function setRpnChartInstance(_0x4c1dd8){rpnChartInstance=_0x4c1dd8;}export function setMacoChartInstance(_0x1878f5){macoChartInstance=_0x1878f5;}export function setScoringInEditMode(_0xd9d893){scoringInEditMode=_0xd9d893;}export function setSortState(_0x198e33){sortState=_0x198e33;}export function setMachineSortState(_0x17bcb0){machineSortState=_0x17bcb0;}export function setActiveTabId(_0x288e41){activeTabId=_0x288e41;}export function setHistory(_0x16d0df,_0x71c210){history=_0x16d0df,historyIndex=_0x71c210;}export function setMachineStageDisplayOrder(_0x55955a){machineStageDisplayOrder=_0x55955a;}export function setScoringWasInEditModeForPrint(_0x245977){scoringWasInEditModeForPrint=_0x245977;}export function setIngredientFormCounter(_0x36e0e3){ingredientFormCounter=_0x36e0e3;}export function ensureProductsHaveLine(){const _0x12e1c9=a13_0x367a06,_0x4fbb1a={'uNRYq':function(_0x32d299,_0x15d9fd){return _0x32d299!==_0x15d9fd;},'DWWxg':function(_0x28bb9a,_0x5e1ee9){return _0x28bb9a!==_0x5e1ee9;},'YOAXj':'Solids','LUsiN':'Semisolid','Kobod':_0x12e1c9(0x113),'ptrHv':function(_0x1437d2,_0xb7d6cd){return _0x1437d2!=_0xb7d6cd;},'ylWgX':_0x12e1c9(0x149),'Ghdta':_0x12e1c9(0x185),'KhipG':_0x12e1c9(0x152),'rXISj':_0x12e1c9(0x13e),'zUoYO':_0x12e1c9(0x1ac),'FmKNN':_0x12e1c9(0x15e),'VZJWs':_0x12e1c9(0x1a1),'PDbIc':_0x12e1c9(0x109),'kOeBb':function(_0x123ad3,_0x126256){return _0x123ad3==_0x126256;}};!Array[_0x12e1c9(0xe4)](exports[_0x12e1c9(0x1a7)])&&!Array['isArray'](window[_0x12e1c9(0x195)]?.[_0x12e1c9(0x1a7)])&&Array[_0x12e1c9(0xe4)](_0x465f56);const _0x245c9a=_0x4fbb1a['ptrHv'](_0x4fbb1a['ylWgX'],typeof state)&&state['products']?state:_0x4fbb1a[_0x12e1c9(0x120)]!=typeof exports&&exports['products']?exports:_0x12e1c9(0x149)!=typeof window&&window['state']&&window[_0x12e1c9(0x195)][_0x12e1c9(0x1a7)]?window['state']:null;if(!_0x245c9a)return;const _0x465f56=_0x245c9a['products']||[];let _0x37b7e9=!0x1;const _0x4f4a71=[_0x4fbb1a[_0x12e1c9(0x15f)],_0x4fbb1a[_0x12e1c9(0x14a)],_0x4fbb1a[_0x12e1c9(0x162)]],_0x23f93d=[_0x4fbb1a[_0x12e1c9(0xf2)],_0x4fbb1a[_0x12e1c9(0xe6)],'Gel'],_0x56df8f=[_0x12e1c9(0xe8),_0x4fbb1a[_0x12e1c9(0x18d)],_0x4fbb1a[_0x12e1c9(0xfb)]],_0x4c67bc=_0x465f56['map'](_0x4d6a85=>{const _0x13f3e0=_0x12e1c9;if(void 0x0!==_0x4d6a85[_0x13f3e0(0xf9)]&&_0x4fbb1a[_0x13f3e0(0x12d)](null,_0x4d6a85[_0x13f3e0(0xf9)])&&_0x4fbb1a[_0x13f3e0(0x11e)]('',_0x4d6a85[_0x13f3e0(0xf9)]))return _0x4d6a85;const _0x3dac25=Object[_0x13f3e0(0x1a9)]({},_0x4d6a85);return _0x3dac25[_0x13f3e0(0x14d)]?_0x4f4a71[_0x13f3e0(0x179)](_0x3dac25[_0x13f3e0(0x14d)])?_0x3dac25[_0x13f3e0(0xf9)]=_0x4fbb1a['YOAXj']:_0x23f93d[_0x13f3e0(0x179)](_0x3dac25[_0x13f3e0(0x14d)])?_0x3dac25[_0x13f3e0(0xf9)]=_0x4fbb1a[_0x13f3e0(0x13a)]:_0x56df8f[_0x13f3e0(0x179)](_0x3dac25['productType'])?_0x3dac25[_0x13f3e0(0xf9)]=_0x4fbb1a[_0x13f3e0(0x19f)]:_0x3dac25[_0x13f3e0(0xf9)]='':_0x3dac25[_0x13f3e0(0xf9)]='',_0x37b7e9=!0x0,_0x3dac25;});_0x37b7e9&&(_0x4fbb1a[_0x12e1c9(0x19c)]('function',typeof _0x245c9a[_0x12e1c9(0xe2)])?_0x245c9a['setProducts'](_0x4c67bc):_0x245c9a['products']=_0x4c67bc);}
+// All global state variables
+// js/state.js
+
+// --- GLOBAL STATE ---
+export let products = [
+    { id: 1, productCode: "1ATC50001AP", name: "Acetaminophen 500mg", batchSizeKg: 51.08, date: "2023-01-15T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 2, 6, 11, 13, 16], activeIngredients: [{ id: 1, name: "Acetaminophen", therapeuticDose: 500, mdd: 4000, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }] },
+    { id: 2, productCode: "2IBU20011PN", name: "Ibuprofen 200mg", batchSizeKg: 113.51, date: "2023-02-20T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 3, 4, 12, 16], activeIngredients: [{ id: 2, name: "Ibuprofen", therapeuticDose: 200, mdd: 1200, solubility: "Practically insoluble", cleanability: "Medium", pde: 1.2, ld50: 636 }] },
+    { id: 3, productCode: "3CFR18003MX", name: "Cold & Flu Relief", batchSizeKg: 180, date: "2023-03-10T10:00:00.000Z", isCritical: true, criticalReason: 'Stains equipment yellow', productType: 'Tablets', line: 'Solids Line B', machineIds: [1, 8, 16], activeIngredients: [ { id: 3, name: "Acetaminophen", therapeuticDose: 650, mdd: 3900, solubility: "Freely soluble", cleanability: "Easy", pde: 12.5, ld50: 1944 }, { id: 4, name: "Phenylephrine HCl", therapeuticDose: 10, mdd: 60, solubility: "Very soluble", cleanability: "Easy", pde: 0.6, ld50: 350 }, { id: 5, name: "Dextromethorphan HBr", therapeuticDose: 30, mdd: 120, solubility: "Slightly soluble", cleanability: "Medium", pde: 1.0, ld50: 750 } ] },
+    { id: 4, productCode: "4ASA32504AC", name: "Aspirin 325mg", batchSizeKg: 75.5, date: "2023-04-05T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Tablets', line: 'Solids Line A', machineIds: [1, 4, 7, 12, 16], activeIngredients: [{ id: 6, name: "Aspirin", therapeuticDose: 325, mdd: 4000, solubility: "Slightly soluble", cleanability: "Medium", pde: 0.5, ld50: null }] },
+    { id: 5, productCode: "5OME02005PR", name: "Omeprazole 20mg", batchSizeKg: 25.2, date: "2023-05-25T10:00:00.000Z", isCritical: true, criticalReason: 'New API', productType: 'Capsules', line: 'Capsules Line', machineIds: [1, 5, 9, 14, 15], activeIngredients: [{ id: 7, name: "Omeprazole", therapeuticDose: 20, mdd: 40, solubility: "Practically insoluble", cleanability: "Hard", pde: 0.013, ld50: null }] },
+    { id: 6, productCode: "6PCX00506XP", name: "Potent Compound X", batchSizeKg: 5.0, date: "2023-06-30T10:00:00.000Z", isCritical: false, criticalReason: '', productType: 'Sterile Products', line: 'Sterile Line', machineIds: [1, 10, 16], activeIngredients: [{ id: 8, name: "Potent Compound X", therapeuticDose: 1, mdd: 2, solubility: "Slightly soluble", cleanability: "Hard", pde: 0.0005, ld50: 25 }] },
+];
+
+export let machines = [
+    { 
+        id: 1, 
+        machineNumber: 'M-001', 
+        name: "weighing tool", 
+        stage: "Weighing", 
+        area: 55000, 
+        group: "", 
+        line: "Shared", 
+        cleaningSOP: { sopName: 'SOP-001', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
+        sampleLocations: [
+            { location: "Scale Platform", material: "Stainless steel", area: 2500, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 },
+            { location: "Load Cell Area", material: "Stainless steel", area: 800, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
+            { location: "Display Unit", material: "Plastic/Steel", area: 400, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 },
+            { location: "Calibration Weights Holder", material: "Stainless steel", area: 600, hardToClean: 2, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 2 }
+        ]
+    },
+    { 
+        id: 2, 
+        machineNumber: 'M-002', 
+        name: "nin mill", 
+        stage: "Milling", 
+        area: 35000, 
+        group: "", 
+        line: "Solids Line A", 
+        cleaningSOP: { sopName: 'SOP-002', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
+        sampleLocations: [
+            { location: "Left blade edge", material: "Stainless steel", area: 3136, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 1 },
+            { location: "Blade holder surface", material: "Stainless steel", area: 2000, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
+            { location: "Blades box inside", material: "Stainless steel", area: 1500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
+            { location: "Right blade edge", material: "Stainless steel", area: 3136, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 1 },
+            { location: "Nin mill Stainless Steel sieve", material: "Stainless steel", area: 1904, hardToClean: 3, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
+            { location: "External Hopper", material: "Stainless steel", area: 5596, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 3 },
+            { location: "Inlet Hopper", material: "Stainless steel", area: 3000, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
+            { location: "Inlet Valve", material: "Stainless steel", area: 800, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
+            { location: "Discharge Tube", material: "Stainless steel", area: 1200, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
+            { location: "Wall", material: "_", area: null, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 }
+        ]
+    },
+    { id: 3, machineNumber: 'M-003', name: "fitz mill", stage: "Milling", area: 42000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-003', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { 
+        id: 4, 
+        machineNumber: 'M-004', 
+        name: "FBD", 
+        stage: "Mixing", 
+        area: 120000, 
+        group: "", 
+        line: "Solids Line A", 
+        cleaningSOP: { sopName: 'SOP-004', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
+        sampleLocations: [
+            { location: "Product Bowl Interior", material: "Stainless steel", area: 8500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
+            { location: "Air Distribution Plate", material: "Stainless steel", area: 1200, hardToClean: 3, accessibilityForCleaning: 3, accessibilityForSampling: 2, visibility: 3 },
+            { location: "Expansion Chamber", material: "Stainless steel", area: 4500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
+            { location: "Filter Bags", material: "Polyester/PTFE", area: 2400, hardToClean: 3, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
+            { location: "Inlet Air Ducts", material: "Stainless steel", area: 1800, hardToClean: 2, accessibilityForCleaning: 3, accessibilityForSampling: 3, visibility: 3 },
+            { location: "Discharge Valve", material: "Stainless steel", area: 600, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
+            { location: "Product Container", material: "Stainless steel", area: 3200, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 }
+        ]
+    },
+    { id: 5, machineNumber: 'M-005', name: "Glatt", stage: "Mixing", area: 95000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-005', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 6, machineNumber: 'M-006', name: "Compactor", stage: "Mixing", area: 85000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-006', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 7, machineNumber: 'M-007', name: "Bin 200", stage: "Mixing", area: 45000, group: "Mixing Bins", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-007', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 8, machineNumber: 'M-008', name: "Bin 400", stage: "Mixing", area: 65000, group: "Mixing Bins", line: "Solids Line B", cleaningSOP: { sopName: 'SOP-008', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 9, machineNumber: 'M-009', name: "Bin 600", stage: "Mixing", area: 85000, group: "Mixing Bins", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-009', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 10, machineNumber: 'M-010', name: "Bin 800", stage: "Mixing", area: 105000, group: "Mixing Bins", line: "Sterile Line", cleaningSOP: { sopName: 'SOP-010', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 11, machineNumber: 'M-011', name: "Jcmco", stage: "Compression", area: 150000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-011', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 12, machineNumber: 'M-012', name: "Natoli", stage: "Compression", area: 165000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-012', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 13, machineNumber: 'M-013', name: "Korsch", stage: "Compression", area: 180000, group: "Compression Machines", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-013', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 14, machineNumber: 'M-014', name: "Coat", stage: "Coating", area: 110000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-014', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 15, machineNumber: 'M-015', name: "jar filling", stage: "Filling", area: 75000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-015', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 16, machineNumber: 'M-016', name: "Bliste", stage: "Packing", area: 220000, group: "", line: "Shared", cleaningSOP: { sopName: 'SOP-016', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] }
+];
+
+export let machineStageDisplayOrder = ['Weighing', 'Mixing', 'Compression', 'Coating', 'Filling', 'Checking', 'Labeling', 'Packing', 'Other'];
+
+// Machine group options for grouping similar machines
+export let machineGroups = [
+    'Mixing Bins',
+    'Compression Machines', 
+    'Milling Equipment',
+    'Granulators',
+    'Coating Equipment',
+    'Packaging Equipment',
+    'Weighing Equipment',
+    'Filling Equipment'
+];
+
+export let detergentIngredients = [{ id: 1, name: 'Default Detergent', ld50: 5000 }];
+export let nextDetergentIngredientId = 2;
+
+// Route-based Safety Factors Configuration
+export const routeSafetyFactors = {
+    parenteral: { min: 1000, max: 10000, route: 'Parenteral', riskLevel: 'Very High' },
+    inhalation: { min: 1000, max: 10000, route: 'Inhalation', riskLevel: 'Very High' },
+    ophthalmic: { min: 1000, max: 10000, route: 'Ophthalmic', riskLevel: 'Very High' },
+    nasal:      { min: 1000, max: 10000, route: 'Nasal', riskLevel: 'Very High' },
+    oral:       { min: 100,  max: 1000,  route: 'Oral', riskLevel: 'Standard' },
+    rectal:     { min: 100,  max: 1000,  route: 'Rectal', riskLevel: 'Standard' },
+    topical:    { min: 10,   max: 100,   route: 'Topical', riskLevel: 'Low' }
+};
+
+// Dosage Form to Route Mapping
+export const dosageFormToRouteMap = {
+    // Parenteral
+    'Ampoules': 'parenteral',
+    'Vials': 'parenteral',
+    'Injections': 'parenteral',
+    'Sterile Products': 'parenteral',
+    
+    // Oral
+    'Tablets': 'oral',
+    'Capsules': 'oral',
+    'Liquids': 'oral',
+    'Powder': 'oral',
+    
+    // Topical
+    'Cream': 'topical',
+    'Ointment': 'topical',
+    'Gel': 'topical',
+    'Lotion': 'topical',
+    'Semisolids': 'topical',
+    
+    // Ophthalmic
+    'Sterile Ointment': 'ophthalmic',
+    'Eye Drops': 'ophthalmic',
+    
+    // Inhalation
+    'Spray': 'inhalation',
+    'Powder for Inhalation': 'inhalation',
+    
+    // Rectal
+    'Suppository': 'rectal'
+};
+
+// Helper function to intelligently detect route from dosage form name using keywords
+function detectRouteFromDosageForm(dosageForm) {
+    if (!dosageForm) return null;
+    
+    const formLower = dosageForm.toLowerCase().trim();
+    
+    // Parenteral keywords (Very High Risk)
+    const parenteralKeywords = ['injection', 'injectable', 'ampoule', 'ampule', 'vial', 'sterile product', 'sterile solution', 'sterile suspension', 'infusion', 'parenteral'];
+    if (parenteralKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'parenteral';
+    }
+    
+    // Ophthalmic keywords (Very High Risk)
+    const ophthalmicKeywords = ['eye drop', 'ophthalmic', 'ocular', 'ophthalmic solution', 'ophthalmic suspension', 'sterile ointment'];
+    if (ophthalmicKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'ophthalmic';
+    }
+    
+    // Inhalation keywords (Very High Risk)
+    const inhalationKeywords = ['inhalation', 'inhaler', 'spray', 'nebulizer', 'powder for inhalation', 'aerosol'];
+    if (inhalationKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'inhalation';
+    }
+    
+    // Nasal keywords (Very High Risk)
+    const nasalKeywords = ['nasal', 'nose', 'nasal spray', 'nasal drop'];
+    if (nasalKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'nasal';
+    }
+    
+    // Topical keywords (Standard Risk)
+    const topicalKeywords = ['cream', 'ointment', 'gel', 'lotion', 'semisolid', 'topical', 'dermal', 'cutaneous', 'emulsion', 'paste'];
+    if (topicalKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'topical';
+    }
+    
+    // Rectal keywords (Standard Risk)
+    const rectalKeywords = ['suppository', 'rectal', 'enema'];
+    if (rectalKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'rectal';
+    }
+    
+    // Oral keywords (Standard Risk) - check last as it's the most common
+    const oralKeywords = ['tablet', 'capsule', 'liquid', 'syrup', 'suspension', 'solution', 'powder', 'oral', 'pill', 'dragee', 'lozenge', 'chewable', 'granule', 'sachet'];
+    if (oralKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'oral';
+    }
+    
+    return null;
+}
+
+// Helper function to get safety factor config from dosage form
+export function getSafetyFactorForDosageForm(dosageForm) {
+    if (!dosageForm) {
+        // Default to oral if no dosage form provided
+        return routeSafetyFactors.oral;
+    }
+    
+    // First, check exact match in the predefined map
+    const routeKey = dosageFormToRouteMap[dosageForm];
+    if (routeKey && routeSafetyFactors[routeKey]) {
+        return routeSafetyFactors[routeKey];
+    }
+    
+    // If not found, use intelligent detection based on keywords
+    const detectedRoute = detectRouteFromDosageForm(dosageForm);
+    if (detectedRoute && routeSafetyFactors[detectedRoute]) {
+        return routeSafetyFactors[detectedRoute];
+    }
+    
+    // Fallback to oral if no match found
+    return routeSafetyFactors.oral;
+}
+
+// Legacy safetyFactorConfig for backward compatibility (deprecated - use getSafetyFactorForDosageForm instead)
+export const safetyFactorConfig = {
+    'Sterile Products': routeSafetyFactors.parenteral,
+    'Semisolids': routeSafetyFactors.topical,
+    'Tablets': routeSafetyFactors.oral,
+    'Capsules': routeSafetyFactors.oral,
+    'Liquids': routeSafetyFactors.oral,
+    'Suppository': routeSafetyFactors.rectal,
+    'Sterile Ointment': routeSafetyFactors.ophthalmic,
+    'Spray': routeSafetyFactors.inhalation,
+    'Ampoules': routeSafetyFactors.parenteral,
+    'Vials': routeSafetyFactors.parenteral,
+    'Injections': routeSafetyFactors.parenteral,
+    'Cream': routeSafetyFactors.topical,
+    'Ointment': routeSafetyFactors.topical,
+    'Gel': routeSafetyFactors.topical,
+    'Lotion': routeSafetyFactors.topical,
+};
+
+export const productTypeHierarchy = [
+    // Sterile products (highest priority)
+    'Ampoules', 'Vials', 'Injections', 'Sterile Products', 
+    // Semisolids
+    'Cream', 'Ointment', 'Gel', 'Lotion', 'Semisolids',
+    // Oral solids
+    'Tablets', 'Capsules', 
+    // Liquids
+    'Liquids',
+    // Specialized
+    'Suppository', 'Sterile Ointment', 'Spray',
+    // Fallback
+    'Other'
+];
+
+export let viewProducts = {
+    productRegister: [],
+    worstCaseProducts: []
+};
+
+// Dynamically initialize IDs to prevent collisions with sample data
+export let nextProductId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+export let nextIngredientId = products.length > 0 ? Math.max(...products.flatMap(p => p.activeIngredients.map(i => i.id))) + 1 : 1;
+export let nextMachineId = machines.length > 0 ? Math.max(...machines.map(m => m.id)) + 1 : 1;
+export let ingredientFormCounter = 0;
+export let rpnChartInstance;
+export let macoChartInstance;
+export let scoringInEditMode = false;
+export let sortState = { key: 'rpn', direction: 'desc' };
+export let machineSortState = { key: 'name', direction: 'asc' };
+export let activeTabId = 'dashboard';
+export let trainIdMap = new Map();
+
+// --- Undo/Redo State Management ---
+export let history = [];
+export let historyIndex = -1;
+
+export let scoringCriteria = {
+    solubility: { title: "Solubility Rating", defaultScore: 3, type: "exactMatch", criteria: [ { text: "Very soluble", score: 1 }, { text: "Freely soluble", score: 2 }, { text: "Soluble", score: 3 }, { text: "Sparingly soluble", score: 4 }, { text: "Slightly soluble", score: 5 }, { text: "Very slightly soluble", score: 6 }, { text: "Practically insoluble", score: 7 }, { text: "Insoluble", score: 7 } ] },
+    therapeuticDose: { title: "Therapeutic Dose Rating", defaultScore: 3, type: "range", criteria: [ { text: ">1000 mg", score: 1, lowerBound: 1000, comparison: "greater_exclusive" }, { text: "100-1000 mg", score: 2, lowerBound: 100, upperBound: 1000, comparison: "between_inclusive_both" }, { text: "10-99 mg", score: 3, lowerBound: 10, upperBound: 99, comparison: "between_inclusive_both" }, { text: "1-9 mg", score: 4, lowerBound: 1, upperBound: 9, comparison: "between_inclusive_both" }, { text: "<1 mg", score: 5, upperBound: 1, comparison: "less_exclusive" } ] },
+    cleanability: { title: "Cleanability Rating", defaultScore: 2, type: "exactMatch", criteria: [ { text: "Easy", score: 1 }, { text: "Medium", score: 2 }, { text: "Hard", score: 3 } ] },
+    toxicityLd50: { title: "Toxicity Rating (LD50)", defaultScore: 3, type: "range", criteria: [ { text: ">5000 mg/kg", score: 1, lowerBound: 5000, comparison: "greater_exclusive" }, { text: "500-5000 mg/kg", score: 2, lowerBound: 500, upperBound: 5000, comparison: "between_inclusive_both" }, { text: "50-499 mg/kg", score: 3, lowerBound: 50, upperBound: 499, comparison: "between_inclusive_both" }, { text: "1-49 mg/kg", score: 4, lowerBound: 1, upperBound: 49, comparison: "between_inclusive_both" }, { text: "<1 mg/kg", score: 5, upperBound: 1, comparison: "less_exclusive" } ] },
+    toxicityPde: { title: "PDE Rating (mg/day)", defaultScore: 3, type: "range", criteria: [ { text: "≤ 0.001", score: 10, upperBound: 0.001, comparison: "less_inclusive" }, { text: ">0.001 – ≤0.01", score: 9, lowerBound: 0.001, upperBound: 0.01, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">0.01 – ≤0.1", score: 8, lowerBound: 0.01, upperBound: 0.1, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">0.1 – ≤1", score: 7, lowerBound: 0.1, upperBound: 1, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">1 – ≤10", score: 6, lowerBound: 1, upperBound: 10, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">10 – ≤100", score: 5, lowerBound: 10, upperBound: 100, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">100 – ≤1000", score: 4, lowerBound: 100, upperBound: 1000, comparison: "between_exclusive_lower_inclusive_upper"}, { text: ">1000", score: 3, lowerBound: 1000, comparison: "greater_exclusive"} ] },
+    hardToClean: { title: "Hard to Clean Rating", defaultScore: 2, type: "exactMatch", criteria: [ { text: "Low", score: 1 }, { text: "Medium", score: 2 }, { text: "High", score: 3 } ] },
+    accessibility: { title: "Accessibility Rating", defaultScore: 2, type: "exactMatch", criteria: [ { text: "Low", score: 1 }, { text: "Medium", score: 2 }, { text: "High", score: 3 } ] },
+    visibility: { title: "Visibility Rating", defaultScore: 2, type: "exactMatch", criteria: [ { text: "Low", score: 1 }, { text: "Medium", score: 2 }, { text: "High", score: 3 } ] },
+    numberOfSamples: { title: "Number of Samples (RPN Based)", defaultScore: 1, type: "rpn_samples", criteria: [ { text: "1-27 RPN = 1 Sample", samples: 1, rpnMin: 1, rpnMax: 27 }, { text: "36-54 RPN = 2 Samples", samples: 2, rpnMin: 36, rpnMax: 54 }, { text: "81 RPN = 3 Samples", samples: 3, rpnMin: 81, rpnMax: 81 } ] },
+    rpnRating: { title: "RPN Rating", type: "rpn_threshold", criteria: [ { rangeDescription: "1-20", rating: "Low", min: 1, max: 20 },{ rangeDescription: "21-50", rating: "Medium", min: 21, max: 50 },{ rangeDescription: "51 and more", rating: "High", min: 51, max: Infinity } ] }
+};
+
+export let scoringWasInEditModeForPrint = false;
+
+// We need to re-assign the variables after importing to allow modification
+export function setProducts(newProducts) { products = newProducts; }
+export function setMachines(newMachines) { machines = newMachines; }
+export function setDetergentIngredients(newIngredients) { detergentIngredients = newIngredients; }
+export function setScoringCriteria(newCriteria) { scoringCriteria = newCriteria; }
+export function setNextProductId(id) { nextProductId = id; }
+export function setNextIngredientId(id) { nextIngredientId = id; }
+export function setNextMachineId(id) { nextMachineId = id; }
+export function setNextDetergentIngredientId(id) { nextDetergentIngredientId = id; }
+export function setRpnChartInstance(instance) { rpnChartInstance = instance; }
+export function setMacoChartInstance(instance) { macoChartInstance = instance; }
+export function setScoringInEditMode(isEditing) { scoringInEditMode = isEditing; }
+export function setSortState(state) { sortState = state; }
+export function setMachineSortState(state) { machineSortState = state; }
+export function setActiveTabId(id) { activeTabId = id; }
+export function setHistory(newHistory, newIndex) { history = newHistory; historyIndex = newIndex; }
+export function setMachineStageDisplayOrder(order) { machineStageDisplayOrder = order; }
+export function setScoringWasInEditModeForPrint(wasEditing) { scoringWasInEditModeForPrint = wasEditing; }
+export function setIngredientFormCounter(count) { ingredientFormCounter = count; }
+
+/**
+ * Ensure every product has a `line` property.
+ * If missing, try to infer from productType (backwards-compatibility).
+ * Call this once at app start (or after loading saved state).
+ */
+export function ensureProductsHaveLine() {
+    if (!Array.isArray(exports.products) && !Array.isArray(window.state?.products) && !Array.isArray(products)) {
+        // best-effort: check common names used in this project
+    }
+
+    // Attempt to access the products array from known exports/variables
+    const prodHolder = (typeof state !== 'undefined' && state.products) ? state
+                    : (typeof exports !== 'undefined' && exports.products) ? exports
+                    : (typeof window !== 'undefined' && window.state && window.state.products) ? window.state
+                    : null;
+    if (!prodHolder) return;
+
+    const products = prodHolder.products || [];
+    let changed = false;
+
+    const solids = ['Tablets', 'Capsules', 'Powder'];
+    const semisolids = ['Ointment', 'Cream', 'Gel'];
+    const liquids = ['Syrup', 'Solution', 'Suspension'];
+
+    const migrated = products.map(p => {
+        // if product already has a line (non-empty), keep as is
+        if (p.line !== undefined && p.line !== null && p.line !== '') return p;
+        const copy = Object.assign({}, p);
+        if (copy.productType) {
+            if (solids.includes(copy.productType)) copy.line = 'Solids';
+            else if (semisolids.includes(copy.productType)) copy.line = 'Semisolid';
+            else if (liquids.includes(copy.productType)) copy.line = 'Liquids';
+            else copy.line = ''; // unknown/custom; leave empty so UI can set
+        } else {
+            copy.line = '';
+        }
+        changed = true;
+        return copy;
+    });
+
+    if (changed) {
+        // prefer exported setter if present
+        if (typeof prodHolder.setProducts === 'function') {
+            prodHolder.setProducts(migrated);
+        } else {
+            prodHolder.products = migrated;
+        }
+    }
+}

@@ -1,1 +1,1009 @@
-const a0_0x9bf75e=a0_0x2f02;(function(_0x2a7e37,_0x1d5c61){const _0x437c82=a0_0x2f02,_0x22a881=_0x2a7e37();while(!![]){try{const _0x1cf70c=parseInt(_0x437c82(0x11b))/0x1+parseInt(_0x437c82(0x193))/0x2*(parseInt(_0x437c82(0x13a))/0x3)+parseInt(_0x437c82(0x28f))/0x4+parseInt(_0x437c82(0x1ab))/0x5*(parseInt(_0x437c82(0x216))/0x6)+parseInt(_0x437c82(0xed))/0x7+-parseInt(_0x437c82(0x21d))/0x8+-parseInt(_0x437c82(0x25b))/0x9;if(_0x1cf70c===_0x1d5c61)break;else _0x22a881['push'](_0x22a881['shift']());}catch(_0x5c0a14){_0x22a881['push'](_0x22a881['shift']());}}}(a0_0xb27f,0x89bf2));import*as a0_0x54f063 from'./state.js';import*as a0_0x2e5cde from'./ui.js';import*as a0_0x4397fe from'./utils.js';import*as a0_0x1224e2 from'./productView.js';import*as a0_0x30f3d4 from'./machineView.js';import*as a0_0x258d8a from'./worstCaseView.js';import*as a0_0x19554e from'./macoProductView.js';import*as a0_0x539a6d from'./macoDetergentView.js';import*as a0_0x33b82d from'./dashboardView.js';import*as a0_0xc7e502 from'./summaryView.js';import*as a0_0x2c36e3 from'./trainSummaryView.js';import*as a0_0x5618a1 from'./scoringView.js';import*as a0_0x400dfd from'./machineCoverageView.js';import{renderLineReport as a0_0x11ff67}from'./lineReportView.js';import{QAView as a0_0x4bc1e9}from'./qaView.js';const p=new a0_0x4bc1e9({'products':a0_0x54f063[a0_0x9bf75e(0x124)],'machines':a0_0x54f063[a0_0x9bf75e(0x168)],'trains':[],'lines':[],'dosageForms':[],'selectedStudies':[],'macoCalculations':[]},{'debugMode':!0x1,'confidenceThreshold':0.3});function h(){const _0x2224b7=a0_0x9bf75e,_0xdf1729={'FwcDu':_0x2224b7(0x130),'GYZwK':_0x2224b7(0x25e),'xblcC':_0x2224b7(0x265),'XDXaU':_0x2224b7(0x1ad),'xnBOU':'.train-details','RFtNZ':_0x2224b7(0x256)};document['querySelectorAll'](_0xdf1729[_0x2224b7(0x14e)])['forEach'](_0x8a08d0=>{const _0x2271f8=_0x2224b7;if(_0x8a08d0['querySelector'](_0xdf1729[_0x2271f8(0x18f)]))return;const _0x3bb546=_0x8a08d0['id'],_0x10340e=document[_0x2271f8(0x1de)](_0xdf1729['GYZwK']);_0x10340e['textContent']=_0xdf1729[_0x2271f8(0x127)],_0x10340e[_0x2271f8(0x1cb)]=_0xdf1729[_0x2271f8(0x253)],_0x10340e[_0x2271f8(0x126)][_0x2271f8(0x21e)]='10px',_0x10340e['onclick']=()=>b(_0x3bb546);const _0x13044b=_0x8a08d0[_0x2271f8(0x10c)](_0xdf1729['xnBOU']);_0x13044b&&_0x13044b['appendChild'](_0x10340e);});}function a0_0xb27f(){const _0x1bbd56=['jlTtl','printingView','\x22\x20fill=\x22none\x22\x20stroke=\x22currentColor\x22\x20viewBox=\x220\x200\x2024\x2024\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M19\x209l-7\x207-7-7\x22></path>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22submenu-','Dbixo','jrARH','YTwPK','none','render','zPhKt','CSwmp','ujvEG','dashboard','customAlertButton','renderMainDashboard','then','.tab-button','setScoringWasInEditModeForPrint','active-tab','dIFij','handleWorstCaseProductFilter','\x27,\x20\x27worstCase\x27)\x22\x20class=\x22w-full\x20text-left\x20px-3\x20py-1\x20rounded-md\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20text-sm\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Worst\x20Case\x20Products</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showLineSpecificView(\x27','keydown','assign','editScoringBtn','ppOsd','gPzke','3738agnkOw','machineCoverageContainer','html2pdf\x20library\x20not\x20loaded','message','warn','hideModal','ZLiZc','810808FEUXvk','margin','innerWidth','ujtzf','xoHkr','resize','WhtxS','jDiTh','script','utiRe','erByn','.pdf','machineCoverage','#lineReportContainer','PDF\x20export\x20failed:\x20','ml-0','activeIngredients','PnaiZ','active-tab-content','text-blue-700','qBwJg','dark:text-blue-300','undefined','setNextMachineId','qykLP','ensureProductsHaveLine','CtaQe','showLineSpecificView','Error\x20during\x20application\x20initialization:','VqLvO','setNextIngredientId','editIngredientForm','dark:bg-blue-900','renderMachinesTable','beforeprint','coverage','catch','qwlNC','toggleDarkMode','HPgYb','ttQXQ','[migration]\x20ensureProductsHaveLine\x20failed','dark','AseWL','dfhGw','renderMacoForTrains','testPDFLibraries','AXlMu','BseZA','\x27,\x20\x27trainSummary\x27)\x22\x20class=\x22w-full\x20text-left\x20px-3\x20py-1\x20rounded-md\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20text-sm\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Trains\x20Summary</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showLineSpecificView(\x27','All','renderWorstCaseByTrain','./lineReportView.js','saveProductChanges','XDXaU','matches','Czuox','#maco-product-trains-container\x20.train-container','#lineReportContainer\x20.report-container','src','submit','jsPDF','24155874YnyiFB','jpeg','saveAllDataToLocalStorage','button','qPwhA','IUUKh','text-blue-600','FEvSx','createHorizontalMachineCoverageTable','RRLma','Print\x20Train','❌\x20jsPDF\x20constructor\x20failed:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20class=\x22w-5\x20h-5\x22\x20fill=\x22none\x22\x20stroke=\x22currentColor\x22\x20viewBox=\x220\x200\x2024\x2024\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M11\x2019l-7-7\x207-7m8\x2014l-7-7\x207-7\x22></path>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','fJKNG','❌\x20No\x20report\x20container\x20found','contains','Bzufz','button[onclick=\x22toggleLineMenu(\x27','If\x20you\x20can\x20see\x20this,\x20the\x20PDF\x20generation\x20is\x20working!','replace','UgVhH','swjUy','LfuIx','HCvho','IinJB','OWORu','display','head','Error\x20during\x20full\x20application\x20render:','defaultUser','vuimM','IfNFQ','pGBur','txZQy','rotate(0deg)','aDSMv','button[onclick=\x22exportToPDF()\x22],\x20button[onclick=\x22window.exportToPDF()\x22]','preventDefault','lCYeJ','userId','lnhdG','classList','button[onclick=\x22showLineSpecificView(\x27','Failed\x20to\x20load\x20jsPDF\x20from\x20CDN','gbUvw','addNewProduct','MecQO','MbIBM','focus','getUniqueProductLines','jBPSD','BpLpd','3143996eAqnqW','#worstCaseProductNameFilter','bQmdv','6295142yPselW','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20class=\x22w-5\x20h-5\x22\x20fill=\x22none\x22\x20stroke=\x22currentColor\x22\x20viewBox=\x220\x200\x2024\x2024\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M11\x2019l-7-7\x207-7m8\x2014l-7-7\x207-7\x22></path>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','remove','SgUoo','YLOqL','machineManagement','OnAzF','sWXjA','#ffffff','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20class=\x22w-4\x20h-4\x20transform\x20transition-transform\x22\x20id=\x22arrow-','exportToPDFDirect','printTrain','function','detergentMaco','key','defaultOrg','Metfo','test-pdf-','\x22\x20class=\x22hidden\x20ml-4\x20mt-2\x20space-y-1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showLineSpecificView(\x27','mr-0','error','renderDetergentMaco','.line-nav-item\x20button','summaryReport','FqQdf','change','renderScoringSystem','initializeProperCaseInputs','Line\x20navigation\x20element\x20not\x20found','khxaS','changeTab','querySelector','gRUYF','appendChild','aRfTc','TpYSx','igDAG','WyLKA','trainSummary','FIbQt','WOpqj','CaFKj','\x27,\x20\x27maco\x27)\x22\x20class=\x22w-full\x20text-left\x20px-3\x20py-1\x20rounded-md\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20text-sm\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Product\x20MACO\x20Calculation</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showLineSpecificView(\x27','lineReport','qvlOU','Error\x20opening\x20report\x20window:','319701qClEwT','zgLUo','TOVwO','opacity','saveMachine','testSimplePDF','max','SKrjt','BKExz','products','line-nav-item','style','xblcC','afterprint','orgId','querySelectorAll','EgSXg','transform','lineNavigation','Generating\x20PDF','[onclick*=\x22changeTab(\x27','.print-train-btn','ovgeF','scoringInEditMode','arrow-','toggleLineMenu','gHjWj','gedUF','zlWpL','redoChange','rXRUj','6522LNgvAq','disabled','body','hBjre','exportToPDF','FRixR','Error\x20in\x20exportToPDFDirect:','OMPQn','Mzrxz','theme-toggle','cVkXt','text','innerHTML','WvFxT','onload','ZdJTK','bg-blue-50','dJKNJ','IqOmm','renderDetergentIngredientsList','RFtNZ','vpyMA','hOsIm','setItem','NGKLu','toggleSidebar','Could\x20not\x20find\x20train\x20content\x20to\x20print:','aZmvR','WJpbH','productRegister','wjSwY','eMAVf','This\x20is\x20a\x20test\x20to\x20verify\x20PDF\x20creation\x20works.','McGEr','hidden','qPsfg','https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js','\x27,\x20\x27lineReport\x27)\x22\x20class=\x22w-full\x20text-left\x20px-3\x20py-1\x20rounded-md\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20text-sm\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Report</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','renderSummaryReport','GZfCb','saveProductsToMachine','onclick','addEventListener','hideLoader','XinRd','ypRZU','machines','ucTRA','UMPpi','wCMrh','printing-macoForTrains','.line-nav-item\x20div\x20button','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20class=\x22w-5\x20h-5\x22\x20fill=\x22none\x22\x20stroke=\x22currentColor\x22\x20viewBox=\x220\x200\x2024\x2024\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M4\x206h16M4\x2012h16M4\x2018h16\x22></path>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','resetColorMapping','DOMContentLoaded','printing-maco-train','updateToggleIcons','Ipfxg','JGsas','❌\x20Test\x20PDF\x20creation\x20failed:','xcRVW','now','.header,\x20.main-nav,\x20.sidebar,\x20.export-section','qTnxM','erDjO','ATZEM','forceRestoreExportButton','Error\x20opening\x20report.\x20Please\x20try\x20again.','CleaningValidationReportGenerator','printSelectedTrain','CsVQu','html2canvas','.btn-pdf','floatingToggle','macoForTrains','\x27\x22]','sidebar','ahxOT','rAAaw','\x27)\x22]','submenu-','mRNXd','sortData','JYYGS','❌\x20No\x20jsPDF\x20constructor\x20found','FwcDu','input','target','glMjn','638AjclLH','ctrlKey','includes','loadAllDataFromLocalStorage','icyeS','📄\x20Export\x20to\x20PDF','click','forEach','populateProductLineDropdowns','detergent','https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','currentLineFilter','log','xVwqy','w-64','collapsed','\x27)\x22\x20class=\x22w-full\x20text-left\x20px-3\x20py-2\x20rounded-md\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20flex\x20items-center\x20justify-between\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','GQKsC','assignMachinesForm','backgroundColor','detergentIngredients','glQGs','maco','EpkKk','5225uLOpdR','Failed\x20to\x20load\x20html2canvas\x20from\x20CDN','btn\x20print-train-btn','jspdf','saveIngredientChanges','save','gBCaj','handleSearchAndFilter','div','isCritical','Mtume','FFhWu','renderTrainSummary','KMIMq','dark:text-blue-200','VzobH','.filterColTrainNo,\x20.filterColProductType,\x20.filterColIsCritical','ZCgPE','fYwmi','from','add','rotate(180deg)','PDF\x20generation\x20failed:\x20','css','anGkP','getTrainsGroupedByLine','umfQf','theme','length','.tab-content','bg-blue-100','Solids','className','ijnwT','ucHZv','MvucX','❌\x20No\x20PDF\x20constructor\x20available','onerror','fVzql','TLALE','printing-','\x27,\x20\x27','ZDLjQ','editProductForm','YuvmS','Test','avoid-all','flatMap','ceOZD','LToxD','worstCase','createElement','WsHma','NiEEL','light','worstCaseProducts','dKFfi','undoChange','QouiO','saveStateForUndo','AHgMN','Kbhle','toggleScoringEditMode','SkCAH','map','PbqVK','sidebarToggle','Test\x20PDF\x20Generation','BHTBR','\x27,\x20\x27detergent\x27)\x22\x20class=\x22w-full\x20text-left\x20px-3\x20py-1\x20rounded-md\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20text-sm\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Detergent\x20MACO\x20Calculation</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showLineSpecificView(\x27','vMMLf','RWPCI','pLoaV','getElementById','portrait','generateTrainMap','setActiveTabId','sidebarBackdrop','addProductsToMachineForm','documentElement','pmTlU'];a0_0xb27f=function(){return _0x1bbd56;};return a0_0xb27f();}function b(_0x175f6c){const _0x4dd0c1=a0_0x9bf75e,_0x44b29a={'HoMHD':_0x4dd0c1(0x171),'vqTZn':function(_0x339cb9,_0xcd60aa,_0x49590a){return _0x339cb9(_0xcd60aa,_0x49590a);}};document['getElementById'](_0x175f6c)?(document['body'][_0x4dd0c1(0x284)]['add'](_0x44b29a['HoMHD']),_0x44b29a['vqTZn'](setTimeout,()=>{window['print']();},0x64)):console['error'](_0x4dd0c1(0x154),_0x175f6c);}window[a0_0x9bf75e(0x10b)]=f,window[a0_0x9bf75e(0xf8)]=b,window['sortData']=a0_0x1224e2[a0_0x9bf75e(0x18c)],window[a0_0x9bf75e(0xf7)]=function(){const _0x47f55d=a0_0x9bf75e,_0x100875={'RHINr':_0x47f55d(0x202),'txZQy':_0x47f55d(0x178),'IfNFQ':'PDF\x20generation\x20failed:','WyLKA':function(_0x5ae159,_0x2b9548){return _0x5ae159+_0x2b9548;},'WOpqj':_0x47f55d(0x1c1),'ceOZD':function(_0x3195d2,_0x2de3e9){return _0x3195d2==_0x2de3e9;},'FqQdf':_0x47f55d(0x233),'LBGHy':_0x47f55d(0x218),'qPsfg':function(_0x545d89,_0x4c3240){return _0x545d89(_0x4c3240);},'qTnxM':'PDF\x20export\x20library\x20not\x20available.\x20Please\x20refresh\x20the\x20page\x20and\x20try\x20again.','MvucX':'.report-container','xoHkr':_0x47f55d(0x25c),'XinRd':_0x47f55d(0xf5),'BpLpd':_0x47f55d(0x1f5),'dKFfi':_0x47f55d(0x182),'WIBbM':'⏳\x20Generating\x20PDF...','ovgeF':function(_0x50f353){return _0x50f353();},'ypRZU':function(_0x1aac9f){return _0x1aac9f();},'kQmcj':_0x47f55d(0x140),'NiEEL':function(_0x4279c0,_0x41f858){return _0x4279c0+_0x41f858;},'vWNLo':_0x47f55d(0x22b)};try{if(_0x100875[_0x47f55d(0x1db)](_0x100875[_0x47f55d(0x105)],typeof html2pdf))return console[_0x47f55d(0x101)](_0x100875['LBGHy']),void _0x100875[_0x47f55d(0x15d)](alert,_0x100875[_0x47f55d(0x179)]);let _0x5c415b=document['querySelector'](_0x100875[_0x47f55d(0x1ce)]);(_0x5c415b||(_0x5c415b=document[_0x47f55d(0x10c)](_0x47f55d(0x22a))),_0x5c415b||(_0x5c415b=document['querySelector']('.report-content')),!_0x5c415b)&&(_0x5c415b=document[_0x47f55d(0x13c)],document[_0x47f55d(0x12a)](_0x47f55d(0x178))['forEach'](_0x43b6ef=>{_0x43b6ef['style']['display']=_0x100875['RHINr'];}));const _0x38d235={'margin':[0.3,0.3,0.3,0.3],'filename':'cleaning_validation_report.pdf','image':{'type':_0x100875[_0x47f55d(0x221)],'quality':0.98},'html2canvas':{'scale':0x2,'useCORS':!0x0,'allowTaint':!0x0,'backgroundColor':_0x100875[_0x47f55d(0x166)],'logging':!0x1,'letterRendering':!0x0},'jsPDF':{'unit':'in','format':'a4','orientation':_0x100875[_0x47f55d(0x28e)],'compress':!0x0},'pagebreak':{'mode':[_0x47f55d(0x1d9),_0x47f55d(0x1c2),'legacy']}},_0x350b4f=document[_0x47f55d(0x10c)](_0x100875[_0x47f55d(0x1e3)]);if(_0x350b4f){const _0x427418=_0x350b4f['innerHTML'];_0x350b4f['innerHTML']=_0x100875['WIBbM'],_0x350b4f[_0x47f55d(0x13b)]=!0x0,_0x100875[_0x47f55d(0x131)](html2pdf)['set'](_0x38d235)['from'](_0x5c415b)[_0x47f55d(0x1b0)]()[_0x47f55d(0x20a)](()=>{const _0x49fd4e=_0x47f55d;_0x350b4f[_0x49fd4e(0x146)]=_0x427418,_0x350b4f[_0x49fd4e(0x13b)]=!0x1,document[_0x49fd4e(0x12a)](_0x100875[_0x49fd4e(0x27c)])[_0x49fd4e(0x19a)](_0x289035=>{const _0x4452b0=_0x49fd4e;_0x289035[_0x4452b0(0x126)][_0x4452b0(0x275)]='';});})[_0x47f55d(0x241)](_0x26bb57=>{const _0x8205e8=_0x47f55d;console[_0x8205e8(0x101)](_0x100875[_0x8205e8(0x27a)],_0x26bb57),_0x350b4f[_0x8205e8(0x146)]=_0x427418,_0x350b4f[_0x8205e8(0x13b)]=!0x1,alert(_0x100875[_0x8205e8(0x112)](_0x100875[_0x8205e8(0x115)],_0x26bb57[_0x8205e8(0x219)])),document[_0x8205e8(0x12a)](_0x100875[_0x8205e8(0x27c)])[_0x8205e8(0x19a)](_0x320b65=>{const _0x308a3d=_0x8205e8;_0x320b65[_0x308a3d(0x126)][_0x308a3d(0x275)]='';});});}else _0x100875[_0x47f55d(0x167)](html2pdf)['set'](_0x38d235)[_0x47f55d(0x1be)](_0x5c415b)[_0x47f55d(0x1b0)]()[_0x47f55d(0x20a)](()=>{const _0x3becfd=_0x47f55d;document['querySelectorAll'](_0x100875['txZQy'])[_0x3becfd(0x19a)](_0x1c4de0=>{const _0x1d534c=_0x3becfd;_0x1c4de0[_0x1d534c(0x126)][_0x1d534c(0x275)]='';});})['catch'](_0x8b89a3=>{const _0x59fe33=_0x47f55d;console['error'](_0x100875['IfNFQ'],_0x8b89a3),alert(_0x100875[_0x59fe33(0x112)](_0x100875[_0x59fe33(0x115)],_0x8b89a3[_0x59fe33(0x219)])),document[_0x59fe33(0x12a)](_0x59fe33(0x178))[_0x59fe33(0x19a)](_0xdf6705=>{const _0x5ccc8c=_0x59fe33;_0xdf6705['style'][_0x5ccc8c(0x275)]='';});});}catch(_0x565677){console[_0x47f55d(0x101)](_0x100875['kQmcj'],_0x565677),alert(_0x100875[_0x47f55d(0x1e0)](_0x100875['vWNLo'],_0x565677[_0x47f55d(0x219)])),document['querySelectorAll'](_0x100875['txZQy'])[_0x47f55d(0x19a)](_0x256e62=>{const _0x4d811b=_0x47f55d;_0x256e62[_0x4d811b(0x126)][_0x4d811b(0x275)]='';});}},window[a0_0x9bf75e(0x13e)]=function(){const _0x2632bf=a0_0x9bf75e;window[_0x2632bf(0xf7)]();};export function fullAppRender(){const _0x402cd3=a0_0x9bf75e,_0x570909={'ppOsd':_0x402cd3(0x157),'dJKNJ':_0x402cd3(0x1e2),'TOVwO':function(_0x818045){return _0x818045();},'JyGnU':_0x402cd3(0x277)};try{a0_0x4397fe[_0x402cd3(0x1f6)](),a0_0x33b82d[_0x402cd3(0x16f)](),a0_0x1224e2[_0x402cd3(0x1b2)](_0x570909[_0x402cd3(0x214)]),a0_0x258d8a[_0x402cd3(0x1b2)](_0x570909[_0x402cd3(0x14b)]),a0_0x30f3d4['renderMachinesTable'](),a0_0x30f3d4['updateMachineLineOptionsIfModalOpen'](),a0_0x33b82d[_0x402cd3(0x209)]();const _0x5df9ec={'products':a0_0x54f063[_0x402cd3(0x124)],'machines':a0_0x54f063[_0x402cd3(0x168)],'trains':a0_0x4397fe[_0x402cd3(0x1c4)]()};p['initialize'](_0x5df9ec),a0_0x4397fe[_0x402cd3(0x108)](),a0_0x19554e[_0x402cd3(0x24a)](),_0x570909[_0x402cd3(0x11d)](h),a0_0x539a6d[_0x402cd3(0x102)](),a0_0x539a6d[_0x402cd3(0x14d)](),a0_0xc7e502[_0x402cd3(0x160)](),a0_0x5618a1[_0x402cd3(0x107)](),a0_0x1224e2['populateFilterSelects'](),a0_0x1224e2[_0x402cd3(0x19b)](),_0x570909[_0x402cd3(0x11d)](renderLineNavigation);}catch(_0x37c992){console[_0x402cd3(0x101)](_0x570909['JyGnU'],_0x37c992),a0_0x2e5cde[_0x402cd3(0x165)]();}}export function renderLineNavigation(){const _0x1bc2b7=a0_0x9bf75e,_0x216904={'PumJs':function(_0x490a1c,_0x3290ce){return _0x490a1c===_0x3290ce;},'CaFKj':'Shared','Mtume':_0x1bc2b7(0x1b3),'xVwqy':_0x1bc2b7(0x125),'zPhKt':_0x1bc2b7(0x12d),'Bzufz':_0x1bc2b7(0x109)},_0x4a3054=document[_0x1bc2b7(0x1f4)](_0x216904[_0x1bc2b7(0x204)]);if(!_0x4a3054)return void console[_0x1bc2b7(0x101)](_0x216904[_0x1bc2b7(0x26b)]);const _0x48d2ff=a0_0x4397fe[_0x1bc2b7(0x28c)](a0_0x54f063['products']);_0x4a3054[_0x1bc2b7(0x146)]='',_0x48d2ff[_0x1bc2b7(0x19a)](_0x3c2782=>{const _0x44fc37=_0x1bc2b7;if(_0x216904['PumJs'](_0x216904[_0x44fc37(0x116)],_0x3c2782))return;const _0x5a8e87=document[_0x44fc37(0x1de)](_0x216904[_0x44fc37(0x1b5)]);_0x5a8e87[_0x44fc37(0x1cb)]=_0x216904[_0x44fc37(0x1a0)],_0x5a8e87[_0x44fc37(0x146)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22toggleLineMenu(\x27'+_0x3c2782+_0x44fc37(0x1a3)+_0x3c2782+_0x44fc37(0xf6)+_0x3c2782+_0x44fc37(0x1fe)+_0x3c2782+_0x44fc37(0xff)+_0x3c2782+_0x44fc37(0x210)+_0x3c2782+_0x44fc37(0x117)+_0x3c2782+_0x44fc37(0x1f0)+_0x3c2782+_0x44fc37(0x24e)+_0x3c2782+'\x27,\x20\x27coverage\x27)\x22\x20class=\x22w-full\x20text-left\x20px-3\x20py-1\x20rounded-md\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20text-sm\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Machine\x20Coverage</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showLineSpecificView(\x27'+_0x3c2782+_0x44fc37(0x15f),_0x4a3054[_0x44fc37(0x10e)](_0x5a8e87);});}function f(_0xbd9c72,_0x1f63af){const _0x29b8ab=a0_0x9bf75e,_0x4b888e={'umfQf':_0x29b8ab(0x23d),'SgUoo':_0x29b8ab(0x261),'TpYSx':_0x29b8ab(0x232),'jBPSD':_0x29b8ab(0x14a),'vpyMA':'dark:bg-blue-950','Mzrxz':'dark:text-blue-200','cyKXV':'.line-nav-item\x20button','skzcv':'.tab-content','OIXhB':_0x29b8ab(0x22f),'NGKLu':_0x29b8ab(0x20b),'KMIMq':_0x29b8ab(0x20d),'mMSWs':'dashboard','AdJgF':'summaryReport','gXErJ':_0x29b8ab(0x113),'STfCb':function(_0x247b8f,_0x7697){return _0x247b8f===_0x7697;},'OnAzF':_0x29b8ab(0xf2),'PrgWp':function(_0x329960,_0x556106){return _0x329960===_0x556106;},'wCMrh':'detergentMaco','gbUvw':'productRegister','YuvmS':function(_0x2e89aa,_0x31a44e){return _0x2e89aa!==_0x31a44e;},'ucTRA':_0x29b8ab(0x1e2),'WhtxS':_0x29b8ab(0x229),'lnhdG':_0x29b8ab(0x217),'wjSwY':function(_0x380950,_0x23f960){return _0x380950===_0x23f960;}};if(window['currentLineFilter']=null,document[_0x29b8ab(0x12a)](_0x4b888e['cyKXV'])[_0x29b8ab(0x19a)](_0x23bd94=>{const _0x514c1b=_0x29b8ab;_0x23bd94[_0x514c1b(0x284)][_0x514c1b(0xef)]('bg-blue-100',_0x4b888e[_0x514c1b(0x1c5)],_0x4b888e[_0x514c1b(0xf0)],_0x4b888e[_0x514c1b(0x110)],_0x4b888e[_0x514c1b(0x28d)],_0x4b888e[_0x514c1b(0x14f)],'text-blue-700',_0x4b888e[_0x514c1b(0x142)]);}),document[_0x29b8ab(0x12a)](_0x29b8ab(0x16d))['forEach'](_0x570877=>{const _0xb9ff87=_0x29b8ab;_0x570877[_0xb9ff87(0x284)][_0xb9ff87(0xef)](_0xb9ff87(0x1c9),_0xb9ff87(0x23d),_0xb9ff87(0x261),_0x4b888e[_0xb9ff87(0x110)]);}),a0_0x54f063[_0x29b8ab(0x1f7)](_0xbd9c72),document['querySelectorAll'](_0x4b888e['skzcv'])[_0x29b8ab(0x19a)](_0x14eac0=>_0x14eac0[_0x29b8ab(0x284)][_0x29b8ab(0xef)](_0x29b8ab(0x22f))),document[_0x29b8ab(0x1f4)](_0xbd9c72)[_0x29b8ab(0x284)]['add'](_0x4b888e['OIXhB']),document['querySelectorAll'](_0x4b888e[_0x29b8ab(0x152)])[_0x29b8ab(0x19a)](_0x21f51b=>_0x21f51b['classList']['remove']('active-tab')),_0x1f63af[_0x29b8ab(0x284)][_0x29b8ab(0x1bf)](_0x4b888e[_0x29b8ab(0x1b8)]),_0x4b888e['mMSWs']===_0xbd9c72&&(a0_0x33b82d['resetColorMapping'](),a0_0x33b82d[_0x29b8ab(0x209)]()),_0x4b888e['AdJgF']===_0xbd9c72&&a0_0xc7e502['renderSummaryReport'](),_0x4b888e['gXErJ']===_0xbd9c72&&a0_0x2c36e3[_0x29b8ab(0x1b7)](),_0x4b888e['STfCb'](_0x4b888e[_0x29b8ab(0xf3)],_0xbd9c72)&&a0_0x30f3d4[_0x29b8ab(0x23e)](),_0x29b8ab(0x184)===_0xbd9c72&&(a0_0x19554e['renderMacoForTrains'](),h()),_0x4b888e['PrgWp'](_0x4b888e[_0x29b8ab(0x16b)],_0xbd9c72)&&a0_0x539a6d[_0x29b8ab(0x102)](),_0x4b888e[_0x29b8ab(0x287)]!==_0xbd9c72&&_0x4b888e[_0x29b8ab(0x1d7)](_0x4b888e[_0x29b8ab(0x169)],_0xbd9c72)||a0_0x1224e2['handleSearchAndFilter'](_0xbd9c72),_0x4b888e[_0x29b8ab(0x223)]===_0xbd9c72){const _0x530fa6=document[_0x29b8ab(0x1f4)](_0x4b888e[_0x29b8ab(0x283)]);_0x530fa6&&(_0x530fa6[_0x29b8ab(0x146)]=a0_0x400dfd['createHorizontalMachineCoverageTable']());}_0x4b888e[_0x29b8ab(0x158)]('qa',_0xbd9c72)&&p['render']();}function a0_0x2f02(_0x262f4f,_0x2ce25a){const _0xb27f83=a0_0xb27f();return a0_0x2f02=function(_0x2f02dd,_0x2d9507){_0x2f02dd=_0x2f02dd-0xed;let _0x2547a1=_0xb27f83[_0x2f02dd];return _0x2547a1;},a0_0x2f02(_0x262f4f,_0x2ce25a);}function y(){const _0x366711=a0_0x9bf75e,_0x17b5ba={'qwlNC':function(_0x4cf887,_0x58ba41){return _0x4cf887===_0x58ba41;},'BKExz':'sidebarToggle','dfhGw':_0x366711(0x183),'zUWeL':'collapsed','zlWpL':_0x366711(0xee),'gedUF':_0x366711(0x278),'JGsas':'orgId','PbqVK':'userId','hBjre':function(_0x52e3a1,_0x32d894){return _0x52e3a1>_0x32d894;},'CSwmp':function(_0x489548,_0x10596f){return _0x489548+_0x10596f;},'rlPKZ':function(_0x220841,_0x178871){return _0x220841>_0x178871;},'ttQXQ':function(_0x9c56,_0x263269){return _0x9c56+_0x263269;},'pLoaV':function(_0x5d7016,_0x48b155){return _0x5d7016>_0x48b155;},'utiRe':function(_0x46f84f,_0x5bb4b9){return _0x46f84f>_0x5bb4b9;},'aRfTc':_0x366711(0x246),'GZfCb':function(_0x4223bd){return _0x4223bd();},'jrARH':_0x366711(0x157),'bQmdv':_0x366711(0x239)};a0_0x2e5cde['showLoader']();try{let _0x3c0fb0,_0x483b89;if(_0x3c0fb0||(_0x3c0fb0=_0x366711(0xfc)),_0x483b89||(_0x483b89=_0x17b5ba[_0x366711(0x136)]),localStorage[_0x366711(0x151)](_0x17b5ba[_0x366711(0x174)],_0x3c0fb0),localStorage[_0x366711(0x151)](_0x17b5ba[_0x366711(0x1ec)],_0x483b89),window[_0x366711(0x129)]=_0x3c0fb0,window[_0x366711(0x282)]=_0x483b89,_0x17b5ba[_0x366711(0x242)]('dark',localStorage['getItem'](_0x366711(0x1c6)))?a0_0x2e5cde[_0x366711(0x243)](!0x0):a0_0x2e5cde[_0x366711(0x243)](!0x1),a0_0x2e5cde[_0x366711(0x196)](),_0x17b5ba[_0x366711(0x13d)](a0_0x54f063[_0x366711(0x124)][_0x366711(0x1c7)],0x0)){a0_0x54f063['setNextProductId'](_0x17b5ba[_0x366711(0x205)](Math[_0x366711(0x121)](0x0,...a0_0x54f063['products'][_0x366711(0x1eb)](_0x49ac5b=>_0x49ac5b['id'])),0x1));const _0x20f135=a0_0x54f063[_0x366711(0x124)][_0x366711(0x1da)](_0x257b30=>_0x257b30[_0x366711(0x22d)][_0x366711(0x1eb)](_0x722e03=>_0x722e03['id']));a0_0x54f063[_0x366711(0x23b)](_0x17b5ba['rlPKZ'](_0x20f135[_0x366711(0x1c7)],0x0)?_0x17b5ba[_0x366711(0x245)](Math[_0x366711(0x121)](0x0,..._0x20f135),0x1):0x1);}_0x17b5ba[_0x366711(0x1f3)](a0_0x54f063[_0x366711(0x168)][_0x366711(0x1c7)],0x0)&&a0_0x54f063[_0x366711(0x234)](Math[_0x366711(0x121)](0x0,...a0_0x54f063[_0x366711(0x168)][_0x366711(0x1eb)](_0xdffff6=>_0xdffff6['id']))+0x1),_0x17b5ba[_0x366711(0x226)](a0_0x54f063['detergentIngredients'][_0x366711(0x1c7)],0x0)&&a0_0x54f063['setNextDetergentIngredientId'](Math[_0x366711(0x121)](0x0,...a0_0x54f063[_0x366711(0x1a7)][_0x366711(0x1eb)](_0x1f6ae9=>_0x1f6ae9['id']))+0x1),a0_0x54f063[_0x366711(0x124)][_0x366711(0x19a)](_0x21cc57=>{const _0x42bda1=_0x366711;_0x17b5ba[_0x42bda1(0x242)](void 0x0,_0x21cc57[_0x42bda1(0x1b4)])&&(_0x21cc57['isCritical']=!0x1);}),a0_0x2e5cde[_0x366711(0x1e6)]();try{_0x366711(0xf9)==typeof a0_0x54f063[_0x366711(0x236)]&&a0_0x54f063['ensureProductsHaveLine']();}catch(_0x5b481a){console[_0x366711(0x21a)](_0x17b5ba[_0x366711(0x10f)],_0x5b481a);}_0x17b5ba[_0x366711(0x161)](fullAppRender),a0_0x4397fe[_0x366711(0x108)](),(function(){const _0x4d3310=_0x366711,_0x241a85=document['getElementById'](_0x4d3310(0x186)),_0x1a3479=document[_0x4d3310(0x1f4)](_0x17b5ba[_0x4d3310(0x123)]),_0x81e806=document[_0x4d3310(0x1f4)](_0x17b5ba[_0x4d3310(0x249)]);_0x241a85&&_0x241a85[_0x4d3310(0x284)][_0x4d3310(0xef)](_0x17b5ba['zUWeL']),_0x1a3479&&(_0x1a3479[_0x4d3310(0x284)][_0x4d3310(0xef)](_0x4d3310(0x15c)),_0x1a3479[_0x4d3310(0x146)]=_0x17b5ba[_0x4d3310(0x137)]),_0x81e806&&_0x81e806[_0x4d3310(0x284)][_0x4d3310(0x1bf)](_0x4d3310(0x15c));}()),a0_0x2e5cde[_0x366711(0x172)](_0x17b5ba[_0x366711(0x200)]),a0_0x5618a1['toggleScoringEditMode'](!0x1),a0_0x2e5cde[_0x366711(0x165)]();}catch(_0x3dce62){console[_0x366711(0x101)](_0x17b5ba[_0x366711(0x291)],_0x3dce62),a0_0x2e5cde[_0x366711(0x165)]();}}window['toggleLineMenu']=function(_0x2ea297){const _0x5c221b=a0_0x9bf75e,_0x4c0fe9={'qBwJg':'hidden','Kbhle':_0x5c221b(0x1c0),'IinJB':_0x5c221b(0x27d)},_0x3e372c=document['getElementById'](_0x5c221b(0x18a)+_0x2ea297),_0x39f987=document[_0x5c221b(0x1f4)](_0x5c221b(0x133)+_0x2ea297);_0x3e372c[_0x5c221b(0x284)]['contains'](_0x5c221b(0x15c))?(_0x3e372c[_0x5c221b(0x284)][_0x5c221b(0xef)](_0x4c0fe9[_0x5c221b(0x231)]),_0x39f987[_0x5c221b(0x126)][_0x5c221b(0x12c)]=_0x4c0fe9[_0x5c221b(0x1e8)]):(_0x3e372c[_0x5c221b(0x284)]['add'](_0x4c0fe9['qBwJg']),_0x39f987[_0x5c221b(0x126)][_0x5c221b(0x12c)]=_0x4c0fe9[_0x5c221b(0x273)]);},window[a0_0x9bf75e(0x153)]=function(){const _0xf1876f=a0_0x9bf75e,_0x368a32={'sYfgA':_0xf1876f(0x186),'rXRUj':'mainContent','fJKNG':_0xf1876f(0x1ed),'jlTtl':_0xf1876f(0x183),'BseZA':_0xf1876f(0x1f8),'AseWL':_0xf1876f(0x1a2),'ucHZv':_0xf1876f(0x1a1),'BHTBR':'w-0','CsVQu':_0xf1876f(0x100),'RWPCI':'mr-8','hOsIm':_0xf1876f(0x22c),'IUUKh':_0xf1876f(0x15c),'gHjWj':_0xf1876f(0x267),'xcRVW':function(_0x351caf,_0x46f819){return _0x351caf<=_0x46f819;}},_0x2eb73d=document['getElementById'](_0x368a32['sYfgA']),_0x524516=document[_0xf1876f(0x1f4)](_0x368a32[_0xf1876f(0x139)]),_0x5ae4f8=document[_0xf1876f(0x1f4)](_0x368a32[_0xf1876f(0x268)]),_0x347521=document[_0xf1876f(0x1f4)](_0x368a32[_0xf1876f(0x1fc)]),_0x497c56=document[_0xf1876f(0x1f4)](_0x368a32[_0xf1876f(0x24d)]);_0x2eb73d[_0xf1876f(0x284)][_0xf1876f(0x26a)](_0x368a32[_0xf1876f(0x248)])?(_0x2eb73d[_0xf1876f(0x284)][_0xf1876f(0xef)]('collapsed'),_0x2eb73d[_0xf1876f(0x284)][_0xf1876f(0x1bf)](_0x368a32[_0xf1876f(0x1cd)]),_0x2eb73d[_0xf1876f(0x284)][_0xf1876f(0xef)](_0x368a32['BHTBR']),_0x2eb73d[_0xf1876f(0x284)]['remove'](_0x368a32[_0xf1876f(0x180)]),_0x2eb73d[_0xf1876f(0x284)][_0xf1876f(0x1bf)](_0x368a32['RWPCI']),_0x524516[_0xf1876f(0x284)][_0xf1876f(0xef)](_0x368a32[_0xf1876f(0x150)]),_0x5ae4f8&&(_0x5ae4f8[_0xf1876f(0x284)]['remove'](_0x368a32[_0xf1876f(0x260)]),_0x5ae4f8['innerHTML']=_0x368a32[_0xf1876f(0x135)]),_0x347521&&_0x347521[_0xf1876f(0x284)][_0xf1876f(0x1bf)](_0x368a32[_0xf1876f(0x260)]),_0x368a32[_0xf1876f(0x176)](window[_0xf1876f(0x21f)],0x400)&&_0x497c56[_0xf1876f(0x284)][_0xf1876f(0xef)](_0xf1876f(0x15c))):(_0x2eb73d['classList'][_0xf1876f(0x1bf)](_0x368a32[_0xf1876f(0x248)]),_0x2eb73d[_0xf1876f(0x284)][_0xf1876f(0xef)]('w-64'),_0x2eb73d[_0xf1876f(0x284)][_0xf1876f(0x1bf)](_0x368a32[_0xf1876f(0x1ef)]),_0x2eb73d['classList']['remove'](_0x368a32[_0xf1876f(0x1f2)]),_0x2eb73d[_0xf1876f(0x284)][_0xf1876f(0x1bf)](_0x368a32[_0xf1876f(0x180)]),_0x524516[_0xf1876f(0x284)][_0xf1876f(0x1bf)](_0x368a32[_0xf1876f(0x150)]),_0x5ae4f8&&_0x5ae4f8[_0xf1876f(0x284)][_0xf1876f(0x1bf)](_0x368a32[_0xf1876f(0x260)]),_0x347521&&(_0x347521[_0xf1876f(0x284)][_0xf1876f(0xef)](_0x368a32[_0xf1876f(0x260)]),_0x347521[_0xf1876f(0x146)]=_0xf1876f(0x16e)),_0x497c56['classList'][_0xf1876f(0x1bf)](_0x368a32['IUUKh']));},window[a0_0x9bf75e(0x238)]=function(_0x4b8957,_0x234a69){const _0x30c2ab=a0_0x9bf75e,_0x31c33b={'WJpbH':_0x30c2ab(0x23d),'ujvEG':_0x30c2ab(0x261),'gPzke':_0x30c2ab(0x232),'LfuIx':_0x30c2ab(0x14a),'EpkKk':'dark:bg-blue-950','OMPQn':_0x30c2ab(0x230),'pGBur':_0x30c2ab(0x1b9),'MbIBM':_0x30c2ab(0x1c9),'LToxD':_0x30c2ab(0x1dd),'Metfo':_0x30c2ab(0x1e2),'ZLiZc':_0x30c2ab(0x1a9),'qPwhA':'trainSummary','tCmub':_0x30c2ab(0x240),'AXlMu':_0x30c2ab(0x217),'UgVhH':_0x30c2ab(0x118),'VqLvO':_0x30c2ab(0x184),'Dbixo':_0x30c2ab(0x19c),'JYYGS':_0x30c2ab(0x229),'VVXgF':_0x30c2ab(0x103),'OWORu':_0x30c2ab(0x16d),'FIbQt':_0x30c2ab(0x22f),'sWXjA':_0x30c2ab(0x20d),'NjNNw':'Tab\x20content\x20not\x20found:','khxaS':function(_0x1afce0,_0x12cd01){return _0x1afce0===_0x12cd01;},'mRNXd':_0x30c2ab(0x207),'RRLma':_0x30c2ab(0x104),'WvFxT':function(_0x218e3d,_0x9eb0b8){return _0x218e3d===_0x9eb0b8;},'vMMLf':_0x30c2ab(0xf2),'erByn':function(_0x17dd2a,_0x105b07){return _0x17dd2a===_0x105b07;},'qykLP':function(_0x3e1f79){return _0x3e1f79();},'fNrPt':function(_0x5a9392,_0x17c955){return _0x5a9392===_0x17c955;},'TLALE':_0x30c2ab(0xfa),'FRixR':function(_0x1f08f5,_0x34e179){return _0x1f08f5!==_0x34e179;}};let _0x2559ac;switch(window[_0x30c2ab(0x19e)]=_0x4b8957,_0x234a69){case _0x31c33b[_0x30c2ab(0x1dc)]:_0x2559ac=_0x31c33b[_0x30c2ab(0xfd)];break;case _0x31c33b[_0x30c2ab(0x21c)]:_0x2559ac=_0x31c33b[_0x30c2ab(0x23a)];break;case _0x31c33b[_0x30c2ab(0x1ff)]:_0x2559ac='detergentMaco';break;case _0x31c33b[_0x30c2ab(0x25f)]:_0x2559ac='trainSummary';break;case _0x31c33b['tCmub']:_0x2559ac=_0x31c33b['JYYGS'];break;case _0x31c33b[_0x30c2ab(0x26f)]:_0x2559ac=_0x31c33b['UgVhH'];}document[_0x30c2ab(0x12a)](_0x31c33b['VVXgF'])['forEach'](_0x2409f8=>{const _0x5b51a9=_0x30c2ab;_0x2409f8[_0x5b51a9(0x284)][_0x5b51a9(0xef)]('bg-blue-100',_0x31c33b[_0x5b51a9(0x156)],_0x31c33b['ujvEG'],_0x31c33b['gPzke'],_0x31c33b[_0x5b51a9(0x271)],_0x31c33b[_0x5b51a9(0x1aa)],_0x31c33b[_0x5b51a9(0x141)],_0x31c33b[_0x5b51a9(0x27b)]);}),document['querySelectorAll'](_0x31c33b[_0x30c2ab(0x274)])['forEach'](_0x3d5e04=>{const _0x3695d0=_0x30c2ab;_0x3d5e04[_0x3695d0(0x284)][_0x3695d0(0xef)](_0x31c33b[_0x3695d0(0x28a)],_0x31c33b[_0x3695d0(0x156)],'text-blue-600',_0x31c33b[_0x3695d0(0x215)]);});const _0x1ecebf=document[_0x30c2ab(0x10c)](_0x30c2ab(0x285)+_0x4b8957+_0x30c2ab(0x1d4)+_0x234a69+'\x27)\x22]');_0x1ecebf&&_0x1ecebf[_0x30c2ab(0x284)][_0x30c2ab(0x1bf)](_0x31c33b['MbIBM'],_0x31c33b['WJpbH'],_0x31c33b[_0x30c2ab(0x206)],_0x31c33b[_0x30c2ab(0x215)]);const _0x157152=document[_0x30c2ab(0x10c)](_0x30c2ab(0x26c)+_0x4b8957+_0x30c2ab(0x189));_0x157152&&_0x157152[_0x30c2ab(0x284)]['add'](_0x31c33b[_0x30c2ab(0x271)],_0x31c33b[_0x30c2ab(0x1aa)],_0x31c33b[_0x30c2ab(0x141)],_0x30c2ab(0x1b9)),a0_0x54f063[_0x30c2ab(0x1f7)](_0x2559ac),document[_0x30c2ab(0x12a)](_0x30c2ab(0x1c8))[_0x30c2ab(0x19a)](_0x182ae7=>_0x182ae7[_0x30c2ab(0x284)][_0x30c2ab(0xef)]('active-tab-content')),document[_0x30c2ab(0x12a)](_0x30c2ab(0x20b))[_0x30c2ab(0x19a)](_0x1832e2=>_0x1832e2[_0x30c2ab(0x284)][_0x30c2ab(0xef)](_0x30c2ab(0x20d)));const _0x3e9f38=document[_0x30c2ab(0x1f4)](_0x2559ac);if(_0x3e9f38){_0x3e9f38[_0x30c2ab(0x284)][_0x30c2ab(0x1bf)](_0x31c33b[_0x30c2ab(0x114)]);const _0x5e3792=document[_0x30c2ab(0x10c)](_0x30c2ab(0x12f)+_0x2559ac+_0x30c2ab(0x185));_0x5e3792&&_0x5e3792['classList'][_0x30c2ab(0x1bf)](_0x31c33b[_0x30c2ab(0xf4)]);}else console[_0x30c2ab(0x101)](_0x31c33b['NjNNw'],_0x2559ac);if(_0x31c33b[_0x30c2ab(0x10a)](_0x31c33b[_0x30c2ab(0x18b)],_0x2559ac)&&(a0_0x33b82d[_0x30c2ab(0x16f)](),a0_0x33b82d[_0x30c2ab(0x209)]()),_0x31c33b['khxaS'](_0x31c33b[_0x30c2ab(0x264)],_0x2559ac)&&a0_0xc7e502['renderSummaryReport'](),_0x31c33b[_0x30c2ab(0x147)](_0x31c33b['qPwhA'],_0x2559ac)&&a0_0x2c36e3[_0x30c2ab(0x1b7)](),_0x31c33b[_0x30c2ab(0x1f1)]===_0x2559ac&&a0_0x30f3d4[_0x30c2ab(0x23e)](),_0x31c33b[_0x30c2ab(0x227)](_0x31c33b[_0x30c2ab(0x23a)],_0x2559ac)&&(a0_0x19554e['renderMacoForTrains'](),_0x31c33b[_0x30c2ab(0x235)](h)),_0x31c33b['fNrPt'](_0x31c33b[_0x30c2ab(0x1d2)],_0x2559ac)&&a0_0x539a6d[_0x30c2ab(0x102)](),_0x31c33b[_0x30c2ab(0x13f)](_0x30c2ab(0x157),_0x2559ac)&&_0x31c33b[_0x30c2ab(0xfd)]!==_0x2559ac||a0_0x1224e2['handleSearchAndFilter'](_0x2559ac),_0x31c33b[_0x30c2ab(0x18d)]===_0x2559ac){const _0x40517f=document['getElementById'](_0x31c33b[_0x30c2ab(0x24c)]);_0x40517f&&(_0x40517f[_0x30c2ab(0x146)]=a0_0x400dfd[_0x30c2ab(0x263)]());}_0x31c33b['fNrPt']('qa',_0x2559ac)&&p[_0x30c2ab(0x203)](),function(_0x256360,_0x150e67){const _0xab1c27=_0x30c2ab;switch(_0x150e67){case _0x31c33b[_0xab1c27(0x1dc)]:a0_0x258d8a[_0xab1c27(0x1b2)](_0x31c33b[_0xab1c27(0xfd)],_0x256360);break;case _0x31c33b[_0xab1c27(0x21c)]:a0_0x19554e['renderMacoForTrains'](_0x256360);break;case'detergent':a0_0x539a6d[_0xab1c27(0x102)](_0x256360);break;case _0x31c33b[_0xab1c27(0x25f)]:a0_0x2c36e3[_0xab1c27(0x1b7)](_0x256360);break;case _0x31c33b['tCmub']:{const _0x1ca41e=document[_0xab1c27(0x1f4)](_0x31c33b['AXlMu']);_0x1ca41e&&(_0x1ca41e['innerHTML']=a0_0x400dfd[_0xab1c27(0x263)]());}break;case _0x31c33b[_0xab1c27(0x26f)]:a0_0x11ff67(_0x256360);}}(_0x4b8957,_0x234a69);},document[a0_0x9bf75e(0x164)](a0_0x9bf75e(0x170),function(){const _0x391885=a0_0x9bf75e,_0x58fdac={'anGkP':function(_0x38cefe,_0x342dc1){return _0x38cefe===_0x342dc1;},'Ipfxg':_0x391885(0x1e2),'pmTlU':_0x391885(0x247),'pNrZv':'theme','UMPpi':_0x391885(0x1e1),'fYwmi':'printing-worstCaseProducts','rAAaw':'printing-macoForTrains','HCvho':_0x391885(0x184),'glQGs':'printing-trainSummary','TyWBu':_0x391885(0x113),'fVzql':function(_0x5dc8b9,_0x1a8e72){return _0x5dc8b9||_0x1a8e72;},'FEvSx':_0x391885(0x1d3),'lCYeJ':function(_0x5e6aa7,_0x48bcc4,_0x2fcf9e){return _0x5e6aa7(_0x48bcc4,_0x2fcf9e);},'erDjO':'.filterColProductCode,\x20.filterColProductName','CtaQe':function(_0x3cb3ce,_0x1c08f8){return _0x3cb3ce(_0x1c08f8);},'AHgMN':_0x391885(0x1bb),'SKrjt':function(_0x5c845d,_0x527f63){return _0x5c845d(_0x527f63);},'YTwPK':_0x391885(0x186),'SkCAH':_0x391885(0x1f8),'icyeS':function(_0x493440,_0x18ebe5){return _0x493440>_0x18ebe5;},'zgLUo':_0x391885(0x15c),'IqOmm':'collapsed','Czuox':_0x391885(0x286),'VzobH':_0x391885(0x1ac),'ujtzf':_0x391885(0x225),'BylJu':_0x391885(0x15e),'vuimM':_0x391885(0x143),'aZmvR':_0x391885(0x199),'RDJPZ':_0x391885(0x23f),'yXIQw':_0x391885(0x128),'swjUy':_0x391885(0x28b),'ZDLjQ':_0x391885(0x211),'aDSMv':_0x391885(0x190),'snZuK':_0x391885(0x106),'ATZEM':'addProductForm','ahxOT':_0x391885(0x259),'ZdJTK':_0x391885(0x1d6),'dIFij':_0x391885(0x23c),'BkQFz':'machineForm','glMjn':_0x391885(0x1a5),'gRUYF':_0x391885(0x1f9),'FFhWu':_0x391885(0x208),'VqwyQ':function(_0xcb2ff2){return _0xcb2ff2();},'QouiO':function(_0x306e97,_0x2f7fbe,_0x58e989){return _0x306e97(_0x2f7fbe,_0x58e989);}};window['changeTab']=f,window[_0x391885(0xf8)]=b,window[_0x391885(0x153)]=window[_0x391885(0x153)],window[_0x391885(0x134)]=window[_0x391885(0x134)],window[_0x391885(0x238)]=window['showLineSpecificView'],window[_0x391885(0x25d)]=a0_0x2e5cde[_0x391885(0x25d)],window[_0x391885(0x196)]=a0_0x2e5cde[_0x391885(0x196)],window['handleSearchAndFilter']=function(_0x8c2072){const _0x2645b8=_0x391885;_0x58fdac[_0x2645b8(0x1c3)](_0x58fdac['Ipfxg'],_0x8c2072)?a0_0x258d8a['handleSearchAndFilter'](_0x8c2072):a0_0x1224e2[_0x2645b8(0x1b2)](_0x8c2072);},window['sortData']=function(_0x1fa5c4,_0x5c5e76){const _0x4b02d2=_0x391885;_0x58fdac['anGkP'](_0x58fdac[_0x4b02d2(0x173)],_0x5c5e76)?a0_0x258d8a[_0x4b02d2(0x18c)](_0x1fa5c4,_0x5c5e76):a0_0x1224e2[_0x4b02d2(0x18c)](_0x1fa5c4,_0x5c5e76);};const {printReport:_0x147ec6,..._0x39a6ad}=a0_0x19554e,{handleSearchAndFilter:_0x1300cc,..._0x4b9a98}=a0_0x1224e2,{handleSearchAndFilter:_0xcde54a,..._0x20aa28}=a0_0x258d8a;Object[_0x391885(0x212)](window,a0_0x2e5cde,a0_0x4397fe,_0x4b9a98,a0_0x30f3d4,_0x20aa28,_0x39a6ad,a0_0x539a6d,a0_0x33b82d,a0_0xc7e502,a0_0x2c36e3,a0_0x5618a1),document['getElementById'](_0x58fdac[_0x391885(0x279)])[_0x391885(0x164)](_0x58fdac[_0x391885(0x155)],()=>{const _0x388537=_0x391885,_0x2ed463=document[_0x388537(0x1fa)][_0x388537(0x284)][_0x388537(0x26a)](_0x58fdac[_0x388537(0x1fb)]);a0_0x2e5cde[_0x388537(0x243)](!_0x2ed463),localStorage['setItem'](_0x58fdac['pNrZv'],_0x2ed463?_0x58fdac[_0x388537(0x16a)]:_0x58fdac[_0x388537(0x1fb)]);}),window['addEventListener'](_0x58fdac['RDJPZ'],()=>{const _0x178e1f=_0x391885;window[_0x178e1f(0x1fd)]=null,document[_0x178e1f(0x13c)][_0x178e1f(0x284)][_0x178e1f(0x26a)](_0x58fdac[_0x178e1f(0x1bd)])?window[_0x178e1f(0x1fd)]='worstCaseProducts':document[_0x178e1f(0x13c)]['classList'][_0x178e1f(0x26a)](_0x58fdac[_0x178e1f(0x188)])?window[_0x178e1f(0x1fd)]=_0x58fdac[_0x178e1f(0x272)]:document[_0x178e1f(0x13c)][_0x178e1f(0x284)][_0x178e1f(0x26a)](_0x58fdac[_0x178e1f(0x1a8)])&&(window[_0x178e1f(0x1fd)]=_0x58fdac['TyWBu']);}),window[_0x391885(0x164)](_0x58fdac['yXIQw'],()=>{const _0x31c449=_0x391885,_0xc458cf=document[_0x31c449(0x13c)][_0x31c449(0x284)][_0x31c449(0x26a)](_0x58fdac['fYwmi']),_0x3d360d=document[_0x31c449(0x13c)][_0x31c449(0x284)][_0x31c449(0x26a)](_0x31c449(0x16c)),_0x33a26f=document['body'][_0x31c449(0x284)][_0x31c449(0x26a)](_0x58fdac[_0x31c449(0x1a8)]);document[_0x31c449(0x13c)][_0x31c449(0x1cb)]=document[_0x31c449(0x13c)][_0x31c449(0x1cb)][_0x31c449(0x26e)](/printing-[\w-]+/g,''),a0_0x54f063['scoringWasInEditModeForPrint']&&(a0_0x5618a1[_0x31c449(0x1e9)](!0x0),a0_0x54f063[_0x31c449(0x20c)](!0x1)),(_0x58fdac[_0x31c449(0x1d1)](_0xc458cf,_0x3d360d)||_0x33a26f)&&(a0_0x2e5cde['showLoader'](),window[_0x31c449(0x17f)]=null,_0xc458cf?a0_0x258d8a[_0x31c449(0x250)]():_0x3d360d?a0_0x19554e[_0x31c449(0x24a)]():_0x33a26f&&a0_0x2c36e3[_0x31c449(0x1b7)]()),window[_0x31c449(0x1fd)]=null;}),window[_0x391885(0x164)](_0x58fdac[_0x391885(0x270)],()=>{const _0x50496e=_0x391885,_0x4abc0e={'MecQO':_0x58fdac[_0x50496e(0x262)]};window[_0x50496e(0x1fd)]&&!document[_0x50496e(0x13c)]['className']['includes'](_0x50496e(0x1d3))&&_0x58fdac[_0x50496e(0x281)](setTimeout,()=>{const _0x27674d=_0x50496e;window[_0x27674d(0x1fd)]&&!document['body'][_0x27674d(0x1cb)][_0x27674d(0x195)](_0x4abc0e[_0x27674d(0x289)])&&(a0_0x2e5cde['hideLoader'](),window[_0x27674d(0x17f)]=null,window['printingView']=null);},0x1f4);}),document[_0x391885(0x164)](_0x58fdac[_0x391885(0x1d5)],function(_0x3e220a){const _0x597bd0=_0x391885;_0x3e220a[_0x597bd0(0x194)]&&'z'===_0x3e220a[_0x597bd0(0xfb)]&&(_0x3e220a[_0x597bd0(0x280)](),a0_0x2e5cde[_0x597bd0(0x1e4)]()),_0x3e220a[_0x597bd0(0x194)]&&_0x58fdac[_0x597bd0(0x1c3)]('y',_0x3e220a[_0x597bd0(0xfb)])&&(_0x3e220a[_0x597bd0(0x280)](),a0_0x2e5cde[_0x597bd0(0x138)]());}),document['addEventListener'](_0x58fdac[_0x391885(0x27e)],function(_0x32ac2f){const _0x16d039=_0x391885;_0x32ac2f['target'][_0x16d039(0x254)](_0x58fdac[_0x16d039(0x17a)])&&_0x58fdac[_0x16d039(0x237)](handleSearchAndFilter,'productRegister'),_0x32ac2f['target'][_0x16d039(0x254)](_0x16d039(0x290))&&a0_0x258d8a[_0x16d039(0x20f)]();}),document[_0x391885(0x164)](_0x58fdac['snZuK'],function(_0x2e4638){const _0x51e670=_0x391885;_0x2e4638[_0x51e670(0x191)]['matches'](_0x58fdac[_0x51e670(0x1e7)])&&_0x58fdac[_0x51e670(0x122)](handleSearchAndFilter,_0x51e670(0x157));}),document['getElementById'](_0x58fdac[_0x391885(0x17b)])[_0x391885(0x164)](_0x58fdac[_0x391885(0x187)],a0_0x1224e2[_0x391885(0x288)]),document[_0x391885(0x1f4)](_0x58fdac[_0x391885(0x149)])[_0x391885(0x164)](_0x58fdac[_0x391885(0x187)],a0_0x1224e2[_0x391885(0x252)]),document[_0x391885(0x1f4)](_0x58fdac[_0x391885(0x20e)])[_0x391885(0x164)](_0x58fdac[_0x391885(0x187)],a0_0x1224e2[_0x391885(0x1af)]),document[_0x391885(0x1f4)](_0x58fdac['BkQFz'])[_0x391885(0x164)](_0x58fdac[_0x391885(0x187)],a0_0x30f3d4[_0x391885(0x11f)]),document[_0x391885(0x1f4)](_0x58fdac[_0x391885(0x192)])[_0x391885(0x164)]('submit',a0_0x30f3d4['saveProductMachines']),document[_0x391885(0x1f4)](_0x58fdac[_0x391885(0x10d)])[_0x391885(0x164)](_0x58fdac[_0x391885(0x187)],a0_0x30f3d4[_0x391885(0x162)]),document[_0x391885(0x1f4)](_0x58fdac[_0x391885(0x1b6)])[_0x391885(0x163)]=()=>a0_0x2e5cde[_0x391885(0x21b)]('customAlertModal'),document[_0x391885(0x1f4)](_0x391885(0x213))[_0x391885(0x164)](_0x58fdac[_0x391885(0x155)],()=>a0_0x5618a1[_0x391885(0x1e9)](!a0_0x54f063[_0x391885(0x132)])),window['addEventListener'](_0x391885(0x222),function(){const _0x1c75c4=_0x391885,_0x4681e4=document[_0x1c75c4(0x1f4)](_0x58fdac[_0x1c75c4(0x201)]),_0x31917e=document[_0x1c75c4(0x1f4)](_0x58fdac[_0x1c75c4(0x1ea)]);_0x58fdac[_0x1c75c4(0x197)](window[_0x1c75c4(0x21f)],0x400)?_0x31917e[_0x1c75c4(0x284)][_0x1c75c4(0x1bf)](_0x58fdac['zgLUo']):_0x4681e4['classList'][_0x1c75c4(0x26a)](_0x58fdac[_0x1c75c4(0x14c)])||_0x31917e[_0x1c75c4(0x284)][_0x1c75c4(0xef)](_0x58fdac[_0x1c75c4(0x11c)]);}),_0x58fdac['VqwyQ'](y),_0x58fdac[_0x391885(0x1e5)](setTimeout,()=>{const _0x24829d=_0x391885,_0x156262={'igDAG':_0x58fdac[_0x24829d(0x255)],'XQpQd':_0x58fdac[_0x24829d(0x1ba)],'YLOqL':_0x58fdac[_0x24829d(0x220)],'eMAVf':_0x58fdac['BylJu']};window[_0x24829d(0x25a)]&&window[_0x24829d(0x181)]||(function(){const _0x16fa91=_0x24829d;if(!window['jsPDF']){const _0x576174=document['createElement'](_0x156262[_0x16fa91(0xf1)]);_0x576174[_0x16fa91(0x258)]=_0x156262[_0x16fa91(0x159)],_0x576174[_0x16fa91(0x148)]=()=>{const _0xde1162=_0x16fa91;window[_0xde1162(0x25a)]=window['jspdf']?.[_0xde1162(0x25a)]||window[_0xde1162(0x25a)]||window[_0xde1162(0x1ae)];},_0x576174[_0x16fa91(0x1d0)]=()=>{const _0x400bba=_0x16fa91;console['error'](_0x156262[_0x400bba(0x111)]);},document[_0x16fa91(0x276)]['appendChild'](_0x576174);}if(!window[_0x16fa91(0x181)]){const _0x3a14fc=document[_0x16fa91(0x1de)](_0x156262[_0x16fa91(0xf1)]);_0x3a14fc[_0x16fa91(0x258)]=_0x16fa91(0x19d),_0x3a14fc[_0x16fa91(0x1d0)]=()=>{const _0x1fdcbd=_0x16fa91;console[_0x1fdcbd(0x101)](_0x156262['XQpQd']);},document[_0x16fa91(0x276)]['appendChild'](_0x3a14fc);}}());},0x7d0);}),window[a0_0x9bf75e(0x120)]=function(){const _0x43d5c7=a0_0x9bf75e,_0x46adc8={'ocmiI':_0x43d5c7(0x1cf),'McGEr':_0x43d5c7(0x26d),'gBCaj':function(_0x7991fc,_0x5bb77c){return _0x7991fc+_0x5bb77c;},'ZCgPE':function(_0x3b1191,_0x4d3a84){return _0x3b1191+_0x4d3a84;},'HPgYb':_0x43d5c7(0xfe),'GQKsC':_0x43d5c7(0x228)};try{let _0xa7999b=null;if(window['jspdf']&&window['jspdf'][_0x43d5c7(0x25a)]?_0xa7999b=window[_0x43d5c7(0x1ae)][_0x43d5c7(0x25a)]:window[_0x43d5c7(0x25a)]&&window['jsPDF'][_0x43d5c7(0x25a)]?_0xa7999b=window[_0x43d5c7(0x25a)][_0x43d5c7(0x25a)]:window[_0x43d5c7(0x25a)]&&(_0xa7999b=window[_0x43d5c7(0x25a)]),!_0xa7999b)return console['log'](_0x46adc8['ocmiI']),!0x1;const _0x2976ab=new _0xa7999b('p','mm','a4');_0x2976ab[_0x43d5c7(0x145)](_0x43d5c7(0x1ee),0x14,0x14),_0x2976ab[_0x43d5c7(0x145)](_0x43d5c7(0x15a),0x14,0x1e),_0x2976ab['text'](_0x46adc8[_0x43d5c7(0x15b)],0x14,0x28);const _0x3b7454=_0x46adc8[_0x43d5c7(0x1b1)](_0x46adc8[_0x43d5c7(0x1bc)](_0x46adc8[_0x43d5c7(0x244)],Date[_0x43d5c7(0x177)]()),_0x46adc8[_0x43d5c7(0x1a4)]);return _0x2976ab[_0x43d5c7(0x1b0)](_0x3b7454),!0x0;}catch(_0x5dda48){return console['error'](_0x43d5c7(0x175),_0x5dda48),!0x1;}},window['testReportContent']=function(){const _0x340701=a0_0x9bf75e,_0x38ba70={'EgSXg':_0x340701(0x257),'WsHma':_0x340701(0x269)};return!!document[_0x340701(0x10c)](_0x38ba70[_0x340701(0x12b)])||(console['log'](_0x38ba70[_0x340701(0x1df)]),!0x1);},window[a0_0x9bf75e(0x24b)]=function(){const _0x4d8812=a0_0x9bf75e,_0xc6e27b={'etAXC':_0x4d8812(0x1d8),'cVkXt':_0x4d8812(0x266),'ijnwT':_0x4d8812(0x18e)};let _0x1bcb75=null;if(window[_0x4d8812(0x1ae)]&&window[_0x4d8812(0x1ae)][_0x4d8812(0x25a)]?_0x1bcb75=window[_0x4d8812(0x1ae)][_0x4d8812(0x25a)]:window[_0x4d8812(0x25a)]&&window[_0x4d8812(0x25a)]['jsPDF']?_0x1bcb75=window['jsPDF']['jsPDF']:window[_0x4d8812(0x25a)]&&(_0x1bcb75=window[_0x4d8812(0x25a)]),_0x1bcb75)try{new _0x1bcb75('p','mm','a4')[_0x4d8812(0x145)](_0xc6e27b['etAXC'],0xa,0xa);}catch(_0xd39dd9){console['error'](_0xc6e27b[_0x4d8812(0x144)],_0xd39dd9['message']);}else console[_0x4d8812(0x19f)](_0xc6e27b[_0x4d8812(0x1cc)]);return{'jsPDF':!!window[_0x4d8812(0x25a)],'html2canvas':!!window[_0x4d8812(0x181)],'jspdf':!!window['jspdf'],'PDFConstructor':_0x1bcb75};},window[a0_0x9bf75e(0x17c)]=function(){const _0x26caf7=a0_0x9bf75e,_0x44c9ac={'mqEkc':_0x26caf7(0x27f),'rYSMD':_0x26caf7(0x198)},_0x442589=document[_0x26caf7(0x10c)](_0x44c9ac['mqEkc']);_0x442589&&(_0x442589[_0x26caf7(0x13b)]=!0x1,_0x442589['style'][_0x26caf7(0x11e)]='',_0x442589[_0x26caf7(0x126)]['cursor']='',_0x442589[_0x26caf7(0x126)][_0x26caf7(0x1a6)]='',_0x442589[_0x26caf7(0x146)][_0x26caf7(0x195)](_0x26caf7(0x12e))&&(_0x442589[_0x26caf7(0x146)]=_0x44c9ac['rYSMD']));},window[a0_0x9bf75e(0x13e)]=async function(){const _0x56dc9e=a0_0x9bf75e,_0x38e354={'jDiTh':_0x56dc9e(0x24f),'QwzdK':_0x56dc9e(0x11a),'PnaiZ':function(_0x33a9bd,_0x29d3a1){return _0x33a9bd(_0x29d3a1);},'qvlOU':_0x56dc9e(0x17d)},_0x3709e8=window[_0x56dc9e(0x19e)]||_0x56dc9e(0x1ca);try{const _0x2ba4ce=await import(_0x56dc9e(0x251));new _0x2ba4ce[(_0x56dc9e(0x17e))]()['generateReport'](_0x3709e8,_0x38e354[_0x56dc9e(0x224)]);}catch(_0x144f79){console[_0x56dc9e(0x101)](_0x38e354['QwzdK'],_0x144f79),_0x38e354[_0x56dc9e(0x22e)](alert,_0x38e354[_0x56dc9e(0x119)]);}};
+// js/app.js
+// This is the main orchestrator for the application. It imports all other modules
+// and coordinates their actions.
+
+// --- 1. IMPORTS ---
+// Import all modules. The `* as name` syntax is useful for grouping functions.
+import * as state from './state.js';
+import * as ui from './ui.js';
+import * as utils from './utils.js';
+import * as productView from './productView.js';
+import * as machineView from './machineView.js';
+import * as worstCaseView from './worstCaseView.js';
+import * as macoProductView from './macoProductView.js';
+import * as macoDetergentView from './macoDetergentView.js';
+import * as dashboardView from './dashboardView.js';
+import * as summaryView from './summaryView.js';
+import * as trainSummaryView from './trainSummaryView.js';
+import * as scoringView from './scoringView.js';
+import * as machineCoverageView from './machineCoverageView.js';
+import { renderLineReport } from './lineReportView.js';
+import { QAView } from './qaView.js';
+// Firestore functions removed; use only localStorage functions from ui.js if needed
+
+// --- 2. ORCHESTRATION ---
+// Initialize Q&A view with application data
+const qaView = new QAView({
+    products: state.products,
+    machines: state.machines,
+    trains: [], // Will be populated by train data
+    lines: [],
+    dosageForms: [],
+    selectedStudies: [],
+    macoCalculations: []
+}, {
+    debugMode: false,
+    confidenceThreshold: 0.3 // Normal threshold
+});
+
+// Attach functions to window for live testing with script modules
+window.changeTab = changeTab;
+window.printTrain = printTrain;
+window.sortData = productView.sortData;
+
+// Global PDF export function
+window.exportToPDFDirect = function() {
+    try {
+        // Check if PDF libraries are available
+        if (typeof html2pdf === 'undefined') {
+            console.error('html2pdf library not loaded');
+            alert('PDF export library not available. Please refresh the page and try again.');
+            return;
+        }
+
+        // Find the report content container instead of using document.body
+        let element = document.querySelector('.report-container');
+        if (!element) {
+            element = document.querySelector('#lineReportContainer');
+        }
+        if (!element) {
+            element = document.querySelector('.report-content');
+        }
+        if (!element) {
+            // Fallback to body but hide navigation elements
+            element = document.body;
+            // Temporarily hide navigation elements
+            const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+            navElements.forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+
+        const opt = {
+            margin: [0.3, 0.3, 0.3, 0.3],
+            filename: 'cleaning_validation_report.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { 
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                logging: false,
+                letterRendering: true
+            },
+            jsPDF: { 
+                unit: 'in', 
+                format: 'a4', 
+                orientation: 'portrait',
+                compress: true
+            },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        // Show loading indicator
+        const button = document.querySelector('.btn-pdf');
+        if (button) {
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏳ Generating PDF...';
+            button.disabled = true;
+
+            // Generate PDF directly
+            html2pdf().set(opt).from(element).save().then(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+
+                
+                // Restore navigation elements if they were hidden
+                const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+                navElements.forEach(el => {
+                    el.style.display = '';
+                });
+            }).catch((error) => {
+                console.error('PDF generation failed:', error);
+                button.innerHTML = originalText;
+                button.disabled = false;
+                alert('PDF generation failed: ' + error.message);
+                
+                // Restore navigation elements if they were hidden
+                const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+                navElements.forEach(el => {
+                    el.style.display = '';
+                });
+            });
+        } else {
+            // Generate PDF directly without button feedback
+            html2pdf().set(opt).from(element).save().then(() => {
+                    
+                // Restore navigation elements if they were hidden
+                const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+                navElements.forEach(el => {
+                    el.style.display = '';
+                });
+            }).catch((error) => {
+                console.error('PDF generation failed:', error);
+                alert('PDF generation failed: ' + error.message);
+                
+                // Restore navigation elements if they were hidden
+                const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+                navElements.forEach(el => {
+                    el.style.display = '';
+                });
+            });
+        }
+
+    } catch (error) {
+        console.error('Error in exportToPDFDirect:', error);
+        alert('PDF export failed: ' + error.message);
+        
+        // Restore navigation elements if they were hidden
+        const navElements = document.querySelectorAll('.header, .main-nav, .sidebar, .export-section');
+        navElements.forEach(el => {
+            el.style.display = '';
+        });
+    }
+};
+
+// Legacy function for backward compatibility
+window.exportToPDF = function() {
+    window.exportToPDFDirect();
+};
+/**
+ * Adds a print button to each train container in the MACO view.
+ */
+function addPrintButtonsToTrains() {
+    const trainContainers = document.querySelectorAll('#maco-product-trains-container .train-container');
+    trainContainers.forEach(container => {
+        // Avoid adding duplicate buttons
+        if (container.querySelector('.print-train-btn')) return;
+
+        const trainId = container.id; // Assumes container has an id like 'train-1'
+        const button = document.createElement('button');
+        button.textContent = 'Print Train';
+        button.className = 'btn print-train-btn'; // Add classes for styling
+        button.style.margin = '10px'; // Basic styling
+        button.onclick = () => printTrain(trainId);
+        
+        // Append to the details section, which is shown on expand
+        const detailsSection = container.querySelector('.train-details');
+        if (detailsSection) {
+            detailsSection.appendChild(button);
+        }
+    });
+}
+
+/**
+ * Prints the content of a specific train.
+ * @param {string} trainId The ID of the train container element to print.
+ */
+function printTrain(trainId) {
+    const printContent = document.getElementById(trainId);
+    if (!printContent) {
+        console.error('Could not find train content to print:', trainId);
+        return;
+    }
+    
+    // Add a class to the body to scope print-specific styles
+    document.body.classList.add('printing-maco-train');
+
+    // Use a timeout to ensure styles are applied before printing
+    setTimeout(() => {
+        window.print();
+    }, 100); // A short delay can help render styles
+}
+
+/**
+ * A central function to re-render all parts of the application that depend on the main data.
+ * This should be called after any significant state change (add, edit, delete).
+ */
+export function fullAppRender() {
+    try {
+        // Generate the train map first, as many other renders depend on it.
+        utils.generateTrainMap();
+        
+        // Reset color mapping to ensure consistent colors after data changes
+        dashboardView.resetColorMapping();
+
+        // Re-render each major view/tab
+        productView.handleSearchAndFilter('productRegister');
+        worstCaseView.handleSearchAndFilter('worstCaseProducts');
+        machineView.renderMachinesTable();
+        machineView.updateMachineLineOptionsIfModalOpen(); // Update machine line options if modal is open
+        dashboardView.renderMainDashboard();
+        
+        // Initialize Q&A system with current app data
+        const appData = {
+            products: state.products,
+            machines: state.machines,
+            trains: utils.getTrainsGroupedByLine()
+        };
+        qaView.initialize(appData);
+        
+        // Initialize proper case inputs after rendering
+        utils.initializeProperCaseInputs();
+        macoProductView.renderMacoForTrains();
+        addPrintButtonsToTrains(); // Add print buttons after rendering
+        macoDetergentView.renderDetergentMaco();
+        macoDetergentView.renderDetergentIngredientsList();
+        summaryView.renderSummaryReport();
+        scoringView.renderScoringSystem(); // Re-render scoring system to reflect state changes
+
+        // Update any dynamic UI elements, like filter dropdowns
+        productView.populateFilterSelects();
+        productView.populateProductLineDropdowns(); // Update product line dropdowns
+        
+        // Render line navigation
+        renderLineNavigation();
+    } catch (error) {
+        console.error('Error during full application render:', error);
+        ui.hideLoader(); // Ensure loader is hidden on error
+    }
+}
+
+/**
+ * Renders the line navigation sidebar with dynamic line-based menu items
+ */
+export function renderLineNavigation() {
+    const lineNavigation = document.getElementById('lineNavigation');
+    if (!lineNavigation) {
+        console.error('Line navigation element not found');
+        return;
+    }
+
+    // Get unique lines from products
+    const uniqueLines = utils.getUniqueProductLines(state.products);
+    
+    lineNavigation.innerHTML = '';
+    
+    uniqueLines.forEach(line => {
+        if (line === 'Shared') return; // Skip Shared line for navigation
+        
+        const lineDiv = document.createElement('div');
+        lineDiv.className = 'line-nav-item';
+        lineDiv.innerHTML = `
+            <button onclick="toggleLineMenu('${line}')" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center justify-between" style="color: var(--text-primary);">
+                <span>${line}</span>
+                <svg class="w-4 h-4 transform transition-transform" id="arrow-${line}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+            <div id="submenu-${line}" class="hidden ml-4 mt-2 space-y-1">
+                <button onclick="showLineSpecificView('${line}', 'worstCase')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Worst Case Products</button>
+                <button onclick="showLineSpecificView('${line}', 'maco')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Product MACO Calculation</button>
+                <button onclick="showLineSpecificView('${line}', 'detergent')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Detergent MACO Calculation</button>
+                <button onclick="showLineSpecificView('${line}', 'trainSummary')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Trains Summary</button>
+                <button onclick="showLineSpecificView('${line}', 'coverage')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Machine Coverage</button>
+                <button onclick="showLineSpecificView('${line}', 'lineReport')" class="w-full text-left px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 text-sm" style="color: var(--text-secondary);">Report</button>
+            </div>
+        `;
+        lineNavigation.appendChild(lineDiv);
+    });
+}
+
+/**
+ * Toggles the line submenu visibility
+ */
+window.toggleLineMenu = function(line) {
+    const submenu = document.getElementById(`submenu-${line}`);
+    const arrow = document.getElementById(`arrow-${line}`);
+    
+    if (submenu.classList.contains('hidden')) {
+        submenu.classList.remove('hidden');
+        arrow.style.transform = 'rotate(180deg)';
+    } else {
+        submenu.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+    }
+};
+
+/**
+ * Initializes the sidebar state on app load
+ */
+function initializeSidebarState() {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const floatingToggle = document.getElementById('floatingToggle');
+    
+    // Start with sidebar open (not collapsed)
+    if (sidebar) {
+        sidebar.classList.remove('collapsed');
+    }
+    
+    // Show sidebar toggle with collapse icon, hide floating toggle
+    if (sidebarToggle) {
+        sidebarToggle.classList.remove('hidden');
+        sidebarToggle.innerHTML = `
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+            </svg>
+        `;
+    }
+    
+    if (floatingToggle) {
+        floatingToggle.classList.add('hidden');
+    }
+}
+
+/**
+ * Toggles the sidebar visibility
+ */
+window.toggleSidebar = function() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const floatingToggle = document.getElementById('floatingToggle');
+    const backdrop = document.getElementById('sidebarBackdrop');
+    
+    if (sidebar.classList.contains('collapsed')) {
+        // Expand sidebar
+        sidebar.classList.remove('collapsed');
+        sidebar.classList.add('w-64');
+        sidebar.classList.remove('w-0');
+        sidebar.classList.remove('mr-0');
+        sidebar.classList.add('mr-8');
+        mainContent.classList.remove('ml-0');
+        
+        // Show sidebar toggle, hide floating toggle
+        if (sidebarToggle) {
+            sidebarToggle.classList.remove('hidden');
+            // Set collapse icon for sidebar toggle
+            sidebarToggle.innerHTML = `
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+                </svg>
+            `;
+        }
+        if (floatingToggle) {
+            floatingToggle.classList.add('hidden');
+        }
+        
+        // Show backdrop on mobile
+        if (window.innerWidth <= 1024) {
+            backdrop.classList.remove('hidden');
+        }
+    } else {
+        // Collapse sidebar
+        sidebar.classList.add('collapsed');
+        sidebar.classList.remove('w-64');
+        sidebar.classList.add('w-0');
+        sidebar.classList.remove('mr-8');
+        sidebar.classList.add('mr-0');
+        mainContent.classList.add('ml-0');
+        
+        // Hide sidebar toggle, show floating toggle
+        if (sidebarToggle) {
+            sidebarToggle.classList.add('hidden');
+        }
+        if (floatingToggle) {
+            floatingToggle.classList.remove('hidden');
+            // Set hamburger icon for floating toggle
+            floatingToggle.innerHTML = `
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            `;
+        }
+        
+        // Hide backdrop
+        backdrop.classList.add('hidden');
+    }
+};
+
+/**
+ * Shows line-specific view with filtered data
+ */
+window.showLineSpecificView = function(line, viewType) {
+    
+    // Store the current line filter
+    window.currentLineFilter = line;
+    
+    // Show the appropriate tab content
+    let tabId;
+    switch(viewType) {
+        case 'worstCase':
+            tabId = 'worstCaseProducts';
+            break;
+        case 'maco':
+            tabId = 'macoForTrains';
+            break;
+        case 'detergent':
+            tabId = 'detergentMaco';
+            break;
+        case 'trainSummary':
+            tabId = 'trainSummary';
+            break;
+        case 'coverage':
+            tabId = 'machineCoverage';
+            break;
+        case 'lineReport':
+            tabId = 'lineReport';
+            break;
+    }
+    
+    // Clear all sidebar menu highlighting first
+    document.querySelectorAll('.line-nav-item button').forEach(btn => {
+        btn.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300', 'bg-blue-50', 'dark:bg-blue-950', 'text-blue-700', 'dark:text-blue-200');
+    });
+    document.querySelectorAll('.line-nav-item div button').forEach(btn => {
+        btn.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300');
+    });
+    
+    // Highlight the selected sidebar menu item and its parent line button
+    const activeSubmenuButton = document.querySelector(`button[onclick="showLineSpecificView('${line}', '${viewType}')"]`);
+    if (activeSubmenuButton) {
+        activeSubmenuButton.classList.add('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300');
+    }
+    
+    // Also highlight the parent line button to show which line is active
+    const parentLineButton = document.querySelector(`button[onclick="toggleLineMenu('${line}')"]`);
+    if (parentLineButton) {
+        parentLineButton.classList.add('bg-blue-50', 'dark:bg-blue-950', 'text-blue-700', 'dark:text-blue-200');
+    }
+    
+    // Update active tab state
+    state.setActiveTabId(tabId);
+    
+    // Hide all tab contents first and clear top menu highlighting
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-tab-content'));
+    document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active-tab'));
+    
+    // Show the specific tab content
+    const tabContent = document.getElementById(tabId);
+    if (tabContent) {
+        tabContent.classList.add('active-tab-content');
+        
+        // Find and highlight the corresponding top tab button if it exists
+        const correspondingTabButton = document.querySelector(`[onclick*="changeTab('${tabId}'"]`);
+        if (correspondingTabButton) {
+            correspondingTabButton.classList.add('active-tab');
+        }
+        
+    } else {
+        console.error('Tab content not found:', tabId);
+    }
+    
+    // Call the specific rendering function for the activated tab (same as changeTab)
+    if (tabId === 'dashboard') { 
+        dashboardView.resetColorMapping();
+        dashboardView.renderMainDashboard(); 
+    }
+    if (tabId === 'summaryReport') { summaryView.renderSummaryReport(); }
+    if (tabId === 'trainSummary') { trainSummaryView.renderTrainSummary(); }
+    if (tabId === 'machineManagement') { machineView.renderMachinesTable(); }
+    if (tabId === 'macoForTrains') { 
+        macoProductView.renderMacoForTrains(); 
+        addPrintButtonsToTrains();
+    }
+    if (tabId === 'detergentMaco') { macoDetergentView.renderDetergentMaco(); }
+    if (tabId === 'productRegister' || tabId === 'worstCaseProducts') {
+        productView.handleSearchAndFilter(tabId);
+    }
+    if (tabId === 'machineCoverage') {
+        const container = document.getElementById('machineCoverageContainer');
+        if (container) {
+            container.innerHTML = machineCoverageView.createHorizontalMachineCoverageTable();
+        }
+    }
+    if (tabId === 'qa') {
+        qaView.render();
+    }
+    
+    // Apply line-specific filtering
+    applyLineFilter(line, viewType);
+};
+
+/**
+ * Applies line-specific filtering to the current view
+ */
+function applyLineFilter(line, viewType) {
+
+    switch(viewType) {
+        case 'worstCase':
+            // Filter worst case products by line
+            
+            worstCaseView.handleSearchAndFilter('worstCaseProducts', line);
+            break;
+        case 'maco':
+            // Filter MACO calculations by line
+        
+            macoProductView.renderMacoForTrains(line);
+            break;
+        case 'detergent':
+            // Filter detergent MACO by line
+           
+            macoDetergentView.renderDetergentMaco(line);
+            break;
+        case 'trainSummary':
+            // Filter train summary by line
+         
+            trainSummaryView.renderTrainSummary(line);
+            break;
+        case 'coverage':
+            
+            {
+                const container = document.getElementById('machineCoverageContainer');
+                if (container) {
+                    container.innerHTML = machineCoverageView.createHorizontalMachineCoverageTable();
+                }
+            }
+            break;
+        case 'lineReport':
+            
+            renderLineReport(line);
+            break;
+    }
+}
+
+/**
+ * Handles the logic for switching between tabs.
+ * @param {string} tabId The ID of the tab content to show.
+ * @param {HTMLElement} element The clicked tab button element.
+ */
+function changeTab(tabId, element) {
+    // Clear line filter when switching via top menu
+    window.currentLineFilter = null;
+    
+    // Clear all sidebar menu highlighting when top menu is used
+    document.querySelectorAll('.line-nav-item button').forEach(btn => {
+        btn.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300', 'bg-blue-50', 'dark:bg-blue-950', 'text-blue-700', 'dark:text-blue-200');
+    });
+    document.querySelectorAll('.line-nav-item div button').forEach(btn => {
+        btn.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300');
+    });
+    
+    state.setActiveTabId(tabId);
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-tab-content'));
+    document.getElementById(tabId).classList.add('active-tab-content');
+    document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active-tab'));
+    element.classList.add('active-tab');
+
+    // Call the specific rendering function for the activated tab
+    if (tabId === 'dashboard') { 
+        dashboardView.resetColorMapping(); // Reset colors for fresh assignment
+        dashboardView.renderMainDashboard(); 
+    }
+    if (tabId === 'summaryReport') { summaryView.renderSummaryReport(); }
+    if (tabId === 'trainSummary') { trainSummaryView.renderTrainSummary(); }
+    if (tabId === 'machineManagement') { machineView.renderMachinesTable(); }
+    if (tabId === 'macoForTrains') { 
+        macoProductView.renderMacoForTrains(); 
+        addPrintButtonsToTrains(); // Add print buttons after rendering
+    }
+    if (tabId === 'detergentMaco') { macoDetergentView.renderDetergentMaco(); }
+    if (tabId === 'productRegister' || tabId === 'worstCaseProducts') {
+        productView.handleSearchAndFilter(tabId);
+    }
+    if (tabId === 'machineCoverage') {
+        const container = document.getElementById('machineCoverageContainer');
+        if (container) {
+            container.innerHTML = machineCoverageView.createHorizontalMachineCoverageTable();
+        }
+    }
+    if (tabId === 'qa') {
+        qaView.render();
+    }
+}
+
+// --- 3. INITIALIZATION ---
+/**
+ * The main initialization function for the entire application.
+ * Runs once when the DOM is loaded.
+ */
+async function initializeApp() {
+    ui.showLoader();
+    try {
+        // Import IndexedDB module
+        const db = await import('./indexedDB.js');
+        
+        // Migrate data from localStorage to IndexedDB (one-time migration)
+        await db.migrateFromLocalStorage();
+        
+        // Prompt for org and user ID (replace with a real login UI for production)
+        // let orgId = localStorage.getItem('orgId') || prompt('Enter your organization ID:');
+        // let userId = localStorage.getItem('userId') || prompt('Enter your user ID:');
+        let orgId = await db.getItem('orgId') || localStorage.getItem('orgId');
+        let userId = await db.getItem('userId') || localStorage.getItem('userId');
+        if (!orgId) orgId = 'defaultOrg';
+        if (!userId) userId = 'defaultUser';
+        await db.setItem('orgId', orgId);
+        await db.setItem('userId', userId);
+        localStorage.setItem('orgId', orgId); // Keep in localStorage for immediate access
+        localStorage.setItem('userId', userId);
+        window.orgId = orgId;
+        window.userId = userId;
+
+        // Set theme from IndexedDB (with localStorage fallback)
+        const theme = await db.getItem('theme') || localStorage.getItem('theme');
+        if (theme === 'dark') { ui.toggleDarkMode(true); } 
+        else { ui.toggleDarkMode(false); }
+
+        // Load all data from IndexedDB
+        await ui.loadAllDataFromLocalStorage();
+        // After loading, recalculate dynamic "nextId" counters
+        if (state.products.length > 0) {
+            state.setNextProductId(Math.max(0, ...state.products.map(p => p.id)) + 1);
+            const allIngredientIds = state.products.flatMap(p => p.activeIngredients.map(ai => ai.id));
+            state.setNextIngredientId(allIngredientIds.length > 0 ? Math.max(0, ...allIngredientIds) + 1 : 1);
+        }
+        if (state.machines.length > 0) { state.setNextMachineId(Math.max(0, ...state.machines.map(m => m.id)) + 1); }
+        if (state.detergentIngredients.length > 0) { state.setNextDetergentIngredientId(Math.max(0, ...state.detergentIngredients.map(i => i.id)) + 1); }
+
+        // Data migration logic
+        state.products.forEach(p => {
+            if (p.isCritical === undefined) p.isCritical = false;
+        });
+
+        // Save the initial loaded state as the first step in the undo/redo history
+        ui.saveStateForUndo();
+
+        try {
+            if (typeof state.ensureProductsHaveLine === 'function') {
+                state.ensureProductsHaveLine();
+            }
+        } catch (e) {
+            console.warn('[migration] ensureProductsHaveLine failed', e);
+        }
+        
+        // Perform the first full render of the application
+        fullAppRender();
+
+        // Initialize proper case inputs
+        utils.initializeProperCaseInputs();
+
+        // Initialize sidebar state
+        initializeSidebarState();
+
+        // Perform any final UI setup after the initial render
+        ui.updateToggleIcons('productRegister');
+        scoringView.toggleScoringEditMode(false);
+        ui.hideLoader();
+    } catch (error) {
+        console.error('Error during application initialization:', error);
+        ui.hideLoader();
+    }
+}
+
+// --- 4. GLOBAL EVENT LISTENERS & FUNCTION EXPOSURE ---
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- CRITICAL STEP: EXPOSE FUNCTIONS TO GLOBAL SCOPE ---
+    // Your HTML uses `onclick="functionName()"`. These functions must exist on the `window` object.
+    // This loop makes all imported functions from your modules available globally.
+   window.changeTab = changeTab; // Manually expose the one function not in a module import
+   window.printTrain = printTrain; // Expose the new print function
+   window.toggleSidebar = window.toggleSidebar; // Expose the sidebar toggle function
+   window.toggleLineMenu = window.toggleLineMenu; // Expose the line menu toggle function
+   window.showLineSpecificView = window.showLineSpecificView; // Expose the line-specific view function
+    window.saveAllDataToLocalStorage = ui.saveAllDataToLocalStorage;
+    window.loadAllDataFromLocalStorage = ui.loadAllDataFromLocalStorage;
+   
+   // Create a unified handleSearchAndFilter function that delegates to the appropriate module
+   window.handleSearchAndFilter = function(tabId) {
+       if (tabId === 'worstCaseProducts') {
+           worstCaseView.handleSearchAndFilter(tabId);
+       } else {
+           productView.handleSearchAndFilter(tabId);
+       }
+   };
+   
+   // Create a unified sortData function that delegates to the appropriate module
+   window.sortData = function(key, tabId) {
+       if (tabId === 'worstCaseProducts') {
+           worstCaseView.sortData(key, tabId);
+       } else {
+           productView.sortData(key, tabId);
+       }
+   };
+   
+    const { printReport, ...macoProductViewWithoutPrint } = macoProductView;
+    const { handleSearchAndFilter: productHandleSearchAndFilter, ...productViewWithoutHandler } = productView;
+    const { handleSearchAndFilter: worstCaseHandleSearchAndFilter, ...worstCaseViewWithoutHandler } = worstCaseView;
+    Object.assign(window, ui, utils, productViewWithoutHandler, machineView, worstCaseViewWithoutHandler, macoProductViewWithoutPrint, macoDetergentView, dashboardView, summaryView, trainSummaryView, scoringView);
+    // --- EVENT LISTENERS FOR STATIC ELEMENTS ---
+    // These are elements that are always present in your HTML.
+    document.getElementById('theme-toggle').addEventListener('click', async () => { 
+        const isDark = document.documentElement.classList.contains('dark'); 
+        ui.toggleDarkMode(!isDark); 
+        const theme = !isDark ? 'dark' : 'light';
+        const db = await import('./indexedDB.js');
+        await db.setItem('theme', theme);
+        localStorage.setItem('theme', theme); // Also save to localStorage for immediate access
+    });
+
+    window.addEventListener('beforeprint', () => {
+        // Store which view was being printed
+        window.printingView = null;
+        if (document.body.classList.contains('printing-worstCaseProducts')) {
+            window.printingView = 'worstCaseProducts';
+        } else if (document.body.classList.contains('printing-macoForTrains')) {
+            window.printingView = 'macoForTrains';
+        } else if (document.body.classList.contains('printing-trainSummary')) {
+            window.printingView = 'trainSummary';
+        }
+    });
+
+    window.addEventListener('afterprint', () => {
+        const wasWorstCasePrinting = document.body.classList.contains('printing-worstCaseProducts');
+        const wasMacoPrinting = document.body.classList.contains('printing-macoForTrains');
+        const wasTrainSummaryPrinting = document.body.classList.contains('printing-trainSummary');
+        
+        document.body.className = document.body.className.replace(/printing-[\w-]+/g, '');
+        
+        if (state.scoringWasInEditModeForPrint) {
+            scoringView.toggleScoringEditMode(true);
+            state.setScoringWasInEditModeForPrint(false);
+        }
+        
+        // Re-render views to restore original state
+        if (wasWorstCasePrinting || wasMacoPrinting || wasTrainSummaryPrinting) {
+            ui.showLoader(); // Show loader while re-rendering
+            window.printSelectedTrain = null; // Clear the selected train
+            
+            if (wasWorstCasePrinting) {
+                worstCaseView.renderWorstCaseByTrain();
+            } else if (wasMacoPrinting) {
+                macoProductView.renderMacoForTrains();
+            } else if (wasTrainSummaryPrinting) {
+                trainSummaryView.renderTrainSummary();
+            }
+        }
+        
+        // Clear the printing view flag
+        window.printingView = null;
+    });
+
+    // Add a fallback mechanism to handle cases where print is cancelled
+    // and afterprint might not fire properly
+    window.addEventListener('focus', () => {
+        if (window.printingView && !document.body.className.includes('printing-')) {
+            // Print was likely cancelled, clean up
+            setTimeout(() => {
+                if (window.printingView && !document.body.className.includes('printing-')) {
+                    ui.hideLoader();
+                    window.printSelectedTrain = null;
+                    window.printingView = null;
+                }
+            }, 500);
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.key === 'z') { e.preventDefault(); ui.undoChange(); }
+        if (e.ctrlKey && e.key === 'y') { e.preventDefault(); ui.redoChange(); }
+    });
+
+    // Add event delegation for filter inputs
+    document.addEventListener('input', function(e) {
+        if (e.target.matches('.filterColProductCode, .filterColProductName')) {
+            handleSearchAndFilter('productRegister');
+        }
+        if (e.target.matches('#worstCaseProductNameFilter')) {
+            worstCaseView.handleWorstCaseProductFilter();
+        }
+    });
+
+    document.addEventListener('change', function(e) {
+        if (e.target.matches('.filterColTrainNo, .filterColProductType, .filterColIsCritical')) {
+            handleSearchAndFilter('productRegister');
+        }
+    });
+
+    // --- EVENT LISTENERS FOR FORMS ---
+    // Your original code had these listeners, which is a good pattern.
+    // They call the handler functions which now live in their respective modules.
+    document.getElementById('addProductForm').addEventListener('submit', productView.addNewProduct); // Assumes you create addNewProduct in productView.js from the original logic
+    document.getElementById('editProductForm').addEventListener('submit', productView.saveProductChanges);
+    document.getElementById('editIngredientForm').addEventListener('submit', productView.saveIngredientChanges);
+    document.getElementById('machineForm').addEventListener('submit', machineView.saveMachine);
+    document.getElementById('assignMachinesForm').addEventListener('submit', machineView.saveProductMachines);
+    document.getElementById('addProductsToMachineForm').addEventListener('submit', machineView.saveProductsToMachine);
+    
+    // Listeners for static buttons
+    document.getElementById('customAlertButton').onclick = () => ui.hideModal('customAlertModal');
+    document.getElementById('editScoringBtn').addEventListener('click', () => scoringView.toggleScoringEditMode(!state.scoringInEditMode));
+    
+    // Handle window resize for responsive sidebar
+    window.addEventListener('resize', function() {
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebarBackdrop');
+        
+        if (window.innerWidth > 1024) {
+            // Desktop: hide backdrop
+            backdrop.classList.add('hidden');
+        } else if (!sidebar.classList.contains('collapsed')) {
+            // Mobile: show backdrop if sidebar is open
+            backdrop.classList.remove('hidden');
+        }
+    });
+    
+    // --- KICKSTART THE APPLICATION ---
+    initializeApp();
+    
+    // Check if PDF libraries are loaded after a delay
+    setTimeout(() => {
+       
+
+        // If libraries are not loaded, try to load them dynamically
+        if (!window.jsPDF || !window.html2canvas) {
+            loadPDFLibrariesDynamically();
+        }
+    }, 2000);
+});
+
+// Function to load html2pdf library dynamically
+async function loadHtml2PdfLibrary() {
+    if (!window.html2pdf) {
+        const html2pdfScript = document.createElement('script');
+        html2pdfScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+        html2pdfScript.onload = () => {
+        
+        };
+        html2pdfScript.onerror = () => {
+            console.error('Failed to load html2pdf from CDN');
+        };
+        document.head.appendChild(html2pdfScript);
+        
+        // Wait for library to load
+        return new Promise((resolve) => {
+            const checkLibrary = () => {
+                if (window.html2pdf) {
+                    resolve();
+                } else {
+                    setTimeout(checkLibrary, 100);
+                }
+            };
+            checkLibrary();
+        });
+    }
+}
+
+// Function to load PDF libraries dynamically (legacy)
+function loadPDFLibrariesDynamically() {
+    // Try to load jsPDF
+    if (!window.jsPDF) {
+        const jsPDFScript = document.createElement('script');
+        jsPDFScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        jsPDFScript.onload = () => {
+            // Fix the global reference - try different possible names
+            window.jsPDF = window.jspdf?.jsPDF || window.jsPDF || window.jspdf;
+        };
+        jsPDFScript.onerror = () => {
+            console.error('Failed to load jsPDF from CDN');
+        };
+        document.head.appendChild(jsPDFScript);
+    }
+
+    // Try to load html2canvas
+    if (!window.html2canvas) {
+        const html2canvasScript = document.createElement('script');
+        html2canvasScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+ 
+        html2canvasScript.onerror = () => {
+            console.error('Failed to load html2canvas from CDN');
+        };
+        document.head.appendChild(html2canvasScript);
+    }
+}
+
+// Test function to create a simple PDF
+window.testSimplePDF = function() {
+    try {
+        let PDFConstructor = null;
+        if (window.jspdf && window.jspdf.jsPDF) {
+            PDFConstructor = window.jspdf.jsPDF;
+        } else if (window.jsPDF && window.jsPDF.jsPDF) {
+            PDFConstructor = window.jsPDF.jsPDF;
+        } else if (window.jsPDF) {
+            PDFConstructor = window.jsPDF;
+        }
+        
+        if (!PDFConstructor) {
+            console.log('❌ No PDF constructor available');
+            return false;
+        }
+        
+        
+        const pdf = new PDFConstructor('p', 'mm', 'a4');
+        pdf.text('Test PDF Generation', 20, 20);
+        pdf.text('This is a test to verify PDF creation works.', 20, 30);
+        pdf.text('If you can see this, the PDF generation is working!', 20, 40);
+        
+        const filename = 'test-pdf-' + Date.now() + '.pdf';
+        pdf.save(filename);
+        
+        return true;
+        
+    } catch (error) {
+        console.error('❌ Test PDF creation failed:', error);
+        return false;
+    }
+};
+
+// Test function to check report content visibility
+window.testReportContent = function() {
+    const reportContainer = document.querySelector('#lineReportContainer .report-container');
+    if (!reportContainer) {
+        console.log('❌ No report container found');
+        return false;
+    }
+    
+    
+    return true;
+};
+
+// Test function to check PDF library availability
+window.testPDFLibraries = function() {
+
+    
+    // Check for jsPDF constructor
+    let PDFConstructor = null;
+    if (window.jspdf && window.jspdf.jsPDF) {
+        PDFConstructor = window.jspdf.jsPDF;
+    } else if (window.jsPDF && window.jsPDF.jsPDF) {
+        PDFConstructor = window.jsPDF.jsPDF;
+    } else if (window.jsPDF) {
+        PDFConstructor = window.jsPDF;
+    }
+    
+    if (PDFConstructor) {
+        try {
+            const testPdf = new PDFConstructor('p', 'mm', 'a4');
+            testPdf.text('Test', 10, 10);
+        } catch (error) {
+            console.error('❌ jsPDF constructor failed:', error.message);
+        }
+    } else {
+        console.log('❌ No jsPDF constructor found');
+    }
+ 
+    return {
+        jsPDF: !!window.jsPDF,
+        html2canvas: !!window.html2canvas,
+        jspdf: !!window.jspdf,
+        PDFConstructor: PDFConstructor
+    };
+};
+
+// Global function to force restore export button
+window.forceRestoreExportButton = function() {
+    const exportButton = document.querySelector('button[onclick="exportToPDF()"], button[onclick="window.exportToPDF()"]');
+    if (exportButton) {
+
+        exportButton.disabled = false;
+        exportButton.style.opacity = '';
+        exportButton.style.cursor = '';
+        exportButton.style.backgroundColor = '';
+        // Try to restore original text if we can find it
+        if (exportButton.innerHTML.includes('Generating PDF')) {
+            exportButton.innerHTML = '📄 Export to PDF';
+        }
+    }
+};
+
+// Global PDF export function for reports - opens in new window
+window.exportToPDF = async function exportToPDF() {
+    // Get the current line from the URL or state
+    const currentLine = window.currentLineFilter || 'Solids';
+    
+    try {
+        // Import the lineReportView module
+        const lineReportModule = await import('./lineReportView.js');
+        
+        // Generate the report in a new window (original behavior)
+        const generator = new lineReportModule.CleaningValidationReportGenerator();
+        generator.generateReport(currentLine, 'All');
+        
+    } catch (error) {
+        console.error('Error opening report window:', error);
+        alert('Error opening report. Please try again.');
+    }
+};

@@ -1,1 +1,835 @@
-const a4_0x12cbec=a4_0x3276;(function(_0x3c9a1c,_0x2bcd29){const _0x268038=a4_0x3276,_0x512b74=_0x3c9a1c();while(!![]){try{const _0x5d9562=parseInt(_0x268038(0x1ea))/0x1+-parseInt(_0x268038(0x132))/0x2*(-parseInt(_0x268038(0x163))/0x3)+-parseInt(_0x268038(0x121))/0x4+-parseInt(_0x268038(0x111))/0x5+-parseInt(_0x268038(0x151))/0x6+parseInt(_0x268038(0x1c8))/0x7*(parseInt(_0x268038(0x1d7))/0x8)+parseInt(_0x268038(0x1e9))/0x9;if(_0x5d9562===_0x2bcd29)break;else _0x512b74['push'](_0x512b74['shift']());}catch(_0x4dd59b){_0x512b74['push'](_0x512b74['shift']());}}}(a4_0x54db,0x3e44a));import{getTrainData as a4_0x4c3852,getLargestEssaForLineAndDosageForm as a4_0x3004cc,getWorstCaseProductType as a4_0x262e0c,countStudiesForTrains as a4_0x350c07,calculateScores as a4_0x3d97d2}from'./utils.js';import{machines as a4_0xabbd0d,safetyFactorConfig as a4_0x55f4a1,products as a4_0x375e68}from'./state.js';function d(_0x1e1a72,_0x4391b8=''){const _0x485fdb=a4_0x3276,_0x1ba3d1={'RVHor':function(_0x88f86c,_0x151a45){return _0x88f86c===_0x151a45;},'yNZKo':function(_0x4c68bc,_0x2b0311){return _0x4c68bc==_0x2b0311;},'TWqdP':function(_0x397c6a,_0x72eaf1){return _0x397c6a+_0x72eaf1;},'fDZKQ':function(_0x6e4aa8,_0x30ca3c){return _0x6e4aa8<_0x30ca3c;},'ULNJP':function(_0x38e0ee,_0xc953d2){return _0x38e0ee<_0xc953d2;},'GZCAG':function(_0x133238,_0x1da4e3){return _0x133238+_0x1da4e3;},'ruKLq':function(_0x57d01,_0x518ff8){return _0x57d01+_0x518ff8;}};if(_0x1ba3d1[_0x485fdb(0x16c)](0x0,_0x1e1a72)||_0x1ba3d1[_0x485fdb(0x1ab)](null,_0x1e1a72)||isNaN(_0x1e1a72))return'0'+(_0x4391b8?_0x1ba3d1[_0x485fdb(0x184)]('\x20',_0x4391b8):'');const _0x5effcd=Math[_0x485fdb(0x14c)](_0x1e1a72);return _0x1ba3d1[_0x485fdb(0x125)](_0x5effcd,0.0001)?''+_0x1e1a72[_0x485fdb(0x164)](0x3)+(_0x4391b8?_0x1ba3d1[_0x485fdb(0x184)]('\x20',_0x4391b8):''):_0x1ba3d1[_0x485fdb(0x10b)](_0x5effcd,0.01)?''+_0x1e1a72['toFixed'](0x6)+(_0x4391b8?_0x1ba3d1[_0x485fdb(0x183)]('\x20',_0x4391b8):''):''+_0x1e1a72['toFixed'](0x4)+(_0x4391b8?_0x1ba3d1[_0x485fdb(0x1d1)]('\x20',_0x4391b8):'');}function a4_0x3276(_0x3b66e3,_0x2c9fb2){const _0x54db4e=a4_0x54db();return a4_0x3276=function(_0x32760b,_0x361a33){_0x32760b=_0x32760b-0xe7;let _0x1f5130=_0x54db4e[_0x32760b];return _0x1f5130;},a4_0x3276(_0x3b66e3,_0x2c9fb2);}class l{constructor(){this['reportData']=null;}[a4_0x12cbec(0x169)](_0xfffc6d,_0x3c5094=a4_0x12cbec(0x123)){const _0x1195f2=a4_0x12cbec,_0x3913bd={'vUmEO':_0x1195f2(0x108)};try{this['reportData']=this[_0x1195f2(0x1b2)](_0xfffc6d,_0x3c5094);const _0x3bcafc=this['generateHTMLReport'](this[_0x1195f2(0x1ec)]);return this['openReportWindow'](_0x3bcafc),!0x0;}catch(_0x4ab185){return console[_0x1195f2(0x1d9)](_0x3913bd['vUmEO'],_0x4ab185),alert('Error\x20generating\x20report.\x20Please\x20try\x20again.'),!0x1;}}[a4_0x12cbec(0x1b2)](_0x19f4d2,_0x5300e2){const _0x346b63=a4_0x12cbec,_0x5ccd7f={'BlAph':function(_0x55c92d,_0x484d8d){return _0x55c92d(_0x484d8d);},'rvfjy':function(_0x1894a3,_0x586a9b){return _0x1894a3>_0x586a9b;},'EGhSB':_0x346b63(0x19b),'bcOfL':_0x346b63(0x127),'OWzmo':function(_0x1b8df0,_0x3534e9){return _0x1b8df0!==_0x3534e9;},'cTpKA':_0x346b63(0x186),'fZXaO':_0x346b63(0x172),'Wsssx':_0x346b63(0x17a),'JklIV':function(_0x2cda85,_0x4cf68b){return _0x2cda85!==_0x4cf68b;},'PwXHw':function(_0x357126,_0x1b891b){return _0x357126!==_0x1b891b;},'StGIy':function(_0x1f9026,_0x16b47d){return _0x1f9026-_0x16b47d;},'dqsXS':_0x346b63(0x193),'HFZvz':function(_0x2b5262,_0x58ea42){return _0x2b5262>_0x58ea42;},'UjKze':function(_0x5c7300){return _0x5c7300();},'MQelP':function(_0x20c7f6,_0x3b5a96){return _0x20c7f6>_0x3b5a96;},'mXCWZ':_0x346b63(0x1dd),'dIdAZ':_0x346b63(0x18a),'BQPyo':function(_0x54b4aa,_0x541cbc){return _0x54b4aa*_0x541cbc;},'lHMuh':function(_0x56457,_0x2f56f6){return _0x56457/_0x2f56f6;},'NbpiU':function(_0x3700c1,_0x31bb91){return _0x3700c1>_0x31bb91;}},_0x451854=_0x5ccd7f[_0x346b63(0x166)](a4_0x4c3852),_0x240382=_0x451854[_0x346b63(0x17f)](_0x5e460e=>(_0x5e460e['line']||_0x5e460e[_0x346b63(0x161)])===_0x19f4d2),_0x5ac552=[];_0x240382[_0x346b63(0x1af)](_0x6e254d=>{const _0x56d06c=_0x346b63,_0x79996c={'cadxI':function(_0x352cf3,_0x9466fd){return _0x5ccd7f['BlAph'](_0x352cf3,_0x9466fd);},'weMrb':function(_0x1d38b1,_0x335d0f){const _0x459d10=a4_0x3276;return _0x5ccd7f[_0x459d10(0x1fb)](_0x1d38b1,_0x335d0f);},'HcgxM':_0x5ccd7f[_0x56d06c(0x19d)],'oIKGP':_0x5ccd7f[_0x56d06c(0xea)]},_0x3b63fa=(_0x6e254d['machineIds']||[])[_0x56d06c(0x11d)](_0x21a07f=>{const _0x3d3f37=_0x56d06c,_0x3a4fca=a4_0xabbd0d[_0x3d3f37(0x1e7)](_0x381865=>_0x381865['id']===_0x21a07f);return _0x3a4fca?_0x3a4fca[_0x3d3f37(0x13b)]:null;})[_0x56d06c(0x17f)](Boolean);[...new Set((_0x6e254d[_0x56d06c(0x1ba)]||[])['map'](_0x2108bb=>_0x2108bb[_0x56d06c(0x10e)]||_0x56d06c(0x193)))][_0x56d06c(0x1af)](_0x5c3883=>{const _0x3e7e56=_0x56d06c,_0x492e2e={'ePFZF':function(_0x50f9fb,_0x7e5dbc){const _0xaaf138=a4_0x3276;return _0x79996c[_0xaaf138(0x19e)](_0x50f9fb,_0x7e5dbc);},'pctle':function(_0x8f5b72,_0x762022){return _0x79996c['weMrb'](_0x8f5b72,_0x762022);},'DqCTr':_0x79996c[_0x3e7e56(0xe8)]};let _0x4b752d='-',_0x399285=0x0;const _0x1d3944=(_0x6e254d[_0x3e7e56(0x1ba)]||[])[_0x3e7e56(0x17f)](_0x4063f9=>(_0x4063f9['productType']||'Unknown')===_0x5c3883);_0x1d3944[_0x3e7e56(0x1af)](_0x48007a=>{const _0x1c23dd=_0x3e7e56,_0x544594={'YgCnw':function(_0x1de207,_0x41afd9){const _0x5b5cf1=a4_0x3276;return _0x492e2e[_0x5b5cf1(0x12f)](_0x1de207,_0x41afd9);},'Lsrwf':function(_0x4fea1f,_0x13fb78){const _0x9feb9c=a4_0x3276;return _0x492e2e[_0x9feb9c(0x157)](_0x4fea1f,_0x13fb78);},'FLdkO':_0x492e2e['DqCTr']};_0x48007a[_0x1c23dd(0x199)]&&Array[_0x1c23dd(0x16b)](_0x48007a[_0x1c23dd(0x199)])&&_0x48007a[_0x1c23dd(0x199)][_0x1c23dd(0x1af)](_0x31690d=>{const _0x57cb60=_0x1c23dd;try{const _0x320465=_0x544594[_0x57cb60(0xf1)](a4_0x3d97d2,_0x31690d),_0x2fd947=_0x320465?.['rpn']||0x0;_0x544594[_0x57cb60(0x179)](_0x2fd947,_0x399285)&&(_0x399285=_0x2fd947,_0x4b752d=_0x48007a[_0x57cb60(0x13b)]);}catch(_0x4e90d4){console[_0x57cb60(0x1a7)](_0x544594[_0x57cb60(0x19a)],_0x31690d,_0x4e90d4);}});});const _0xa9b1fe=this[_0x3e7e56(0x1ee)](_0x6e254d,_0x451854);_0x5ac552[_0x3e7e56(0x198)]({'trainId':'Train\x20'+(_0x6e254d[_0x3e7e56(0x194)]||_0x6e254d['id']),'products':_0x1d3944[_0x3e7e56(0x11d)](_0x420099=>_0x420099[_0x3e7e56(0x13b)]),'machines':_0x3b63fa,'worstCaseProduct':_0x4b752d,'worstCaseRPN':_0x399285,'macoValue':_0xa9b1fe,'machineIds':_0x6e254d[_0x3e7e56(0x188)]||[],'productType':_0x5c3883,'line':_0x6e254d[_0x3e7e56(0x13e)]||_0x79996c[_0x3e7e56(0x1a2)],'trainNumber':_0x6e254d['number']||_0x6e254d['id'],'trainInternalId':_0x6e254d['id']});});}),_0x5ac552['sort']((_0x5d2580,_0x46d5d8)=>{const _0x49c4dd=_0x346b63;if(_0x5ccd7f[_0x49c4dd(0x1f2)](_0x5d2580[_0x49c4dd(0x13e)],_0x46d5d8['line'])){const _0x56dbc8=[_0x5ccd7f[_0x49c4dd(0x142)],_0x5ccd7f[_0x49c4dd(0x117)],_0x5ccd7f[_0x49c4dd(0x1b1)],_0x49c4dd(0x15b)],_0x30ba17=_0x5ccd7f[_0x49c4dd(0x1f2)](-0x1,_0x56dbc8[_0x49c4dd(0x107)](_0x5d2580['line']))?_0x56dbc8[_0x49c4dd(0x107)](_0x5d2580[_0x49c4dd(0x13e)]):_0x56dbc8[_0x49c4dd(0x1a1)],_0x517a5c=_0x5ccd7f[_0x49c4dd(0x1f2)](-0x1,_0x56dbc8[_0x49c4dd(0x107)](_0x46d5d8[_0x49c4dd(0x13e)]))?_0x56dbc8[_0x49c4dd(0x107)](_0x46d5d8[_0x49c4dd(0x13e)]):_0x56dbc8[_0x49c4dd(0x1a1)];if(_0x5ccd7f[_0x49c4dd(0x1f9)](_0x30ba17,_0x517a5c))return _0x30ba17-_0x517a5c;}if(_0x5ccd7f['PwXHw'](_0x5d2580['productType'],_0x46d5d8[_0x49c4dd(0x10e)])){const _0x178825=_0x5ac552['filter'](_0x504784=>_0x504784['line']===_0x5d2580[_0x49c4dd(0x13e)]&&_0x504784[_0x49c4dd(0x10e)]===_0x5d2580[_0x49c4dd(0x10e)]),_0xc8d3=_0x5ac552[_0x49c4dd(0x17f)](_0x1b170c=>_0x1b170c[_0x49c4dd(0x13e)]===_0x46d5d8['line']&&_0x1b170c[_0x49c4dd(0x10e)]===_0x46d5d8['productType']),_0x2d7ddc=Math[_0x49c4dd(0x114)](..._0x178825[_0x49c4dd(0x11d)](_0x4c02d0=>_0x4c02d0[_0x49c4dd(0x1c0)])),_0xeeae2e=Math['min'](..._0xc8d3[_0x49c4dd(0x11d)](_0x5cb9bd=>_0x5cb9bd[_0x49c4dd(0x1c0)]));if(_0x5ccd7f[_0x49c4dd(0x105)](_0x2d7ddc,_0xeeae2e))return _0x5ccd7f[_0x49c4dd(0x1cf)](_0x2d7ddc,_0xeeae2e);}return _0x5d2580[_0x49c4dd(0x1c0)]-_0x46d5d8[_0x49c4dd(0x1c0)];});const _0x1d59b9=this['selectStudies'](_0x5ac552),_0x182e55=new Set();_0x240382[_0x346b63(0x1af)](_0x57eddc=>(_0x57eddc['machineIds']||[])['forEach'](_0x1b9949=>_0x182e55[_0x346b63(0x112)](_0x1b9949)));const _0x54f14e=Array['from'](_0x182e55)['map'](_0x536d45=>{const _0x25a4be=_0x346b63,_0x335c1b=a4_0xabbd0d['find'](_0x40ce48=>_0x40ce48['id']===_0x536d45);return _0x335c1b?_0x335c1b[_0x25a4be(0x13b)]:null;})[_0x346b63(0x17f)](Boolean),_0x4e8404=_0x1d59b9['filter'](_0x274bab=>_0x274bab[_0x346b63(0xef)]&&_0x274bab['newMachinesCovered']['length']>0x0)[_0x346b63(0x1a1)];console[_0x346b63(0xe7)]('Report:\x20Final\x20study\x20count:\x20'+_0x4e8404+_0x346b63(0x1ca)+_0x1d59b9['length']+_0x346b63(0x1eb));const _0x479137={};if(_0x5ccd7f['MQelP'](_0x5ac552[_0x346b63(0x1a1)],0x0)){const _0x220014={};_0x5ac552[_0x346b63(0x1af)](_0x54f6ff=>{const _0x8fd4c9=_0x346b63,_0x37db90=_0x54f6ff['productType']||_0x5ccd7f[_0x8fd4c9(0x16d)];_0x220014[_0x37db90]||(_0x220014[_0x37db90]=[]),_0x220014[_0x37db90][_0x8fd4c9(0x198)](_0x54f6ff);}),Object[_0x346b63(0x144)](_0x220014)[_0x346b63(0x1af)](_0x18277c=>{const _0x2459b3=_0x346b63,_0x47709d=_0x220014[_0x18277c];_0x5ccd7f[_0x2459b3(0x18c)](_0x47709d[_0x2459b3(0x1a1)],0x0)&&(_0x479137[_0x18277c]=Math['min'](..._0x47709d[_0x2459b3(0x11d)](_0x51e872=>_0x51e872[_0x2459b3(0x160)])));});}return console[_0x346b63(0xe7)](_0x5ccd7f[_0x346b63(0x104)],_0x479137),{'groupInfo':{'lineName':_0x19f4d2,'line':_0x19f4d2,'dosageForm':_0x5300e2,'reportDate':new Date()[_0x346b63(0x145)](),'reviewer':_0x5ccd7f[_0x346b63(0x1e8)]},'summary':{'totalProducts':_0x5ac552[_0x346b63(0x124)]((_0x1e7ab6,_0x45f07b)=>_0x1e7ab6+_0x45f07b[_0x346b63(0x1ba)]['length'],0x0),'totalTrains':_0x5ac552['length'],'totalMachines':_0x54f14e[_0x346b63(0x1a1)],'requiredStudies':_0x4e8404,'savingsPercentage':_0x5ccd7f[_0x346b63(0x1fb)](_0x5ac552[_0x346b63(0x1a1)],0x0)?Math[_0x346b63(0x1f0)](_0x5ccd7f[_0x346b63(0x102)](_0x5ccd7f[_0x346b63(0x185)](_0x5ac552[_0x346b63(0x1a1)]-_0x4e8404,_0x5ac552[_0x346b63(0x1a1)]),0x64)):0x0,'lowestMaco':_0x5ccd7f[_0x346b63(0xff)](_0x5ac552[_0x346b63(0x1a1)],0x0)?Math['min'](..._0x5ac552[_0x346b63(0x11d)](_0xfc2a1d=>_0xfc2a1d[_0x346b63(0x160)])):0x0,'lowestMacoByGroup':_0x479137},'trains':_0x5ac552,'selectedStudies':_0x1d59b9,'macoCalculations':[],'allProducts':Array['from'](new Set(_0x5ac552[_0x346b63(0x197)](_0x2d8001=>_0x2d8001[_0x346b63(0x1ba)]))),'allMachines':_0x54f14e};}[a4_0x12cbec(0x1ee)](_0x314aef,_0x2fabe4){const _0x148a25=a4_0x12cbec,_0x174df7={'IsNOu':function(_0x19030b,_0x109678){return _0x19030b(_0x109678);},'OtLMF':function(_0x54c5a3,_0x59ba8c,_0x3f1d23){return _0x54c5a3(_0x59ba8c,_0x3f1d23);},'gHASG':function(_0x4fc7c,_0x35c7e0){return _0x4fc7c/_0x35c7e0;},'XUCcU':function(_0x210987,_0x3c7cfa){return _0x210987*_0x3c7cfa;},'nlwjb':function(_0x2a0e2b,_0x244e99){return _0x2a0e2b/_0x244e99;},'BRXBJ':'true','fZhCd':'productRegister-pdeHidden','jTjVC':_0x148a25(0xfd),'NywPK':function(_0x14c7f7,_0x1a4123){return _0x14c7f7===_0x1a4123;},'XQDat':function(_0x3f74c1,_0x4be088){return _0x3f74c1*_0x4be088;},'HSAFh':function(_0x14a985,_0x50c128){return _0x14a985!==_0x50c128;},'gSccB':function(_0x373137,_0x3ee44e){return _0x373137>_0x3ee44e;},'uZoKp':function(_0x206a66,_0xe615c4){return _0x206a66*_0xe615c4;},'FPXtW':function(_0x2b3763,_0x1be63a){return _0x2b3763*_0x1be63a;},'nzVrI':function(_0x2759ec,_0x4f8cd9){return _0x2759ec/_0x4f8cd9;},'otoIa':function(_0x5c6382,_0x1490ec){return _0x5c6382*_0x1490ec;},'IhiRj':'Error\x20calculating\x20MACO\x20per\x20swab\x20for\x20train:'};try{const _0x53b339=(a4_0x55f4a1[_0x174df7[_0x148a25(0xf5)](a4_0x262e0c,_0x314aef[_0x148a25(0x1ba)][_0x148a25(0x11d)](_0x551153=>_0x551153[_0x148a25(0x10e)]))]||a4_0x55f4a1['Other'])[_0x148a25(0x15f)],_0x419883=_0x174df7[_0x148a25(0x16e)](a4_0x3004cc,_0x314aef,_0x2fabe4),_0x1fd21c=_0x174df7[_0x148a25(0x171)](_0x174df7['XUCcU'](_0x314aef[_0x148a25(0x1ac)],_0x314aef[_0x148a25(0x1c1)]),_0x53b339),_0x3f32c7=0xa*_0x314aef[_0x148a25(0x1ad)];let _0x3b085c=_0x174df7[_0x148a25(0x1bd)](0x1,0x0),_0x41432e=0x1/0x0;const _0x242ef3=_0x174df7[_0x148a25(0x1f1)]===localStorage[_0x148a25(0x128)](_0x174df7[_0x148a25(0xeb)]),_0x142824=_0x174df7[_0x148a25(0x1f1)]===localStorage['getItem'](_0x174df7['jTjVC']);if(_0x174df7[_0x148a25(0x15e)](null,_0x314aef['lowestPde'])||_0x242ef3||(_0x3b085c=_0x174df7[_0x148a25(0xee)](_0x314aef[_0x148a25(0x1c9)],_0x314aef[_0x148a25(0x1c1)])),_0x174df7['HSAFh'](null,_0x314aef['lowestLd50'])&&!_0x142824){const _0x403c20=_0x174df7[_0x148a25(0x171)](0x46*_0x314aef[_0x148a25(0x1b7)],0x7d0),_0x84057f=_0x314aef[_0x148a25(0x1ba)][_0x148a25(0x197)](_0x4fc767=>_0x4fc767[_0x148a25(0x199)][_0x148a25(0x11d)](_0x5ec98f=>_0x5ec98f[_0x148a25(0xfe)]/0x3e8));if(_0x174df7[_0x148a25(0x1d4)](_0x84057f[_0x148a25(0x1a1)],0x0)){const _0x191e4a=Math[_0x148a25(0x114)](..._0x84057f);_0x41432e=_0x174df7[_0x148a25(0x131)](_0x403c20,_0x314aef[_0x148a25(0x1ad)])*0x3e8/_0x174df7[_0x148a25(0x174)](_0x53b339,_0x191e4a);}}const _0x4dd9e1=_0x174df7[_0x148a25(0xf8)](0.004,_0x419883),_0x243c76=Math[_0x148a25(0x114)](_0x1fd21c,_0x3f32c7,_0x3b085c,_0x41432e,_0x4dd9e1),_0x1f5435=_0x174df7[_0x148a25(0x1d4)](_0x419883,0x0)?_0x174df7[_0x148a25(0x1a3)](_0x243c76,_0x419883):0x0,_0x7bec9c=_0x174df7[_0x148a25(0x15c)](_0x1f5435,_0x314aef[_0x148a25(0x1b6)]||0x19);return console[_0x148a25(0xe7)](_0x148a25(0x18d)+_0x314aef['id']+':',{'finalMaco':_0x243c76,'lineLargestEssa':_0x419883,'assumedSsa':_0x314aef[_0x148a25(0x1b6)]||0x19,'macoPerArea':_0x1f5435,'macoPerSwab':_0x7bec9c,'macoDose':_0x1fd21c,'maco10ppm':_0x3f32c7,'macoHealth':_0x3b085c,'macoNoel':_0x41432e,'macoVisual':_0x4dd9e1,'pdeHidden':_0x242ef3,'ld50Hidden':_0x142824,'lowestPde':_0x314aef[_0x148a25(0x1c9)],'lowestLd50':_0x314aef['lowestLd50']}),_0x7bec9c;}catch(_0x5802a0){return console[_0x148a25(0x1d9)](_0x174df7[_0x148a25(0x14f)],_0x5802a0),0x0;}}[a4_0x12cbec(0xf3)](_0x1a8c7b){const _0x3d9d90=a4_0x12cbec,_0x5f388c={'JTpaE':'Report:\x20Train\x20machines:','jmJMd':_0x3d9d90(0x11f),'Bbgtd':function(_0x249675,_0x38e60a){return _0x249675>_0x38e60a;},'quuWh':'Covers\x20uncovered\x20machines','FgACI':function(_0x5f20b2,_0x1bb1ba){return _0x5f20b2===_0x1bb1ba;}},_0x5dbfe4={};_0x1a8c7b['forEach'](_0x4514e5=>{const _0x4bf455=_0x3d9d90,_0x14520c=_0x4514e5['productType']||(_0x4514e5[_0x4bf455(0x1ba)]&&_0x4514e5[_0x4bf455(0x1ba)][_0x4bf455(0x1a1)]>0x0?_0x4514e5[_0x4bf455(0x1ba)][0x0][_0x4bf455(0x10e)]:null)||_0x4bf455(0x193);_0x5dbfe4[_0x14520c]||(_0x5dbfe4[_0x14520c]=[]),_0x5dbfe4[_0x14520c][_0x4bf455(0x198)](_0x4514e5);});const _0x5676bb=[];return console['log'](_0x3d9d90(0x1e5)+_0x1a8c7b['length']+_0x3d9d90(0x177)),Object[_0x3d9d90(0x144)](_0x5dbfe4)[_0x3d9d90(0x1af)](_0x33d0d9=>{const _0x2f217a=_0x3d9d90,_0xf20b04=_0x5dbfe4[_0x33d0d9],_0x5276b0=Array['from'](new Set(_0xf20b04[_0x2f217a(0x197)](_0x3d1cbb=>_0x3d1cbb[_0x2f217a(0xfa)]))),_0x1e516f=new Set(),_0x112061=[..._0xf20b04][_0x2f217a(0x16a)]((_0x535e38,_0x4fc5be)=>_0x4fc5be[_0x2f217a(0x176)]-_0x535e38[_0x2f217a(0x176)]);let _0x464344=0x0;console[_0x2f217a(0xe7)](_0x2f217a(0x1e5)+_0xf20b04['length']+_0x2f217a(0xfc)+_0x33d0d9),console[_0x2f217a(0xe7)](_0x2f217a(0x1e4)+_0x33d0d9+':',_0x5276b0);for(const _0x5614ba of _0x112061){const _0x216a1b=_0x5614ba[_0x2f217a(0xfa)][_0x2f217a(0x17f)](_0xbd0522=>!_0x1e516f[_0x2f217a(0xfb)](_0xbd0522));if(console['log'](_0x2f217a(0x1c5)+_0x5614ba[_0x2f217a(0x137)]+'\x20('+_0x33d0d9+_0x2f217a(0x16f)+_0x5614ba[_0x2f217a(0x176)]),console[_0x2f217a(0xe7)](_0x5f388c[_0x2f217a(0x12d)],_0x5614ba['machines']),console[_0x2f217a(0xe7)](_0x5f388c[_0x2f217a(0x113)],_0x216a1b),console[_0x2f217a(0xe7)](_0x2f217a(0x182),Array[_0x2f217a(0x165)](_0x1e516f)),_0x5f388c[_0x2f217a(0x126)](_0x216a1b[_0x2f217a(0x1a1)],0x0)){if(_0x464344++,_0x5676bb[_0x2f217a(0x198)]({'studyNumber':_0x464344,'productName':_0x5614ba[_0x2f217a(0x1bb)],'rpn':_0x5614ba[_0x2f217a(0x176)],'machinesCovered':_0x5614ba['machines'],'newMachinesCovered':_0x216a1b,'justification':_0x5f388c[_0x2f217a(0x122)],'trainId':_0x5614ba[_0x2f217a(0x137)],'dosageForm':_0x33d0d9}),console[_0x2f217a(0xe7)](_0x2f217a(0x1f8)+_0x5614ba[_0x2f217a(0x137)]+'\x20for\x20study\x20'+_0x464344+_0x2f217a(0x1db)+_0x33d0d9),_0x216a1b['forEach'](_0x25edca=>_0x1e516f[_0x2f217a(0x112)](_0x25edca)),console[_0x2f217a(0xe7)]('Report:\x20Now\x20covered\x20'+_0x1e516f[_0x2f217a(0x1b5)]+'/'+_0x5276b0['length']+_0x2f217a(0x17d)+_0x33d0d9),_0x5f388c[_0x2f217a(0x12c)](_0x1e516f[_0x2f217a(0x1b5)],_0x5276b0['length'])){console['log'](_0x2f217a(0x1fa)+_0x33d0d9+_0x2f217a(0x1fc));break;}}else console[_0x2f217a(0xe7)](_0x2f217a(0xf7)+_0x5614ba[_0x2f217a(0x137)]+_0x2f217a(0x152));}}),console['log'](_0x3d9d90(0x1d6)+_0x5676bb['length']+_0x3d9d90(0x158)+_0x1a8c7b[_0x3d9d90(0x1a1)]+_0x3d9d90(0x116)),_0x5676bb;}[a4_0x12cbec(0x1f5)](_0x232e9d){const _0x1aef85=a4_0x12cbec;return _0x1aef85(0x1dc)+_0x232e9d['groupInfo'][_0x1aef85(0x11b)]+_0x1aef85(0x155)+this[_0x1aef85(0x1c2)]()+_0x1aef85(0x168)+this[_0x1aef85(0x159)](_0x232e9d[_0x1aef85(0x11a)])+this['generateExecutiveSummary'](_0x232e9d[_0x1aef85(0x140)])+this['generateGroupingStrategy'](_0x232e9d['trains'])+this['generateWorstCaseSelection'](_0x232e9d[_0x1aef85(0x1c3)])+this['generateSpecialCaseProducts'](_0x232e9d[_0x1aef85(0x11a)]['line'])+this[_0x1aef85(0x156)]()+_0x1aef85(0x146)+this[_0x1aef85(0x150)]()+'</script></body></html>';}[a4_0x12cbec(0x159)](_0x19c0d2){const _0x3bc351=a4_0x12cbec;return _0x3bc351(0x106)+_0x19c0d2[_0x3bc351(0x11b)]+_0x3bc351(0x18b)+_0x19c0d2[_0x3bc351(0x1da)]+_0x3bc351(0x189)+_0x19c0d2[_0x3bc351(0x1bc)]+_0x3bc351(0x1f4);}[a4_0x12cbec(0x138)](_0x126934){const _0x5185d4=a4_0x12cbec,_0x20d763={'stWbN':function(_0x4caf20,_0x26a4bd){return _0x4caf20-_0x26a4bd;},'HOEWU':function(_0x5773b7,_0x186007){return _0x5773b7>_0x186007;},'nOMCY':function(_0x5a4f24,_0x50d6e6,_0x5252c4){return _0x5a4f24(_0x50d6e6,_0x5252c4);},'iNjVQ':_0x5185d4(0x12a)},_0x369d6a=_0x20d763[_0x5185d4(0x1aa)](_0x126934[_0x5185d4(0x153)],_0x126934[_0x5185d4(0x1bf)]),_0x498e6d=_0x126934['savingsPercentage']+_0x5185d4(0x101)+_0x369d6a+_0x5185d4(0x13f)+_0x126934[_0x5185d4(0x153)]+_0x5185d4(0x170)+_0x126934[_0x5185d4(0x1bf)]+_0x5185d4(0x173);let _0x144669='';if(_0x126934[_0x5185d4(0x1a4)]&&_0x20d763[_0x5185d4(0x143)](Object[_0x5185d4(0x144)](_0x126934[_0x5185d4(0x1a4)])[_0x5185d4(0x1a1)],0x0))_0x144669=Object[_0x5185d4(0x144)](_0x126934[_0x5185d4(0x1a4)])[_0x5185d4(0x16a)]()[_0x5185d4(0x11d)](_0x4708c9=>_0x5185d4(0x130)+_0x4708c9+_0x5185d4(0x1b0)+d(_0x126934[_0x5185d4(0x1a4)][_0x4708c9],_0x5185d4(0x12a))+'</td></tr>')[_0x5185d4(0x1df)]('');else _0x144669=_0x5185d4(0x149)+_0x20d763['nOMCY'](d,_0x126934[_0x5185d4(0x13a)],_0x20d763[_0x5185d4(0x1e3)])+_0x5185d4(0x180);return _0x5185d4(0x1c7)+_0x126934[_0x5185d4(0x1d8)]+'</td></tr><tr><td><strong>Total\x20Trains</strong></td><td>'+_0x126934['totalTrains']+_0x5185d4(0x120)+_0x126934[_0x5185d4(0x1a5)]+_0x5185d4(0xf6)+_0x126934[_0x5185d4(0x1bf)]+'</td></tr><tr><td><strong>Efficiency\x20Savings</strong></td><td\x20class=\x22success\x22>'+_0x498e6d+'</td></tr>'+_0x144669+_0x5185d4(0x1a0);}[a4_0x12cbec(0x133)](_0x578ff4){const _0x2737cc=a4_0x12cbec;return'<section\x20class=\x22section\x22><h2>Grouping\x20Strategy</h2><table\x20class=\x22data-table\x22><thead><tr><th>Train</th><th>Products</th><th>Machines</th><th>Worst\x20Case</th><th>RPN</th><th>Product\x20MACO\x20per\x20Swab</th></tr></thead><tbody>'+_0x578ff4[_0x2737cc(0x11d)](_0x5e9e93=>_0x2737cc(0x135)+_0x5e9e93[_0x2737cc(0x137)]+_0x2737cc(0x12e)+_0x5e9e93[_0x2737cc(0x1ba)][_0x2737cc(0x1df)](',\x20')+'</td><td>'+_0x5e9e93[_0x2737cc(0xfa)][_0x2737cc(0x1df)](',\x20')+'</td><td\x20class=\x22highlight\x22>'+_0x5e9e93['worstCaseProduct']+'</td><td>'+_0x5e9e93[_0x2737cc(0x176)]+_0x2737cc(0x14e)+d(_0x5e9e93[_0x2737cc(0x160)],_0x2737cc(0x12a))+_0x2737cc(0x180))[_0x2737cc(0x1df)]('')+'</tbody></table></section>';}[a4_0x12cbec(0x17e)](_0x24f6b3){const _0x23cd77=a4_0x12cbec,_0x5b2bbd={};_0x24f6b3[_0x23cd77(0x1af)](_0x46560e=>{const _0x32a5ae=_0x23cd77;_0x5b2bbd[_0x46560e[_0x32a5ae(0x13c)]]||(_0x5b2bbd[_0x46560e[_0x32a5ae(0x13c)]]=[]),_0x5b2bbd[_0x46560e[_0x32a5ae(0x13c)]][_0x32a5ae(0x198)](_0x46560e);});let _0x502868='';return Object['keys'](_0x5b2bbd)['forEach'](_0x410ff3=>{const _0x5684b5=_0x23cd77,_0x2cdbaf=_0x5b2bbd[_0x410ff3];_0x502868+=_0x5684b5(0x103)+_0x410ff3+_0x5684b5(0x10f),_0x2cdbaf[_0x5684b5(0x1af)](_0x1559cc=>{const _0xc80e1c=_0x5684b5;_0x502868+=_0xc80e1c(0x10a)+_0x1559cc[_0xc80e1c(0x1be)]+'</td><td\x20class=\x22highlight\x22>'+_0x1559cc[_0xc80e1c(0x115)]+'</td><td>'+_0x1559cc['rpn']+_0xc80e1c(0x12e)+_0x1559cc[_0xc80e1c(0x110)][_0xc80e1c(0x1df)](',\x20')+_0xc80e1c(0x12e)+_0x1559cc[_0xc80e1c(0xef)]['join'](',\x20')+_0xc80e1c(0x12e)+_0x1559cc[_0xc80e1c(0x100)]+_0xc80e1c(0x180);});}),_0x23cd77(0x195)+_0x502868+'</tbody></table></section>';}[a4_0x12cbec(0x10d)](_0x3096eb){const _0x4aaf2b=a4_0x12cbec,_0x4e6b6d={'pwRIS':_0x4aaf2b(0x1b3),'ZbovO':_0x4aaf2b(0x162),'eSozL':_0x4aaf2b(0x1a6),'sdBFg':_0x4aaf2b(0x1de),'NipEK':_0x4aaf2b(0x17c),'nNzEW':_0x4aaf2b(0x15a),'rvfJG':'Sterile\x20Line','GlAhL':function(_0x1f5d05,_0x45b06c){return _0x1f5d05(_0x45b06c);},'FzvQI':'Error\x20calculating\x20scores\x20for\x20ingredient:','YzMwq':function(_0x2ab93e,_0xdb29f2){return _0x2ab93e>_0xdb29f2;},'aJrsm':function(_0x5146b8,_0x3a57ae){return _0x5146b8>=_0x3a57ae;},'pKXHj':_0x4aaf2b(0x141),'QMJcu':function(_0x26f13d,_0x176ab4){return _0x26f13d===_0x176ab4;},'QycUL':_0x4aaf2b(0x1e2)},_0x15810a=[],_0xc4bf53=a4_0x375e68[_0x4aaf2b(0x17f)](_0x264e57=>{const _0x5d8915=_0x4aaf2b;if(!_0x264e57[_0x5d8915(0x1f3)])return!0x1;const _0x53bc56=_0x264e57[_0x5d8915(0x13e)]||'';if(_0x53bc56===_0x3096eb)return!0x0;if(_0x3096eb&&_0x53bc56[_0x5d8915(0x1b8)]()[_0x5d8915(0x196)](_0x3096eb['toLowerCase']()))return!0x0;return({'Solids':[_0x4e6b6d[_0x5d8915(0x175)],_0x4e6b6d[_0x5d8915(0x11e)],_0x4e6b6d['eSozL'],_0x4e6b6d[_0x5d8915(0x14d)]],'Semisolid':[_0x5d8915(0x192),_0x4e6b6d[_0x5d8915(0x11c)],_0x4e6b6d[_0x5d8915(0xe9)]],'Liquids':['Liquid\x20Line',_0x4e6b6d[_0x5d8915(0x1cb)]],'Sterile':[_0x5d8915(0x1d5)]}[_0x3096eb]||[])[_0x5d8915(0x1d2)](_0x53bc56);});if(console[_0x4aaf2b(0xe7)](_0x4aaf2b(0x187)+_0x3096eb+_0x4aaf2b(0x147)+_0xc4bf53[_0x4aaf2b(0x1a1)]+'\x20products:',_0xc4bf53['map'](_0x22a117=>_0x22a117[_0x4aaf2b(0x13b)])),_0xc4bf53[_0x4aaf2b(0x1af)](_0x44abb8=>{const _0x17d5d3=_0x4aaf2b,_0x4d6a26={'VUkXT':function(_0x96b7ae,_0x2477f8){const _0x1f246d=a4_0x3276;return _0x4e6b6d[_0x1f246d(0x1b4)](_0x96b7ae,_0x2477f8);},'oJtbt':_0x4e6b6d[_0x17d5d3(0x1c6)]};if(_0x44abb8[_0x17d5d3(0x199)]&&Array[_0x17d5d3(0x16b)](_0x44abb8[_0x17d5d3(0x199)])){let _0x35ca6d=null,_0x284467=0x0;if(_0x44abb8[_0x17d5d3(0x199)][_0x17d5d3(0x1af)](_0x1e9e99=>{const _0x4446af=_0x17d5d3;try{const _0xdc74f5=_0x4d6a26['VUkXT'](a4_0x3d97d2,_0x1e9e99);_0xdc74f5&&_0xdc74f5['rpn']>_0x284467&&(_0x284467=_0xdc74f5[_0x4446af(0x190)],_0x35ca6d=_0x1e9e99);}catch(_0x3a74f2){console[_0x4446af(0x1a7)](_0x4d6a26[_0x4446af(0x18e)],_0x1e9e99,_0x3a74f2);}}),_0x35ca6d){const _0x1e1013=a4_0xabbd0d[_0x17d5d3(0x17f)](_0x44e657=>_0x44abb8[_0x17d5d3(0x188)]&&_0x44abb8[_0x17d5d3(0x188)][_0x17d5d3(0x1d2)](_0x44e657['id']));_0x15810a[_0x17d5d3(0x198)]({'name':_0x44abb8['name'],'productCode':_0x44abb8[_0x17d5d3(0x1cc)],'ingredient':_0x35ca6d[_0x17d5d3(0x13b)],'dosageForm':_0x44abb8[_0x17d5d3(0x10e)],'rpn':_0x284467,'machines':_0x1e1013[_0x17d5d3(0x11d)](_0x505280=>_0x505280[_0x17d5d3(0x13b)]),'reason':_0x44abb8['criticalReason']||_0x17d5d3(0xf0)});}}}),_0x15810a[_0x4aaf2b(0x16a)]((_0x8a5a04,_0x27aab3)=>_0x27aab3[_0x4aaf2b(0x190)]-_0x8a5a04[_0x4aaf2b(0x190)]),_0x4e6b6d[_0x4aaf2b(0x118)](0x0,_0x15810a[_0x4aaf2b(0x1a1)]))return _0x4e6b6d[_0x4aaf2b(0x134)];let _0x5f153a='';return _0x15810a[_0x4aaf2b(0x1af)](_0x30f528=>{const _0xab0555=_0x4aaf2b,_0x499035=_0x4e6b6d[_0xab0555(0xec)](_0x30f528['machines']['length'],0x0)?_0x30f528[_0xab0555(0xfa)][_0xab0555(0x1df)](',\x20'):_0xab0555(0x1ce);_0x5f153a+=_0xab0555(0x19c)+_0x30f528[_0xab0555(0x1cc)]+_0xab0555(0x10c)+_0x30f528[_0xab0555(0x13b)]+_0xab0555(0xf2)+_0x30f528[_0xab0555(0x13c)]+_0xab0555(0xf2)+_0x30f528[_0xab0555(0x181)]+_0xab0555(0x13d)+(_0x4e6b6d['aJrsm'](_0x30f528[_0xab0555(0x190)],0x64)?_0xab0555(0x109):_0x4e6b6d[_0xab0555(0x14a)])+'\x22>'+_0x30f528[_0xab0555(0x190)]+_0xab0555(0xf2)+_0x499035+_0xab0555(0x178)+_0x30f528[_0xab0555(0xf4)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';}),_0x4aaf2b(0x136)+_0x5f153a+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</section>';}[a4_0x12cbec(0x156)](){const _0x59ea84=a4_0x12cbec,_0x564e03={'IOqcJ':_0x59ea84(0x191)};return _0x564e03[_0x59ea84(0x1e1)];}[a4_0x12cbec(0x1c2)](){const _0x343368=a4_0x12cbec,_0x4c853b={'dPifK':_0x343368(0x1a8)};return _0x4c853b[_0x343368(0x139)];}['getReportJavaScript'](){const _0xf90a4f=a4_0x12cbec,_0x195d25={'msghS':_0xf90a4f(0xf9)};return _0x195d25[_0xf90a4f(0x154)];}['openReportWindow'](_0x2d9239){const _0x8988d1=a4_0x12cbec,_0x44af57={'kHMGp':'width=1200,height=800,scrollbars=yes,resizable=yes'},_0x5ed9ce=window[_0x8988d1(0x1f6)]('',_0x8988d1(0x1fd),_0x44af57[_0x8988d1(0x17b)]),_0x576a23=_0x2d9239;_0x5ed9ce[_0x8988d1(0xed)]['write'](_0x8988d1(0x19f)+_0x576a23+_0x8988d1(0x1ae)),_0x5ed9ce[_0x8988d1(0xed)][_0x8988d1(0x1f7)]();}[a4_0x12cbec(0x148)](_0x5eeb29,_0x2c42ee=a4_0x12cbec(0x123)){const _0x72e7f4=a4_0x12cbec,_0x15d707={'glKHG':_0x72e7f4(0x167),'ScDdd':'Line\x20report\x20container\x20not\x20found','DQnkH':function(_0x3560d8,_0x178a61){return _0x3560d8(_0x178a61);},'MqoPg':_0x72e7f4(0x1d3),'wGnON':_0x72e7f4(0x129),'cQHlL':'Error\x20generating\x20report.\x20Please\x20try\x20again.'};try{this[_0x72e7f4(0x1ec)]=this[_0x72e7f4(0x1b2)](_0x5eeb29,_0x2c42ee);const _0x53fc92=this[_0x72e7f4(0x15d)](this['reportData']),_0x687abd=document[_0x72e7f4(0x18f)](_0x15d707[_0x72e7f4(0x1cd)]);return _0x687abd?_0x687abd[_0x72e7f4(0x1d0)]=_0x53fc92:(console[_0x72e7f4(0x1d9)](_0x15d707[_0x72e7f4(0x1b9)]),_0x15d707['DQnkH'](alert,_0x15d707[_0x72e7f4(0x1e0)])),!0x0;}catch(_0x23c530){return console[_0x72e7f4(0x1d9)](_0x15d707['wGnON'],_0x23c530),_0x15d707[_0x72e7f4(0x1c4)](alert,_0x15d707[_0x72e7f4(0x1ef)]),!0x1;}}['generateInlineHTMLReport'](_0x40f79d){const _0x4c1f15=a4_0x12cbec;return _0x4c1f15(0x1a9)+this[_0x4c1f15(0x156)]()+_0x4c1f15(0x12b)+this['generateReportHeader'](_0x40f79d[_0x4c1f15(0x11a)])+_0x4c1f15(0x1e6)+this[_0x4c1f15(0x138)](_0x40f79d[_0x4c1f15(0x140)])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+this['generateGroupingStrategy'](_0x40f79d[_0x4c1f15(0x119)])+_0x4c1f15(0x1e6)+this[_0x4c1f15(0x17e)](_0x40f79d['selectedStudies'])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+this['generateSpecialCaseProducts'](_0x40f79d[_0x4c1f15(0x11a)]['line'])+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20*\x20{\x20margin:\x200;\x20padding:\x200;\x20box-sizing:\x20border-box;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20margin:\x200;\x20padding:\x200;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-container\x20{\x20font-family:\x20\x27Segoe\x20UI\x27,\x20Tahoma,\x20Verdana,\x20sans-serif;\x20margin:\x200;\x20padding:\x200;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-header\x20{\x20text-align:\x20center;\x20border-bottom:\x203px\x20solid\x20#1976d2;\x20padding-bottom:\x2018px;\x20margin:\x200;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-header\x20h1\x20{\x20color:\x20#1976d2;\x20margin:\x200\x200\x206px;\x20font-size:\x202em;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-header\x20h2\x20{\x20color:\x20#666;\x20margin:\x200\x200\x2010px;\x20font-weight:\x20500;\x20font-size:\x201.5em;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-meta\x20{\x20display:\x20flex;\x20gap:\x2024px;\x20justify-content:\x20center;\x20color:\x20#666;\x20margin:\x200;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.section\x20{\x20margin-bottom:\x2028px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.section\x20h2\x20{\x20color:\x20#1976d2;\x20border-bottom:\x202px\x20solid\x20#e0e0e0;\x20padding-bottom:\x208px;\x20margin-bottom:\x2014px;\x20font-size:\x201.3em;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.summary-table,\x20.data-table\x20{\x20width:\x20100%;\x20border-collapse:\x20collapse;\x20background:\x20#fff;\x20margin-top:\x2012px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.summary-table\x20th,\x20.summary-table\x20td,\x20.data-table\x20th,\x20.data-table\x20td\x20{\x20border:\x201px\x20solid\x20#ddd;\x20padding:\x2010px;\x20text-align:\x20left;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.summary-table\x20th,\x20.data-table\x20th\x20{\x20background:\x20#1976d2;\x20color:\x20#fff;\x20font-weight:\x20bold;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.data-table\x20tbody\x20tr:nth-child(even)\x20{\x20background:\x20#f8f9fa;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.highlight\x20{\x20background:\x20#fff3cd;\x20font-weight:\x20700;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.success\x20{\x20background:\x20#d4edda;\x20color:\x20#155724;\x20font-weight:\x20700;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.export-section\x20{\x20margin-top:\x2028px;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.export-buttons\x20{\x20display:\x20flex;\x20gap:\x2015px;\x20justify-content:\x20center;\x20margin-top:\x2015px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn-export\x20{\x20padding:\x2010px\x2018px;\x20border:\x20none;\x20border-radius:\x206px;\x20color:\x20#fff;\x20font-weight:\x20700;\x20cursor:\x20pointer;\x20transition:\x20all\x200.3s\x20ease;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn-export:hover\x20{\x20transform:\x20translateY(-2px);\x20box-shadow:\x200\x204px\x208px\x20rgba(0,0,0,0.2);\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn-print\x20{\x20background:\x20#6c757d;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn-pdf\x20{\x20background:\x20#dc3545;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20/*\x20Hide\x20navigation\x20elements\x20in\x20print\x20view\x20*/\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20@media\x20print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.header,\x20.main-nav,\x20.sidebar,\x20.export-section,\x20.no-print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20none\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-content\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20/*\x20Ensure\x20content\x20doesn\x27t\x20get\x20cut\x20off\x20*/\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.section\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-inside:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20break-inside:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.data-table,\x20.summary-table\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-inside:\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20break-inside:\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.data-table\x20tr,\x20.summary-table\x20tr\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-inside:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20break-inside:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h1,\x20h2,\x20h3\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-after:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20break-after:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';}}function a4_0x54db(){const _0x2e8109=['FgACI','JTpaE','</td><td>','ePFZF','<tr><td><strong>Lowest\x20MACO\x20(','XUCcU','4ZEzDkT','generateGroupingStrategy','QycUL','<tr><td>','<section\x20class=\x22section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20style=\x22color:\x20#dc2626;\x22>⚠️\x20Special\x20Case\x20Products</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin-bottom:\x2015px;\x20padding:\x2012px;\x20background:\x20#fef2f2;\x20border-left:\x204px\x20solid\x20#dc2626;\x20color:\x20#7f1d1d;\x20border-radius:\x204px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>Note:</strong>\x20These\x20products\x20require\x20special\x20attention\x20due\x20to\x20high\x20risk\x20factors\x20and\x20have\x20been\x20designated\x20as\x20critical\x20products.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22data-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Product\x20Code</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Product\x20Name</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Dosage\x20Form</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Critical\x20Ingredient</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>RPN</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Machines</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Reason</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','trainId','generateExecutiveSummary','dPifK','lowestMaco','name','dosageForm','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:\x20center;\x20font-weight:\x20bold;\x20','line','\x20studies:\x20','summary','color:\x20#ea580c;\x20background:\x20#fff7ed;','cTpKA','HOEWU','keys','toLocaleDateString','</div><script>','\x22\x20-\x20Found\x20','renderInlineReport','<tr><td><strong>Lowest\x20MACO\x20per\x20Swab</strong></td><td\x20class=\x22highlight\x22>','pKXHj','renderLineReport','abs','sdBFg','</td><td\x20class=\x22highlight\x22>','IhiRj','getReportJavaScript','91104aRxvPd','\x20-\x20no\x20new\x20machines','totalTrains','msghS','</title><style>','generateExportButtons','pctle','\x20studies\x20from\x20','generateReportHeader','Ointment\x20Line','Other','otoIa','generateInlineHTMLReport','NywPK','max','macoValue','productLine','Solids\x20Line\x20B','386814YizbpV','toExponential','from','UjKze','lineReportContainer','</style></head><body><div\x20class=\x22report-container\x22>','generateReport','sort','isArray','RVHor','dqsXS','OtLMF',')\x20-\x20RPN:\x20','\x20trains\x20reduced\x20to\x20','gHASG','Semisolid','\x20studies)</small>','uZoKp','pwRIS','worstCaseRPN','\x20trains\x20for\x20study\x20selection','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22color:\x20#dc2626;\x22>','Lsrwf','Liquids','kHMGp','Cream\x20Line','\x20machines\x20in\x20','generateWorstCaseSelection','filter','</td></tr>','ingredient','Report:\x20Currently\x20covered:','GZCAG','TWqdP','lHMuh','Solids','Special\x20case\x20products\x20search\x20for\x20line:\x20\x22','machineIds','</p><p><strong>Generated\x20By:</strong>\x20','System\x20Generated','</h2><div\x20class=\x22report-meta\x22><p><strong>Date:</strong>\x20','HFZvz','🔍\x20LineReport\x20MACO\x20calculation\x20for\x20Train\x20','oJtbt','getElementById','rpn','<div\x20class=\x22export-section\x20no-print\x22><h3>Export\x20Options</h3><div\x20class=\x22export-buttons\x22><button\x20onclick=\x22printCurrentView(\x27lineReport\x27)\x22\x20class=\x22btn-export\x20btn-print\x22>🖨️\x20Print</button><button\x20onclick=\x22exportToPDFDirect()\x22\x20class=\x22btn-export\x20btn-pdf\x22>📄\x20Export\x20to\x20PDF</button></div></div>','Semisolid\x20Line','Unknown','number','<section\x20class=\x22section\x22><h2>Selected\x20Studies</h2><table\x20class=\x22data-table\x22><thead><tr><th>Study</th><th>Product</th><th>RPN</th><th>All\x20Machines</th><th>New\x20Machines</th><th>Justification</th></tr></thead><tbody>','startsWith','flatMap','push','activeIngredients','FLdkO','Error\x20calculating\x20RPN\x20for\x20ingredient:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><strong>','EGhSB','cadxI','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!DOCTYPE\x20html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<title>Cleaning\x20Validation\x20Report</title>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20Arial,\x20sans-serif;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20line-height:\x201.4;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-header\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#f8f9fa;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2015px\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-bottom:\x202px\x20solid\x20#dee2e6;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20position:\x20sticky;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20top:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20z-index:\x20100;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x202px\x204px\x20rgba(0,0,0,0.1);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-content\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.action-buttons\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20gap:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2015px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2010px\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x205px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20500;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20transition:\x20all\x200.2s;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn-print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#007bff;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn-print:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#0056b3;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn-export\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#dc2626;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.btn-export:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#b91c1c;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.data-table,\x20.summary-table\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-collapse:\x20collapse;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2010px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-inside:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.data-table\x20td,\x20.data-table\x20th,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.summary-table\x20td,\x20.summary-table\x20th\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#ddd;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20vertical-align:\x20top;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-inside:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-height:\x2030px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.data-table\x20th,\x20.summary-table\x20th\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#f5f5f5;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20@media\x20print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-header,\x20.action-buttons,\x20.export-section,\x20.no-print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20none\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20*\x20{\x20margin:\x200;\x20padding:\x200;\x20box-sizing:\x20border-box;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-container\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.data-table,\x20.summary-table\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-inside:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.data-table\x20td,\x20.data-table\x20th,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.summary-table\x20td,\x20.summary-table\x20th\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x206px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#000;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h1,\x20h2,\x20h3\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-after:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-content\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22report-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1\x20style=\x22margin:\x200\x200\x2010px\x200;\x20color:\x20#333;\x22>Cleaning\x20Validation\x20Report</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22action-buttons\x22>\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22printCurrentView(\x27lineReport\x27)\x22\x20class=\x22btn\x20btn-print\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20🖨️\x20Print\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22printCurrentView(\x27lineReport\x27)\x22\x20class=\x22btn\x20btn-export\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20📄\x20Save\x20as\x20PDF\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22report-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</table></section>','length','oIKGP','nzVrI','lowestMacoByGroup','totalMachines','Tablets\x20Line','warn','body{font-family:\x27Segoe\x20UI\x27,Tahoma,Verdana,sans-serif;background:#f8f9fa}.report-container{max-width:1100px;margin:0\x20auto;background:#fff;padding:32px;box-shadow:0\x200\x2020px\x20rgba(0,0,0,0.08)}.report-header{text-align:center;border-bottom:3px\x20solid\x20#1976d2;padding-bottom:18px;margin-bottom:28px}.report-header\x20h1{color:#1976d2;margin:0\x200\x206px}.report-header\x20h2{color:#666;margin:0\x200\x2010px;font-weight:500}.report-meta{display:flex;gap:24px;justify-content:center;color:#666}.section{margin-bottom:28px}.section\x20h2{color:#1976d2;border-bottom:2px\x20solid\x20#e0e0e0;padding-bottom:8px;margin-bottom:14px}.summary-table,.data-table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}.summary-table\x20th,.summary-table\x20td,.data-table\x20th,.data-table\x20td{border:1px\x20solid\x20#ddd;padding:10px;text-align:left}.summary-table\x20th,.data-table\x20th{background:#1976d2;color:#fff}.data-table\x20tbody\x20tr:nth-child(even){background:#f8f9fa}.data-table\x20.group-header{background:#e3f2fd;color:#1976d2;font-weight:bold;border-top:2px\x20solid\x20#1976d2}.highlight{background:#fff3cd;font-weight:700}.success{background:#d4edda;color:#155724;font-weight:700}.export-section{margin-top:28px;text-align:center}.export-buttons{display:flex;gap:15px;justify-content:center;margin-top:15px}.btn-export{padding:10px\x2018px;border:none;border-radius:6px;color:#fff;font-weight:700;cursor:pointer;transition:all\x200.3s\x20ease}.btn-export:hover{transform:translateY(-2px);box-shadow:0\x204px\x208px\x20rgba(0,0,0,0.2)}.btn-print{background:#6c757d}.btn-pdf{background:#dc3545}','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22report-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','stWbN','yNZKo','lowestLtd','minMbsKg','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<script\x20src=\x22https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js\x22></script>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<script\x20src=\x22https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js\x22></script>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<script>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20Auto-focus\x20for\x20easy\x20printing\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20window.onload\x20=\x20function()\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20Optional:\x20auto-print\x20(uncomment\x20if\x20desired)\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20setTimeout(()\x20=>\x20window.print(),\x201000);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20};\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</script>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','forEach',')</strong></td><td\x20class=\x22highlight\x22>','Wsssx','collectReportData','Solids\x20Line\x20A','GlAhL','size','assumedSsa','lowestLd50','toLowerCase','ScDdd','products','worstCaseProduct','reviewer','nlwjb','studyNumber','requiredStudies','trainInternalId','minBsMddRatio','getReportCSS','selectedStudies','DQnkH','Report:\x20Train\x20','FzvQI','<section\x20class=\x22section\x22><h2>Executive\x20Summary</h2><table\x20class=\x22summary-table\x22><tr><td><strong>Total\x20Products</strong></td><td>','14840DoPwax','lowestPde','\x20(from\x20','rvfJG','productCode','glKHG','No\x20machines\x20assigned','StGIy','innerHTML','ruKLq','includes','Error:\x20Could\x20not\x20find\x20the\x20report\x20container.\x20Please\x20try\x20again.','gSccB','Sterile\x20Line','Report:\x20Selected\x20','224FPQwJa','totalProducts','error','reportDate','\x20in\x20','<!DOCTYPE\x20html><html\x20lang=\x22en\x22><head><meta\x20charset=\x22UTF-8\x22><meta\x20name=\x22viewport\x22\x20content=\x22width=device-width,\x20initial-scale=1.0\x22><title>Cleaning\x20Validation\x20Report\x20-\x20','Report:\x20Lowest\x20MACO\x20by\x20group:','Capsules\x20Line','join','MqoPg','IOqcJ','<section\x20class=\x22section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20style=\x22color:\x20#16a34a;\x22>Special\x20Case\x20Products</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22padding:\x2020px;\x20text-align:\x20center;\x20background:\x20#f0f9ff;\x20border:\x201px\x20solid\x20#0ea5e9;\x20border-radius:\x208px;\x20color:\x20#0369a1;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20✅\x20No\x20special\x20case\x20products\x20identified\x20for\x20this\x20line.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</section>','iNjVQ','Report:\x20All\x20machines\x20in\x20','Report:\x20Processing\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','find','dIdAZ','4930110vtPvxJ','47436LtxHDq','\x20total)','reportData','uBFUo','calculateMacoForTrain','cQHlL','round','BRXBJ','OWzmo','isCritical','</p></div></header>','generateHTMLReport','open','close','Report:\x20Selected\x20train\x20','JklIV','Report:\x20All\x20machines\x20covered\x20in\x20','rvfjy',',\x20moving\x20to\x20next\x20group','_blank','log','HcgxM','nNzEW','bcOfL','fZhCd','YzMwq','document','XQDat','newMachinesCovered','High\x20Risk','YgCnw','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','selectStudies','reason','IsNOu','</td></tr><tr><td><strong>Required\x20Studies</strong></td><td\x20class=\x22highlight\x22>','Report:\x20Skipped\x20train\x20','FPXtW','\x0a\x20\x20\x20\x20\x20\x20\x20\x20//\x20Direct\x20PDF\x20export\x20function\x20without\x20print\x20dialog\x0a\x20\x20\x20\x20\x20\x20\x20\x20function\x20exportToPDFDirect()\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20try\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20Check\x20if\x20PDF\x20libraries\x20are\x20available\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if\x20(typeof\x20html2pdf\x20===\x20\x27undefined\x27)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20console.error(\x27html2pdf\x20library\x20not\x20loaded\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20alert(\x27PDF\x20export\x20library\x20not\x20available.\x20Please\x20refresh\x20the\x20page\x20and\x20try\x20again.\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20return;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20element\x20=\x20document.body;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20opt\x20=\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x20[0.5,\x200.5,\x200.5,\x200.5],\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20filename:\x20\x27cleaning_validation_report.pdf\x27,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20image:\x20{\x20type:\x20\x27jpeg\x27,\x20quality:\x200.98\x20},\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20html2canvas:\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20scale:\x202,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20useCORS:\x20true,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20allowTaint:\x20true,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20backgroundColor:\x20\x27#ffffff\x27,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20logging:\x20false,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20letterRendering:\x20true\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20},\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20jsPDF:\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20unit:\x20\x27in\x27,\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20format:\x20\x27a4\x27,\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20orientation:\x20\x27portrait\x27,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20compress:\x20true\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20},\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20pagebreak:\x20{\x20mode:\x20[\x27avoid-all\x27,\x20\x27css\x27,\x20\x27legacy\x27]\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20};\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20Show\x20loading\x20indicator\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20button\x20=\x20document.querySelector(\x27.btn-pdf\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20originalText\x20=\x20button.innerHTML;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20button.innerHTML\x20=\x20\x27⏳\x20Generating\x20PDF...\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20button.disabled\x20=\x20true;\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x20Generate\x20PDF\x20directly\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20html2pdf().set(opt).from(element).save().then(()\x20=>\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20button.innerHTML\x20=\x20originalText;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20button.disabled\x20=\x20false;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20console.log(\x27PDF\x20generated\x20successfully\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}).catch((error)\x20=>\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20console.error(\x27PDF\x20generation\x20failed:\x27,\x20error);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20button.innerHTML\x20=\x20originalText;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20button.disabled\x20=\x20false;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20alert(\x27PDF\x20generation\x20failed:\x20\x27\x20+\x20error.message);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20});\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x20catch\x20(error)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20console.error(\x27Error\x20in\x20exportToPDFDirect:\x27,\x20error);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20alert(\x27PDF\x20export\x20failed:\x20\x27\x20+\x20error.message);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20//\x20Legacy\x20function\x20for\x20backward\x20compatibility\x0a\x20\x20\x20\x20\x20\x20\x20\x20function\x20exportToPDF()\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20exportToPDFDirect();\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20//\x20Add\x20smooth\x20scrolling\x20for\x20better\x20UX\x0a\x20\x20\x20\x20\x20\x20\x20\x20document.querySelectorAll(\x27a[href^=\x22#\x22]\x27).forEach(anchor\x20=>\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20anchor.addEventListener(\x27click\x27,\x20function\x20(e)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20e.preventDefault();\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20target\x20=\x20document.querySelector(this.getAttribute(\x27href\x27));\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if\x20(target)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20target.scrollIntoView({\x20behavior:\x20\x27smooth\x27\x20});\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20});\x0a\x20\x20\x20\x20\x20\x20\x20\x20});\x0a\x20\x20\x20\x20\x20\x20\x20\x20','machines','has','\x20trains\x20in\x20dosage\x20form:\x20','productRegister-ld50Hidden','mdd','NbpiU','justification','%\x20<br><small\x20style=\x22color:#666;font-weight:normal;font-size:0.85em;\x22>(Saved\x20','BQPyo','<tr\x20class=\x22group-header\x22><td\x20colspan=\x226\x22><strong>','mXCWZ','PwXHw','<header\x20class=\x22report-header\x22><h1>Cleaning\x20Validation\x20Report</h1><h2>','indexOf','Error\x20generating\x20report:','color:\x20#dc2626;\x20background:\x20#fef2f2;','<tr><td>Study\x20','ULNJP','</strong></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22highlight\x22>','generateSpecialCaseProducts','productType','</strong></td></tr>','machinesCovered','1145335XYQChp','add','jmJMd','min','productName','\x20trains','fZXaO','QMJcu','trains','groupInfo','lineName','NipEK','map','ZbovO','Report:\x20New\x20machines:','</td></tr><tr><td><strong>Total\x20Machines</strong></td><td>','1652644crvjte','quuWh','All','reduce','fDZKQ','Bbgtd','Unassigned','getItem','Error\x20generating\x20inline\x20report:','mg/Swab','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22report-container\x22\x20style=\x22max-width:\x20100%;\x20margin:\x200;\x20padding:\x200;\x20background:\x20white;\x20border-radius:\x208px;\x20box-shadow:\x200\x202px\x208px\x20rgba(0,0,0,0.1);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'];a4_0x54db=function(){return _0x2e8109;};return a4_0x54db();}export function renderLineReport(_0x45b0d6){const _0x2ed6f9=a4_0x12cbec,_0x8727e0={'uBFUo':_0x2ed6f9(0x123)};new l()['renderInlineReport'](_0x45b0d6,_0x8727e0[_0x2ed6f9(0x1ed)]);}export{l as CleaningValidationReportGenerator};window[a4_0x12cbec(0x14b)]=renderLineReport;
+// Line Report View - generates a printable report per line using in-app data
+import { getTrainData, getLargestEssaForLineAndDosageForm, getWorstCaseProductType, countStudiesForTrains, calculateScores } from './utils.js';
+import { machines, safetyFactorConfig, products, getSafetyFactorForDosageForm } from './state.js';
+
+// Smart number formatting that avoids showing 0 when there's actually a value
+function formatSmallNumber(value, unit = '') {
+    if (value === 0 || value === null || value === undefined || isNaN(value)) {
+        return `0${unit ? ' ' + unit : ''}`;
+    }
+    
+    const absValue = Math.abs(value);
+    
+    // For very small values, use scientific notation
+    if (absValue < 0.0001) {
+        return `${value.toExponential(3)}${unit ? ' ' + unit : ''}`;
+    }
+    // For small values, show enough decimal places to see the value
+    else if (absValue < 0.01) {
+        return `${value.toFixed(6)}${unit ? ' ' + unit : ''}`;
+    }
+    // For regular values, use 4 decimal places
+    else {
+        return `${value.toFixed(4)}${unit ? ' ' + unit : ''}`;
+    }
+}
+
+class CleaningValidationReportGenerator {
+    constructor() { this.reportData = null; }
+
+    generateReport(lineId, dosageForm = 'All') {
+        try {
+            this.reportData = this.collectReportData(lineId, dosageForm);
+            const htmlReport = this.generateHTMLReport(this.reportData);
+            this.openReportWindow(htmlReport);
+            return true;
+        } catch (e) {
+            console.error('Error generating report:', e);
+            alert('Error generating report. Please try again.');
+            return false;
+        }
+    }
+
+    collectReportData(lineId, dosageForm) {
+        const allTrainData = getTrainData();
+        const trainsForLine = allTrainData.filter(t => (t.line || t.productLine) === lineId);
+
+        // Build usedMachines (names) per train and handle multiple dosage forms
+        const trainDtos = [];
+        trainsForLine.forEach(t => {
+            const usedMachineNames = (t.machineIds || []).map(id => {
+                const m = machines.find(x => x.id === id);
+                return m ? m.name : null;
+            }).filter(Boolean);
+
+            // Get unique dosage forms in this train (same logic as machine coverage and train summary)
+            const dosageForms = [...new Set((t.products || []).map(p => p.productType || 'Unknown'))];
+            
+            // Create separate entry for each dosage form (like train summary and machine coverage)
+            dosageForms.forEach(dosageForm => {
+                // Find worst case product and highest RPN for this specific dosage form
+            let worstProduct = '-';
+            let worstRpn = 0;
+                
+                const productsInDosageForm = (t.products || []).filter(p => (p.productType || 'Unknown') === dosageForm);
+                
+                productsInDosageForm.forEach(p => {
+                    if (p.activeIngredients && Array.isArray(p.activeIngredients)) {
+                        p.activeIngredients.forEach(ing => {
+                            try {
+                                const scores = calculateScores(ing);
+                                const rpn = scores?.rpn || 0;
+                                if (rpn > worstRpn) {
+                                    worstRpn = rpn;
+                                    worstProduct = p.name;
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ing, error);
+                            }
+                        });
+                    }
+                });
+
+            // Calculate MACO for this train
+            const macoValue = this.calculateMacoForTrain(t, allTrainData);
+
+                trainDtos.push({
+                trainId: `Train ${t.number || t.id}`,
+                    products: productsInDosageForm.map(p => p.name), // Only products in this dosage form
+                machines: usedMachineNames,
+                worstCaseProduct: worstProduct,
+                worstCaseRPN: worstRpn,
+                macoValue: macoValue,
+                    machineIds: t.machineIds || [],
+                    productType: dosageForm, // Specific dosage form for this entry
+                    line: t.line || 'Unassigned', // Add line for sorting
+                    trainNumber: t.number || t.id, // Add train number for sorting
+                    trainInternalId: t.id // Add internal ID for sorting
+                });
+            });
+        });
+
+        // Apply consistent train ordering (exact same as train summary view)
+        trainDtos.sort((a, b) => {
+            // First sort by line with specific order
+            if (a.line !== b.line) {
+                const lineOrder = ['Solids', 'Semisolid', 'Liquids', 'Other'];
+                const aIndex = lineOrder.indexOf(a.line) !== -1 ? lineOrder.indexOf(a.line) : lineOrder.length;
+                const bIndex = lineOrder.indexOf(b.line) !== -1 ? lineOrder.indexOf(b.line) : lineOrder.length;
+                if (aIndex !== bIndex) return aIndex - bIndex;
+            }
+            
+            // Then sort by dosage form using lowest train number within each dosage form (same as train summary)
+            if (a.productType !== b.productType) {
+                // Find all trains in this line for each dosage form to get the minimum train number
+                const aDosageFormTrains = trainDtos.filter(t => t.line === a.line && t.productType === a.productType);
+                const bDosageFormTrains = trainDtos.filter(t => t.line === b.line && t.productType === b.productType);
+                
+                const aMinNumber = Math.min(...aDosageFormTrains.map(t => t.trainInternalId));
+                const bMinNumber = Math.min(...bDosageFormTrains.map(t => t.trainInternalId));
+                
+                if (aMinNumber !== bMinNumber) return aMinNumber - bMinNumber;
+            }
+            
+            // Finally sort by train number/ID
+            return a.trainInternalId - b.trainInternalId;
+        });
+
+        // Select studies to cover machines (same logic as coverage view)
+        const selectedStudies = this.selectStudies(trainDtos);
+
+        const uniqueMachineIds = new Set();
+        trainsForLine.forEach(t => (t.machineIds || []).forEach(id => uniqueMachineIds.add(id)));
+        const machineNames = Array.from(uniqueMachineIds).map(id => {
+            const m = machines.find(x => x.id === id); return m ? m.name : null;
+        }).filter(Boolean);
+
+        // Use the actual study selection count from the algorithm
+        const studyCount = selectedStudies.filter(study => 
+            study.newMachinesCovered && study.newMachinesCovered.length > 0
+        ).length;
+        
+        console.log(`Report: Final study count: ${studyCount} (from ${selectedStudies.length} total)`);
+        
+        // Calculate lowest MACO per dosage form group
+        const lowestMacoByGroup = {};
+        if (trainDtos.length > 0) {
+            // Group trains by dosage form
+            const trainsByDosageForm = {};
+            trainDtos.forEach(train => {
+                const dosageForm = train.productType || 'Unknown';
+                if (!trainsByDosageForm[dosageForm]) {
+                    trainsByDosageForm[dosageForm] = [];
+                }
+                trainsByDosageForm[dosageForm].push(train);
+            });
+            
+            // Calculate lowest MACO for each dosage form
+            Object.keys(trainsByDosageForm).forEach(dosageForm => {
+                const trainsInGroup = trainsByDosageForm[dosageForm];
+                if (trainsInGroup.length > 0) {
+                    lowestMacoByGroup[dosageForm] = Math.min(...trainsInGroup.map(t => t.macoValue));
+                }
+            });
+        }
+
+        console.log(`Report: Lowest MACO by group:`, lowestMacoByGroup);
+
+        return {
+            groupInfo: { lineName: lineId, line: lineId, dosageForm, reportDate: new Date().toLocaleDateString(), reviewer: 'System Generated' },
+            summary: {
+                totalProducts: trainDtos.reduce((acc, t) => acc + t.products.length, 0),
+                totalTrains: trainDtos.length,
+                totalMachines: machineNames.length,
+                requiredStudies: studyCount,
+                savingsPercentage: trainDtos.length > 0 ? Math.round(((trainDtos.length - studyCount) / trainDtos.length) * 100) : 0,
+                lowestMaco: trainDtos.length > 0 ? Math.min(...trainDtos.map(t => t.macoValue)) : 0,
+                lowestMacoByGroup: lowestMacoByGroup
+            },
+            trains: trainDtos,
+            selectedStudies,
+            macoCalculations: [],
+            allProducts: Array.from(new Set(trainDtos.flatMap(t => t.products))),
+            allMachines: machineNames
+        };
+    }
+
+
+    calculateMacoForTrain(train, allTrains) {
+        try {
+            const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+            const sf = sfConfig.max;
+            
+            // Calculate line-specific largest ESSA for this train
+            const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
+            
+            const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+            const maco10ppm = 10 * train.minMbsKg;
+            let macoHealth = Infinity;
+            let macoNoel = Infinity;
+            
+            // Check toxicity preference settings (same as macoProductView)
+            const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+            const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+            
+            // Calculate PDE-based MACO if PDE is available and not hidden
+            if (train.lowestPde !== null && !pdeHidden) {
+                macoHealth = train.lowestPde * train.minBsMddRatio;
+            }
+            
+            // Calculate NOEL-based MACO if LD50 is available and not hidden (same as macoProductView)
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+                // Find minimum MDD from all ingredients in the train
+                const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+                if (allMdds.length > 0) {
+                    const minMdd = Math.min(...allMdds);
+                    macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+                }
+            }
+            
+            const macoVisual = (0.004) * lineLargestEssa;
+            
+            // Include both health limits in comparison (same as macoProductView)
+            const finalMaco = Math.min(macoDose, maco10ppm, macoHealth, macoNoel, macoVisual);
+            
+            // Calculate MACO per swab (same calculation as used in dashboard and MACO views)
+            const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+            const macoPerSwab = macoPerArea * (train.assumedSsa || 25); // Use assumedSsa or default 25
+            
+            // Debug logging for MACO calculation comparison
+            console.log(`🔍 LineReport MACO calculation for Train ${train.id}:`, {
+                finalMaco: finalMaco,
+                lineLargestEssa: lineLargestEssa,
+                assumedSsa: train.assumedSsa || 25,
+                macoPerArea: macoPerArea,
+                macoPerSwab: macoPerSwab,
+                macoDose: macoDose,
+                maco10ppm: maco10ppm,
+                macoHealth: macoHealth,
+                macoNoel: macoNoel,
+                macoVisual: macoVisual,
+                pdeHidden: pdeHidden,
+                ld50Hidden: ld50Hidden,
+                lowestPde: train.lowestPde,
+                lowestLd50: train.lowestLd50
+            });
+            
+            return macoPerSwab;
+        } catch (error) {
+            console.error('Error calculating MACO per swab for train:', error);
+            return 0;
+        }
+    }
+
+    selectStudies(trains) {
+        // Group trains by dosage form (same logic as train summary)
+        const dosageGroups = {};
+        trains.forEach(train => {
+            // Extract dosage form from train data (same logic as machine coverage view)
+            const dosageForm = train.productType || (train.products && train.products.length > 0 ? 
+                train.products[0].productType : null) || 'Unknown';
+            if (!dosageGroups[dosageForm]) {
+                dosageGroups[dosageForm] = [];
+            }
+            dosageGroups[dosageForm].push(train);
+        });
+        
+        const allStudies = [];
+        
+        console.log(`Report: Processing ${trains.length} trains for study selection`);
+        
+        // Process each dosage form group separately (same as train summary - reset study numbering per group)
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const trainsInGroup = dosageGroups[dosageForm];
+            const allMachines = Array.from(new Set(trainsInGroup.flatMap(t => t.machines)));
+            const covered = new Set();
+            const sorted = [...trainsInGroup].sort((a, b) => b.worstCaseRPN - a.worstCaseRPN);
+            let studyIndexInGroup = 0; // Reset study numbering for each dosage form group (same as train summary)
+            
+            console.log(`Report: Processing ${trainsInGroup.length} trains in dosage form: ${dosageForm}`);
+            console.log(`Report: All machines in ${dosageForm}:`, allMachines);
+            
+            for (const t of sorted) {
+                const newMs = t.machines.filter(m => !covered.has(m));
+                console.log(`Report: Train ${t.trainId} (${dosageForm}) - RPN: ${t.worstCaseRPN}`);
+                console.log(`Report: Train machines:`, t.machines);
+                console.log(`Report: New machines:`, newMs);
+                console.log(`Report: Currently covered:`, Array.from(covered));
+                
+                if (newMs.length > 0) {
+                    studyIndexInGroup++; // Increment within this dosage form group
+                    allStudies.push({ 
+                        studyNumber: studyIndexInGroup, 
+                        productName: t.worstCaseProduct, 
+                        rpn: t.worstCaseRPN, 
+                        machinesCovered: t.machines, 
+                        newMachinesCovered: newMs, 
+                        justification: 'Covers uncovered machines',
+                        trainId: t.trainId,
+                        dosageForm: dosageForm
+                    });
+                    console.log(`Report: Selected train ${t.trainId} for study ${studyIndexInGroup} in ${dosageForm}`);
+                    newMs.forEach(m => covered.add(m));
+                    console.log(`Report: Now covered ${covered.size}/${allMachines.length} machines in ${dosageForm}`);
+                    if (covered.size === allMachines.length) {
+                        console.log(`Report: All machines covered in ${dosageForm}, moving to next group`);
+                        break;
+                    }
+                } else {
+                    console.log(`Report: Skipped train ${t.trainId} - no new machines`);
+                }
+            }
+        });
+        
+        console.log(`Report: Selected ${allStudies.length} studies from ${trains.length} trains`);
+        return allStudies;
+    }
+
+    // HTML assembly (compact) - reusing structure from user-provided template
+    generateHTMLReport(data) {
+        return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cleaning Validation Report - ${data.groupInfo.lineName}</title><style>${this.getReportCSS()}</style></head><body><div class="report-container">${this.generateReportHeader(data.groupInfo)}${this.generateExecutiveSummary(data.summary)}${this.generateGroupingStrategy(data.trains)}${this.generateWorstCaseSelection(data.selectedStudies)}${this.generateSpecialCaseProducts(data.groupInfo.line)}${this.generateExportButtons()}</div><script>${this.getReportJavaScript()}</script></body></html>`;
+    }
+
+    generateReportHeader(g) {
+        return `<header class="report-header"><h1>Cleaning Validation Report</h1><h2>${g.lineName}</h2><div class="report-meta"><p><strong>Date:</strong> ${g.reportDate}</p><p><strong>Generated By:</strong> ${g.reviewer}</p></div></header>`;
+    }
+
+    generateExecutiveSummary(s) {
+        const savedStudies = s.totalTrains - s.requiredStudies;
+        const efficiencyNote = `${s.savingsPercentage}% <br><small style="color:#666;font-weight:normal;font-size:0.85em;">(Saved ${savedStudies} studies: ${s.totalTrains} trains reduced to ${s.requiredStudies} studies)</small>`;
+        
+        // Generate lowest MACO rows for each dosage form group
+        let lowestMacoRows = '';
+        if (s.lowestMacoByGroup && Object.keys(s.lowestMacoByGroup).length > 0) {
+            // Sort dosage forms for consistent display
+            const sortedDosageForms = Object.keys(s.lowestMacoByGroup).sort();
+            lowestMacoRows = sortedDosageForms.map(dosageForm => {
+                const lowestMaco = s.lowestMacoByGroup[dosageForm];
+                return `<tr><td><strong>Lowest MACO (${dosageForm})</strong></td><td class="highlight">${formatSmallNumber(lowestMaco, 'mg/Swab')}</td></tr>`;
+            }).join('');
+        } else {
+            // Fallback to overall lowest MACO if no group data available
+            lowestMacoRows = `<tr><td><strong>Lowest MACO per Swab</strong></td><td class="highlight">${formatSmallNumber(s.lowestMaco, 'mg/Swab')}</td></tr>`;
+        }
+        
+        return `<section class="section"><h2>Executive Summary</h2><table class="summary-table"><tr><td><strong>Total Products</strong></td><td>${s.totalProducts}</td></tr><tr><td><strong>Total Trains</strong></td><td>${s.totalTrains}</td></tr><tr><td><strong>Total Machines</strong></td><td>${s.totalMachines}</td></tr><tr><td><strong>Required Studies</strong></td><td class="highlight">${s.requiredStudies}</td></tr><tr><td><strong>Efficiency Savings</strong></td><td class="success">${efficiencyNote}</td></tr>${lowestMacoRows}</table></section>`;
+    }
+
+    generateGroupingStrategy(trains) {
+        const rows = trains.map(t => `<tr><td>${t.trainId}</td><td>${t.products.join(', ')}</td><td>${t.machines.join(', ')}</td><td class="highlight">${t.worstCaseProduct}</td><td>${t.worstCaseRPN}</td><td class="highlight">${formatSmallNumber(t.macoValue, 'mg/Swab')}</td></tr>`).join('');
+        return `<section class="section"><h2>Grouping Strategy</h2><table class="data-table"><thead><tr><th>Train</th><th>Products</th><th>Machines</th><th>Worst Case</th><th>RPN</th><th>Product MACO per Swab</th></tr></thead><tbody>${rows}</tbody></table></section>`;
+    }
+
+    generateWorstCaseSelection(studies) {
+        // Group studies by dosage form for better presentation (same as train summary grouping)
+        const studiesByDosageForm = {};
+        studies.forEach(s => {
+            if (!studiesByDosageForm[s.dosageForm]) {
+                studiesByDosageForm[s.dosageForm] = [];
+            }
+            studiesByDosageForm[s.dosageForm].push(s);
+        });
+        
+        let tableContent = '';
+        Object.keys(studiesByDosageForm).forEach(dosageForm => {
+            const studiesInGroup = studiesByDosageForm[dosageForm];
+            // Add dosage form group header
+            tableContent += `<tr class="group-header"><td colspan="6"><strong>${dosageForm}</strong></td></tr>`;
+            // Add studies in this group
+            studiesInGroup.forEach(s => {
+                tableContent += `<tr><td>Study ${s.studyNumber}</td><td class="highlight">${s.productName}</td><td>${s.rpn}</td><td>${s.machinesCovered.join(', ')}</td><td>${s.newMachinesCovered.join(', ')}</td><td>${s.justification}</td></tr>`;
+            });
+        });
+        
+        return `<section class="section"><h2>Selected Studies</h2><table class="data-table"><thead><tr><th>Study</th><th>Product</th><th>RPN</th><th>All Machines</th><th>New Machines</th><th>Justification</th></tr></thead><tbody>${tableContent}</tbody></table></section>`;
+    }
+
+    generateSpecialCaseProducts(line) {
+        // Get special case products for this line (isCritical === true)
+        const specialCaseProducts = [];
+        
+        // Handle line filtering - support both exact match and partial match
+        // For "Solids" it should match "Solids Line A", "Solids Line B", etc.
+        const lineProducts = products.filter(product => {
+            if (!product.isCritical) return false;
+            
+            const productLine = product.line || '';
+            
+            // Exact match first
+            if (productLine === line) return true;
+            
+            // Partial match for grouped lines (e.g., "Solids" matches "Solids Line A")
+            if (line && productLine.toLowerCase().startsWith(line.toLowerCase())) return true;
+            
+            // Handle common line groupings
+            const lineGroupings = {
+                'Solids': ['Solids Line A', 'Solids Line B', 'Tablets Line', 'Capsules Line'],
+                'Semisolid': ['Semisolid Line', 'Cream Line', 'Ointment Line'],
+                'Liquids': ['Liquid Line', 'Sterile Line'],
+                'Sterile': ['Sterile Line']
+            };
+            
+            const matchingLines = lineGroupings[line] || [];
+            return matchingLines.includes(productLine);
+        });
+        
+        // Debug logging
+        console.log(`Special case products search for line: "${line}" - Found ${lineProducts.length} products:`, 
+            lineProducts.map(p => p.name));
+        
+        lineProducts.forEach(product => {
+            if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                // Find the ingredient with highest RPN for this product
+                let highestRpnIngredient = null;
+                let highestRpn = 0;
+                
+                product.activeIngredients.forEach(ingredient => {
+                    try {
+                        const scores = calculateScores(ingredient);
+                        if (scores && scores.rpn > highestRpn) {
+                            highestRpn = scores.rpn;
+                            highestRpnIngredient = ingredient;
+                        }
+                    } catch (error) {
+                        console.warn('Error calculating scores for ingredient:', ingredient, error);
+                    }
+                });
+                
+                if (highestRpnIngredient) {
+                    // Get machines that manufacture this product
+                    const productMachines = machines.filter(machine => 
+                        product.machineIds && product.machineIds.includes(machine.id)
+                    );
+                    
+                    specialCaseProducts.push({
+                        name: product.name,
+                        productCode: product.productCode,
+                        ingredient: highestRpnIngredient.name,
+                        dosageForm: product.productType,
+                        rpn: highestRpn,
+                        machines: productMachines.map(machine => machine.name),
+                        reason: product.criticalReason || 'High Risk'
+                    });
+                }
+            }
+        });
+        
+        // Sort by RPN descending
+        specialCaseProducts.sort((a, b) => b.rpn - a.rpn);
+        
+        if (specialCaseProducts.length === 0) {
+            return `<section class="section">
+                <h2 style="color: #16a34a;">Special Case Products</h2>
+                <p style="padding: 20px; text-align: center; background: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; color: #0369a1;">
+                    ✅ No special case products identified for this line.
+                </p>
+            </section>`;
+        }
+        
+        let tableContent = '';
+        specialCaseProducts.forEach(product => {
+            const machinesList = product.machines.length > 0 ? product.machines.join(', ') : 'No machines assigned';
+            tableContent += `
+                <tr>
+                    <td><strong>${product.productCode}</strong></td>
+                    <td class="highlight">${product.name}</td>
+                    <td>${product.dosageForm}</td>
+                    <td>${product.ingredient}</td>
+                    <td style="text-align: center; font-weight: bold; ${product.rpn >= 100 ? 'color: #dc2626; background: #fef2f2;' : 'color: #ea580c; background: #fff7ed;'}">${product.rpn}</td>
+                    <td>${machinesList}</td>
+                    <td style="color: #dc2626;">${product.reason}</td>
+                </tr>
+            `;
+        });
+        
+        return `<section class="section">
+            <h2 style="color: #dc2626;">⚠️ Special Case Products</h2>
+            <p style="margin-bottom: 15px; padding: 12px; background: #fef2f2; border-left: 4px solid #dc2626; color: #7f1d1d; border-radius: 4px;">
+                <strong>Note:</strong> These products require special attention due to high risk factors and have been designated as critical products.
+            </p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Dosage Form</th>
+                        <th>Critical Ingredient</th>
+                        <th>RPN</th>
+                        <th>Machines</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableContent}
+                </tbody>
+            </table>
+        </section>`;
+    }
+
+    generateExportButtons() { return `<div class="export-section no-print"><h3>Export Options</h3><div class="export-buttons"><button onclick="printCurrentView('lineReport')" class="btn-export btn-print">🖨️ Print</button><button onclick="exportToPDFDirect()" class="btn-export btn-pdf">📄 Export to PDF</button></div></div>`; }
+
+    getReportCSS() {
+        return `body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;background:#f8f9fa}.report-container{max-width:1100px;margin:0 auto;background:#fff;padding:32px;box-shadow:0 0 20px rgba(0,0,0,0.08)}.report-header{text-align:center;border-bottom:3px solid #1976d2;padding-bottom:18px;margin-bottom:28px}.report-header h1{color:#1976d2;margin:0 0 6px}.report-header h2{color:#666;margin:0 0 10px;font-weight:500}.report-meta{display:flex;gap:24px;justify-content:center;color:#666}.section{margin-bottom:28px}.section h2{color:#1976d2;border-bottom:2px solid #e0e0e0;padding-bottom:8px;margin-bottom:14px}.summary-table,.data-table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}.summary-table th,.summary-table td,.data-table th,.data-table td{border:1px solid #ddd;padding:10px;text-align:left}.summary-table th,.data-table th{background:#1976d2;color:#fff}.data-table tbody tr:nth-child(even){background:#f8f9fa}.data-table .group-header{background:#e3f2fd;color:#1976d2;font-weight:bold;border-top:2px solid #1976d2}.highlight{background:#fff3cd;font-weight:700}.success{background:#d4edda;color:#155724;font-weight:700}.export-section{margin-top:28px;text-align:center}.export-buttons{display:flex;gap:15px;justify-content:center;margin-top:15px}.btn-export{padding:10px 18px;border:none;border-radius:6px;color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s ease}.btn-export:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.2)}.btn-print{background:#6c757d}.btn-pdf{background:#dc3545}`;
+    }
+
+    getReportJavaScript() { 
+        return `
+        // Direct PDF export function without print dialog
+        function exportToPDFDirect() {
+            try {
+                // Check if PDF libraries are available
+                if (typeof html2pdf === 'undefined') {
+                    console.error('html2pdf library not loaded');
+                    alert('PDF export library not available. Please refresh the page and try again.');
+                    return;
+                }
+
+                const element = document.body;
+                const opt = {
+                    margin: [0.5, 0.5, 0.5, 0.5],
+                    filename: 'cleaning_validation_report.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { 
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: '#ffffff',
+                        logging: false,
+                        letterRendering: true
+                    },
+                    jsPDF: { 
+                        unit: 'in', 
+                        format: 'a4', 
+                        orientation: 'portrait',
+                        compress: true
+                    },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+
+                // Show loading indicator
+                const button = document.querySelector('.btn-pdf');
+                const originalText = button.innerHTML;
+                button.innerHTML = '⏳ Generating PDF...';
+                button.disabled = true;
+
+                // Generate PDF directly
+                html2pdf().set(opt).from(element).save().then(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    console.log('PDF generated successfully');
+                }).catch((error) => {
+                    console.error('PDF generation failed:', error);
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    alert('PDF generation failed: ' + error.message);
+                });
+
+            } catch (error) {
+                console.error('Error in exportToPDFDirect:', error);
+                alert('PDF export failed: ' + error.message);
+            }
+        }
+
+        // Legacy function for backward compatibility
+        function exportToPDF() {
+            exportToPDFDirect();
+        }
+        
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        `; 
+    }
+
+    openReportWindow(html) { 
+        const w = window.open('', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes'); 
+        
+        // Keep the original export button functionality
+        const enhancedHtml = html;
+        
+        w.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Cleaning Validation Report</title>
+                <style>
+                    body { 
+                        font-family: Arial, sans-serif; 
+                        margin: 0; 
+                        line-height: 1.4;
+                    }
+                    .report-header {
+                        background: #f8f9fa;
+                        padding: 15px 20px;
+                        border-bottom: 2px solid #dee2e6;
+                        position: sticky;
+                        top: 0;
+                        z-index: 100;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    }
+                    .report-content {
+                        padding: 20px;
+                    }
+                    .action-buttons {
+                        display: flex;
+                        gap: 10px;
+                        margin-bottom: 15px;
+                    }
+                    .btn {
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        font-weight: 500;
+                        transition: all 0.2s;
+                    }
+                    .btn-print {
+                        background: #007bff;
+                        color: white;
+                    }
+                    .btn-print:hover {
+                        background: #0056b3;
+                    }
+                    .btn-export {
+                        background: #dc2626;
+                        color: white;
+                    }
+                    .btn-export:hover {
+                        background: #b91c1c;
+                    }
+                    .data-table, .summary-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin: 10px 0;
+                        page-break-inside: avoid;
+                    }
+                    .data-table td, .data-table th,
+                    .summary-table td, .summary-table th {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        text-align: left;
+                        vertical-align: top;
+                        page-break-inside: avoid;
+                        min-height: 30px;
+                    }
+                    .data-table th, .summary-table th {
+                        background-color: #f5f5f5;
+                        font-weight: bold;
+                    }
+                    @media print {
+                        .report-header, .action-buttons, .export-section, .no-print {
+                            display: none !important;
+                        }
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
+                    body { 
+                        margin: 0; 
+                        padding: 0;
+                        font-size: 12px;
+                        background: white;
+                    }
+                    .report-container {
+                        margin: 0;
+                        padding: 0;
+                    }
+                        .data-table, .summary-table {
+                            page-break-inside: avoid;
+                            font-size: 11px;
+                        }
+                        .data-table td, .data-table th,
+                        .summary-table td, .summary-table th {
+                            padding: 6px;
+                            border: 1px solid #000;
+                        }
+                        h1, h2, h3 {
+                            page-break-after: avoid;
+                        }
+                        .report-content {
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="report-header">
+                    <h1 style="margin: 0 0 10px 0; color: #333;">Cleaning Validation Report</h1>
+                    <div class="action-buttons">    
+                        <button onclick="printCurrentView('lineReport')" class="btn btn-print">
+                            🖨️ Print
+                        </button>
+                        <button onclick="printCurrentView('lineReport')" class="btn btn-export">
+                            📄 Save as PDF
+                        </button>
+                    </div>
+                </div>
+                <div class="report-content">
+                    ${enhancedHtml}
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+                <script>
+                    // Auto-focus for easy printing
+                    window.onload = function() {
+                        // Optional: auto-print (uncomment if desired)
+                        // setTimeout(() => window.print(), 1000);
+                    };
+                </script>
+            </body>
+            </html>
+        `);
+        w.document.close(); 
+    }
+
+    renderInlineReport(lineId, dosageForm = 'All') {
+        try {
+            this.reportData = this.collectReportData(lineId, dosageForm);
+            const htmlReport = this.generateInlineHTMLReport(this.reportData);
+            
+            // Find the line report container and replace its content
+            const container = document.getElementById('lineReportContainer');
+            if (container) {
+                container.innerHTML = htmlReport;
+            } else {
+                console.error('Line report container not found');
+                alert('Error: Could not find the report container. Please try again.');
+            }
+            
+            return true;
+        } catch (e) {
+            console.error('Error generating inline report:', e);
+            alert('Error generating report. Please try again.');
+            return false;
+        }
+    }
+
+    generateInlineHTMLReport(data) {
+        return `
+        <div class="report-header">
+              ${this.generateExportButtons()}
+        </div>
+            <div class="report-container" style="max-width: 100%; margin: 0; padding: 0; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                ${this.generateReportHeader(data.groupInfo)}
+                ${this.generateExecutiveSummary(data.summary)}
+                ${this.generateGroupingStrategy(data.trains)}
+                ${this.generateWorstCaseSelection(data.selectedStudies)}
+                ${this.generateSpecialCaseProducts(data.groupInfo.line)}
+          
+            </div>
+            <style>
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+                body { margin: 0; padding: 0; }
+                .report-container { font-family: 'Segoe UI', Tahoma, Verdana, sans-serif; margin: 0; padding: 0; }
+                .report-header { text-align: center; border-bottom: 3px solid #1976d2; padding-bottom: 18px; margin: 0; }
+                .report-header h1 { color: #1976d2; margin: 0 0 6px; font-size: 2em; }
+                .report-header h2 { color: #666; margin: 0 0 10px; font-weight: 500; font-size: 1.5em; }
+                .report-meta { display: flex; gap: 24px; justify-content: center; color: #666; margin: 0; }
+                .section { margin-bottom: 28px; }
+                .section h2 { color: #1976d2; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px; margin-bottom: 14px; font-size: 1.3em; }
+                .summary-table, .data-table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 12px; }
+                .summary-table th, .summary-table td, .data-table th, .data-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+                .summary-table th, .data-table th { background: #1976d2; color: #fff; font-weight: bold; }
+                .data-table tbody tr:nth-child(even) { background: #f8f9fa; }
+                .highlight { background: #fff3cd; font-weight: 700; }
+                .success { background: #d4edda; color: #155724; font-weight: 700; }
+                .export-section { margin-top: 28px; text-align: center; }
+                .export-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 15px; }
+                .btn-export { padding: 10px 18px; border: none; border-radius: 6px; color: #fff; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+                .btn-export:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+                .btn-print { background: #6c757d; }
+                .btn-pdf { background: #dc3545; }
+                
+                /* Hide navigation elements in print view */
+                @media print {
+                    .header, .main-nav, .sidebar, .export-section, .no-print {
+                        display: none !important;
+                    }
+                    body {
+                        margin: 0;
+                        padding: 0;
+                        background: white;
+                    }
+                    .report-content {
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+                
+                /* Ensure content doesn't get cut off */
+                .section {
+                    page-break-inside: avoid;
+                    break-inside: avoid;
+                    margin-bottom: 20px;
+                }
+                .data-table, .summary-table {
+                    page-break-inside: auto;
+                    break-inside: auto;
+                    width: 100%;
+                }
+                .data-table tr, .summary-table tr {
+                    page-break-inside: avoid;
+                    break-inside: avoid;
+                }
+                h1, h2, h3 {
+                    page-break-after: avoid;
+                    break-after: avoid;
+                }
+            </style>
+        `;
+    }
+}
+
+export function renderLineReport(line) {
+    const generator = new CleaningValidationReportGenerator();
+    generator.renderInlineReport(line, 'All');
+}
+
+// Export the class
+export { CleaningValidationReportGenerator };
+
+// Expose for debugging
+window.renderLineReport = renderLineReport;
+
+// Test function to debug special case filtering (for debugging only)
+// window.testSpecialCaseFiltering = function(line) { ... };
+
+

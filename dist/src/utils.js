@@ -1,1 +1,863 @@
-function a17_0x5619(){const _0x4b5101=['group','DnhZV','set','BvQKn','input[type=\x22text\x22],\x20input[type=\x22email\x22],\x20textarea','ZINrn','lowerBound','warn','rjVNL','AeaZU','get','TOXxU','DVI','vODKj','KHkKM','UfLPQ','Unknown','kUxRU','line','qrgeb','HWajy','RNSvB','indexOf','2|4|0|1|3','toLowerCase','psBBc','API','URI','between_exclusive_lower_inclusive_upper','VGA','machines','area','toxicityPde','zdHyp','CPU','wUBKU','ERROR:\x20rpnConfig\x20is\x20undefined\x20or\x20null','vUZrT','pZhXj','products','ROM','CSS','10SxzISK','CTO','qCcfp','greater_exclusive','gavbg','iSnJz','YIFXv','rpn-default','NIFeb','xFBFe','find','lowestLd50','flatMap','dshSM','no-proper-case','dAMjO','Shared','XiRkc','oltPs','mcg/kg','productType','182yzkWcL','AOHWw','log','ld50','HTTPS','518388aMjNEs','CZpTK','assumedSsa','rYavA','218752yXAuUa','zcSTr','qXCUR','LD50','Unassigned','from','dosageForm','qKQcb','has','NFC','slice','JnUkJ','rpn-high','Solids','meljD','addEventListener','true','HdoOl','RAkLu','mdd','DzBql','cybqf','tujeY','individual_','jUlVe','LAN','R&D','uvSaY','GFDCT','ERROR:\x20rpnConfig.criteria\x20is\x20undefined\x20or\x20null','GPU','Wlxxo','lowestLtd','DxSVA','LRGmC','bMBkR','toUpperCase','tJbpp','max','trains','fiiRK','DxGiQ','ESSA','ENogp','AdNWt','fibAx','minBsMddRatio','TLS','PNfwh','xPNDe','KIBQh','SOAP','tEoPG','SRotI','MDD','scYpt','values','IShwk','fsdHt','ZCnEI','comparison','zUsKx','QbyVU','add','SSL','pde','4056174TblUej','gBgvQ','LuuWa','product-code','cAApF','maxArea','name','machineIds','KpWXf','TdHXD','iejJc','essa','37025Vaglvg','onZEC','REST','USB','numeric','EiNhm','QnAsw','uAZqu','batchSizeKg','</option>','tvUsb','trim','lowestLtdProductId','input','RPN','map','AfhYk','defaultScore','nIVoh','QotLC','upperBound','RIujz','pNCZj','tGVOm','kMUYr','some','BSBfL','\x20→\x20','sGAGP','GPS','SceZh','hqcEx','XJiAs','SSH','PCI','rpn','URL','ZoOdD','size','===\x20DEBUG\x20RPN\x20RATING\x20===','Criteria\x20','96UVkqdw','productId','text','ylvcy','innerHTML','therapeuticDose','SOP','key','rating','SATA','gknFX','fRZNv','join','minMbsProductId','sSpjb','number','DkLse','jLGAb','sort','PLHQm','pLQyN','gpvWi','DtyRA','ixLjH','NYuHy','SFTP','reduce','rpnRating','JsqFA','classList','cleanability','FArAm','FBoJz','auto','JSP','RPN\x20Config:','Semisolid','ghTjL','getItem','scAUW','VMyTJ','less_inclusive','VPN','ntOvC','yEYnh','hxJHi','split','qaSTx','HTTP','productRegister-ld50Hidden','Gcbbz','FKDZp','ADE','DVD','lowestPde','WIFI','score','forEach','MxzwV','CFUID','SSD','1704815wpVOZs','toLocaleString','charAt','min','SQL','individuals','QyFLF','HDMI','target','totalSurfaceArea','ebCAk','PoTMO','GMP','FaflV','activeIngredients','keys','rTxaX','RAM','XAiVG','WILaW','RFID','criteria','Other','MXdNw','g/kg','querySelectorAll','===\x20END\x20DEBUG\x20===','8555652KisTns','rpn-medium','AGP','vjURe','kPMJK','1783280EySZBY','djgUA','FoKap','ppb','stringify','filter','NvxHj','lzFwx','UFSkx','Liquids','dgRqE','zTZCv','between_inclusive_both','\x20(Group)','representativeMachine','HDD','ratio','VKAFx','eBWjP','<span\x20class=\x22individual-machine\x22\x20title=\x22Machine:\x20','PHP','RPN\x20Value:','contains','ZNqUO','mcg','worstProductRpn','BrAmS','minMbsKg','push','FDA','value','NElMP','Ovuyx','eEtXY','ssNmj','coJXS','length','productRegister-pdeHidden','CEO','eHfPJ','RUWtz','includes','CZwwL','HTML','group_','esrid','<option\x20value=\x22\x22\x20disabled\x20selected>Select...</option>','N/A'];a17_0x5619=function(){return _0x4b5101;};return a17_0x5619();}const a17_0x5d9fc0=a17_0x538b;(function(_0x345e31,_0x571b56){const _0x47ee6a=a17_0x538b,_0x2bd7d5=_0x345e31();while(!![]){try{const _0x2754aa=parseInt(_0x47ee6a(0x176))/0x1+parseInt(_0x47ee6a(0x1f0))/0x2*(parseInt(_0x47ee6a(0x20a))/0x3)+-parseInt(_0x47ee6a(0x285))/0x4*(-parseInt(_0x47ee6a(0x25c))/0x5)+-parseInt(_0x47ee6a(0x191))/0x6+parseInt(_0x47ee6a(0x205))/0x7*(-parseInt(_0x47ee6a(0x20e))/0x8)+parseInt(_0x47ee6a(0x250))/0x9+-parseInt(_0x47ee6a(0x196))/0xa;if(_0x2754aa===_0x571b56)break;else _0x2bd7d5['push'](_0x2bd7d5['shift']());}catch(_0x348c34){_0x2bd7d5['push'](_0x2bd7d5['shift']());}}}(a17_0x5619,0xd7543));import{products as a17_0x86d251,machines as a17_0x2edf19,trainIdMap as a17_0x185cc1,scoringCriteria as a17_0x23f022,productTypeHierarchy as a17_0x435ae3,safetyFactorConfig as a17_0x1e95fc}from'./state.js';export function getToxicityPreference(){const _0x2c8c3c=a17_0x538b,_0x543788={'KpWXf':function(_0x5e4b89,_0x391ca6){return _0x5e4b89===_0x391ca6;},'tJbpp':_0x2c8c3c(0x21e),'rYavA':_0x2c8c3c(0x1bb),'DxSVA':function(_0x332de0,_0x8af610){return _0x332de0&&_0x8af610;},'JsqFA':function(_0x10b7a6,_0x123eaa){return _0x10b7a6&&_0x123eaa;},'WILaW':_0x2c8c3c(0x24f),'IShwk':_0x2c8c3c(0x2a6)},_0x5712f8=_0x543788[_0x2c8c3c(0x258)](_0x543788[_0x2c8c3c(0x233)],localStorage[_0x2c8c3c(0x2ab)](_0x543788[_0x2c8c3c(0x20d)])),_0x347d0a=_0x543788['tJbpp']===localStorage[_0x2c8c3c(0x2ab)](_0x2c8c3c(0x16a));return _0x543788[_0x2c8c3c(0x22f)](_0x5712f8,!_0x347d0a)?'ld50':_0x543788[_0x2c8c3c(0x22f)](!_0x5712f8,_0x347d0a)||_0x543788[_0x2c8c3c(0x2a1)](_0x5712f8,_0x347d0a)?_0x543788[_0x2c8c3c(0x189)]:_0x543788[_0x2c8c3c(0x247)];}export function countStudiesForTrains(_0x23dc44){const _0x42c529=a17_0x538b,_0xc95d1={'EiNhm':'Error\x20calculating\x20RPN\x20for\x20ingredient:','eBWjP':function(_0x5d4e51,_0x17f063){return _0x5d4e51>_0x17f063;},'yEYnh':function(_0x390088,_0x2acd86){return _0x390088===_0x2acd86;},'KhVWZ':function(_0x2bc019,_0x2d4692){return _0x2bc019===_0x2d4692;}};if(!_0x23dc44||_0xc95d1['KhVWZ'](0x0,_0x23dc44[_0x42c529(0x1ba)]))return 0x0;const _0x455d1c={};_0x23dc44[_0x42c529(0x172)](_0x422c6f=>{const _0x4aaba7=_0x42c529,_0x49fd42=_0x422c6f[_0x4aaba7(0x204)]||_0x422c6f[_0x4aaba7(0x1ed)]&&_0x422c6f[_0x4aaba7(0x1ed)][0x0]?.[_0x4aaba7(0x204)]||_0x4aaba7(0x1d6);_0x455d1c[_0x49fd42]||(_0x455d1c[_0x49fd42]=[]),_0x455d1c[_0x49fd42][_0x4aaba7(0x1b2)](_0x422c6f);});let _0x1c3df0=0x0;return Object['keys'](_0x455d1c)[_0x42c529(0x172)](_0x2e1bfd=>{const _0x751a00=_0x42c529,_0x2abdc7={'iizyr':_0xc95d1[_0x751a00(0x261)],'zUsKx':function(_0x58826d,_0xafb315){return _0x58826d>_0xafb315;}},_0x3d7ed0=_0x455d1c[_0x2e1bfd],_0x207949=new Set(_0x3d7ed0['flatMap'](_0x3212f1=>_0x3212f1[_0x751a00(0x257)]||[])),_0x30719c=_0x3d7ed0[_0x751a00(0x26b)](_0x3df821=>{const _0x299eb9=_0x751a00,_0x3b7b4e={'SwDOl':function(_0x5ea624,_0x5ee61c){return _0x5ea624(_0x5ee61c);},'QnAsw':function(_0x229f3a,_0x56f3fd){return _0x229f3a>_0x56f3fd;},'sGAGP':_0x2abdc7['iizyr']};let _0x45983e=0x0;return _0x3df821[_0x299eb9(0x1ed)]&&_0x2abdc7[_0x299eb9(0x24b)](_0x3df821['products'][_0x299eb9(0x1ba)],0x0)&&_0x3df821[_0x299eb9(0x1ed)][_0x299eb9(0x172)](_0x50749a=>{const _0x20dc96=_0x299eb9,_0x4ebebf={'eEtXY':function(_0x11eecb,_0x120101){return _0x3b7b4e['SwDOl'](_0x11eecb,_0x120101);},'NvxHj':function(_0x48ee36,_0x102655){const _0x5a5d33=a17_0x538b;return _0x3b7b4e[_0x5a5d33(0x262)](_0x48ee36,_0x102655);},'djgUA':_0x3b7b4e[_0x20dc96(0x278)]};_0x50749a[_0x20dc96(0x184)]&&Array['isArray'](_0x50749a[_0x20dc96(0x184)])&&_0x50749a['activeIngredients']['forEach'](_0x9c58d8=>{const _0xe74222=_0x20dc96;try{const _0x56b487=_0x4ebebf[_0xe74222(0x1b7)](calculateScores,_0x9c58d8)[_0xe74222(0x27f)];_0x4ebebf[_0xe74222(0x19c)](_0x56b487,_0x45983e)&&(_0x45983e=_0x56b487);}catch(_0x1732bd){console[_0xe74222(0x1cd)](_0x4ebebf[_0xe74222(0x197)],_0x9c58d8,_0x1732bd);}});}),{'train':_0x3df821,'rpn':_0x45983e};})['sort']((_0x1ac995,_0x2864b7)=>_0x2864b7['rpn']-_0x1ac995['rpn']),_0x240582=new Set();let _0x34535c=0x0;for(const {train:_0x385c7b}of _0x30719c)if(_0x385c7b[_0x751a00(0x257)]&&_0xc95d1[_0x751a00(0x1a8)](_0x385c7b[_0x751a00(0x257)][_0x751a00(0x1ba)],0x0)){const _0x50bf3a=[...new Set(_0x385c7b[_0x751a00(0x257)])]['filter'](_0x3220bf=>!_0x240582[_0x751a00(0x216)](_0x3220bf));if(_0xc95d1[_0x751a00(0x1a8)](_0x50bf3a['length'],0x0)&&(_0x34535c++,_0x50bf3a['forEach'](_0x4f931b=>_0x240582[_0x751a00(0x24d)](_0x4f931b)),_0xc95d1[_0x751a00(0x165)](_0x240582['size'],_0x207949[_0x751a00(0x282)])))break;}_0x1c3df0+=_0x34535c;}),_0x1c3df0;}export function generateTrainMap(){const _0x5eb5c3=a17_0x538b,_0x5dbb2d={'fsdHt':function(_0x4e4c75,_0xd2c569){return _0x4e4c75>_0xd2c569;},'zTZCv':function(_0x3a8f97,_0x20e9b9){return _0x3a8f97(_0x20e9b9);},'kUxRU':function(_0x625129,_0x29b1a6){return _0x625129+_0x29b1a6;}},_0x5aa81e=new Map(a17_0x185cc1),_0x5b0d40={};a17_0x86d251[_0x5eb5c3(0x172)](_0x31385d=>{const _0x163621=_0x5eb5c3;if(_0x31385d[_0x163621(0x257)]&&_0x5dbb2d[_0x163621(0x248)](_0x31385d[_0x163621(0x257)][_0x163621(0x1ba)],0x0)){const _0x51602c=_0x5dbb2d[_0x163621(0x1a1)](a,_0x31385d[_0x163621(0x257)]),_0x3a3abb=JSON['stringify'](_0x51602c);_0x5b0d40[_0x3a3abb]||(_0x5b0d40[_0x3a3abb]={'products':[]}),_0x5b0d40[_0x3a3abb]['products'][_0x163621(0x1b2)](_0x31385d['id']);}}),a17_0x185cc1['clear']();let _0x9b3ba3=0x0;_0x5aa81e[_0x5eb5c3(0x172)](_0x550891=>{_0x550891>_0x9b3ba3&&(_0x9b3ba3=_0x550891);});const _0x47b435=Object['keys'](_0x5b0d40)['sort'](),_0x290ab7=[];_0x47b435[_0x5eb5c3(0x172)](_0x34028b=>{const _0x475730=_0x5eb5c3;_0x5aa81e[_0x475730(0x216)](_0x34028b)?a17_0x185cc1[_0x475730(0x1c8)](_0x34028b,_0x5aa81e['get'](_0x34028b)):_0x290ab7[_0x475730(0x1b2)](_0x34028b);});let _0x4938f2=_0x5dbb2d[_0x5eb5c3(0x1d7)](_0x9b3ba3,0x1);_0x290ab7[_0x5eb5c3(0x172)](_0x5abe56=>{const _0xf6a9a7=_0x5eb5c3;a17_0x185cc1[_0xf6a9a7(0x1c8)](_0x5abe56,_0x4938f2++);});}function a(_0x28323b){const _0x2e686a=a17_0x538b;return[..._0x28323b]['sort']((_0x17e3c7,_0x842f3f)=>_0x17e3c7-_0x842f3f)[_0x2e686a(0x26b)](_0x127489=>'machine:'+_0x127489);}export function getProductTrainId(_0x4c088f){const _0x4a2f95=a17_0x538b,_0x22f22f={'Wlxxo':function(_0x394833,_0x3af00d){return _0x394833===_0x3af00d;},'meljD':'N/A'};if(!_0x4c088f[_0x4a2f95(0x257)]||_0x22f22f[_0x4a2f95(0x22d)](0x0,_0x4c088f[_0x4a2f95(0x257)][_0x4a2f95(0x1ba)]))return _0x22f22f[_0x4a2f95(0x21c)];const _0x5f2d2f=a(_0x4c088f[_0x4a2f95(0x257)]),_0x374b4b=JSON[_0x4a2f95(0x19a)](_0x5f2d2f);return a17_0x185cc1[_0x4a2f95(0x1d0)](_0x374b4b)||_0x4a2f95(0x1c5);}export function getProductTrainNumber(_0x2020e9){const _0x14f1d3=a17_0x538b,_0x5471a8={'gavbg':function(_0x17eba6,_0x270f17){return _0x17eba6===_0x270f17;},'KIBQh':'N/A','RsHBS':function(_0x435b07){return _0x435b07();},'scYpt':function(_0x42273c,_0x2f8aef){return _0x42273c(_0x2f8aef);}},_0x11c86e=getProductTrainId(_0x2020e9);if(_0x5471a8[_0x14f1d3(0x1f4)](_0x5471a8['KIBQh'],_0x11c86e))return _0x5471a8[_0x14f1d3(0x240)];const _0x457918=_0x5471a8['RsHBS'](getTrainIdToLineNumberMap)[_0x14f1d3(0x1d0)](_0x5471a8[_0x14f1d3(0x245)](String,_0x11c86e));return _0x457918?_0x457918[_0x14f1d3(0x294)]:_0x11c86e;}export function getUniqueProductLines(_0x18589d=[]){const _0x9d07fb=a17_0x538b,_0x3d2515={'qrgeb':'Solids','pLQyN':'Semisolid','qNtAM':_0x9d07fb(0x19f),'jUlVe':_0x9d07fb(0x200)},_0x29f2ce=[_0x3d2515[_0x9d07fb(0x1d9)],_0x3d2515[_0x9d07fb(0x299)],_0x3d2515['qNtAM']],_0x43ab4e=_0x18589d['map'](_0x80ebc5=>_0x80ebc5&&_0x80ebc5[_0x9d07fb(0x1d8)]?String(_0x80ebc5[_0x9d07fb(0x1d8)])[_0x9d07fb(0x267)]():null)['filter'](Boolean)[_0x9d07fb(0x19b)](_0x411dc4=>!_0x29f2ce[_0x9d07fb(0x1bf)](_0x411dc4)),_0x4da7e1=[..._0x29f2ce,...new Set(_0x43ab4e)]['sort']();return _0x4da7e1['includes'](_0x3d2515[_0x9d07fb(0x226)])||_0x4da7e1[_0x9d07fb(0x1b2)](_0x3d2515[_0x9d07fb(0x226)]),_0x4da7e1;}export function getUniqueLinesFromMachines(){const _0x85a52b=a17_0x538b,_0x2842df={'vODKj':function(_0x28b0b1){return _0x28b0b1();}},_0xf50c24=a17_0x2edf19['map'](_0x2c2eef=>_0x2c2eef&&_0x2c2eef[_0x85a52b(0x1d8)]?String(_0x2c2eef[_0x85a52b(0x1d8)])[_0x85a52b(0x267)]():null)[_0x85a52b(0x19b)](Boolean);return _0xf50c24[_0x85a52b(0x1ba)]>0x0?[...new Set(_0xf50c24)][_0x85a52b(0x297)]():_0x2842df[_0x85a52b(0x1d3)](getUniqueProductLines);}export function getTrainsGroupedByLine(){const _0x2f2063=a17_0x538b,_0x542091={'ebCAk':_0x2f2063(0x18c),'pZhXj':function(_0x26fc2a,_0x1d3eee){return _0x26fc2a(_0x1d3eee);}},_0x34c030=new Set();a17_0x86d251[_0x2f2063(0x172)](_0x36551c=>_0x34c030[_0x2f2063(0x24d)](_0x36551c[_0x2f2063(0x1d8)]&&String(_0x36551c[_0x2f2063(0x1d8)])[_0x2f2063(0x267)]()||'Unassigned'));const _0x5999d9=Array[_0x2f2063(0x213)](_0x34c030),_0x3fd12d=[];return _0x5999d9[_0x2f2063(0x172)](_0xbe54aa=>{const _0x37ae84=_0x2f2063,_0x27ecd6={'SRotI':_0x542091[_0x37ae84(0x180)],'AdNWt':function(_0x1d8333,_0x34fe96){const _0x12caf0=_0x37ae84;return _0x542091[_0x12caf0(0x1ec)](_0x1d8333,_0x34fe96);}},_0x4493a0=a17_0x86d251['filter'](_0x5bc122=>(_0x5bc122[_0x37ae84(0x1d8)]&&String(_0x5bc122[_0x37ae84(0x1d8)])['trim']()||_0x37ae84(0x212))===_0xbe54aa&&_0x5bc122[_0x37ae84(0x257)]&&_0x5bc122[_0x37ae84(0x257)][_0x37ae84(0x1ba)]>0x0),_0x40823b={};_0x4493a0['forEach'](_0x53d960=>{const _0x4918a1=_0x37ae84,_0x958bff=_0x53d960[_0x4918a1(0x204)]||_0x27ecd6[_0x4918a1(0x243)];_0x40823b[_0x958bff]||(_0x40823b[_0x958bff]=[]),_0x40823b[_0x958bff][_0x4918a1(0x1b2)](_0x53d960);});const _0x484b2b=[];Object['keys'](_0x40823b)[_0x37ae84(0x172)](_0x2fdb0c=>{const _0x2350fd=_0x37ae84,_0x4a0892={};_0x40823b[_0x2fdb0c][_0x2350fd(0x172)](_0x1cbe05=>{const _0x577d17=_0x2350fd,_0x56719e=_0x27ecd6[_0x577d17(0x23a)](a,_0x1cbe05['machineIds']),_0x5cb723=JSON[_0x577d17(0x19a)](_0x56719e);_0x4a0892[_0x5cb723]||(_0x4a0892[_0x5cb723]={'key':_0x5cb723,'dosageForm':_0x2fdb0c,'consolidatedPath':_0x56719e,'machineIds':Array[_0x577d17(0x213)](new Set(_0x1cbe05[_0x577d17(0x257)]))[_0x577d17(0x297)]((_0x19fe49,_0x8f0e16)=>_0x19fe49-_0x8f0e16),'products':[]}),_0x4a0892[_0x5cb723][_0x577d17(0x1ed)][_0x577d17(0x1b2)](_0x1cbe05);}),Object[_0x2350fd(0x246)](_0x4a0892)[_0x2350fd(0x172)](_0x56ed7b=>_0x484b2b[_0x2350fd(0x1b2)](_0x56ed7b));}),_0x484b2b[_0x37ae84(0x297)]((_0x507e9e,_0x3b9f70)=>_0x507e9e[_0x37ae84(0x214)]<_0x3b9f70[_0x37ae84(0x214)]?-0x1:_0x507e9e['dosageForm']>_0x3b9f70[_0x37ae84(0x214)]?0x1:_0x507e9e['key']<_0x3b9f70[_0x37ae84(0x28c)]?-0x1:_0x507e9e[_0x37ae84(0x28c)]>_0x3b9f70[_0x37ae84(0x28c)]?0x1:0x0);const _0x3ca665={};_0x484b2b[_0x37ae84(0x172)](_0x185b4a=>{const _0x48fc8b=_0x37ae84;_0x3ca665[_0x185b4a[_0x48fc8b(0x214)]]||(_0x3ca665[_0x185b4a[_0x48fc8b(0x214)]]=[]),_0x3ca665[_0x185b4a['dosageForm']][_0x48fc8b(0x1b2)](_0x185b4a);}),Object[_0x37ae84(0x185)](_0x3ca665)[_0x37ae84(0x172)](_0x1b57b3=>{let _0x50be69=0x1;_0x3ca665[_0x1b57b3]['forEach'](_0x53c17c=>{const _0x99343c=a17_0x538b;_0x53c17c['line']=_0xbe54aa,_0x53c17c[_0x99343c(0x294)]=_0x50be69++,_0x53c17c['id']=a17_0x185cc1[_0x99343c(0x1d0)](_0x53c17c[_0x99343c(0x28c)])||null;});}),_0x3fd12d[_0x37ae84(0x1b2)]({'line':_0xbe54aa,'trains':_0x484b2b});}),_0x3fd12d;}export function getTrainIdToLineNumberMap(){const _0x3f4dd6=a17_0x538b,_0x5deb2b={'ENogp':function(_0x403046,_0x28dc80){return _0x403046!==_0x28dc80;},'BSBfL':function(_0x2162fc){return _0x2162fc();}},_0x2df2ff=new Map();return _0x5deb2b[_0x3f4dd6(0x276)](getTrainsGroupedByLine)[_0x3f4dd6(0x172)](_0x2c6787=>{const _0x5f5852=_0x3f4dd6;_0x2c6787[_0x5f5852(0x235)][_0x5f5852(0x172)](_0x26e8a2=>{const _0x388857=_0x5f5852;null!==_0x26e8a2['id']&&_0x5deb2b[_0x388857(0x239)](void 0x0,_0x26e8a2['id'])&&_0x2df2ff[_0x388857(0x1c8)](String(_0x26e8a2['id']),{'line':_0x26e8a2[_0x388857(0x1d8)],'number':_0x26e8a2[_0x388857(0x294)]});});}),_0x2df2ff;}export function calculateScores(_0x2e26f8,_0x1790f2=a17_0x5d9fc0(0x2a6)){const _0x152205=a17_0x5d9fc0,_0x37e3af={'lzFwx':function(_0x49c234,_0x509fa4){return _0x49c234(_0x509fa4);},'zcSTr':function(_0x236a4c,_0x24da4d){return _0x236a4c||_0x24da4d;},'VKAFx':function(_0x232bb4,_0x23cb2c){return _0x232bb4(_0x23cb2c);},'hxJHi':_0x152205(0x1a2),'onZEC':function(_0x55600f,_0x315d77){return _0x55600f===_0x315d77;},'qKQcb':_0x152205(0x162),'rjVNL':function(_0x7aaa12,_0x2b6865){return _0x7aaa12<=_0x2b6865;},'WgdAR':_0x152205(0x1f3),'MxzwV':function(_0x38683b,_0x14f02c){return _0x38683b===_0x14f02c;},'LuuWa':function(_0x5c8afe,_0x23a9d9){return _0x5c8afe>_0x23a9d9;},'scAUW':'less_exclusive','uvSaY':function(_0x540fd7,_0x452f74){return _0x540fd7<_0x452f74;},'uAZqu':function(_0x5958b9,_0x462e1c,_0x324c58){return _0x5958b9(_0x462e1c,_0x324c58);},'LRGmC':function(_0x35a95e,_0x390389){return _0x35a95e===_0x390389;},'nnnVX':function(_0x524930,_0x2ef719){return _0x524930(_0x2ef719);},'FBoJz':function(_0x25af46,_0x2b3331,_0x2ed8a5){return _0x25af46(_0x2b3331,_0x2ed8a5);},'ZCnEI':function(_0x3eaefa,_0x37ed09){return _0x3eaefa===_0x37ed09;},'YIFXv':'ld50','RIujz':function(_0x128efd,_0x360734){return _0x128efd!==_0x360734;},'ixLjH':function(_0x533f3b,_0x565493){return _0x533f3b*_0x565493;},'ssNmj':function(_0xd2b9d6,_0x41d356){return _0xd2b9d6*_0x41d356;},'PNfwh':function(_0x1b93bd,_0x1b0bca){return _0x1b93bd(_0x1b0bca);}},_0x15ce4d=(_0x262ac5,_0x1e5c58)=>{const _0x950e4a=_0x152205,_0x3cd4ff=_0x37e3af[_0x950e4a(0x19d)](String,_0x37e3af[_0x950e4a(0x20f)](_0x1e5c58,''))[_0x950e4a(0x1de)](),_0x3d4412=_0x262ac5[_0x950e4a(0x18b)][_0x950e4a(0x1fa)](_0x47b859=>String(_0x47b859[_0x950e4a(0x287)]||'')[_0x950e4a(0x1de)]()===_0x3cd4ff);return _0x3d4412?_0x3d4412[_0x950e4a(0x171)]:_0x262ac5['defaultScore'];},_0x6fc786=(_0x1604ea,_0x3489e1)=>{const _0xb9c8c4=_0x152205,_0x2dff2e=_0x37e3af[_0xb9c8c4(0x19d)](parseFloat,_0x3489e1);if(_0x37e3af[_0xb9c8c4(0x1a7)](isNaN,_0x2dff2e))return _0x1604ea[_0xb9c8c4(0x26d)];for(const _0x2b18b4 of _0x1604ea[_0xb9c8c4(0x18b)]){const _0x550a61=_0xb9c8c4(0x1dd)[_0xb9c8c4(0x167)]('|');let _0x2b97e2=0x0;while(!![]){switch(_0x550a61[_0x2b97e2++]){case'0':if(_0x37e3af[_0xb9c8c4(0x166)]===_0x2b18b4[_0xb9c8c4(0x24a)]&&_0x2dff2e>=_0x2b18b4[_0xb9c8c4(0x1cc)]&&_0x2dff2e<=_0x2b18b4[_0xb9c8c4(0x270)])return _0x2b18b4[_0xb9c8c4(0x171)];continue;case'1':if(_0x37e3af[_0xb9c8c4(0x25d)](_0x37e3af[_0xb9c8c4(0x215)],_0x2b18b4[_0xb9c8c4(0x24a)])&&_0x37e3af[_0xb9c8c4(0x1ce)](_0x2dff2e,_0x2b18b4[_0xb9c8c4(0x270)]))return _0x2b18b4[_0xb9c8c4(0x171)];continue;case'2':if(_0x37e3af[_0xb9c8c4(0x25d)](_0x37e3af['WgdAR'],_0x2b18b4['comparison'])&&_0x2dff2e>_0x2b18b4[_0xb9c8c4(0x1cc)])return _0x2b18b4[_0xb9c8c4(0x171)];continue;case'3':if(_0x37e3af['MxzwV'](_0xb9c8c4(0x1e2),_0x2b18b4[_0xb9c8c4(0x24a)])&&_0x37e3af[_0xb9c8c4(0x252)](_0x2dff2e,_0x2b18b4[_0xb9c8c4(0x1cc)])&&_0x2dff2e<=_0x2b18b4[_0xb9c8c4(0x270)])return _0x2b18b4[_0xb9c8c4(0x171)];continue;case'4':if(_0x37e3af[_0xb9c8c4(0x173)](_0x37e3af[_0xb9c8c4(0x2ac)],_0x2b18b4[_0xb9c8c4(0x24a)])&&_0x37e3af[_0xb9c8c4(0x229)](_0x2dff2e,_0x2b18b4[_0xb9c8c4(0x270)]))return _0x2b18b4[_0xb9c8c4(0x171)];continue;}break;}}return _0x1604ea[_0xb9c8c4(0x26d)];},_0x434cf2=_0x15ce4d(a17_0x23f022['solubility'],_0x2e26f8['solubility']),_0xb830ff=_0x37e3af[_0x152205(0x263)](_0x6fc786,a17_0x23f022['therapeuticDose'],_0x2e26f8[_0x152205(0x28a)]),_0x263f7d=_0x37e3af['uAZqu'](_0x15ce4d,a17_0x23f022[_0x152205(0x2a3)],_0x2e26f8[_0x152205(0x2a3)]);let _0x3f9fd8,_0x59e910,_0x2568c0;null===_0x2e26f8[_0x152205(0x24f)]||_0x37e3af[_0x152205(0x1a7)](isNaN,_0x2e26f8[_0x152205(0x24f)])||(_0x59e910=_0x37e3af['uAZqu'](_0x6fc786,a17_0x23f022[_0x152205(0x1e6)],_0x2e26f8[_0x152205(0x24f)])),_0x37e3af[_0x152205(0x230)](null,_0x2e26f8['ld50'])||_0x37e3af['nnnVX'](isNaN,_0x2e26f8['ld50'])||(_0x2568c0=_0x37e3af[_0x152205(0x2a5)](_0x6fc786,a17_0x23f022['toxicityLd50'],_0x2e26f8[_0x152205(0x208)])),_0x3f9fd8=_0x37e3af[_0x152205(0x249)](_0x37e3af[_0x152205(0x1f6)],_0x1790f2)?void 0x0!==_0x2568c0?_0x2568c0:_0x37e3af[_0x152205(0x271)](void 0x0,_0x59e910)?_0x59e910:0x1:_0x37e3af[_0x152205(0x271)](void 0x0,_0x59e910)?_0x59e910:void 0x0!==_0x2568c0?_0x2568c0:0x1;const _0x2436a8=_0x37e3af[_0x152205(0x29c)](_0x37e3af[_0x152205(0x1b8)](_0x434cf2*_0xb830ff,_0x263f7d),_0x3f9fd8);return{'rpn':_0x2436a8,'pdeScore':_0x59e910,'ld50Score':_0x2568c0,'solubilityScore':_0x434cf2,'therapeuticDoseScore':_0xb830ff,'cleanabilityScore':_0x263f7d,'rpnRatingText':_0x37e3af[_0x152205(0x23e)](getRpnRatingText,_0x2436a8)};}export const getRpnRatingText=_0x2428f2=>{const _0x4fc60d=a17_0x5d9fc0,_0x4cbb5b={'HdoOl':function(_0x5d7a7b,_0x20aad5){return _0x5d7a7b(_0x20aad5);},'Beghu':function(_0x5b36c4,_0x1c866c){return _0x5b36c4===_0x1c866c;},'ghTjL':function(_0x55e8b2,_0x431946){return _0x55e8b2/_0x431946;},'CZwwL':function(_0x582804,_0x5d8586){return _0x582804(_0x5d8586);},'nIVoh':function(_0x428612,_0x1362c4){return _0x428612>=_0x1362c4;},'CFUID':_0x4fc60d(0x1c5)},_0x5571fc=a17_0x23f022[_0x4fc60d(0x2a0)];if(!_0x5571fc||!_0x5571fc[_0x4fc60d(0x18b)])return'N/A';for(const _0x4b5d42 of _0x5571fc['criteria']){const _0x4961b8=_0x4cbb5b[_0x4fc60d(0x21f)](parseFloat,_0x4b5d42['min']),_0x465c93=_0x4cbb5b['Beghu'](null,_0x4b5d42[_0x4fc60d(0x234)])||void 0x0===_0x4b5d42[_0x4fc60d(0x234)]?_0x4cbb5b[_0x4fc60d(0x2aa)](0x1,0x0):_0x4cbb5b[_0x4fc60d(0x1c0)](parseFloat,_0x4b5d42[_0x4fc60d(0x234)]);if(_0x4cbb5b[_0x4fc60d(0x26e)](_0x2428f2,_0x4961b8)&&_0x2428f2<=_0x465c93)return _0x4b5d42[_0x4fc60d(0x28d)];}return _0x4cbb5b[_0x4fc60d(0x174)];};export const getRpnRatingClass=_0x478c5c=>{const _0x1bd52c=a17_0x5d9fc0,_0x2ea2bf={'wUBKU':function(_0x271ac2,_0x12c707){return _0x271ac2(_0x12c707);},'DnhZV':'rpn-low','Algmx':'high','JKgpA':_0x1bd52c(0x1f7)};switch(_0x2ea2bf[_0x1bd52c(0x1e9)](String,_0x478c5c)[_0x1bd52c(0x1de)]()){case'low':return _0x2ea2bf[_0x1bd52c(0x1c7)];case'medium':return _0x1bd52c(0x192);case _0x2ea2bf['Algmx']:return _0x1bd52c(0x21a);default:return _0x2ea2bf['JKgpA'];}};export const debugRpnRating=_0x3017e3=>{const _0x135732=a17_0x5d9fc0,_0x1bcdb1={'QotLC':function(_0x59992f,_0xf75042){return _0x59992f(_0xf75042);},'tGVOm':function(_0x4e4519,_0x42cbfd){return _0x4e4519(_0x42cbfd);},'XBakR':function(_0x25f96a,_0x421f57){return _0x25f96a>=_0x421f57;},'lxvtF':function(_0x5e8381,_0x1a75ff){return _0x5e8381(_0x1a75ff);},'fiiRK':function(_0x1b1c8c,_0x101239){return _0x1b1c8c<=_0x101239;},'kMUYr':_0x135732(0x1ab),'sSpjb':_0x135732(0x2a8),'NYuHy':_0x135732(0x190),'BrAmS':_0x135732(0x22b),'VMyTJ':_0x135732(0x1ea)};console[_0x135732(0x207)](_0x135732(0x283)),console[_0x135732(0x207)](_0x1bcdb1[_0x135732(0x274)],_0x3017e3),console[_0x135732(0x207)](_0x1bcdb1[_0x135732(0x293)],a17_0x23f022[_0x135732(0x2a0)]);const _0x579a32=a17_0x23f022[_0x135732(0x2a0)];_0x579a32?_0x579a32[_0x135732(0x18b)]?(console[_0x135732(0x207)]('Available\x20criteria:',_0x579a32['criteria']),_0x579a32[_0x135732(0x18b)][_0x135732(0x172)]((_0x1987f4,_0x388583)=>{const _0x299420=_0x135732;console['log'](_0x299420(0x284)+_0x388583+':',{'min':_0x1987f4[_0x299420(0x179)],'max':_0x1987f4[_0x299420(0x234)],'rating':_0x1987f4[_0x299420(0x28d)],'minParsed':_0x1bcdb1[_0x299420(0x26f)](parseFloat,_0x1987f4[_0x299420(0x179)]),'maxParsed':_0x1bcdb1[_0x299420(0x26f)](parseFloat,_0x1987f4[_0x299420(0x234)]),'rangeCheck':_0x3017e3+'\x20>=\x20'+_0x1bcdb1[_0x299420(0x273)](parseFloat,_0x1987f4[_0x299420(0x179)])+'\x20&&\x20'+_0x3017e3+'\x20<=\x20'+_0x1bcdb1['tGVOm'](parseFloat,_0x1987f4[_0x299420(0x234)]),'result':_0x1bcdb1['XBakR'](_0x3017e3,_0x1bcdb1['lxvtF'](parseFloat,_0x1987f4[_0x299420(0x179)]))&&_0x1bcdb1[_0x299420(0x236)](_0x3017e3,parseFloat(_0x1987f4['max']))});}),console[_0x135732(0x207)](_0x1bcdb1[_0x135732(0x29d)])):console[_0x135732(0x207)](_0x1bcdb1[_0x135732(0x1b0)]):console[_0x135732(0x207)](_0x1bcdb1[_0x135732(0x161)]);};export function getTrainData(){const _0x553e8d=a17_0x5d9fc0,_0xe782be={'QyFLF':function(_0x5875c0,_0x49456c){return _0x5875c0>_0x49456c;},'KoWUr':function(_0x1294ae,_0x5cd629){return _0x1294ae(_0x5cd629);},'fRZNv':function(_0x7afe67,_0x21a195){return _0x7afe67+_0x21a195;},'XuASo':function(_0x46dc16,_0x284cab){return _0x46dc16(_0x284cab);},'XJiAs':function(_0x42a106,_0x155ae2){return _0x42a106>_0x155ae2;},'gpvWi':function(_0x142a2c,_0x59aca3){return _0x142a2c<_0x59aca3;},'SceZh':function(_0x2bbf84,_0x26483a){return _0x2bbf84>_0x26483a;},'iFIKa':_0x553e8d(0x212),'drotN':function(_0xb19985,_0x1b4f77){return _0xb19985/_0x1b4f77;},'bMBkR':function(_0x524b34,_0x449a52){return _0x524b34>_0x449a52;},'DzBql':function(_0xdd155c,_0x531d5e){return _0xdd155c===_0x531d5e;},'maeqM':function(_0x1a48db,_0x7ff077){return _0x1a48db>_0x7ff077;},'HWajy':function(_0x123ec9,_0x4c5d1f){return _0x123ec9>_0x4c5d1f;},'OTjtd':function(_0x5c494a,_0x3c1e0a){return _0x5c494a===_0x3c1e0a;}},_0x343897={};a17_0x86d251[_0x553e8d(0x172)](_0x2a9e87=>{const _0x1ed477=_0x553e8d;if(_0x2a9e87[_0x1ed477(0x257)]&&_0xe782be[_0x1ed477(0x17c)](_0x2a9e87[_0x1ed477(0x257)][_0x1ed477(0x1ba)],0x0)){const _0x2125fd=a(_0x2a9e87[_0x1ed477(0x257)]),_0x3526a8=JSON['stringify'](_0x2125fd);if(_0x343897[_0x3526a8]){const _0xc9ffd1=new Set(_0x343897[_0x3526a8][_0x1ed477(0x257)]);_0x2a9e87['machineIds'][_0x1ed477(0x172)](_0x1971c7=>_0xc9ffd1[_0x1ed477(0x24d)](_0x1971c7)),_0x343897[_0x3526a8][_0x1ed477(0x257)]=Array[_0x1ed477(0x213)](_0xc9ffd1)[_0x1ed477(0x297)]((_0x574f1c,_0x5ecd21)=>_0x574f1c-_0x5ecd21);}else _0x343897[_0x3526a8]={'key':_0x3526a8,'consolidatedPath':_0x2125fd,'machineIds':_0x2a9e87['machineIds'],'products':[]};_0x343897[_0x3526a8][_0x1ed477(0x1ed)][_0x1ed477(0x1b2)](_0x2a9e87);}});const _0x54305b=Object['values'](_0x343897)['map'](_0x1edd66=>({..._0x1edd66,'id':a17_0x185cc1[_0x553e8d(0x1d0)](_0x1edd66[_0x553e8d(0x28c)])}))['filter'](_0x5671ee=>void 0x0!==_0x5671ee['id']);if(_0x54305b['sort']((_0x37f283,_0x206515)=>_0x37f283['id']-_0x206515['id']),_0xe782be['OTjtd'](0x0,_0x54305b[_0x553e8d(0x1ba)]))return[];const _0x1c4d48=getTrainIdToLineNumberMap();return _0x54305b[_0x553e8d(0x172)](_0x1a5647=>{const _0x5aa726=_0x553e8d,_0x5b590e=_0x1c4d48['get'](_0xe782be['KoWUr'](String,_0x1a5647['id']));_0x1a5647[_0x5aa726(0x294)]=_0x5b590e?_0x5b590e['number']:_0x1a5647['id'];}),_0x54305b[_0x553e8d(0x172)](_0x569f93=>{const _0x3ea972=_0x553e8d,_0xfb5a9f={'ylvcy':function(_0xfc1500,_0x3cbaef){return _0xe782be['XuASo'](_0xfc1500,_0x3cbaef);},'AOHWw':function(_0x293d62,_0x1e6157){const _0x5271e2=a17_0x538b;return _0xe782be[_0x5271e2(0x27c)](_0x293d62,_0x1e6157);},'uqtOm':function(_0x2b27a9,_0x534c07){return _0x2b27a9(_0x534c07);},'XydbR':function(_0x352dfe,_0x3bc807){const _0x241a63=a17_0x538b;return _0xe782be[_0x241a63(0x29a)](_0x352dfe,_0x3bc807);}};_0x569f93['essa']=getGroupedTrainSurfaceArea(_0x569f93[_0x3ea972(0x257)]);const _0x327431=_0x569f93[_0x3ea972(0x1ed)][_0x3ea972(0x26b)](_0x64d94f=>_0x64d94f[_0x3ea972(0x1d8)])[_0x3ea972(0x19b)](Boolean);if(_0xe782be[_0x3ea972(0x27a)](_0x327431[_0x3ea972(0x1ba)],0x0)){const _0xadc1d5={};_0x327431[_0x3ea972(0x172)](_0x5eacdf=>{const _0x133c7c=_0x3ea972;_0xadc1d5[_0x5eacdf]=_0xe782be[_0x133c7c(0x290)](_0xadc1d5[_0x5eacdf]||0x0,0x1);}),_0x569f93[_0x3ea972(0x1d8)]=Object[_0x3ea972(0x185)](_0xadc1d5)[_0x3ea972(0x29f)]((_0x31e65e,_0x40d388)=>_0xadc1d5[_0x31e65e]>_0xadc1d5[_0x40d388]?_0x31e65e:_0x40d388);}else _0x569f93[_0x3ea972(0x1d8)]=_0xe782be['iFIKa'];let _0xaec497=null,_0x317bbc=-0x1;_0x569f93['products'][_0x3ea972(0x172)](_0x4080ab=>{const _0x576a75=_0x3ea972;_0x4080ab[_0x576a75(0x184)]['forEach'](_0x2dbb2a=>{const _0x227adf=_0x576a75,{rpn:_0x4cc08e}=_0xfb5a9f[_0x227adf(0x288)](calculateScores,_0x2dbb2a);_0xfb5a9f[_0x227adf(0x206)](_0x4cc08e,_0x317bbc)&&(_0x317bbc=_0x4cc08e,_0xaec497={'productName':_0x4080ab['name'],'ingredientName':_0x2dbb2a[_0x227adf(0x256)],'rpn':_0x317bbc,'rating':_0xfb5a9f['uqtOm'](getRpnRatingText,_0x317bbc)});});}),_0x569f93[_0x3ea972(0x1af)]=_0xaec497;let _0x187f5d=_0xe782be['drotN'](0x1,0x0),_0x5181f7=-0x1;_0x569f93[_0x3ea972(0x1ed)][_0x3ea972(0x172)](_0x29aae7=>{const _0x5941ab=_0x3ea972,_0x51505a={'DkLse':function(_0x396cb4,_0x4482d8){return _0xfb5a9f['XydbR'](_0x396cb4,_0x4482d8);}};_0x29aae7[_0x5941ab(0x184)]['forEach'](_0x2e6e44=>{const _0xdc4623=_0x5941ab;_0x51505a[_0xdc4623(0x295)](_0x2e6e44[_0xdc4623(0x28a)],_0x187f5d)&&(_0x187f5d=_0x2e6e44[_0xdc4623(0x28a)],_0x5181f7=_0x29aae7['id']);});}),_0x569f93['lowestLtd']=_0x187f5d,_0x569f93[_0x3ea972(0x268)]=_0x5181f7;const _0xf6a2ef=_0x569f93[_0x3ea972(0x1ed)][_0x3ea972(0x26b)](_0x2d8cc6=>{const _0x101c25=_0x3ea972,_0x232532=Math[_0x101c25(0x179)](..._0x2d8cc6[_0x101c25(0x184)][_0x101c25(0x26b)](_0x2cb866=>0x3e8*_0x2d8cc6[_0x101c25(0x264)]/(_0x2cb866[_0x101c25(0x221)]/0x3e8)));return{'productId':_0x2d8cc6['id'],'ratio':_0x232532};})[_0x3ea972(0x297)]((_0x2e3efb,_0x5d4eb8)=>_0x2e3efb[_0x3ea972(0x1a6)]-_0x5d4eb8['ratio']);let _0x5f25e7,_0x3b682b=-0x1;if(_0xe782be[_0x3ea972(0x231)](_0xf6a2ef[_0x3ea972(0x1ba)],0x0)){const _0x438d20=_0xf6a2ef[0x0];if(_0xe782be[_0x3ea972(0x222)](_0x438d20[_0x3ea972(0x286)],_0x5181f7)&&_0xe782be['maeqM'](_0xf6a2ef['length'],0x1)){const _0x5d78c3=_0xf6a2ef[0x1];_0x5f25e7=_0x5d78c3[_0x3ea972(0x1a6)],_0x3b682b=_0x5d78c3[_0x3ea972(0x286)];}else _0x5f25e7=_0x438d20['ratio'],_0x3b682b=_0x438d20[_0x3ea972(0x286)];}else _0x5f25e7=0x1/0x0;_0x569f93[_0x3ea972(0x23c)]=_0x5f25e7,_0x569f93['minRatioProductId']=_0x3b682b;const _0x31a46e=_0x569f93[_0x3ea972(0x1ed)][_0x3ea972(0x29f)]((_0x4e82b4,_0x11d288)=>_0x11d288[_0x3ea972(0x264)]<_0x4e82b4[_0x3ea972(0x264)]?_0x11d288:_0x4e82b4,_0x569f93[_0x3ea972(0x1ed)][0x0]);_0x569f93[_0x3ea972(0x1b1)]=_0x31a46e[_0x3ea972(0x264)],_0x569f93[_0x3ea972(0x292)]=_0x31a46e['id'];const _0x4078b0=_0x569f93['products'][_0x3ea972(0x1fc)](_0x5af530=>_0x5af530[_0x3ea972(0x184)])[_0x3ea972(0x26b)](_0x180672=>_0x180672[_0x3ea972(0x24f)])[_0x3ea972(0x19b)](_0x4f5004=>null!=_0x4f5004);_0x569f93[_0x3ea972(0x16f)]=_0x4078b0[_0x3ea972(0x1ba)]>0x0?Math[_0x3ea972(0x179)](..._0x4078b0):null;const _0x459d75=_0x569f93[_0x3ea972(0x1ed)][_0x3ea972(0x1fc)](_0x3ce9d3=>_0x3ce9d3['activeIngredients'])['map'](_0x55a9a5=>_0x55a9a5[_0x3ea972(0x208)])['filter'](_0x50b9cf=>null!=_0x50b9cf);_0x569f93[_0x3ea972(0x1fb)]=_0xe782be[_0x3ea972(0x1da)](_0x459d75['length'],0x0)?Math[_0x3ea972(0x179)](..._0x459d75):null,_0x569f93[_0x3ea972(0x20c)]=0x19;}),_0x54305b;}function a17_0x538b(_0x502c17,_0x4f4139){const _0x561925=a17_0x5619();return a17_0x538b=function(_0x538b51,_0x39cf93){_0x538b51=_0x538b51-0x161;let _0x5b87e1=_0x561925[_0x538b51];return _0x5b87e1;},a17_0x538b(_0x502c17,_0x4f4139);}export function getWorstCaseProductType(_0x484aac){const _0x55c1fc=a17_0x5d9fc0,_0xaee8be={'pNCZj':_0x55c1fc(0x18c)};for(const _0x314ae3 of a17_0x435ae3)if(_0x484aac['includes'](_0x314ae3))return _0x314ae3;const _0x444695=[...new Set(_0x484aac)][_0x55c1fc(0x1fa)](_0x50707f=>!a17_0x435ae3[_0x55c1fc(0x1bf)](_0x50707f));return _0x444695||_0xaee8be[_0x55c1fc(0x272)];}export function getLargestEssaForLineAndDosageForm(_0x521100,_0x538e0c){const _0x225e60=a17_0x5d9fc0,_0x3738c1={'DMsvg':function(_0x58bfc3,_0x2df77a){return _0x58bfc3===_0x2df77a;},'qCcfp':function(_0x1dc8be,_0x239954){return _0x1dc8be&&_0x239954;}},_0x53f98c=_0x521100[_0x225e60(0x1d8)],_0x1a84b1=[...new Set(_0x521100[_0x225e60(0x1ed)][_0x225e60(0x26b)](_0x393343=>_0x393343[_0x225e60(0x204)]||_0x225e60(0x18c)))],_0x1b3637=_0x538e0c['filter'](_0xcf7b8b=>{const _0x53cecd=_0x225e60,_0x36b80f=_0xcf7b8b[_0x53cecd(0x1d8)],_0x4082a1=[...new Set(_0xcf7b8b[_0x53cecd(0x1ed)][_0x53cecd(0x26b)](_0x245866=>_0x245866['productType']||'Other'))],_0x3b0d4d=_0x3738c1['DMsvg'](_0x36b80f,_0x53f98c),_0x438f29=_0x1a84b1[_0x53cecd(0x275)](_0x228f1b=>_0x4082a1[_0x53cecd(0x1bf)](_0x228f1b));return _0x3738c1[_0x53cecd(0x1f2)](_0x3b0d4d,_0x438f29);});return _0x1b3637[_0x225e60(0x1ba)]>0x0?Math[_0x225e60(0x234)](..._0x1b3637[_0x225e60(0x26b)](_0x58662f=>_0x58662f[_0x225e60(0x25b)])):0x0;}export function getMacoPerSwabForTrain(_0x12cecb,_0x43cf38){const _0x5cc955=a17_0x5d9fc0,_0x31d8af={'AeaZU':function(_0x789a56,_0x4de4b9){return _0x789a56/_0x4de4b9;},'DMlJw':function(_0x3378e9,_0x172fb7){return _0x3378e9*_0x172fb7;},'Gcbbz':function(_0x38522f,_0x5b77fc){return _0x38522f*_0x5b77fc;},'FaflV':function(_0x178abb,_0x349102){return _0x178abb/_0x349102;},'psBBc':function(_0xab84c4,_0x3e50cb){return _0xab84c4!==_0x3e50cb;},'ntOvC':function(_0x4c98a0,_0xafa129){return _0x4c98a0*_0xafa129;},'EmKVY':function(_0x5155d6,_0x117670){return _0x5155d6*_0x117670;},'Ovuyx':function(_0x32da95,_0x4a3c36){return _0x32da95>_0x4a3c36;}},_0x115e2d=(a17_0x1e95fc[getWorstCaseProductType(_0x12cecb[_0x5cc955(0x1ed)][_0x5cc955(0x26b)](_0xcec51b=>_0xcec51b['productType']))]||a17_0x1e95fc[_0x5cc955(0x18c)])['max'],_0x1bed6e=_0x31d8af[_0x5cc955(0x1cf)](_0x31d8af['DMlJw'](_0x12cecb[_0x5cc955(0x22e)],_0x12cecb[_0x5cc955(0x23c)]),_0x115e2d),_0x414beb=_0x31d8af[_0x5cc955(0x16b)](0xa,_0x12cecb[_0x5cc955(0x1b1)]);let _0x4bbc6f=_0x31d8af['FaflV'](0x1,0x0);_0x31d8af[_0x5cc955(0x1df)](null,_0x12cecb[_0x5cc955(0x16f)])&&(_0x4bbc6f=_0x31d8af[_0x5cc955(0x164)](_0x12cecb[_0x5cc955(0x16f)],_0x12cecb['minBsMddRatio']));const _0x2e4de1=_0x31d8af['EmKVY'](0.004,_0x43cf38),_0x3cabb0=Math[_0x5cc955(0x179)](_0x1bed6e,_0x414beb,_0x4bbc6f,_0x2e4de1);return _0x31d8af['ntOvC'](_0x31d8af[_0x5cc955(0x1b6)](_0x43cf38,0x0)?_0x31d8af[_0x5cc955(0x183)](_0x3cabb0,_0x43cf38):0x0,_0x12cecb[_0x5cc955(0x20c)]);}export function populateSelectWithOptions(_0x1e1700,_0x58167d,_0xaaa4dc=!0x1,_0x27e58a=null){const _0x3ff462=a17_0x5d9fc0,_0x110551={'TOXxU':'<option\x20value=\x22all\x22>All</option>'};if(!_0x1e1700)return;let _0x52798c;if(_0x1e1700[_0x3ff462(0x289)]='',_0x1e1700[_0x3ff462(0x289)]=_0xaaa4dc?_0x110551[_0x3ff462(0x1d1)]:_0x3ff462(0x1c4),_0x27e58a)_0x52798c=[...new Set(_0x27e58a)];else{const _0x5dd454=a17_0x23f022[_0x58167d];if(!_0x5dd454)return;_0x52798c=[...new Set(_0x5dd454['criteria'][_0x3ff462(0x26b)](_0x5736bb=>_0x5736bb[_0x3ff462(0x287)]))];}_0x52798c['forEach'](_0x430a5e=>{const _0x4bde85=_0x3ff462;_0x1e1700[_0x4bde85(0x289)]+='<option\x20value=\x22'+_0x430a5e+'\x22>'+_0x430a5e+_0x4bde85(0x265);});}export function consolidateMachinesByGroup(_0x1ded41){const _0x28db2b=a17_0x5d9fc0,_0x391238=[],_0x35f3e0=new Map();return _0x1ded41[_0x28db2b(0x172)](_0x580b3a=>{const _0x4eab25=_0x28db2b,_0x414400=a17_0x2edf19[_0x4eab25(0x1fa)](_0x153521=>_0x153521['id']===_0x580b3a);if(!_0x414400)return;const _0x664d68=_0x414400[_0x4eab25(0x1c6)]||_0x4eab25(0x225)+_0x414400['id'];_0x35f3e0[_0x4eab25(0x216)](_0x664d68)||_0x35f3e0['set'](_0x664d68,{'group':_0x414400[_0x4eab25(0x1c6)]||null,'machines':[],'maxArea':0x0,'representativeMachine':_0x414400});const _0x4927e2=_0x35f3e0[_0x4eab25(0x1d0)](_0x664d68);_0x4927e2[_0x4eab25(0x1e4)][_0x4eab25(0x1b2)](_0x414400),_0x414400[_0x4eab25(0x1e5)]>_0x4927e2['maxArea']&&(_0x4927e2[_0x4eab25(0x255)]=_0x414400[_0x4eab25(0x1e5)],_0x4927e2[_0x4eab25(0x1a4)]=_0x414400);}),_0x35f3e0['forEach']((_0x506a6f,_0x5c1ba4)=>{const _0xcea154=_0x28db2b;_0x506a6f['group']?_0x391238[_0xcea154(0x1b2)]({'id':_0xcea154(0x1c2)+_0x506a6f[_0xcea154(0x1c6)],'name':_0x506a6f[_0xcea154(0x1c6)]+_0xcea154(0x1a3),'group':_0x506a6f[_0xcea154(0x1c6)],'area':_0x506a6f[_0xcea154(0x255)],'stage':_0x506a6f[_0xcea154(0x1a4)]['stage'],'isGroup':!0x0,'machineCount':_0x506a6f[_0xcea154(0x1e4)][_0xcea154(0x1ba)],'machines':_0x506a6f[_0xcea154(0x1e4)]}):_0x391238[_0xcea154(0x1b2)]({..._0x506a6f[_0xcea154(0x1a4)],'isGroup':!0x1,'machineCount':0x1,'machines':[_0x506a6f[_0xcea154(0x1a4)]]});}),_0x391238;}export function getGroupedTrainSurfaceArea(_0x15e758){const _0x3036b6={'Aciuy':function(_0x53d0b3,_0xda63){return _0x53d0b3+_0xda63;}};return _0x15e758['reduce']((_0x25c403,_0x54cfb8)=>{const _0x2cd2e6=a17_0x538b,_0x431e25=a17_0x2edf19['find'](_0x45a690=>_0x45a690['id']===_0x54cfb8);return _0x3036b6['Aciuy'](_0x25c403,_0x431e25?_0x431e25[_0x2cd2e6(0x1e5)]:0x0);},0x0);}export function getTrainGroupingDetails(_0x2e6321){const _0x49ddd0=a17_0x5d9fc0,_0x4489ff={'totalMachines':_0x2e6321['length'],'consolidatedUnits':_0x2e6321[_0x49ddd0(0x1ba)],'groups':[],'individuals':[],'totalSurfaceArea':0x0,'worstCaseOptimization':0x0};return _0x2e6321[_0x49ddd0(0x172)](_0x4ed663=>{const _0x5cd364=_0x49ddd0,_0x51e75d=a17_0x2edf19[_0x5cd364(0x1fa)](_0x53d7f3=>_0x53d7f3['id']===_0x4ed663);_0x51e75d&&(_0x4489ff[_0x5cd364(0x17f)]+=_0x51e75d[_0x5cd364(0x1e5)],_0x4489ff[_0x5cd364(0x17b)][_0x5cd364(0x1b2)]({'id':_0x51e75d['id'],'name':_0x51e75d['name'],'area':_0x51e75d['area']}));}),_0x4489ff['worstCaseOptimization']=0x0,_0x4489ff;}export function formatTrainGroupDisplay(_0x1f2b36){const _0xa2dcaf=a17_0x5d9fc0,_0x32e91b={'hqcEx':_0xa2dcaf(0x277)};return _0x1f2b36[_0xa2dcaf(0x26b)](_0x28b3e9=>{const _0x40ad57=_0xa2dcaf,_0x108d2d=a17_0x2edf19[_0x40ad57(0x1fa)](_0x431e44=>_0x431e44['id']===_0x28b3e9),_0x364839=_0x108d2d?_0x108d2d[_0x40ad57(0x256)]:'Unknown\x20(ID:\x20'+_0x28b3e9+')';return _0x40ad57(0x1a9)+_0x364839+'\x20-\x20Area:\x20'+(_0x108d2d?_0x108d2d[_0x40ad57(0x1e5)]:0x0)[_0x40ad57(0x177)]()+'\x20cm²\x22>'+_0x364839+'</span>';})[_0xa2dcaf(0x291)](_0x32e91b[_0xa2dcaf(0x27b)]);}export function getConsistentTrainOrder(_0x36cffa){const _0x43fc75=a17_0x5d9fc0,_0x46bea2={'UfLPQ':function(_0x49317d,_0x3f3379){return _0x49317d!==_0x3f3379;},'GFDCT':_0x43fc75(0x21b),'KHkKM':_0x43fc75(0x2a9),'TxAlB':_0x43fc75(0x19f),'BvQKn':_0x43fc75(0x18c),'HOvFB':function(_0xd106d1,_0x57a3dc){return _0xd106d1!==_0x57a3dc;},'XiRkc':function(_0x517f5c,_0x1edff0){return _0x517f5c!==_0x1edff0;},'PoTMO':function(_0x5a9058,_0x242449){return _0x5a9058-_0x242449;},'AfhYk':function(_0x3e80bf,_0x31ed38){return _0x3e80bf!==_0x31ed38;},'aJBje':function(_0x1c58e2,_0x2ebb57){return _0x1c58e2-_0x2ebb57;}};return _0x36cffa[_0x43fc75(0x297)]((_0x11b375,_0x496fbc)=>{const _0x57f0bf=_0x43fc75;if(_0x46bea2[_0x57f0bf(0x1d5)](_0x11b375[_0x57f0bf(0x1d8)],_0x496fbc[_0x57f0bf(0x1d8)])){const _0x39bd35=[_0x46bea2[_0x57f0bf(0x22a)],_0x46bea2[_0x57f0bf(0x1d4)],_0x46bea2['TxAlB'],_0x46bea2[_0x57f0bf(0x1c9)]],_0x43c34e=_0x46bea2[_0x57f0bf(0x1d5)](-0x1,_0x39bd35[_0x57f0bf(0x1dc)](_0x11b375[_0x57f0bf(0x1d8)]))?_0x39bd35['indexOf'](_0x11b375['line']):_0x39bd35['length'],_0x1c7431=_0x46bea2['HOvFB'](-0x1,_0x39bd35['indexOf'](_0x496fbc[_0x57f0bf(0x1d8)]))?_0x39bd35[_0x57f0bf(0x1dc)](_0x496fbc[_0x57f0bf(0x1d8)]):_0x39bd35[_0x57f0bf(0x1ba)];if(_0x46bea2[_0x57f0bf(0x201)](_0x43c34e,_0x1c7431))return _0x46bea2[_0x57f0bf(0x181)](_0x43c34e,_0x1c7431);}if(_0x46bea2[_0x57f0bf(0x26c)](_0x11b375[_0x57f0bf(0x214)],_0x496fbc[_0x57f0bf(0x214)])){const _0x4ad022=_0x36cffa['filter'](_0x4dea99=>_0x4dea99[_0x57f0bf(0x1d8)]===_0x11b375[_0x57f0bf(0x1d8)]&&_0x4dea99[_0x57f0bf(0x214)]===_0x11b375[_0x57f0bf(0x214)]),_0x270914=_0x36cffa[_0x57f0bf(0x19b)](_0x2585d7=>_0x2585d7[_0x57f0bf(0x1d8)]===_0x496fbc[_0x57f0bf(0x1d8)]&&_0x2585d7[_0x57f0bf(0x214)]===_0x496fbc['dosageForm']),_0x1f1baf=Math[_0x57f0bf(0x179)](..._0x4ad022[_0x57f0bf(0x26b)](_0x1cd42d=>_0x1cd42d['id'])),_0x265011=Math[_0x57f0bf(0x179)](..._0x270914['map'](_0x339809=>_0x339809['id']));if(_0x46bea2['HOvFB'](_0x1f1baf,_0x265011))return _0x1f1baf-_0x265011;}return _0x46bea2['aJBje'](_0x11b375['id'],_0x496fbc['id']);});}export function applyProperCase(_0x12bf1b){const _0x2ca663=a17_0x5d9fc0,_0x4690cc={'jLGAb':function(_0x37268d,_0xc4cdf2){return _0x37268d!==_0xc4cdf2;},'QbyVU':'ppm','cAApF':_0x2ca663(0x199),'ZINrn':_0x2ca663(0x1ae),'JnUkJ':_0x2ca663(0x203),'tvUsb':_0x2ca663(0x18e),'gBgvQ':'MACO','dgRqE':_0x2ca663(0x211),'rTxaX':'NOEL','tcIaq':_0x2ca663(0x16d),'NIFeb':_0x2ca663(0x26a),'gmsiv':_0x2ca663(0x238),'nKjNk':_0x2ca663(0x1b3),'vjURe':'EMA','wmfKQ':'ICH','ASznB':_0x2ca663(0x28b),'MXdNw':_0x2ca663(0x228),'DlmDP':_0x2ca663(0x1bc),'RUWtz':_0x2ca663(0x1e0),'eHfPJ':_0x2ca663(0x17a),'cybqf':_0x2ca663(0x1c1),'xFBFe':_0x2ca663(0x1ef),'xPNDe':_0x2ca663(0x1aa),'FoKap':'ASP','cnqdk':_0x2ca663(0x2a7),'RAkLu':'XML','ZNqUO':'JSON','lcXJs':_0x2ca663(0x25e),'tEoPG':_0x2ca663(0x241),'CZpTK':_0x2ca663(0x169),'MCNYv':_0x2ca663(0x209),'RNSvB':'FTP','PkyPq':_0x2ca663(0x29e),'iejJc':_0x2ca663(0x27d),'qaSTx':_0x2ca663(0x24e),'TdHXD':_0x2ca663(0x280),'UFSkx':_0x2ca663(0x1e1),'ctRnh':'DNS','AGVTS':'TCP','coJXS':'UDP','qXCUR':_0x2ca663(0x227),'XAiVG':'WAN','iWVaZ':_0x2ca663(0x279),'kPMJK':_0x2ca663(0x18a),'PLHQm':_0x2ca663(0x17d),'ZoOdD':_0x2ca663(0x1d2),'esrid':_0x2ca663(0x28e),'dshSM':_0x2ca663(0x187),'oltPs':_0x2ca663(0x1ee),'fibAx':_0x2ca663(0x1e8),'FKDZp':_0x2ca663(0x22c),'vUZrT':_0x2ca663(0x175),'iSnJz':'HDD','gknFX':_0x2ca663(0x16e),'DtyRA':_0x2ca663(0x25f),'pqpVL':_0x2ca663(0x1e3),'NElMP':_0x2ca663(0x27e),'pfncU':_0x2ca663(0x193)};if(!_0x12bf1b)return;const _0x795be1=['cm','mg','kg','g','ml','l',_0x4690cc[_0x2ca663(0x24c)],_0x4690cc[_0x2ca663(0x254)],_0x4690cc[_0x2ca663(0x1cb)],'iu','ui',_0x4690cc[_0x2ca663(0x219)],'mg/kg',_0x4690cc[_0x2ca663(0x266)]],_0xc4234f=[_0x4690cc[_0x2ca663(0x251)],'PDE',_0x4690cc[_0x2ca663(0x1a0)],_0x4690cc[_0x2ca663(0x186)],_0x4690cc['tcIaq'],_0x4690cc[_0x2ca663(0x1f8)],_0x4690cc['gmsiv'],_0x2ca663(0x244),'BS',_0x2ca663(0x1e0),_0x4690cc['nKjNk'],_0x4690cc[_0x2ca663(0x194)],_0x4690cc['wmfKQ'],_0x2ca663(0x182),_0x4690cc['ASznB'],'QA','QC',_0x4690cc[_0x2ca663(0x18d)],'IT','HR',_0x4690cc['DlmDP'],_0x2ca663(0x1f1),'CFO','VP','GM','PM','BA','UI','UX',_0x4690cc[_0x2ca663(0x1be)],_0x4690cc[_0x2ca663(0x1bd)],_0x4690cc[_0x2ca663(0x223)],_0x4690cc[_0x2ca663(0x1f9)],'JS',_0x4690cc[_0x2ca663(0x23f)],_0x4690cc[_0x2ca663(0x198)],_0x4690cc['cnqdk'],_0x4690cc[_0x2ca663(0x220)],_0x4690cc[_0x2ca663(0x1ad)],_0x4690cc['lcXJs'],_0x4690cc[_0x2ca663(0x242)],_0x4690cc[_0x2ca663(0x20b)],_0x4690cc['MCNYv'],_0x4690cc[_0x2ca663(0x1db)],_0x4690cc['PkyPq'],_0x4690cc[_0x2ca663(0x25a)],_0x4690cc[_0x2ca663(0x168)],_0x2ca663(0x23d),'IP',_0x4690cc[_0x2ca663(0x259)],_0x4690cc[_0x2ca663(0x19e)],_0x4690cc['ctRnh'],_0x4690cc['AGVTS'],_0x4690cc[_0x2ca663(0x1b9)],_0x2ca663(0x163),_0x4690cc[_0x2ca663(0x210)],_0x4690cc[_0x2ca663(0x188)],_0x2ca663(0x170),_0x4690cc['iWVaZ'],_0x4690cc[_0x2ca663(0x195)],_0x2ca663(0x217),'USB',_0x4690cc[_0x2ca663(0x298)],'VGA',_0x4690cc[_0x2ca663(0x281)],_0x4690cc['esrid'],_0x2ca663(0x27e),_0x2ca663(0x193),_0x4690cc[_0x2ca663(0x1fd)],_0x4690cc[_0x2ca663(0x202)],_0x4690cc[_0x2ca663(0x23b)],_0x4690cc[_0x2ca663(0x16c)],_0x4690cc[_0x2ca663(0x1eb)],_0x4690cc[_0x2ca663(0x1f5)],'CD',_0x4690cc[_0x2ca663(0x28f)],'BD',_0x4690cc[_0x2ca663(0x29b)],_0x2ca663(0x17d),_0x4690cc['pqpVL'],_0x4690cc[_0x2ca663(0x281)],_0x4690cc[_0x2ca663(0x1c3)],_0x4690cc[_0x2ca663(0x1b5)],_0x4690cc['pfncU'],'RAM',_0x2ca663(0x1ee),_0x4690cc[_0x2ca663(0x23b)],_0x4690cc[_0x2ca663(0x16c)],'SSD',_0x2ca663(0x1a5),'CD',_0x2ca663(0x16e),'BD'];_0x12bf1b[_0x2ca663(0x21d)](_0x2ca663(0x269),function(_0x1dd521){const _0x3b3021=_0x2ca663,_0x358f64=_0x1dd521['target'][_0x3b3021(0x1b4)],_0x16cbd8=_0x358f64['split']('\x20')[_0x3b3021(0x26b)](_0xb9f9a6=>_0x795be1['includes'](_0xb9f9a6[_0x3b3021(0x1de)]())?_0xb9f9a6[_0x3b3021(0x1de)]():_0xc4234f[_0x3b3021(0x1bf)](_0xb9f9a6[_0x3b3021(0x232)]())?_0xb9f9a6['toUpperCase']():_0xb9f9a6[_0x3b3021(0x1ba)]>0x0?_0xb9f9a6[_0x3b3021(0x178)](0x0)[_0x3b3021(0x232)]()+_0xb9f9a6[_0x3b3021(0x218)](0x1)['toLowerCase']():_0xb9f9a6)[_0x3b3021(0x291)]('\x20');_0x4690cc[_0x3b3021(0x296)](_0x16cbd8,_0x358f64)&&(_0x1dd521[_0x3b3021(0x17e)]['value']=_0x16cbd8);});}export function initializeProperCaseInputs(){const _0x37a878=a17_0x5d9fc0,_0x16a299={'zdHyp':_0x37a878(0x253),'DxGiQ':_0x37a878(0x260),'tujeY':'email','FArAm':function(_0x20d51e,_0x215207){return _0x20d51e(_0x215207);},'dAMjO':_0x37a878(0x1ca)};document[_0x37a878(0x18f)](_0x16a299[_0x37a878(0x1ff)])[_0x37a878(0x172)](_0x29b69c=>{const _0x132eaf=_0x37a878;[_0x132eaf(0x1fe),_0x16a299[_0x132eaf(0x1e7)],_0x16a299[_0x132eaf(0x237)],_0x16a299[_0x132eaf(0x224)]][_0x132eaf(0x275)](_0x1e227b=>_0x29b69c[_0x132eaf(0x2a2)][_0x132eaf(0x1ac)](_0x1e227b))||_0x16a299[_0x132eaf(0x2a4)](applyProperCase,_0x29b69c);});}
+// Shared helper and calculation functions
+// js/dashboardView.js
+// js/utils.js
+
+import { products, machines, trainIdMap, scoringCriteria, productTypeHierarchy, safetyFactorConfig, getSafetyFactorForDosageForm } from './state.js';
+
+// --- TOXICITY PREFERENCE LOGIC ---
+export function getToxicityPreference() {
+    // Check if PDE is hidden in product register (this serves as the global preference)
+    const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+    const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+    
+    if (pdeHidden && !ld50Hidden) {
+        return 'ld50'; // Only PDE hidden, use LD50
+    } else if (!pdeHidden && ld50Hidden) {
+        return 'pde'; // Only LD50 hidden, use PDE
+    } else if (pdeHidden && ld50Hidden) {
+        return 'pde'; // Both hidden, force use PDE in worst case view
+    } else {
+        return 'auto'; // Both visible (or no preference set), use auto mode (prefer PDE for calculation)
+    }
+}
+
+// --- CENTRALIZED STUDY COUNTING LOGIC ---
+export function countStudiesForTrains(trains) {
+    if (!trains || trains.length === 0) {
+        return 0;
+    }
+
+    // Group trains by dosage form
+    const dosageGroups = {};
+    trains.forEach(train => {
+        const dosageForm = train.productType || (train.products && train.products[0]?.productType) || 'Unknown';
+        if (!dosageGroups[dosageForm]) {
+            dosageGroups[dosageForm] = [];
+        }
+        dosageGroups[dosageForm].push(train);
+    });
+
+    let totalStudies = 0;
+    
+    // Process each dosage form group separately
+    Object.keys(dosageGroups).forEach(dosageForm => {
+        const trainsInGroup = dosageGroups[dosageForm];
+        const allMachines = new Set(trainsInGroup.flatMap(t => t.machineIds || []));
+        
+        // Calculate RPN and sort
+        const trainsWithRPN = trainsInGroup.map(train => {
+            let highestRPN = 0;
+            if (train.products && train.products.length > 0) {
+                train.products.forEach(product => {
+                    if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                        product.activeIngredients.forEach(ingredient => {
+                            try {
+                                const rpn = calculateScores(ingredient).rpn;
+                                if (rpn > highestRPN) {
+                                    highestRPN = rpn;
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                            }
+                        });
+                    }
+                });
+            }
+            return { train, rpn: highestRPN };
+        }).sort((a, b) => b.rpn - a.rpn);
+        
+        // Apply machine coverage algorithm
+        const coveredMachines = new Set();
+        let studiesNeeded = 0;
+        
+        for (const { train } of trainsWithRPN) {
+            if (train.machineIds && train.machineIds.length > 0) {
+                const trainMachines = new Set(train.machineIds);
+                const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
+                
+                if (newMachines.length > 0) {
+                    studiesNeeded++;
+                    newMachines.forEach(m => coveredMachines.add(m));
+                    
+                    // Stop if all machines are covered
+                    if (coveredMachines.size === allMachines.size) {
+                        break;
+                    }
+                }
+            }
+        }
+        
+        totalStudies += studiesNeeded;
+    });
+    
+    return totalStudies;
+}
+
+// --- CENTRALIZED TRAIN LOGIC ---
+export function generateTrainMap() {
+    // Store existing train mappings to preserve them
+    const existingTrainMap = new Map(trainIdMap);
+    
+    const trains = {}; // Key: JSON string of consolidated train path, Value: { products: [product IDs] }
+    products.forEach(product => {
+        if (product.machineIds && product.machineIds.length > 0) {
+            // Get consolidated machine path based on groups
+            const consolidatedPath = getConsolidatedTrainPath(product.machineIds);
+            const key = JSON.stringify(consolidatedPath);
+            if (!trains[key]) {
+                trains[key] = { products: [] };
+            }
+            trains[key].products.push(product.id);
+        }
+    });
+
+    // Clear the map but preserve existing assignments
+    trainIdMap.clear();
+    
+    // Find the highest existing train ID to continue numbering from there
+    let maxTrainId = 0;
+    existingTrainMap.forEach(trainId => {
+        if (trainId > maxTrainId) {
+            maxTrainId = trainId;
+        }
+    });
+    
+    // First, restore existing train configurations with their original IDs
+    const sortedTrainKeys = Object.keys(trains).sort(); // Sort keys for consistent numbering
+    const newTrainKeys = []; // Track which keys are truly new
+    
+    sortedTrainKeys.forEach(key => {
+        if (existingTrainMap.has(key)) {
+            // This train configuration already existed, preserve its ID
+            trainIdMap.set(key, existingTrainMap.get(key));
+        } else {
+            // This is a new train configuration, we'll assign it a new ID later
+            newTrainKeys.push(key);
+        }
+    });
+    
+    // Now assign new IDs to truly new train configurations
+    let trainCounter = maxTrainId + 1;
+    newTrainKeys.forEach(key => {
+        trainIdMap.set(key, trainCounter++);
+    });
+}
+
+/**
+ * Gets consolidated train path based on individual machines
+ * @param {Array} machineIds - Array of machine IDs
+ * @returns {Array} Consolidated path representing individual machines
+ */
+function getConsolidatedTrainPath(machineIds) {
+    // Sort machine IDs to ensure consistent ordering
+    const sortedMachineIds = [...machineIds].sort((a, b) => a - b);
+    
+    // Treat each machine individually - no grouping
+    return sortedMachineIds.map(machineId => `machine:${machineId}`);
+}
+
+export function getProductTrainId(product) {
+    if (!product.machineIds || product.machineIds.length === 0) {
+        return 'N/A';
+    }
+    
+    // Get consolidated path for this product
+    const consolidatedPath = getConsolidatedTrainPath(product.machineIds);
+    const key = JSON.stringify(consolidatedPath);
+    
+    return trainIdMap.get(key) || 'N/A';
+}
+
+/**
+ * Get the proper train number for a product (using the new numbering system)
+ */
+export function getProductTrainNumber(product) {
+    const trainId = getProductTrainId(product);
+    if (trainId === 'N/A') {
+        return 'N/A';
+    }
+    
+    // Get the proper train number from the mapping
+    const idMap = getTrainIdToLineNumberMap();
+    const mapped = idMap.get(String(trainId));
+    return mapped ? mapped.number : trainId;
+}
+
+/**
+ * Get unique production line names from products.
+ * Returns an array of unique, sorted line names including standard and custom lines.
+ */
+export function getUniqueProductLines(products = []) {
+    // Standard line options that should always be available
+    const standardLines = ['Solids', 'Semisolid', 'Liquids'];
+    
+    // Get custom lines from existing products
+    const productLines = products.map(p => (p && p.line) ? String(p.line).trim() : null).filter(Boolean);
+    const customLines = productLines.filter(line => !standardLines.includes(line));
+    
+    // Combine standard lines with unique custom lines
+    const allLines = [...standardLines, ...new Set(customLines)].sort();
+    
+    // Always include "Shared" as an option for machines
+    if (!allLines.includes('Shared')) {
+        allLines.push('Shared');
+    }
+    
+    return allLines;
+}
+
+/**
+ * Get unique production line names from the machines array.
+ * Falls back to product.line values if machines do not declare lines.
+ * Returns an array of unique, sorted line names.
+ */
+export function getUniqueLinesFromMachines() {
+    const machineLines = machines.map(m => (m && m.line) ? String(m.line).trim() : null).filter(Boolean);
+    if (machineLines.length > 0) {
+        return [...new Set(machineLines)].sort();
+    }
+
+    // Fallback to product lines
+    return getUniqueProductLines();
+}
+
+/**
+ * Build trains grouped by Production Line, then by Dosage Form.
+ * Each train will have a sequential number (1..N) scoped to the Line and
+ * a reference to the machines and products that belong to it.
+ *
+ * Returned format: [ { line: 'Line A', trains: [ { number: 1, dosageForm: 'Tablets', consolidatedPath, machineIds, products: [...] }, ... ] }, ... ]
+ */
+export function getTrainsGroupedByLine() {
+    // collect all lines from products (use product.line or fallback)
+    const linesSet = new Set();
+    products.forEach(p => linesSet.add((p.line && String(p.line).trim()) || 'Unassigned'));
+    const lines = Array.from(linesSet);
+
+    const result = [];
+
+    lines.forEach(lineName => {
+        const productsInLine = products.filter(p => ((p.line && String(p.line).trim()) || 'Unassigned') === lineName && p.machineIds && p.machineIds.length > 0);
+
+        // group by dosage form (productType)
+        const byDosage = {};
+        productsInLine.forEach(p => {
+            const dtype = p.productType || 'Other';
+            if (!byDosage[dtype]) byDosage[dtype] = [];
+            byDosage[dtype].push(p);
+        });
+
+        // identify trains within each dosage group
+        const trainsForLine = [];
+        Object.keys(byDosage).forEach(dtype => {
+            const map = {};
+            byDosage[dtype].forEach(p => {
+                const consolidatedPath = getConsolidatedTrainPath(p.machineIds);
+                const key = JSON.stringify(consolidatedPath);
+                if (!map[key]) {
+                    map[key] = {
+                        key,
+                        dosageForm: dtype,
+                        consolidatedPath,
+                        machineIds: Array.from(new Set(p.machineIds)).sort((a,b)=>a-b),
+                        products: []
+                    };
+                }
+                map[key].products.push(p);
+            });
+
+            Object.values(map).forEach(t => trainsForLine.push(t));
+        });
+
+        // assign sequential numbers within each dosage form
+        trainsForLine.sort((a,b) => {
+            if (a.dosageForm < b.dosageForm) return -1;
+            if (a.dosageForm > b.dosageForm) return 1;
+            return a.key < b.key ? -1 : (a.key > b.key ? 1 : 0);
+        });
+
+        // Group by dosage form and assign numbers within each group
+        const byDosageForm = {};
+        trainsForLine.forEach(t => {
+            if (!byDosageForm[t.dosageForm]) {
+                byDosageForm[t.dosageForm] = [];
+            }
+            byDosageForm[t.dosageForm].push(t);
+        });
+
+        // Assign sequential numbers within each dosage form
+        Object.keys(byDosageForm).forEach(dosageForm => {
+            let counter = 1;
+            byDosageForm[dosageForm].forEach(t => {
+                t.line = lineName;
+                t.number = counter++;
+                // Attach existing train id if available (preserve legacy ids)
+                t.id = trainIdMap.get(t.key) || null;
+            });
+        });
+
+        result.push({ line: lineName, trains: trainsForLine });
+    });
+
+    return result;
+}
+
+/**
+ * Returns a mapping of legacy train id -> { line, number }
+ * Useful for displaying user-friendly labels while preserving scalar ids for exports/prints.
+ */
+export function getTrainIdToLineNumberMap() {
+    const map = new Map();
+    const grouped = getTrainsGroupedByLine();
+    grouped.forEach(lineObj => {
+        lineObj.trains.forEach(t => {
+            if (t.id !== null && t.id !== undefined) {
+                map.set(String(t.id), { line: t.line, number: t.number });
+            }
+        });
+    });
+    return map;
+}
+
+// --- SCORING AND RATING LOGIC ---
+export function calculateScores(ingredient, toxicityPreference = 'auto') { 
+    const getScoreByExactMatch = (config, value) => { 
+        const lowerValue = String(value || "").toLowerCase(); 
+        const criterion = config.criteria.find(c => String(c.text || "").toLowerCase() === lowerValue); 
+        return criterion ? criterion.score : config.defaultScore; 
+    }; 
+    const getScoreByRange = (config, value) => { 
+        const numValue = parseFloat(value); 
+        if (isNaN(numValue)) return config.defaultScore; 
+        for (const c of config.criteria) { 
+            if (c.comparison === "greater_exclusive" && numValue > c.lowerBound) return c.score; 
+            if (c.comparison === "less_exclusive" && numValue < c.upperBound) return c.score; 
+            if (c.comparison === "between_inclusive_both" && numValue >= c.lowerBound && numValue <= c.upperBound) return c.score; 
+            if (c.comparison === "less_inclusive" && numValue <= c.upperBound) return c.score; 
+            if (c.comparison === "between_exclusive_lower_inclusive_upper" && numValue > c.lowerBound && numValue <= c.upperBound) return c.score; 
+        } 
+        return config.defaultScore; 
+    }; 
+    
+    const solubilityScore = getScoreByExactMatch(scoringCriteria.solubility, ingredient.solubility); 
+    const therapeuticDoseScore = getScoreByRange(scoringCriteria.therapeuticDose, ingredient.therapeuticDose); 
+    const cleanabilityScore = getScoreByExactMatch(scoringCriteria.cleanability, ingredient.cleanability); 
+    
+    let toxicityScore, pdeScore, ld50Score; 
+    if (ingredient.pde !== null && !isNaN(ingredient.pde)) { 
+        pdeScore = getScoreByRange(scoringCriteria.toxicityPde, ingredient.pde); 
+    } 
+    if (ingredient.ld50 !== null && !isNaN(ingredient.ld50)) { 
+        ld50Score = getScoreByRange(scoringCriteria.toxicityLd50, ingredient.ld50); 
+    } 
+    
+    // Apply toxicity preference logic
+    if (toxicityPreference === 'ld50') {
+        // Force use of LD50 if available
+        if (ld50Score !== undefined) { 
+            toxicityScore = ld50Score; 
+        } else if (pdeScore !== undefined) { 
+            toxicityScore = pdeScore; 
+        } else { 
+            toxicityScore = 1; 
+        }
+    } else if (toxicityPreference === 'pde') {
+        // Force use of PDE if available
+        if (pdeScore !== undefined) { 
+            toxicityScore = pdeScore; 
+        } else if (ld50Score !== undefined) { 
+            toxicityScore = ld50Score; 
+        } else { 
+            toxicityScore = 1; 
+        }
+    } else {
+        // Auto mode - prefer PDE over LD50 (original behavior)
+        if (pdeScore !== undefined) { 
+            toxicityScore = pdeScore; 
+        } else if (ld50Score !== undefined) { 
+            toxicityScore = ld50Score; 
+        } else { 
+            toxicityScore = 1; 
+        }
+    }
+    
+    const rpn = solubilityScore * therapeuticDoseScore * cleanabilityScore * toxicityScore; 
+    const rpnRatingText = getRpnRatingText(rpn); 
+    return { rpn, pdeScore, ld50Score, solubilityScore, therapeuticDoseScore, cleanabilityScore, rpnRatingText }; 
+}
+
+export const getRpnRatingText = (rpnValue) => { 
+    const rpnConfig = scoringCriteria.rpnRating; 
+    
+    if (!rpnConfig || !rpnConfig.criteria) {
+        return "N/A"; 
+    }
+    
+    for (const c of rpnConfig.criteria) { 
+        const min = parseFloat(c.min); 
+        const max = c.max === null || c.max === undefined ? Infinity : parseFloat(c.max); 
+        
+        if (rpnValue >= min && rpnValue <= max) { 
+            return c.rating; 
+        } 
+    } 
+    
+    return "N/A"; 
+};
+
+export const getRpnRatingClass = (ratingText) => { 
+    switch(String(ratingText).toLowerCase()) { 
+        case 'low': return 'rpn-low'; 
+        case 'medium': return 'rpn-medium'; 
+        case 'high': return 'rpn-high'; 
+        default: return 'rpn-default'; 
+    } 
+};
+
+export const debugRpnRating = (rpnValue) => {
+    console.log('=== DEBUG RPN RATING ===');
+    console.log('RPN Value:', rpnValue);
+    console.log('RPN Config:', scoringCriteria.rpnRating);
+    
+    const rpnConfig = scoringCriteria.rpnRating;
+    if (!rpnConfig) {
+        console.log('ERROR: rpnConfig is undefined or null');
+        return;
+    }
+    
+    if (!rpnConfig.criteria) {
+        console.log('ERROR: rpnConfig.criteria is undefined or null');
+        return;
+    }
+    
+    console.log('Available criteria:', rpnConfig.criteria);
+    
+    rpnConfig.criteria.forEach((c, index) => {
+        console.log(`Criteria ${index}:`, {
+            min: c.min,
+            max: c.max,
+            rating: c.rating,
+            minParsed: parseFloat(c.min),
+            maxParsed: parseFloat(c.max),
+            rangeCheck: `${rpnValue} >= ${parseFloat(c.min)} && ${rpnValue} <= ${parseFloat(c.max)}`,
+            result: rpnValue >= parseFloat(c.min) && rpnValue <= parseFloat(c.max)
+        });
+    });
+    
+    console.log('=== END DEBUG ===');
+};
+
+// --- DATA AGGREGATION FOR VIEWS ---
+export function getTrainData() {
+    const trains = {}; // key: stringified consolidated train path
+
+    products.forEach(product => {
+        if (product.machineIds && product.machineIds.length > 0) {
+            // Use consolidated path based on groups
+            const consolidatedPath = getConsolidatedTrainPath(product.machineIds);
+            const key = JSON.stringify(consolidatedPath);
+            if (!trains[key]) {
+                trains[key] = {
+                    key: key,
+                    consolidatedPath: consolidatedPath,
+                    machineIds: product.machineIds, // Keep original for compatibility
+                    products: [],
+                };
+            } else {
+                // Merge machine IDs from all products in this train
+                const existingIds = new Set(trains[key].machineIds);
+                product.machineIds.forEach(id => existingIds.add(id));
+                trains[key].machineIds = Array.from(existingIds).sort((a, b) => a - b);
+            }
+            trains[key].products.push(product);
+        }
+    });
+
+    const trainArray = Object.values(trains).map(train => {
+        return { ...train, id: trainIdMap.get(train.key) };
+    }).filter(train => train.id !== undefined);
+
+    trainArray.sort((a, b) => a.id - b.id);
+
+    if (trainArray.length === 0) return [];
+
+    // Assign proper train numbers using the new numbering system
+    const idMap = getTrainIdToLineNumberMap();
+    trainArray.forEach(train => {
+        const mapped = idMap.get(String(train.id));
+        train.number = mapped ? mapped.number : train.id;
+    });
+
+    trainArray.forEach(train => {
+        // Calculate ESSA using group-based consolidation for accuracy
+        train.essa = getGroupedTrainSurfaceArea(train.machineIds);
+        
+        // Assign line based on the most common line among products in this train
+        const productLines = train.products.map(p => p.line).filter(Boolean);
+        if (productLines.length > 0) {
+            // Find the most common line
+            const lineCounts = {};
+            productLines.forEach(line => {
+                lineCounts[line] = (lineCounts[line] || 0) + 1;
+            });
+            train.line = Object.keys(lineCounts).reduce((a, b) => lineCounts[a] > lineCounts[b] ? a : b);
+        } else {
+            train.line = 'Unassigned';
+        }
+
+        let worstProductByRpn = null;
+        let maxRpn = -1;
+        train.products.forEach(p => {
+            p.activeIngredients.forEach(ing => {
+                const { rpn } = calculateScores(ing);
+                if (rpn > maxRpn) {
+                    maxRpn = rpn;
+                    worstProductByRpn = { productName: p.name, ingredientName: ing.name, rpn: maxRpn, rating: getRpnRatingText(maxRpn) };
+                }
+            });
+        });
+        train.worstProductRpn = worstProductByRpn;
+
+        let lowestLtd = Infinity;
+        let lowestLtdProductId = -1;
+        train.products.forEach(p => {
+            p.activeIngredients.forEach(ing => {
+                if (ing.therapeuticDose < lowestLtd) {
+                    lowestLtd = ing.therapeuticDose;
+                    lowestLtdProductId = p.id;
+                }
+            });
+        });
+        train.lowestLtd = lowestLtd;
+        train.lowestLtdProductId = lowestLtdProductId;
+
+        const productRatios = train.products.map(p => {
+            const minRatioForProduct = Math.min(...p.activeIngredients.map(ing => (p.batchSizeKg * 1000) / (ing.mdd / 1000)));
+            return { productId: p.id, ratio: minRatioForProduct };
+        }).sort((a, b) => a.ratio - b.ratio);
+
+        let minBsMddRatio;
+        let minRatioProductId = -1;
+        if (productRatios.length > 0) {
+            const primaryMinRatioProduct = productRatios[0];
+            if (primaryMinRatioProduct.productId === lowestLtdProductId && productRatios.length > 1) {
+                const secondaryMinRatioProduct = productRatios[1];
+                minBsMddRatio = secondaryMinRatioProduct.ratio;
+                minRatioProductId = secondaryMinRatioProduct.productId;
+            } else {
+                minBsMddRatio = primaryMinRatioProduct.ratio;
+                minRatioProductId = primaryMinRatioProduct.productId;
+            }
+        } else {
+            minBsMddRatio = Infinity;
+        }
+        train.minBsMddRatio = minBsMddRatio;
+        train.minRatioProductId = minRatioProductId;
+        
+        const productWithMinBatchSize = train.products.reduce((minP, currentP) =>
+            currentP.batchSizeKg < minP.batchSizeKg ? currentP : minP, train.products[0]);
+        train.minMbsKg = productWithMinBatchSize.batchSizeKg;
+        train.minMbsProductId = productWithMinBatchSize.id;
+
+        const pdeValues = train.products.flatMap(p => p.activeIngredients).map(i => i.pde).filter(pde => pde != null);
+        train.lowestPde = pdeValues.length > 0 ? Math.min(...pdeValues) : null;
+        
+        const ld50Values = train.products.flatMap(p => p.activeIngredients).map(i => i.ld50).filter(ld50 => ld50 != null);
+        train.lowestLd50 = ld50Values.length > 0 ? Math.min(...ld50Values) : null;
+        
+        train.assumedSsa = 25;
+    });
+    
+    return trainArray;
+}
+
+export function getWorstCaseProductType(types) {
+    for (const type of productTypeHierarchy) {
+        if (types.includes(type)) {
+            return type;
+        }
+    }
+    const uniqueTypes = [...new Set(types)];
+    const nonStandardType = uniqueTypes.find(t => !productTypeHierarchy.includes(t));
+    if (nonStandardType) return nonStandardType;
+
+    return 'Other'; 
+}
+
+// Helper function to calculate largest ESSA for trains in the same line and dosage form
+export function getLargestEssaForLineAndDosageForm(targetTrain, allTrains) {
+    // Get the line and dosage form of the target train
+    const targetLine = targetTrain.line;
+    const targetDosageForms = [...new Set(targetTrain.products.map(p => p.productType || 'Other'))];
+    
+    // Filter trains that are in the same line and have overlapping dosage forms
+    const sameLineAndDosageTrains = allTrains.filter(train => {
+        const trainLine = train.line;
+        const trainDosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+        
+        // Check if train is in same line and has any overlapping dosage forms
+        const sameLineCheck = trainLine === targetLine;
+        const overlappingDosageForm = targetDosageForms.some(df => trainDosageForms.includes(df));
+        
+        return sameLineCheck && overlappingDosageForm;
+    });
+    
+    // Return the largest ESSA from filtered trains
+    return sameLineAndDosageTrains.length > 0 ? Math.max(...sameLineAndDosageTrains.map(t => t.essa)) : 0;
+}
+
+export function getMacoPerSwabForTrain(train, largestEssa) {
+    const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
+    const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+    const sf = sfConfig.max;
+    
+    const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+    const maco10ppm = 10 * train.minMbsKg;
+    let macoHealth = Infinity;
+    if (train.lowestPde !== null) {
+        macoHealth = train.lowestPde * train.minBsMddRatio;
+    }
+    const macoVisual = (0.004) * largestEssa;
+
+    const finalMaco = Math.min(macoDose, maco10ppm, macoHealth, macoVisual);
+    const macoPerArea = largestEssa > 0 ? finalMaco / largestEssa : 0;
+    return macoPerArea * train.assumedSsa;
+}
+
+// --- SELECT POPULATION ---
+export function populateSelectWithOptions(select, criteriaKey, addAllOption = false, optionsArray = null) { 
+    if (!select) return;
+    select.innerHTML = '';
+    
+    if (addAllOption) {
+        select.innerHTML = `<option value="all">All</option>`;
+    } else {
+        select.innerHTML = `<option value="" disabled selected>Select...</option>`;
+    }
+
+    let uniqueOptions;
+    if (optionsArray) {
+        uniqueOptions = [...new Set(optionsArray)];
+    } else {
+        const config = scoringCriteria[criteriaKey];
+        if (!config) return;
+        uniqueOptions = [...new Set(config.criteria.map(c => c.text))];
+    }
+    
+    uniqueOptions.forEach(text => {
+        select.innerHTML += `<option value="${text}">${text}</option>`;
+    });
+}
+
+// --- MACHINE GROUPING UTILITIES ---
+/**
+ * Consolidates machines by their groups for train path calculations
+ * @param {Array} machineIds - Array of machine IDs in the train path
+ * @returns {Array} Array of consolidated machine representations
+ */
+export function consolidateMachinesByGroup(machineIds) {
+    const consolidated = [];
+    const machineMap = new Map();
+    
+    // Group machines by their group property
+    machineIds.forEach(machineId => {
+        const machine = machines.find(m => m.id === machineId);
+        if (!machine) return;
+        
+        const groupKey = machine.group || `individual_${machine.id}`;
+        
+        if (!machineMap.has(groupKey)) {
+            machineMap.set(groupKey, {
+                group: machine.group || null,
+                machines: [],
+                maxArea: 0,
+                representativeMachine: machine
+            });
+        }
+        
+        const groupData = machineMap.get(groupKey);
+        groupData.machines.push(machine);
+        
+        // Track the machine with the largest surface area in the group
+        if (machine.area > groupData.maxArea) {
+            groupData.maxArea = machine.area;
+            groupData.representativeMachine = machine;
+        }
+    });
+    
+    // Convert to array format
+    machineMap.forEach((groupData, groupKey) => {
+        if (groupData.group) {
+            // Grouped machines - use worst case (largest area)
+            consolidated.push({
+                id: `group_${groupData.group}`,
+                name: `${groupData.group} (Group)`,
+                group: groupData.group,
+                area: groupData.maxArea,
+                stage: groupData.representativeMachine.stage,
+                isGroup: true,
+                machineCount: groupData.machines.length,
+                machines: groupData.machines
+            });
+        } else {
+            // Individual machine
+            consolidated.push({
+                ...groupData.representativeMachine,
+                isGroup: false,
+                machineCount: 1,
+                machines: [groupData.representativeMachine]
+            });
+        }
+    });
+    
+    return consolidated;
+}
+
+/**
+ * Gets the total surface area for all machines in a train path
+ * @param {Array} machineIds - Array of machine IDs in the train path
+ * @returns {number} Total surface area of all machines
+ */
+export function getGroupedTrainSurfaceArea(machineIds) {
+    // Calculate total surface area of all individual machines (no grouping)
+    return machineIds.reduce((total, machineId) => {
+        const machine = machines.find(m => m.id === machineId);
+        return total + (machine ? machine.area : 0);
+    }, 0);
+}
+
+/**
+ * Gets detailed information about machine groups in a train path
+ * @param {Array} machineIds - Array of machine IDs in the train path
+ * @returns {Object} Detailed grouping information
+ */
+export function getTrainGroupingDetails(machineIds) {
+    // Since we're not using grouping anymore, treat all machines as individuals
+    const groupDetails = {
+        totalMachines: machineIds.length,
+        consolidatedUnits: machineIds.length, // Same as total machines since no grouping
+        groups: [],
+        individuals: [],
+        totalSurfaceArea: 0,
+        worstCaseOptimization: 0
+    };
+    
+    // Calculate surface area for all individual machines
+    machineIds.forEach(machineId => {
+        const machine = machines.find(m => m.id === machineId);
+        if (machine) {
+            groupDetails.totalSurfaceArea += machine.area;
+            groupDetails.individuals.push({
+                id: machine.id,
+                name: machine.name,
+                area: machine.area
+            });
+        }
+    });
+    
+    // No optimization since we're using all individual machines
+    groupDetails.worstCaseOptimization = 0;
+    
+    return groupDetails;
+}
+
+/**
+ * Formats group information for display in train tables
+ * @param {Array} machineIds - Array of machine IDs in the train path
+ * @returns {string} Formatted HTML string for display
+ */
+export function formatTrainGroupDisplay(machineIds) {
+    // Display individual machines (no grouping)
+    return machineIds.map(machineId => {
+        const machine = machines.find(m => m.id === machineId);
+        const machineName = machine ? machine.name : `Unknown (ID: ${machineId})`;
+        const machineArea = machine ? machine.area : 0;
+        return `<span class="individual-machine" title="Machine: ${machineName} - Area: ${machineArea.toLocaleString()} cm²">${machineName}</span>`;
+    }).join(' → ');
+}
+
+// Consistent train ordering function for all views
+export function getConsistentTrainOrder(trains) {
+    return trains.sort((a, b) => {
+        // First sort by line
+        if (a.line !== b.line) {
+            const lineOrder = ['Solids', 'Semisolid', 'Liquids', 'Other'];
+            const aIndex = lineOrder.indexOf(a.line) !== -1 ? lineOrder.indexOf(a.line) : lineOrder.length;
+            const bIndex = lineOrder.indexOf(b.line) !== -1 ? lineOrder.indexOf(b.line) : lineOrder.length;
+            if (aIndex !== bIndex) return aIndex - bIndex;
+        }
+        
+        // Then sort by dosage form based on lowest train ID within each dosage form
+        if (a.dosageForm !== b.dosageForm) {
+            // Find the lowest train ID for each dosage form
+            const aDosageTrains = trains.filter(t => t.line === a.line && t.dosageForm === a.dosageForm);
+            const bDosageTrains = trains.filter(t => t.line === b.line && t.dosageForm === b.dosageForm);
+            
+            const aMinId = Math.min(...aDosageTrains.map(t => t.id));
+            const bMinId = Math.min(...bDosageTrains.map(t => t.id));
+            
+            if (aMinId !== bMinId) return aMinId - bMinId;
+        }
+        
+        // Finally sort by train ID
+        return a.id - b.id;
+    });
+}
+
+// --- PROPER CASE INPUT HANDLING ---
+export function applyProperCase(inputElement) {
+    if (!inputElement) return;
+    
+    // List of words that should remain lowercase
+    const lowercaseWords = ['cm', 'mg', 'kg', 'g', 'ml', 'l', 'ppm', 'ppb', 'mcg', 'iu', 'ui', 'mcg/kg', 'mg/kg', 'g/kg'];
+    
+    // List of words that should remain uppercase
+    const uppercaseWords = ['MACO', 'PDE', 'LD50', 'NOEL', 'ADE', 'RPN', 'ESSA', 'MDD', 'BS', 'API', 'FDA', 'EMA', 'ICH', 'GMP', 'SOP', 'QA', 'QC', 'R&D', 'IT', 'HR', 'CEO', 'CTO', 'CFO', 'VP', 'GM', 'PM', 'BA', 'UI', 'UX', 'API', 'SQL', 'HTML', 'CSS', 'JS', 'PHP', 'ASP', 'JSP', 'XML', 'JSON', 'REST', 'SOAP', 'HTTP', 'HTTPS', 'FTP', 'SFTP', 'SSH', 'SSL', 'TLS', 'IP', 'URL', 'URI', 'DNS', 'TCP', 'UDP', 'VPN', 'LAN', 'WAN', 'WIFI', 'GPS', 'RFID', 'NFC', 'USB', 'HDMI', 'VGA', 'DVI', 'SATA', 'PCI', 'AGP', 'RAM', 'ROM', 'CPU', 'GPU', 'SSD', 'HDD', 'CD', 'DVD', 'BD', 'USB', 'HDMI', 'VGA', 'DVI', 'SATA', 'PCI', 'AGP', 'RAM', 'ROM', 'CPU', 'GPU', 'SSD', 'HDD', 'CD', 'DVD', 'BD'];
+    
+    inputElement.addEventListener('input', function(e) {
+        const value = e.target.value;
+        const words = value.split(' ');
+        
+        const processedWords = words.map(word => {
+            // Check if word should remain lowercase
+            if (lowercaseWords.includes(word.toLowerCase())) {
+                return word.toLowerCase();
+            }
+            
+            // Check if word should remain uppercase
+            if (uppercaseWords.includes(word.toUpperCase())) {
+                return word.toUpperCase();
+            }
+            
+            // Apply proper case (first letter uppercase, rest lowercase)
+            if (word.length > 0) {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }
+            
+            return word;
+        });
+        
+        const newValue = processedWords.join(' ');
+        
+        // Only update if the value actually changed
+        if (newValue !== value) {
+            e.target.value = newValue;
+        }
+    });
+}
+
+// Function to initialize proper case for all relevant inputs
+export function initializeProperCaseInputs() {
+    // Find all input fields that should have proper case
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
+    
+    inputs.forEach(input => {
+        // Skip inputs that shouldn't have proper case (like product codes, numbers, etc.)
+        const skipClasses = ['no-proper-case', 'product-code', 'numeric', 'email'];
+        const shouldSkip = skipClasses.some(cls => input.classList.contains(cls));
+        
+        if (!shouldSkip) {
+            applyProperCase(input);
+        }
+    });
+}

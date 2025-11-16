@@ -1,1 +1,574 @@
-const a8_0x1b7ad5=a8_0x5007;(function(_0x19a62b,_0x5bb072){const _0x23111c=a8_0x5007,_0x127836=_0x19a62b();while(!![]){try{const _0x14dd75=parseInt(_0x23111c(0xfa))/0x1+-parseInt(_0x23111c(0x122))/0x2*(-parseInt(_0x23111c(0x170))/0x3)+-parseInt(_0x23111c(0x163))/0x4*(-parseInt(_0x23111c(0xf1))/0x5)+-parseInt(_0x23111c(0x171))/0x6*(parseInt(_0x23111c(0xf9))/0x7)+parseInt(_0x23111c(0xe9))/0x8+parseInt(_0x23111c(0x190))/0x9*(-parseInt(_0x23111c(0x9a))/0xa)+-parseInt(_0x23111c(0xb8))/0xb;if(_0x14dd75===_0x5bb072)break;else _0x127836['push'](_0x127836['shift']());}catch(_0x397048){_0x127836['push'](_0x127836['shift']());}}}(a8_0x18a5,0x43a2b));import*as a8_0x5f4534 from'./state.js';import{getTrainData as a8_0x2366b2,getWorstCaseProductType as a8_0x2e1d59,getTrainsGroupedByLine as a8_0x175ede,getLargestEssaForLineAndDosageForm as a8_0xe18b25,getConsistentTrainOrder as a8_0x49587e}from'./utils.js';import*as a8_0x5e9015 from'./utils.js';function s(_0x5afa7d,_0x40ae1e=''){const _0x23773f=a8_0x5007,_0x311973={'WZCjZ':function(_0x3f5b43,_0x23dbe3){return _0x3f5b43===_0x23dbe3;},'viULL':function(_0x4efc57,_0x449654){return _0x4efc57+_0x449654;},'ZVwvu':function(_0x3f7f7f,_0x4002bb){return _0x3f7f7f<_0x4002bb;},'bTuBg':function(_0x526ed1,_0x2a9190){return _0x526ed1+_0x2a9190;},'aFKIT':function(_0x5c4958,_0x21d7ba){return _0x5c4958<_0x21d7ba;}};if(_0x311973['WZCjZ'](0x0,_0x5afa7d)||null==_0x5afa7d||isNaN(_0x5afa7d))return _0x311973[_0x23773f(0xb1)]('0',_0x40ae1e?_0x311973[_0x23773f(0xb1)]('\x20',_0x40ae1e):'');const _0x9b5de=Math[_0x23773f(0x17b)](_0x5afa7d);return _0x311973[_0x23773f(0x133)](_0x9b5de,0.0001)?''+_0x5afa7d[_0x23773f(0xf7)](0x3)+(_0x40ae1e?_0x311973[_0x23773f(0x180)]('\x20',_0x40ae1e):''):_0x311973[_0x23773f(0x143)](_0x9b5de,0.01)?''+_0x5afa7d[_0x23773f(0x18a)](0x6)+(_0x40ae1e?'\x20'+_0x40ae1e:''):''+_0x5afa7d[_0x23773f(0x18a)](0x4)+(_0x40ae1e?_0x311973[_0x23773f(0xb1)]('\x20',_0x40ae1e):'');}function a8_0x18a5(){const _0x2289b8=['\x22>...</span></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20rounded-md\x22\x20style=\x22background-color:\x20var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22font-mono\x20text-xs\x22\x20style=\x22color:var(--text-secondary);\x22>MACO\x20=\x20(ADI\x20*\x20Min\x20BS/MDD\x20Ratio)</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b\x20\x20class=\x22text-sm\x22>MACO:</b>\x20<span\x20\x20class=\x22text-sm\x22\x20id=\x22maco-value-train-','noTrainsForDetergentMessage','log',')\x20/\x20','printSelectedTrain','<h3\x20class=\x22text-lg\x20font-semibold\x20mb-4\x22\x20style=\x22color:\x20var(--text-primary);\x22>','flex\x20items-center\x20gap-x-2\x20mb-2','Train\x20','length','unknown','EsZAc','AxVAX','mr-2\x20export-detergent-train-checkbox','===\x20DETERGENT\x20MACO\x20CALCULATION\x20DEBUG\x20-\x20Train\x20','MACO\x20per\x20Area:\x20','LD50\x20values:','Safety\x20factor:\x20','recalculateDetergentMacoForTrain','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20oninput=\x22recalculateDetergentMacoForTrain(','key','export','toLocaleString','aGuSk','\x20route:\x20','name','YgpgH','Error\x20executing\x20detergent\x20print\x20selection:','SbKhK','nlTer','CzIjt','contains','style','ld50','toggle','dosage-group-content\x20transition-all\x20duration-300\x20','\x22>...</span></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20rounded-md\x22\x20style=\x22background-color:\x20var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22font-mono\x20text-xs\x22\x20style=\x22color:var(--text-secondary);\x22>MACO/Swab\x20=\x20(MACO/Area)\x20*\x20SSA</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b\x20class=\x22text-sm\x22>MACO\x20per\x20Swab:</b>\x20<span\x20\x20class=\x22text-sm\x22\x20id=\x22macoswab-value-train-','24QNgmHJ','\x22>...</span></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20rounded-md\x22\x20style=\x22background-color:\x20var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22font-mono\x20text-xs\x22\x20style=\x22color:var(--text-secondary);\x22>MACO/Area\x20=\x20MACO\x20/\x20Global\x20Largest\x20ESSA</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b\x20\x20class=\x22text-sm\x22>MACO\x20per\x20Area:</b>\x20<span\x20class=\x22text-sm\x22id=\x22macoarea-value-train-','cQZEJ','uFHcT','getElementById','ohLBi','Element\x20macoswab-value-train-','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-xs\x20px-2\x20py-1\x20rounded-full\x22\x20style=\x22background-color:\x20var(--bg-accent);\x20color:\x20var(--text-secondary);\x22>',')\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-xs\x20mt-1\x22\x20style=\x22color:var(--text-secondary);\x22>Range\x20for\x20','\x20-\x20','maxHeight','addEventListener','forEach','value','flex\x20items-center\x20px-4\x20py-2\x20text-sm\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20cursor-pointer','line','ijUPA','ZVwvu','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20rounded-md\x22\x20style=\x22background-color:\x20var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22font-mono\x20text-xs\x22\x20style=\x22color:var(--text-secondary);\x22>ADI\x20=\x20(5e-4\x20*\x20LD50\x20*\x20BW)\x20/\x20SF</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b\x20\x20class=\x22text-sm\x22>Acceptable\x20Daily\x20Intake\x20(ADI):</b>\x20<span\x20\x20class=\x22text-sm\x22\x20id=\x22adi-value-train-','type','min-ld50-train-','Error\x20executing\x20detergent\x20export\x20selection:','label','replace','target','Body\x20weight:\x20','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min=\x22','#detergentExportDropdown','FWaDa','\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','display','toggleDetergentDosageGroup','WFVkQ','aFKIT','map','\x22\x20placeholder=\x22Ingredient\x20Name\x22\x20class=\x22flex-1\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20oninput=\x22updateDetergentIngredient(','minBsMddRatio','train-card','min','scrollHeight','unyuV','./utils.js','orXdP','onclick','-detergent-train-checkbox:checked','No\x20Selection','mg/swab','<p\x20class=\x22text-sm\x20text-center\x20p-2\x22\x20style=\x22color:var(--text-secondary);\x22>Please\x20add\x20at\x20least\x20one\x20detergent\x20ingredient.</p>','LYeuE','CKArk','mIXgT','HjLCP','QurAv','removeEventListener','EMHTL','createElement','Error\x20populating\x20detergent\x20train\x20options:','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20class=\x22w-full\x20px-2\x20py-2\x20border\x20rounded-md\x20text-sm\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20value=\x22','click','AykRl','hidden','toggleDetergentExportDropdown','setDetergentIngredients','closest','QgfID','650908GRaEeK','\x20not\x20found','nextDetergentIngredientId','KrkOm','rIirO','-detergent-train-checkbox','zBjJM','vhUOW','detergentPrintDropdown','productType','executeDetergentPrintSelection','exportDetergentAllTrainsCheckbox',',\x20undefined,\x20\x27','15273AvePJJ','193098ODtwLp','Detergent\x20ingredients:','Min\x20LD50:\x20','showCustomAlert','sPjvQ','gkkBw','div','all','Detergent\x20MACO\x20group\x20elements\x20not\x20found\x20for\x20groupId:\x20','GKPIT','abs','assumedSsa','warn','querySelectorAll','\x20/\x20','bTuBg','pQwrr','dosageForm','ghsdI','print','number','block','\x22\x20class=\x22block\x20text-sm\x20font-small\x20mb-1\x22>Safety\x20Factor\x20(SF)</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20id=\x22sf-input-train-','fwvTg','checked','toFixed','safetyFactorConfig','umuDc','lFPVD','className','var(--text-primary)','45VQcIzT','eJITC','ywWGE','rotate(0deg)','alEzg','then','includes','dosage-group-header\x20mb-4\x20cursor-pointer\x20select-none','classList','Element\x20maco-value-train-','ceJQi','xphTy','Other','appendChild','push','[onclick=\x22toggleDetergentPrintDropdown()\x22]','Unassigned','exportDetergentMacoToExcel','EXnZi','.export-detergent-train-checkbox:checked','detergentIngredients','\x20*\x20','error','addDetergentIngredient','toggleDetergentPrintDropdown','KzUWr','detergentExportTrainOptions','Element\x20macoarea-value-train-','gADvt','\x22>...</span>\x20mg/kg</b>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20rounded-md\x20border\x22\x20style=\x22border-color:var(--border-color)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22sf-input-train-','bodyWeight','513050piLIao','detergentPrintTrainOptions','WiCXu','Element\x20adi-value-train-','Unknown','transform','Train\x20assumedSsa:\x20','setNextDetergentIngredientId','===\x20END\x20DETERGENT\x20MACO\x20CALCULATION\x20DEBUG\x20===','filter','color','remove','printCurrentView','EFjAJ','detergentExportDropdown','macoswab-value-train-','catch','MACO\x20per\x20Swab:\x20','route','innerHTML','POoJd','YfFYD','</h3>','viULL','collapsed','\x20mg/cm²','[onclick=\x22toggleDetergentExportDropdown()\x22]','sf-input-train-','TGWIe','maco-value-train-','3974894ARXvTR','ADI\x20calculation:\x20(5e-4\x20*\x20','WMNpV','textContent','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-header\x22\x20onclick=\x22toggleTrain(\x27dm-','add','./ui.js','MACO\x20calculation:\x20','\x20—\x20Train\x20','Acagb','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22train-toggle\x22\x20id=\x22toggle-dm-','QjiPr','gLIbl','yPwkG','max','MVFbM','bzMOU','currentLineFilter','detergentIngredientsContainer','egznw','trains','span','MBbnz','owalM','aMzpg','qmWyC','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20oninput=\x22updateDetergentIngredient(','dm-group-toggle-','\x27)\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onchange=\x22clampSafetyFactor(this,\x20','EdHxQ','\x22\x20placeholder=\x22LD50\x20(mg/kg)\x22\x20class=\x22w-32\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22\x20min=\x220\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22w-8\x20px-3\x20py-2\x20flex\x20items-center\x20justify-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22removeDetergentIngredient(','DetergentAllTrainsCheckbox','mb-6','wNFMO','checkbox','tFSdX','\x20===','cHemf','Enjyf','rRTfU','Please\x20select\x20at\x20least\x20one\x20train\x20to\x20print.','overflow','HCGRu','Please\x20select\x20at\x20least\x20one\x20train\x20to\x20export.','bHRgu','dm-group-content-','executeDetergentExportSelection','macoarea-value-train-','435616lUzOyW','indeterminate','onchange','sort','afsei','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20justify-between\x20py-2\x20px-3\x20rounded-lg\x20border\x20transition-all\x20hover:bg-gray-50\x20dark:hover:bg-gray-800/50\x22\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20transparent;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20class=\x22text-md\x20font-semibold\x20flex\x20items-center\x20gap-2\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22group-toggle-icon\x20transition-transform\x20duration-200\x22\x20id=\x22dm-group-toggle-','get','</b>.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-xs\x20mt-1\x22\x20style=\x22color:var(--text-secondary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Min\x20LD50\x20=\x20<b><span\x20id=\x22min-ld50-train-','10hiZFHV','detergentMaco','keys','detergentMacoResults','\x20=\x20','none','toExponential','find','21BJveQR','550465asqfzV','zFDag','yRNai',',\x20\x27ld50\x27,\x20this.value)\x22\x20value=\x22'];a8_0x18a5=function(){return _0x2289b8;};return a8_0x18a5();}window[a8_0x1b7ad5(0x141)]=function(_0x39376a){const _0x12095a=a8_0x1b7ad5,_0x3d6c51={'pgKMA':_0x12095a(0xf6),'lFPVD':'collapsed','POoJd':'rotate(-90deg)','wNFMO':function(_0x4fea32,_0x48d13c){return _0x4fea32||_0x48d13c;},'fkSMr':_0x12095a(0x193),'Acagb':function(_0x4a2659,_0xde167b){return _0x4a2659+_0xde167b;},'KrkOm':function(_0x186876,_0x3853de){return _0x186876+_0x3853de;},'DcPIx':function(_0x14abe2,_0xe49e97){return _0x14abe2(_0xe49e97);}},_0x9c8152=document['getElementById']('dm-group-content-'+_0x39376a),_0x299fc1=document[_0x12095a(0x126)](_0x12095a(0xd4)+_0x39376a);if(_0x3d6c51[_0x12095a(0xda)](!_0x9c8152,!_0x299fc1))return void console['warn'](_0x12095a(0x179)+_0x39376a);_0x9c8152[_0x12095a(0x198)][_0x12095a(0x11c)](_0x12095a(0xb2))?(_0x9c8152[_0x12095a(0x198)][_0x12095a(0xa5)](_0x3d6c51[_0x12095a(0x18d)]),_0x299fc1['textContent']='▼',_0x299fc1[_0x12095a(0x11d)][_0x12095a(0x9f)]=_0x3d6c51['fkSMr'],_0x9c8152[_0x12095a(0x11d)]['maxHeight']=_0x3d6c51[_0x12095a(0xc1)](_0x9c8152[_0x12095a(0x149)],'px'),setTimeout(()=>{const _0x17ebb4=_0x12095a;_0x9c8152[_0x17ebb4(0x198)][_0x17ebb4(0x11c)](_0x17ebb4(0xb2))||(_0x9c8152[_0x17ebb4(0x11d)][_0x17ebb4(0x12c)]=_0x3d6c51['pgKMA']);},0x12c)):(_0x9c8152[_0x12095a(0x11d)][_0x12095a(0x12c)]=_0x3d6c51[_0x12095a(0x166)](_0x9c8152[_0x12095a(0x149)],'px'),_0x3d6c51['DcPIx'](requestAnimationFrame,()=>{const _0x51e20a=_0x12095a;_0x9c8152[_0x51e20a(0x198)]['add'](_0x3d6c51[_0x51e20a(0x18d)]),_0x299fc1[_0x51e20a(0xbb)]='▶',_0x299fc1[_0x51e20a(0x11d)]['transform']=_0x3d6c51[_0x51e20a(0xae)],_0x9c8152[_0x51e20a(0x11d)][_0x51e20a(0x12c)]='0px';}));};export function renderDetergentMaco(_0x3069da=null){const _0x3620fe=a8_0x1b7ad5,_0x5eb496={'ijUPA':_0x3620fe(0x1a0),'ghsdI':'Other','unyuV':function(_0x1ef008,_0x12b4b4){return _0x1ef008(_0x12b4b4);},'cQZEJ':_0x3620fe(0x197),'EFjAJ':function(_0x3d4ccc,_0x1e3ff8){return _0x3d4ccc!==_0x1e3ff8;},'SbKhK':_0x3620fe(0x177),'TGWIe':_0x3620fe(0x15e),'alEzg':_0x3620fe(0xd9),'yATYu':_0x3620fe(0xf4),'rIirO':_0x3620fe(0xff),'owalM':function(_0x5a74bc){return _0x5a74bc();},'GDodx':function(_0x172ae4){return _0x172ae4();},'zBjJM':_0x3620fe(0x186),'GsRxf':_0x3620fe(0xf6),'AykRl':_0x3620fe(0x178)},_0x5ba6d4=document[_0x3620fe(0x126)](_0x5eb496['yATYu']),_0xe573e6=document[_0x3620fe(0x126)](_0x5eb496[_0x3620fe(0x167)]);_0x5ba6d4[_0x3620fe(0xad)]='',_0x5eb496[_0x3620fe(0xd0)](renderDetergentIngredientsList);const _0x3510b7=a8_0x2366b2();let _0x5f46cf=_0x5eb496['GDodx'](a8_0x175ede);if(_0x3069da&&(_0x5f46cf=_0x5f46cf[_0x3620fe(0xa3)](_0x2e8989=>_0x2e8989[_0x3620fe(0x131)]===_0x3069da)),!_0x5f46cf||0x0===_0x5f46cf['length'])return void(_0xe573e6['style'][_0x3620fe(0x140)]=_0x5eb496[_0x3620fe(0x169)]);_0xe573e6[_0x3620fe(0x11d)][_0x3620fe(0x140)]=_0x5eb496['GsRxf'];const _0x43ee0b={};_0x3510b7[_0x3620fe(0x12e)](_0x16bb21=>{const _0x28a918=_0x3620fe;_0x16bb21[_0x28a918(0x111)]&&(_0x43ee0b[_0x16bb21[_0x28a918(0x111)]]=_0x16bb21);});const _0x229ab8=[];_0x5f46cf[_0x3620fe(0x12e)](_0x4b8234=>{const _0x44a2a9=_0x3620fe;_0x4b8234['trains'][_0x44a2a9(0x12e)](_0x4bd65e=>{const _0x449d62=_0x44a2a9,_0x1c89be=_0x43ee0b[_0x4bd65e[_0x449d62(0x111)]];if(!_0x1c89be||!_0x1c89be['id'])return;const _0x4ab12c={..._0x4bd65e,..._0x1c89be};_0x229ab8[_0x449d62(0x19e)](_0x4ab12c);});});const _0x301639=_0x5eb496['unyuV'](a8_0x49587e,_0x229ab8);let _0x3dd6e4=_0x301639;if(window[_0x3620fe(0x102)]&&_0x5eb496['EFjAJ'](_0x5eb496[_0x3620fe(0x15d)],window[_0x3620fe(0x102)])&&(_0x3dd6e4=Array['isArray'](window['printSelectedTrain'])?_0x301639[_0x3620fe(0xa3)](_0x2dc3ef=>window[_0x3620fe(0x102)][_0x3620fe(0x196)](String(_0x2dc3ef['id']))):_0x301639[_0x3620fe(0xa3)](_0x3935d0=>String(_0x3935d0['id'])===String(window[_0x3620fe(0x102)]))),0x0===_0x3dd6e4[_0x3620fe(0x106)])return void(_0xe573e6[_0x3620fe(0x11d)][_0x3620fe(0x140)]=_0x5eb496[_0x3620fe(0x169)]);const _0x8b5550=a8_0x5e9015['getTrainIdToLineNumberMap'](),_0x450461={};_0x3dd6e4[_0x3620fe(0x12e)](_0x24ce64=>{const _0xcc7a23=_0x3620fe,_0x18f6df=_0x24ce64[_0xcc7a23(0x131)]||_0x5eb496[_0xcc7a23(0x132)],_0x2eea9b=_0x24ce64[_0xcc7a23(0x182)]||_0x5eb496[_0xcc7a23(0x183)];_0x450461[_0x18f6df]||(_0x450461[_0x18f6df]={}),_0x450461[_0x18f6df][_0x2eea9b]||(_0x450461[_0x18f6df][_0x2eea9b]=[]),_0x450461[_0x18f6df][_0x2eea9b]['push'](_0x24ce64);}),Object['keys'](_0x450461)[_0x3620fe(0x12e)](_0xab9aa=>{const _0x456e61=_0x3620fe,_0x59d564={'rSGjX':function(_0x5d6c67,_0x21bd22){const _0x2d8f21=a8_0x5007;return _0x5eb496[_0x2d8f21(0x14a)](_0x5d6c67,_0x21bd22);},'MvEMM':_0x456e61(0x147),'RUnve':_0x5eb496[_0x456e61(0x124)],'EXnZi':function(_0x2b0de4,_0x4b48aa){const _0x4da5c5=_0x456e61;return _0x5eb496[_0x4da5c5(0xa7)](_0x2b0de4,_0x4b48aa);},'nlTer':_0x5eb496['SbKhK'],'bzMOU':_0x456e61(0x120),'EsZAc':_0x5eb496[_0x456e61(0xb6)]},_0x3db143=document[_0x456e61(0x159)](_0x5eb496[_0x456e61(0x119)]);_0x3db143[_0x456e61(0x18e)]=_0x5eb496[_0x456e61(0x194)],_0x3db143[_0x456e61(0xad)]=_0x456e61(0x103)+_0xab9aa+_0x456e61(0xb0),_0x5ba6d4['appendChild'](_0x3db143);const _0x5e98d5=_0x450461[_0xab9aa];Object[_0x456e61(0xf3)](_0x5e98d5)[_0x456e61(0xec)]((_0x543e57,_0x36f374)=>{const _0x1e8337=_0x456e61,_0x3c76c2=_0x5e98d5[_0x543e57],_0x3110d0=_0x5e98d5[_0x36f374];return Math['min'](..._0x3c76c2[_0x1e8337(0x144)](_0x201521=>_0x201521[_0x1e8337(0x185)]))-Math['min'](..._0x3110d0[_0x1e8337(0x144)](_0x525580=>_0x525580['number']));})[_0x456e61(0x12e)](_0x23b10a=>{const _0x141c96=_0x456e61,_0x37dd6a={'sPjvQ':function(_0x120cce,_0x1509ff){return _0x59d564['rSGjX'](_0x120cce,_0x1509ff);},'uJXcY':_0x59d564['MvEMM'],'Enjyf':'unknown'},_0x4f6490=_0xab9aa['replace'](/\s+/g,'')+'-'+_0x23b10a[_0x141c96(0x139)](/\s+/g,''),_0x416db3=document[_0x141c96(0x159)](_0x141c96(0x177));_0x416db3['className']=_0x59d564['RUnve'],_0x416db3[_0x141c96(0x14d)]=()=>toggleDetergentDosageGroup(_0x4f6490),_0x416db3[_0x141c96(0xad)]=_0x141c96(0xee)+_0x4f6490+_0x141c96(0x13f)+_0x23b10a+_0x141c96(0x129)+_0x5e98d5[_0x23b10a][_0x141c96(0x106)]+'\x20train'+(_0x59d564[_0x141c96(0x1a2)](0x1,_0x5e98d5[_0x23b10a]['length'])?'s':'')+_0x141c96(0xc2),_0x5ba6d4[_0x141c96(0x19d)](_0x416db3);const _0x1c67c7=document['createElement'](_0x59d564[_0x141c96(0x11a)]);_0x1c67c7[_0x141c96(0x18e)]=_0x59d564[_0x141c96(0xc9)],_0x1c67c7['id']=_0x141c96(0xe6)+_0x4f6490,_0x1c67c7['style'][_0x141c96(0xe2)]=_0x59d564[_0x141c96(0x108)],_0x5ba6d4[_0x141c96(0x19d)](_0x1c67c7),_0x5e98d5[_0x23b10a][_0x141c96(0x12e)](_0x28ba9b=>{const _0x30c69d=_0x141c96,_0x376e5f=_0x28ba9b['products'][_0x30c69d(0x144)](_0x39d35d=>_0x39d35d[_0x30c69d(0x16c)]),_0x1a9d29=_0x37dd6a[_0x30c69d(0x175)](a8_0x2e1d59,_0x376e5f),_0x1c132d=a8_0x5f4534[_0x30c69d(0x18b)][_0x1a9d29]||a8_0x5f4534[_0x30c69d(0x18b)][_0x30c69d(0x19c)],_0x45a2ed=document['createElement'](_0x30c69d(0x177));_0x45a2ed[_0x30c69d(0x18e)]=_0x37dd6a['uJXcY'];const _0x27ab83=_0x8b5550['get'](String(_0x28ba9b['id'])),_0x47db40=_0x27ab83?'Train\x20'+_0x27ab83['number']:_0x30c69d(0x105)+_0x28ba9b['id'],_0x5287ca=_0x28ba9b['id']+'-'+(_0x28ba9b['dosageForm']||_0x37dd6a['Enjyf']);_0x45a2ed[_0x30c69d(0xad)]=_0x30c69d(0xbc)+_0x5287ca+'\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>'+_0x47db40+_0x30c69d(0x12b)+(_0x28ba9b[_0x30c69d(0x182)]||_0x30c69d(0x9e))+_0x30c69d(0xc3)+_0x5287ca+'\x22>▶</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-content\x20collapsed\x22\x20id=\x22content-dm-'+_0x5287ca+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-content-inner\x20space-y-3\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20rounded-md\x22\x20style=\x22background-color:\x20var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-xs\x20mt-1\x22\x20style=\x22color:var(--text-secondary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Based\x20on\x20products\x20in\x20the\x20train,\x20the\x20minimum\x20(Batch\x20Size\x20/\x20MDD)\x20ratio\x20is:\x20<b>'+_0x28ba9b['minBsMddRatio'][_0x30c69d(0x113)](void 0x0,{'maximumFractionDigits':0x2})+_0x30c69d(0xf0)+_0x5287ca+_0x30c69d(0x98)+_0x5287ca+_0x30c69d(0x187)+_0x5287ca+_0x30c69d(0x15b)+_0x1c132d[_0x30c69d(0xc7)]+_0x30c69d(0x13c)+_0x1c132d[_0x30c69d(0x148)]+'\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max=\x22'+_0x1c132d[_0x30c69d(0xc7)]+_0x30c69d(0x110)+_0x28ba9b['id']+_0x30c69d(0x16f)+(_0x28ba9b[_0x30c69d(0x182)]||_0x37dd6a[_0x30c69d(0xdf)])+_0x30c69d(0xd5)+_0x28ba9b['id']+_0x30c69d(0x12a)+_0x1c132d[_0x30c69d(0xac)]+_0x30c69d(0x115)+_0x1c132d[_0x30c69d(0x148)][_0x30c69d(0x113)]()+_0x30c69d(0x12b)+_0x1c132d[_0x30c69d(0xc7)]['toLocaleString']()+_0x30c69d(0x134)+_0x5287ca+_0x30c69d(0xfe)+_0x5287ca+_0x30c69d(0x123)+_0x5287ca+_0x30c69d(0x121)+_0x5287ca+'\x22>...</span></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x1c67c7[_0x30c69d(0x19d)](_0x45a2ed),recalculateDetergentMacoForTrain(_0x28ba9b['id'],void 0x0,_0x28ba9b[_0x30c69d(0x182)]||_0x37dd6a['Enjyf']);});});});}export function recalculateDetergentMacoForTrain(_0x4072f2,_0x202884,_0x28d60e){const _0x3d62e5=a8_0x1b7ad5,_0x33ebc3={'LYeuE':function(_0x35ce1e){return _0x35ce1e();},'aMzpg':_0x3d62e5(0x107),'YfFYD':function(_0x2ee1c6,_0x29b47c){return _0x2ee1c6===_0x29b47c;},'gkkBw':function(_0x43be4,_0x99fda){return _0x43be4>_0x99fda;},'xphTy':function(_0x14c173,_0x19245b){return _0x14c173(_0x19245b);},'lsDZy':_0x3d62e5(0x99),'KzUWr':function(_0x56d0f1,_0x27e795){return _0x56d0f1(_0x27e795);},'EdHxQ':function(_0x4b514f,_0x588da3){return _0x4b514f/_0x588da3;},'ceJQi':function(_0x5f44c6,_0x1afecd){return _0x5f44c6*_0x1afecd;},'vhUOW':_0x3d62e5(0xa2),'yAtPv':function(_0x595bcc,_0x39c37c,_0x5e1b79){return _0x595bcc(_0x39c37c,_0x5e1b79);},'jtfpe':_0x3d62e5(0x150)},_0xda0154=_0x33ebc3[_0x3d62e5(0x152)](a8_0x2366b2)[_0x3d62e5(0xf8)](_0x15130e=>_0x15130e['id']===_0x4072f2);if(!_0xda0154)return;const _0x1c233f=_0x4072f2+'-'+(_0x28d60e||_0x33ebc3[_0x3d62e5(0xd1)]);if(_0x33ebc3[_0x3d62e5(0xaf)](void 0x0,_0x202884)){const _0x28f245=_0x33ebc3[_0x3d62e5(0x152)](a8_0x2366b2);_0x202884=a8_0xe18b25(_0xda0154,_0x28f245);}const _0x286d20=a8_0x5f4534[_0x3d62e5(0x1a4)][_0x3d62e5(0x144)](_0x5ea7c7=>parseFloat(_0x5ea7c7['ld50']))[_0x3d62e5(0xa3)](_0x3a1207=>!isNaN(_0x3a1207)),_0x46b6ea=_0x33ebc3[_0x3d62e5(0x176)](_0x286d20[_0x3d62e5(0x106)],0x0)?Math[_0x3d62e5(0x148)](..._0x286d20):0x0,_0x2f8d98=_0x33ebc3[_0x3d62e5(0x19b)](parseFloat,document['getElementById'](_0x33ebc3['lsDZy'])?.[_0x3d62e5(0x12f)])||0x46,_0x56ff6f=_0x33ebc3[_0x3d62e5(0x1a9)](parseFloat,document[_0x3d62e5(0x126)](_0x3d62e5(0xb5)+_0x1c233f)?.[_0x3d62e5(0x12f)])||0x1;console[_0x3d62e5(0x100)](_0x3d62e5(0x10b)+_0x4072f2+_0x3d62e5(0xdd)),console[_0x3d62e5(0x100)](_0x3d62e5(0x172),a8_0x5f4534[_0x3d62e5(0x1a4)]),console[_0x3d62e5(0x100)](_0x3d62e5(0x10d),_0x286d20),console['log'](_0x3d62e5(0x173)+_0x46b6ea),console[_0x3d62e5(0x100)](_0x3d62e5(0x13b)+_0x2f8d98),console[_0x3d62e5(0x100)](_0x3d62e5(0x10e)+_0x56ff6f),console[_0x3d62e5(0x100)]('Train\x20minBsMddRatio:\x20'+_0xda0154[_0x3d62e5(0x146)]),console[_0x3d62e5(0x100)]('Line\x20largest\x20ESSA:\x20'+_0x202884),console[_0x3d62e5(0x100)](_0x3d62e5(0xa0)+_0xda0154[_0x3d62e5(0x17c)]);const _0x326588=_0x33ebc3[_0x3d62e5(0xd6)](_0x33ebc3[_0x3d62e5(0x19a)](0.0005*_0x46b6ea,_0x2f8d98),_0x56ff6f);console[_0x3d62e5(0x100)](_0x3d62e5(0xb9)+_0x46b6ea+'\x20*\x20'+_0x2f8d98+_0x3d62e5(0x101)+_0x56ff6f+'\x20=\x20'+_0x326588);const _0x58e17c=_0x33ebc3['ceJQi'](_0x326588,_0xda0154['minBsMddRatio']);console[_0x3d62e5(0x100)](_0x3d62e5(0xbf)+_0x326588+_0x3d62e5(0x1a5)+_0xda0154['minBsMddRatio']+_0x3d62e5(0xf5)+_0x58e17c);const _0x25114a=_0x202884>0x0?_0x58e17c/_0x202884:0x0;console[_0x3d62e5(0x100)](_0x3d62e5(0x10c)+_0x58e17c+_0x3d62e5(0x17f)+_0x202884+_0x3d62e5(0xf5)+_0x25114a);const _0x1e0e30=_0x25114a*_0xda0154[_0x3d62e5(0x17c)];console['log'](_0x3d62e5(0xab)+_0x25114a+_0x3d62e5(0x1a5)+_0xda0154[_0x3d62e5(0x17c)]+'\x20=\x20'+_0x1e0e30),console[_0x3d62e5(0x100)](_0x33ebc3[_0x3d62e5(0x16a)]);const _0x339c31=document['getElementById'](_0x3d62e5(0x136)+_0x1c233f),_0x2d30be=document[_0x3d62e5(0x126)]('adi-value-train-'+_0x1c233f),_0x275da2=document[_0x3d62e5(0x126)](_0x3d62e5(0xb7)+_0x1c233f),_0xe4f7b8=document[_0x3d62e5(0x126)](_0x3d62e5(0xe8)+_0x1c233f),_0x13c8e1=document[_0x3d62e5(0x126)](_0x3d62e5(0xa9)+_0x1c233f);_0x339c31&&(_0x339c31[_0x3d62e5(0xbb)]=_0x46b6ea['toLocaleString']()),_0x2d30be&&(_0x2d30be['textContent']=_0x326588['toFixed'](0x4)+'\x20mg'),_0x275da2&&(_0x275da2[_0x3d62e5(0xbb)]=_0x33ebc3['yAtPv'](s,_0x58e17c,'mg')),_0xe4f7b8&&(_0xe4f7b8[_0x3d62e5(0xbb)]=_0x25114a[_0x3d62e5(0xf7)](0x3)+_0x3d62e5(0xb3)),_0x13c8e1&&(_0x13c8e1[_0x3d62e5(0xbb)]=s(_0x1e0e30,_0x33ebc3['jtfpe'])),_0x339c31||console[_0x3d62e5(0x17d)]('Element\x20min-ld50-train-'+_0x1c233f+_0x3d62e5(0x164)),_0x2d30be||console['warn'](_0x3d62e5(0x9d)+_0x1c233f+_0x3d62e5(0x164)),_0x275da2||console['warn'](_0x3d62e5(0x199)+_0x1c233f+'\x20not\x20found'),_0xe4f7b8||console[_0x3d62e5(0x17d)](_0x3d62e5(0x96)+_0x1c233f+'\x20not\x20found'),_0x13c8e1||console[_0x3d62e5(0x17d)](_0x3d62e5(0x128)+_0x1c233f+_0x3d62e5(0x164));}export function renderDetergentIngredientsList(){const _0x1102b2=a8_0x1b7ad5,_0x29798d={'SUFKC':function(_0x62aec6,_0x31f171){return _0x62aec6===_0x31f171;}},_0x2d64cb=document[_0x1102b2(0x126)](_0x1102b2(0xcb));_0x2d64cb['innerHTML']='',_0x29798d['SUFKC'](0x0,a8_0x5f4534['detergentIngredients']['length'])&&(_0x2d64cb['innerHTML']=_0x1102b2(0x151)),a8_0x5f4534[_0x1102b2(0x1a4)]['forEach'](_0xe91995=>{const _0xff721=_0x1102b2,_0x52c1c5=document[_0xff721(0x159)](_0xff721(0x177));_0x52c1c5['className']=_0xff721(0x104),_0x52c1c5[_0xff721(0xad)]=_0xff721(0xd3)+_0xe91995['id']+',\x20\x27name\x27,\x20this.value)\x22\x20value=\x22'+_0xe91995[_0xff721(0x116)]+_0xff721(0x145)+_0xe91995['id']+_0xff721(0xfd)+_0xe91995[_0xff721(0x11e)]+_0xff721(0xd7)+_0xe91995['id']+')\x22\x20class=\x22text-red-500\x20hover:bg-red-50\x20rounded\x20p-1\x22\x20title=\x22Remove\x20Ingredient\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M2.146\x202.854a.5.5\x200\x201\x201\x20.708-.708L8\x207.293l5.146-5.147a.5.5\x200\x200\x201\x20.708.708L8.707\x208l5.147\x205.146a.5.5\x200\x200\x201-.708.708L8\x208.707l-5.146\x205.147a.5.5\x200\x200\x201-.708-.708L7.293\x208\x202.146\x202.854Z\x22/></svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x2d64cb[_0xff721(0x19d)](_0x52c1c5);});}export function addDetergentIngredient(){const _0x560d08=a8_0x1b7ad5,_0xbf3158={'rRTfU':function(_0x47a00a){return _0x47a00a();}},_0x8d5499=[...a8_0x5f4534[_0x560d08(0x1a4)],{'id':a8_0x5f4534['nextDetergentIngredientId'],'name':'','ld50':''}];a8_0x5f4534[_0x560d08(0xa1)](a8_0x5f4534[_0x560d08(0x165)]+0x1),a8_0x5f4534[_0x560d08(0x160)](_0x8d5499),renderDetergentIngredientsList(),_0xbf3158[_0x560d08(0xe0)](renderDetergentMaco);}export function removeDetergentIngredient(_0xf64ca1){const _0x30a88a=a8_0x1b7ad5,_0x5203ac={'yfncf':function(_0x270147){return _0x270147();}},_0x113b3c=a8_0x5f4534[_0x30a88a(0x1a4)][_0x30a88a(0xa3)](_0x39f0d9=>_0x39f0d9['id']!==_0xf64ca1);a8_0x5f4534[_0x30a88a(0x160)](_0x113b3c),renderDetergentIngredientsList(),_0x5203ac['yfncf'](renderDetergentMaco);}export function updateDetergentIngredient(_0x107b68,_0x21eeff,_0x3c32bc){const _0x5491b4=a8_0x1b7ad5,_0x132e9d={'Xxjhw':function(_0x318fdf){return _0x318fdf();}},_0x348172=a8_0x5f4534['detergentIngredients'][_0x5491b4(0xf8)](_0xc54416=>_0xc54416['id']===_0x107b68);_0x348172&&(_0x348172[_0x21eeff]=_0x3c32bc,_0x132e9d['Xxjhw'](renderDetergentMaco));}export function populateDetergentTrainOptions(){const _0x1f47c6=a8_0x1b7ad5,_0x859f70={'WiCXu':_0x1f47c6(0x138),'zFDag':'input','egznw':'checkbox','LQCIf':_0x1f47c6(0x10a),'MBbnz':'Unknown','HCGRu':_0x1f47c6(0x130),'krVFH':_0x1f47c6(0x18f),'GKPIT':'span','eJITC':function(_0x449592,_0x293581){return _0x449592(_0x293581);},'CKArk':function(_0x33a54f){return _0x33a54f();},'mIXgT':function(_0x12fbd0,_0x5641cb){return _0x12fbd0!==_0x5641cb;},'QgfID':'all','ywWGE':function(_0x45be76,_0x590a14){return _0x45be76(_0x590a14);},'YgpgH':_0x1f47c6(0x95),'AxVAX':_0x1f47c6(0x9b),'ehPac':_0x1f47c6(0x14b)};import(_0x859f70['ehPac'])[_0x1f47c6(0x195)](_0x28b46d=>{const _0x3c0918=_0x1f47c6,{getTrainData:_0x13ab15,getTrainsGroupedByLine:_0xe8cd6,getTrainIdToLineNumberMap:_0x11176c,getConsistentTrainOrder:_0x1fc680}=_0x28b46d;let _0x391f0f=_0x859f70[_0x3c0918(0x153)](_0xe8cd6);const _0x506281=window['currentLineFilter']&&_0x859f70[_0x3c0918(0x154)](_0x859f70[_0x3c0918(0x162)],window[_0x3c0918(0xca)])?window['currentLineFilter']:null;_0x506281&&(_0x391f0f=_0x391f0f[_0x3c0918(0xa3)](_0x26f276=>_0x26f276['line']===_0x506281));const _0x4198d3=_0x859f70[_0x3c0918(0x153)](_0x13ab15),_0x153037={};_0x4198d3['forEach'](_0x4d5567=>{const _0x404805=_0x3c0918;_0x4d5567[_0x404805(0x111)]&&(_0x153037[_0x4d5567[_0x404805(0x111)]]=_0x4d5567);});const _0x24b6f1=[];_0x391f0f[_0x3c0918(0x12e)](_0x446eb1=>{const _0x31b044=_0x3c0918;_0x446eb1[_0x31b044(0xcd)][_0x31b044(0x12e)](_0x419795=>{const _0x556ab9=_0x31b044,_0x2b69f6=_0x153037[_0x419795[_0x556ab9(0x111)]];if(!_0x2b69f6||!_0x2b69f6['id'])return;const _0x191ce6={..._0x419795,..._0x2b69f6};_0x24b6f1['push'](_0x191ce6);});});const _0x2e83f2=_0x859f70[_0x3c0918(0x192)](_0x1fc680,_0x24b6f1),_0x2abd09=_0x11176c(),_0x2d8f54=document['getElementById'](_0x859f70[_0x3c0918(0x117)]);_0x2d8f54&&(_0x2d8f54['innerHTML']='',_0x2e83f2['forEach'](_0x57536f=>{const _0x2ea267=_0x3c0918,_0xbae25c=document['createElement'](_0x859f70[_0x2ea267(0x9c)]);_0xbae25c[_0x2ea267(0x18e)]='flex\x20items-center\x20px-4\x20py-2\x20text-sm\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20cursor-pointer',_0xbae25c[_0x2ea267(0x11d)][_0x2ea267(0xa4)]=_0x2ea267(0x18f);const _0xe59893=document[_0x2ea267(0x159)](_0x859f70[_0x2ea267(0xfb)]);_0xe59893[_0x2ea267(0x135)]=_0x859f70[_0x2ea267(0xcc)],_0xe59893['className']=_0x859f70['LQCIf'],_0xe59893[_0x2ea267(0x12f)]=_0x57536f['id'],_0xe59893['onchange']=()=>updateAllDetergentTrainsCheckbox(_0x2ea267(0x112));const _0x899904=document[_0x2ea267(0x159)](_0x2ea267(0xce)),_0x35bd6e=_0x2abd09[_0x2ea267(0xef)](String(_0x57536f['id'])),_0x5273b4=_0x57536f[_0x2ea267(0x182)]||_0x57536f[_0x2ea267(0x16c)]||_0x859f70[_0x2ea267(0xcf)];_0x899904['textContent']=_0x35bd6e?_0x5273b4+_0x2ea267(0xc0)+_0x35bd6e['number']:_0x5273b4+_0x2ea267(0xc0)+_0x57536f[_0x2ea267(0x185)],_0xbae25c[_0x2ea267(0x19d)](_0xe59893),_0xbae25c[_0x2ea267(0x19d)](_0x899904),_0x2d8f54['appendChild'](_0xbae25c);}));const _0x47a453=document[_0x3c0918(0x126)](_0x859f70[_0x3c0918(0x109)]);_0x47a453&&(_0x47a453[_0x3c0918(0xad)]='',_0x2e83f2[_0x3c0918(0x12e)](_0x464e7c=>{const _0x3bb5c7=_0x3c0918,_0x22103d=document[_0x3bb5c7(0x159)](_0x859f70['WiCXu']);_0x22103d[_0x3bb5c7(0x18e)]=_0x859f70[_0x3bb5c7(0xe3)],_0x22103d[_0x3bb5c7(0x11d)][_0x3bb5c7(0xa4)]=_0x859f70['krVFH'];const _0x4bc25b=document[_0x3bb5c7(0x159)]('input');_0x4bc25b[_0x3bb5c7(0x135)]=_0x3bb5c7(0xdb),_0x4bc25b[_0x3bb5c7(0x18e)]='mr-2\x20print-detergent-train-checkbox',_0x4bc25b['value']=_0x464e7c['id'],_0x4bc25b[_0x3bb5c7(0xeb)]=()=>updateAllDetergentTrainsCheckbox(_0x3bb5c7(0x184));const _0x2396f3=document['createElement'](_0x859f70[_0x3bb5c7(0x17a)]),_0x51b29f=_0x2abd09[_0x3bb5c7(0xef)](_0x859f70[_0x3bb5c7(0x191)](String,_0x464e7c['id'])),_0xa0d095=_0x464e7c[_0x3bb5c7(0x182)]||_0x464e7c[_0x3bb5c7(0x16c)]||_0x859f70[_0x3bb5c7(0xcf)];_0x2396f3[_0x3bb5c7(0xbb)]=_0x51b29f?_0xa0d095+_0x3bb5c7(0xc0)+_0x51b29f[_0x3bb5c7(0x185)]:_0xa0d095+_0x3bb5c7(0xc0)+_0x464e7c[_0x3bb5c7(0x185)],_0x22103d[_0x3bb5c7(0x19d)](_0x4bc25b),_0x22103d[_0x3bb5c7(0x19d)](_0x2396f3),_0x47a453['appendChild'](_0x22103d);}));})[_0x1f47c6(0xaa)](_0x475b69=>console[_0x1f47c6(0x1a6)](_0x1f47c6(0x15a),_0x475b69));}export function toggleAllDetergentTrainsSelection(_0x1eab06){const _0x557fbb=a8_0x1b7ad5,_0x1d1e8c=document[_0x557fbb(0x126)](_0x1eab06+_0x557fbb(0xd8));document[_0x557fbb(0x17e)]('.'+_0x1eab06+_0x557fbb(0x168))['forEach'](_0x1d4562=>{const _0x10947d=_0x557fbb;_0x1d4562[_0x10947d(0x189)]=_0x1d1e8c[_0x10947d(0x189)];});}export function updateAllDetergentTrainsCheckbox(_0x4ce3b8){const _0x494f07=a8_0x1b7ad5,_0x374b32={'gLIbl':function(_0x52a1d4,_0x33bf2f){return _0x52a1d4===_0x33bf2f;}},_0x22cf0a=document[_0x494f07(0x126)](_0x4ce3b8+_0x494f07(0xd8)),_0x452645=document[_0x494f07(0x17e)]('.'+_0x4ce3b8+_0x494f07(0x168)),_0x1818e8=document['querySelectorAll']('.'+_0x4ce3b8+_0x494f07(0x14e));_0x22cf0a&&(_0x374b32[_0x494f07(0xc5)](0x0,_0x1818e8[_0x494f07(0x106)])?(_0x22cf0a['checked']=!0x1,_0x22cf0a[_0x494f07(0xea)]=!0x1):_0x374b32['gLIbl'](_0x1818e8[_0x494f07(0x106)],_0x452645[_0x494f07(0x106)])?(_0x22cf0a[_0x494f07(0x189)]=!0x0,_0x22cf0a[_0x494f07(0xea)]=!0x1):(_0x22cf0a['checked']=!0x1,_0x22cf0a[_0x494f07(0xea)]=!0x0));}export function executeDetergentExportSelection(){const _0x3e8fd=a8_0x1b7ad5,_0x2e6a92={'rwWNg':_0x3e8fd(0x1a3),'orXdP':function(_0x50c342,_0x2c577d){return _0x50c342===_0x2c577d;},'yPwkG':'No\x20Selection','gADvt':_0x3e8fd(0xe4),'aGuSk':_0x3e8fd(0xa8),'QjiPr':_0x3e8fd(0x15e),'xPqCb':_0x3e8fd(0xbe)};import(_0x2e6a92['xPqCb'])[_0x3e8fd(0x195)](_0x4b172d=>{const _0x3eed39=_0x3e8fd,_0x52eba6=document[_0x3eed39(0x126)](_0x3eed39(0x16e)),_0x490816=[];if(_0x52eba6&&_0x52eba6[_0x3eed39(0x189)])_0x4b172d['exportDetergentMacoToExcel']();else{if(document[_0x3eed39(0x17e)](_0x2e6a92['rwWNg'])[_0x3eed39(0x12e)](_0x534cc1=>_0x490816['push'](_0x534cc1['value'])),_0x2e6a92[_0x3eed39(0x14c)](0x0,_0x490816[_0x3eed39(0x106)]))return void _0x4b172d['showCustomAlert'](_0x2e6a92[_0x3eed39(0xc6)],_0x2e6a92[_0x3eed39(0x97)]);window['exportSelectedDetergentTrains']=_0x490816,_0x4b172d[_0x3eed39(0x1a1)](_0x490816);}const _0x4d5837=document[_0x3eed39(0x126)](_0x2e6a92[_0x3eed39(0x114)]);_0x4d5837&&_0x4d5837[_0x3eed39(0x198)]['add'](_0x2e6a92[_0x3eed39(0xc4)]);})[_0x3e8fd(0xaa)](_0xa0822e=>console[_0x3e8fd(0x1a6)](_0x3e8fd(0x137),_0xa0822e));}export function executeDetergentPrintSelection(){const _0x280ca0=a8_0x1b7ad5,_0x44c590={'CzIjt':_0x280ca0(0xf2),'afsei':'.print-detergent-train-checkbox:checked','urozf':function(_0x126d46,_0x11c751){return _0x126d46===_0x11c751;},'tjyTZ':_0x280ca0(0x14f),'ohLBi':_0x280ca0(0xe1),'cHemf':'detergentPrintDropdown','WFVkQ':'hidden','fwvTg':'./ui.js'};import(_0x44c590[_0x280ca0(0x188)])[_0x280ca0(0x195)](_0x5949d3=>{const _0x265777=_0x280ca0,_0x2fea80=document[_0x265777(0x126)]('printDetergentAllTrainsCheckbox'),_0x75386e=[];if(_0x2fea80&&_0x2fea80[_0x265777(0x189)])_0x5949d3[_0x265777(0xa6)](_0x44c590[_0x265777(0x11b)],_0x265777(0x178));else{if(document[_0x265777(0x17e)](_0x44c590[_0x265777(0xed)])[_0x265777(0x12e)](_0x4207b8=>_0x75386e['push'](_0x4207b8['value'])),_0x44c590['urozf'](0x0,_0x75386e['length']))return void _0x5949d3[_0x265777(0x174)](_0x44c590['tjyTZ'],_0x44c590[_0x265777(0x127)]);window[_0x265777(0x102)]=_0x75386e,_0x5949d3[_0x265777(0xa6)](_0x44c590[_0x265777(0x11b)],_0x75386e);}const _0xa1c7f3=document['getElementById'](_0x44c590[_0x265777(0xde)]);_0xa1c7f3&&_0xa1c7f3['classList'][_0x265777(0xbd)](_0x44c590[_0x265777(0x142)]);})['catch'](_0xab3035=>console[_0x280ca0(0x1a6)](_0x280ca0(0x118),_0xab3035));}export function toggleDetergentExportDropdown(){const _0x2670ad=a8_0x1b7ad5,_0x20401a={'uFHcT':_0x2670ad(0x13d),'pQwrr':_0x2670ad(0x15c),'tFSdX':_0x2670ad(0xa8),'bHRgu':_0x2670ad(0x15e),'qmWyC':function(_0x49b8b8){return _0x49b8b8();}},_0x39f1c3=document[_0x2670ad(0x126)](_0x20401a[_0x2670ad(0xdc)]);_0x39f1c3&&(_0x39f1c3[_0x2670ad(0x198)]['toggle'](_0x2670ad(0x15e)),_0x39f1c3[_0x2670ad(0x198)][_0x2670ad(0x11c)](_0x20401a[_0x2670ad(0xe5)])||(_0x20401a[_0x2670ad(0xd2)](populateDetergentTrainOptions),setTimeout(()=>{const _0x45172a=_0x2670ad,_0x38f068={'vGKAc':_0x20401a[_0x45172a(0x125)],'umuDc':_0x45172a(0xb4),'HjLCP':_0x45172a(0x15e),'MVFbM':_0x20401a[_0x45172a(0x181)]};document[_0x45172a(0x12d)](_0x45172a(0x15c),function _0x275e9c(_0x18aa9f){const _0xb79b7d=_0x45172a;_0x18aa9f['target'][_0xb79b7d(0x161)](_0x38f068['vGKAc'])||_0x18aa9f['target'][_0xb79b7d(0x161)](_0x38f068[_0xb79b7d(0x18c)])||(_0x39f1c3[_0xb79b7d(0x198)][_0xb79b7d(0xbd)](_0x38f068[_0xb79b7d(0x155)]),document[_0xb79b7d(0x157)](_0x38f068[_0xb79b7d(0xc8)],_0x275e9c));});},0xa)));}function a8_0x5007(_0x490dbf,_0x3eb8a9){const _0x18a5a6=a8_0x18a5();return a8_0x5007=function(_0x5007d7,_0x251034){_0x5007d7=_0x5007d7-0x95;let _0x52a2fb=_0x18a5a6[_0x5007d7];return _0x52a2fb;},a8_0x5007(_0x490dbf,_0x3eb8a9);}export function toggleDetergentPrintDropdown(){const _0x48c55a=a8_0x1b7ad5,_0x5ec80c={'uVNMf':'#detergentPrintDropdown','QurAv':_0x48c55a(0x19f),'EMHTL':_0x48c55a(0x15e),'FWaDa':_0x48c55a(0x16b),'WMNpV':function(_0x252078){return _0x252078();},'yRLts':function(_0x521d93,_0x22c64,_0x479f90){return _0x521d93(_0x22c64,_0x479f90);}},_0x35b71d=document['getElementById'](_0x5ec80c[_0x48c55a(0x13e)]);_0x35b71d&&(_0x35b71d[_0x48c55a(0x198)][_0x48c55a(0x11f)](_0x5ec80c[_0x48c55a(0x158)]),_0x35b71d[_0x48c55a(0x198)]['contains'](_0x5ec80c[_0x48c55a(0x158)])||(_0x5ec80c[_0x48c55a(0xba)](populateDetergentTrainOptions),_0x5ec80c['yRLts'](setTimeout,()=>{const _0x410985=_0x48c55a,_0x117c32={'yRNai':_0x5ec80c['uVNMf'],'lojeD':_0x5ec80c[_0x410985(0x156)],'tjKxm':_0x5ec80c['EMHTL']};document[_0x410985(0x12d)](_0x410985(0x15c),function _0x1858e5(_0x30480d){const _0xfcb35e=_0x410985;_0x30480d[_0xfcb35e(0x13a)][_0xfcb35e(0x161)](_0x117c32[_0xfcb35e(0xfc)])||_0x30480d[_0xfcb35e(0x13a)][_0xfcb35e(0x161)](_0x117c32['lojeD'])||(_0x35b71d['classList'][_0xfcb35e(0xbd)](_0x117c32['tjKxm']),document['removeEventListener'](_0xfcb35e(0x15c),_0x1858e5));});},0xa)));}window[a8_0x1b7ad5(0x15f)]=toggleDetergentExportDropdown,window[a8_0x1b7ad5(0x1a8)]=toggleDetergentPrintDropdown,window['toggleAllDetergentTrainsSelection']=toggleAllDetergentTrainsSelection,window['updateAllDetergentTrainsCheckbox']=updateAllDetergentTrainsCheckbox,window[a8_0x1b7ad5(0xe7)]=executeDetergentExportSelection,window[a8_0x1b7ad5(0x16d)]=executeDetergentPrintSelection,window['renderDetergentIngredientsList']=renderDetergentIngredientsList,window[a8_0x1b7ad5(0x1a7)]=addDetergentIngredient,window['removeDetergentIngredient']=removeDetergentIngredient,window['updateDetergentIngredient']=updateDetergentIngredient,window[a8_0x1b7ad5(0x10f)]=recalculateDetergentMacoForTrain;
+// Renders the "Detergent MACO" tab
+// js/macoDetergentView.js
+
+import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
+import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder } from './utils.js';
+import * as utils from './utils.js';
+
+// Group-level expand/collapse functionality for dosage form groups in Detergent MACO view
+window.toggleDetergentDosageGroup = function(groupId) {
+    const contentElement = document.getElementById(`dm-group-content-${groupId}`);
+    const toggleElement = document.getElementById(`dm-group-toggle-${groupId}`);
+    
+    if (!contentElement || !toggleElement) {
+        console.warn(`Detergent MACO group elements not found for groupId: ${groupId}`);
+        return;
+    }
+    
+    const isCurrentlyCollapsed = contentElement.classList.contains('collapsed');
+    
+    if (isCurrentlyCollapsed) {
+        // Expand the group
+        contentElement.classList.remove('collapsed');
+        toggleElement.textContent = '▼';
+        toggleElement.style.transform = 'rotate(0deg)';
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Remove maxHeight after animation completes to allow dynamic resizing
+        setTimeout(() => {
+            if (!contentElement.classList.contains('collapsed')) {
+                contentElement.style.maxHeight = 'none';
+            }
+        }, 300);
+    } else {
+        // Collapse the group
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Force reflow and then start collapsing
+        requestAnimationFrame(() => {
+            contentElement.classList.add('collapsed');
+            toggleElement.textContent = '▶';
+            toggleElement.style.transform = 'rotate(-90deg)';
+            contentElement.style.maxHeight = '0px';
+        });
+    }
+};
+
+// Smart number formatting that avoids showing 0 when there's actually a value
+function formatSmallNumber(value, unit = '') {
+    if (value === 0 || value === null || value === undefined || isNaN(value)) {
+        return `0${unit ? ' ' + unit : ''}`;
+    }
+    
+    const absValue = Math.abs(value);
+    
+    // For very small values, use scientific notation
+    if (absValue < 0.0001) {
+        return `${value.toExponential(3)}${unit ? ' ' + unit : ''}`;
+    }
+    // For small values, show enough decimal places to see the value
+    else if (absValue < 0.01) {
+        return `${value.toFixed(6)}${unit ? ' ' + unit : ''}`;
+    }
+    // For regular values, use 4 decimal places
+    else {
+        return `${value.toFixed(4)}${unit ? ' ' + unit : ''}`;
+    }
+}
+
+export function renderDetergentMaco(lineFilter = null) {
+    const container = document.getElementById('detergentMacoResults');
+    const noTrainsMsg = document.getElementById('noTrainsForDetergentMessage');
+    container.innerHTML = '';
+
+    // Initialize detergent ingredients list when tab loads
+    renderDetergentIngredientsList();
+
+    const baseTrainData = getTrainData(); // computed train metrics keyed by consolidated path
+    let linesWithTrains = getTrainsGroupedByLine(); // pre-numbered trains per line
+
+    // Filter by line if specified
+    if (lineFilter) {
+        linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === lineFilter);
+    }
+
+    if (!linesWithTrains || linesWithTrains.length === 0) {
+        noTrainsMsg.style.display = 'block';
+        return;
+    }
+    noTrainsMsg.style.display = 'none';
+
+    // map baseTrainData by key for merging
+    const trainByKey = {};
+    baseTrainData.forEach(t => { if (t.key) trainByKey[t.key] = t; });
+
+    // Note: ESSA will be calculated per train based on line and dosage form
+
+    // Flatten trains for optional filtering later
+    const mergedTrains = [];
+    linesWithTrains.forEach(lineObj => {
+        lineObj.trains.forEach(t => {
+            const computed = trainByKey[t.key];
+            if (!computed || !computed.id) return; // skip trains that have no computed data / id
+            const merged = { ...t, ...computed }; // keep t.number and t.line, but include computed metrics and id
+            mergedTrains.push(merged);
+        });
+    });
+
+    // Apply consistent train ordering
+    const orderedTrains = getConsistentTrainOrder(mergedTrains);
+
+    // Filter based on printSelectedTrain if required (support either numeric train.id or new train.number)
+    let trainsToRender = orderedTrains;
+    if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
+        if (Array.isArray(window.printSelectedTrain)) {
+            trainsToRender = orderedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)));
+        } else {
+            trainsToRender = orderedTrains.filter(train => String(train.id) === String(window.printSelectedTrain));
+        }
+    }
+
+    if (trainsToRender.length === 0) {
+        noTrainsMsg.style.display = 'block';
+        return;
+    }
+
+    const idMap = utils.getTrainIdToLineNumberMap();
+
+    // Group trains by line and dosage form for consistent display
+    const groupedByLine = {};
+    trainsToRender.forEach(train => {
+        const line = train.line || 'Unassigned';
+        const dosageForm = train.dosageForm || 'Other';
+        
+        if (!groupedByLine[line]) {
+            groupedByLine[line] = {};
+        }
+        if (!groupedByLine[line][dosageForm]) {
+            groupedByLine[line][dosageForm] = [];
+        }
+        groupedByLine[line][dosageForm].push(train);
+    });
+
+    Object.keys(groupedByLine).forEach(lineName => {
+        const lineSection = document.createElement('div');
+        lineSection.className = 'mb-6';
+        lineSection.innerHTML = `<h3 class="text-lg font-semibold mb-4" style="color: var(--text-primary);">${lineName}</h3>`;
+        container.appendChild(lineSection);
+
+        const byDosage = groupedByLine[lineName];
+        // Sort dosage forms by their lowest train number
+        const sortedDosageForms = Object.keys(byDosage).sort((a, b) => {
+            const aTrains = byDosage[a];
+            const bTrains = byDosage[b];
+            const aMinNumber = Math.min(...aTrains.map(t => t.number));
+            const bMinNumber = Math.min(...bTrains.map(t => t.number));
+            return aMinNumber - bMinNumber;
+        });
+        
+        sortedDosageForms.forEach(dosage => {
+            // Create unique group ID for this dosage form
+            const groupId = `${lineName.replace(/\s+/g, '')}-${dosage.replace(/\s+/g, '')}`;
+            const isGroupCollapsed = false; // Default to expanded
+            
+            // Create clickable dosage form header with expand/collapse functionality
+            const dosageHeader = document.createElement('div');
+            dosageHeader.className = 'dosage-group-header mb-4 cursor-pointer select-none';
+            dosageHeader.onclick = () => toggleDetergentDosageGroup(groupId);
+            dosageHeader.innerHTML = `
+                <div class="flex items-center justify-between py-2 px-3 rounded-lg border transition-all hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color); background-color: transparent;">
+                    <h4 class="text-md font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+                        <span class="group-toggle-icon transition-transform duration-200" id="dm-group-toggle-${groupId}">${isGroupCollapsed ? '▶' : '▼'}</span>
+                        ${dosage}
+                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: var(--bg-accent); color: var(--text-secondary);">${byDosage[dosage].length} train${byDosage[dosage].length !== 1 ? 's' : ''}</span>
+                    </h4>
+                </div>
+            `;
+            container.appendChild(dosageHeader);
+            
+            // Create container for all trains in this dosage form group
+            const trainsContainer = document.createElement('div');
+            trainsContainer.className = `dosage-group-content transition-all duration-300 ${isGroupCollapsed ? 'collapsed' : ''}`;
+            trainsContainer.id = `dm-group-content-${groupId}`;
+            trainsContainer.style.overflow = 'hidden';
+            container.appendChild(trainsContainer);
+
+            byDosage[dosage].forEach(train => {
+        const isCollapsed = true; // All trains start collapsed
+        const productTypesInTrain = train.products.map(p => p.productType);
+        const worstCaseType = getWorstCaseProductType(productTypesInTrain);
+        const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+
+        const card = document.createElement('div');
+        card.className = 'train-card'; // Use train-card for consistent collapsible behavior
+        const mapped = idMap.get(String(train.id));
+        const trainHeaderLabel = mapped ? `Train ${mapped.number}` : `Train ${train.id}`;
+        // Create unique ID that includes dosage form to avoid conflicts
+        const uniqueTrainId = `${train.id}-${train.dosageForm || 'unknown'}`;
+
+        card.innerHTML = `
+                    <div class="train-header" onclick="toggleTrain('dm-${uniqueTrainId}')">
+                        <span>${trainHeaderLabel} - ${train.dosageForm || 'Unknown'}</span>
+                        <button class="train-toggle" id="toggle-dm-${uniqueTrainId}">${isCollapsed ? '▶' : '▼'}</button>
+                    </div>
+                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-dm-${uniqueTrainId}">
+                        <div class="train-content-inner space-y-3">
+                            <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
+                               
+                                <p class="text-xs mt-1" style="color:var(--text-secondary);">
+                                    Based on products in the train, the minimum (Batch Size / MDD) ratio is: <b>${train.minBsMddRatio.toLocaleString(undefined, { maximumFractionDigits: 2 })}</b>.
+                                </p>
+                                <p class="text-xs mt-1" style="color:var(--text-secondary);">
+                                    Min LD50 = <b><span id="min-ld50-train-${uniqueTrainId}">...</span> mg/kg</b>
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-md border" style="border-color:var(--border-color)">
+                                <label for="sf-input-train-${uniqueTrainId}" class="block text-sm font-small mb-1">Safety Factor (SF)</label>
+                                <input type="number" 
+                                    id="sf-input-train-${uniqueTrainId}" 
+                                    class="w-full px-2 py-2 border rounded-md text-sm"
+                                    value="${sfConfig.max}" 
+                                    min="${sfConfig.min}" 
+                                    max="${sfConfig.max}" 
+                                    oninput="recalculateDetergentMacoForTrain(${train.id}, undefined, '${train.dosageForm || 'unknown'}')"
+                                    onchange="clampSafetyFactor(this, ${train.id})">
+                                <p class="text-xs mt-1" style="color:var(--text-secondary);">Range for ${sfConfig.route} route: ${sfConfig.min.toLocaleString()} - ${sfConfig.max.toLocaleString()}</p>
+                            </div>
+                            
+                            <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
+                                <p class="font-mono text-xs" style="color:var(--text-secondary);">ADI = (5e-4 * LD50 * BW) / SF</p>
+                                <p><b  class="text-sm">Acceptable Daily Intake (ADI):</b> <span  class="text-sm" id="adi-value-train-${uniqueTrainId}">...</span></p>
+                            </div>
+                            <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
+                                <p class="font-mono text-xs" style="color:var(--text-secondary);">MACO = (ADI * Min BS/MDD Ratio)</p>
+                                <p><b  class="text-sm">MACO:</b> <span  class="text-sm" id="maco-value-train-${uniqueTrainId}">...</span></p>
+                            </div>
+                            <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
+                                <p class="font-mono text-xs" style="color:var(--text-secondary);">MACO/Area = MACO / Global Largest ESSA</p>
+                                <p><b  class="text-sm">MACO per Area:</b> <span class="text-sm"id="macoarea-value-train-${uniqueTrainId}">...</span></p>
+                            </div>
+                            <div class="p-3 rounded-md" style="background-color: var(--bg-accent);">
+                                <p class="font-mono text-xs" style="color:var(--text-secondary);">MACO/Swab = (MACO/Area) * SSA</p>
+                                <p><b class="text-sm">MACO per Swab:</b> <span  class="text-sm" id="macoswab-value-train-${uniqueTrainId}">...</span></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        trainsContainer.appendChild(card);
+        recalculateDetergentMacoForTrain(train.id, undefined, train.dosageForm || 'unknown'); // Initial calculation
+            });
+        });
+    });
+}
+
+export function recalculateDetergentMacoForTrain(trainId, lineLargestEssa, dosageForm) {
+    const train = getTrainData().find(t => t.id === trainId);
+    if (!train) return;
+    
+    // Create unique train ID that includes dosage form
+    const uniqueTrainId = `${trainId}-${dosageForm || 'unknown'}`;
+
+    if (lineLargestEssa === undefined) {
+        const allTrains = getTrainData();
+        // Calculate largest ESSA for trains in the same line and dosage form
+        lineLargestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
+    }
+
+    const ld50Values = state.detergentIngredients.map(i => parseFloat(i.ld50)).filter(ld50 => !isNaN(ld50));
+    const minLd50 = ld50Values.length > 0 ? Math.min(...ld50Values) : 0;
+    const bodyWeight = parseFloat(document.getElementById('bodyWeight')?.value) || 70; // Default to 70 if not found
+    const sf = parseFloat(document.getElementById(`sf-input-train-${uniqueTrainId}`)?.value) || 1;
+
+    console.log(`=== DETERGENT MACO CALCULATION DEBUG - Train ${trainId} ===`);
+    console.log(`Detergent ingredients:`, state.detergentIngredients);
+    console.log(`LD50 values:`, ld50Values);
+    console.log(`Min LD50: ${minLd50}`);
+    console.log(`Body weight: ${bodyWeight}`);
+    console.log(`Safety factor: ${sf}`);
+    console.log(`Train minBsMddRatio: ${train.minBsMddRatio}`);
+    console.log(`Line largest ESSA: ${lineLargestEssa}`);
+    console.log(`Train assumedSsa: ${train.assumedSsa}`);
+
+    const adi = (5e-4 * minLd50 * bodyWeight) / sf;
+    console.log(`ADI calculation: (5e-4 * ${minLd50} * ${bodyWeight}) / ${sf} = ${adi}`);
+    
+    const maco = adi * train.minBsMddRatio;
+    console.log(`MACO calculation: ${adi} * ${train.minBsMddRatio} = ${maco}`);
+    
+    const macoPerArea = lineLargestEssa > 0 ? maco / lineLargestEssa : 0;
+    console.log(`MACO per Area: ${maco} / ${lineLargestEssa} = ${macoPerArea}`);
+    
+    const macoPerSwab = macoPerArea * train.assumedSsa;
+    console.log(`MACO per Swab: ${macoPerArea} * ${train.assumedSsa} = ${macoPerSwab}`);
+    console.log(`=== END DETERGENT MACO CALCULATION DEBUG ===`);
+
+    // Check if elements exist before updating
+    const minLd50Element = document.getElementById(`min-ld50-train-${uniqueTrainId}`);
+    const adiElement = document.getElementById(`adi-value-train-${uniqueTrainId}`);
+    const macoElement = document.getElementById(`maco-value-train-${uniqueTrainId}`);
+    const macoAreaElement = document.getElementById(`macoarea-value-train-${uniqueTrainId}`);
+    const macoSwabElement = document.getElementById(`macoswab-value-train-${uniqueTrainId}`);
+
+    if (minLd50Element) minLd50Element.textContent = minLd50.toLocaleString();
+    if (adiElement) adiElement.textContent = `${adi.toFixed(4)} mg`;
+    if (macoElement) macoElement.textContent = formatSmallNumber(maco, 'mg');
+    if (macoAreaElement) macoAreaElement.textContent = `${macoPerArea.toExponential(3)} mg/cm²`;
+    if (macoSwabElement) macoSwabElement.textContent = formatSmallNumber(macoPerSwab, 'mg/swab');
+
+    // Log if elements are missing
+    if (!minLd50Element) console.warn(`Element min-ld50-train-${uniqueTrainId} not found`);
+    if (!adiElement) console.warn(`Element adi-value-train-${uniqueTrainId} not found`);
+    if (!macoElement) console.warn(`Element maco-value-train-${uniqueTrainId} not found`);
+    if (!macoAreaElement) console.warn(`Element macoarea-value-train-${uniqueTrainId} not found`);
+    if (!macoSwabElement) console.warn(`Element macoswab-value-train-${uniqueTrainId} not found`);
+
+}
+
+export function renderDetergentIngredientsList() {
+    const container = document.getElementById('detergentIngredientsContainer');
+    container.innerHTML = '';
+    if (state.detergentIngredients.length === 0) {
+        container.innerHTML = `<p class="text-sm text-center p-2" style="color:var(--text-secondary);">Please add at least one detergent ingredient.</p>`;
+    }
+    state.detergentIngredients.forEach(ing => {
+        const div = document.createElement('div');
+        div.className = 'flex items-center gap-x-2 mb-2';
+        div.innerHTML = `
+                    <input type="text" oninput="updateDetergentIngredient(${ing.id}, 'name', this.value)" value="${ing.name}" placeholder="Ingredient Name" class="flex-1 px-3 py-2 border rounded-lg text-sm">
+                    <input type="number" oninput="updateDetergentIngredient(${ing.id}, 'ld50', this.value)" value="${ing.ld50}" placeholder="LD50 (mg/kg)" class="w-32 px-3 py-2 border rounded-lg text-sm" min="0">
+                    <div class="w-8 px-3 py-2 flex items-center justify-center">
+                        <button onclick="removeDetergentIngredient(${ing.id})" class="text-red-500 hover:bg-red-50 rounded p-1" title="Remove Ingredient">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg>
+                        </button>
+                    </div>
+                `;
+        container.appendChild(div);
+    });
+}
+
+export function addDetergentIngredient() {
+    const newIngredients = [...state.detergentIngredients, { id: state.nextDetergentIngredientId, name: '', ld50: '' }];
+    state.setNextDetergentIngredientId(state.nextDetergentIngredientId + 1);
+    state.setDetergentIngredients(newIngredients);
+    renderDetergentIngredientsList();
+    renderDetergentMaco();
+}
+
+export function removeDetergentIngredient(id) {
+    const newIngredients = state.detergentIngredients.filter(ing => ing.id !== id);
+    state.setDetergentIngredients(newIngredients);
+    renderDetergentIngredientsList();
+    renderDetergentMaco();
+}
+
+export function updateDetergentIngredient(id, field, value) {
+    const ingredient = state.detergentIngredients.find(ing => ing.id === id);
+    if (ingredient) {
+        ingredient[field] = value;
+        renderDetergentMaco();
+    }
+}
+
+// Populate detergent train selection dropdowns for export/print
+export function populateDetergentTrainOptions() {
+    import('./utils.js').then(utils => {
+        const { getTrainData, getTrainsGroupedByLine, getTrainIdToLineNumberMap, getConsistentTrainOrder } = utils;
+        
+        // Use the same filtering logic as renderDetergentMaco
+        let linesWithTrains = getTrainsGroupedByLine();
+        
+        // Apply current line filter (same as view)
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        // Get full train data for mapping (same as view)
+        const baseTrainData = getTrainData();
+        const trainByKey = {};
+        baseTrainData.forEach(t => { if (t.key) trainByKey[t.key] = t; });
+
+        // Flatten trains for processing (same as view)
+        const mergedTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(t => {
+                const computed = trainByKey[t.key];
+                if (!computed || !computed.id) return;
+                const merged = { ...t, ...computed };
+                mergedTrains.push(merged);
+            });
+        });
+
+        // Apply consistent train ordering (same as view)
+        const visibleTrains = getConsistentTrainOrder(mergedTrains);
+        const idMap = getTrainIdToLineNumberMap();
+
+        // Export options
+        const exportContainer = document.getElementById('detergentExportTrainOptions');
+        if (exportContainer) {
+            exportContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 export-detergent-train-checkbox';
+                checkbox.value = train.id;
+                checkbox.onchange = () => updateAllDetergentTrainsCheckbox('export');
+
+                const span = document.createElement('span');
+                const mapped = idMap.get(String(train.id));
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = mapped ? `${dosageForm} — Train ${mapped.number}` : `${dosageForm} — Train ${train.number}`;
+
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                exportContainer.appendChild(labelElement);
+            });
+        }
+
+        // Print options
+        const printContainer = document.getElementById('detergentPrintTrainOptions');
+        if (printContainer) {
+            printContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 print-detergent-train-checkbox';
+                checkbox.value = train.id;
+                checkbox.onchange = () => updateAllDetergentTrainsCheckbox('print');
+
+                const span = document.createElement('span');
+                const mapped = idMap.get(String(train.id));
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = mapped ? `${dosageForm} — Train ${mapped.number}` : `${dosageForm} — Train ${train.number}`;
+
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                printContainer.appendChild(labelElement);
+            });
+        }
+    }).catch(error => console.error('Error populating detergent train options:', error));
+}
+
+// Toggle all checkboxes for detergent trains
+export function toggleAllDetergentTrainsSelection(type) {
+    const allCheckbox = document.getElementById(`${type}DetergentAllTrainsCheckbox`);
+    const trainCheckboxes = document.querySelectorAll(`.${type}-detergent-train-checkbox`);
+    trainCheckboxes.forEach(checkbox => { checkbox.checked = allCheckbox.checked; });
+}
+
+export function updateAllDetergentTrainsCheckbox(type) {
+    const allCheckbox = document.getElementById(`${type}DetergentAllTrainsCheckbox`);
+    const trainCheckboxes = document.querySelectorAll(`.${type}-detergent-train-checkbox`);
+    const checkedBoxes = document.querySelectorAll(`.${type}-detergent-train-checkbox:checked`);
+
+    if (!allCheckbox) return;
+
+    if (checkedBoxes.length === 0) {
+        allCheckbox.checked = false; allCheckbox.indeterminate = false;
+    } else if (checkedBoxes.length === trainCheckboxes.length) {
+        allCheckbox.checked = true; allCheckbox.indeterminate = false;
+    } else {
+        allCheckbox.checked = false; allCheckbox.indeterminate = true;
+    }
+}
+
+export function executeDetergentExportSelection() {
+    import('./ui.js').then(ui => {
+        const allCheckbox = document.getElementById('exportDetergentAllTrainsCheckbox');
+        const selectedTrains = [];
+
+        if (allCheckbox && allCheckbox.checked) {
+            ui.exportDetergentMacoToExcel();
+        } else {
+            const checkedBoxes = document.querySelectorAll('.export-detergent-train-checkbox:checked');
+            checkedBoxes.forEach(checkbox => selectedTrains.push(checkbox.value));
+
+            if (selectedTrains.length === 0) {
+                ui.showCustomAlert("No Selection", "Please select at least one train to export.");
+                return;
+            }
+
+            // Call export with selected trains
+            // We'll adapt exportDetergentMacoToExcel to accept selectedTrain if needed; for now, store selection globally and call export
+            window.exportSelectedDetergentTrains = selectedTrains;
+            ui.exportDetergentMacoToExcel(selectedTrains);
+        }
+
+        // Close dropdown
+        const dd = document.getElementById('detergentExportDropdown'); if (dd) dd.classList.add('hidden');
+    }).catch(error => console.error('Error executing detergent export selection:', error));
+}
+
+export function executeDetergentPrintSelection() {
+    import('./ui.js').then(ui => {
+        const allCheckbox = document.getElementById('printDetergentAllTrainsCheckbox');
+        const selectedTrains = [];
+
+        if (allCheckbox && allCheckbox.checked) {
+            ui.printCurrentView('detergentMaco', 'all');
+        } else {
+            const checkedBoxes = document.querySelectorAll('.print-detergent-train-checkbox:checked');
+            checkedBoxes.forEach(checkbox => selectedTrains.push(checkbox.value));
+
+            if (selectedTrains.length === 0) {
+                ui.showCustomAlert("No Selection", "Please select at least one train to print.");
+                return;
+            }
+
+            window.printSelectedTrain = selectedTrains;
+            ui.printCurrentView('detergentMaco', selectedTrains);
+        }
+
+        // Close dropdown
+        const dd = document.getElementById('detergentPrintDropdown'); if (dd) dd.classList.add('hidden');
+    }).catch(error => console.error('Error executing detergent print selection:', error));
+}
+
+// Toggle dropdown visibility helpers
+export function toggleDetergentExportDropdown() {
+    const dd = document.getElementById('detergentExportDropdown'); if (!dd) return; dd.classList.toggle('hidden');
+    if (!dd.classList.contains('hidden')) {
+        populateDetergentTrainOptions();
+        // Attach click-outside handler
+        setTimeout(() => {
+            function outsideHandler(e) {
+                if (!e.target.closest('#detergentExportDropdown') && !e.target.closest('[onclick="toggleDetergentExportDropdown()"]')) {
+                    dd.classList.add('hidden');
+                    document.removeEventListener('click', outsideHandler);
+                }
+            }
+            document.addEventListener('click', outsideHandler);
+        }, 10);
+    }
+}
+
+export function toggleDetergentPrintDropdown() {
+    const dd = document.getElementById('detergentPrintDropdown'); if (!dd) return; dd.classList.toggle('hidden');
+    if (!dd.classList.contains('hidden')) {
+        populateDetergentTrainOptions();
+        setTimeout(() => {
+            function outsideHandler(e) {
+                if (!e.target.closest('#detergentPrintDropdown') && !e.target.closest('[onclick="toggleDetergentPrintDropdown()"]')) {
+                    dd.classList.add('hidden');
+                    document.removeEventListener('click', outsideHandler);
+                }
+            }
+            document.addEventListener('click', outsideHandler);
+        }, 10);
+    }
+}
+
+// Expose to window
+window.toggleDetergentExportDropdown = toggleDetergentExportDropdown;
+window.toggleDetergentPrintDropdown = toggleDetergentPrintDropdown;
+window.toggleAllDetergentTrainsSelection = toggleAllDetergentTrainsSelection;
+window.updateAllDetergentTrainsCheckbox = updateAllDetergentTrainsCheckbox;
+window.executeDetergentExportSelection = executeDetergentExportSelection;
+window.executeDetergentPrintSelection = executeDetergentPrintSelection;
+
+// Expose detergent ingredient functions
+window.renderDetergentIngredientsList = renderDetergentIngredientsList;
+window.addDetergentIngredient = addDetergentIngredient;
+window.removeDetergentIngredient = removeDetergentIngredient;
+window.updateDetergentIngredient = updateDetergentIngredient;
+window.recalculateDetergentMacoForTrain = recalculateDetergentMacoForTrain;

@@ -2,8 +2,9 @@
 // js/trainSummaryView.js
 
 import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
 import { hideLoader } from './ui.js';
-import { getTrainData, calculateScores, getMacoPerSwabForTrain, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder } from './utils.js';
+import { getTrainData, calculateScores, getMacoPerSwabForTrain, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder, getWorstCaseProductType } from './utils.js';
 import * as utils from './utils.js';
 
 // Helper function to find the worst case product (highest RPN) in a train
@@ -199,7 +200,8 @@ function getMacoValueForTrain(train) {
         }
         
         // Use the exact same MACO calculation logic as Product MACO Calculation
-        const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(matchingTrain.products.map(p => p.productType))] || state.safetyFactorConfig['Other'];
+        const worstCaseType = getWorstCaseProductType(matchingTrain.products.map(p => p.productType));
+        const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
         const sf = sfConfig.max;
         
         const macoDose = (matchingTrain.lowestLtd * matchingTrain.minBsMddRatio) / sf;

@@ -5,10 +5,15 @@ import * as state from './state.js';
 import { fullAppRender } from './app.js';
 import { showCustomAlert, hideModal, showModal, saveStateForUndo } from './ui.js';
 import { getProductTrainId, getProductTrainNumber, getToxicityPreference, calculateScores, getRpnRatingClass, getUniqueProductLines } from './utils.js';
+import * as db from './indexedDB.js';
+import { storeSOPFile, getSOPFile, deleteSOPFile } from './indexedDB.js';
 
 // Global variables for SOP file management
 let currentSOPFile = null;
 let currentSOPData = null;
+
+// Track active machine line tab
+let activeMachineLineTab = null;
 
 /**
  * Populate the machine line dropdown with current product lines
@@ -161,10 +166,12 @@ function updateMachineSortIndicators() {
 export function renderMachinesTable() {
     const container = document.getElementById('machinesContainer');
     const noMachinesMsg = document.getElementById('noMachinesMessage');
+    const tabNavigation = document.getElementById('machineTabNavigation');
     container.innerHTML = '';
 
     if (state.machines.length === 0) {
         noMachinesMsg.style.display = 'block';
+        if (tabNavigation) tabNavigation.style.display = 'none';
         return;
     }
     noMachinesMsg.style.display = 'none';
@@ -193,14 +200,59 @@ export function renderMachinesTable() {
         }
     });
 
-    // Create tables for each line that has machines
-    Object.keys(machinesByLine).forEach(line => {
-        const lineKey = line.toLowerCase().replace(/\s+/g, '');
-        const lineHidden = localStorage.getItem(`machineLine-${lineKey}-hidden`) === 'true';
-        const lineMachines = machinesByLine[line];
-        
-        if (lineMachines.length === 0) return;
+    const lines = Object.keys(machinesByLine).filter(line => machinesByLine[line].length > 0);
+    
+    // If only one line or no lines, don't show tabs
+    if (lines.length <= 1) {
+        if (tabNavigation) tabNavigation.style.display = 'none';
+        // Render single line without tabs (fallback to old behavior)
+        lines.forEach(line => {
+            renderLineTable(container, line, machinesByLine[line]);
+        });
+        updateMachineSortIndicators();
+        return;
+    }
 
+    // Show tab navigation
+    if (tabNavigation) {
+        tabNavigation.style.display = 'block';
+        const nav = tabNavigation.querySelector('nav');
+        nav.innerHTML = '';
+        
+        // Create tab buttons
+        lines.forEach((line, index) => {
+        const lineKey = line.toLowerCase().replace(/\s+/g, '');
+            const isActive = index === 0 || activeMachineLineTab === lineKey;
+            if (isActive) {
+                activeMachineLineTab = lineKey;
+            }
+            
+            const button = document.createElement('button');
+            button.onclick = () => changeMachineLineTab(lineKey, button);
+            button.className = `machine-line-tab-button py-3 px-1 text-sm font-medium ${isActive ? 'active-machine-line-tab' : ''}`;
+            button.textContent = `${line} (${machinesByLine[line].length})`;
+            nav.appendChild(button);
+        });
+    }
+
+    // Create tab content for each line
+    lines.forEach((line, index) => {
+        const lineKey = line.toLowerCase().replace(/\s+/g, '');
+        const isActive = index === 0 || activeMachineLineTab === lineKey;
+        
+        const tabContent = document.createElement('div');
+        tabContent.id = `machine-tab-${lineKey}`;
+        tabContent.className = 'machine-line-tab-content';
+        tabContent.style.display = isActive ? 'block' : 'none';
+        
+        renderLineTable(tabContent, line, machinesByLine[line]);
+        container.appendChild(tabContent);
+    });
+
+    updateMachineSortIndicators();
+}
+
+function renderLineTable(container, line, lineMachines) {
         // Sort machines within this line
         const sortedMachines = [...lineMachines].sort((a, b) => {
             const key = state.machineSortState.key;
@@ -265,12 +317,8 @@ export function renderMachinesTable() {
                         </svg>
                         Summary
                     </button>
-                    <button onclick="toggleLineSection('${lineKey}')" class="text-sm px-3 py-1 rounded border" style="border-color: var(--border-color); color: var(--text-secondary);">
-                        ${lineHidden ? 'Show' : 'Hide'}
-                    </button>
                 </div>
             </div>
-            <div id="line-${lineKey}" ${lineHidden ? 'style="display: none;"' : ''}>
                 <div class="overflow-x-auto overflow-hidden rounded-md border" style="border-color: var(--border-color);">
                     <table class="w-full text-sm">
                         <thead class="border-b" style="border-color: var(--border-color);">
@@ -333,13 +381,35 @@ export function renderMachinesTable() {
                 </tr>`;
         });
 
-        tableHTML += `</tbody></table></div></div>`;
+    tableHTML += `</tbody></table></div>`;
         tableCard.innerHTML = tableHTML;
         container.appendChild(tableCard);
-    });
-
-    updateMachineSortIndicators();
 }
+
+// Change active machine line tab
+export function changeMachineLineTab(lineKey, element) {
+    activeMachineLineTab = lineKey;
+    
+    // Update tab button styles
+    document.querySelectorAll('.machine-line-tab-button').forEach(btn => {
+        btn.classList.remove('active-machine-line-tab');
+    });
+    if (element) {
+        element.classList.add('active-machine-line-tab');
+    }
+    
+    // Show/hide tab content
+    document.querySelectorAll('.machine-line-tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+    const activeTabContent = document.getElementById(`machine-tab-${lineKey}`);
+    if (activeTabContent) {
+        activeTabContent.style.display = 'block';
+    }
+}
+
+// Make function available globally
+window.changeMachineLineTab = changeMachineLineTab;
 
 export function showMachineModal(id = null) {
       const form = document.getElementById('machineForm');
@@ -521,7 +591,7 @@ export function showMachineModal(id = null) {
             document.getElementById('machineModal').style.display = 'flex';
 }
 
-export function saveMachine(event) {
+export async function saveMachine(event) {
    event.preventDefault();
             const id = document.getElementById('machineId').value;
             const number = document.getElementById('machineNumber').value.trim();
@@ -587,7 +657,8 @@ export function saveMachine(event) {
                     } else {
                         state.machineStageDisplayOrder.push(stage); // Fallback
                     }
-                    localStorage.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder));
+                    db.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder)).catch(e => console.error('Error saving machine stage order:', e));
+                    localStorage.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder)); // Also save to localStorage
                 }
             }
 
@@ -603,7 +674,8 @@ export function saveMachine(event) {
                 // Add the new group to the list if it doesn't exist
                 if (!state.machineGroups.includes(group)) {
                     state.machineGroups.push(group);
-                    localStorage.setItem('machineGroups', JSON.stringify(state.machineGroups));
+                    db.setItem('machineGroups', JSON.stringify(state.machineGroups)).catch(e => console.error('Error saving machine groups:', e));
+                    localStorage.setItem('machineGroups', JSON.stringify(state.machineGroups)); // Also save to localStorage
                 }
             }
 
@@ -644,6 +716,24 @@ export function saveMachine(event) {
             }
             
             
+            // Store SOP file in IndexedDB if it's an upload
+            const machineId = id ? parseInt(id, 10) : state.nextMachineId + 1;
+            if (cleaningSOPData.attachmentType === 'upload' && cleaningSOPData.fileData) {
+                try {
+                    await storeSOPFile(machineId.toString(), cleaningSOPData.fileName, cleaningSOPData.fileData);
+                } catch (error) {
+                    console.error('Error storing SOP file in IndexedDB:', error);
+                    showCustomAlert('Warning', 'Machine saved but SOP file storage failed. Please try uploading again.');
+                }
+            } else if (cleaningSOPData.attachmentType !== 'upload') {
+                // Delete SOP file from IndexedDB if attachment type changed from upload
+                try {
+                    await deleteSOPFile(machineId.toString());
+                } catch (error) {
+                    console.error('Error deleting SOP file from IndexedDB:', error);
+                }
+            }
+            
             if (id) { // Edit
                 const machine = state.machines.find(m => m.id === parseInt(id));
                 if (machine) {
@@ -683,8 +773,15 @@ export function saveMachine(event) {
             // }
 }
 
-export function deleteMachine(id) {
+export async function deleteMachine(id) {
     if (confirm("Are you sure you want to delete this machine? It will be removed from all products that use it.")) {
+        // Delete SOP file from IndexedDB
+        try {
+            await deleteSOPFile(id.toString());
+        } catch (error) {
+            console.error('Error deleting SOP file from IndexedDB:', error);
+        }
+        
         const newMachines = state.machines.filter(m => m.id !== id);
         state.setMachines(newMachines);
         // Remove the machine ID from all products
@@ -1164,18 +1261,20 @@ export function saveProductsToMachine(event) {
 }
 
 // Toggle line section visibility
-window.toggleLineSection = function(lineKey) {
+window.toggleLineSection = async function(lineKey) {
     const lineElement = document.getElementById(`line-${lineKey}`);
     const button = event.target;
     
     if (lineElement.style.display === 'none') {
         lineElement.style.display = 'block';
         button.textContent = 'Hide';
-        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'false');
+        await db.setItem(`machineLine-${lineKey}-hidden`, 'false');
+        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'false'); // Also save to localStorage
     } else {
         lineElement.style.display = 'none';
         button.textContent = 'Show';
-        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'true');
+        await db.setItem(`machineLine-${lineKey}-hidden`, 'true');
+        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'true'); // Also save to localStorage
     }
 };
 
@@ -1506,7 +1605,7 @@ function removeSOPFile() {
 /**
  * Load existing SOP data into the form
  */
-function loadSOPData(machine) {
+async function loadSOPData(machine) {
     // Reset form
     document.getElementById('sopAttachmentNone').checked = true;
     document.getElementById('currentSOPDisplay').style.display = 'none';
@@ -1544,18 +1643,38 @@ function loadSOPData(machine) {
             break;
             
         case 'upload':
-            if (sopData.fileName && sopData.fileData) {
+            if (sopData.fileName) {
                 document.getElementById('sopAttachmentUpload').checked = true;
                 handleSOPAttachmentMethodChange({ target: { value: 'upload' } });
                 
-                // Show existing file
-                currentSOPFile = {
-                    name: sopData.fileName,
-                    data: sopData.fileData
-                };
-                document.getElementById('sopUploadArea').style.display = 'none';
-                document.getElementById('sopUploadedFile').style.display = 'block';
-                document.getElementById('sopFileName').textContent = sopData.fileName;
+                // Try to load file from IndexedDB first, then fall back to machine object
+                let fileData = sopData.fileData;
+                if (!fileData && machine.id) {
+                    try {
+                        const sopFile = await getSOPFile(machine.id.toString());
+                        if (sopFile && sopFile.fileData) {
+                            fileData = sopFile.fileData;
+                            // Update machine object with file data for immediate access
+                            sopData.fileData = fileData;
+                        }
+                    } catch (error) {
+                        console.error('Error loading SOP file from IndexedDB:', error);
+                    }
+                }
+                
+                if (fileData) {
+                    // Show existing file
+                    currentSOPFile = {
+                        name: sopData.fileName,
+                        data: fileData
+                    };
+                    document.getElementById('sopUploadArea').style.display = 'none';
+                    document.getElementById('sopUploadedFile').style.display = 'block';
+                    document.getElementById('sopFileName').textContent = sopData.fileName;
+                } else {
+                    // File not found - show warning but allow editing
+                    console.warn('SOP file data not found for machine', machine.id);
+                }
             }
             break;
             
@@ -1840,7 +1959,7 @@ function editCurrentSOP() {
 /**
  * Open SOP file for a specific machine (from the machine table)
  */
-window.openMachineSOPFile = function(machineId) {
+window.openMachineSOPFile = async function(machineId) {
     const machine = state.machines.find(m => m.id === machineId);
     if (!machine || !machine.cleaningSOP) {
         showCustomAlert('No SOP Found', 'No SOP file is attached to this machine.');
@@ -1853,7 +1972,22 @@ window.openMachineSOPFile = function(machineId) {
     if (sopData.attachmentType) {
         switch (sopData.attachmentType) {
             case 'upload':
-                if (sopData.fileData) {
+                // Try to get file data from machine object first, then IndexedDB
+                let fileData = sopData.fileData;
+                if (!fileData) {
+                    try {
+                        const sopFile = await getSOPFile(machineId.toString());
+                        if (sopFile && sopFile.fileData) {
+                            fileData = sopFile.fileData;
+                            // Update machine object for future access
+                            sopData.fileData = fileData;
+                        }
+                    } catch (error) {
+                        console.error('Error loading SOP file from IndexedDB:', error);
+                    }
+                }
+                
+                if (fileData) {
                     try {
                         // Determine MIME type based on file extension
                         const fileName = sopData.fileName || '';
@@ -1876,7 +2010,7 @@ window.openMachineSOPFile = function(machineId) {
                         }
                         
                         // Create blob URL and open in new tab
-                        const byteCharacters = atob(sopData.fileData.split(',')[1]);
+                        const byteCharacters = atob(fileData.split(',')[1]);
                         const byteNumbers = new Array(byteCharacters.length);
                         for (let i = 0; i < byteCharacters.length; i++) {
                             byteNumbers[i] = byteCharacters.charCodeAt(i);

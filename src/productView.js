@@ -2,6 +2,7 @@
 // js/productView.js
 
 import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
 import { fullAppRender } from './app.js';
 import { showLoader, hideLoader, showCustomAlert, hideModal, saveStateForUndo, updateToggleIcons } from './ui.js';
 import { getProductTrainId, getProductTrainNumber, calculateScores, populateSelectWithOptions, getUniqueProductLines } from './utils.js';
@@ -434,13 +435,20 @@ export function showAddForm() {
                                       <div class="">
                                         <div>
                                             <label class="block text-sm font-medium mb-1">Dosage Form</label>
-                                            <select id="addProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('addOtherTypeContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('addOtherProductType').required = this.value === 'Other';">
+                                            <select id="addProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('addOtherTypeContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('addOtherProductType').required = this.value === 'Other'; updateSafetyFactorDisplay('add', this.value);">
                                             <option value="" disabled selected>Select a form...</option>
                                             </select>
                                         </div>
                                         <div id="addOtherTypeContainer" style="display: none;">
                                             <label class="block text-sm font-medium mb-1">Specify Other Form</label>
-                                            <input type="text" id="addOtherProductType" class="w-full px-3 py-2 border rounded-lg no-proper-case">
+                                            <input type="text" id="addOtherProductType" class="w-full px-3 py-2 border rounded-lg no-proper-case" oninput="updateSafetyFactorDisplay('add', this.value);" onchange="updateSafetyFactorDisplay('add', this.value);">
+                                        </div>
+                                        <div id="addSafetyFactorDisplay" class="mt-2 p-2 rounded-lg" style="background-color: var(--bg-accent); border: 1px solid var(--border-color); display: none;">
+                                            <div class="text-sm">
+                                                <div><strong>Route:</strong> <span id="addRouteDisplay">-</span></div>
+                                                <div class="mt-1"><strong>Safety Factor Range:</strong> <span id="addSafetyFactorRangeDisplay">-</span></div>
+                                                <div class="mt-1"><strong>Risk Level:</strong> <span id="addRiskLevelDisplay">-</span></div>
+                                            </div>
                                         </div>
                                       </div>
                                   </div>
@@ -549,13 +557,20 @@ export function showEditProductModal(productId) {
                     </div>
                     <div>
                         <label>Dosage Form</label>
-                        <select id="editProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('editOtherTypeContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('editOtherProductType').required = this.value === 'Other';">
+                        <select id="editProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('editOtherTypeContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('editOtherProductType').required = this.value === 'Other'; updateSafetyFactorDisplay('edit', this.value);">
                         <option value="" disabled selected>Select a form...</option>
                         </select>
                     </div>
                     <div id="editOtherTypeContainer" style="display: none;">
                         <label class="block text-sm font-medium mb-1">Specify Other Form</label>
-                        <input type="text" id="editOtherProductType" class="w-full px-3 py-2 border rounded-lg no-proper-case">
+                        <input type="text" id="editOtherProductType" class="w-full px-3 py-2 border rounded-lg no-proper-case" oninput="updateSafetyFactorDisplay('edit', this.value);" onchange="updateSafetyFactorDisplay('edit', this.value);">
+                    </div>
+                    <div id="editSafetyFactorDisplay" class="mt-2 p-2 rounded-lg" style="background-color: var(--bg-accent); border: 1px solid var(--border-color); display: none;">
+                        <div class="text-sm">
+                            <div><strong>Route:</strong> <span id="editRouteDisplay">-</span></div>
+                            <div class="mt-1"><strong>Safety Factor Range:</strong> <span id="editSafetyFactorRangeDisplay">-</span></div>
+                            <div class="mt-1"><strong>Risk Level:</strong> <span id="editRiskLevelDisplay">-</span></div>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -603,7 +618,13 @@ export function showEditProductModal(productId) {
     // Line selection will be handled after populateProductLineDropdowns() is called
 
     // Populate dosage form options for the currently selected line
-    try { updateDosageFormOptions('edit'); } catch (e) { /* ignore if not available */ }
+    try { 
+        updateDosageFormOptions('edit');
+        // Update safety factor display for existing product
+        if (product.productType) {
+            updateSafetyFactorDisplay('edit', product.productType);
+        }
+    } catch (e) { /* ignore if not available */ }
 
     // Now set the dosage form value (or 'Other' handling) after options are populated
     const standardTypes = Array.from(typeSelect.options).map(opt => opt.value).filter(Boolean);
@@ -1052,4 +1073,32 @@ window.updateDosageFormOptions = function(mode) {
   }
   formSelect.innerHTML = '<option value=\"\" disabled selected>Select a form...</option>' +
     options.map(opt => `<option value=\"${opt}\">${opt}</option>`).join('');
+};
+
+// Function to update safety factor display when dosage form changes
+window.updateSafetyFactorDisplay = function(mode, dosageForm) {
+    if (!dosageForm || dosageForm === '') {
+        // Hide display if no dosage form selected
+        const displayDiv = document.getElementById(mode === 'add' ? 'addSafetyFactorDisplay' : 'editSafetyFactorDisplay');
+        if (displayDiv) {
+            displayDiv.style.display = 'none';
+        }
+        return;
+    }
+    
+    // Get safety factor config for the dosage form
+    const sfConfig = getSafetyFactorForDosageForm(dosageForm);
+    
+    // Update display elements
+    const routeDisplay = document.getElementById(mode === 'add' ? 'addRouteDisplay' : 'editRouteDisplay');
+    const rangeDisplay = document.getElementById(mode === 'add' ? 'addSafetyFactorRangeDisplay' : 'editSafetyFactorRangeDisplay');
+    const riskLevelDisplay = document.getElementById(mode === 'add' ? 'addRiskLevelDisplay' : 'editRiskLevelDisplay');
+    const displayDiv = document.getElementById(mode === 'add' ? 'addSafetyFactorDisplay' : 'editSafetyFactorDisplay');
+    
+    if (routeDisplay && rangeDisplay && riskLevelDisplay && displayDiv && sfConfig) {
+        routeDisplay.textContent = sfConfig.route || '-';
+        rangeDisplay.textContent = `${sfConfig.min.toLocaleString()} - ${sfConfig.max.toLocaleString()}`;
+        riskLevelDisplay.textContent = sfConfig.riskLevel || '-';
+        displayDiv.style.display = 'block';
+    }
 };

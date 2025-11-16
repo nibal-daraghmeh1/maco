@@ -1,1 +1,53 @@
-(function(_0x5ab027,_0xf30568){const _0x16cfc8=a14_0x6649,_0x515bd8=_0x5ab027();while(!![]){try{const _0x4c362e=-parseInt(_0x16cfc8(0xec))/0x1+-parseInt(_0x16cfc8(0xdf))/0x2+-parseInt(_0x16cfc8(0xeb))/0x3+-parseInt(_0x16cfc8(0xea))/0x4+-parseInt(_0x16cfc8(0xe3))/0x5*(-parseInt(_0x16cfc8(0xf5))/0x6)+parseInt(_0x16cfc8(0xd2))/0x7*(-parseInt(_0x16cfc8(0xed))/0x8)+-parseInt(_0x16cfc8(0xd8))/0x9*(-parseInt(_0x16cfc8(0xda))/0xa);if(_0x4c362e===_0xf30568)break;else _0x515bd8['push'](_0x515bd8['shift']());}catch(_0xe615a8){_0x515bd8['push'](_0x515bd8['shift']());}}}(a14_0x16dc,0x4f22e));function a14_0x6649(_0x356112,_0x7d4569){const _0x16dc3d=a14_0x16dc();return a14_0x6649=function(_0x664986,_0x2028d7){_0x664986=_0x664986-0xcc;let _0x5f3766=_0x16dc3d[_0x664986];return _0x5f3766;},a14_0x6649(_0x356112,_0x7d4569);}function a14_0x16dc(){const _0x7de67=['noCriticalMessage','trainId','holgA','length','<td\x20class=\x22px-4\x20py-3\x22>','3355121MGTLga','products','topRpnTableBody','</td>','block','display','27eCLUlJ','doraO','4395590MiSjjv','HTVJW','</td><td\x20class=\x22px-4\x20py-3\x20font-bold\x22\x20style=\x22color:\x20var(--gradient-mid);\x22>','name','getElementById','265916uxZSMw','innerHTML','Bxbqf','ingredientName','55130TQAERw','map','forEach','BOEvR','insertRow','wDsFP','bJkpX','2430828OLGxEw','638340sdPcCp','179243vksaRi','8tZxUqu','flatMap','filter','criticalProductsTableContainer','qUmuw','activeIngredients','</td><td\x20class=\x22px-4\x20py-3\x22>','criticalReason','336QpwqwE','rpn','style','sort','Hhzkb','productName','XUmSM','cFNSB','none'];a14_0x16dc=function(){return _0x7de67;};return a14_0x16dc();}import*as a14_0x42063e from'./state.js';import{getProductTrainId as a14_0x2f4e74,calculateScores as a14_0x10517c}from'./utils.js';export function renderSummaryReport(){const _0x3fd608=a14_0x6649,_0x26ddd6={'XUmSM':function(_0x4d888b,_0x3f5f27){return _0x4d888b(_0x3f5f27);},'Hhzkb':function(_0x1b84c4,_0x5821f6){return _0x1b84c4+_0x5821f6;},'rCBcj':'N/A','bJkpX':_0x3fd608(0xd4),'qUmuw':'criticalProductsTableBody','HTVJW':'topRpnTableContainer','doraO':_0x3fd608(0xf0),'wDsFP':'noTopRpnMessage','Bxbqf':_0x3fd608(0xcd),'holgA':function(_0x47b379,_0x1136a6){return _0x47b379>_0x1136a6;},'BOEvR':_0x3fd608(0xd6),'cFNSB':_0x3fd608(0xcc)},_0x34fa0c=document[_0x3fd608(0xde)](_0x26ddd6[_0x3fd608(0xe9)]),_0x5f0173=document[_0x3fd608(0xde)](_0x26ddd6[_0x3fd608(0xf1)]),_0x2abc4f=document['getElementById'](_0x26ddd6[_0x3fd608(0xdb)]),_0x221bf9=document[_0x3fd608(0xde)](_0x26ddd6[_0x3fd608(0xd9)]),_0x5a071e=document[_0x3fd608(0xde)](_0x26ddd6[_0x3fd608(0xe8)]),_0x35a5f0=document[_0x3fd608(0xde)](_0x26ddd6[_0x3fd608(0xe1)]);_0x34fa0c[_0x3fd608(0xe0)]='',_0x5f0173[_0x3fd608(0xe0)]='';const _0x105a14=a14_0x42063e['products'][_0x3fd608(0xee)](_0x27ccb5=>{const _0x3dc3b5=_0x3fd608,_0x3791ac=_0x26ddd6[_0x3dc3b5(0xfb)](a14_0x2f4e74,_0x27ccb5);return _0x27ccb5[_0x3dc3b5(0xf2)][_0x3dc3b5(0xe4)](_0x5d38cd=>({'productName':_0x27ccb5[_0x3dc3b5(0xdd)],'ingredientName':_0x5d38cd[_0x3dc3b5(0xdd)],'rpn':a14_0x10517c(_0x5d38cd)['rpn'],'trainId':'N/A'!==_0x3791ac?'T'+_0x3791ac:''}));})[_0x3fd608(0xf8)]((_0x435f35,_0x598d31)=>_0x598d31[_0x3fd608(0xf6)]-_0x435f35[_0x3fd608(0xf6)])['slice'](0x0,0xa);_0x26ddd6[_0x3fd608(0xcf)](_0x105a14['length'],0x0)?(_0x5a071e[_0x3fd608(0xf7)]['display']=_0x3fd608(0xcc),_0x2abc4f[_0x3fd608(0xf7)][_0x3fd608(0xd7)]=_0x26ddd6[_0x3fd608(0xe6)],_0x105a14['forEach']((_0x352308,_0x321a2d)=>{const _0x12dcc0=_0x3fd608;_0x34fa0c[_0x12dcc0(0xe7)]()[_0x12dcc0(0xe0)]=_0x12dcc0(0xd1)+_0x26ddd6[_0x12dcc0(0xf9)](_0x321a2d,0x1)+_0x12dcc0(0xf3)+_0x352308[_0x12dcc0(0xfa)]+'</td><td\x20class=\x22px-4\x20py-3\x22>'+(_0x352308[_0x12dcc0(0xce)]||_0x26ddd6['rCBcj'])+'</td><td\x20class=\x22px-4\x20py-3\x22>'+_0x352308[_0x12dcc0(0xe2)]+_0x12dcc0(0xdc)+_0x352308[_0x12dcc0(0xf6)]+_0x12dcc0(0xd5);})):(_0x5a071e[_0x3fd608(0xf7)]['display']='block',_0x2abc4f[_0x3fd608(0xf7)]['display']=_0x26ddd6['cFNSB']);const _0x18b7b1=a14_0x42063e[_0x3fd608(0xd3)][_0x3fd608(0xef)](_0x2102f3=>_0x2102f3['isCritical']);_0x18b7b1[_0x3fd608(0xd0)]>0x0?(_0x35a5f0[_0x3fd608(0xf7)][_0x3fd608(0xd7)]=_0x26ddd6[_0x3fd608(0xfc)],_0x221bf9['style'][_0x3fd608(0xd7)]=_0x26ddd6[_0x3fd608(0xe6)],_0x18b7b1[_0x3fd608(0xe5)](_0x42a035=>{const _0x349df1=_0x3fd608;_0x5f0173[_0x349df1(0xe7)]()[_0x349df1(0xe0)]=_0x349df1(0xd1)+_0x42a035[_0x349df1(0xdd)]+'</td><td\x20class=\x22px-4\x20py-3\x22\x20style=\x22white-space:\x20pre-wrap;\x20word-break:\x20break-word;\x22>'+(_0x42a035[_0x349df1(0xf4)]||'No\x20reason\x20provided')+'</td>';})):(_0x35a5f0[_0x3fd608(0xf7)][_0x3fd608(0xd7)]=_0x26ddd6['BOEvR'],_0x221bf9['style'][_0x3fd608(0xd7)]=_0x26ddd6['cFNSB']);}
+ // Renders the "Summary Report" tab
+ // js/summaryView.js
+
+import * as state from './state.js';
+import { getProductTrainId, calculateScores } from './utils.js';
+
+export function renderSummaryReport() {
+    const topRpnBody = document.getElementById('topRpnTableBody');
+    const criticalBody = document.getElementById('criticalProductsTableBody');
+    const topRpnTableContainer = document.getElementById('topRpnTableContainer');
+    const criticalProductsTableContainer = document.getElementById('criticalProductsTableContainer');
+    const noRpnMsg = document.getElementById('noTopRpnMessage');
+    const noCriticalMsg = document.getElementById('noCriticalMessage');
+    
+    topRpnBody.innerHTML = '';
+    criticalBody.innerHTML = '';
+    
+    const top10Rpn = state.products.flatMap(product => {
+        const trainId = getProductTrainId(product);
+        return product.activeIngredients.map(ing => ({
+            productName: product.name,
+            ingredientName: ing.name,
+            rpn: calculateScores(ing).rpn,
+            trainId: trainId !== 'N/A' ? `T${trainId}` : ''
+        }))
+    }).sort((a, b) => b.rpn - a.rpn).slice(0, 10);
+
+    if (top10Rpn.length > 0) {
+        noRpnMsg.style.display = 'none';
+        topRpnTableContainer.style.display = 'block';
+        top10Rpn.forEach((item, index) => {
+            const row = topRpnBody.insertRow();
+            row.innerHTML = `<td class="px-4 py-3">${index + 1}</td><td class="px-4 py-3">${item.productName}</td><td class="px-4 py-3">${item.trainId || 'N/A'}</td><td class="px-4 py-3">${item.ingredientName}</td><td class="px-4 py-3 font-bold" style="color: var(--gradient-mid);">${item.rpn}</td>`;
+        });
+    } else {
+        noRpnMsg.style.display = 'block';
+        topRpnTableContainer.style.display = 'none';
+    }
+
+    const criticalProductsList = state.products.filter(p => p.isCritical);
+
+    if (criticalProductsList.length > 0) {
+        noCriticalMsg.style.display = 'none';
+        criticalProductsTableContainer.style.display = 'block';
+        criticalProductsList.forEach(p => {
+            const row = criticalBody.insertRow();
+            row.innerHTML = `<td class="px-4 py-3">${p.name}</td><td class="px-4 py-3" style="white-space: pre-wrap; word-break: break-word;">${p.criticalReason || 'No reason provided'}</td>`;
+        });
+    } else {
+        noCriticalMsg.style.display = 'block';
+        criticalProductsTableContainer.style.display = 'none';
+    }
+}

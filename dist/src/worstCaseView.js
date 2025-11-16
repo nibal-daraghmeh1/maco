@@ -1,1 +1,592 @@
-const a18_0x80f6c=a18_0x10b0;(function(_0xa192ac,_0x25d824){const _0x597fc2=a18_0x10b0,_0x2834fc=_0xa192ac();while(!![]){try{const _0x2fb47d=-parseInt(_0x597fc2(0x200))/0x1*(-parseInt(_0x597fc2(0x1cc))/0x2)+-parseInt(_0x597fc2(0x171))/0x3+-parseInt(_0x597fc2(0x20b))/0x4*(-parseInt(_0x597fc2(0x177))/0x5)+-parseInt(_0x597fc2(0x18d))/0x6*(-parseInt(_0x597fc2(0x241))/0x7)+parseInt(_0x597fc2(0x15e))/0x8*(-parseInt(_0x597fc2(0x1e7))/0x9)+-parseInt(_0x597fc2(0x1a7))/0xa+-parseInt(_0x597fc2(0x261))/0xb*(-parseInt(_0x597fc2(0x1e1))/0xc);if(_0x2fb47d===_0x25d824)break;else _0x2834fc['push'](_0x2834fc['shift']());}catch(_0x4e9342){_0x2834fc['push'](_0x2834fc['shift']());}}}(a18_0x4f8a,0xccb14));import*as a18_0x187363 from'./state.js';import{hideLoader as a18_0xc74981,updateToggleIcons as a18_0xacfbce,showCustomAlert as a18_0x203bbf}from'./ui.js';import{getProductTrainId as a18_0x105217,calculateScores as a18_0x58932b,getRpnRatingClass as a18_0x54b9e9,getToxicityPreference as a18_0x30458d,getTrainsGroupedByLine as a18_0x9fd52b,getConsistentTrainOrder as a18_0x421c64}from'./utils.js';window[a18_0x80f6c(0x220)]=function(_0x550399){const _0x248c15=a18_0x80f6c,_0x1601a0={'pBzuT':_0x248c15(0x15f),'LoEKk':_0x248c15(0x15c),'xSIvk':'rotate(-90deg)','LQLFC':_0x248c15(0x251),'uzkTx':_0x248c15(0x1dc),'Imnyy':function(_0x41b64f,_0x22be1d){return _0x41b64f+_0x22be1d;},'RRZWV':function(_0x41ddb4,_0x64bba2,_0x57823d){return _0x41ddb4(_0x64bba2,_0x57823d);}},_0x20cd42=document[_0x248c15(0x1a3)](_0x248c15(0x21b)+_0x550399),_0x3117ef=document[_0x248c15(0x1a3)]('wc-group-toggle-'+_0x550399);if(!_0x20cd42||!_0x3117ef)return void console[_0x248c15(0x240)](_0x248c15(0x26f)+_0x550399);_0x20cd42['classList'][_0x248c15(0x25e)](_0x1601a0[_0x248c15(0x1f1)])?(_0x20cd42[_0x248c15(0x1bd)][_0x248c15(0x18f)](_0x248c15(0x15f)),_0x3117ef['textContent']='▼',_0x3117ef['style']['transform']=_0x1601a0[_0x248c15(0x190)],_0x20cd42[_0x248c15(0x1b5)][_0x248c15(0x254)]=_0x1601a0['Imnyy'](_0x20cd42[_0x248c15(0x1e8)],'px'),_0x1601a0[_0x248c15(0x1ac)](setTimeout,()=>{const _0x21dd62=_0x248c15;_0x20cd42[_0x21dd62(0x1bd)]['contains'](_0x1601a0[_0x21dd62(0x1f1)])||(_0x20cd42[_0x21dd62(0x1b5)]['maxHeight']=_0x1601a0['LoEKk']);},0x12c)):(_0x20cd42[_0x248c15(0x1b5)]['maxHeight']=_0x1601a0['Imnyy'](_0x20cd42['scrollHeight'],'px'),requestAnimationFrame(()=>{const _0x3db3e2=_0x248c15;_0x20cd42[_0x3db3e2(0x1bd)][_0x3db3e2(0x1fc)](_0x1601a0[_0x3db3e2(0x1f1)]),_0x3117ef['textContent']='▶',_0x3117ef[_0x3db3e2(0x1b5)][_0x3db3e2(0x1fa)]=_0x1601a0[_0x3db3e2(0x1c3)],_0x20cd42['style'][_0x3db3e2(0x254)]=_0x1601a0[_0x3db3e2(0x17f)];}));};function a18_0x4f8a(){const _0x5e7bfc=['FJdzs','8797790IHlKKk','rYuAB','YfXqA','ZeCqj','RPN','RRZWV','dosageForm','data-key','criticalReason','DWAiY','.print-train-checkbox:checked','querySelectorAll','currentLineFilter','var(--text-primary)','style','</tbody></table></div></div>','.export-train-checkbox:checked','productCode','forEach','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20align-top\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22','cUHpV','map','classList','XKGDE','dosage-group-content\x20transition-all\x20duration-300\x20','VMkhF','exportAllTrainsCheckbox','executePrintSelection','xSIvk','max','fXQSK','rpnChartPlaceholder','button[onclick=\x22toggleWorstCasePrintDropdown()\x22]','UMDvB','tKXUY','Yes','lLklD','48226gUHoQs','filter','catch','block','stopPropagation','ZdmUs','\x20-\x20','akhWa','rIVen','kOAmw','productName','export','vagYs','length','<p\x20class=\x22text-xs\x20italic\x22\x20style=\x22color:\x20var(--text-secondary);\x20max-width:\x20150px;\x20white-space:\x20normal;\x22>','key','rotate(0deg)','cgvth','toggleWorstCaseExportDropdown','InVNV','qYEQn','744NYUSDi','WoHin','XqSrL','display','replace','\x20—\x20Train\x20','7174557mvzpwj','scrollHeight','vLmtU','rpn','worstCaseProducts','nmbMy','toLowerCase','\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','HdkpM','NrpcQ','pBzuT','Please\x20select\x20at\x20least\x20one\x20train\x20to\x20export.','Lrxbx','ratingKey','direction','bgLfw','products','number','createElement','transform','</p>','add','color','DeLUK','vSKul','2OHAxIm','updateAllTrainsCheckbox','push','desc','hrwxP','ZLXDM','rpnChartCanvas','noWorstCaseMessage','ySWpk','AllTrainsCheckbox','QcEda','3448124Qqnyjj','sortValue','VrCJL','target','flex','uwzBW','dJDLC','kKsBX','tkZhR','DHZyZ','lMdDz','aHgfw','qsBew','rpnChartInstance','DQwHc','printAllTrainsCheckbox','wc-group-content-','bar','izmwP','th.sortable[data-key]','CIQeN','toggleWorstCaseDosageGroup','sort','aVxhm','qPJUy','tiFjr','vqDZt','FCpCl','textContent','N/A','rgba(107,\x20114,\x20128,\x201)','ZpjdP','activeIngredients','kmwDc','JEONw','\x20train','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','border','rgba(250,\x20204,\x2021,\x200.6)','innerHTML','span','YPKQq','mb-4','Isdhw','error','mDekx','VzcBN','TwzEQ','className','hYqec','value','nXIkK','IhOHO','warn','1340829vcGUwf','\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Train\x20','ingredientName','Xmdvz','qpfWc','MHEtG','#worstCasePrintDropdown','train-card\x20mb-3','var(--text-secondary)','FSxPm','vmwPh','worstCasePrintDropdown','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20font-bold\x20whitespace-nowrap\x20align-top\x22\x20style=\x22color:\x20var(--gradient-mid);\x22>','viewProducts','pTnBr','rgba(239,\x2068,\x2068,\x200.6)','0px','setRpnChartInstance','oPpRK','maxHeight','UwGMv','click','tcSpN','qxiXv','input','indeterminate','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','LQKsw','oYzxR','contains','OlhdR','dataset','423357yHBQbd','rpnRatingText','asc','aBMyy','flatMap','trains','mmJtP','ulkji','QQZJm','QUAHz','worstCasePrintTrainOptions','swoyn','addEventListener','nDKyY','Worst\x20Case\x20group\x20elements\x20not\x20found\x20for\x20groupId:\x20','checked','mlOyq','hGdlH','min','body','zAzLy','UThQs','Eafmr','productType','unknown','executeExportSelection','-train-checkbox','</h3>','toggleAllTrainsSelection','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-xs\x20italic\x22\x20style=\x22color:\x20var(--text-secondary);\x22>','HGcaE','name','onclick','JbrTf','RkwbZ','Unknown','printSelectedTrain','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20font-medium\x20whitespace-nowrap\x20align-top\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22product-name\x22>','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-content-inner\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22w-full\x20text-sm\x20mainTable\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20style=\x22background:\x20var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x20sortable\x22\x20data-key=\x22productCode\x22>Code\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x20sortable\x22\x20data-key=\x22name\x22>Product\x20Name\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22>Highest\x20RPN</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22>Special\x20Case</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20class=\x22divide-y\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','overflow','none','#worstCaseExportDropdown','8VxItMj','collapsed','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','all','jOTzf','checkbox','</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-content\x20','default','worstCaseExportTrainOptions','BNScZ','wQqfa','Error\x20populating\x20worst\x20case\x20train\x20options:','DapYS','No\x20Selection','xsIZv','JQtfq','axnUj','querySelector','fevyz','2917878UetvZJ','hidden','line','worstCaseExportDropdown','oFPQr','BEiQk','5rZkWVV','button[onclick=\x22toggleWorstCaseExportDropdown()\x22]','div','isCritical','evWjE','toggle','.mainTable\x20th.sortable','type','LQLFC','bxfLJ','mJtuy','includes','<h3\x20class=\x22text-lg\x20font-bold\x22>','sortState','flex\x20items-center\x20px-4\x20py-2\x20text-sm\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20cursor-pointer','UaMvK','QLDaf','ZNbsT','closest','ANbcK','dosage-group-header\x20pl-4\x20mb-3\x20cursor-pointer\x20select-none','WytQe','6JWQSSm','uBQfI','remove','uzkTx','UnyXx','parsed','-train-checkbox:checked','JKRzr','RyHFc','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-header\x22\x20onclick=\x22toggleTrain(\x27wc-','appendChild','text-red-600\x20font-bold','keys','destroy','Please\x20select\x20at\x20least\x20one\x20train\x20to\x20print.','AxPTW','AAyEk','IFbZp','wNtUD','WbnxX','bWiIX','GLpKp','getElementById','dFePT','mr-2\x20export-train-checkbox'];a18_0x4f8a=function(){return _0x5e7bfc;};return a18_0x4f8a();}function a18_0x10b0(_0x14b55a,_0x922951){const _0x4f8a28=a18_0x4f8a();return a18_0x10b0=function(_0x10b0fe,_0x129ab9){_0x10b0fe=_0x10b0fe-0x14d;let _0xed6e2b=_0x4f8a28[_0x10b0fe];return _0xed6e2b;},a18_0x10b0(_0x14b55a,_0x922951);}export function handleSearchAndFilter(_0xf07be4,_0x4121d7=null){const _0x5dc754=a18_0x80f6c,_0x5b957f={'ulkji':function(_0x40f5e9,_0x540675){return _0x40f5e9===_0x540675;},'BNScZ':function(_0x47e288,_0x25a779){return _0x47e288&&_0x25a779;},'UMDvB':function(_0x598fc1,_0x84fe5f){return _0x598fc1!==_0x84fe5f;},'WytQe':'worstCaseProducts','aBMyy':'worstCaseProductNameFilter'};if(_0x5b957f[_0x5dc754(0x1c8)](_0x5b957f[_0x5dc754(0x18c)],_0xf07be4))return;const _0x23959d=document['getElementById'](_0x5b957f[_0x5dc754(0x264)]),_0x30aedf=_0x23959d?_0x23959d[_0x5dc754(0x23d)][_0x5dc754(0x1ed)]():'';a18_0x187363['viewProducts'][_0xf07be4]=a18_0x187363[_0x5dc754(0x1f7)][_0x5dc754(0x1cd)](_0x2bd89c=>{const _0x4d72e0=_0x5dc754,_0x44d969=_0x2bd89c[_0x4d72e0(0x153)][_0x4d72e0(0x1ed)]()['includes'](_0x30aedf),_0x5b2b88=!_0x4121d7||_0x5b957f[_0x4d72e0(0x268)](_0x2bd89c['line'],_0x4121d7);return _0x5b957f[_0x4d72e0(0x167)](_0x44d969,_0x5b2b88);}),renderWorstCaseByTrain(!0x0,_0x4121d7);}export function handleWorstCaseProductFilter(){const _0x15b5f5=a18_0x80f6c,_0x1098b3={'CIQeN':function(_0x42d552,_0x51b9a8){return _0x42d552(_0x51b9a8);},'swoyn':_0x15b5f5(0x1eb)};_0x1098b3[_0x15b5f5(0x21f)](handleSearchAndFilter,_0x1098b3[_0x15b5f5(0x26c)]);}export function sortData(_0x46e935,_0x2f4199){const _0x5eafd4=a18_0x80f6c,_0x4a907e={'UnyXx':function(_0x2f950d,_0x2e95be){return _0x2f950d===_0x2e95be;},'WNRoe':function(_0x4c8e74,_0x3a962c){return _0x4c8e74===_0x3a962c;},'ZeCqj':_0x5eafd4(0x263),'JbrTf':_0x5eafd4(0x203),'JKRzr':function(_0x4229f3,_0x243991){return _0x4229f3===_0x243991;},'kmwDc':_0x5eafd4(0x1ea)};_0x4a907e[_0x5eafd4(0x191)](_0x5eafd4(0x1eb),_0x2f4199)&&(_0x4a907e['WNRoe'](a18_0x187363[_0x5eafd4(0x184)][_0x5eafd4(0x1db)],_0x46e935)?a18_0x187363['sortState']['direction']=_0x4a907e[_0x5eafd4(0x1aa)]===a18_0x187363[_0x5eafd4(0x184)]['direction']?_0x4a907e[_0x5eafd4(0x155)]:'asc':(a18_0x187363[_0x5eafd4(0x184)][_0x5eafd4(0x1db)]=_0x46e935,a18_0x187363['sortState'][_0x5eafd4(0x1f5)]=_0x4a907e[_0x5eafd4(0x194)](_0x4a907e[_0x5eafd4(0x22c)],_0x46e935)?_0x4a907e[_0x5eafd4(0x155)]:_0x4a907e[_0x5eafd4(0x1aa)]),renderWorstCaseByTrain(!0x1));}export function updateSortIndicators(_0xbf575f){const _0x5ef623=a18_0x80f6c,_0x255d32={'JQtfq':'.sort-indicator','rIVen':function(_0x228a64,_0x38aa54){return _0x228a64===_0x38aa54;},'tKXUY':'asc'},_0x2bd611=document[_0x5ef623(0x1a3)](_0xbf575f);_0x2bd611&&_0x2bd611[_0x5ef623(0x1b2)](_0x5ef623(0x17d))[_0x5ef623(0x1b9)](_0x562273=>{const _0x44a9a2=_0x5ef623,_0x186d6a=_0x562273[_0x44a9a2(0x16f)](_0x255d32[_0x44a9a2(0x16d)]),_0x47eb76=_0x562273[_0x44a9a2(0x260)][_0x44a9a2(0x1db)];_0x186d6a[_0x44a9a2(0x227)]='',_0x255d32[_0x44a9a2(0x1d4)](_0x47eb76,a18_0x187363[_0x44a9a2(0x184)]['key'])&&(_0x186d6a[_0x44a9a2(0x227)]=_0x255d32[_0x44a9a2(0x1c9)]===a18_0x187363[_0x44a9a2(0x184)][_0x44a9a2(0x1f5)]?'▲':'▼');});}export function renderWorstCaseByTrain(_0x1f76fe=!0x0,_0x1fb77f=null){const _0x463791=a18_0x80f6c,_0x7f14ce={'nDKyY':'Unassigned','tcSpN':'Other','ZpjdP':'productCode','JEONw':function(_0x4a7b56,_0xf8931f){return _0x4a7b56>_0xf8931f;},'oFPQr':_0x463791(0x1ae),'uwzBW':function(_0x491080,_0x55e3dd){return _0x491080!==_0x55e3dd;},'afmpp':_0x463791(0x161),'izmwP':function(_0x3961c3,_0x367628){return _0x3961c3(_0x367628);},'vLmtU':_0x463791(0x179),'FSxPm':_0x463791(0x248),'BwFYY':_0x463791(0x1b6),'mlOyq':_0x463791(0x21e),'ZalYv':function(_0x341193,_0x9170ec){return _0x341193>_0x9170ec;},'VMkhF':_0x463791(0x198),'hrwxP':_0x463791(0x256),'Qlade':_0x463791(0x172),'cgvth':_0x463791(0x235),'xsIZv':function(_0x1ea0e4,_0x30f542){return _0x1ea0e4===_0x30f542;},'OlhdR':_0x463791(0x15c),'RyHFc':function(_0xe60b9a){return _0xe60b9a();},'YfXqA':_0x463791(0x1cf),'UaMvK':function(_0x375a3d,_0x3995be){return _0x375a3d(_0x3995be);},'wNtUD':function(_0xc339c9,_0x21c703){return _0xc339c9(_0x21c703);}},_0x3538e3=document[_0x463791(0x1a3)]('worstCaseTrainsContainer'),_0x2bad4f=document[_0x463791(0x1a3)](_0x463791(0x207));_0x3538e3[_0x463791(0x232)]='',a18_0x187363[_0x463791(0x24e)][_0x463791(0x1eb)]||(a18_0x187363[_0x463791(0x24e)][_0x463791(0x1eb)]=[...a18_0x187363['products']]);if(_0x7f14ce[_0x463791(0x16c)](0x0,[...a18_0x187363[_0x463791(0x24e)][_0x463791(0x1eb)]][_0x463791(0x1d9)]))return _0x2bad4f[_0x463791(0x1b5)][_0x463791(0x1e4)]=_0x463791(0x1cf),void(_0x3538e3[_0x463791(0x1b5)][_0x463791(0x1e4)]=_0x7f14ce[_0x463791(0x25f)]);let _0x365598=_0x7f14ce[_0x463791(0x195)](a18_0x9fd52b);if(_0x1fb77f&&(_0x365598=_0x365598['filter'](_0x17006f=>_0x17006f[_0x463791(0x173)]===_0x1fb77f)),!_0x365598||0x0===_0x365598[_0x463791(0x1d9)])return _0x2bad4f[_0x463791(0x1b5)]['display']=_0x463791(0x1cf),void(_0x3538e3[_0x463791(0x1b5)][_0x463791(0x1e4)]=_0x7f14ce[_0x463791(0x25f)]);_0x2bad4f[_0x463791(0x1b5)][_0x463791(0x1e4)]=_0x463791(0x15c),_0x3538e3[_0x463791(0x1b5)][_0x463791(0x1e4)]=_0x7f14ce[_0x463791(0x1a9)];const _0x513c60=[];_0x365598[_0x463791(0x1b9)](_0x230e6e=>{const _0xedd178=_0x463791;_0x230e6e[_0xedd178(0x266)][_0xedd178(0x1b9)](_0x486b9d=>{const _0x1576e4=_0xedd178;_0x513c60[_0x1576e4(0x202)]({..._0x486b9d,'line':_0x486b9d[_0x1576e4(0x173)]});});});const _0x4121c7=_0x7f14ce[_0x463791(0x186)](a18_0x421c64,_0x513c60),_0x347e24={};_0x4121c7[_0x463791(0x1b9)](_0x14fde1=>{const _0xff6d04=_0x463791,_0xd717b0=_0x14fde1[_0xff6d04(0x173)]||_0x7f14ce[_0xff6d04(0x26e)],_0x4bd9fb=_0x14fde1[_0xff6d04(0x1ad)]||_0x7f14ce[_0xff6d04(0x257)];_0x347e24[_0xd717b0]||(_0x347e24[_0xd717b0]={}),_0x347e24[_0xd717b0][_0x4bd9fb]||(_0x347e24[_0xd717b0][_0x4bd9fb]=[]),_0x347e24[_0xd717b0][_0x4bd9fb][_0xff6d04(0x202)](_0x14fde1);}),Object[_0x463791(0x199)](_0x347e24)[_0x463791(0x1b9)](_0x229320=>{const _0x254b13=_0x463791,_0x47e1bd={'cUHpV':function(_0x2a441e,_0x316d22){return _0x2a441e-_0x316d22;},'FJdzs':function(_0x273540,_0x482943){return _0x273540===_0x482943;},'GLpKp':_0x7f14ce[_0x254b13(0x22a)],'qPJUy':function(_0x3b7989,_0x2cf293){const _0x1f8b63=_0x254b13;return _0x7f14ce[_0x1f8b63(0x22d)](_0x3b7989,_0x2cf293);},'ZLXDM':function(_0x2b1b22,_0x253556,_0x333d96){return _0x2b1b22(_0x253556,_0x333d96);},'aHgfw':_0x7f14ce[_0x254b13(0x175)],'VrCJL':function(_0x4cd2c7,_0x1635d4){const _0x3f995a=_0x254b13;return _0x7f14ce[_0x3f995a(0x210)](_0x4cd2c7,_0x1635d4);},'KurVF':_0x7f14ce['afmpp'],'QQZJm':function(_0x765926,_0x50cedd){return _0x7f14ce['izmwP'](_0x765926,_0x50cedd);},'hGdlH':function(_0x2d1887,_0x391b9e){const _0x4424e6=_0x254b13;return _0x7f14ce[_0x4424e6(0x210)](_0x2d1887,_0x391b9e);},'qpfWc':function(_0x2eca24,_0xd47397){return _0x2eca24(_0xd47397);},'PSKxM':function(_0x90a4a2,_0x3a0ef5){return _0x90a4a2(_0x3a0ef5);},'uBQfI':'printing-worstCaseProducts','lLklD':_0x7f14ce[_0x254b13(0x1e9)],'JXxeD':_0x7f14ce[_0x254b13(0x24a)],'nPdnB':_0x254b13(0x15f),'MHEtG':_0x7f14ce['BwFYY'],'WoHin':_0x7f14ce[_0x254b13(0x271)],'axnUj':function(_0x221d7e){return _0x221d7e();},'WfKNA':function(_0x3a9a97,_0xe5ff5){return _0x7f14ce['ZalYv'](_0x3a9a97,_0xe5ff5);},'DJutu':_0x7f14ce[_0x254b13(0x1c0)],'aVxhm':_0x7f14ce[_0x254b13(0x204)],'LQKsw':_0x7f14ce['Qlade']},_0x19cac9=document[_0x254b13(0x1f9)](_0x7f14ce[_0x254b13(0x1e9)]);_0x19cac9[_0x254b13(0x23b)]=_0x7f14ce[_0x254b13(0x1dd)],_0x19cac9[_0x254b13(0x232)]=_0x254b13(0x183)+_0x229320+_0x254b13(0x14f),_0x3538e3['appendChild'](_0x19cac9);const _0x529752=_0x347e24[_0x229320];Object['keys'](_0x529752)[_0x254b13(0x221)]((_0x39ac0f,_0x4af71b)=>{const _0x13b6e3=_0x254b13,_0x27058f=_0x529752[_0x39ac0f],_0x295ffc=_0x529752[_0x4af71b];return _0x47e1bd[_0x13b6e3(0x1bb)](Math[_0x13b6e3(0x273)](..._0x27058f[_0x13b6e3(0x1bc)](_0x23cde3=>_0x23cde3[_0x13b6e3(0x1f8)])),Math[_0x13b6e3(0x273)](..._0x295ffc['map'](_0x4efad7=>_0x4efad7['number'])));})[_0x254b13(0x1b9)](_0x4edd3e=>{const _0x2deea1=_0x254b13,_0x448275={'HGcaE':function(_0x99b3e4){const _0x5125a9=a18_0x10b0;return _0x47e1bd[_0x5125a9(0x16e)](_0x99b3e4);},'VzcBN':function(_0x4fffb7,_0x4ea272){return _0x47e1bd['WfKNA'](_0x4fffb7,_0x4ea272);},'AxPTW':_0x2deea1(0x1ca),'tkZhR':_0x47e1bd['DJutu'],'tiFjr':_0x2deea1(0x228),'AJIUK':_0x47e1bd[_0x2deea1(0x222)]},_0x32d4ec=_0x229320[_0x2deea1(0x1e5)](/\s+/g,'')+'-'+_0x4edd3e[_0x2deea1(0x1e5)](/\s+/g,''),_0x30ef9f=document['createElement'](_0x47e1bd[_0x2deea1(0x1cb)]);_0x30ef9f[_0x2deea1(0x23b)]=_0x2deea1(0x18b),_0x30ef9f[_0x2deea1(0x154)]=()=>toggleWorstCaseDosageGroup(_0x32d4ec),_0x30ef9f['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20justify-between\x20py-2\x20px-3\x20rounded-lg\x20border\x20transition-all\x20hover:bg-gray-50\x20dark:hover:bg-gray-800/50\x22\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20transparent;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20class=\x22text-md\x20font-semibold\x20flex\x20items-center\x20gap-2\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22group-toggle-icon\x20transition-transform\x20duration-200\x22\x20id=\x22wc-group-toggle-'+_0x32d4ec+_0x2deea1(0x1ee)+_0x4edd3e+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-xs\x20px-2\x20py-1\x20rounded-full\x22\x20style=\x22background-color:\x20var(--bg-accent);\x20color:\x20var(--text-secondary);\x22>'+_0x529752[_0x4edd3e]['length']+_0x2deea1(0x22e)+(0x1!==_0x529752[_0x4edd3e][_0x2deea1(0x1d9)]?'s':'')+_0x2deea1(0x25b),_0x3538e3[_0x2deea1(0x197)](_0x30ef9f);const _0x5380e5=document[_0x2deea1(0x1f9)](_0x47e1bd[_0x2deea1(0x1cb)]);_0x5380e5['className']=_0x2deea1(0x1bf),_0x5380e5['id']=_0x2deea1(0x21b)+_0x32d4ec,_0x5380e5['style'][_0x2deea1(0x15b)]=_0x47e1bd[_0x2deea1(0x25c)],_0x3538e3['appendChild'](_0x5380e5),_0x529752[_0x4edd3e]['forEach'](_0x273ca4=>{const _0x32070e=_0x2deea1,_0xf920a8={'mmJtP':function(_0x311765,_0x4db532){const _0x2ed756=a18_0x10b0;return _0x47e1bd[_0x2ed756(0x1a6)](_0x311765,_0x4db532);},'ZNbsT':_0x47e1bd[_0x32070e(0x1a2)],'YPKQq':function(_0x25050f,_0x4229c0){return _0x25050f<_0x4229c0;},'IFbZp':function(_0x5bac5c,_0x5b81ac){return _0x5bac5c*_0x5b81ac;},'bgLfw':function(_0x5ae2af,_0x2477ca){const _0x4d5a15=_0x32070e;return _0x47e1bd[_0x4d5a15(0x223)](_0x5ae2af,_0x2477ca);},'jOTzf':function(_0x6c4a1c,_0x38b9cb,_0x1ce58d){const _0x187318=_0x32070e;return _0x47e1bd[_0x187318(0x205)](_0x6c4a1c,_0x38b9cb,_0x1ce58d);},'rIRiW':_0x47e1bd[_0x32070e(0x216)]};if(window[_0x32070e(0x158)]&&_0x47e1bd[_0x32070e(0x20d)](_0x47e1bd['KurVF'],window[_0x32070e(0x158)])){if(Array['isArray'](window[_0x32070e(0x158)])){if(!window['printSelectedTrain'][_0x32070e(0x182)](_0x47e1bd[_0x32070e(0x269)](String,_0x273ca4[_0x32070e(0x1f8)])))return;}else{if(_0x47e1bd[_0x32070e(0x272)](_0x47e1bd[_0x32070e(0x245)](String,_0x273ca4['number']),_0x47e1bd['PSKxM'](String,window[_0x32070e(0x158)])))return;}}const _0x3f8a41=!(document[_0x32070e(0x274)][_0x32070e(0x1bd)]['contains'](_0x47e1bd[_0x32070e(0x18e)])||!_0x1f76fe);_0x273ca4[_0x32070e(0x1f7)][_0x32070e(0x1b9)](_0x4dda6c=>{const _0x39c331=_0x32070e,_0x4efb20=_0x448275[_0x39c331(0x152)](a18_0x30458d),_0x46fccb=_0x4dda6c[_0x39c331(0x22b)][_0x39c331(0x1bc)](_0x316048=>a18_0x58932b(_0x316048,_0x4efb20)['rpn']);_0x4dda6c['sortValue']=_0x448275[_0x39c331(0x239)](_0x46fccb['length'],0x0)?Math[_0x39c331(0x1c4)](..._0x46fccb):0x0;}),_0x273ca4[_0x32070e(0x1f7)]['sort']((_0x2d1158,_0x3e6c52)=>{const _0x2cc041=_0x32070e,_0x56f499=a18_0x187363['sortState'][_0x2cc041(0x1db)],_0x60b3e=_0xf920a8[_0x2cc041(0x267)](_0x2cc041(0x263),a18_0x187363[_0x2cc041(0x184)]['direction'])?0x1:-0x1;let _0xb9fb4a,_0xccc85f;switch(_0x56f499){case _0xf920a8[_0x2cc041(0x188)]:_0xb9fb4a=_0x2d1158[_0x2cc041(0x1b8)],_0xccc85f=_0x3e6c52[_0x2cc041(0x1b8)];break;case _0x2cc041(0x153):_0xb9fb4a=_0x2d1158[_0x2cc041(0x153)],_0xccc85f=_0x3e6c52['name'];break;default:_0xb9fb4a=_0x2d1158[_0x2cc041(0x20c)],_0xccc85f=_0x3e6c52[_0x2cc041(0x20c)];}return _0xf920a8[_0x2cc041(0x234)](_0xb9fb4a,_0xccc85f)?_0xf920a8['IFbZp'](-0x1,_0x60b3e):_0xf920a8[_0x2cc041(0x1f6)](_0xb9fb4a,_0xccc85f)?_0xf920a8[_0x2cc041(0x19e)](0x1,_0x60b3e):0x0;});const _0x217ee5=document[_0x32070e(0x1f9)](_0x47e1bd['lLklD']);_0x217ee5[_0x32070e(0x23b)]=_0x47e1bd['JXxeD'];const _0x69d4b8=_0x273ca4[_0x32070e(0x173)]+'-'+_0x273ca4[_0x32070e(0x1f8)]+'-'+(_0x273ca4[_0x32070e(0x1ad)]||_0x32070e(0x279));let _0x1cc617=_0x32070e(0x196)+_0x69d4b8+_0x32070e(0x242)+_0x273ca4[_0x32070e(0x1f8)]+_0x32070e(0x1d2)+(_0x273ca4[_0x32070e(0x1ad)]||'Unknown')+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22train-toggle\x22\x20id=\x22toggle-wc-'+_0x69d4b8+'\x22>'+(_0x3f8a41?'▶':'▼')+_0x32070e(0x164)+(_0x3f8a41?_0x47e1bd['nPdnB']:'')+'\x22\x20id=\x22content-wc-'+_0x69d4b8+_0x32070e(0x15a);_0x273ca4[_0x32070e(0x1f7)][_0x32070e(0x1b9)](_0x253fda=>{const _0x411424=_0x32070e,_0x350002=_0x253fda[_0x411424(0x17a)]?_0x448275[_0x411424(0x19c)]:'No',_0x3b19e8=_0x253fda[_0x411424(0x17a)]?_0x448275[_0x411424(0x213)]:'';_0x1cc617+='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22product-main-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20font-medium\x20whitespace-nowrap\x20align-top\x22>'+_0x253fda[_0x411424(0x1b8)]+_0x411424(0x159)+_0x253fda['name']+_0x411424(0x151)+(_0x253fda[_0x411424(0x278)]||_0x448275[_0x411424(0x224)])+_0x411424(0x24d)+_0x253fda[_0x411424(0x20c)]+_0x411424(0x1ba)+_0x3b19e8+'\x22>'+_0x350002+_0x411424(0x160)+(_0x253fda[_0x411424(0x17a)]&&_0x253fda[_0x411424(0x1af)]?_0x411424(0x1da)+_0x253fda[_0x411424(0x1af)]+_0x411424(0x1fb):'')+_0x411424(0x22f);}),_0x1cc617+=_0x47e1bd[_0x32070e(0x246)],_0x217ee5[_0x32070e(0x232)]=_0x1cc617,_0x5380e5['appendChild'](_0x217ee5),_0x217ee5[_0x32070e(0x1b2)](_0x47e1bd[_0x32070e(0x1e2)])[_0x32070e(0x1b9)](_0x4783f9=>{const _0x563fc5=_0x32070e;_0x4783f9[_0x563fc5(0x26d)](_0x448275['AJIUK'],function(_0x9837c4){const _0x176fbf=_0x563fc5;_0x9837c4[_0x176fbf(0x1d0)](),_0xf920a8[_0x176fbf(0x162)](sortData,this['getAttribute'](_0xf920a8['rIRiW']),_0x176fbf(0x1eb));});});});});}),_0x7f14ce[_0x463791(0x21d)](a18_0xacfbce,_0x463791(0x1eb)),_0x7f14ce[_0x463791(0x19f)](updateSortIndicators,_0x463791(0x1eb)),a18_0xc74981(),d();}export function renderRpnChart(){const _0x15e9bc=a18_0x80f6c,_0x1c198c={'dFePT':function(_0x4ba417,_0x2a8bbe,_0xf560d7){return _0x4ba417(_0x2a8bbe,_0xf560d7);},'BEiQk':function(_0x491f7c,_0xe4c5a9){return _0x491f7c!==_0xe4c5a9;},'fXQSK':_0x15e9bc(0x228),'QcEda':_0x15e9bc(0x206),'dAhtF':_0x15e9bc(0x1c6),'UwGMv':'rgba(74,\x20222,\x20128,\x200.6)','DeLUK':_0x15e9bc(0x231),'wQqfa':'rgba(234,\x20179,\x208,\x201)','PgQBe':_0x15e9bc(0x250),'XKGDE':'rgba(220,\x2038,\x2038,\x201)','zMnVl':'rgba(156,\x20163,\x20175,\x200.6)','QLDaf':_0x15e9bc(0x229),'Eafmr':function(_0x1a117c){return _0x1a117c();},'NrpcQ':function(_0x3f654b,_0xd7acbd){return _0x3f654b===_0xd7acbd;},'qxiXv':_0x15e9bc(0x15c),'DapYS':_0x15e9bc(0x20f),'UThQs':_0x15e9bc(0x21c),'oYzxR':_0x15e9bc(0x1ab),'XqSrL':_0x15e9bc(0x249)},_0x57ebcc=document[_0x15e9bc(0x1a3)](_0x1c198c[_0x15e9bc(0x20a)]),_0x24f1da=document[_0x15e9bc(0x1a3)](_0x1c198c['dAhtF']),_0x398a87={'low':{'bg':_0x1c198c[_0x15e9bc(0x255)],'border':'rgba(34,\x20197,\x2094,\x201)'},'medium':{'bg':_0x1c198c[_0x15e9bc(0x1fe)],'border':_0x1c198c[_0x15e9bc(0x168)]},'high':{'bg':_0x1c198c['PgQBe'],'border':_0x1c198c[_0x15e9bc(0x1be)]},'default':{'bg':_0x1c198c['zMnVl'],'border':_0x1c198c[_0x15e9bc(0x187)]}};a18_0x187363[_0x15e9bc(0x24e)][_0x15e9bc(0x1eb)]||(a18_0x187363[_0x15e9bc(0x24e)]['worstCaseProducts']=[...a18_0x187363[_0x15e9bc(0x1f7)]]);const _0x195d1a=a18_0x187363[_0x15e9bc(0x24e)]['worstCaseProducts']||[],_0x4f630e=_0x1c198c[_0x15e9bc(0x277)](a18_0x30458d),_0x574675=_0x195d1a[_0x15e9bc(0x265)](_0x27856c=>_0x27856c[_0x15e9bc(0x22b)][_0x15e9bc(0x1bc)](_0x994506=>{const _0x5c5673=_0x15e9bc,_0x49ad50=_0x1c198c[_0x5c5673(0x1a4)](a18_0x58932b,_0x994506,_0x4f630e),_0x446626=a18_0x105217(_0x27856c);return{'productName':_0x27856c[_0x5c5673(0x153)],'ingredientName':_0x994506[_0x5c5673(0x153)],'rpn':_0x49ad50[_0x5c5673(0x1ea)],'ratingKey':_0x49ad50[_0x5c5673(0x262)][_0x5c5673(0x1ed)](),'trainId':_0x1c198c[_0x5c5673(0x176)](_0x1c198c[_0x5c5673(0x1c5)],_0x446626)?'T'+_0x446626:''};}));if(_0x1c198c[_0x15e9bc(0x1f0)](0x0,_0x574675[_0x15e9bc(0x1d9)]))return _0x57ebcc[_0x15e9bc(0x1b5)][_0x15e9bc(0x1e4)]=_0x1c198c['qxiXv'],_0x24f1da[_0x15e9bc(0x1b5)]['display']=_0x1c198c[_0x15e9bc(0x16a)],void(a18_0x187363[_0x15e9bc(0x218)]&&a18_0x187363[_0x15e9bc(0x218)][_0x15e9bc(0x19a)]());_0x57ebcc['style'][_0x15e9bc(0x1e4)]='block',_0x24f1da[_0x15e9bc(0x1b5)][_0x15e9bc(0x1e4)]=_0x1c198c[_0x15e9bc(0x258)],_0x574675['sort']((_0x12f1e9,_0x1b4879)=>_0x1b4879[_0x15e9bc(0x1ea)]-_0x12f1e9[_0x15e9bc(0x1ea)]);const _0x21b44a=_0x574675['map'](_0x1a9853=>_0x1a9853[_0x15e9bc(0x1d6)]+'\x20('+_0x1a9853[_0x15e9bc(0x243)]+')\x20'+_0x1a9853['trainId']),_0x33adea=_0x574675[_0x15e9bc(0x1bc)](_0x389ecf=>_0x389ecf[_0x15e9bc(0x1ea)]),_0x5788a6=_0x574675[_0x15e9bc(0x1bc)](_0x2007fa=>(_0x398a87[_0x2007fa[_0x15e9bc(0x1f4)]]||_0x398a87['default'])['bg']),_0x25a589=_0x574675['map'](_0x5a7cfb=>(_0x398a87[_0x5a7cfb[_0x15e9bc(0x1f4)]]||_0x398a87[_0x15e9bc(0x165)])[_0x15e9bc(0x230)]);a18_0x187363[_0x15e9bc(0x218)]&&a18_0x187363[_0x15e9bc(0x218)][_0x15e9bc(0x19a)]();const _0x6132e0=_0x57ebcc['getContext']('2d'),_0x2363e4=new Chart(_0x6132e0,{'type':_0x1c198c[_0x15e9bc(0x276)],'data':{'labels':_0x21b44a,'datasets':[{'label':_0x1c198c[_0x15e9bc(0x25d)],'data':_0x33adea,'backgroundColor':_0x5788a6,'borderColor':_0x25a589,'borderWidth':0x1}]},'options':{'indexAxis':'x','responsive':!0x0,'maintainAspectRatio':!0x1,'scales':{'x':{'ticks':{'color':_0x1c198c[_0x15e9bc(0x1e3)]},'grid':{'display':!0x1}},'y':{'beginAtZero':!0x0,'ticks':{'color':_0x1c198c[_0x15e9bc(0x1e3)]},'grid':{'color':'var(--border-color)'}}},'plugins':{'legend':{'display':!0x1},'tooltip':{'callbacks':{'label':function(_0x4c3bb2){const _0x4ae22f=_0x15e9bc;let _0x3c038e=_0x4c3bb2['dataset']['label']||'';return _0x3c038e&&(_0x3c038e+=':\x20'),_0x1c198c[_0x4ae22f(0x176)](null,_0x4c3bb2[_0x4ae22f(0x192)]['y'])&&(_0x3c038e+=_0x4c3bb2[_0x4ae22f(0x192)]['y']),_0x3c038e;}}}}}});a18_0x187363[_0x15e9bc(0x252)](_0x2363e4);}export function toggleWorstCaseExportDropdown(){const _0x548bed=a18_0x80f6c,_0x5e3cb5={'evWjE':_0x548bed(0x15d),'zAzLy':_0x548bed(0x178),'ZdmUs':_0x548bed(0x172),'InVNV':_0x548bed(0x256),'VwhnX':_0x548bed(0x174),'hRnox':function(_0x249365){return _0x249365();}},_0x5a0b94=document[_0x548bed(0x1a3)](_0x5e3cb5['VwhnX']);_0x5a0b94[_0x548bed(0x1bd)][_0x548bed(0x17c)]('hidden'),_0x5e3cb5['hRnox'](d),document[_0x548bed(0x26d)](_0x5e3cb5['InVNV'],function _0x18684d(_0x3206b0){const _0x4354c7=_0x548bed;_0x3206b0[_0x4354c7(0x20e)][_0x4354c7(0x189)](_0x5e3cb5[_0x4354c7(0x17b)])||_0x3206b0[_0x4354c7(0x20e)]['closest'](_0x5e3cb5[_0x4354c7(0x275)])||(_0x5a0b94[_0x4354c7(0x1bd)]['add'](_0x5e3cb5[_0x4354c7(0x1d1)]),document['removeEventListener'](_0x5e3cb5[_0x4354c7(0x1df)],_0x18684d));});}export function toggleWorstCasePrintDropdown(){const _0x40bb8f=a18_0x80f6c,_0x80dfea={'hYqec':_0x40bb8f(0x247),'Isdhw':_0x40bb8f(0x1c7),'nXIkK':_0x40bb8f(0x172),'dJDLC':'click','UEKPe':'worstCasePrintDropdown','AAyEk':function(_0x435841){return _0x435841();}},_0x407b90=document[_0x40bb8f(0x1a3)](_0x80dfea['UEKPe']);_0x407b90[_0x40bb8f(0x1bd)][_0x40bb8f(0x17c)](_0x80dfea[_0x40bb8f(0x23e)]),_0x80dfea[_0x40bb8f(0x19d)](d),document[_0x40bb8f(0x26d)](_0x80dfea[_0x40bb8f(0x211)],function _0x12309f(_0x51beff){const _0x1f97c5=_0x40bb8f;_0x51beff['target'][_0x1f97c5(0x189)](_0x80dfea[_0x1f97c5(0x23c)])||_0x51beff[_0x1f97c5(0x20e)][_0x1f97c5(0x189)](_0x80dfea[_0x1f97c5(0x236)])||(_0x407b90['classList'][_0x1f97c5(0x1fc)](_0x80dfea[_0x1f97c5(0x23e)]),document['removeEventListener'](_0x80dfea[_0x1f97c5(0x211)],_0x12309f));});}function d(){const _0x4e8de6=a18_0x80f6c,_0x4acd15={'OzCTD':_0x4e8de6(0x185),'VCReH':_0x4e8de6(0x1b4),'bxfLJ':_0x4e8de6(0x163),'FCpCl':_0x4e8de6(0x233),'fevyz':_0x4e8de6(0x157),'vmwPh':'mr-2\x20print-train-checkbox','DHZyZ':function(_0xcfc1d0){return _0xcfc1d0();},'eBDcp':function(_0x353812,_0x2db43b){return _0x353812!==_0x2db43b;},'RkwbZ':_0x4e8de6(0x161),'Xmdvz':function(_0x2dcbfe,_0x4f372e){return _0x2dcbfe(_0x4f372e);},'qsBew':function(_0x4b215c){return _0x4b215c();},'vSKul':_0x4e8de6(0x166),'qbeYl':_0x4e8de6(0x26b),'ySWpk':_0x4e8de6(0x169),'HdkpM':'./utils.js'};import(_0x4acd15[_0x4e8de6(0x1ef)])['then'](_0x1c1a9a=>{const _0x4a5fe4=_0x4e8de6,_0x479c57={'DQwHc':'label','vqDZt':_0x4acd15['OzCTD'],'kOAmw':_0x4acd15['VCReH'],'BmbVz':_0x4a5fe4(0x259),'bWiIX':_0x4acd15[_0x4a5fe4(0x180)],'IhOHO':_0x4a5fe4(0x1a5),'mJtuy':_0x4acd15[_0x4a5fe4(0x226)],'ANbcK':_0x4acd15[_0x4a5fe4(0x170)],'RKNBu':_0x4acd15[_0x4a5fe4(0x24b)]},{getTrainsGroupedByLine:_0x510ad9,getConsistentTrainOrder:_0x4ac32e,getTrainIdToLineNumberMap:_0x3b943d}=_0x1c1a9a;let _0x1032f7=_0x4acd15[_0x4a5fe4(0x214)](_0x510ad9);const _0x197429=window['currentLineFilter']&&_0x4acd15['eBDcp'](_0x4acd15[_0x4a5fe4(0x156)],window[_0x4a5fe4(0x1b3)])?window['currentLineFilter']:null;_0x197429&&(_0x1032f7=_0x1032f7['filter'](_0x49ef26=>_0x49ef26[_0x4a5fe4(0x173)]===_0x197429));const _0x462fd1=[];_0x1032f7[_0x4a5fe4(0x1b9)](_0x43d8b6=>{const _0x50d8ea=_0x4a5fe4;_0x43d8b6[_0x50d8ea(0x266)][_0x50d8ea(0x1b9)](_0x1d4b25=>{const _0x44daf1=_0x50d8ea;_0x462fd1[_0x44daf1(0x202)]({..._0x1d4b25,'line':_0x1d4b25[_0x44daf1(0x173)]});});});const _0x245d72=_0x4acd15[_0x4a5fe4(0x244)](_0x4ac32e,_0x462fd1),_0x45fb4c=(_0x4acd15[_0x4a5fe4(0x217)](_0x3b943d),document[_0x4a5fe4(0x1a3)](_0x4acd15[_0x4a5fe4(0x1ff)]));_0x45fb4c&&(_0x45fb4c[_0x4a5fe4(0x232)]='',_0x245d72[_0x4a5fe4(0x1b9)](_0x512b5b=>{const _0x2f7722=_0x4a5fe4,_0x3dc311=document['createElement'](_0x479c57['DQwHc']);_0x3dc311[_0x2f7722(0x23b)]=_0x479c57[_0x2f7722(0x225)],_0x3dc311['style'][_0x2f7722(0x1fd)]=_0x479c57[_0x2f7722(0x1d5)];const _0x290880=document[_0x2f7722(0x1f9)](_0x479c57['BmbVz']);_0x290880[_0x2f7722(0x17e)]=_0x479c57[_0x2f7722(0x1a1)],_0x290880[_0x2f7722(0x23b)]=_0x479c57[_0x2f7722(0x23f)],_0x290880[_0x2f7722(0x23d)]=_0x512b5b[_0x2f7722(0x1f8)],_0x290880['onchange']=()=>updateAllTrainsCheckbox(_0x2f7722(0x1d7));const _0x30f43e=document[_0x2f7722(0x1f9)](_0x479c57[_0x2f7722(0x181)]),_0x2543ee=_0x512b5b[_0x2f7722(0x1ad)]||_0x512b5b['productType']||_0x479c57[_0x2f7722(0x18a)];_0x30f43e['textContent']=_0x2543ee+_0x2f7722(0x1e6)+_0x512b5b[_0x2f7722(0x1f8)],_0x3dc311[_0x2f7722(0x197)](_0x290880),_0x3dc311[_0x2f7722(0x197)](_0x30f43e),_0x45fb4c[_0x2f7722(0x197)](_0x3dc311);}));const _0x1c761e=document[_0x4a5fe4(0x1a3)](_0x4acd15['qbeYl']);_0x1c761e&&(_0x1c761e[_0x4a5fe4(0x232)]='',_0x245d72[_0x4a5fe4(0x1b9)](_0x1acd97=>{const _0x49bdf5=_0x4a5fe4,_0x10b606=document['createElement'](_0x479c57[_0x49bdf5(0x219)]);_0x10b606[_0x49bdf5(0x23b)]=_0x49bdf5(0x185),_0x10b606[_0x49bdf5(0x1b5)][_0x49bdf5(0x1fd)]=_0x479c57[_0x49bdf5(0x1d5)];const _0x11dd0e=document['createElement']('input');_0x11dd0e['type']=_0x479c57[_0x49bdf5(0x1a1)],_0x11dd0e[_0x49bdf5(0x23b)]=_0x479c57['RKNBu'],_0x11dd0e[_0x49bdf5(0x23d)]=_0x1acd97[_0x49bdf5(0x1f8)],_0x11dd0e['onchange']=()=>updateAllTrainsCheckbox('print');const _0x57a0ca=document[_0x49bdf5(0x1f9)](_0x479c57[_0x49bdf5(0x181)]),_0x59735b=_0x1acd97['dosageForm']||_0x1acd97['productType']||_0x479c57['ANbcK'];_0x57a0ca[_0x49bdf5(0x227)]=_0x59735b+_0x49bdf5(0x1e6)+_0x1acd97[_0x49bdf5(0x1f8)],_0x10b606[_0x49bdf5(0x197)](_0x11dd0e),_0x10b606[_0x49bdf5(0x197)](_0x57a0ca),_0x1c761e[_0x49bdf5(0x197)](_0x10b606);}));})[_0x4e8de6(0x1ce)](_0x70f375=>{const _0x2dcc4c=_0x4e8de6;console[_0x2dcc4c(0x237)](_0x4acd15[_0x2dcc4c(0x208)],_0x70f375);});}export function toggleAllTrainsSelection(_0x1fa222){const _0x2aa7a5=a18_0x80f6c,_0x54d90a=document[_0x2aa7a5(0x1a3)](_0x1fa222+_0x2aa7a5(0x209));document['querySelectorAll']('.'+_0x1fa222+'-train-checkbox')[_0x2aa7a5(0x1b9)](_0x4d841e=>{const _0x31ded7=_0x2aa7a5;_0x4d841e[_0x31ded7(0x270)]=_0x54d90a[_0x31ded7(0x270)];});}export function updateAllTrainsCheckbox(_0x2d7b93){const _0xef5677=a18_0x80f6c,_0x52ca54={'LoXIs':function(_0x53aef4,_0x37515a){return _0x53aef4===_0x37515a;}},_0x493870=document[_0xef5677(0x1a3)](_0x2d7b93+_0xef5677(0x209)),_0x2acf87=document[_0xef5677(0x1b2)]('.'+_0x2d7b93+_0xef5677(0x14e)),_0x36cd35=document[_0xef5677(0x1b2)]('.'+_0x2d7b93+_0xef5677(0x193));_0x52ca54['LoXIs'](0x0,_0x36cd35[_0xef5677(0x1d9)])?(_0x493870['checked']=!0x1,_0x493870['indeterminate']=!0x1):_0x36cd35[_0xef5677(0x1d9)]===_0x2acf87[_0xef5677(0x1d9)]?(_0x493870['checked']=!0x0,_0x493870[_0xef5677(0x25a)]=!0x1):(_0x493870[_0xef5677(0x270)]=!0x1,_0x493870[_0xef5677(0x25a)]=!0x0);}export function executeExportSelection(){const _0x4e5212=a18_0x80f6c,_0x5e89ad={'QUAHz':_0x4e5212(0x1c1),'rYuAB':function(_0xc27200,_0x370518){return _0xc27200(_0x370518);},'lhCxa':'all','lMdDz':_0x4e5212(0x1b7),'qYEQn':_0x4e5212(0x16b),'pTnBr':_0x4e5212(0x174),'akhWa':'hidden'},_0x300748=document[_0x4e5212(0x1a3)](_0x5e89ad[_0x4e5212(0x26a)]),_0x33bdbd=[];if(_0x300748['checked'])_0x5e89ad['rYuAB'](exportWorstCaseToExcel,_0x5e89ad['lhCxa']);else{if(document['querySelectorAll'](_0x5e89ad[_0x4e5212(0x215)])['forEach'](_0x299cf5=>{const _0x5173c1=_0x4e5212;_0x33bdbd[_0x5173c1(0x202)](_0x299cf5[_0x5173c1(0x23d)]);}),0x0===_0x33bdbd[_0x4e5212(0x1d9)])return void a18_0x203bbf(_0x5e89ad[_0x4e5212(0x1e0)],_0x4e5212(0x1f2));_0x5e89ad[_0x4e5212(0x1a8)](exportWorstCaseToExcel,_0x33bdbd);}document[_0x4e5212(0x1a3)](_0x5e89ad[_0x4e5212(0x24f)])[_0x4e5212(0x1bd)][_0x4e5212(0x1fc)](_0x5e89ad[_0x4e5212(0x1d3)]);}export function executePrintSelection(){const _0x2c6a81=a18_0x80f6c,_0x16a59f={'Lrxbx':_0x2c6a81(0x21a),'nmbMy':function(_0x48d9e5,_0xcb2d19,_0x3759d8){return _0x48d9e5(_0xcb2d19,_0x3759d8);},'kKsBX':_0x2c6a81(0x161),'jmgtn':_0x2c6a81(0x1b1),'vagYs':function(_0x37b3a0,_0x2f0e3e){return _0x37b3a0===_0x2f0e3e;},'DWAiY':function(_0x349e2e,_0x2fc57b,_0x31e0b2){return _0x349e2e(_0x2fc57b,_0x31e0b2);},'WbnxX':_0x2c6a81(0x16b),'oPpRK':_0x2c6a81(0x19b),'mDekx':function(_0x1a7500,_0x140bc3,_0x24dd22){return _0x1a7500(_0x140bc3,_0x24dd22);},'TwzEQ':_0x2c6a81(0x1eb)},_0x1277f1=document[_0x2c6a81(0x1a3)](_0x16a59f[_0x2c6a81(0x1f3)]),_0x25eb38=[];if(_0x1277f1[_0x2c6a81(0x270)])_0x16a59f[_0x2c6a81(0x1ec)](printCurrentView,_0x2c6a81(0x1eb),_0x16a59f[_0x2c6a81(0x212)]);else{if(document[_0x2c6a81(0x1b2)](_0x16a59f['jmgtn'])[_0x2c6a81(0x1b9)](_0x2d7ddf=>{const _0x148af3=_0x2c6a81;_0x25eb38[_0x148af3(0x202)](_0x2d7ddf[_0x148af3(0x23d)]);}),_0x16a59f[_0x2c6a81(0x1d8)](0x0,_0x25eb38[_0x2c6a81(0x1d9)]))return void _0x16a59f[_0x2c6a81(0x1b0)](a18_0x203bbf,_0x16a59f[_0x2c6a81(0x1a0)],_0x16a59f[_0x2c6a81(0x253)]);_0x16a59f[_0x2c6a81(0x238)](printCurrentView,_0x16a59f[_0x2c6a81(0x23a)],_0x25eb38);}document[_0x2c6a81(0x1a3)](_0x2c6a81(0x24c))[_0x2c6a81(0x1bd)][_0x2c6a81(0x1fc)]('hidden');}window[a18_0x80f6c(0x150)]=toggleAllTrainsSelection,window[a18_0x80f6c(0x201)]=updateAllTrainsCheckbox,window[a18_0x80f6c(0x14d)]=executeExportSelection,window[a18_0x80f6c(0x1c2)]=executePrintSelection,window[a18_0x80f6c(0x1de)]=toggleWorstCaseExportDropdown,window['toggleWorstCasePrintDropdown']=toggleWorstCasePrintDropdown;
+// Renders the "Worst Case Products" tab
+// js/worstCaseView.js
+// THE FIX: Import the state module
+import * as state from './state.js'; 
+import { hideLoader, updateToggleIcons, showCustomAlert } from './ui.js';
+import { getProductTrainId, calculateScores, getRpnRatingClass, getToxicityPreference, getTrainsGroupedByLine, getConsistentTrainOrder } from './utils.js';
+
+// Group-level expand/collapse functionality for dosage form groups in Worst Case view
+window.toggleWorstCaseDosageGroup = function(groupId) {
+    const contentElement = document.getElementById(`wc-group-content-${groupId}`);
+    const toggleElement = document.getElementById(`wc-group-toggle-${groupId}`);
+    
+    if (!contentElement || !toggleElement) {
+        console.warn(`Worst Case group elements not found for groupId: ${groupId}`);
+        return;
+    }
+    
+    const isCurrentlyCollapsed = contentElement.classList.contains('collapsed');
+    
+    if (isCurrentlyCollapsed) {
+        // Expand the group
+        contentElement.classList.remove('collapsed');
+        toggleElement.textContent = '▼';
+        toggleElement.style.transform = 'rotate(0deg)';
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Remove maxHeight after animation completes to allow dynamic resizing
+        setTimeout(() => {
+            if (!contentElement.classList.contains('collapsed')) {
+                contentElement.style.maxHeight = 'none';
+            }
+        }, 300);
+    } else {
+        // Collapse the group
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Force reflow and then start collapsing
+        requestAnimationFrame(() => {
+            contentElement.classList.add('collapsed');
+            toggleElement.textContent = '▶';
+            toggleElement.style.transform = 'rotate(-90deg)';
+            contentElement.style.maxHeight = '0px';
+        });
+    }
+};
+
+
+export function handleSearchAndFilter(tabId, lineFilter = null) {
+   if (tabId !== 'worstCaseProducts') return;
+
+    const productNameFilter = document.getElementById('worstCaseProductNameFilter');
+    const nameFilter = productNameFilter ? productNameFilter.value.toLowerCase() : '';
+    
+    // THE FIX: Prefix 'products' and 'viewProducts' with 'state.'
+    state.viewProducts[tabId] = state.products.filter(product => {
+        const nameMatch = product.name.toLowerCase().includes(nameFilter);
+        const lineMatch = !lineFilter || product.line === lineFilter;
+        return nameMatch && lineMatch;
+    });
+    renderWorstCaseByTrain(true, lineFilter);
+}
+
+export function handleWorstCaseProductFilter() {
+    handleSearchAndFilter('worstCaseProducts');
+}
+
+export function sortData(key, tabId) {
+    if (tabId !== 'worstCaseProducts') return;
+    
+    if (state.sortState.key === key) {
+        state.sortState.direction = state.sortState.direction === 'asc' ? 'desc' : 'asc';
+    } else {
+        state.sortState.key = key;
+        state.sortState.direction = (key === 'rpn') ? 'desc' : 'asc';
+    }
+    
+    renderWorstCaseByTrain(false);
+}
+
+export function updateSortIndicators(tabId) {
+    const tabContainer = document.getElementById(tabId);
+    if (!tabContainer) return;
+    
+    tabContainer.querySelectorAll('.mainTable th.sortable').forEach(th => {
+        const indicator = th.querySelector('.sort-indicator');
+        const key = th.dataset.key;
+        indicator.textContent = '';
+        
+        if (key === state.sortState.key) {
+            indicator.textContent = state.sortState.direction === 'asc' ? '▲' : '▼';
+        }
+    });
+}
+
+
+export function renderWorstCaseByTrain(collapsed=true, lineFilter = null) {
+    const container = document.getElementById('worstCaseTrainsContainer');
+    const noResultsMessage = document.getElementById('noWorstCaseMessage');
+    container.innerHTML = '';
+
+    // Ensure viewProducts exists
+    if (!state.viewProducts['worstCaseProducts']) {
+        state.viewProducts['worstCaseProducts'] = [...state.products];
+    }
+
+    const productsToRender = [...state.viewProducts['worstCaseProducts']];
+    if (productsToRender.length === 0) {
+        noResultsMessage.style.display = 'block';
+        container.style.display = 'none';
+        return;
+    }
+
+    // Build pre-numbered trains grouped by Line and Dosage Form
+    let linesWithTrains = getTrainsGroupedByLine();
+    
+    // Filter by line if specified
+    if (lineFilter) {
+        linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === lineFilter);
+    }
+
+    if (!linesWithTrains || linesWithTrains.length === 0) {
+        noResultsMessage.style.display = 'block';
+        container.style.display = 'none';
+        return;
+    }
+
+    noResultsMessage.style.display = 'none';
+    container.style.display = 'block';
+
+    // Flatten all trains and apply consistent ordering
+    const allTrains = [];
+    linesWithTrains.forEach(lineObj => {
+        lineObj.trains.forEach(train => {
+            allTrains.push({
+                ...train,
+                line: train.line
+            });
+        });
+    });
+
+    // Apply consistent train ordering
+    const orderedTrains = getConsistentTrainOrder(allTrains);
+
+    // Group trains by line and dosage form for display
+    const groupedByLine = {};
+    orderedTrains.forEach(train => {
+        const line = train.line || 'Unassigned';
+        const dosageForm = train.dosageForm || 'Other';
+        
+        if (!groupedByLine[line]) {
+            groupedByLine[line] = {};
+        }
+        if (!groupedByLine[line][dosageForm]) {
+            groupedByLine[line][dosageForm] = [];
+        }
+        groupedByLine[line][dosageForm].push(train);
+    });
+
+    // Iterate lines (outer loop)
+    Object.keys(groupedByLine).forEach(lineName => {
+        const lineHeader = document.createElement('div');
+        lineHeader.className = 'mb-4';
+        lineHeader.innerHTML = `<h3 class="text-lg font-bold">${lineName}</h3>`;
+        container.appendChild(lineHeader);
+
+        const byDosage = groupedByLine[lineName];
+        // Sort dosage forms by their lowest train number
+        const sortedDosageForms = Object.keys(byDosage).sort((a, b) => {
+            const aTrains = byDosage[a];
+            const bTrains = byDosage[b];
+            const aMinNumber = Math.min(...aTrains.map(t => t.number));
+            const bMinNumber = Math.min(...bTrains.map(t => t.number));
+            return aMinNumber - bMinNumber;
+        });
+        
+        sortedDosageForms.forEach(dosage => {
+            // Create unique group ID for this dosage form
+            const groupId = `${lineName.replace(/\s+/g, '')}-${dosage.replace(/\s+/g, '')}`;
+            const isGroupCollapsed = false; // Default to expanded
+            
+            // Create clickable dosage form header with expand/collapse functionality
+            const dosageHeader = document.createElement('div');
+            dosageHeader.className = 'dosage-group-header pl-4 mb-3 cursor-pointer select-none';
+            dosageHeader.onclick = () => toggleWorstCaseDosageGroup(groupId);
+            dosageHeader.innerHTML = `
+                <div class="flex items-center justify-between py-2 px-3 rounded-lg border transition-all hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color); background-color: transparent;">
+                    <h4 class="text-md font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+                        <span class="group-toggle-icon transition-transform duration-200" id="wc-group-toggle-${groupId}">${isGroupCollapsed ? '▶' : '▼'}</span>
+                        ${dosage}
+                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: var(--bg-accent); color: var(--text-secondary);">${byDosage[dosage].length} train${byDosage[dosage].length !== 1 ? 's' : ''}</span>
+                    </h4>
+                </div>
+            `;
+            container.appendChild(dosageHeader);
+            
+            // Create container for all trains in this dosage form group
+            const trainsContainer = document.createElement('div');
+            trainsContainer.className = `dosage-group-content transition-all duration-300 ${isGroupCollapsed ? 'collapsed' : ''}`;
+            trainsContainer.id = `wc-group-content-${groupId}`;
+            trainsContainer.style.overflow = 'hidden';
+            container.appendChild(trainsContainer);
+
+            // find trains for this dosage and render pre-numbered cards
+            byDosage[dosage].forEach(train => {
+                // Skip if printing specific trains and this one isn't selected
+                if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
+                    if (Array.isArray(window.printSelectedTrain)) {
+                        if (!window.printSelectedTrain.includes(String(train.number))) return;
+                    } else {
+                        if (String(train.number) !== String(window.printSelectedTrain)) return;
+                    }
+                }
+
+                const isPrintMode = document.body.classList.contains('printing-worstCaseProducts');
+                const isCollapsed = isPrintMode || !collapsed ? false : true;
+
+                // calculate worst-case values within this train
+                train.products.forEach(p => {
+                    const toxicityPreference = getToxicityPreference();
+                    const values = p.activeIngredients.map(ing => calculateScores(ing, toxicityPreference).rpn);
+                    p.sortValue = values.length > 0 ? Math.max(...values) : 0;
+                });
+
+                train.products.sort((a,b) => {
+                    const key = state.sortState.key;
+                    const dir = state.sortState.direction === 'asc' ? 1 : -1;
+                    let valA, valB;
+                    switch (key) {
+                        case 'productCode': valA = a.productCode; valB = b.productCode; break;
+                        case 'name': valA = a.name; valB = b.name; break;
+                        default: valA = a.sortValue; valB = b.sortValue;
+                    }
+                    if (valA < valB) return -1 * dir;
+                    if (valA > valB) return 1 * dir;
+                    return 0;
+                });
+
+                // Build train card HTML (simplified from maco view)
+                const trainCard = document.createElement('div');
+                trainCard.className = 'train-card mb-3';
+                // Create unique ID that includes dosage form to avoid conflicts
+                const uniqueTrainId = `${train.line}-${train.number}-${train.dosageForm || 'unknown'}`;
+                let html = `
+                    <div class="train-header" onclick="toggleTrain('wc-${uniqueTrainId}')">
+                        <span>Train ${train.number} - ${train.dosageForm || 'Unknown'}</span>
+                        <button class="train-toggle" id="toggle-wc-${uniqueTrainId}">${isCollapsed ? '\u25B6' : '\u25BC'}</button>
+                    </div>
+                    <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-wc-${uniqueTrainId}">
+                        <div class="train-content-inner">
+                            <table class="w-full text-sm mainTable">
+                                <thead style="background: var(--bg-accent);">
+                                    <tr>
+                                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider sortable" data-key="productCode">Code <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider sortable" data-key="name">Product Name <span class="sort-indicator"></span></th>
+                                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Highest RPN</th>
+                                        <th class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider">Special Case</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y" style="border-color: var(--border-color);">
+                `;
+
+                train.products.forEach(product => {
+                    const criticalText = product.isCritical ? 'Yes' : 'No';
+                    const criticalClass = product.isCritical ? 'text-red-600 font-bold' : '';
+                    html += `
+                        <tr class="product-main-row">
+                            <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">${product.productCode}</td>
+                            <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top">
+                                <span class="product-name">${product.name}</span>
+                                <p class="text-xs italic" style="color: var(--text-secondary);">${product.productType || 'N/A'}</p>
+                            </td>
+                            <td class="px-3 py-3 text-sm font-bold whitespace-nowrap align-top" style="color: var(--gradient-mid);">${product.sortValue}</td>
+                            <td class="px-3 py-3 text-sm align-top">
+                                <span class="${criticalClass}">${criticalText}</span>
+                                ${product.isCritical && product.criticalReason ? `<p class="text-xs italic" style="color: var(--text-secondary); max-width: 150px; white-space: normal;">${product.criticalReason}</p>` : ''}
+                            </td>
+                        </tr>`;
+                });
+
+                html += `</tbody></table></div></div>`;
+                trainCard.innerHTML = html;
+                trainsContainer.appendChild(trainCard);
+
+                // attach sort handlers
+                const sortableHeaders = trainCard.querySelectorAll('th.sortable[data-key]');
+                sortableHeaders.forEach(header => {
+                    header.addEventListener('click', function(event) {
+                        event.stopPropagation();
+                        const key = this.getAttribute('data-key');
+                        sortData(key, 'worstCaseProducts');
+                    });
+                });
+            });
+        });
+    });
+
+    updateToggleIcons('worstCaseProducts');
+    updateSortIndicators('worstCaseProducts');
+    hideLoader();
+
+    // Update dropdown options after rendering
+    populateWorstCaseTrainOptions();
+}
+
+export function renderRpnChart() {
+    const canvas = document.getElementById('rpnChartCanvas');
+    const placeholder = document.getElementById('rpnChartPlaceholder');
+    const colorMap = { 'low': { bg: 'rgba(74, 222, 128, 0.6)', border: 'rgba(34, 197, 94, 1)' }, 'medium': { bg: 'rgba(250, 204, 21, 0.6)', border: 'rgba(234, 179, 8, 1)' }, 'high': { bg: 'rgba(239, 68, 68, 0.6)', border: 'rgba(220, 38, 38, 1)' }, 'default': { bg: 'rgba(156, 163, 175, 0.6)', border: 'rgba(107, 114, 128, 1)' } };
+
+    // Initialize viewProducts if it doesn't exist
+    if (!state.viewProducts['worstCaseProducts']) {
+        state.viewProducts['worstCaseProducts'] = [...state.products];
+    }
+    
+    const productsForChart = state.viewProducts['worstCaseProducts'] || [];
+  
+    const toxicityPreference = getToxicityPreference();
+    const flatData = productsForChart.flatMap(p => 
+        p.activeIngredients.map(ing => {
+            const scores = calculateScores(ing, toxicityPreference);
+            const trainId = getProductTrainId(p);
+            return {
+                productName: p.name,
+                ingredientName: ing.name,
+                rpn: scores.rpn,
+                ratingKey: scores.rpnRatingText.toLowerCase(),
+                trainId: trainId !== 'N/A' ? `T${trainId}` : ''
+            };
+        })
+    );
+
+    if (flatData.length === 0) {
+        canvas.style.display = 'none';
+        placeholder.style.display = 'flex';
+        if (state.rpnChartInstance) state.rpnChartInstance.destroy();
+        return;
+    } else {
+        canvas.style.display = 'block';
+        placeholder.style.display = 'none';
+    }
+
+    flatData.sort((a, b) => b.rpn - a.rpn);
+
+    const labels = flatData.map(d => `${d.productName} (${d.ingredientName}) ${d.trainId}`);
+    const rpnData = flatData.map(d => d.rpn);
+    const backgroundColors = flatData.map(d => (colorMap[d.ratingKey] || colorMap['default']).bg);
+    const borderColors = flatData.map(d => (colorMap[d.ratingKey] || colorMap['default']).border);
+
+    if (state.rpnChartInstance) state.rpnChartInstance.destroy();
+    const ctx = canvas.getContext('2d');
+    const newChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'RPN',
+                data: rpnData,
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'x',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { ticks: { color: 'var(--text-secondary)' }, grid: { display: false } },
+                y: { beginAtZero: true, ticks: { color: 'var(--text-secondary)' }, grid: { color: 'var(--border-color)' } }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.dataset.label || '';
+                            if (label) { label += ': '; }
+                            if (context.parsed.y !== null) { label += context.parsed.y; }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+    state.setRpnChartInstance(newChartInstance);
+}
+
+// Dropdown toggle functions for worst case export and print
+export function toggleWorstCaseExportDropdown() {
+    const dropdown = document.getElementById('worstCaseExportDropdown');
+    dropdown.classList.toggle('hidden');
+    populateWorstCaseTrainOptions();
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!e.target.closest('#worstCaseExportDropdown') && !e.target.closest('button[onclick="toggleWorstCaseExportDropdown()"]')) {
+            dropdown.classList.add('hidden');
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
+}
+
+export function toggleWorstCasePrintDropdown() {
+    const dropdown = document.getElementById('worstCasePrintDropdown');
+    dropdown.classList.toggle('hidden');
+    populateWorstCaseTrainOptions();
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!e.target.closest('#worstCasePrintDropdown') && !e.target.closest('button[onclick="toggleWorstCasePrintDropdown()"]')) {
+            dropdown.classList.add('hidden');
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
+}
+
+function populateWorstCaseTrainOptions() {
+    import('./utils.js').then(utils => {
+        const { getTrainsGroupedByLine, getConsistentTrainOrder, getTrainIdToLineNumberMap } = utils;
+        
+        // Use the same filtering logic as renderWorstCaseByTrain
+        let linesWithTrains = getTrainsGroupedByLine();
+        
+        // Apply current line filter (same as view)
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        // Flatten all trains and apply consistent ordering (same as view)
+        const allTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                allTrains.push({
+                    ...train,
+                    line: train.line
+                });
+            });
+        });
+        
+        // Apply consistent train ordering (same as view)
+        const visibleTrains = getConsistentTrainOrder(allTrains);
+        
+        // Get mapping for friendly labels
+        const idMap = getTrainIdToLineNumberMap();
+    
+        // Populate export dropdown with checkboxes
+        const exportContainer = document.getElementById('worstCaseExportTrainOptions');
+        if (exportContainer) {
+            exportContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 export-train-checkbox';
+                checkbox.value = train.number;
+                checkbox.onchange = () => updateAllTrainsCheckbox('export');
+                
+                const span = document.createElement('span');
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                exportContainer.appendChild(labelElement);
+            });
+        }
+        
+        // Populate print dropdown with checkboxes
+        const printContainer = document.getElementById('worstCasePrintTrainOptions');
+        if (printContainer) {
+            printContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 print-train-checkbox';
+                checkbox.value = train.number;
+                checkbox.onchange = () => updateAllTrainsCheckbox('print');
+                
+                const span = document.createElement('span');
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                printContainer.appendChild(labelElement);
+            });
+        }
+    }).catch(error => {
+        console.error('Error populating worst case train options:', error);
+    });
+}
+
+// Multi-select train functions
+export function toggleAllTrainsSelection(type) {
+    const allCheckbox = document.getElementById(`${type}AllTrainsCheckbox`);
+    const trainCheckboxes = document.querySelectorAll(`.${type}-train-checkbox`);
+    
+    trainCheckboxes.forEach(checkbox => {
+        checkbox.checked = allCheckbox.checked;
+    });
+}
+
+export function updateAllTrainsCheckbox(type) {
+    const allCheckbox = document.getElementById(`${type}AllTrainsCheckbox`);
+    const trainCheckboxes = document.querySelectorAll(`.${type}-train-checkbox`);
+    const checkedBoxes = document.querySelectorAll(`.${type}-train-checkbox:checked`);
+    
+    // Update "All" checkbox based on individual selections
+    if (checkedBoxes.length === 0) {
+        allCheckbox.checked = false;
+        allCheckbox.indeterminate = false;
+    } else if (checkedBoxes.length === trainCheckboxes.length) {
+        allCheckbox.checked = true;
+        allCheckbox.indeterminate = false;
+    } else {
+        allCheckbox.checked = false;
+        allCheckbox.indeterminate = true;
+    }
+}
+
+export function executeExportSelection() {
+    const allCheckbox = document.getElementById('exportAllTrainsCheckbox');
+    const selectedTrains = [];
+    
+    if (allCheckbox.checked) {
+        // Export all trains
+        exportWorstCaseToExcel('all');
+    } else {
+        // Get selected individual trains
+        const checkedBoxes = document.querySelectorAll('.export-train-checkbox:checked');
+        checkedBoxes.forEach(checkbox => {
+            selectedTrains.push(checkbox.value);
+        });
+        
+        if (selectedTrains.length === 0) {
+            showCustomAlert("No Selection", "Please select at least one train to export.");
+            return;
+        }
+        
+        // Export selected trains
+        exportWorstCaseToExcel(selectedTrains);
+    }
+    
+    // Close dropdown
+    document.getElementById('worstCaseExportDropdown').classList.add('hidden');
+}
+
+export function executePrintSelection() {
+    const allCheckbox = document.getElementById('printAllTrainsCheckbox');
+    const selectedTrains = [];
+    
+    if (allCheckbox.checked) {
+        // Print all trains
+        printCurrentView('worstCaseProducts', 'all');
+    } else {
+        // Get selected individual trains
+        const checkedBoxes = document.querySelectorAll('.print-train-checkbox:checked');
+        checkedBoxes.forEach(checkbox => {
+            selectedTrains.push(checkbox.value);
+        });
+        
+        if (selectedTrains.length === 0) {
+            showCustomAlert("No Selection", "Please select at least one train to print.");
+            return;
+        }
+        
+        // Print selected trains
+        printCurrentView('worstCaseProducts', selectedTrains);
+    }
+    
+    // Close dropdown
+    document.getElementById('worstCasePrintDropdown').classList.add('hidden');
+}
+
+// Make new functions globally available
+window.toggleAllTrainsSelection = toggleAllTrainsSelection;
+window.updateAllTrainsCheckbox = updateAllTrainsCheckbox;
+window.executeExportSelection = executeExportSelection;
+window.executePrintSelection = executePrintSelection;
+
+// Make functions globally available
+window.toggleWorstCaseExportDropdown = toggleWorstCaseExportDropdown;
+window.toggleWorstCasePrintDropdown = toggleWorstCasePrintDropdown;

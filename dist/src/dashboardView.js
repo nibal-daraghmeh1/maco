@@ -1,1 +1,2879 @@
-const a2_0x410315=a2_0x5737;(function(_0x1a20ba,_0x15a4b5){const _0x52089c=a2_0x5737,_0x2aba7b=_0x1a20ba();while(!![]){try{const _0x54d27a=-parseInt(_0x52089c(0x304))/0x1*(-parseInt(_0x52089c(0x1aa))/0x2)+parseInt(_0x52089c(0x1b8))/0x3*(-parseInt(_0x52089c(0x175))/0x4)+-parseInt(_0x52089c(0x91))/0x5*(parseInt(_0x52089c(0x1e7))/0x6)+-parseInt(_0x52089c(0x298))/0x7+parseInt(_0x52089c(0x190))/0x8+-parseInt(_0x52089c(0x2c4))/0x9+parseInt(_0x52089c(0x221))/0xa;if(_0x54d27a===_0x15a4b5)break;else _0x2aba7b['push'](_0x2aba7b['shift']());}catch(_0x5ad549){_0x2aba7b['push'](_0x2aba7b['shift']());}}}(a2_0x45d1,0x82d32));import{products as a2_0x1acb9c,machines as a2_0x1696ce,macoChartInstance as a2_0x177c4b,setMacoChartInstance as a2_0x3e8bb1}from'./state.js';import{getTrainData as a2_0x50428e,getWorstCaseProductType as a2_0x5b86d9,getLargestEssaForLineAndDosageForm as a2_0x10d59c,getTrainsGroupedByLine as a2_0x48d633,calculateScores as a2_0xadbd9b}from'./utils.js';import*as a2_0x10e60c from'./utils.js';import{renderRpnChart as a2_0xc6dcf7}from'./worstCaseView.js';import*as a2_0x2b66d0 from'./state.js';import{createHorizontalMachineCoverageTable as a2_0x198161}from'./machineCoverageView.js';const m=[a2_0x410315(0x1a0),a2_0x410315(0xcc),a2_0x410315(0xe1),a2_0x410315(0xbc),'#9966FF',a2_0x410315(0x249),a2_0x410315(0xb1),a2_0x410315(0xb8),a2_0x410315(0x290),'#96CEB4',a2_0x410315(0x1f4),a2_0x410315(0xec),'#98D8C8','#F7DC6F','#BB8FCE','#85C1E9',a2_0x410315(0xa2),a2_0x410315(0xb6),a2_0x410315(0x1e6),a2_0x410315(0x7e),a2_0x410315(0x262),a2_0x410315(0x277),'#F39C12',a2_0x410315(0x212),a2_0x410315(0x1b4),a2_0x410315(0x2a5),'#1ABC9C','#34495E',a2_0x410315(0x21a),a2_0x410315(0x23f),a2_0x410315(0x149),a2_0x410315(0x207),a2_0x410315(0x97),a2_0x410315(0x310),a2_0x410315(0xf3),a2_0x410315(0xc7),a2_0x410315(0x2bd),'#8BC34A',a2_0x410315(0xdf),'#FFEB3B'];let h=null;function g(){const _0x16d787=a2_0x410315,_0x179993={'qanIH':function(_0x534667,_0x451e1b){return _0x534667%_0x451e1b;},'sePqy':_0x16d787(0x162),'WxhjN':function(_0xc21824,_0x36c73a){return _0xc21824!==_0x36c73a;},'Bybrt':_0x16d787(0x127)};if(h)return h;const _0x23e7c1=new Map(),_0x430226=a2_0x50428e(),_0x450e68=new Set();_0x430226[_0x16d787(0x1d2)](_0x474bda=>{const _0x52aade=_0x16d787,_0x104f5f=_0x474bda['line']||_0x474bda['productLine']||'Unassigned';_0x450e68[_0x52aade(0x254)](_0x104f5f);});const _0x1ae444=Array[_0x16d787(0x13c)](_0x450e68)[_0x16d787(0x15b)]();console[_0x16d787(0x1bb)](_0x179993[_0x16d787(0x27b)],_0x1ae444),_0x1ae444[_0x16d787(0x1d2)]((_0x3202f5,_0x36e157)=>{const _0x101d6f=_0x16d787,_0x25a42e=m[_0x179993[_0x101d6f(0x22d)](_0x36e157,m[_0x101d6f(0xbf)])];_0x23e7c1['set'](_0x3202f5,_0x25a42e),console['log'](_0x101d6f(0x181)+_0x3202f5+_0x101d6f(0x288)+_0x25a42e+_0x101d6f(0x1e3)+_0x36e157+')');});const _0x5097c5=Array[_0x16d787(0x13c)](_0x23e7c1[_0x16d787(0x1a2)]()),_0x3a5dd5=[...new Set(_0x5097c5)];return _0x179993[_0x16d787(0x171)](_0x5097c5['length'],_0x3a5dd5['length'])&&(console[_0x16d787(0x19f)](_0x16d787(0x2f7)),console[_0x16d787(0x1bb)](_0x179993['Bybrt'],_0x5097c5),console[_0x16d787(0x1bb)](_0x16d787(0x1ea),_0x3a5dd5)),h=_0x23e7c1,_0x23e7c1;}function f(_0x666f83,_0x3b8aaa){const _0x3ce05f=a2_0x410315,_0x276832={'cmYat':function(_0x59c124){return _0x59c124();}},_0xc72c2d=_0x276832['cmYat'](g)['get'](_0x666f83)||m[0x0];return console[_0x3ce05f(0x1bb)](_0x3ce05f(0xd1)+_0x666f83+_0x3ce05f(0x1b7)+_0x3b8aaa+':\x20'+_0xc72c2d+'\x20(using\x20line\x20color)'),_0xc72c2d;}export function resetColorMapping(){const _0x5aca71=a2_0x410315,_0x458207={'RtUeo':_0x5aca71(0x15c)};console[_0x5aca71(0x1bb)](_0x458207['RtUeo']),h=null;}function a2_0x45d1(){const _0x36bed0=['SEROh','#F1C40F','mSThx','hTasd','SwAmb','HRSbH','GjjlW','ARvFS','19952400JIlUJh','Lkiho','HDmcq','parsed','0.1%\x20Therapeutic\x20Dose','\x20—\x20Train\x20','PuFBA','IkCHD','PZipN','Yxtph','Train-based\x20distribution:','MvDwS','qanIH','kfQHx','RxhFN','Special\x20cases\x20product\x20names:','kaBSb','umFrV','QDqtA','jWdDA','WQFBj','label','IzbhE','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-2xl\x20font-bold\x22>','oKOHa','XxBCT','slice','eFRTX','YwgQf','XYHuV','#E91E63','dNQku','dosageForm','max','display','TQyRN','dGvgK','dbGvR','OGvLd','OdNNy','#FF9F40','FKNeG','minMacosPieChart','rgba(54,\x20162,\x20235,\x201)','xoykK','CuNKe','eEfJN','minBsMddRatio','vTXXu','HMhIl','YCWni','add','PFbkJ','CUGTL','bar','\x20to\x20','dataset','NSPFb','\x20more','overflow','var(--text-secondary)','name','dataIndex','logarithmic','bqzzf','#E74C3C','highestRpnByTrainChart','chartExpandModalTitle','WyxjF','oVTKh','FCuFJ','text','Added\x20segment:\x20','OjMQC','YoQsq','JqPzc','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','OUbMG','USPmY','EUSMF','ffZEt','affYb','OXwwk','axZBa','EhpYC','TsUXX','#3498DB','N/A','Creating\x20Chart.js\x20chart\x20with\x20data:','eabDP','sePqy','HarnI','KtnQp','RpmqE','HrmBW','</p>','Studies\x20Distribution\x20by\x20Line\x20and\x20Dosage\x20Form','MACO\x20(mg/Swab)','lNDHD','NrYRv',',\x20Dosage\x20Forms\x20=\x20[','\x20color:\x20','iZLLE','\x22\x20->\x20Color\x20',':\x20NOEL-based\x20MACO\x20=\x20','TtBFp','ffvyL','HIdlt','oTnFC','spPrg','CIUuO','#45B7D1','Trains\x20Distribution','mdd','swgkl','jCqRp','kxDRM','oNKUL','circle','1372294hMcaem','tYXbR','ZauIk','ZOXAu','JVTDA','study','Processing\x20train\x20data\x20for\x20MACO\x20distribution:','products','No\x20train\x20data\x20available\x20for\x20grouped\x20bar\x20chart','\x20train','riSTg','CTXNj','cKoIS','#E67E22','createElement','CZLbD','WHNKp','vzugQ','VSxiB','setMacoChartInstance','NnJbb','puwdY','vlVEH','cPoHe','vdlmQ','kcNDZ','KDLts','Unassigned','NYQCn','BLzoi','cnLcb','Grouped\x20data:','Final\x20chart\x20data:','icon','Highest\x20RPN\x20by\x20Train','OjpaY','RpZlp','#4CAF50','HbIQP','toFixed','RPN:\x20','raXeq','bPXrY','Total\x20Products','8246691tFNHpZ','UEcbf','DsgEc','exSrB','mhYxo','productRegister-ld50Hidden','fJiMd','keys','cTkNv','MACO\x20values\x20for\x20tooltips:','VKZhJ','UjEpl',':\x20Invalid\x20lowestLtd\x20(','CLZDr','yKvrc','tKuMP','gWFlT','YHVpE','sgJry','JXZvL','finalMaco','macoPerSwab','jposv','NTCQi','Labels:','JIywo','wZTfr','VcwYp','Special\x20Cases\x20Distribution','error','getContext','fkmZX','Studies\x20Distribution','nKwow','kLBVt','Total\x20Required\x20Studies','nWIpR',':\x20Invalid\x20assumedSsa\x20(','DivQr','innerHTML','Total\x20Trains','specialCasesPieChart','Canvas\x20element\x20not\x20found:\x20trainsByLineAndDosageChart\x20-\x20skipping\x20chart','FMenP','minMbsKg','rgba(139,\x2092,\x20246,\x200.6)','replace','ujIQI','productType','IEoDX','fKVti','WARNING:\x20Duplicate\x20colors\x20detected\x20in\x20mapping!','HuEYv','Processing\x20distribution\x20data...','renderHighestRpnByTrainChart\x20called','FSyvA','nXkOC','TKYQO','MmzgB','FHswF','iuSyK','TZGxe','cOsjH','bHJYp','16difTRD','PFpFC','XBSHj','KeFLI','vWqMK','getElementById','#fff','JbfWI','object','mwhdH','Train\x20','productRegister-pdeHidden','#2196F3','vwmJV','Using\x20real\x20MACO\x20data\x20for\x20minimum\x20MACO\x20chart','Hqfqv','vdbWb',':\x20Line\x20=\x20','dosageFormPieChart','dIzJD','flatMap','NJcMQ','ZLGPE',':\x20Invalid\x20minMbsKg\x20(','<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2224\x22\x20height=\x2224\x22\x20fill=\x22currentColor\x22\x20class=\x22bi\x20bi-box-seam\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M8.186\x201.113a.5.5\x200\x200\x200-.372\x200L1.846\x203.5l2.405\x201.372L8\x202.267l3.75\x202.605\x202.405-1.372L8.186\x201.113zM3.75\x204.81L8\x207.76l4.25-2.95L8\x201.815\x203.75\x204.81z\x22/><path\x20d=\x22M1\x204.53v7.94l6.5\x203.53\x206.5-3.53V4.53L8\x208.06\x201\x204.53zm7.5\x203.56l-3.5-2-3.5\x202v7.19l3.5\x202\x203.5-2v-7.19zm3.5\x202l-3.5\x202v7.19l3.5-2\x203.5\x202v-7.19l-3.5-2z\x22/></svg>','#AED6F1','card\x20p-4\x20flex\x20items-center','lNrnD','uKpuA','rbyuU','tMxoT','WtTRY','Semisolid','UMfmI','sNNPL','trainsByLineAndDosageChart','NkEdW','xwFaX','BWNPW','QLPmZ','machineCoverageContainer','studies','tOBTE','NtpcB','1388225PjJtgl','Data:','weNvH','Obgga','startsWith','kHOGP','#3F51B5','some','No\x20train\x20data\x20available\x20for\x20pie\x20chart','),\x20using\x20default','KMeNE','oryDb','tROxO','EtecM','Train\x20RPN\x20data:','ZwtQk','exDMV','#F8C471','soqlP','#e5e7eb','usMQm','RnYqT','reduce','HlBgq','XXYye','bold','CUWcs','dJCQB','dXdTM','necAh','wWmpN','DCWYR','#FF6B6B','OhyHV','className','yIsjV','ghFgr','#82E0AA','aZaOG','#4ECDC4','AsMBu','GxTzq','EdRvd','#4BC0C0','<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2224\x22\x20height=\x2224\x22\x20fill=\x22currentColor\x22\x20class=\x22bi\x20bi-diagram-3\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20fill-rule=\x22evenodd\x22\x20d=\x22M6\x203.5A1.5\x201.5\x200\x200\x201\x207.5\x202h1A1.5\x201.5\x200\x200\x201\x2010\x203.5v1A1.5\x201.5\x200\x200\x201\x208.5\x206v1H14a.5.5\x200\x200\x201\x20.5.5v1a.5.5\x200\x200\x201-1\x200V8h-5v.5a.5.5\x200\x200\x201-1\x200V8h-5v.5a.5.5\x200\x200\x201-1\x200v-1A.5.5\x200\x200\x201\x202\x207h5.5V6A1.5\x201.5\x200\x200\x201\x206\x204.5v-1zM8.5\x205a.5.5\x200\x200\x200\x20.5-.5v-1a.5.5\x200\x200\x200-.5-.5h-1a.5.5\x200\x200\x200-.5.5v1a.5.5\x200\x200\x200\x20.5.5h1zM3\x2011.5A1.5\x201.5\x200\x200\x201\x204.5\x2010h1A1.5\x201.5\x200\x200\x201\x207\x2011.5v1A1.5\x201.5\x200\x200\x201\x205.5\x2014h-1A1.5\x201.5\x200\x200\x201\x203\x2012.5v-1zm1.5-.5a.5.5\x200\x200\x200-.5.5v1a.5.5\x200\x200\x200\x20.5.5h1a.5.5\x200\x200\x200\x20.5-.5v-1a.5.5\x200\x200\x200-.5-.5h-1zm4.5.5A1.5\x201.5\x200\x200\x201\x2010.5\x2010h1a1.5\x201.5\x200\x200\x201\x201.5\x201.5v1a1.5\x201.5\x200\x200\x201-1.5\x201.5h-1A1.5\x201.5\x200\x200\x201\x209\x2012.5v-1zm1.5-.5a.5.5\x200\x200\x200-.5.5v1a.5.5\x200\x200\x200\x20.5.5h1a.5.5\x200\x200\x200\x20.5-.5v-1a.5.5\x200\x200\x200-.5-.5h-1z\x22/></svg>','GQHrQ','length','trainName','assumedSsa','Aiggf','pdVqg','KkgmJ','XWXlT','Processing\x20line:\x20','#009688','WNFLW','yAhTz','min','XLgxs','#36A2EB','EtULm','Studies\x20distribution:','localeCompare','Skipping\x20line\x20','Getting\x20color\x20for\x20','QIUeF','push','mSNht','AZFba','MACO\x20per\x20Swab\x20(mg/Swab)','PlHTC','qfrTV','uJxhf','Special\x20cases\x20distribution:','pie','\x20=\x200.001','kTdhu','ETJpg','#CDDC39','AFPyQ','#FFCE56','mPztl','zMhbm','AgOuI','addColorStop','zQKDc','chartExpandModal','WfvYQ','Visual\x20Clean\x20Limit','dashboardStats','AuCEW','#DDA0DD','tiFfA','substring','lFPTe','flex','\x20group','KHwRd','#00BCD4','none','jwPei','gQlPs','WaZYG','fKzty','dLTVE','mulKp','cahoo','rWvuh','YgLKL','DOxTk','mNZuH','div','bottom','BGMon','KChAt','gCmRA','jtZMw','Solids','specialCasesProductNames','EVQuc','wbQYK','topRpnChart','ubfzT','QyHSx','kofEt','\x20mg/Swab','AMJvR','essa','akyoX','Error\x20creating\x20chart:\x20','UGtiE','VGDNl','LbKXK','uNMZg','Distribution:','vmoAC','UdCGx','AorFJ','ptknh','getTrainIdToLineNumberMap','jsRzw','XpdSL','deiyY','dHHSQ','Ppuzo','MWlAc','NTHRE','Trains\x20by\x20Line\x20and\x20Dosage\x20Form',':\x20RPN\x20','hCuem','Assigned\x20colors:','BVJRE','auto',':\x20Invalid\x20MACO\x20value\x20(','eFeFI',':\x20Invalid\x20data','EIrwm','aYXtX','EDfcb','No\x20recreation\x20function\x20found\x20for\x20chart:\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','vxhXR','wVTci','block','qLKjt','\x20special\x20case','rurPr','bhsLP','minMacosChart','Other','Products','from','AHjGx','Calculating\x20MACO\x20for\x20train\x20','TdkPw','Error\x20calculating\x20RPN\x20for\x20ingredient:','Xdkxd','abXso','IcpyN','hidden','<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2224\x22\x20height=\x2224\x22\x20fill=\x22currentColor\x22\x20class=\x22bi\x20bi-clipboard-check\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20fill-rule=\x22evenodd\x22\x20d=\x22M10.854\x207.146a.5.5\x200\x200\x201\x200\x20.708l-3\x203a.5.5\x200\x200\x201-.708\x200l-1.5-1.5a.5.5\x200\x201\x201\x20.708-.708L7.5\x209.793l2.646-2.647a.5.5\x200\x200\x201\x20.708\x200z\x22/><path\x20d=\x22M4\x201.5H3a2\x202\x200\x200\x200-2\x202V14a2\x202\x200\x200\x200\x202\x202h10a2\x202\x200\x200\x200\x202-2V3.5a2\x202\x200\x200\x200-2-2h-1v1h1a1\x201\x200\x200\x201\x201\x201V14a1\x201\x200\x200\x201-1\x201H3a1\x201\x200\x200\x201-1-1V3.5a1\x201\x200\x200\x201\x201-1h1v-1z\x22/><path\x20d=\x22M9.5\x201a.5.5\x200\x200\x201\x20.5.5v1a.5.5\x200\x200\x201-.5.5h-3a.5.5\x200\x200\x201-.5-.5v-1a.5.5\x200\x200\x201\x20.5-.5h3zm-3-1A1.5\x201.5\x200\x200\x200\x205\x201.5v1A1.5\x201.5\x200\x200\x200\x206.5\x204h3A1.5\x201.5\x200\x200\x200\x2011\x202.5v-1A1.5\x201.5\x200\x200\x200\x209.5\x200h-3z\x22/></svg>','OuzkB','maco','yaoLe','#9C27B0','slHbE','activeIngredients','lyYSI','WRXIP','textContent','aEkyt','mMDjS','OKFfy','trains','mbcus','Trains\x20by\x20Line\x20and\x20Dosage\x20chart\x20created\x20successfully!','UqnYr','apsSN','ZDCkv','productName','<p\x20class=\x22text-xs\x20font-semibold\x20mt-1\x22\x20style=\x22color:\x20var(--text-primary);\x22>','rpn','sort','Resetting\x20color\x20mapping\x20for\x20consistency','GZNgH','FjCYw','fqtFL','iLzWs','OvPun','Creating\x20color\x20mapping\x20for\x20lines:','vgmaM','Dshcc','isCritical','abvEL','studiesPieChart','SEBFF','zpRvh','tcsNG','zbsyj','studiesChart','value','zDxqg','Minimum\x20MACO\x20Distribution','iltGa','WxhjN','specialCasesChart','Skipping\x20','iQplj','52KapbLI','Lines\x20with\x20trains:','yNYzj','fVbZY','EtbTt','QfiDi','minMacosValues','uZpUE','dosageFormChart','lowestLd50','oVbBi','lNHEa','Line\x20\x22','ytoFl','atPyl','tcJfk','LAhnw','Bnlqn','MzxJF','SfdDp','topRpnProductsChart','vKQJw','Vacyl','line','GJAfZ','zqZyP','cdUWP','4748608ZgwtlI','destroy','renderMinMacosDistributionPieChart\x20called','qrRCx','RPN\x20Score','Error\x20calculating\x20RPN:','highestRpn','gYLiL','rNVOE','haPqb','calculateScores','join','uYVHf','LIsRQ','aoCoR','warn','#FF6384','Processing\x20','values','sequentialNumber','PhpPf','nKedd','FRWrj','get','XJGXM','DIwNG','33914YJIfmu','NxgZP','FHXqa','No\x20Special\x20Cases','Added\x20train\x20','dummy','LFOiK','SOzJQ','top','krMvd','#8E44AD','dbYab','aWsJZ','\x20-\x20','215604OfwcTl','xymCk','yxcXl','log','iGlnO','Xkegz','Train\x20data\x20for\x20MACO\x20calculation:','EWQYz','true','BCSIa','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x20-mt-1\x22\x20style=\x22color:\x20var(--text-secondary);\x22>','CXBBh','ZLXEZ','hCRxq','number','\x20final\x20MACO\x20calculation:','Trains\x20Distribution\x20by\x20Line\x20and\x20Dosage\x20Form','fVXBf','TRwga','lowestPde','style','lEIKg','rnECu','JbSCT','Trains\x20in\x20Line\x20and\x20Group','dIvao','forEach','hTppB','rgba(99,\x20102,\x20241,\x201)','lowestLtd','Health-Based\x20Limit\x20(NOEL)','getItem','yKdUU','has','body','VjarX','WoWqR','Trains','BNWHD','rgba(54,\x20162,\x20235,\x200.8)','Health-Based\x20Limit\x20(PDE)','ZLGgQ','cUkKy','\x20(index:\x20','Individual\x20Trains\x20by\x20Line\x20and\x20Dosage\x20Form\x20(MACO\x20per\x20Swab)','KjirN','#F1948A','6LLSyjk','HZmcI','iHRnl','Unique\x20colors:','No\x20train\x20data\x20available,\x20using\x20mock\x20data','machineIds','hgpMB','message','dczya','uFJyb','DYBlw','10\x20ppm\x20Criterion','filter','#FFEAA7','FrKCK','cyDil','rfNyH','ELwnc','ohhmS','safetyFactorConfig','cScet','tHFJU','Adding\x20default\x20MACO\x20value\x20for\x20','bSsEy','XINQi','npKZq','wuqaa','rIbws','isArray','dofUu','LmJNT','JTmtS','#673AB7','prlAr','Error\x20calculating\x20MACO\x20for\x20train\x20','ZCwWk','vPdVx','yGFQn','ZsVNP','ONjyJ','jSjqK','xocFB','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20rounded-full\x20mr-4\x20text-white\x22\x20style=\x22background-image:\x20linear-gradient(to\x20right,\x20var(--gradient-start),\x20var(--gradient-end))\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','#27AE60','map','enbSN','No\x20minimum\x20MACO\x20data\x20available\x20for\x20pie\x20chart','function','EPbaJ','GtyzN'];a2_0x45d1=function(){return _0x36bed0;};return a2_0x45d1();}let b=null;export function expandChart(_0x24244a,_0x1fed68){const _0x3d1a2b=a2_0x410315,_0x5b6abf={'kLBVt':_0x3d1a2b(0x30a),'fkmZX':function(_0x2bb03c,_0x5a28b5){return _0x2bb03c==_0x5a28b5;},'maKma':_0x3d1a2b(0x30c),'gpwtk':_0x3d1a2b(0x1b7),'usMQm':function(_0x5a6c2c,_0x79e92c,_0x1049b3){return _0x5a6c2c(_0x79e92c,_0x1049b3);},'bPXrY':'dummy','PZipN':_0x3d1a2b(0x297),'bhsLP':function(_0x4ce6be,_0x214ac3){return _0x4ce6be!==_0x214ac3;},'VSxiB':_0x3d1a2b(0x291),'tKuMP':_0x3d1a2b(0x101),'mhYxo':function(_0x242db6,_0x485d7b){return _0x242db6+_0x485d7b;},'auzmE':_0x3d1a2b(0x8e),'iQplj':function(_0x80191e){return _0x80191e();},'JqPzc':function(_0x586d82){return _0x586d82();},'nKwow':function(_0x245792,_0x45a9a6){return _0x245792===_0x45a9a6;},'EVQuc':function(_0x1d7aa6,_0x59194c){return _0x1d7aa6/_0x59194c;},'LbKXK':_0x3d1a2b(0x30f),'Obgga':function(_0x5cde56,_0x58f68b){return _0x5cde56/_0x58f68b;},'pdVqg':function(_0x44956e,_0xb26aa){return _0x44956e*_0xb26aa;},'CUWcs':function(_0x2c1b5d,_0x1a479d){return _0x2c1b5d(_0x1a479d);},'CZLbD':function(_0x1bd0aa){return _0x1bd0aa();},'FSyvA':'bar','TKYQO':_0x3d1a2b(0xaa),'vdbWb':'MACO\x20per\x20Swab\x20(mg/Swab)','yxcXl':_0x3d1a2b(0x260),'HbIQP':function(_0x1fef36,_0x2d955f){return _0x1fef36(_0x2d955f);},'KtnQp':function(_0x17c3fa,_0x546ed5){return _0x17c3fa+_0x546ed5;},'WoWqR':function(_0x39b669,_0x41a010){return _0x39b669===_0x41a010;},'JXZvL':_0x3d1a2b(0x2ba),'dXdTM':_0x3d1a2b(0x1b2),'RxhFN':'Highest\x20RPN\x20Value','rIbws':function(_0xa0a42c){return _0xa0a42c();},'EhpYC':function(_0x46517d,_0x3f1d8d){return _0x46517d+_0x3f1d8d;},'JVTDA':_0x3d1a2b(0x1ad),'apZUz':_0x3d1a2b(0x2e0),'prlAr':_0x3d1a2b(0x16f),'ZwtQk':_0x3d1a2b(0xe7),'TZGxe':_0x3d1a2b(0x264),'dHHSQ':'expandedChart','Udwfn':_0x3d1a2b(0xf0),'mbcus':_0x3d1a2b(0x144),'Xkegz':function(_0xf52167,_0x5b1bfe,_0x35c48f){return _0xf52167(_0x5b1bfe,_0x35c48f);}},_0x3afa5f=document[_0x3d1a2b(0x309)](_0x5b6abf[_0x3d1a2b(0xa0)]),_0x38e739=document[_0x3d1a2b(0x309)](_0x5b6abf[_0x3d1a2b(0x301)]),_0x2b8494=document['getElementById'](_0x5b6abf[_0x3d1a2b(0x120)]);_0x38e739[_0x3d1a2b(0x14e)]=_0x1fed68,_0x3afa5f[_0x3d1a2b(0x1cc)][_0x3d1a2b(0x243)]=_0x5b6abf['Udwfn'],document[_0x3d1a2b(0x1da)][_0x3d1a2b(0x1cc)][_0x3d1a2b(0x25c)]=_0x5b6abf[_0x3d1a2b(0x153)],b&&(b['destroy'](),b=null),_0x5b6abf[_0x3d1a2b(0x1bd)](setTimeout,()=>{const _0x36afc7=_0x3d1a2b,_0x25e187={'DCWYR':function(_0x56e099,_0x440f4d,_0x5c4ab6){const _0x13bd49=a2_0x5737;return _0x5b6abf[_0x13bd49(0xa5)](_0x56e099,_0x440f4d,_0x5c4ab6);},'puwdY':function(_0x331a30,_0x4e4ead){const _0x12eb59=a2_0x5737;return _0x5b6abf[_0x12eb59(0x275)](_0x331a30,_0x4e4ead);},'cKoIS':_0x36afc7(0x1b7),'dbYab':_0x5b6abf[_0x36afc7(0x229)],'qGWQs':function(_0x406392,_0xdc2d4){return _0x406392===_0xdc2d4;},'CLZDr':function(_0x86fb3c){return _0x86fb3c();},'apGla':_0x5b6abf[_0x36afc7(0x29c)],'wZTfr':_0x5b6abf[_0x36afc7(0x2e6)],'oryDb':_0x36afc7(0xdb),'Addiu':_0x5b6abf['apZUz'],'QIUeF':_0x5b6abf[_0x36afc7(0x2fd)],'XYHuV':_0x5b6abf[_0x36afc7(0x2d3)],'vJIFD':function(_0x3a1d2b,_0x4e9acf){return _0x5b6abf['CUWcs'](_0x3a1d2b,_0x4e9acf);},'RpmqE':_0x5b6abf[_0x36afc7(0x2c2)],'ihkGv':_0x5b6abf[_0x36afc7(0x208)]};!function(_0x5d260e,_0xcd9927){const _0x30d79f=_0x36afc7,_0x3a8180={'cOsjH':function(_0x25e6fa,_0x25a9e6){return _0x25e6fa>_0x25a9e6;},'koGvW':_0x5b6abf[_0x30d79f(0x2e6)],'eFRTX':function(_0x3964c2,_0x177d5e){const _0x404d47=_0x30d79f;return _0x5b6abf[_0x404d47(0x2e3)](_0x3964c2,_0x177d5e);},'tHFJU':_0x5b6abf['maKma'],'NkEdW':_0x5b6abf['gpwtk'],'CIUuO':function(_0x172ee1,_0x538cb1,_0x125e53){return _0x5b6abf['usMQm'](_0x172ee1,_0x538cb1,_0x125e53);},'enbSN':_0x5b6abf[_0x30d79f(0x2c2)],'Yxtph':_0x5b6abf[_0x30d79f(0x229)],'cdUWP':function(_0x1062b8,_0xb618ed){const _0x3d1393=_0x30d79f;return _0x5b6abf[_0x3d1393(0x138)](_0x1062b8,_0xb618ed);},'abvEL':function(_0x19d841){return _0x19d841();},'abXso':_0x5b6abf[_0x30d79f(0x2aa)],'KMeNE':_0x5b6abf['tKuMP'],'NtpcB':function(_0x85bb34,_0x12167b){const _0x442699=_0x30d79f;return _0x5b6abf[_0x442699(0x2c8)](_0x85bb34,_0x12167b);},'ZLGgQ':function(_0x123598,_0x166bdb,_0x5326a8){return _0x123598(_0x166bdb,_0x5326a8);},'GQHrQ':_0x5b6abf['auzmE'],'OjpaY':function(_0x27f9b8){const _0x535c04=_0x30d79f;return _0x5b6abf[_0x535c04(0x174)](_0x27f9b8);},'iGlnO':function(_0x299ca3){const _0x2817ea=_0x30d79f;return _0x5b6abf[_0x2817ea(0x26c)](_0x299ca3);},'TbEYT':'pie','cTkNv':function(_0x2c4957,_0x2a3f05){return _0x2c4957==_0x2a3f05;},'DivQr':function(_0x356dac,_0x4cf689){const _0x1a7fee=_0x30d79f;return _0x5b6abf[_0x1a7fee(0x2e5)](_0x356dac,_0x4cf689);},'pMdNQ':function(_0x26bbf3,_0x23f3e9){const _0x458e06=_0x30d79f;return _0x5b6abf[_0x458e06(0x108)](_0x26bbf3,_0x23f3e9);},'dJCQB':_0x5b6abf[_0x30d79f(0x115)],'riSTg':function(_0x24e07c,_0x54ad87){const _0x59ff05=_0x30d79f;return _0x5b6abf[_0x59ff05(0x94)](_0x24e07c,_0x54ad87);},'iltGa':function(_0x4fe08e,_0x29962c){const _0x599c67=_0x30d79f;return _0x5b6abf[_0x599c67(0xc3)](_0x4fe08e,_0x29962c);},'ONjyJ':function(_0x955605,_0x9ab305){const _0x7e908f=_0x30d79f;return _0x5b6abf[_0x7e908f(0xab)](_0x955605,_0x9ab305);},'NTHRE':function(_0x273bce,_0x3525d9,_0xe011f5){return _0x5b6abf['usMQm'](_0x273bce,_0x3525d9,_0xe011f5);},'VGDNl':function(_0x39c714){const _0x37d14e=_0x30d79f;return _0x5b6abf[_0x37d14e(0x2a7)](_0x39c714);},'dIzJD':_0x30d79f(0x1dd),'EXxnD':_0x5b6abf[_0x30d79f(0x2fb)],'exDMV':_0x5b6abf[_0x30d79f(0x2fd)],'PuFBA':_0x5b6abf[_0x30d79f(0x75)],'jtZMw':_0x5b6abf[_0x30d79f(0x1ba)],'TtBFp':function(_0x28a2b1,_0x36999a,_0x2f354f){const _0x10de73=_0x30d79f;return _0x5b6abf[_0x10de73(0xa5)](_0x28a2b1,_0x36999a,_0x2f354f);},'Vacyl':function(_0x5605cc,_0x2f0a29){const _0x519b9f=_0x30d79f;return _0x5b6abf[_0x519b9f(0x2be)](_0x5605cc,_0x2f0a29);},'cScet':function(_0x23f348,_0x3578c1){const _0x3d3f62=_0x30d79f;return _0x5b6abf[_0x3d3f62(0x27d)](_0x23f348,_0x3578c1);},'YLKEF':function(_0x1d6eb9,_0x6c65da){const _0x8175c6=_0x30d79f;return _0x5b6abf[_0x8175c6(0x1dc)](_0x1d6eb9,_0x6c65da);},'mNZuH':_0x5b6abf[_0x30d79f(0x2d7)],'NaQUl':_0x5b6abf[_0x30d79f(0xad)],'qHCCi':_0x30d79f(0x1d0),'pBNtp':_0x5b6abf[_0x30d79f(0x22f)]},_0x35b1d9=_0xcd9927['getContext']('2d'),_0xb445e4={'dosageFormPieChart':()=>function(_0x43d772){const _0x2941c8=_0x30d79f,_0x1bc6d7={'SfdDp':_0x3a8180[_0x2941c8(0x89)],'oNKUL':function(_0x1c271f,_0x23317c,_0x18bef3){const _0x4ef259=_0x2941c8;return _0x3a8180[_0x4ef259(0x28f)](_0x1c271f,_0x23317c,_0x18bef3);},'aWsJZ':_0x3a8180['enbSN'],'eKoTe':_0x3a8180[_0x2941c8(0x22a)],'MvDwS':function(_0x1acf8e,_0x34de68){return _0x3a8180['cdUWP'](_0x1acf8e,_0x34de68);}};_0x3a8180[_0x2941c8(0x166)](g);const _0x2a9de9=_0x3a8180[_0x2941c8(0x166)](y),_0x19d958=[],_0x5a617f=[],_0x4f8e1c=[],_0x5549cc=[],_0x1597aa=new Set();return Object[_0x2941c8(0x2cb)](_0x2a9de9)[_0x2941c8(0x1d2)](_0x2a9124=>{const _0x20516b=_0x2941c8,_0x3c21d8={'ujIQI':function(_0x37c379,_0xb64c03){const _0x54009a=a2_0x5737;return _0x3a8180[_0x54009a(0x302)](_0x37c379,_0xb64c03);},'eEfJN':function(_0x13fdd3,_0x45cefd,_0x196f2){return _0x13fdd3(_0x45cefd,_0x196f2);},'fVbZY':_0x3a8180['koGvW']},_0x54039f=_0x2a9de9[_0x2a9124];_0x54039f&&_0x3a8180[_0x20516b(0x23c)](_0x3a8180[_0x20516b(0x1fc)],typeof _0x54039f)&&Object[_0x20516b(0x2cb)](_0x54039f)['forEach'](_0x430979=>{const _0xc6b0c=_0x20516b,_0x26a82c=_0x54039f[_0x430979];if(_0x26a82c&&_0x3c21d8[_0xc6b0c(0x2f3)](_0x26a82c,0x0)){const _0x43fe20=_0x2a9124+_0xc6b0c(0x1b7)+_0x430979;_0x19d958[_0xc6b0c(0xd3)](_0x43fe20),_0x5a617f['push'](_0x26a82c),_0x4f8e1c[_0xc6b0c(0xd3)](_0x3c21d8[_0xc6b0c(0x24f)](f,_0x2a9124,_0x430979)),_0x5549cc[_0xc6b0c(0xd3)](_0x3c21d8[_0xc6b0c(0x178)]),_0x1597aa[_0xc6b0c(0x254)](_0x2a9124);}});}),new Chart(_0x43d772,{'type':_0x2941c8(0xdb),'data':{'labels':_0x19d958,'datasets':[{'data':_0x5a617f,'backgroundColor':_0x4f8e1c,'borderWidth':0x2,'borderColor':_0x5549cc}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x0,'text':_0x3a8180[_0x2941c8(0x142)],'font':{'size':0x12,'weight':_0x2941c8(0xaa)},'padding':0x14},'legend':{'position':_0x3a8180[_0x2941c8(0x9b)],'labels':{'padding':0x14,'usePointStyle':!0x0,'font':{'size':0xe},'generateLabels':function(_0x4ac01e){const _0x3a04a4=_0x2941c8,_0x2a9960={'xocFB':_0x1bc6d7[_0x3a04a4(0x188)],'mwhdH':function(_0x2173ba,_0x21dfd2,_0x415e5f){const _0x326518=_0x3a04a4;return _0x1bc6d7[_0x326518(0x296)](_0x2173ba,_0x21dfd2,_0x415e5f);},'CXBBh':_0x1bc6d7[_0x3a04a4(0x1b6)],'jsRzw':_0x1bc6d7['eKoTe']};return Array[_0x3a04a4(0x13c)](_0x1597aa)[_0x3a04a4(0x15b)]()[_0x3a04a4(0x213)](_0x53ddec=>{const _0x6e3239=_0x3a04a4,_0xebc39a=new Set();_0x19d958['forEach']((_0x2a76a0,_0x5ac945)=>{const _0x2210f8=a2_0x5737;if(_0x2a76a0['startsWith'](_0x53ddec+_0x2a9960[_0x2210f8(0x210)])){const _0x83f4f0=_0x2a76a0[_0x2210f8(0x2f2)](_0x53ddec+_0x2a9960[_0x2210f8(0x210)],'');_0xebc39a[_0x2210f8(0x254)](_0x83f4f0);}});const _0x4206d8=Array[_0x6e3239(0x13c)](_0xebc39a)[_0x6e3239(0x15b)]()[_0x6e3239(0x19b)](',\x20');return{'text':_0x53ddec+':\x20'+_0x4206d8,'fillStyle':_0x2a9960[_0x6e3239(0x30d)](f,_0x53ddec,_0x2a9960[_0x6e3239(0x1c3)]),'strokeStyle':f(_0x53ddec,_0x2a9960['CXBBh']),'pointStyle':_0x2a9960[_0x6e3239(0x11d)],'hidden':!0x1};});}}},'tooltip':{'callbacks':{'label':function(_0x4f9744){const _0x36d3d=_0x2941c8,_0x53527e=_0x4f9744[_0x36d3d(0x236)]||'',_0xca3912=_0x4f9744[_0x36d3d(0x224)];return _0x53527e+':\x20'+_0xca3912+'\x20train'+(_0x1bc6d7[_0x36d3d(0x22c)](0x1,_0xca3912)?'s':'');}}}}}});}(_0x35b1d9),'studiesPieChart':()=>function(_0x11985b){const _0x508fe3=_0x30d79f,_0xc031aa={'eabDP':function(_0x1e67ca,_0x4fb524){const _0x466a30=a2_0x5737;return _0x3a8180[_0x466a30(0x90)](_0x1e67ca,_0x4fb524);},'ytVfs':_0x3a8180[_0x508fe3(0x89)],'JiDjA':function(_0x3faf86,_0x4d4e22,_0x371bf6){const _0x559c6a=_0x508fe3;return _0x3a8180[_0x559c6a(0x1e1)](_0x3faf86,_0x4d4e22,_0x371bf6);},'EPbaJ':_0x3a8180['enbSN'],'BLzoi':_0x508fe3(0x29d),'HRSbH':_0x3a8180[_0x508fe3(0xbe)]};_0x3a8180[_0x508fe3(0x2bb)](g);const _0x399e67=_0x3a8180[_0x508fe3(0x1bc)](C),_0x454d88=[],_0x137f78=[],_0x126fc8=[],_0xc0bf14=[],_0x112966=new Set();return Object['keys'](_0x399e67)[_0x508fe3(0x1d2)](_0x259305=>{const _0x561d53=_0x508fe3,_0x1d2c14={'tcsNG':function(_0x53106f,_0x2efa70){return _0x53106f>_0x2efa70;}},_0x1cb0fe=_0x399e67[_0x259305];_0x1cb0fe&&_0x3a8180['eFRTX'](_0x3a8180[_0x561d53(0x1fc)],typeof _0x1cb0fe)&&Object[_0x561d53(0x2cb)](_0x1cb0fe)['forEach'](_0x16fac5=>{const _0x92c569=_0x561d53,_0x422530=_0x1cb0fe[_0x16fac5];if(_0x422530&&_0x1d2c14[_0x92c569(0x16a)](_0x422530,0x0)){const _0x2ff4ed=_0x259305+'\x20-\x20'+_0x16fac5;_0x454d88[_0x92c569(0xd3)](_0x2ff4ed),_0x137f78[_0x92c569(0xd3)](_0x422530),_0x126fc8['push'](f(_0x259305,_0x16fac5)),_0xc0bf14['push'](_0x92c569(0x30a)),_0x112966['add'](_0x259305);}});}),new Chart(_0x11985b,{'type':_0x3a8180['TbEYT'],'data':{'labels':_0x454d88,'datasets':[{'data':_0x137f78,'backgroundColor':_0x126fc8,'borderWidth':0x2,'borderColor':_0xc0bf14}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x0,'text':_0x508fe3(0x2e4),'font':{'size':0x12,'weight':_0x508fe3(0xaa)},'padding':0x14},'legend':{'position':_0x508fe3(0x101),'labels':{'padding':0x14,'usePointStyle':!0x0,'font':{'size':0xe},'generateLabels':function(_0x173dd6){const _0x1f3074=_0x508fe3,_0x266dd={'WQFBj':function(_0x384f93,_0x5ab45a){const _0x38e2fa=a2_0x5737;return _0xc031aa[_0x38e2fa(0x27a)](_0x384f93,_0x5ab45a);},'KDLts':_0xc031aa['ytVfs'],'mSThx':function(_0x10ab75,_0x441f1b,_0x31c551){return _0xc031aa['JiDjA'](_0x10ab75,_0x441f1b,_0x31c551);},'ZLGPE':_0xc031aa[_0x1f3074(0x217)]};return Array[_0x1f3074(0x13c)](_0x112966)[_0x1f3074(0x15b)]()[_0x1f3074(0x213)](_0x579e23=>{const _0x3cb2ca=_0x1f3074,_0x1d2c79=new Set();_0x454d88['forEach']((_0x24458e,_0x60a004)=>{const _0x229acc=a2_0x5737;if(_0x24458e[_0x229acc(0x95)](_0x579e23+_0x229acc(0x1b7))){const _0x333ebe=_0x24458e[_0x229acc(0x2f2)](_0x266dd[_0x229acc(0x235)](_0x579e23,_0x266dd[_0x229acc(0x2b2)]),'');_0x1d2c79['add'](_0x333ebe);}});const _0x3abb05=Array[_0x3cb2ca(0x13c)](_0x1d2c79)[_0x3cb2ca(0x15b)]()[_0x3cb2ca(0x19b)](',\x20');return{'text':_0x579e23+':\x20'+_0x3abb05,'fillStyle':_0x266dd[_0x3cb2ca(0x21b)](f,_0x579e23,'dummy'),'strokeStyle':f(_0x579e23,_0x266dd[_0x3cb2ca(0x7b)]),'pointStyle':_0x3cb2ca(0x297),'hidden':!0x1};});}}},'tooltip':{'callbacks':{'label':function(_0x17d573){const _0x135a31=_0x508fe3,_0x449660=_0x17d573[_0x135a31(0x236)]||'',_0x397e3d=_0x17d573[_0x135a31(0x224)];return _0x449660+':\x20'+_0x397e3d+'\x20'+(0x1===_0x397e3d?_0xc031aa[_0x135a31(0x2b5)]:_0xc031aa[_0x135a31(0x21e)]);}}}}}});}(_0x35b1d9),'specialCasesPieChart':()=>function(_0x3a5611){const _0x51ee26=_0x30d79f,_0x2cb267={'fKzty':function(_0x5d3ff3,_0x16a8f3){return _0x5d3ff3>_0x16a8f3;},'NxgZP':function(_0x269a9,_0x3aed00,_0x502250){const _0x591507=a2_0x5737;return _0x25e187[_0x591507(0xb0)](_0x269a9,_0x3aed00,_0x502250);},'CLarD':'#fff','USPmY':function(_0x31d5dc,_0x585354){const _0x449eab=a2_0x5737;return _0x25e187[_0x449eab(0x2ad)](_0x31d5dc,_0x585354);},'HIdlt':_0x25e187[_0x51ee26(0x2a4)],'UMNAS':function(_0x109bef,_0x3f663c,_0x57a0f4){const _0x460ece=_0x51ee26;return _0x25e187[_0x460ece(0xb0)](_0x109bef,_0x3f663c,_0x57a0f4);},'XWXlT':_0x25e187[_0x51ee26(0x1b5)],'bHJYp':function(_0x4de1af,_0x1b4b79){return _0x25e187['qGWQs'](_0x4de1af,_0x1b4b79);},'AorFJ':'No\x20Special\x20Cases','vxhXR':_0x51ee26(0xa4)};_0x25e187['CLZDr'](g);const _0x32963b=_0x25e187[_0x51ee26(0x2d1)](w),_0x5f3c6d=[],_0xa7df=[],_0x4c8ec8=[],_0x2b0e5b=[],_0x3be2f1=new Set();return Object[_0x51ee26(0x2cb)](_0x32963b)['forEach'](_0x2e7fd8=>{const _0x40672f=_0x51ee26,_0x2c6fc2=_0x32963b[_0x2e7fd8];_0x2c6fc2&&_0x3a8180[_0x40672f(0x2cc)](_0x3a8180['tHFJU'],typeof _0x2c6fc2)&&Object[_0x40672f(0x2cb)](_0x2c6fc2)['forEach'](_0x4d3039=>{const _0x27a02a=_0x40672f,_0x51c03c=_0x2c6fc2[_0x4d3039];if(_0x51c03c&&_0x2cb267[_0x27a02a(0xf8)](_0x51c03c,0x0)){const _0x1879b2=_0x2e7fd8+'\x20-\x20'+_0x4d3039;_0x5f3c6d[_0x27a02a(0xd3)](_0x1879b2),_0xa7df[_0x27a02a(0xd3)](_0x51c03c),_0x4c8ec8[_0x27a02a(0xd3)](_0x2cb267[_0x27a02a(0x1ab)](f,_0x2e7fd8,_0x4d3039)),_0x2b0e5b[_0x27a02a(0xd3)](_0x2cb267['CLarD']),_0x3be2f1[_0x27a02a(0x254)](_0x2e7fd8);}});}),0x0===_0x5f3c6d[_0x51ee26(0xbf)]&&(_0x5f3c6d['push'](_0x25e187['apGla']),_0xa7df['push'](0x1),_0x4c8ec8[_0x51ee26(0xd3)](_0x51ee26(0xa4)),_0x2b0e5b[_0x51ee26(0xd3)](_0x25e187[_0x51ee26(0x2de)])),new Chart(_0x3a5611,{'type':_0x25e187[_0x51ee26(0x9c)],'data':{'labels':_0x5f3c6d,'datasets':[{'data':_0xa7df,'backgroundColor':_0x4c8ec8,'borderWidth':0x2,'borderColor':_0x2b0e5b}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x0,'text':_0x25e187['Addiu'],'font':{'size':0x12,'weight':_0x25e187[_0x51ee26(0xd2)]},'padding':0x14},'legend':{'position':_0x25e187[_0x51ee26(0x23e)],'labels':{'padding':0x14,'usePointStyle':!0x0,'font':{'size':0xe},'generateLabels':function(_0x1fe530){const _0x5346c0=_0x51ee26,_0x48bf4b={'UqnYr':function(_0x10b0b0,_0x125d32){const _0x5afe9b=a2_0x5737;return _0x2cb267[_0x5afe9b(0x26f)](_0x10b0b0,_0x125d32);},'oVTKh':_0x2cb267[_0x5346c0(0x28c)],'OhyHV':function(_0x44961f,_0x48bcbe,_0x281bcc){return _0x2cb267['UMNAS'](_0x44961f,_0x48bcbe,_0x281bcc);},'mSNht':_0x5346c0(0x1af),'ZCwWk':_0x2cb267[_0x5346c0(0xc5)]};if(_0x2cb267[_0x5346c0(0x303)](_0x2cb267[_0x5346c0(0x11a)],_0x5f3c6d[0x0]))return[{'text':_0x2cb267[_0x5346c0(0x11a)],'fillStyle':_0x5346c0(0xa4),'strokeStyle':_0x2cb267[_0x5346c0(0x132)],'pointStyle':_0x2cb267[_0x5346c0(0xc5)],'hidden':!0x1}];return Array[_0x5346c0(0x13c)](_0x3be2f1)[_0x5346c0(0x15b)]()[_0x5346c0(0x213)](_0x1cf388=>{const _0x138b09=_0x5346c0,_0x494280=new Set();_0x5f3c6d[_0x138b09(0x1d2)]((_0x1e635e,_0x43e4fd)=>{const _0x354956=_0x138b09;if(_0x1e635e[_0x354956(0x95)](_0x48bf4b[_0x354956(0x155)](_0x1cf388,_0x48bf4b['oVTKh']))){const _0x59fcbc=_0x1e635e[_0x354956(0x2f2)](_0x48bf4b['UqnYr'](_0x1cf388,_0x48bf4b[_0x354956(0x266)]),'');_0x494280[_0x354956(0x254)](_0x59fcbc);}});const _0x1c8409=Array[_0x138b09(0x13c)](_0x494280)[_0x138b09(0x15b)]()[_0x138b09(0x19b)](',\x20');return{'text':_0x1cf388+':\x20'+_0x1c8409,'fillStyle':_0x48bf4b[_0x138b09(0xb2)](f,_0x1cf388,_0x48bf4b[_0x138b09(0xd4)]),'strokeStyle':_0x48bf4b['OhyHV'](f,_0x1cf388,_0x48bf4b[_0x138b09(0xd4)]),'pointStyle':_0x48bf4b[_0x138b09(0x20a)],'hidden':!0x1};});}}},'tooltip':{'callbacks':{'label':function(_0x569ea5){const _0x5dffde=_0x51ee26,_0x2afe29=_0x569ea5[_0x5dffde(0x236)]||'',_0x2bc7b2=_0x569ea5['parsed'];return _0x2afe29+':\x20'+_0x2bc7b2+_0x5dffde(0x136)+(_0x3a8180[_0x5dffde(0x18f)](0x1,_0x2bc7b2)?'s':'');}}}}}});}(_0x35b1d9),'minMacosPieChart':()=>function(_0x1511bd){const _0x458ed9=_0x30d79f,_0x1da25e={'UQGyL':function(_0x2d5222,_0xa3378a){return _0x2d5222>_0xa3378a;},'WRXIP':function(_0x446259,_0x4d95fa){return _0x25e187['vJIFD'](_0x446259,_0x4d95fa);},'YwgQf':function(_0x143d59,_0xef42df,_0x4d1ab3){const _0x46406d=a2_0x5737;return _0x25e187[_0x46406d(0xb0)](_0x143d59,_0xef42df,_0x4d1ab3);},'lNrnD':_0x25e187['wZTfr'],'OjMQC':function(_0x32291c,_0x5e0b44){return _0x32291c&&_0x5e0b44;},'ohhmS':_0x25e187[_0x458ed9(0x27e)],'AHjGx':function(_0x1d8f18,_0x11202e){return _0x1d8f18+_0x11202e;},'eFeFI':'\x20-\x20'};_0x25e187[_0x458ed9(0x2d1)](g);const _0x224093=$(),_0x4a0c52=[],_0x5e804e=[],_0x2e1d96=[],_0x345a3f=[],_0x168914=new Set();return Object[_0x458ed9(0x2cb)](_0x224093)[_0x458ed9(0x1d2)](_0xf001d7=>{const _0x43abed=_0x458ed9,_0xa5848=_0x224093[_0xf001d7];_0xa5848&&_0x43abed(0x30c)==typeof _0xa5848&&Object['keys'](_0xa5848)['forEach'](_0x5a45e1=>{const _0x10f63e=_0x43abed,_0x3b05f3=_0xa5848[_0x5a45e1];if(_0x3b05f3&&_0x1da25e['UQGyL'](_0x3b05f3,0x0)&&!isNaN(_0x3b05f3)&&_0x1da25e[_0x10f63e(0x14d)](isFinite,_0x3b05f3)){const _0x42ceff=_0xf001d7+'\x20-\x20'+_0x5a45e1;_0x4a0c52[_0x10f63e(0xd3)](_0x42ceff),_0x5e804e[_0x10f63e(0xd3)](_0x3b05f3),_0x2e1d96[_0x10f63e(0xd3)](_0x1da25e[_0x10f63e(0x23d)](f,_0xf001d7,_0x5a45e1)),_0x345a3f['push'](_0x1da25e[_0x10f63e(0x80)]),_0x168914[_0x10f63e(0x254)](_0xf001d7);}else{if(_0x1da25e[_0x10f63e(0x26a)](_0x5a45e1,_0xf001d7)){const _0x3bcfc2=_0xf001d7+'\x20-\x20'+_0x5a45e1;_0x4a0c52[_0x10f63e(0xd3)](_0x3bcfc2),_0x5e804e[_0x10f63e(0xd3)](0.001),_0x2e1d96[_0x10f63e(0xd3)](_0x1da25e['YwgQf'](f,_0xf001d7,_0x5a45e1)),_0x345a3f[_0x10f63e(0xd3)](_0x10f63e(0x30a)),_0x168914[_0x10f63e(0x254)](_0xf001d7);}}});}),new Chart(_0x1511bd,{'type':_0x25e187[_0x458ed9(0x9c)],'data':{'labels':_0x4a0c52,'datasets':[{'data':_0x5e804e,'backgroundColor':_0x2e1d96,'borderWidth':0x2,'borderColor':_0x345a3f}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x0,'text':_0x25e187['ihkGv'],'font':{'size':0x12,'weight':_0x25e187[_0x458ed9(0xd2)]},'padding':0x14},'legend':{'position':_0x25e187['XYHuV'],'labels':{'padding':0x14,'usePointStyle':!0x0,'font':{'size':0xe},'generateLabels':function(_0x5d2884){const _0x240894=_0x458ed9,_0x4bfdab={'NYQCn':function(_0x442115,_0x4f62fd){const _0x493b04=a2_0x5737;return _0x1da25e[_0x493b04(0x13d)](_0x442115,_0x4f62fd);},'gbFdF':_0x1da25e[_0x240894(0x12b)]};return Array[_0x240894(0x13c)](_0x168914)['sort']()[_0x240894(0x213)](_0x2f7d1e=>{const _0x3d96e9=_0x240894,_0x5899ae=new Set();_0x4a0c52[_0x3d96e9(0x1d2)]((_0x3bfa51,_0x5db817)=>{const _0x4b2a09=_0x3d96e9;if(_0x3bfa51[_0x4b2a09(0x95)](_0x4bfdab[_0x4b2a09(0x2b4)](_0x2f7d1e,_0x4bfdab['gbFdF']))){const _0x3e58d9=_0x3bfa51[_0x4b2a09(0x2f2)](_0x2f7d1e+_0x4bfdab['gbFdF'],'');_0x5899ae['add'](_0x3e58d9);}});const _0x400794=Array['from'](_0x5899ae)[_0x3d96e9(0x15b)]()['join'](',\x20');return{'text':_0x2f7d1e+':\x20'+_0x400794,'fillStyle':f(_0x2f7d1e,_0x1da25e[_0x3d96e9(0x1f9)]),'strokeStyle':f(_0x2f7d1e,_0x1da25e[_0x3d96e9(0x1f9)]),'pointStyle':_0x3d96e9(0x297),'hidden':!0x1};});}}},'tooltip':{'callbacks':{'label':function(_0x43e141){const _0x4bd6ab=_0x458ed9;return(_0x43e141['label']||'')+':\x20'+_0x43e141[_0x4bd6ab(0x224)][_0x4bd6ab(0x2bf)](0x6)+'\x20mg/Swab';}}}}}});}(_0x35b1d9),'trainsByLineAndDosageChart':()=>function(_0x3bd5eb){const _0xd42766=_0x30d79f,_0x189271={'xoykK':function(_0x4e43b7,_0x20645b){return _0x4e43b7(_0x20645b);},'ghFgr':function(_0x39407b,_0x48fd4f){return _0x39407b*_0x48fd4f;},'kTdhu':function(_0x5db32e,_0x386736){return _0x3a8180['pMdNQ'](_0x5db32e,_0x386736);},'iLzWs':_0xd42766(0x1c0),'zQKDc':_0x3a8180[_0xd42766(0xac)],'BVJRE':'productRegister-ld50Hidden','yAhTz':function(_0x182e2e,_0x1dabe7){const _0x54036e=_0xd42766;return _0x3a8180[_0x54036e(0x18f)](_0x182e2e,_0x1dabe7);},'AuCEW':function(_0xab704b,_0x4cc3bc){const _0x478bd8=_0xd42766;return _0x3a8180[_0x478bd8(0x2a2)](_0xab704b,_0x4cc3bc);},'qfrTV':function(_0x5a6eea,_0x2ddaec){return _0x3a8180['iltGa'](_0x5a6eea,_0x2ddaec);},'EIrwm':_0xd42766(0x225),'KkgmJ':function(_0x1e6779,_0x561d3b){const _0x53d029=_0xd42766;return _0x3a8180[_0x53d029(0x2ea)](_0x1e6779,_0x561d3b);},'rNVOE':'Health-Based\x20Limit\x20(PDE)','ppNqU':function(_0x1bfc4b,_0xde35f3){const _0xdb8d9b=_0xd42766;return _0x3a8180[_0xdb8d9b(0x170)](_0x1bfc4b,_0xde35f3);},'jWdDA':function(_0x4c2a5c,_0x22692a){return _0x4c2a5c>_0x22692a;},'vwmJV':function(_0x3c6c56,_0x481561){return _0x3c6c56/_0x481561;},'fJiMd':function(_0x1f9876,_0x567ba0){const _0x52da12=_0xd42766;return _0x3a8180[_0x52da12(0x20e)](_0x1f9876,_0x567ba0);},'UjKdB':function(_0x40ae99,_0x314bef,_0xe17a2f){const _0x4f7fa6=_0xd42766;return _0x3a8180[_0x4f7fa6(0x123)](_0x40ae99,_0x314bef,_0xe17a2f);}};_0x3a8180[_0xd42766(0x114)](g);const _0x3c6dbb=a2_0x50428e();if(_0x3a8180[_0xd42766(0x2ea)](0x0,_0x3c6dbb[_0xd42766(0xbf)]))return null;const _0x34f36a={},_0x301a87=new Set(),_0x31abfd=new Set();_0x3c6dbb[_0xd42766(0x1d2)](_0x16be6f=>{const _0x11b8b2=_0xd42766,_0x236364={'vlVEH':function(_0x4ba0ad,_0x5a5888){const _0xb2257=a2_0x5737;return _0x189271[_0xb2257(0x24d)](_0x4ba0ad,_0x5a5888);},'UGtiE':function(_0x35d122,_0x18c056){return _0x35d122/_0x18c056;},'OUbMG':function(_0x51a41e,_0x27993d){const _0x505dbe=a2_0x5737;return _0x189271[_0x505dbe(0xb5)](_0x51a41e,_0x27993d);},'EtecM':function(_0x194a0f,_0x855b94){return _0x189271['kTdhu'](_0x194a0f,_0x855b94);},'tiFfA':function(_0x4331db,_0xe93f90){return _0x4331db===_0xe93f90;},'FCuFJ':_0x189271[_0x11b8b2(0x160)],'exSrB':_0x189271[_0x11b8b2(0xe6)],'MzxJF':function(_0x36bca6,_0x489c04){return _0x36bca6===_0x489c04;},'gjFtl':_0x189271[_0x11b8b2(0x128)],'yNYzj':function(_0x40d0ad,_0x2c3b31){const _0x517e30=_0x11b8b2;return _0x189271[_0x517e30(0xc9)](_0x40d0ad,_0x2c3b31);},'LAhnw':function(_0x282e59,_0xd493a){const _0x1bb68e=_0x11b8b2;return _0x189271[_0x1bb68e(0xdd)](_0x282e59,_0xd493a);},'bqzzf':function(_0x151dd7,_0x58eb9d){return _0x151dd7*_0x58eb9d;},'lFPTe':function(_0xb728fb,_0x165f49){const _0x26ebc0=_0x11b8b2;return _0x189271[_0x26ebc0(0xeb)](_0xb728fb,_0x165f49);},'WyxjF':function(_0x523a10,_0x194f21){const _0x1b3477=_0x11b8b2;return _0x189271[_0x1b3477(0xd8)](_0x523a10,_0x194f21);},'XnMDN':_0x189271[_0x11b8b2(0x12d)],'zgIcb':_0x11b8b2(0x1f2),'VjarX':function(_0x136fb1,_0x4b9934){const _0x4c6739=_0x11b8b2;return _0x189271[_0x4c6739(0xc4)](_0x136fb1,_0x4b9934);},'QyHSx':_0x189271[_0x11b8b2(0x198)],'kcNDZ':function(_0x109797,_0x2104ac){return _0x109797===_0x2104ac;},'AMJvR':function(_0x4f28e5,_0x436698){return _0x189271['ppNqU'](_0x4f28e5,_0x436698);},'UdCGx':function(_0x2d1c9d,_0x2eacdd){const _0x5c7706=_0x11b8b2;return _0x189271[_0x5c7706(0x234)](_0x2d1c9d,_0x2eacdd);},'OdNNy':function(_0x39de6b,_0x3ed492){const _0x3c9322=_0x11b8b2;return _0x189271[_0x3c9322(0x311)](_0x39de6b,_0x3ed492);},'tKnKR':function(_0x247550){return _0x247550();},'sgJry':function(_0x8fb371,_0xf5a75a){const _0x24ba0a=_0x11b8b2;return _0x189271[_0x24ba0a(0x2ca)](_0x8fb371,_0xf5a75a);}},_0x687b3a=_0x16be6f[_0x11b8b2(0x18c)]||_0x11b8b2(0x2b3),_0x210579=[...new Set(_0x16be6f['products']['map'](_0x587c70=>_0x587c70[_0x11b8b2(0x2f4)]||_0x11b8b2(0x13a)))];_0x301a87[_0x11b8b2(0x254)](_0x687b3a),_0x210579[_0x11b8b2(0x1d2)](_0x1b84d8=>{const _0x554428=_0x11b8b2;_0x31abfd[_0x554428(0x254)](_0x1b84d8),_0x34f36a[_0x687b3a]||(_0x34f36a[_0x687b3a]={}),_0x34f36a[_0x687b3a][_0x1b84d8]||(_0x34f36a[_0x687b3a][_0x1b84d8]=[]);const _0x373e0=(a2_0x2b66d0[_0x554428(0x1fa)][_0x236364[_0x554428(0x2ae)](a2_0x5b86d9,_0x16be6f[_0x554428(0x29f)]['map'](_0x59ebcb=>_0x59ebcb[_0x554428(0x2f4)]))]||a2_0x2b66d0[_0x554428(0x1fa)][_0x554428(0x13a)])['max'],_0xce6465=a2_0x10d59c(_0x16be6f,_0x3c6dbb),_0x30aa40=_0x236364[_0x554428(0x113)](_0x236364[_0x554428(0x26e)](_0x16be6f[_0x554428(0x1d5)],_0x16be6f[_0x554428(0x250)]),_0x373e0),_0x450258=_0x236364['OUbMG'](0xa,_0x16be6f[_0x554428(0x2f0)]);let _0x575ed3=0x1/0x0,_0x5e9e57=_0x236364[_0x554428(0x9e)](0x1,0x0);const _0x50e7b1=_0x236364[_0x554428(0xed)](_0x236364[_0x554428(0x267)],localStorage[_0x554428(0x1d7)](_0x236364[_0x554428(0x2c7)])),_0x4deefe=_0x236364[_0x554428(0x187)]('true',localStorage['getItem'](_0x236364['gjFtl']));if(_0x236364['tiFfA'](null,_0x16be6f['lowestPde'])||_0x50e7b1||(_0x575ed3=_0x16be6f[_0x554428(0x1cb)]*_0x16be6f[_0x554428(0x250)]),_0x236364[_0x554428(0x177)](null,_0x16be6f[_0x554428(0x17e)])&&!_0x4deefe){const _0xd12dbd=_0x236364[_0x554428(0x185)](_0x236364[_0x554428(0x261)](0x46,_0x16be6f[_0x554428(0x17e)]),0x7d0),_0x17d107=_0x16be6f[_0x554428(0x29f)][_0x554428(0x79)](_0x467ed6=>_0x467ed6[_0x554428(0x14b)][_0x554428(0x213)](_0x10b100=>_0x10b100[_0x554428(0x292)]/0x3e8)),_0x1872cf=Math[_0x554428(0xca)](..._0x17d107);_0x5e9e57=_0x236364[_0x554428(0xef)](_0x236364[_0x554428(0x26e)](_0x236364[_0x554428(0x265)](_0xd12dbd,_0x16be6f[_0x554428(0x2f0)]),0x3e8),_0x373e0*_0x1872cf);}const _0x174187=_0x236364[_0x554428(0x261)](0.004,_0xce6465),_0xa3aee1=[{'name':_0x236364['XnMDN'],'value':_0x30aa40},{'name':_0x236364['zgIcb'],'value':_0x450258}];_0x236364[_0x554428(0x1db)](null,_0x16be6f[_0x554428(0x1cb)])||_0x50e7b1||_0xa3aee1[_0x554428(0xd3)]({'name':_0x236364[_0x554428(0x10c)],'value':_0x575ed3}),_0x236364[_0x554428(0x2b1)](null,_0x16be6f['lowestLd50'])||_0x4deefe||_0xa3aee1['push']({'name':_0x554428(0x1d6),'value':_0x5e9e57}),_0xa3aee1[_0x554428(0xd3)]({'name':'Visual\x20Clean\x20Limit','value':_0x174187});const _0x27dfc4=_0xa3aee1[_0x554428(0xa7)]((_0x48bc8e,_0x352d0b)=>_0x352d0b[_0x554428(0x16d)]<_0x48bc8e[_0x554428(0x16d)]?_0x352d0b:_0x48bc8e)[_0x554428(0x16d)],_0x4c2d74=_0x236364[_0x554428(0x10f)](_0x236364[_0x554428(0x119)](_0xce6465,0x0)?_0x236364[_0x554428(0x248)](_0x27dfc4,_0xce6465):0x0,_0x16be6f['assumedSsa']),_0x47c880=_0x236364['tKnKR'](getTrainIdToLineNumberMap)[_0x554428(0x1a7)](_0x236364[_0x554428(0x2d6)](String,_0x16be6f['id'])),_0x10b07e=_0x47c880?_0x47c880[_0x554428(0x1c6)]:_0x16be6f['id'];_0x34f36a[_0x687b3a][_0x1b84d8][_0x554428(0xd3)]({'trainId':_0x16be6f['id'],'trainName':'Train\x20'+_0x10b07e,'macoPerSwab':_0x4c2d74});});});const _0x139db6=[],_0x14dffd=[],_0x28a3c0=[],_0x5dc4f0=[],_0x3a3f21=[];Array[_0xd42766(0x13c)](_0x301a87)[_0xd42766(0x15b)]()[_0xd42766(0x1d2)](_0x5186e5=>{const _0x549138=_0xd42766,_0x66c3c4=_0x34f36a[_0x5186e5]||{};Object[_0x549138(0x2cb)](_0x66c3c4)[_0x549138(0x15b)]()[_0x549138(0x1d2)](_0x5d0904=>{const _0x18e5eb=_0x549138;(_0x66c3c4[_0x5d0904]||[])[_0x18e5eb(0x1d2)](_0x254da2=>{const _0x50a696=_0x18e5eb;_0x3a3f21['push']({'line':_0x5186e5,'dosageForm':_0x5d0904,'trainName':_0x254da2[_0x50a696(0xc0)],'macoPerSwab':_0x254da2['macoPerSwab']});});});}),_0x3a3f21[_0xd42766(0x15b)]((_0x5be4f0,_0x2cece6)=>_0x5be4f0[_0xd42766(0x18c)]!==_0x2cece6[_0xd42766(0x18c)]?_0x5be4f0['line'][_0xd42766(0xcf)](_0x2cece6['line']):_0x5be4f0[_0xd42766(0x241)]!==_0x2cece6['dosageForm']?_0x5be4f0[_0xd42766(0x241)][_0xd42766(0xcf)](_0x2cece6[_0xd42766(0x241)]):_0x5be4f0[_0xd42766(0xc0)][_0xd42766(0xcf)](_0x2cece6[_0xd42766(0xc0)])),_0x3a3f21['forEach']((_0x5a61a3,_0x370ae3)=>{const _0x52a70f=_0xd42766,_0x282114=_0x370ae3+0x1;_0x139db6['push']('T'+_0x282114),_0x14dffd[_0x52a70f(0xd3)](_0x5a61a3[_0x52a70f(0x2d9)]);const _0x38e7c1=_0x189271['UjKdB'](f,_0x5a61a3[_0x52a70f(0x18c)],_0x5a61a3[_0x52a70f(0x241)]);_0x28a3c0[_0x52a70f(0xd3)](_0x38e7c1),_0x5dc4f0[_0x52a70f(0xd3)](_0x38e7c1),_0x5a61a3['sequentialNumber']=_0x282114;});const _0x5313aa=[...new Set(_0x3a3f21[_0xd42766(0x213)](_0x17660b=>_0x17660b[_0xd42766(0x18c)]))]['sort']()[_0xd42766(0x213)](_0xbdde95=>{const _0x5b5db5=_0xd42766,_0x145818={'MmzgB':function(_0x5f338f,_0x4c870f){const _0x448092=a2_0x5737;return _0x3a8180[_0x448092(0x2ea)](_0x5f338f,_0x4c870f);}},_0x287d81=new Set();_0x3a3f21[_0x5b5db5(0x1d2)](_0x2c81ce=>{const _0x4dde9a=_0x5b5db5;_0x145818[_0x4dde9a(0x2fe)](_0x2c81ce['line'],_0xbdde95)&&_0x287d81['add'](_0x2c81ce[_0x4dde9a(0x241)]);});const _0x2e0d40=Array[_0x5b5db5(0x13c)](_0x287d81)[_0x5b5db5(0x15b)]()[_0x5b5db5(0x19b)](',\x20');return{'label':_0xbdde95+':\x20'+_0x2e0d40,'data':[],'backgroundColor':f(_0xbdde95,_0x3a8180[_0x5b5db5(0x214)]),'borderColor':_0x3a8180[_0x5b5db5(0x1e1)](f,_0xbdde95,_0x5b5db5(0x1af)),'borderWidth':0x1};});return _0x5313aa['push']({'label':_0x3a8180['dIzJD'],'data':_0x14dffd,'backgroundColor':_0x28a3c0,'borderColor':_0x5dc4f0,'borderWidth':0x1}),new Chart(_0x3bd5eb,{'type':_0x3a8180['EXxnD'],'data':{'labels':_0x139db6,'datasets':_0x5313aa},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x0,'text':_0xd42766(0x124),'font':{'size':0x12,'weight':_0x3a8180[_0xd42766(0xa1)]},'padding':0x14},'legend':{'display':!0x0,'position':'top','labels':{'padding':0x14,'usePointStyle':!0x0,'font':{'size':0xe},'filter':function(_0x43c248){const _0x514a4c=_0xd42766;return _0x189271[_0x514a4c(0xc9)](_0x514a4c(0x1dd),_0x43c248['text']);}}},'tooltip':{'callbacks':{'title':function(_0x48ab71){const _0x883f1c=_0xd42766,_0x2588cd=_0x48ab71[0x0][_0x883f1c(0x25f)],_0x4ecd94=_0x3a3f21[_0x2588cd];return _0x4ecd94?_0x4ecd94['line']+_0x883f1c(0x1b7)+_0x4ecd94[_0x883f1c(0x241)]+_0x883f1c(0x1b7)+_0x4ecd94[_0x883f1c(0xc0)]:_0x48ab71[0x0][_0x883f1c(0x236)];},'label':function(_0x2334ae){const _0x2c032a=_0xd42766;return'MACO:\x20'+_0x2334ae[_0x2c032a(0x224)]['y'][_0x2c032a(0x2bf)](0x6)+_0x2c032a(0x10e);}}}},'scales':{'x':{'title':{'display':!0x0,'text':_0xd42766(0x1d0)},'ticks':{'maxRotation':0x0,'minRotation':0x0,'font':{'size':0xa}}},'y':{'title':{'display':!0x0,'text':_0x3a8180[_0xd42766(0x227)]},'type':_0x3a8180[_0xd42766(0x105)]}}}});}(_0x35b1d9),'highestRpnByTrainChart':()=>function(_0x1f1e2d){const _0x178ae5=_0x30d79f,_0xe36853={'VKZhJ':function(_0x3933b8,_0x5c0adb){return _0x3933b8>_0x5c0adb;},'XJGXM':function(_0x282e7d,_0x3dd04e){const _0x2f63e6=a2_0x5737;return _0x3a8180[_0x2f63e6(0x302)](_0x282e7d,_0x3dd04e);},'DsgEc':function(_0x148f94,_0x1da74b){const _0x164206=a2_0x5737;return _0x3a8180[_0x164206(0x18b)](_0x148f94,_0x1da74b);},'ZLXEZ':'Unassigned','JzDga':function(_0x201181,_0x302cee){const _0x5df8e1=a2_0x5737;return _0x3a8180[_0x5df8e1(0x1fb)](_0x201181,_0x302cee);},'gxvhT':function(_0x4e09c5,_0x4c4a95,_0x4de5da){return _0x4e09c5(_0x4c4a95,_0x4de5da);},'Rqsim':function(_0x2db9ec,_0x587913){return _0x3a8180['cdUWP'](_0x2db9ec,_0x587913);},'lyYSI':_0x3a8180[_0x178ae5(0x78)]};g();const _0x546671=_0x3a8180[_0x178ae5(0x2bb)](a2_0x50428e);if(_0x3a8180['YLKEF'](0x0,_0x546671[_0x178ae5(0xbf)]))return null;const _0x39b3ec=[];_0x546671[_0x178ae5(0x1d2)](_0x8326d0=>{const _0xe048f=_0x178ae5,_0x5ac398={'AFPyQ':function(_0x549265,_0x293cb7){const _0x55bf7d=a2_0x5737;return _0xe36853[_0x55bf7d(0x2ce)](_0x549265,_0x293cb7);}};let _0x37a968=0x0,_0x164b35=null,_0x13e2cd=null;if(_0x8326d0[_0xe048f(0x29f)][_0xe048f(0x1d2)](_0x2f7897=>{const _0x559a46=_0xe048f,_0x57246a={'necAh':function(_0x1fbe45,_0x205fc7){const _0x30b073=a2_0x5737;return _0x5ac398[_0x30b073(0xe0)](_0x1fbe45,_0x205fc7);},'LmJNT':_0x559a46(0x140)};_0x2f7897['activeIngredients']&&Array[_0x559a46(0x203)](_0x2f7897[_0x559a46(0x14b)])&&_0x2f7897[_0x559a46(0x14b)][_0x559a46(0x1d2)](_0x2658a3=>{const _0x53ecb2=_0x559a46;try{const _0x27ddf5=a2_0xadbd9b(_0x2658a3),_0x4ffa96=_0x27ddf5?.['rpn']||0x0;_0x4ffa96&&_0x57246a[_0x53ecb2(0xae)](_0x4ffa96,_0x37a968)&&(_0x37a968=_0x4ffa96,_0x164b35=_0x2f7897[_0x53ecb2(0x25e)],_0x13e2cd=_0x2658a3[_0x53ecb2(0x25e)]);}catch(_0x53456e){console[_0x53ecb2(0x19f)](_0x57246a[_0x53ecb2(0x205)],_0x2658a3,_0x53456e);}});}),_0xe36853[_0xe048f(0x1a8)](_0x37a968,0x0)){const _0x3d3658=getTrainIdToLineNumberMap()['get'](_0xe36853[_0xe048f(0x2c6)](String,_0x8326d0['id'])),_0x406e6b=_0x3d3658?_0x3d3658['number']:_0x8326d0['id'];_0x39b3ec[_0xe048f(0xd3)]({'line':_0x8326d0[_0xe048f(0x18c)]||_0xe36853[_0xe048f(0x1c4)],'dosageForm':_0x8326d0[_0xe048f(0x29f)][_0xe048f(0xbf)]>0x0&&_0x8326d0[_0xe048f(0x29f)][0x0][_0xe048f(0x2f4)]||'Other','trainName':_0xe048f(0x30e)+_0x406e6b,'highestRpn':_0x37a968,'productName':_0x164b35,'ingredientName':_0x13e2cd});}}),_0x39b3ec[_0x178ae5(0x15b)]((_0x152331,_0xdea501)=>_0x152331[_0x178ae5(0x18c)]!==_0xdea501[_0x178ae5(0x18c)]?_0x152331[_0x178ae5(0x18c)][_0x178ae5(0xcf)](_0xdea501[_0x178ae5(0x18c)]):_0x152331[_0x178ae5(0x241)]!==_0xdea501['dosageForm']?_0x152331[_0x178ae5(0x241)][_0x178ae5(0xcf)](_0xdea501[_0x178ae5(0x241)]):_0x152331[_0x178ae5(0xc0)][_0x178ae5(0xcf)](_0xdea501[_0x178ae5(0xc0)]));const _0x5af787=[],_0x1cfaf5=[],_0x416c42=[],_0xea09d2=[];_0x39b3ec[_0x178ae5(0x1d2)]((_0x4711c0,_0x103877)=>{const _0x1ce2df=_0x178ae5,_0x2f2c0b=_0xe36853['JzDga'](_0x103877,0x1);_0x5af787[_0x1ce2df(0xd3)]('T'+_0x2f2c0b),_0x1cfaf5[_0x1ce2df(0xd3)](_0x4711c0['highestRpn']);const _0xee02dd=_0xe36853['gxvhT'](f,_0x4711c0['line'],_0x4711c0[_0x1ce2df(0x241)]);_0x416c42[_0x1ce2df(0xd3)](_0xee02dd),_0xea09d2[_0x1ce2df(0xd3)](_0xee02dd),_0x4711c0['sequentialNumber']=_0x2f2c0b;});const _0x2b5a08=[...new Set(_0x39b3ec['map'](_0x827c95=>_0x827c95['line']))]['sort']()[_0x178ae5(0x213)](_0x538227=>{const _0x46c6cd=_0x178ae5,_0x3d63ee={'vgmaM':function(_0x4f0efb,_0x1fa348){return _0x3a8180['DivQr'](_0x4f0efb,_0x1fa348);}},_0x5cd582=new Set();_0x39b3ec[_0x46c6cd(0x1d2)](_0x2248cc=>{const _0x39c15b=_0x46c6cd;_0x3d63ee[_0x39c15b(0x163)](_0x2248cc[_0x39c15b(0x18c)],_0x538227)&&_0x5cd582[_0x39c15b(0x254)](_0x2248cc[_0x39c15b(0x241)]);});const _0xe5cb66=Array[_0x46c6cd(0x13c)](_0x5cd582)[_0x46c6cd(0x15b)]()[_0x46c6cd(0x19b)](',\x20');return{'label':_0x538227+':\x20'+_0xe5cb66,'data':[],'backgroundColor':_0x3a8180[_0x46c6cd(0x28a)](f,_0x538227,_0x3a8180['enbSN']),'borderColor':_0x3a8180[_0x46c6cd(0x1e1)](f,_0x538227,_0x3a8180[_0x46c6cd(0x214)]),'borderWidth':0x1};});return _0x2b5a08[_0x178ae5(0xd3)]({'label':_0x3a8180[_0x178ae5(0x78)],'data':_0x1cfaf5,'backgroundColor':_0x416c42,'borderColor':_0xea09d2,'borderWidth':0x1}),new Chart(_0x1f1e2d,{'type':_0x178ae5(0x257),'data':{'labels':_0x5af787,'datasets':_0x2b5a08},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x0,'text':_0x3a8180[_0x178ae5(0xff)],'font':{'size':0x12,'weight':_0x3a8180[_0x178ae5(0xa1)]},'padding':0x14},'legend':{'display':!0x0,'position':_0x3a8180['NaQUl'],'labels':{'padding':0x14,'usePointStyle':!0x0,'font':{'size':0xe},'filter':function(_0x3413da){const _0x580d1e=_0x178ae5;return _0xe36853['Rqsim'](_0xe36853[_0x580d1e(0x14c)],_0x3413da['text']);}}},'tooltip':{'callbacks':{'title':function(_0x1056bf){const _0x962c5b=_0x178ae5,_0x370603=_0x1056bf[0x0][_0x962c5b(0x25f)],_0x322308=_0x39b3ec[_0x370603];return _0x322308?_0x322308['line']+_0x962c5b(0x1b7)+_0x322308[_0x962c5b(0x241)]+_0x962c5b(0x1b7)+_0x322308['trainName']:_0x1056bf[0x0][_0x962c5b(0x236)];},'label':function(_0x1e1837){const _0x2d7a38=_0x178ae5,_0x3041ac=_0x1e1837[_0x2d7a38(0x25f)],_0x4c3341=_0x39b3ec[_0x3041ac];return _0x4c3341?_0x2d7a38(0x2c0)+_0x4c3341['highestRpn']+'\x20('+_0x4c3341['productName']+')':_0x2d7a38(0x2c0)+_0x1e1837[_0x2d7a38(0x224)]['y'];}}}},'scales':{'x':{'title':{'display':!0x0,'text':_0x3a8180['qHCCi']},'ticks':{'maxRotation':0x0,'minRotation':0x0,'font':{'size':0xa}}},'y':{'title':{'display':!0x0,'text':_0x3a8180['pBNtp']},'beginAtZero':!0x0}}}});}(_0x35b1d9)}[_0x5d260e];_0xb445e4?b=_0x5b6abf[_0x30d79f(0x202)](_0xb445e4):console['warn'](_0x30d79f(0x130)+_0x5d260e);}(_0x24244a,_0x2b8494);},0x64);}export function closeChartExpandModal(){const _0x55324e=a2_0x410315,_0x591190={'JTmtS':'chartExpandModal','rswDn':_0x55324e(0x129)},_0xb77f6=document[_0x55324e(0x309)](_0x591190[_0x55324e(0x206)]);b&&(b['destroy'](),b=null),_0xb77f6[_0x55324e(0x1cc)][_0x55324e(0x243)]='none',document[_0x55324e(0x1da)][_0x55324e(0x1cc)][_0x55324e(0x25c)]=_0x591190['rswDn'];}export function renderMainDashboard(){const _0x2aa438=a2_0x410315,_0x50f1e2={'CyxUU':function(_0x1f602b,_0x50b5ef){return _0x1f602b(_0x50b5ef);},'GtyzN':function(_0x574c00,_0x271e29){return _0x574c00/_0x271e29;},'umFrV':function(_0xc6b935,_0x626f6a){return _0xc6b935*_0x626f6a;},'dbGvR':function(_0x182eaf,_0x521c9c){return _0x182eaf!==_0x521c9c;},'OuzkB':function(_0x567be0,_0x1cb88e){return _0x567be0>_0x1cb88e;},'yKdUU':function(_0x5f2061,_0x10bc8d){return _0x5f2061>_0x10bc8d;},'nWIpR':function(_0x5a13ed){return _0x5a13ed();},'IcpyN':function(_0x429758,_0x5ce55c){return _0x429758(_0x5ce55c);},'ZDCkv':function(_0x454431,_0x25a31c){return _0x454431>_0x25a31c;},'FHXqa':_0x2aa438(0x7f),'DOxTk':function(_0xdbf14e,_0x54baf6,_0x2b55d8){return _0xdbf14e(_0x54baf6,_0x2b55d8);},'rnECu':_0x2aa438(0x30c),'OXwwk':_0x2aa438(0x1b7),'zbsyj':_0x2aa438(0x77),'UEcbf':function(_0x5a1cc5){return _0x5a1cc5();},'wuqaa':function(_0x336b97,_0x2e4356){return _0x336b97===_0x2e4356;},'EdRvd':_0x2aa438(0xdb),'XINQi':_0x2aa438(0x1c8),'EUSMF':'bold','Xdkxd':_0x2aa438(0x101),'rurPr':function(_0x223b27,_0x295baa,_0x1d8f00){return _0x223b27(_0x295baa,_0x1d8f00);},'gYLiL':function(_0x1e141d,_0x5d9b5a){return _0x1e141d+_0x5d9b5a;},'xymCk':'dummy','ytoFl':_0x2aa438(0x167),'wbQYK':function(_0x5aba1a,_0x24759e){return _0x5aba1a===_0x24759e;},'soqlP':function(_0x3e66d9,_0x17d41a){return _0x3e66d9===_0x17d41a;},'slHbE':'No\x20studies\x20data\x20available\x20for\x20pie\x20chart','WaZYG':_0x2aa438(0x281),'SFIfO':function(_0x214fbb,_0x44cfeb){return _0x214fbb>_0x44cfeb;},'hgpMB':'#fff','yaoLe':function(_0x3e4470,_0x725611){return _0x3e4470-_0x725611;},'dczya':function(_0x5763f7){return _0x5763f7();},'npKZq':function(_0x48d608){return _0x48d608();},'CGPmt':'No\x20special\x20cases\x20data\x20available\x20for\x20pie\x20chart','OGvLd':function(_0x3db113,_0x2f123c,_0x22410b){return _0x3db113(_0x2f123c,_0x22410b);},'LaYGj':'circle','mMDjS':function(_0x3a332b,_0xc0333b){return _0x3a332b>_0xc0333b;},'OUnFj':function(_0x4df2af,_0x1fe540){return _0x4df2af&&_0x1fe540;},'cPoHe':function(_0x125066,_0x1c7779,_0x1cf154){return _0x125066(_0x1c7779,_0x1cf154);},'dGvgK':function(_0xcecc9f,_0x1a4f00){return _0xcecc9f==_0x1a4f00;},'CTXNj':_0x2aa438(0x192),'ELwnc':_0x2aa438(0x24b),'PlHTC':function(_0x4ec401){return _0x4ec401();},'VcwYp':function(_0x8a1f7b){return _0x8a1f7b();},'DEPGi':'Distribution\x20data:','hCuem':_0x2aa438(0x2f9),'HZmcI':function(_0x44d219,_0x6bf0e1){return _0x44d219===_0x6bf0e1;},'PFbkJ':function(_0x449a67,_0x34769a){return _0x449a67===_0x34769a;},'YHVpE':_0x2aa438(0x215),'iZLLE':_0x2aa438(0x2dc),'affYb':_0x2aa438(0x92),'kJees':_0x2aa438(0x117),'HwtcJ':_0x2aa438(0x279),'jposv':'Minimum\x20MACO\x20by\x20Line\x20and\x20Dosage\x20Form','JIywo':'Error\x20creating\x20chart:','CUGTL':function(_0x476c4a,_0x2cd1a7){return _0x476c4a(_0x2cd1a7);},'TRwga':_0x2aa438(0x112),'HMhIl':_0x2aa438(0x2b3),'HuEYv':function(_0x382329,_0xa522cc){return _0x382329===_0xa522cc;},'aZaOG':function(_0x5234b9,_0x45d2d1,_0x4733d8){return _0x5234b9(_0x45d2d1,_0x4733d8);},'rbyuU':function(_0x185e3d,_0x3281f0){return _0x185e3d!==_0x3281f0;},'rWvuh':'Trains','kHOGP':function(_0x7f8501,_0xa1eb3a){return _0x7f8501*_0xa1eb3a;},'BCSIa':_0x2aa438(0x30f),'mulKp':_0x2aa438(0x1c0),'tcJfk':_0x2aa438(0x2c9),'uJxhf':function(_0x1a34d1,_0x5721f8){return _0x1a34d1*_0x5721f8;},'ZkqQD':_0x2aa438(0x1e0),'lEIKg':_0x2aa438(0x1d6),'ZsVNP':_0x2aa438(0xe9),'ffZEt':function(_0x10fa6a,_0x441cff){return _0x10fa6a+_0x441cff;},'onnqh':_0x2aa438(0x88),'Bnlqn':_0x2aa438(0x2ee),'zDxqg':function(_0x1820b8){return _0x1820b8();},'wWmpN':_0x2aa438(0x2a0),'fKVti':_0x2aa438(0x2b7),'uYVHf':function(_0x5d19a5,_0x5825bf){return _0x5d19a5==_0x5825bf;},'BWNPW':_0x2aa438(0x257),'rfNyH':_0x2aa438(0x1e4),'AsMBu':_0x2aa438(0x1b2),'kxDRM':_0x2aa438(0x1d0),'iuSyK':_0x2aa438(0xd6),'IEoDX':_0x2aa438(0x260),'nZQTU':_0x2aa438(0x154),'jSjqK':function(_0x126b1f,_0xafa4b7){return _0x126b1f>_0xafa4b7;},'wVTci':function(_0x2b904a,_0x4ae5c3){return _0x2b904a>_0x4ae5c3;},'swgkl':function(_0x11c269){return _0x11c269();},'NJcMQ':function(_0x4daee0,_0x1b657b){return _0x4daee0>_0x1b657b;},'nKedd':_0x2aa438(0x263),'YgLKL':'Canvas\x20element\x20not\x20found:\x20highestRpnByTrainChart\x20-\x20skipping\x20chart','axZBa':_0x2aa438(0x9f),'SOzJQ':'Highest\x20RPN\x20by\x20Train\x20(with\x20Product\x20Name)','GnKqv':'Highest\x20RPN\x20Value','mPztl':'Highest\x20RPN\x20by\x20Train\x20chart\x20created\x20successfully!','UMfmI':_0x2aa438(0x195),'xwFaX':_0x2aa438(0x194),'XpdSL':_0x2aa438(0x1df),'CtMtS':_0x2aa438(0x13b),'cyDil':function(_0x190328){return _0x190328();},'PFpFC':_0x2aa438(0xea),'tYXbR':_0x2aa438(0x278),'qrRCx':function(_0x6ae3be,_0x17f62d){return _0x6ae3be/_0x17f62d;},'PIXRu':function(_0xd95b73,_0x568a88){return _0xd95b73(_0x568a88);},'IzbhE':function(_0x288355,_0x49f40d){return _0x288355(_0x49f40d);},'UGGaQ':function(_0x597e62,_0x105f5b){return _0x597e62(_0x105f5b);},'IkCHD':function(_0x233795,_0x2d0506){return _0x233795(_0x2d0506);},'DzNQk':_0x2aa438(0x2e7),'GZNgH':_0x2aa438(0x145),'cahoo':_0x2aa438(0x2ec),'aoCoR':_0x2aa438(0xbd)};_0x50f1e2[_0x2aa438(0x1f6)](resetColorMapping);const _0x114086=document[_0x2aa438(0x309)](_0x50f1e2[_0x2aa438(0x305)]);_0x114086[_0x2aa438(0x2eb)]='';const _0x132ec9=a2_0x50428e();let _0x36f0c4={'id':_0x50f1e2[_0x2aa438(0x299)],'finalMaco':_0x50f1e2[_0x2aa438(0x193)](0x1,0x0)},_0xbbbf9a={'id':_0x50f1e2[_0x2aa438(0x299)],'essa':0x0};if(_0x132ec9[_0x2aa438(0xbf)]>0x0){const _0x3faa4d=_0x132ec9[_0x2aa438(0x213)](_0x2a1314=>{const _0x29ea46=_0x2aa438,_0x1d3bd2=(a2_0x2b66d0[_0x29ea46(0x1fa)][_0x50f1e2['CyxUU'](a2_0x5b86d9,_0x2a1314[_0x29ea46(0x29f)][_0x29ea46(0x213)](_0x2a2968=>_0x2a2968['productType']))]||a2_0x2b66d0[_0x29ea46(0x1fa)]['Other'])[_0x29ea46(0x242)],_0x3da7d1=a2_0x10d59c(_0x2a1314,_0x132ec9),_0x521e30=_0x50f1e2[_0x29ea46(0x218)](_0x2a1314[_0x29ea46(0x1d5)]*_0x2a1314[_0x29ea46(0x250)],_0x1d3bd2),_0x579d40=_0x50f1e2[_0x29ea46(0x232)](0xa,_0x2a1314['minMbsKg']);let _0x9889f7=_0x50f1e2['GtyzN'](0x1,0x0);_0x50f1e2[_0x29ea46(0x246)](null,_0x2a1314['lowestPde'])&&(_0x9889f7=_0x50f1e2[_0x29ea46(0x232)](_0x2a1314[_0x29ea46(0x1cb)],_0x2a1314[_0x29ea46(0x250)]));const _0x5e3ff4=_0x50f1e2['umFrV'](0.004,_0x3da7d1);return{..._0x2a1314,'finalMaco':Math[_0x29ea46(0xca)](_0x521e30,_0x579d40,_0x9889f7,_0x5e3ff4)};});_0x36f0c4=_0x3faa4d['reduce']((_0x357f01,_0xb447d0)=>_0xb447d0['finalMaco']<_0x357f01[_0x2aa438(0x2d8)]?_0xb447d0:_0x357f01),_0xbbbf9a=_0x3faa4d[_0x2aa438(0xa7)]((_0x4fb33c,_0x298ac7)=>_0x298ac7[_0x2aa438(0x110)]>_0x4fb33c['essa']?_0x298ac7:_0x4fb33c);}const _0x53217c=a2_0x10e60c[_0x2aa438(0x11c)](),_0x408dad=(_0x36f0c4&&_0x50f1e2[_0x2aa438(0x246)](_0x50f1e2[_0x2aa438(0x299)],_0x36f0c4['id'])&&(_0x53217c[_0x2aa438(0x1a7)](_0x50f1e2[_0x2aa438(0x256)](String,_0x36f0c4['id']))?(_0x53217c[_0x2aa438(0x1a7)](_0x50f1e2['PIXRu'](String,_0x36f0c4['id']))[_0x2aa438(0x18c)],_0x53217c[_0x2aa438(0x1a7)](_0x50f1e2[_0x2aa438(0x237)](String,_0x36f0c4['id']))[_0x2aa438(0x1c6)]):_0x36f0c4['id']),_0xbbbf9a&&_0x50f1e2[_0x2aa438(0x246)](_0x50f1e2[_0x2aa438(0x299)],_0xbbbf9a['id'])&&(_0x53217c[_0x2aa438(0x1a7)](_0x50f1e2[_0x2aa438(0x256)](String,_0xbbbf9a['id']))?(_0x53217c[_0x2aa438(0x1a7)](_0x50f1e2['UGGaQ'](String,_0xbbbf9a['id']))[_0x2aa438(0x18c)],_0x53217c['get'](_0x50f1e2[_0x2aa438(0x228)](String,_0xbbbf9a['id']))['number']):_0xbbbf9a['id']),(function(){const _0x31fa92=_0x2aa438,_0x32c2bd={'LIsRQ':function(_0xd05c66,_0x3365a8){const _0x443df7=a2_0x5737;return _0x50f1e2[_0x443df7(0x1d8)](_0xd05c66,_0x3365a8);}},_0x13e9b3=_0x50f1e2[_0x31fa92(0x2e8)](a2_0x48d633);let _0xfe8369=0x0;return _0x13e9b3['forEach'](_0x578cf8=>{const _0x323ff8=_0x31fa92,_0x5b37d5={'DgzcG':function(_0xd6e445,_0x2daa68){const _0x4cd76c=a2_0x5737;return _0x50f1e2[_0x4cd76c(0x146)](_0xd6e445,_0x2daa68);}},_0x65bae3=_0x578cf8['line'],_0xbf0cb9=_0x578cf8[_0x323ff8(0x152)],_0x4113d4={};_0xbf0cb9[_0x323ff8(0x1d2)](_0x33c164=>{const _0x2510f2=_0x323ff8;_0x33c164[_0x2510f2(0x29f)]&&_0x32c2bd[_0x2510f2(0x19d)](_0x33c164['products'][_0x2510f2(0xbf)],0x0)&&[...new Set(_0x33c164[_0x2510f2(0x29f)][_0x2510f2(0x213)](_0x4df288=>_0x4df288[_0x2510f2(0x2f4)]||_0x2510f2(0x13a)))][_0x2510f2(0x1d2)](_0x3804a4=>{const _0x37410f=_0x2510f2,_0x5d487d=_0x65bae3+'-'+_0x3804a4;_0x4113d4[_0x5d487d]||(_0x4113d4[_0x5d487d]={'line':_0x65bae3,'dosageForm':_0x3804a4,'trains':[]}),_0x4113d4[_0x5d487d][_0x37410f(0x152)][_0x37410f(0xd3)](_0x33c164);});}),Object[_0x323ff8(0x1a2)](_0x4113d4)[_0x323ff8(0x1d2)](_0x2348a8=>{const _0x2157c1=_0x323ff8,_0xc69871={'HlBgq':function(_0x26475a,_0x196eb3){return _0x5b37d5['DgzcG'](_0x26475a,_0x196eb3);}},_0x303e86=_0x2348a8[_0x2157c1(0x152)]['map'](_0x3856b4=>{const _0x598873=_0x2157c1,_0x3d0563={'akyoX':function(_0x199062,_0x53a246){const _0x38989c=a2_0x5737;return _0xc69871[_0x38989c(0xa8)](_0x199062,_0x53a246);}};let _0x4685c5=0x0;return _0x3856b4[_0x598873(0x29f)]&&_0xc69871[_0x598873(0xa8)](_0x3856b4[_0x598873(0x29f)]['length'],0x0)&&_0x3856b4[_0x598873(0x29f)]['forEach'](_0x2ab6ab=>{const _0x18ca2a=_0x598873;_0x2ab6ab[_0x18ca2a(0x14b)]&&Array[_0x18ca2a(0x203)](_0x2ab6ab[_0x18ca2a(0x14b)])&&_0x2ab6ab['activeIngredients'][_0x18ca2a(0x1d2)](_0x1714cc=>{const _0x3ecfdf=_0x18ca2a;try{const _0x35cbb5=a2_0x10e60c[_0x3ecfdf(0x19a)](_0x1714cc)[_0x3ecfdf(0x15a)];_0x35cbb5&&_0x3d0563[_0x3ecfdf(0x111)](_0x35cbb5,_0x4685c5)&&(_0x4685c5=_0x35cbb5);}catch(_0x5d33d6){console[_0x3ecfdf(0x19f)](_0x3ecfdf(0x140),_0x1714cc,_0x5d33d6);}});}),{'train':_0x3856b4,'rpn':_0x4685c5};})[_0x2157c1(0x15b)]((_0x203ad6,_0x18dfb9)=>_0x18dfb9['rpn']-_0x203ad6['rpn']),_0x34b17f=new Set();let _0x1dff15=0x0;_0x303e86[_0x2157c1(0x1d2)](({train:_0x47c783})=>{const _0x49601a=_0x2157c1;_0x47c783[_0x49601a(0x1ec)]&&_0x47c783[_0x49601a(0x1ec)][_0x49601a(0xbf)]>0x0&&_0x47c783[_0x49601a(0x1ec)][_0x49601a(0x98)](_0x2a9b03=>!_0x34b17f['has'](_0x2a9b03))&&(_0x1dff15++,_0x47c783[_0x49601a(0x1ec)]['forEach'](_0x36d2c7=>_0x34b17f['add'](_0x36d2c7)));}),_0xfe8369+=_0x1dff15;});}),_0xfe8369;}()));!(function(){const _0x236990=_0x2aa438,_0x395cd3={'dLTVE':function(_0x185062,_0x30fc26){const _0x17f130=a2_0x5737;return _0x50f1e2[_0x17f130(0x143)](_0x185062,_0x30fc26);},'EDfcb':function(_0x3a2801,_0x161e39){const _0x2c5099=a2_0x5737;return _0x50f1e2[_0x2c5099(0x157)](_0x3a2801,_0x161e39);}};let _0x1feb35=0x0,_0xe2cd08={'name':_0x236990(0x278),'rpn':0x0};a2_0x1acb9c[_0x236990(0x1d2)](_0x400005=>{const _0x39dcd4=_0x236990;_0x400005['activeIngredients']&&_0x395cd3[_0x39dcd4(0x12f)](_0x400005['activeIngredients'][_0x39dcd4(0xbf)],0x0)&&_0x400005['activeIngredients']['forEach'](_0x3a9772=>{const _0x42ca60=_0x39dcd4,_0x1085ad=_0x395cd3[_0x42ca60(0xf9)](a2_0xadbd9b,_0x3a9772),_0xd5cec=_0x1085ad?.[_0x42ca60(0x15a)]||0x0;_0xd5cec>_0x1feb35&&(_0x1feb35=_0xd5cec,_0xe2cd08={'name':_0x400005[_0x42ca60(0x25e)],'rpn':_0xd5cec});});});}()),([{'label':_0x50f1e2['DzNQk'],'value':_0x408dad,'icon':_0x50f1e2[_0x2aa438(0x15d)]},{'label':_0x2aa438(0x2c3),'value':a2_0x1acb9c['length'],'icon':_0x2aa438(0x7d)},{'label':_0x50f1e2[_0x2aa438(0xfb)],'value':_0x132ec9[_0x2aa438(0xbf)],'icon':_0x50f1e2[_0x2aa438(0x19e)]}]['forEach'](_0x5209e9=>{const _0x329177=_0x2aa438,_0x48f5fe=document[_0x329177(0x2a6)](_0x329177(0x100));_0x48f5fe[_0x329177(0xb3)]=_0x50f1e2[_0x329177(0x1ac)],_0x48f5fe[_0x329177(0x2eb)]=_0x329177(0x211)+_0x5209e9[_0x329177(0x2b9)]+_0x329177(0x238)+_0x5209e9[_0x329177(0x16d)]+_0x329177(0x1c2)+_0x5209e9[_0x329177(0x236)]+_0x329177(0x26d)+(_0x5209e9['subValue']?_0x329177(0x159)+_0x5209e9['subValue']+_0x329177(0x280):'')+_0x329177(0x131),_0x114086['appendChild'](_0x48f5fe);}),(function(){const _0x11fccf=_0x2aa438,_0x468db4={'uFJyb':function(_0x419421,_0x103aa2,_0x141949){const _0x401b83=a2_0x5737;return _0x50f1e2[_0x401b83(0xfe)](_0x419421,_0x103aa2,_0x141949);},'YoQsq':_0x50f1e2[_0x11fccf(0x1ce)],'AZFba':_0x50f1e2[_0x11fccf(0x273)],'oTnFC':_0x11fccf(0x1af),'OlVju':_0x11fccf(0x297)},_0xb386d7=document[_0x11fccf(0x309)](_0x50f1e2[_0x11fccf(0x16b)]);if(!_0xb386d7)return;g();const _0x1c2380=_0x50f1e2[_0x11fccf(0x2c5)](y),_0x3facd1=_0xb386d7[_0x11fccf(0x2e2)]('2d');window[_0x11fccf(0x17d)]&&window[_0x11fccf(0x17d)][_0x11fccf(0x191)]();const _0x230aa3=[],_0xb5f6a5=[],_0xdb94ee=[],_0x3ff75f=[],_0x44b1f1=new Set();if(Object[_0x11fccf(0x2cb)](_0x1c2380)[_0x11fccf(0x1d2)](_0x49dfc3=>{const _0x587842=_0x11fccf,_0x5eac05={'FMenP':function(_0x20f616,_0x2854a9,_0x5df7f2){const _0x5c576a=a2_0x5737;return _0x468db4[_0x5c576a(0x1f0)](_0x20f616,_0x2854a9,_0x5df7f2);},'TQyRN':'#fff'},_0x25d9e5=_0x1c2380[_0x49dfc3];_0x25d9e5&&_0x468db4[_0x587842(0x26b)]==typeof _0x25d9e5&&Object[_0x587842(0x2cb)](_0x25d9e5)['forEach'](_0x574870=>{const _0x388be6=_0x587842,_0x381f9d=_0x25d9e5[_0x574870];if(_0x381f9d&&_0x381f9d>0x0){const _0x1c990d=_0x49dfc3+_0x388be6(0x1b7)+_0x574870;_0x230aa3[_0x388be6(0xd3)](_0x1c990d),_0xb5f6a5[_0x388be6(0xd3)](_0x381f9d),_0xdb94ee[_0x388be6(0xd3)](_0x5eac05[_0x388be6(0x2ef)](f,_0x49dfc3,_0x574870)),_0x3ff75f[_0x388be6(0xd3)](_0x5eac05[_0x388be6(0x244)]),_0x44b1f1[_0x388be6(0x254)](_0x49dfc3);}});}),_0x50f1e2[_0x11fccf(0x201)](0x0,_0x230aa3[_0x11fccf(0xbf)])||0x0===_0xb5f6a5[_0x11fccf(0xbf)])return void console[_0x11fccf(0x1bb)](_0x11fccf(0x99));window[_0x11fccf(0x17d)]=new Chart(_0x3facd1,{'type':_0x50f1e2['EdRvd'],'data':{'labels':_0x230aa3,'datasets':[{'data':_0xb5f6a5,'backgroundColor':_0xdb94ee,'borderWidth':0x2,'borderColor':_0x3ff75f}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x1,'text':_0x50f1e2[_0x11fccf(0x1ff)],'font':{'size':0x10,'weight':_0x50f1e2[_0x11fccf(0x270)]}},'legend':{'position':_0x50f1e2[_0x11fccf(0x141)],'labels':{'padding':0xf,'usePointStyle':!0x0,'font':{'size':0xc},'generateLabels':function(_0x1b73d4){const _0x1440de=_0x11fccf,_0x39cd16={'FKNeG':_0x468db4[_0x1440de(0xd5)],'tMxoT':function(_0x7038d0,_0x35f2fa,_0x2dd81e){return _0x468db4['uFJyb'](_0x7038d0,_0x35f2fa,_0x2dd81e);},'HDmcq':_0x468db4[_0x1440de(0x28d)],'hdaqM':_0x468db4['OlVju']};return Array[_0x1440de(0x13c)](_0x44b1f1)[_0x1440de(0x15b)]()[_0x1440de(0x213)](_0x420739=>{const _0x34727d=_0x1440de,_0xb0077d=new Set();_0x230aa3[_0x34727d(0x1d2)]((_0x33c8a1,_0x3d6e8f)=>{const _0x15d08d=_0x34727d;if(_0x33c8a1[_0x15d08d(0x95)](_0x420739+_0x39cd16[_0x15d08d(0x24a)])){const _0x1624d0=_0x33c8a1[_0x15d08d(0x2f2)](_0x420739+_0x15d08d(0x1b7),'');_0xb0077d['add'](_0x1624d0);}});const _0x56c2ed=Array[_0x34727d(0x13c)](_0xb0077d)[_0x34727d(0x15b)]()['join'](',\x20');return{'text':_0x420739+':\x20'+_0x56c2ed,'fillStyle':_0x39cd16[_0x34727d(0x83)](f,_0x420739,_0x39cd16[_0x34727d(0x223)]),'strokeStyle':f(_0x420739,_0x39cd16[_0x34727d(0x223)]),'pointStyle':_0x39cd16['hdaqM'],'hidden':!0x1};});}}},'tooltip':{'callbacks':{'label':function(_0x572a5a){const _0x3e9a37=_0x11fccf,_0x5bd869=_0x572a5a[_0x3e9a37(0x236)]||'',_0x47c8d9=_0x572a5a['parsed'];return _0x5bd869+':\x20'+_0x47c8d9+_0x3e9a37(0x2a1)+(0x1!==_0x47c8d9?'s':'');}}}}}});}()),(function(){const _0x2f3a9b=_0x2aa438,_0x2a92fd={'fVXBf':function(_0x82510b,_0x7f1965){const _0x242a60=a2_0x5737;return _0x50f1e2[_0x242a60(0x146)](_0x82510b,_0x7f1965);},'NrYRv':function(_0x236037,_0x1e609a,_0x52d47b){return _0x50f1e2['rurPr'](_0x236037,_0x1e609a,_0x52d47b);},'jwPei':'#fff','EWQYz':function(_0x50ed9c,_0x442a6e){return _0x50ed9c==_0x442a6e;},'EtULm':'object','vPdVx':function(_0x2bb4e2,_0x23ac80){return _0x2bb4e2+_0x23ac80;},'hTasd':_0x50f1e2[_0x2f3a9b(0x273)],'kofEt':function(_0x3c05b0,_0x50cafd){const _0x3a9c04=_0x2f3a9b;return _0x50f1e2[_0x3a9c04(0x197)](_0x3c05b0,_0x50cafd);},'Hqfqv':_0x50f1e2[_0x2f3a9b(0x1b9)]},_0x21d0da=document[_0x2f3a9b(0x309)](_0x50f1e2[_0x2f3a9b(0x182)]);if(!_0x21d0da)return;_0x50f1e2[_0x2f3a9b(0x2c5)](g);const _0x1f1f4=C(),_0x16105b=_0x21d0da['getContext']('2d');window[_0x2f3a9b(0x16c)]&&window[_0x2f3a9b(0x16c)][_0x2f3a9b(0x191)]();const _0x194cf3=[],_0x4e63a0=[],_0x40d3c3=[],_0x51d239=[],_0x7f78d8=new Set();if(Object[_0x2f3a9b(0x2cb)](_0x1f1f4)['forEach'](_0x89d0d8=>{const _0x3f1eec=_0x2f3a9b,_0x31bccb={'iNqju':function(_0x26878b,_0x2a6a46){const _0x13d030=a2_0x5737;return _0x2a92fd[_0x13d030(0x1c9)](_0x26878b,_0x2a6a46);},'cUkKy':function(_0x15ffa3,_0x4fad29,_0x18459a){const _0x47ef1c=a2_0x5737;return _0x2a92fd[_0x47ef1c(0x284)](_0x15ffa3,_0x4fad29,_0x18459a);},'LeTSE':_0x2a92fd[_0x3f1eec(0xf5)]},_0x40f552=_0x1f1f4[_0x89d0d8];_0x40f552&&_0x2a92fd[_0x3f1eec(0x1bf)](_0x2a92fd[_0x3f1eec(0xcd)],typeof _0x40f552)&&Object[_0x3f1eec(0x2cb)](_0x40f552)[_0x3f1eec(0x1d2)](_0x531ab4=>{const _0x4b5c68=_0x3f1eec,_0x49cd13=_0x40f552[_0x531ab4];if(_0x49cd13&&_0x31bccb['iNqju'](_0x49cd13,0x0)){const _0x4c3e65=_0x89d0d8+_0x4b5c68(0x1b7)+_0x531ab4;_0x194cf3[_0x4b5c68(0xd3)](_0x4c3e65),_0x4e63a0[_0x4b5c68(0xd3)](_0x49cd13),_0x40d3c3[_0x4b5c68(0xd3)](_0x31bccb[_0x4b5c68(0x1e2)](f,_0x89d0d8,_0x531ab4)),_0x51d239[_0x4b5c68(0xd3)](_0x31bccb['LeTSE']),_0x7f78d8[_0x4b5c68(0x254)](_0x89d0d8);}});}),_0x50f1e2[_0x2f3a9b(0x109)](0x0,_0x194cf3[_0x2f3a9b(0xbf)])||_0x50f1e2[_0x2f3a9b(0xa3)](0x0,_0x4e63a0[_0x2f3a9b(0xbf)]))return void console['log'](_0x50f1e2[_0x2f3a9b(0x14a)]);window[_0x2f3a9b(0x16c)]=new Chart(_0x16105b,{'type':_0x50f1e2['EdRvd'],'data':{'labels':_0x194cf3,'datasets':[{'data':_0x4e63a0,'backgroundColor':_0x40d3c3,'borderWidth':0x2,'borderColor':_0x51d239}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x1,'text':_0x50f1e2[_0x2f3a9b(0xf7)],'font':{'size':0x10,'weight':_0x50f1e2[_0x2f3a9b(0x270)]}},'legend':{'display':!0x0,'position':_0x2f3a9b(0x101),'labels':{'padding':0xf,'usePointStyle':!0x0,'font':{'size':0xc},'generateLabels':function(_0x621151){const _0x5cc0b2=_0x2f3a9b;return Array[_0x5cc0b2(0x13c)](_0x7f78d8)[_0x5cc0b2(0x15b)]()[_0x5cc0b2(0x213)](_0x58a86c=>{const _0x586b64=_0x5cc0b2,_0x2c2706={'tOBTE':function(_0x47249e,_0x58a108){const _0x139f19=a2_0x5737;return _0x2a92fd[_0x139f19(0x20b)](_0x47249e,_0x58a108);},'PhpPf':_0x2a92fd[_0x586b64(0x21c)],'xClGb':function(_0x411083,_0x22f943){const _0x20b69b=_0x586b64;return _0x2a92fd[_0x20b69b(0x10d)](_0x411083,_0x22f943);}},_0x295496=new Set();_0x194cf3[_0x586b64(0x1d2)]((_0x54301e,_0x52e3cd)=>{const _0x18504e=_0x586b64;if(_0x54301e[_0x18504e(0x95)](_0x2c2706[_0x18504e(0x8f)](_0x58a86c,_0x2c2706[_0x18504e(0x1a4)]))){const _0x379a97=_0x54301e[_0x18504e(0x2f2)](_0x2c2706['xClGb'](_0x58a86c,_0x2c2706[_0x18504e(0x1a4)]),'');_0x295496[_0x18504e(0x254)](_0x379a97);}});const _0x1578aa=Array[_0x586b64(0x13c)](_0x295496)[_0x586b64(0x15b)]()[_0x586b64(0x19b)](',\x20');return{'text':_0x58a86c+':\x20'+_0x1578aa,'fillStyle':_0x2a92fd[_0x586b64(0x284)](f,_0x58a86c,_0x2a92fd[_0x586b64(0x74)]),'strokeStyle':_0x2a92fd['NrYRv'](f,_0x58a86c,_0x2a92fd[_0x586b64(0x74)]),'pointStyle':'circle','hidden':!0x1};});}}},'tooltip':{'callbacks':{'label':function(_0x47efc4){const _0x413533=_0x2f3a9b,_0x4cc6ef=_0x47efc4[_0x413533(0x236)]||'',_0x18fc82=_0x47efc4[_0x413533(0x224)];return _0x4cc6ef+':\x20'+_0x18fc82+'\x20'+(0x1===_0x18fc82?_0x413533(0x29d):_0x413533(0x8e));}}}}}});}()),(function(){const _0x5ec2b6=_0x2aa438,_0x33d108={'wHOFr':function(_0x1b7d6c,_0x311360){return _0x50f1e2['SFIfO'](_0x1b7d6c,_0x311360);},'vzugQ':function(_0x4f99eb,_0x326451,_0x1bfe98){return _0x4f99eb(_0x326451,_0x1bfe98);},'GxTzq':_0x50f1e2[_0x5ec2b6(0x1ed)],'JbSCT':_0x50f1e2[_0x5ec2b6(0x1ce)],'vWqMK':function(_0x2155b7,_0x3e24b1){const _0x51a8be=_0x5ec2b6;return _0x50f1e2[_0x51a8be(0x197)](_0x2155b7,_0x3e24b1);},'RqVzx':_0x50f1e2[_0x5ec2b6(0x273)],'qLKjt':function(_0x47ad38,_0x4e8555,_0x3a2dd5){return _0x47ad38(_0x4e8555,_0x3a2dd5);},'oVbBi':_0x50f1e2['xymCk'],'aUOec':function(_0x4fbd63,_0x1c0b1e){const _0x30e955=_0x5ec2b6;return _0x50f1e2[_0x30e955(0x148)](_0x4fbd63,_0x1c0b1e);},'NTCQi':function(_0xdef648,_0x36f143){return _0x50f1e2['ZDCkv'](_0xdef648,_0x36f143);}},_0xc64c72=document[_0x5ec2b6(0x309)](_0x5ec2b6(0x2ed));if(!_0xc64c72)return;_0x50f1e2[_0x5ec2b6(0x1ef)](g);const _0x5e0d02=_0x50f1e2[_0x5ec2b6(0x200)](w),_0x554dab=_0xc64c72[_0x5ec2b6(0x2e2)]('2d');window[_0x5ec2b6(0x172)]&&window[_0x5ec2b6(0x172)]['destroy']();const _0x39d886=[],_0x5bf2cd=[],_0x4d6747=[],_0x212a94=[],_0x281fe2=new Set();if(Object[_0x5ec2b6(0x2cb)](_0x5e0d02)['forEach'](_0x56f78f=>{const _0x11bffb=_0x5ec2b6,_0x3c2be3=_0x5e0d02[_0x56f78f];_0x3c2be3&&_0x33d108[_0x11bffb(0x1cf)]==typeof _0x3c2be3&&Object[_0x11bffb(0x2cb)](_0x3c2be3)[_0x11bffb(0x1d2)](_0xde9329=>{const _0x3fb329=_0x11bffb,_0x4811e1=_0x3c2be3[_0xde9329];if(_0x4811e1&&_0x33d108['wHOFr'](_0x4811e1,0x0)){const _0x462337=_0x56f78f+_0x3fb329(0x1b7)+_0xde9329;_0x39d886['push'](_0x462337),_0x5bf2cd[_0x3fb329(0xd3)](_0x4811e1),_0x4d6747[_0x3fb329(0xd3)](_0x33d108[_0x3fb329(0x2a9)](f,_0x56f78f,_0xde9329)),_0x212a94[_0x3fb329(0xd3)](_0x33d108[_0x3fb329(0xba)]),_0x281fe2[_0x3fb329(0x254)](_0x56f78f);}});}),0x0===_0x39d886['length']||_0x50f1e2[_0x5ec2b6(0x109)](0x0,_0x5bf2cd[_0x5ec2b6(0xbf)]))return void console['log'](_0x50f1e2['CGPmt']);window[_0x5ec2b6(0x172)]=new Chart(_0x554dab,{'type':_0x5ec2b6(0xdb),'data':{'labels':_0x39d886,'datasets':[{'data':_0x5bf2cd,'backgroundColor':_0x4d6747,'borderWidth':0x2,'borderColor':_0x212a94}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x1,'text':'Special\x20Cases\x20Distribution\x20by\x20Line\x20and\x20Dosage\x20Form','font':{'size':0x10,'weight':_0x50f1e2[_0x5ec2b6(0x270)]}},'legend':{'display':!0x0,'position':_0x5ec2b6(0x101),'labels':{'padding':0xf,'usePointStyle':!0x0,'font':{'size':0xc},'generateLabels':function(_0x590a34){const _0x3810db=_0x5ec2b6;return Array[_0x3810db(0x13c)](_0x281fe2)[_0x3810db(0x15b)]()[_0x3810db(0x213)](_0x33918b=>{const _0x626628=_0x3810db,_0x7fbfcb={'EtbTt':function(_0x58ecf4,_0x1ec7ad){const _0x137b7a=a2_0x5737;return _0x33d108[_0x137b7a(0x308)](_0x58ecf4,_0x1ec7ad);},'orGQy':_0x33d108['RqVzx']},_0x32772c=new Set();_0x39d886[_0x626628(0x1d2)]((_0xdf3d21,_0x402b1f)=>{const _0x22e12e=_0x626628;if(_0xdf3d21['startsWith'](_0x7fbfcb[_0x22e12e(0x179)](_0x33918b,_0x7fbfcb['orGQy']))){const _0x3ea76d=_0xdf3d21['replace'](_0x7fbfcb['EtbTt'](_0x33918b,_0x22e12e(0x1b7)),'');_0x32772c[_0x22e12e(0x254)](_0x3ea76d);}});const _0x26f425=Array[_0x626628(0x13c)](_0x32772c)['sort']()[_0x626628(0x19b)](',\x20');return{'text':_0x33918b+':\x20'+_0x26f425,'fillStyle':_0x33d108[_0x626628(0x135)](f,_0x33918b,_0x33d108[_0x626628(0x17f)]),'strokeStyle':f(_0x33918b,_0x33d108[_0x626628(0x17f)]),'pointStyle':_0x626628(0x297),'hidden':!0x1};});}}},'tooltip':{'callbacks':{'label':function(_0x3d8388){const _0x509362=_0x5ec2b6,_0x294ba2=_0x3d8388[_0x509362(0x236)]||'',_0x3843d9=_0x3d8388[_0x509362(0x224)],_0x22b055=(window[_0x509362(0x107)]||{})[_0x294ba2[_0x509362(0x2f2)](_0x33d108['RqVzx'],'-')]||[];let _0x49311e=_0x294ba2+':\x20'+_0x3843d9+_0x509362(0x136)+(0x1!==_0x3843d9?'s':'');if(_0x22b055[_0x509362(0xbf)]>0x0){const _0x37a832=_0x22b055['slice'](0x0,0x3),_0x374474=_0x33d108['aUOec'](_0x22b055[_0x509362(0xbf)],0x3);0x1===_0x37a832[_0x509362(0xbf)]?_0x49311e+='\x20('+_0x37a832[0x0]+')':0x2===_0x37a832['length']?_0x49311e+='\x20('+_0x37a832[0x0]+',\x20'+_0x37a832[0x1]+')':0x3===_0x37a832['length']&&(_0x49311e+='\x20('+_0x37a832[0x0]+',\x20'+_0x37a832[0x1]+',\x20'+_0x37a832[0x2]+')'),_0x33d108[_0x509362(0x2db)](_0x374474,0x0)&&(_0x49311e+='\x20+'+_0x374474+_0x509362(0x25b));}return _0x49311e;}}}}}});}()),(function(){const _0x45615e=_0x2aa438,_0x5d03ef={'TsUXX':function(_0x289e65,_0x4ce4){const _0x4705c0=a2_0x5737;return _0x50f1e2[_0x4705c0(0x150)](_0x289e65,_0x4ce4);},'zpRvh':function(_0x22d7fb,_0x5085fe){return _0x50f1e2['IcpyN'](_0x22d7fb,_0x5085fe);},'pTVQv':function(_0x1c873c,_0x30b3bd,_0x429dd0){const _0x3ec1d8=a2_0x5737;return _0x50f1e2[_0x3ec1d8(0x247)](_0x1c873c,_0x30b3bd,_0x429dd0);},'WNFLW':_0x50f1e2['hgpMB'],'SCCwk':function(_0x291718,_0x54b0e0){return _0x50f1e2['OUnFj'](_0x291718,_0x54b0e0);},'gCmRA':function(_0x330ee0,_0x9e0a56,_0x5c9c7c){const _0x592031=a2_0x5737;return _0x50f1e2[_0x592031(0x2af)](_0x330ee0,_0x9e0a56,_0x5c9c7c);},'oKOHa':function(_0x22b284,_0x334bba){const _0x202d37=a2_0x5737;return _0x50f1e2[_0x202d37(0x245)](_0x22b284,_0x334bba);}};console['log'](_0x50f1e2[_0x45615e(0x2a3)]);const _0x318d10=document[_0x45615e(0x309)](_0x50f1e2[_0x45615e(0x1f8)]);_0x50f1e2[_0x45615e(0xd7)](g),console['log']('Rendering\x20minimum\x20MACO\x20chart...');const _0xaa4cf5=_0x50f1e2[_0x45615e(0x2df)]($);console[_0x45615e(0x1bb)](_0x50f1e2['DEPGi'],_0xaa4cf5);const _0x43856f=_0x318d10[_0x45615e(0x2e2)]('2d');window[_0x45615e(0x139)]&&window[_0x45615e(0x139)]['destroy']();const _0x2fb2e5=[],_0x5885d6=[],_0x1045b1=[],_0x533098=[],_0x325dbb=new Set();if(console['log'](_0x50f1e2[_0x45615e(0x126)]),Object['keys'](_0xaa4cf5)[_0x45615e(0x1d2)](_0x48ba1b=>{const _0x5807e9=_0x45615e,_0x2da741=_0xaa4cf5[_0x48ba1b];console[_0x5807e9(0x1bb)](_0x5807e9(0xc6)+_0x48ba1b,_0x2da741),_0x2da741&&_0x5d03ef[_0x5807e9(0x239)](_0x5807e9(0x30c),typeof _0x2da741)?Object[_0x5807e9(0x2cb)](_0x2da741)[_0x5807e9(0x1d2)](_0xe3846f=>{const _0x3970a9=_0x5807e9,_0x5c7960=_0x2da741[_0xe3846f];if(console['log'](_0x3970a9(0x1a1)+_0x48ba1b+_0x3970a9(0x1b7)+_0xe3846f+':\x20MACO\x20value\x20=\x20'+_0x5c7960),_0x5c7960&&_0x5d03ef[_0x3970a9(0x276)](_0x5c7960,0x0)&&!isNaN(_0x5c7960)&&_0x5d03ef[_0x3970a9(0x169)](isFinite,_0x5c7960)){const _0xca67e1=_0x48ba1b+_0x3970a9(0x1b7)+_0xe3846f,_0x182ed2=_0x5d03ef['pTVQv'](f,_0x48ba1b,_0xe3846f);console[_0x3970a9(0x1bb)]('Line\x20'+_0x48ba1b+_0x3970a9(0x1b7)+_0xe3846f+_0x3970a9(0x286)+_0x182ed2),_0x2fb2e5[_0x3970a9(0xd3)](_0xca67e1),_0x5885d6[_0x3970a9(0xd3)](_0x5c7960),_0x1045b1[_0x3970a9(0xd3)](_0x182ed2),_0x533098[_0x3970a9(0xd3)](_0x5d03ef[_0x3970a9(0xc8)]),_0x325dbb['add'](_0x48ba1b),console[_0x3970a9(0x1bb)](_0x3970a9(0x269)+_0xca67e1+'\x20=\x20'+_0x5c7960);}else{if(console[_0x3970a9(0x19f)](_0x3970a9(0x173)+_0x48ba1b+_0x3970a9(0x1b7)+_0xe3846f+_0x3970a9(0x12a)+_0x5c7960+')'),_0x5d03ef['SCCwk'](_0xe3846f,_0x48ba1b)){console[_0x3970a9(0x1bb)](_0x3970a9(0x1fd)+_0x48ba1b+_0x3970a9(0x1b7)+_0xe3846f);const _0x1f294a=_0x48ba1b+_0x3970a9(0x1b7)+_0xe3846f,_0x5bc204=_0x5d03ef[_0x3970a9(0x104)](f,_0x48ba1b,_0xe3846f);_0x2fb2e5['push'](_0x1f294a),_0x5885d6[_0x3970a9(0xd3)](0.001),_0x1045b1[_0x3970a9(0xd3)](_0x5bc204),_0x533098['push'](_0x5d03ef[_0x3970a9(0xc8)]),_0x325dbb[_0x3970a9(0x254)](_0x48ba1b),console[_0x3970a9(0x1bb)]('Added\x20default\x20segment:\x20'+_0x1f294a+_0x3970a9(0xdc));}}}):console[_0x5807e9(0x1bb)](_0x5807e9(0xd0)+_0x48ba1b+_0x5807e9(0x12c));}),console[_0x45615e(0x1bb)](_0x45615e(0x2b8),{'labels':_0x2fb2e5,'data':_0x5885d6,'backgroundColors':_0x1045b1,'borderColors':_0x533098}),_0x50f1e2[_0x45615e(0x1e8)](0x0,_0x2fb2e5['length'])||_0x50f1e2[_0x45615e(0x255)](0x0,_0x5885d6[_0x45615e(0xbf)]))return console['log'](_0x50f1e2[_0x45615e(0x2d5)]),console[_0x45615e(0x1bb)](_0x50f1e2[_0x45615e(0x287)],_0x2fb2e5),console[_0x45615e(0x1bb)](_0x50f1e2[_0x45615e(0x272)],_0x5885d6),void console['log'](_0x50f1e2['kJees'],_0xaa4cf5);console['log'](_0x50f1e2['HwtcJ'],{'labels':_0x2fb2e5,'data':_0x5885d6,'backgroundColors':_0x1045b1,'borderColors':_0x533098});try{window[_0x45615e(0x139)]=new Chart(_0x43856f,{'type':_0x50f1e2[_0x45615e(0xbb)],'data':{'labels':_0x2fb2e5,'datasets':[{'data':_0x5885d6,'backgroundColor':_0x1045b1,'borderWidth':0x2,'borderColor':_0x533098}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x1,'text':_0x50f1e2[_0x45615e(0x2da)],'font':{'size':0x10,'weight':_0x50f1e2[_0x45615e(0x270)]}},'legend':{'display':!0x0,'position':_0x50f1e2[_0x45615e(0x141)],'labels':{'padding':0xf,'usePointStyle':!0x0,'font':{'size':0xc},'generateLabels':function(_0x4c18aa){const _0x345bae=_0x45615e,_0x558651={'gWFlT':function(_0x75c7e4,_0x558a72,_0x4d156b){const _0x2eb37f=a2_0x5737;return _0x50f1e2[_0x2eb37f(0x137)](_0x75c7e4,_0x558a72,_0x4d156b);},'hCRxq':_0x50f1e2['xymCk'],'YCWni':function(_0x20993a,_0x5955f4,_0x32b8c6){const _0x44f1c8=a2_0x5737;return _0x50f1e2[_0x44f1c8(0x247)](_0x20993a,_0x5955f4,_0x32b8c6);},'Ppuzo':_0x50f1e2['LaYGj']};return Array['from'](_0x325dbb)['sort']()[_0x345bae(0x213)](_0x2343f5=>{const _0xadc50d=_0x345bae,_0x411e30={'FrKCK':_0xadc50d(0x1b7)},_0x1e3c80=new Set();_0x2fb2e5[_0xadc50d(0x1d2)]((_0x267f73,_0x17812c)=>{const _0x5cc4d3=_0xadc50d;if(_0x267f73[_0x5cc4d3(0x95)](_0x2343f5+_0x5cc4d3(0x1b7))){const _0x2f145a=_0x267f73['replace'](_0x2343f5+_0x411e30[_0x5cc4d3(0x1f5)],'');_0x1e3c80[_0x5cc4d3(0x254)](_0x2f145a);}});const _0x348535=Array[_0xadc50d(0x13c)](_0x1e3c80)[_0xadc50d(0x15b)]()[_0xadc50d(0x19b)](',\x20');return{'text':_0x2343f5+':\x20'+_0x348535,'fillStyle':_0x558651[_0xadc50d(0x2d4)](f,_0x2343f5,_0x558651[_0xadc50d(0x1c5)]),'strokeStyle':_0x558651[_0xadc50d(0x253)](f,_0x2343f5,_0x558651['hCRxq']),'pointStyle':_0x558651[_0xadc50d(0x121)],'hidden':!0x1};});}}},'tooltip':{'callbacks':{'label':function(_0x76c399){const _0x51b700=_0x45615e,_0x574bb0=_0x76c399[_0x51b700(0x236)]||'',_0x1ee9d0=_0x76c399['parsed'],_0x4fc9c9=window[_0x51b700(0x17b)]||{},_0x51d338=_0x574bb0['replace'](_0x50f1e2[_0x51b700(0x273)],'-');return _0x574bb0+':\x20'+(_0x4fc9c9[_0x51d338]||_0x1ee9d0)[_0x51b700(0x2bf)](0x6)+_0x51b700(0x10e);}}}}}}),console[_0x45615e(0x1bb)]('Chart\x20created\x20successfully!');}catch(_0x1c5022){console['error'](_0x50f1e2[_0x45615e(0x2dd)],_0x1c5022),_0x50f1e2[_0x45615e(0x256)](alert,_0x50f1e2[_0x45615e(0x1ca)]+_0x1c5022[_0x45615e(0x1ee)]);}}()),(function(){const _0x1cf294=_0x2aa438,_0x1da87d={'bSsEy':function(_0x27b357,_0x56fb93){return _0x27b357(_0x56fb93);},'ARvFS':function(_0x460233,_0x1b4215,_0x173750){return _0x50f1e2['aZaOG'](_0x460233,_0x1b4215,_0x173750);},'vdlmQ':function(_0x8a2208,_0x3b6b73){return _0x8a2208/_0x3b6b73;},'XxBCT':function(_0x2d5f6f,_0x43b98d){const _0x46fe0e=a2_0x5737;return _0x50f1e2[_0x46fe0e(0x96)](_0x2d5f6f,_0x43b98d);},'KHwRd':function(_0x3ca6f7,_0x3dfe73){return _0x50f1e2['GtyzN'](_0x3ca6f7,_0x3dfe73);},'yKvrc':function(_0x17c396,_0x2427c1){const _0x48609f=a2_0x5737;return _0x50f1e2[_0x48609f(0x109)](_0x17c396,_0x2427c1);},'ndDnz':_0x50f1e2[_0x1cf294(0x1c1)],'CuNKe':function(_0x47a796,_0x25f80d){return _0x47a796===_0x25f80d;},'iHRnl':_0x50f1e2[_0x1cf294(0xfa)],'RnYqT':_0x50f1e2[_0x1cf294(0x184)],'XBSHj':function(_0x56fc9c,_0x5bef96){const _0x37a099=_0x1cf294;return _0x50f1e2[_0x37a099(0xd9)](_0x56fc9c,_0x5bef96);},'EpnPE':function(_0x53435e,_0x239b60){return _0x53435e===_0x239b60;},'SEROh':_0x50f1e2['ZkqQD'],'ffvyL':function(_0x4fa76a,_0x59e532){const _0x4a99c4=_0x1cf294;return _0x50f1e2[_0x4a99c4(0x1e8)](_0x4fa76a,_0x59e532);},'WtTRY':_0x50f1e2[_0x1cf294(0x1cd)],'dNQku':_0x50f1e2[_0x1cf294(0x20d)],'UjEpl':function(_0x272b16,_0x4b1157){return _0x50f1e2['yKdUU'](_0x272b16,_0x4b1157);},'GjjlW':function(_0x41ad2c){return _0x50f1e2['PlHTC'](_0x41ad2c);},'fjdHz':function(_0x5195f9,_0xd3e107){const _0x283ee0=_0x1cf294;return _0x50f1e2[_0x283ee0(0x271)](_0x5195f9,_0xd3e107);}};console[_0x1cf294(0x1bb)]('renderTrainsByLineAndDosageChart\x20called');const _0x19e485=document['getElementById'](_0x50f1e2['onnqh']);if(!_0x19e485)return void console[_0x1cf294(0x1bb)](_0x50f1e2[_0x1cf294(0x186)]);g();const _0x473a0f=_0x50f1e2[_0x1cf294(0x16e)](a2_0x50428e);if(0x0===_0x473a0f['length'])return void console[_0x1cf294(0x1bb)](_0x50f1e2[_0x1cf294(0xaf)]);const _0xd3b3da={},_0x3ae79b=new Set(),_0x30612c=new Set();_0x473a0f[_0x1cf294(0x1d2)](_0x558e20=>{const _0x386f51=_0x1cf294,_0x2aa749=_0x558e20[_0x386f51(0x18c)]||_0x50f1e2[_0x386f51(0x252)],_0x3969d5=[...new Set(_0x558e20[_0x386f51(0x29f)][_0x386f51(0x213)](_0x2612dd=>_0x2612dd[_0x386f51(0x2f4)]||_0x386f51(0x13a)))];_0x3ae79b[_0x386f51(0x254)](_0x2aa749),_0x3969d5['forEach'](_0x501f16=>{const _0x493d3f=_0x386f51;_0x30612c[_0x493d3f(0x254)](_0x501f16),_0xd3b3da[_0x2aa749]||(_0xd3b3da[_0x2aa749]={}),_0xd3b3da[_0x2aa749][_0x501f16]||(_0xd3b3da[_0x2aa749][_0x501f16]=[]);const _0x37976a=(a2_0x2b66d0[_0x493d3f(0x1fa)][_0x1da87d[_0x493d3f(0x1fe)](a2_0x5b86d9,_0x558e20['products'][_0x493d3f(0x213)](_0xd53d59=>_0xd53d59[_0x493d3f(0x2f4)]))]||a2_0x2b66d0[_0x493d3f(0x1fa)][_0x493d3f(0x13a)])[_0x493d3f(0x242)],_0x1f4cb4=_0x1da87d[_0x493d3f(0x220)](a2_0x10d59c,_0x558e20,_0x473a0f),_0x38c636=_0x1da87d[_0x493d3f(0x2b0)](_0x1da87d[_0x493d3f(0x23a)](_0x558e20['lowestLtd'],_0x558e20['minBsMddRatio']),_0x37976a),_0x55d5da=_0x1da87d[_0x493d3f(0x23a)](0xa,_0x558e20[_0x493d3f(0x2f0)]);let _0x104b46=_0x1da87d[_0x493d3f(0x2b0)](0x1,0x0),_0x5ad903=_0x1da87d[_0x493d3f(0xf2)](0x1,0x0);const _0x561416=_0x1da87d[_0x493d3f(0x2d2)](_0x493d3f(0x1c0),localStorage[_0x493d3f(0x1d7)](_0x1da87d['ndDnz'])),_0x1ae810=_0x1da87d[_0x493d3f(0x24e)](_0x1da87d[_0x493d3f(0x1e9)],localStorage['getItem'](_0x1da87d[_0x493d3f(0xa6)]));if(_0x1da87d['yKvrc'](null,_0x558e20[_0x493d3f(0x1cb)])||_0x561416||(_0x104b46=_0x1da87d[_0x493d3f(0x23a)](_0x558e20[_0x493d3f(0x1cb)],_0x558e20[_0x493d3f(0x250)])),null!==_0x558e20[_0x493d3f(0x17e)]&&!_0x1ae810){const _0x4f9491=_0x1da87d['KHwRd'](0x46*_0x558e20[_0x493d3f(0x17e)],0x7d0),_0x58232c=_0x558e20[_0x493d3f(0x29f)][_0x493d3f(0x79)](_0x32e8a2=>_0x32e8a2[_0x493d3f(0x14b)]['map'](_0x438f17=>_0x438f17[_0x493d3f(0x292)]/0x3e8)),_0x44b073=Math['min'](..._0x58232c);_0x5ad903=_0x1da87d['KHwRd'](_0x1da87d[_0x493d3f(0x23a)](_0x1da87d['XBSHj'](_0x4f9491,_0x558e20[_0x493d3f(0x2f0)]),0x3e8),_0x1da87d[_0x493d3f(0x23a)](_0x37976a,_0x44b073));}const _0x18d9c5=_0x1da87d[_0x493d3f(0x306)](0.004,_0x1f4cb4),_0x340676=[{'name':'0.1%\x20Therapeutic\x20Dose','value':_0x38c636},{'name':_0x493d3f(0x1f2),'value':_0x55d5da}];_0x1da87d['EpnPE'](null,_0x558e20[_0x493d3f(0x1cb)])||_0x561416||_0x340676[_0x493d3f(0xd3)]({'name':_0x1da87d[_0x493d3f(0x219)],'value':_0x104b46}),_0x1da87d[_0x493d3f(0x28b)](null,_0x558e20[_0x493d3f(0x17e)])||_0x1ae810||_0x340676[_0x493d3f(0xd3)]({'name':_0x1da87d[_0x493d3f(0x84)],'value':_0x5ad903}),_0x340676[_0x493d3f(0xd3)]({'name':_0x1da87d[_0x493d3f(0x240)],'value':_0x18d9c5});const _0x181bc=_0x340676[_0x493d3f(0xa7)]((_0x52a86f,_0x5295ad)=>_0x5295ad[_0x493d3f(0x16d)]<_0x52a86f[_0x493d3f(0x16d)]?_0x5295ad:_0x52a86f)[_0x493d3f(0x16d)],_0x37a3e9=_0x1da87d[_0x493d3f(0x306)](_0x1da87d[_0x493d3f(0x2cf)](_0x1f4cb4,0x0)?_0x181bc/_0x1f4cb4:0x0,_0x558e20[_0x493d3f(0xc1)]),_0x1a2d90=_0x1da87d[_0x493d3f(0x21f)](getTrainIdToLineNumberMap)[_0x493d3f(0x1a7)](String(_0x558e20['id'])),_0x43bb82=_0x1a2d90?_0x1a2d90[_0x493d3f(0x1c6)]:_0x558e20['id'];_0xd3b3da[_0x2aa749][_0x501f16][_0x493d3f(0xd3)]({'trainId':_0x558e20['id'],'trainName':_0x493d3f(0x30e)+_0x43bb82,'macoPerSwab':_0x37a3e9});});}),console[_0x1cf294(0x1bb)](_0x50f1e2[_0x1cf294(0x2f6)],_0xd3b3da);const _0x3ab93a=[],_0x2ef400=[],_0x12cc9e=[],_0x523b2e=[],_0x13941e=[];Array[_0x1cf294(0x13c)](_0x3ae79b)[_0x1cf294(0x15b)]()[_0x1cf294(0x1d2)](_0x4a0b84=>{const _0xadf706=_0x1cf294,_0x4b50db=_0xd3b3da[_0x4a0b84]||{};Object[_0xadf706(0x2cb)](_0x4b50db)[_0xadf706(0x15b)]()['forEach'](_0x2b03eb=>{const _0x3df1a5=_0xadf706;(_0x4b50db[_0x2b03eb]||[])[_0x3df1a5(0x1d2)](_0x4eb2a2=>{const _0x30cb82=_0x3df1a5;_0x13941e[_0x30cb82(0xd3)]({'line':_0x4a0b84,'dosageForm':_0x2b03eb,'trainName':_0x4eb2a2[_0x30cb82(0xc0)],'macoPerSwab':_0x4eb2a2[_0x30cb82(0x2d9)]});});});}),_0x13941e[_0x1cf294(0x15b)]((_0x4a18ac,_0x4e0400)=>_0x4a18ac[_0x1cf294(0x18c)]!==_0x4e0400['line']?_0x4a18ac[_0x1cf294(0x18c)][_0x1cf294(0xcf)](_0x4e0400[_0x1cf294(0x18c)]):_0x4a18ac[_0x1cf294(0x241)]!==_0x4e0400[_0x1cf294(0x241)]?_0x4a18ac['dosageForm']['localeCompare'](_0x4e0400[_0x1cf294(0x241)]):_0x4a18ac[_0x1cf294(0xc0)][_0x1cf294(0xcf)](_0x4e0400[_0x1cf294(0xc0)])),_0x13941e['forEach']((_0x91ae24,_0x453a23)=>{const _0x120a70=_0x1cf294,_0x4cd6b4=_0x1da87d['fjdHz'](_0x453a23,0x1);_0x3ab93a[_0x120a70(0xd3)]('T'+_0x4cd6b4),_0x2ef400[_0x120a70(0xd3)](_0x91ae24[_0x120a70(0x2d9)]);const _0x115d3f=_0x1da87d[_0x120a70(0x220)](f,_0x91ae24[_0x120a70(0x18c)],_0x91ae24['dosageForm']);_0x12cc9e[_0x120a70(0xd3)](_0x115d3f),_0x523b2e[_0x120a70(0xd3)](_0x115d3f),_0x91ae24[_0x120a70(0x1a3)]=_0x4cd6b4;});const _0x414c54=[...new Set(_0x13941e[_0x1cf294(0x213)](_0x2768a2=>_0x2768a2['line']))]['sort']()[_0x1cf294(0x213)](_0x201388=>{const _0x203c80=_0x1cf294,_0x35e692={'KeFLI':function(_0x342556,_0x3c2a46){const _0x3f7630=a2_0x5737;return _0x50f1e2[_0x3f7630(0x2f8)](_0x342556,_0x3c2a46);}},_0x540480=new Set();_0x13941e['forEach'](_0x1db086=>{const _0x499943=a2_0x5737;_0x35e692[_0x499943(0x307)](_0x1db086[_0x499943(0x18c)],_0x201388)&&_0x540480['add'](_0x1db086[_0x499943(0x241)]);});const _0x2a29cc=Array[_0x203c80(0x13c)](_0x540480)['sort']()[_0x203c80(0x19b)](',\x20');return{'label':_0x201388+':\x20'+_0x2a29cc,'data':[],'backgroundColor':_0x50f1e2[_0x203c80(0xfe)](f,_0x201388,_0x50f1e2[_0x203c80(0x1b9)]),'borderColor':_0x50f1e2[_0x203c80(0xb7)](f,_0x201388,_0x50f1e2[_0x203c80(0x1b9)]),'borderWidth':0x1};});_0x414c54[_0x1cf294(0xd3)]({'label':_0x50f1e2['rWvuh'],'data':_0x2ef400,'backgroundColor':_0x12cc9e,'borderColor':_0x523b2e,'borderWidth':0x1});const _0x3492a3=_0x19e485['getContext']('2d');window[_0x1cf294(0x88)]&&_0x50f1e2[_0x1cf294(0x19c)](_0x1cf294(0x216),typeof window[_0x1cf294(0x88)][_0x1cf294(0x191)])&&window[_0x1cf294(0x88)][_0x1cf294(0x191)](),(window[_0x1cf294(0x88)]=new Chart(_0x3492a3,{'type':_0x50f1e2[_0x1cf294(0x8b)],'data':{'labels':_0x3ab93a,'datasets':_0x414c54},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x1,'text':_0x50f1e2[_0x1cf294(0x1f7)],'font':{'size':0x10,'weight':_0x50f1e2[_0x1cf294(0x270)]}},'legend':{'display':!0x0,'position':_0x50f1e2[_0x1cf294(0xb9)],'labels':{'padding':0x14,'usePointStyle':!0x0,'font':{'size':0xe},'filter':function(_0x461122){const _0x8e71e=_0x1cf294;return _0x50f1e2[_0x8e71e(0x82)](_0x50f1e2[_0x8e71e(0xfc)],_0x461122[_0x8e71e(0x268)]);}}},'tooltip':{'callbacks':{'title':function(_0x109d74){const _0xa8f1b1=_0x1cf294,_0x2db4ba=_0x109d74[0x0][_0xa8f1b1(0x25f)],_0x17cb99=_0x13941e[_0x2db4ba];return _0x17cb99?_0x17cb99[_0xa8f1b1(0x18c)]+_0xa8f1b1(0x1b7)+_0x17cb99[_0xa8f1b1(0x241)]+_0xa8f1b1(0x1b7)+_0x17cb99[_0xa8f1b1(0xc0)]:_0x109d74[0x0][_0xa8f1b1(0x236)];},'label':function(_0x49d5e5){const _0x413959=_0x1cf294;return'MACO:\x20'+_0x49d5e5[_0x413959(0x224)]['y'][_0x413959(0x2bf)](0x6)+_0x413959(0x10e);}}}},'scales':{'x':{'title':{'display':!0x0,'text':_0x50f1e2[_0x1cf294(0x295)]},'ticks':{'maxRotation':0x0,'minRotation':0x0,'font':{'size':0xa}}},'y':{'title':{'display':!0x0,'text':_0x50f1e2[_0x1cf294(0x300)]},'type':_0x50f1e2[_0x1cf294(0x2f5)]}}}}),console['log'](_0x50f1e2['nZQTU']));}()),(function(){const _0x226364=_0x2aa438,_0x5d99e3={'FRWrj':function(_0x5abcb9,_0x161474){return _0x5abcb9+_0x161474;},'QLPmZ':function(_0x26fcaa,_0x238e60,_0x2580b0){const _0x24c068=a2_0x5737;return _0x50f1e2[_0x24c068(0x2af)](_0x26fcaa,_0x238e60,_0x2580b0);},'TdkPw':_0x50f1e2[_0x226364(0x1b9)],'kaBSb':_0x50f1e2[_0x226364(0xfc)]};console[_0x226364(0x1bb)](_0x226364(0x2fa));const _0x274476=document[_0x226364(0x309)](_0x50f1e2[_0x226364(0x1a5)]);if(!_0x274476)return void console['log'](_0x50f1e2[_0x226364(0xfd)]);g();const _0x55c038=a2_0x50428e();if(0x0===_0x55c038[_0x226364(0xbf)])return void console[_0x226364(0x1bb)]('No\x20train\x20data\x20available\x20for\x20highest\x20RPN\x20chart');const _0x3dec4e=[];_0x55c038[_0x226364(0x1d2)](_0xf971b0=>{const _0x389f09=_0x226364,_0x241d92={'ZauIk':function(_0x47cba0,_0x31d64d){return _0x47cba0(_0x31d64d);},'aYXtX':function(_0x4a8fb8,_0x55f767){const _0x5aae29=a2_0x5737;return _0x50f1e2[_0x5aae29(0x20f)](_0x4a8fb8,_0x55f767);}};let _0x423909=0x0,_0xca812f=null,_0x14487e=null;if(_0xf971b0['products'][_0x389f09(0x1d2)](_0x3a069c=>{const _0x37aeba=_0x389f09,_0x48451c={'weNvH':function(_0x2c3ea4,_0x331017){const _0x1ac448=a2_0x5737;return _0x241d92[_0x1ac448(0x29a)](_0x2c3ea4,_0x331017);},'raXeq':function(_0x2623b4,_0x377f49){const _0x284dd0=a2_0x5737;return _0x241d92[_0x284dd0(0x12e)](_0x2623b4,_0x377f49);}};_0x3a069c[_0x37aeba(0x14b)]&&Array[_0x37aeba(0x203)](_0x3a069c['activeIngredients'])&&_0x3a069c[_0x37aeba(0x14b)][_0x37aeba(0x1d2)](_0x48cd56=>{const _0x2f374c=_0x37aeba;try{const _0x4500ca=_0x48451c[_0x2f374c(0x93)](a2_0xadbd9b,_0x48cd56),_0x15ced0=_0x4500ca?.['rpn']||0x0;_0x15ced0&&_0x48451c[_0x2f374c(0x2c1)](_0x15ced0,_0x423909)&&(_0x423909=_0x15ced0,_0xca812f=_0x3a069c['name'],_0x14487e=_0x48cd56[_0x2f374c(0x25e)]);}catch(_0x35922c){console['warn']('Error\x20calculating\x20RPN\x20for\x20ingredient:',_0x48cd56,_0x35922c);}});}),_0x50f1e2[_0x389f09(0x133)](_0x423909,0x0)){const _0x52b0fd=_0x50f1e2[_0x389f09(0x293)](getTrainIdToLineNumberMap)[_0x389f09(0x1a7)](String(_0xf971b0['id'])),_0x6cda3b=_0x52b0fd?_0x52b0fd[_0x389f09(0x1c6)]:_0xf971b0['id'];_0x3dec4e[_0x389f09(0xd3)]({'line':_0xf971b0[_0x389f09(0x18c)]||'Unassigned','dosageForm':_0x50f1e2[_0x389f09(0x7a)](_0xf971b0[_0x389f09(0x29f)][_0x389f09(0xbf)],0x0)&&_0xf971b0[_0x389f09(0x29f)][0x0][_0x389f09(0x2f4)]||_0x389f09(0x13a),'trainName':_0x389f09(0x30e)+_0x6cda3b,'highestRpn':_0x423909,'productName':_0xca812f,'ingredientName':_0x14487e});}}),_0x3dec4e[_0x226364(0x15b)]((_0x3366b7,_0xca01c1)=>_0x3366b7[_0x226364(0x18c)]!==_0xca01c1[_0x226364(0x18c)]?_0x3366b7[_0x226364(0x18c)][_0x226364(0xcf)](_0xca01c1[_0x226364(0x18c)]):_0x3366b7['dosageForm']!==_0xca01c1[_0x226364(0x241)]?_0x3366b7['dosageForm']['localeCompare'](_0xca01c1[_0x226364(0x241)]):_0x3366b7[_0x226364(0xc0)]['localeCompare'](_0xca01c1[_0x226364(0xc0)])),console[_0x226364(0x1bb)](_0x50f1e2[_0x226364(0x274)],_0x3dec4e);const _0x18b69a=[],_0x16eaac=[],_0x5d9735=[],_0x25d907=[];_0x3dec4e[_0x226364(0x1d2)]((_0x3b6b11,_0x11b76d)=>{const _0x530b8=_0x226364,_0x4ef51b=_0x5d99e3[_0x530b8(0x1a6)](_0x11b76d,0x1);_0x18b69a[_0x530b8(0xd3)]('T'+_0x4ef51b),_0x16eaac[_0x530b8(0xd3)](_0x3b6b11['highestRpn']);const _0xe9575b=_0x5d99e3[_0x530b8(0x8c)](f,_0x3b6b11[_0x530b8(0x18c)],_0x3b6b11[_0x530b8(0x241)]);_0x5d9735[_0x530b8(0xd3)](_0xe9575b),_0x25d907['push'](_0xe9575b),_0x3b6b11['sequentialNumber']=_0x4ef51b;});const _0x562860=[...new Set(_0x3dec4e[_0x226364(0x213)](_0x1088ae=>_0x1088ae[_0x226364(0x18c)]))][_0x226364(0x15b)]()[_0x226364(0x213)](_0xfddf09=>{const _0x242a73=_0x226364,_0x1b20df=new Set();_0x3dec4e['forEach'](_0x5760a0=>{const _0x39ce26=a2_0x5737;_0x5760a0['line']===_0xfddf09&&_0x1b20df[_0x39ce26(0x254)](_0x5760a0['dosageForm']);});const _0xf32a07=Array[_0x242a73(0x13c)](_0x1b20df)[_0x242a73(0x15b)]()[_0x242a73(0x19b)](',\x20');return{'label':_0xfddf09+':\x20'+_0xf32a07,'data':[],'backgroundColor':f(_0xfddf09,'dummy'),'borderColor':_0x5d99e3[_0x242a73(0x8c)](f,_0xfddf09,_0x5d99e3[_0x242a73(0x13f)]),'borderWidth':0x1};});_0x562860[_0x226364(0xd3)]({'label':_0x226364(0x1dd),'data':_0x16eaac,'backgroundColor':_0x5d9735,'borderColor':_0x25d907,'borderWidth':0x1});const _0x393336=_0x274476[_0x226364(0x2e2)]('2d');window[_0x226364(0x263)]&&_0x50f1e2[_0x226364(0x245)](_0x226364(0x216),typeof window['highestRpnByTrainChart'][_0x226364(0x191)])&&window[_0x226364(0x263)][_0x226364(0x191)](),(window['highestRpnByTrainChart']=new Chart(_0x393336,{'type':_0x226364(0x257),'data':{'labels':_0x18b69a,'datasets':_0x562860},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'plugins':{'title':{'display':!0x1,'text':_0x50f1e2[_0x226364(0x1b1)],'font':{'size':0x10,'weight':_0x50f1e2[_0x226364(0x270)]}},'legend':{'display':!0x0,'position':_0x50f1e2[_0x226364(0xb9)],'labels':{'padding':0x14,'usePointStyle':!0x0,'font':{'size':0xe},'filter':function(_0x18697a){const _0x18f588=_0x226364;return _0x5d99e3[_0x18f588(0x231)]!==_0x18697a[_0x18f588(0x268)];}}},'tooltip':{'callbacks':{'label':function(_0x2a5fc3){const _0x24becd=_0x226364,_0x25c312=_0x2a5fc3[_0x24becd(0x25f)],_0x3dc2ff=_0x3dec4e[_0x25c312];return _0x3dc2ff?_0x3dc2ff[_0x24becd(0xc0)]+_0x24becd(0x125)+_0x3dc2ff[_0x24becd(0x196)]+'\x20('+_0x3dc2ff[_0x24becd(0x158)]+')':_0x2a5fc3[_0x24becd(0x259)][_0x24becd(0x236)]+':\x20'+_0x2a5fc3['parsed']['y'];}}}},'scales':{'x':{'title':{'display':!0x0,'text':_0x50f1e2[_0x226364(0x295)]},'ticks':{'maxRotation':0x0,'minRotation':0x0,'font':{'size':0xa}}},'y':{'title':{'display':!0x0,'text':_0x50f1e2['GnKqv']},'beginAtZero':!0x0}}}}),console[_0x226364(0x1bb)](_0x50f1e2[_0x226364(0xe2)]));}()),(function(){const _0x22d6ef=_0x2aa438,_0x4c3546={'JbfWI':function(_0x3db2ac,_0x2b678a){return _0x3db2ac(_0x2b678a);},'XLgxs':function(_0x2eb460,_0x4af2ae){const _0x3b50ca=a2_0x5737;return _0x50f1e2[_0x3b50ca(0x133)](_0x2eb460,_0x4af2ae);},'SwAmb':_0x50f1e2[_0x22d6ef(0x86)],'MWlAc':function(_0x5b6daa,_0x2a68ed){return _0x50f1e2['wVTci'](_0x5b6daa,_0x2a68ed);}},_0x3409ae=document['getElementById'](_0x22d6ef(0x189));if(!_0x3409ae)return;const _0x50e9a1=[];a2_0x1acb9c[_0x22d6ef(0x1d2)](_0x276dc3=>{const _0x28dee4=_0x22d6ef;if(_0x276dc3['activeIngredients']&&_0x4c3546[_0x28dee4(0x122)](_0x276dc3['activeIngredients'][_0x28dee4(0xbf)],0x0)){let _0x3fb6f2=0x0;_0x276dc3[_0x28dee4(0x14b)][_0x28dee4(0x1d2)](_0x6eefb3=>{const _0x3b6d86=_0x28dee4;try{const _0x5c49e0=_0x4c3546[_0x3b6d86(0x30b)](a2_0xadbd9b,_0x6eefb3),_0x10c0ff=_0x5c49e0?.[_0x3b6d86(0x15a)]||0x0;_0x4c3546[_0x3b6d86(0xcb)](_0x10c0ff,_0x3fb6f2)&&(_0x3fb6f2=_0x10c0ff);}catch(_0x425ccd){console['warn'](_0x4c3546[_0x3b6d86(0x21d)],_0x425ccd);}}),_0x3fb6f2>0x0&&_0x50e9a1[_0x28dee4(0xd3)]({'name':_0x276dc3['name'],'rpn':_0x3fb6f2});}}),_0x50e9a1[_0x22d6ef(0x15b)]((_0x5517f1,_0x1305c5)=>_0x1305c5['rpn']-_0x5517f1[_0x22d6ef(0x15a)]);const _0x318de9=_0x50e9a1[_0x22d6ef(0x23b)](0x0,0xa),_0x730625=_0x3409ae[_0x22d6ef(0x2e2)]('2d');window[_0x22d6ef(0x10a)]&&window[_0x22d6ef(0x10a)][_0x22d6ef(0x191)](),window[_0x22d6ef(0x10a)]=new Chart(_0x730625,{'type':_0x50f1e2[_0x22d6ef(0x8b)],'data':{'labels':_0x318de9[_0x22d6ef(0x213)](_0x350871=>_0x350871[_0x22d6ef(0x25e)]['length']>0x14?_0x350871['name'][_0x22d6ef(0xee)](0x0,0x14)+'...':_0x350871[_0x22d6ef(0x25e)]),'datasets':[{'label':_0x50f1e2[_0x22d6ef(0x8a)],'data':_0x318de9[_0x22d6ef(0x213)](_0x2a01a7=>_0x2a01a7[_0x22d6ef(0x15a)]),'backgroundColor':_0x50f1e2[_0x22d6ef(0x11e)],'borderColor':_0x22d6ef(0x24c),'borderWidth':0x1}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'indexAxis':'y','plugins':{'title':{'display':!0x0,'text':'Top\x2010\x20Products\x20by\x20RPN\x20Score','font':{'size':0x10,'weight':_0x50f1e2[_0x22d6ef(0x270)]}},'legend':{'display':!0x1}},'scales':{'x':{'beginAtZero':!0x0,'title':{'display':!0x0,'text':_0x22d6ef(0x194)}},'y':{'title':{'display':!0x0,'text':_0x50f1e2['CtMtS']}}}}});}()),_0x50f1e2[_0x2aa438(0x2c5)](renderMachineCoverageTable));}function y(){const _0x51efff=a2_0x410315,_0x4c6b89={'NnJbb':function(_0x36e076,_0x103606){return _0x36e076>_0x103606;},'gQlPs':_0x51efff(0x2b3),'zMhbm':_0x51efff(0x22b)},_0x2d011d={},_0x1f9636={};return a2_0x1acb9c[_0x51efff(0x1d2)](_0x398f6d=>{const _0x4a6679=_0x51efff;if(_0x398f6d[_0x4a6679(0x1ec)]&&_0x4c6b89[_0x4a6679(0x2ac)](_0x398f6d[_0x4a6679(0x1ec)][_0x4a6679(0xbf)],0x0)){const _0x5aa977=_0x398f6d[_0x4a6679(0x18c)]||_0x4c6b89[_0x4a6679(0xf6)];_0x1f9636[_0x5aa977]||(_0x1f9636[_0x5aa977]=[]),_0x1f9636[_0x5aa977]['push'](_0x398f6d);}}),Object[_0x51efff(0x2cb)](_0x1f9636)[_0x51efff(0x1d2)](_0x4a0ac0=>{const _0x5c2b9f=_0x51efff,_0x1903de=_0x1f9636[_0x4a0ac0],_0x45863e={};_0x1903de[_0x5c2b9f(0x1d2)](_0x2692a9=>{const _0x2d22d9=_0x5c2b9f,_0x5d05d7=_0x2692a9['productType']||_0x2d22d9(0x13a);_0x45863e[_0x5d05d7]||(_0x45863e[_0x5d05d7]=[]),_0x45863e[_0x5d05d7][_0x2d22d9(0xd3)](_0x2692a9);}),Object[_0x5c2b9f(0x2cb)](_0x45863e)[_0x5c2b9f(0x1d2)](_0x31ef8c=>{const _0x247c72=_0x5c2b9f,_0x1f0833=_0x45863e[_0x31ef8c],_0x69b852={};_0x1f0833[_0x247c72(0x1d2)](_0x2837e9=>{const _0x42dadb=_0x247c72,_0x2dca17=JSON['stringify'](_0x2837e9[_0x42dadb(0x1ec)][_0x42dadb(0x15b)]((_0x4ba47c,_0x554247)=>_0x4ba47c-_0x554247));_0x69b852[_0x2dca17]||(_0x69b852[_0x2dca17]=[]),_0x69b852[_0x2dca17][_0x42dadb(0xd3)](_0x2837e9);});const _0x3f9859=Object['keys'](_0x69b852)[_0x247c72(0xbf)];_0x2d011d[_0x4a0ac0]||(_0x2d011d[_0x4a0ac0]={}),_0x2d011d[_0x4a0ac0][_0x31ef8c]=_0x3f9859;});}),console[_0x51efff(0x1bb)](_0x4c6b89[_0x51efff(0xe3)],_0x2d011d),_0x2d011d;}function C(){const _0x38940d=a2_0x410315,_0x4cd2cf={'krMvd':function(_0x53ce8a,_0x1a1e9a){return _0x53ce8a>_0x1a1e9a;}},_0x1a8562={};return a2_0x48d633()['forEach'](_0x4356c6=>{const _0x2aeeba=a2_0x5737,_0x4424d0={'spPrg':function(_0x725813,_0x211933){return _0x725813>_0x211933;}},_0x25f6c3=_0x4356c6[_0x2aeeba(0x18c)],_0xddef33=_0x4356c6['trains'];_0x1a8562[_0x25f6c3]||(_0x1a8562[_0x25f6c3]={});const _0x552a75={};_0xddef33[_0x2aeeba(0x1d2)](_0x474680=>{const _0x2f6b08=_0x2aeeba;_0x474680[_0x2f6b08(0x29f)]&&_0x4cd2cf[_0x2f6b08(0x1b3)](_0x474680[_0x2f6b08(0x29f)][_0x2f6b08(0xbf)],0x0)&&[...new Set(_0x474680[_0x2f6b08(0x29f)][_0x2f6b08(0x213)](_0x5c12c6=>_0x5c12c6['productType']||_0x2f6b08(0x13a)))][_0x2f6b08(0x1d2)](_0x3b0644=>{_0x552a75[_0x3b0644]||(_0x552a75[_0x3b0644]=[]),_0x552a75[_0x3b0644]['push'](_0x474680);});}),Object['keys'](_0x552a75)[_0x2aeeba(0x1d2)](_0xff1cef=>{const _0xcbfb41=_0x2aeeba,_0x2dfe97=_0x552a75[_0xff1cef]['map'](_0x53f9e8=>{const _0x1b0b3c=a2_0x5737;let _0x4d332f=0x0;return _0x53f9e8[_0x1b0b3c(0x29f)]&&_0x4424d0[_0x1b0b3c(0x28e)](_0x53f9e8['products'][_0x1b0b3c(0xbf)],0x0)&&_0x53f9e8[_0x1b0b3c(0x29f)]['forEach'](_0x14dc21=>{const _0x296b2f=_0x1b0b3c,_0xedbbf={'yQvKW':function(_0x5ebf81,_0x403d81){return _0x5ebf81(_0x403d81);},'zqZyP':'Error\x20calculating\x20RPN\x20for\x20ingredient:'};_0x14dc21[_0x296b2f(0x14b)]&&Array[_0x296b2f(0x203)](_0x14dc21[_0x296b2f(0x14b)])&&_0x14dc21[_0x296b2f(0x14b)]['forEach'](_0x262773=>{const _0x147ed3=_0x296b2f;try{const _0x2da5a3=_0xedbbf['yQvKW'](a2_0xadbd9b,_0x262773),_0x2fb030=_0x2da5a3?.['rpn']||0x0;_0x2fb030&&_0x2fb030>_0x4d332f&&(_0x4d332f=_0x2fb030);}catch(_0x23e119){console[_0x147ed3(0x19f)](_0xedbbf[_0x147ed3(0x18e)],_0x262773,_0x23e119);}});}),{'train':_0x53f9e8,'rpn':_0x4d332f};})[_0xcbfb41(0x15b)]((_0x489c3d,_0xe8d0cc)=>_0xe8d0cc['rpn']-_0x489c3d[_0xcbfb41(0x15a)]),_0x20c682=new Set();let _0x4619df=0x0;_0x2dfe97[_0xcbfb41(0x1d2)](({train:_0x435117})=>{const _0x58e0c3=_0xcbfb41;_0x435117[_0x58e0c3(0x1ec)]&&_0x435117[_0x58e0c3(0x1ec)][_0x58e0c3(0xbf)]>0x0&&(_0x435117[_0x58e0c3(0x1ec)][_0x58e0c3(0x98)](_0x1d1a9f=>!_0x20c682[_0x58e0c3(0x1d9)](_0x1d1a9f))&&(_0x4619df++,_0x435117[_0x58e0c3(0x1ec)]['forEach'](_0x137e72=>_0x20c682['add'](_0x137e72))));}),_0x4424d0[_0xcbfb41(0x28e)](_0x4619df,0x0)&&(_0x1a8562[_0x25f6c3][_0xff1cef]=_0x4619df);});}),console[_0x38940d(0x1bb)](_0x38940d(0xce),_0x1a8562),_0x1a8562;}function w(){const _0x2ddf7a=a2_0x410315,_0x2e0b3d={'lNHEa':function(_0x5d4b6c,_0x1f7d8b){return _0x5d4b6c===_0x1f7d8b;},'deiyY':_0x2ddf7a(0x2b3),'vmoAC':_0x2ddf7a(0x13a),'RpZlp':_0x2ddf7a(0xda),'lNDHD':_0x2ddf7a(0x230)},_0x418d96={},_0x5c6743={},_0x1b5efc={};return a2_0x1acb9c[_0x2ddf7a(0x1d2)](_0x4d4312=>{const _0x8b0f7f=_0x2ddf7a;if(_0x2e0b3d[_0x8b0f7f(0x180)](!0x0,_0x4d4312[_0x8b0f7f(0x165)])){const _0x4c17f3=_0x4d4312[_0x8b0f7f(0x18c)]||_0x2e0b3d[_0x8b0f7f(0x11f)];_0x1b5efc[_0x4c17f3]||(_0x1b5efc[_0x4c17f3]=[]),_0x1b5efc[_0x4c17f3]['push'](_0x4d4312);}}),Object[_0x2ddf7a(0x2cb)](_0x1b5efc)[_0x2ddf7a(0x1d2)](_0x5c9dfc=>{const _0x4cb281=_0x2ddf7a,_0x301901={'LFOiK':_0x2e0b3d[_0x4cb281(0x118)]},_0x940188=_0x1b5efc[_0x5c9dfc],_0x5b9139={};_0x940188['forEach'](_0x5384ed=>{const _0x20a526=_0x4cb281,_0x57b432=_0x5384ed[_0x20a526(0x2f4)]||_0x301901[_0x20a526(0x1b0)];_0x5b9139[_0x57b432]||(_0x5b9139[_0x57b432]=[]),_0x5b9139[_0x57b432][_0x20a526(0xd3)](_0x5384ed);}),Object['keys'](_0x5b9139)['forEach'](_0x107442=>{const _0x53032d=_0x4cb281,_0x1bbf44=_0x5b9139[_0x107442][_0x53032d(0xbf)];_0x1bbf44>0x0&&(_0x418d96[_0x5c9dfc]||(_0x418d96[_0x5c9dfc]={}),_0x418d96[_0x5c9dfc][_0x107442]=_0x1bbf44,_0x5c6743[_0x5c9dfc+'-'+_0x107442]=_0x5b9139[_0x107442][_0x53032d(0x213)](_0x348079=>_0x348079[_0x53032d(0x25e)]));});}),console[_0x2ddf7a(0x1bb)](_0x2e0b3d[_0x2ddf7a(0x2bc)],_0x418d96),console['log'](_0x2e0b3d[_0x2ddf7a(0x283)],_0x5c6743),window[_0x2ddf7a(0x107)]=_0x5c6743,_0x418d96;}function $(){const _0x9f808a=a2_0x410315,_0x3efece={'DIwNG':function(_0x181149,_0x5db840){return _0x181149(_0x5db840);},'tROxO':function(_0x5701eb,_0x25bca7,_0x2993){return _0x5701eb(_0x25bca7,_0x2993);},'OvPun':function(_0x2340cc,_0x3fea06){return _0x2340cc/_0x3fea06;},'ntYVg':function(_0x9e153b,_0x3049f2){return _0x9e153b*_0x3049f2;},'XvNpN':function(_0x30fd3e,_0x577add){return _0x30fd3e===_0x577add;},'YFzkO':_0x9f808a(0x30f),'kpxnH':_0x9f808a(0x1c0),'DYBlw':function(_0x526ce9,_0x34171f){return _0x526ce9!==_0x34171f;},'GJAfZ':function(_0x42091f,_0x3742e4){return _0x42091f>_0x3742e4;},'Qdgwv':_0x9f808a(0x1e0),'QDqtA':'Visual\x20Clean\x20Limit','KjirN':function(_0x2c8011){return _0x2c8011();},'dIvao':_0x9f808a(0x176),'kfQHx':_0x9f808a(0x73),'hTppB':_0x9f808a(0x1be),'vTXXu':_0x9f808a(0x1eb),'uKpuA':'Mock\x20distribution:','yIsjV':_0x9f808a(0x29e),'KTeRx':_0x9f808a(0x152),'fqtFL':'Final\x20line\x20groups\x20structure:','ubfzT':'Real\x20MACO\x20distribution:'},_0x5f225b={},_0xf66977={},_0x4c8add=_0x3efece[_0x9f808a(0x1e5)](a2_0x48d633);console[_0x9f808a(0x1bb)](_0x3efece[_0x9f808a(0x1d1)],_0x4c8add),console['log'](_0x3efece[_0x9f808a(0x22e)]);const _0x19460b=a2_0x50428e();if(console[_0x9f808a(0x1bb)](_0x3efece[_0x9f808a(0x1d3)],_0x19460b),!_0x19460b||0x0===_0x19460b[_0x9f808a(0xbf)])return console['log'](_0x3efece[_0x9f808a(0x251)]),_0x5f225b[_0x9f808a(0x106)]={'Tablets':0.000123,'Capsules':0.000456},_0x5f225b['Liquids']={'Syrups':0.000789,'Solutions':0.000321},_0x5f225b[_0x9f808a(0x85)]={'Creams':0.000654,'Ointments':0.000987},Object[_0x9f808a(0x2cb)](_0x5f225b)[_0x9f808a(0x1d2)](_0x2f4d66=>{const _0x2de57e=_0x9f808a;Object[_0x2de57e(0x2cb)](_0x5f225b[_0x2f4d66])[_0x2de57e(0x1d2)](_0xb2d08d=>{_0xf66977[_0x2f4d66+'-'+_0xb2d08d]=_0x5f225b[_0x2f4d66][_0xb2d08d];});}),window['minMacosValues']=_0xf66977,console[_0x9f808a(0x1bb)](_0x3efece[_0x9f808a(0x81)],_0x5f225b),_0x5f225b;const _0x396ad4={};return console['log'](_0x3efece[_0x9f808a(0xb4)],_0x19460b['length'],_0x3efece['KTeRx']),_0x19460b[_0x9f808a(0x1d2)](_0x47a0e2=>{const _0x93329f=_0x9f808a,_0xe54270=_0x47a0e2['line']||_0x47a0e2['productLine']||_0x93329f(0x2b3),_0x1c1b29=[...new Set(_0x47a0e2[_0x93329f(0x29f)]['map'](_0x1a2b66=>_0x1a2b66[_0x93329f(0x2f4)]||_0x93329f(0x13a)))];console['log'](_0x93329f(0x30e)+_0x47a0e2['id']+_0x93329f(0x76)+_0xe54270+_0x93329f(0x285)+_0x1c1b29[_0x93329f(0x19b)](',\x20')+']'),_0x396ad4[_0xe54270]||(_0x396ad4[_0xe54270]={}),_0x1c1b29[_0x93329f(0x1d2)](_0x5252d5=>{const _0x3de9f4=_0x93329f;_0x396ad4[_0xe54270][_0x5252d5]||(_0x396ad4[_0xe54270][_0x5252d5]=[]),_0x396ad4[_0xe54270][_0x5252d5][_0x3de9f4(0xd3)](_0x47a0e2),console[_0x3de9f4(0x1bb)](_0x3de9f4(0x1ae)+_0x47a0e2['id']+_0x3de9f4(0x258)+_0xe54270+_0x3de9f4(0x1b7)+_0x5252d5+_0x3de9f4(0xf1));});}),console[_0x9f808a(0x1bb)](_0x3efece[_0x9f808a(0x15f)],_0x396ad4),Object[_0x9f808a(0x2cb)](_0x396ad4)[_0x9f808a(0x1d2)](_0x4ee263=>{const _0x57d4d9=_0x9f808a;Object[_0x57d4d9(0x2cb)](_0x396ad4[_0x4ee263])[_0x57d4d9(0x1d2)](_0x3d663f=>{const _0x304a9c=_0x57d4d9,_0x4b214c=_0x396ad4[_0x4ee263][_0x3d663f]['length'];console[_0x304a9c(0x1bb)](_0x4ee263+_0x304a9c(0x1b7)+_0x3d663f+':\x20'+_0x4b214c+'\x20trains');});}),Object[_0x9f808a(0x2cb)](_0x396ad4)[_0x9f808a(0x1d2)](_0x289493=>{const _0x41e395=_0x9f808a,_0xfc8f84={'HrmBW':function(_0x1d9ac1,_0x445fcc){const _0x1613f9=a2_0x5737;return _0x3efece[_0x1613f9(0x1a9)](_0x1d9ac1,_0x445fcc);},'haPqb':function(_0x166a30,_0x381698,_0x5d387f){const _0x5e0e8d=a2_0x5737;return _0x3efece[_0x5e0e8d(0x9d)](_0x166a30,_0x381698,_0x5d387f);},'FjCYw':function(_0x105ea9,_0x14a18a){return _0x105ea9<=_0x14a18a;},'cnLcb':function(_0xe1d387,_0x131d68){return _0xe1d387<=_0x131d68;},'BGMon':function(_0x3c4ed7,_0x55d2a5){const _0x3e9566=a2_0x5737;return _0x3efece[_0x3e9566(0x161)](_0x3c4ed7,_0x55d2a5);},'NSPFb':function(_0x5cc9aa,_0x702b87){return _0x3efece['ntYVg'](_0x5cc9aa,_0x702b87);},'OKFfy':function(_0x23d157,_0x84fae4){return _0x3efece['XvNpN'](_0x23d157,_0x84fae4);},'XwYlf':_0x3efece['YFzkO'],'WfvYQ':_0x3efece['kpxnH'],'OGnTY':_0x41e395(0x2c9),'sNNPL':function(_0x28e33c,_0x53ff9b){const _0x8cdc6c=_0x41e395;return _0x3efece[_0x8cdc6c(0x1f1)](_0x28e33c,_0x53ff9b);},'FHswF':function(_0xe7f55d,_0xa5e148){return _0x3efece['GJAfZ'](_0xe7f55d,_0xa5e148);},'ZOXAu':function(_0x551574,_0x337a39){return _0x3efece['ntYVg'](_0x551574,_0x337a39);},'NYCZO':_0x41e395(0x225),'ptknh':function(_0x1a3559,_0x388d54){const _0x336a1f=_0x41e395;return _0x3efece[_0x336a1f(0x1f1)](_0x1a3559,_0x388d54);},'dofUu':function(_0xe24e7d,_0x41935b){const _0x3382e3=_0x41e395;return _0x3efece[_0x3382e3(0x18d)](_0xe24e7d,_0x41935b);},'hJlCZ':_0x3efece['Qdgwv'],'apsSN':function(_0x2d3e3f,_0x51ecaa){const _0x51c743=_0x41e395;return _0x3efece[_0x51c743(0x1f1)](_0x2d3e3f,_0x51ecaa);},'QfiDi':_0x3efece[_0x41e395(0x233)],'ETJpg':function(_0x4b558d,_0x35db89){return _0x3efece['GJAfZ'](_0x4b558d,_0x35db89);},'atPyl':function(_0x13556d,_0x1db011){return _0x13556d(_0x1db011);},'aEkyt':function(_0x2c0af3,_0x4519ad){return _0x2c0af3>_0x4519ad;}},_0x299169=_0x396ad4[_0x289493];_0x5f225b[_0x289493]||(_0x5f225b[_0x289493]={}),Object[_0x41e395(0x2cb)](_0x299169)[_0x41e395(0x1d2)](_0x4de89b=>{const _0x52c8ea=_0x41e395,_0x33da05=_0x299169[_0x4de89b][_0x52c8ea(0x213)](_0x490ca5=>{const _0x45e36b=_0x52c8ea;try{console[_0x45e36b(0x1bb)](_0x45e36b(0x13e)+_0x490ca5['id']+'\x20in\x20'+_0x289493+'\x20-\x20'+_0x4de89b+':',_0x490ca5);const _0x1dcb38=a2_0x2b66d0[_0x45e36b(0x1fa)][_0xfc8f84['HrmBW'](a2_0x5b86d9,_0x490ca5['products']['map'](_0x364c21=>_0x364c21[_0x45e36b(0x2f4)]))]||a2_0x2b66d0[_0x45e36b(0x1fa)][_0x45e36b(0x13a)],_0x282b1d=_0x1dcb38['max'];console['log']('Safety\x20factor\x20config\x20for\x20'+_0x4de89b+':',_0x1dcb38);const _0x2740ba=_0xfc8f84[_0x45e36b(0x199)](a2_0x10d59c,_0x490ca5,_0x19460b);(!_0x490ca5[_0x45e36b(0x1d5)]||_0xfc8f84[_0x45e36b(0x15e)](_0x490ca5[_0x45e36b(0x1d5)],0x0))&&(console[_0x45e36b(0x19f)]('Train\x20'+_0x490ca5['id']+_0x45e36b(0x2d0)+_0x490ca5[_0x45e36b(0x1d5)]+'),\x20using\x20default'),_0x490ca5[_0x45e36b(0x1d5)]=0x64),(!_0x490ca5[_0x45e36b(0x250)]||_0x490ca5[_0x45e36b(0x250)]<=0x0)&&(console[_0x45e36b(0x19f)](_0x45e36b(0x30e)+_0x490ca5['id']+':\x20Invalid\x20minBsMddRatio\x20('+_0x490ca5[_0x45e36b(0x250)]+'),\x20using\x20default'),_0x490ca5[_0x45e36b(0x250)]=0x3e8),(!_0x490ca5[_0x45e36b(0x2f0)]||_0xfc8f84[_0x45e36b(0x2b6)](_0x490ca5['minMbsKg'],0x0))&&(console[_0x45e36b(0x19f)]('Train\x20'+_0x490ca5['id']+_0x45e36b(0x7c)+_0x490ca5[_0x45e36b(0x2f0)]+_0x45e36b(0x9a)),_0x490ca5[_0x45e36b(0x2f0)]=0x64),(!_0x490ca5[_0x45e36b(0xc1)]||_0x490ca5[_0x45e36b(0xc1)]<=0x0)&&(console[_0x45e36b(0x19f)](_0x45e36b(0x30e)+_0x490ca5['id']+_0x45e36b(0x2e9)+_0x490ca5['assumedSsa']+_0x45e36b(0x9a)),_0x490ca5[_0x45e36b(0xc1)]=0x19);const _0x5b722b=_0xfc8f84[_0x45e36b(0x102)](_0xfc8f84[_0x45e36b(0x25a)](_0x490ca5[_0x45e36b(0x1d5)],_0x490ca5[_0x45e36b(0x250)]),_0x282b1d),_0x353648=0xa*_0x490ca5[_0x45e36b(0x2f0)];let _0x4b703e=_0xfc8f84['BGMon'](0x1,0x0),_0xbe3408=_0xfc8f84[_0x45e36b(0x102)](0x1,0x0);const _0x3d367a=_0xfc8f84[_0x45e36b(0x151)](_0x45e36b(0x1c0),localStorage[_0x45e36b(0x1d7)](_0xfc8f84['XwYlf'])),_0x1f06cf=_0xfc8f84[_0x45e36b(0xe8)]===localStorage[_0x45e36b(0x1d7)](_0xfc8f84['OGnTY']);if(_0xfc8f84[_0x45e36b(0x87)](null,_0x490ca5[_0x45e36b(0x1cb)])&&_0xfc8f84['FHswF'](_0x490ca5[_0x45e36b(0x1cb)],0x0)&&!_0x3d367a&&(_0x4b703e=_0xfc8f84[_0x45e36b(0x25a)](_0x490ca5[_0x45e36b(0x1cb)],_0x490ca5[_0x45e36b(0x250)]),console[_0x45e36b(0x1bb)]('Train\x20'+_0x490ca5['id']+':\x20PDE-based\x20MACO\x20=\x20'+_0x4b703e)),_0xfc8f84[_0x45e36b(0x87)](null,_0x490ca5[_0x45e36b(0x17e)])&&_0xfc8f84[_0x45e36b(0x2ff)](_0x490ca5[_0x45e36b(0x17e)],0x0)&&!_0x1f06cf){const _0x3862ae=_0xfc8f84[_0x45e36b(0x29b)](0x46,_0x490ca5[_0x45e36b(0x17e)])/0x7d0,_0x3d7bda=_0x490ca5[_0x45e36b(0x29f)]['flatMap'](_0x500173=>_0x500173[_0x45e36b(0x14b)][_0x45e36b(0x213)](_0x573138=>_0x573138[_0x45e36b(0x292)]/0x3e8)),_0x29a0aa=Math[_0x45e36b(0xca)](..._0x3d7bda[_0x45e36b(0x1f3)](_0x2dff5e=>_0x2dff5e>0x0));_0xfc8f84[_0x45e36b(0x2ff)](_0x29a0aa,0x0)&&_0xfc8f84[_0x45e36b(0x27f)](isFinite,_0x29a0aa)&&(_0xbe3408=_0xfc8f84[_0x45e36b(0x29b)](_0x3862ae*_0x490ca5[_0x45e36b(0x2f0)],0x3e8)/(_0x282b1d*_0x29a0aa),console['log'](_0x45e36b(0x30e)+_0x490ca5['id']+_0x45e36b(0x289)+_0xbe3408));}const _0x4e6063=_0xfc8f84[_0x45e36b(0x25a)](0.004,_0x2740ba),_0x4db901=[{'name':_0xfc8f84['NYCZO'],'value':_0x5b722b},{'name':'10\x20ppm\x20Criterion','value':_0x353648}];_0xfc8f84[_0x45e36b(0x11b)](null,_0x490ca5[_0x45e36b(0x1cb)])&&_0xfc8f84[_0x45e36b(0x204)](_0x490ca5[_0x45e36b(0x1cb)],0x0)&&!_0x3d367a&&_0x4db901['push']({'name':_0xfc8f84['hJlCZ'],'value':_0x4b703e}),_0xfc8f84[_0x45e36b(0x156)](null,_0x490ca5[_0x45e36b(0x17e)])&&_0xfc8f84[_0x45e36b(0x204)](_0x490ca5[_0x45e36b(0x17e)],0x0)&&!_0x1f06cf&&_0x4db901[_0x45e36b(0xd3)]({'name':'Health-Based\x20Limit\x20(NOEL)','value':_0xbe3408}),_0x4db901[_0x45e36b(0xd3)]({'name':_0xfc8f84[_0x45e36b(0x17a)],'value':_0x4e6063});const _0x32befe=_0x4db901[_0x45e36b(0x1f3)](_0x2ee08d=>_0x2ee08d['value']>0x0&&isFinite(_0x2ee08d[_0x45e36b(0x16d)])&&!isNaN(_0x2ee08d['value']));if(_0xfc8f84[_0x45e36b(0x151)](0x0,_0x32befe[_0x45e36b(0xbf)]))return console[_0x45e36b(0x2e1)](_0x45e36b(0x30e)+_0x490ca5['id']+':\x20No\x20valid\x20MACO\x20values\x20found'),{'train':_0x490ca5,'maco':0.001};const _0x4be009=_0x32befe[_0x45e36b(0xa7)]((_0x47ae75,_0x26101a)=>_0x26101a[_0x45e36b(0x16d)]<_0x47ae75[_0x45e36b(0x16d)]?_0x26101a:_0x47ae75),_0x1654a9=_0x4be009[_0x45e36b(0x16d)],_0x23b6a9=_0x2740ba>0x0?_0xfc8f84['BGMon'](_0x1654a9,_0x2740ba):_0xfc8f84['BGMon'](_0x1654a9,0x2710),_0xd0156a=_0x23b6a9*_0x490ca5[_0x45e36b(0xc1)];console['log'](_0x45e36b(0x30e)+_0x490ca5['id']+_0x45e36b(0x1c7),{'macoDose':_0x5b722b,'maco10ppm':_0x353648,'macoHealth':_0x4b703e,'macoNoel':_0xbe3408,'macoVisual':_0x4e6063,'finalMaco':_0x1654a9,'macoPerArea':_0x23b6a9,'macoPerSwab':_0xd0156a,'selectedLimit':_0x4be009[_0x45e36b(0x25e)],'lineLargestEssa':_0x2740ba,'assumedSsa':_0x490ca5[_0x45e36b(0xc1)]});const _0x4f2b25=_0xfc8f84[_0x45e36b(0xde)](_0xd0156a,0x0)&&_0xfc8f84['atPyl'](isFinite,_0xd0156a)&&!_0xfc8f84[_0x45e36b(0x183)](isNaN,_0xd0156a)?_0xd0156a:0.001;return console[_0x45e36b(0x1bb)](_0x45e36b(0x30e)+_0x490ca5['id']+'\x20result\x20MACO:\x20'+_0x4f2b25),{'train':_0x490ca5,'maco':_0x4f2b25};}catch(_0x5ba19){return console[_0x45e36b(0x2e1)](_0x45e36b(0x209)+_0x490ca5['id']+':',_0x5ba19),{'train':_0x490ca5,'maco':0.001};}});if(_0xfc8f84[_0x52c8ea(0x14f)](_0x33da05[_0x52c8ea(0xbf)],0x0)){const _0x5d0f13=_0x33da05[_0x52c8ea(0xa7)]((_0x7148a7,_0x33780f)=>_0x33780f[_0x52c8ea(0x147)]<_0x7148a7[_0x52c8ea(0x147)]?_0x33780f:_0x7148a7);console[_0x52c8ea(0x1bb)]('Minimum\x20MACO\x20for\x20'+_0x289493+_0x52c8ea(0x1b7)+_0x4de89b+':',_0x5d0f13[_0x52c8ea(0x147)]),_0x5f225b[_0x289493][_0x4de89b]=_0x5d0f13[_0x52c8ea(0x147)],_0xf66977[_0x289493+'-'+_0x4de89b]=_0x5d0f13[_0x52c8ea(0x147)];}});}),console[_0x9f808a(0x1bb)](_0x3efece[_0x9f808a(0x10b)],_0x5f225b),console['log'](_0x9f808a(0x2cd),_0xf66977),window[_0x9f808a(0x17b)]=_0xf66977,_0x5f225b;}export function renderMacoChart(){const _0x4a097b=a2_0x410315,_0x25f869={'HarnI':function(_0x4e058a,_0x1e27e8){return _0x4e058a(_0x1e27e8);},'BNWHD':function(_0x4d1815,_0x320750){return _0x4d1815/_0x320750;},'nXkOC':function(_0x596225,_0x4ba4a4){return _0x596225*_0x4ba4a4;},'jCqRp':function(_0x3d7f5c,_0x52f4e8){return _0x3d7f5c*_0x52f4e8;},'XXYye':function(_0x1416d8,_0x57395e){return _0x1416d8!==_0x57395e;},'Lkiho':function(_0x2eb67c,_0x2fb18a){return _0x2eb67c*_0x2fb18a;},'WHNKp':function(_0x57fe2d,_0x3a9895){return _0x57fe2d>_0x3a9895;},'JXByp':'macoChartPlaceholder','uNMZg':function(_0x49ac93){return _0x49ac93();},'pjbxn':function(_0x425443,_0x37d6f3){return _0x425443===_0x37d6f3;},'yGFQn':_0x4a097b(0xf4),'KChAt':'flex','AgOuI':_0x4a097b(0x134),'uZpUE':_0x4a097b(0x2f1),'pmCuc':'bar','JowSq':'MACO\x20per\x20Swab','Aiggf':_0x4a097b(0x1d4),'SEBFF':_0x4a097b(0x25d),'vKQJw':_0x4a097b(0x282)},_0x3197f3=document[_0x4a097b(0x309)]('macoChartCanvas'),_0x5b3781=document[_0x4a097b(0x309)](_0x25f869['JXByp']),_0x10db6e=_0x25f869[_0x4a097b(0x116)](a2_0x50428e);if(_0x25f869['pjbxn'](0x0,_0x10db6e[_0x4a097b(0xbf)]))return _0x3197f3[_0x4a097b(0x1cc)][_0x4a097b(0x243)]=_0x25f869[_0x4a097b(0x20c)],_0x5b3781[_0x4a097b(0x1cc)][_0x4a097b(0x243)]=_0x25f869[_0x4a097b(0x103)],void(a2_0x177c4b&&a2_0x177c4b['destroy']());_0x3197f3[_0x4a097b(0x1cc)][_0x4a097b(0x243)]=_0x25f869[_0x4a097b(0xe4)],_0x5b3781[_0x4a097b(0x1cc)][_0x4a097b(0x243)]=_0x25f869[_0x4a097b(0x20c)];const _0x263723=a2_0x10e60c['getTrainIdToLineNumberMap'](),_0xcb97ad=_0x10db6e[_0x4a097b(0x213)](_0x4db011=>{const _0x5f0f22=_0x4a097b,_0x5b5fdd=_0x263723[_0x5f0f22(0x1a7)](_0x25f869[_0x5f0f22(0x27c)](String,_0x4db011['id']));return _0x5b5fdd?_0x5b5fdd[_0x5f0f22(0x18c)]+_0x5f0f22(0x226)+_0x5b5fdd[_0x5f0f22(0x1c6)]:_0x5f0f22(0x30e)+_0x4db011['id'];}),_0x5d7ba2=_0x10db6e[_0x4a097b(0x213)](_0xe7a6e6=>function(_0x5407f3,_0x5a54d3){const _0x335ce1=_0x4a097b,_0x2c240e=(a2_0x2b66d0['safetyFactorConfig'][a2_0x5b86d9(_0x5407f3[_0x335ce1(0x29f)][_0x335ce1(0x213)](_0x3962a6=>_0x3962a6[_0x335ce1(0x2f4)]))]||a2_0x2b66d0[_0x335ce1(0x1fa)][_0x335ce1(0x13a)])[_0x335ce1(0x242)],_0x80f55b=a2_0x10d59c(_0x5407f3,_0x5a54d3),_0x5f1aba=_0x25f869['BNWHD'](_0x25f869['nXkOC'](_0x5407f3[_0x335ce1(0x1d5)],_0x5407f3[_0x335ce1(0x250)]),_0x2c240e),_0x44e4f8=_0x25f869[_0x335ce1(0x294)](0xa,_0x5407f3['minMbsKg']);let _0x57c408=_0x25f869[_0x335ce1(0x1de)](0x1,0x0);_0x25f869[_0x335ce1(0xa9)](null,_0x5407f3[_0x335ce1(0x1cb)])&&(_0x57c408=_0x25f869[_0x335ce1(0x2fc)](_0x5407f3['lowestPde'],_0x5407f3[_0x335ce1(0x250)]));const _0x55478c=0.004*_0x80f55b,_0x374a5b=Math[_0x335ce1(0xca)](_0x5f1aba,_0x44e4f8,_0x57c408,_0x55478c);return _0x25f869[_0x335ce1(0x222)](_0x25f869[_0x335ce1(0x2a8)](_0x80f55b,0x0)?_0x374a5b/_0x80f55b:0x0,_0x5407f3[_0x335ce1(0xc1)]);}(_0xe7a6e6,_0x10db6e));a2_0x177c4b&&a2_0x177c4b['destroy']();const _0x2dc163=_0x3197f3[_0x4a097b(0x2e2)]('2d'),_0x36830d=_0x2dc163['createLinearGradient'](0x0,0x0,0x0,0x190);_0x36830d[_0x4a097b(0xe5)](0x0,'rgba(59,\x20130,\x20246,\x200.8)'),_0x36830d[_0x4a097b(0xe5)](0x1,_0x25f869[_0x4a097b(0x17c)]);const _0x19fe8c=new Chart(_0x2dc163,{'type':_0x25f869['pmCuc'],'data':{'labels':_0xcb97ad,'datasets':[{'label':_0x25f869['JowSq'],'data':_0x5d7ba2,'backgroundColor':_0x36830d,'borderColor':_0x25f869[_0x4a097b(0xc2)],'borderWidth':0x1}]},'options':{'responsive':!0x0,'maintainAspectRatio':!0x1,'scales':{'x':{'ticks':{'color':_0x25f869[_0x4a097b(0x168)]},'grid':{'display':!0x1}},'y':{'type':_0x4a097b(0x260),'ticks':{'color':_0x4a097b(0x25d)},'grid':{'display':!0x1},'title':{'display':!0x0,'text':_0x25f869[_0x4a097b(0x18a)],'color':_0x25f869[_0x4a097b(0x168)]}}},'plugins':{'legend':{'display':!0x1},'tooltip':{'callbacks':{'label':function(_0x1b0aca){const _0x504621=_0x4a097b;let _0x119cdb=_0x1b0aca[_0x504621(0x259)][_0x504621(0x236)]||'';return _0x119cdb&&(_0x119cdb+=':\x20'),_0x25f869[_0x504621(0xa9)](null,_0x1b0aca[_0x504621(0x224)]['y'])&&(_0x119cdb+=_0x1b0aca['parsed']['y']['toLocaleString'](void 0x0,{'maximumFractionDigits':0x5})),_0x119cdb;}}}}}});a2_0x2b66d0[_0x4a097b(0x2ab)](_0x19fe8c);}function a2_0x5737(_0x1fdf75,_0x4bd568){const _0x45d152=a2_0x45d1();return a2_0x5737=function(_0x5737b0,_0x2d1a78){_0x5737b0=_0x5737b0-0x73;let _0x46906d=_0x45d152[_0x5737b0];return _0x46906d;},a2_0x5737(_0x1fdf75,_0x4bd568);}export function renderMachineCoverageTable(){const _0x625afd=a2_0x410315,_0x44ec50={'taOBW':_0x625afd(0x8d),'Dshcc':function(_0x3dc98f){return _0x3dc98f();}},_0x31aff2=document[_0x625afd(0x309)](_0x44ec50['taOBW']);_0x31aff2&&(_0x31aff2[_0x625afd(0x2eb)]=_0x44ec50[_0x625afd(0x164)](a2_0x198161));}
+ // Renders the main dashboard with stats and charts
+ // js/dashboardView.js
+import { products, machines, macoChartInstance, setMacoChartInstance, getSafetyFactorForDosageForm } from './state.js';
+import { getTrainData, getWorstCaseProductType, getLargestEssaForLineAndDosageForm, getTrainsGroupedByLine, calculateScores } from './utils.js'; // Assuming getTrainData is in utils
+import * as utils from './utils.js';
+import { renderRpnChart } from './worstCaseView.js'; // The RPN chart is on the worst-case tab but shown here too
+import * as state from './state.js';
+import { createHorizontalMachineCoverageTable } from './machineCoverageView.js';
+
+// Central color management for consistent colors across all charts - Extended palette for more unique colors
+const CHART_COLORS = [
+    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', 
+    '#FF9F40', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
+    '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE',
+    '#85C1E9', '#F8C471', '#82E0AA', '#F1948A', '#AED6F1',
+    '#E74C3C', '#3498DB', '#F39C12', '#27AE60', '#8E44AD',
+    '#E67E22', '#1ABC9C', '#34495E', '#F1C40F', '#E91E63',
+    '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4',
+    '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B'
+];
+
+// Global cached color mapping to ensure consistency across all charts
+let globalColorMapping = null;
+
+// Create consistent color mapping for lines (cached)
+function initializeColorMapping() {
+    if (globalColorMapping) {
+        return globalColorMapping;
+    }
+    
+    const colorMapping = new Map();
+    let colorIndex = 0;
+    
+    // Get all unique lines from train data
+    const trainData = getTrainData();
+    const lines = new Set();
+    
+    trainData.forEach(train => {
+        const line = train.line || train.productLine || 'Unassigned';
+        lines.add(line);
+    });
+    
+    // Sort lines for consistent ordering, ensuring each gets a unique color
+    const sortedLines = Array.from(lines).sort();
+    
+    console.log('Creating color mapping for lines:', sortedLines);
+    
+    // Assign colors to each line ensuring no duplicates
+    sortedLines.forEach((line, index) => {
+        const color = CHART_COLORS[index % CHART_COLORS.length];
+        colorMapping.set(line, color);
+        console.log(`Line "${line}" -> Color ${color} (index: ${index})`);
+        colorIndex++;
+    });
+    
+    // Verify no duplicate colors were assigned
+    const assignedColors = Array.from(colorMapping.values());
+    const uniqueColors = [...new Set(assignedColors)];
+    if (assignedColors.length !== uniqueColors.length) {
+        console.warn('WARNING: Duplicate colors detected in mapping!');
+        console.log('Assigned colors:', assignedColors);
+        console.log('Unique colors:', uniqueColors);
+    }
+    
+    globalColorMapping = colorMapping;
+    return colorMapping;
+}
+
+// Get color for a specific line (all dosage forms in same line get same color)
+function getColorForCombination(line, dosageForm) {
+    const colorMapping = initializeColorMapping();
+    const color = colorMapping.get(line) || CHART_COLORS[0];
+    console.log(`Getting color for ${line} - ${dosageForm}: ${color} (using line color)`);
+    return color;
+}
+
+// Reset color mapping (call when data changes)
+export function resetColorMapping() {
+    console.log('Resetting color mapping for consistency');
+    globalColorMapping = null;
+}
+
+// Chart expand functionality
+let expandedChartInstance = null;
+
+export function expandChart(chartId, chartTitle) {
+    const modal = document.getElementById('chartExpandModal');
+    const modalTitle = document.getElementById('chartExpandModalTitle');
+    const expandedCanvas = document.getElementById('expandedChart');
+    
+    // Set modal title
+    modalTitle.textContent = chartTitle;
+    
+    // Show modal
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Destroy any existing expanded chart
+    if (expandedChartInstance) {
+        expandedChartInstance.destroy();
+        expandedChartInstance = null;
+    }
+    
+    // Recreate the chart in the modal with larger size
+    setTimeout(() => {
+        recreateChartInModal(chartId, expandedCanvas);
+    }, 100);
+}
+
+export function closeChartExpandModal() {
+    const modal = document.getElementById('chartExpandModal');
+    
+    // Destroy expanded chart
+    if (expandedChartInstance) {
+        expandedChartInstance.destroy();
+        expandedChartInstance = null;
+    }
+    
+    // Hide modal
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function recreateChartInModal(originalChartId, expandedCanvas) {
+    const ctx = expandedCanvas.getContext('2d');
+    
+    // Map chart IDs to their recreation functions
+    const chartRecreationMap = {
+        'dosageFormPieChart': () => recreateTrainsDistributionChart(ctx),
+        'studiesPieChart': () => recreateStudiesDistributionChart(ctx),
+        'specialCasesPieChart': () => recreateSpecialCasesChart(ctx),
+        'minMacosPieChart': () => recreateMinMacosChart(ctx),
+        'trainsByLineAndDosageChart': () => recreateTrainsByLineChart(ctx),
+        'highestRpnByTrainChart': () => recreateHighestRpnChart(ctx)
+    };
+    
+    const recreationFunction = chartRecreationMap[originalChartId];
+    if (recreationFunction) {
+        expandedChartInstance = recreationFunction();
+    } else {
+        console.warn(`No recreation function found for chart: ${originalChartId}`);
+    }
+}
+
+// Recreation functions for each chart type
+function recreateTrainsDistributionChart(ctx) {
+    // Initialize color mapping for consistency
+    initializeColorMapping();
+    
+    // Use the same data source as the original chart
+    const distribution = getTrainsDistributionByLineAndDosageForm();
+    
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    const linesInLegend = new Set();
+
+    // Process each line and dosage form combination with consistent colors
+    Object.keys(distribution).forEach(line => {
+        const lineData = distribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+
+        // Add each dosage form as a separate slice with consistent colors
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+
+    return new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Trains Distribution',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        generateLabels: function(chart) {
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value} train${value !== 1 ? 's' : ''}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function recreateStudiesDistributionChart(ctx) {
+    initializeColorMapping();
+    
+    // Use the same data source as the original chart
+    const studiesDistribution = getStudiesDistributionByLineAndDosageForm();
+
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    const linesInLegend = new Set();
+
+    // Process each line and dosage form combination with consistent colors
+    Object.keys(studiesDistribution).forEach(line => {
+        const lineData = studiesDistribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+
+        // Add each dosage form as a separate slice with consistent colors
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+
+    return new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Studies Distribution',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        generateLabels: function(chart) {
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value} ${value === 1 ? 'study' : 'studies'}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function recreateSpecialCasesChart(ctx) {
+    initializeColorMapping();
+    
+    // Use the same data source as the original chart
+    const specialCasesDistribution = getSpecialCasesDistributionByLineAndDosageForm();
+
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    const linesInLegend = new Set();
+
+    Object.keys(specialCasesDistribution).forEach(line => {
+        const lineData = specialCasesDistribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+
+    if (labels.length === 0) {
+        // No special cases - show placeholder
+        labels.push('No Special Cases');
+        data.push(1);
+        backgroundColors.push('#e5e7eb');
+        borderColors.push('#fff');
+    }
+
+    return new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Special Cases Distribution',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        generateLabels: function(chart) {
+                            if (labels[0] === 'No Special Cases') {
+                                return [{
+                                    text: 'No Special Cases',
+                                    fillStyle: '#e5e7eb',
+                                    strokeStyle: '#e5e7eb',
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                }];
+                            }
+                            
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value} special case${value !== 1 ? 's' : ''}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function recreateMinMacosChart(ctx) {
+    initializeColorMapping();
+    
+    // Use the same data source as the original chart
+    const minMacosDistribution = getMinMacosDistributionByLineAndDosageForm();
+
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    const linesInLegend = new Set();
+
+    Object.keys(minMacosDistribution).forEach(line => {
+        const lineData = minMacosDistribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+
+        Object.keys(lineData).forEach(dosageForm => {
+            const value = lineData[dosageForm];
+            
+            // More lenient validation and add defaults if needed
+            if (value && value > 0 && !isNaN(value) && isFinite(value)) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(value);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            } else if (dosageForm && line) {
+                // Add small default value for missing data to ensure all dosage forms appear
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(0.001);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff');
+                linesInLegend.add(line);
+            }
+        });
+    });
+
+    return new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Minimum MACO Distribution',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        generateLabels: function(chart) {
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value.toFixed(6)} mg/Swab`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function recreateTrainsByLineChart(ctx) {
+    initializeColorMapping();
+    
+    const trainData = getTrainData();
+    if (trainData.length === 0) {
+        return null;
+    }
+    
+    // Use the same grouping logic as the original chart
+    const groupedData = {};
+    const allLines = new Set();
+    const allDosageForms = new Set();
+    
+    trainData.forEach(train => {
+        const line = train.line || 'Unassigned';
+        const dosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+        
+        allLines.add(line);
+        dosageForms.forEach(dosageForm => {
+            allDosageForms.add(dosageForm);
+            
+            if (!groupedData[line]) {
+                groupedData[line] = {};
+            }
+            if (!groupedData[line][dosageForm]) {
+                groupedData[line][dosageForm] = [];
+            }
+            
+            // Calculate MACO per swab for this train (same logic as original)
+            const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+            const sf = sfConfig.max;
+            const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+            
+            const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+            const maco10ppm = 10 * train.minMbsKg;
+            let macoHealth = Infinity;
+            let macoNoel = Infinity;
+            
+            const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+            const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+            
+            if (train.lowestPde !== null && !pdeHidden) {
+                macoHealth = train.lowestPde * train.minBsMddRatio;
+            }
+            
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                const noel = (train.lowestLd50 * 70) / 2000;
+                const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000));
+                const minMdd = Math.min(...allMdds);
+                macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+            }
+            
+            const macoVisual = 0.004 * lineLargestEssa;
+            
+            const allMacoValues = [
+                { name: '0.1% Therapeutic Dose', value: macoDose },
+                { name: '10 ppm Criterion', value: maco10ppm }
+            ];
+            
+            if (train.lowestPde !== null && !pdeHidden) {
+                allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+            }
+            
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+            }
+            
+            allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
+            
+            const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+            const finalMaco = finalMacoResult.value;
+            const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+            const macoPerSwab = macoPerArea * train.assumedSsa;
+            
+            // Get proper train numbering
+            const idMap = getTrainIdToLineNumberMap();
+            const mapped = idMap.get(String(train.id));
+            const trainNumber = mapped ? mapped.number : train.id;
+            
+            groupedData[line][dosageForm].push({
+                trainId: train.id,
+                trainName: `Train ${trainNumber}`,
+                macoPerSwab: macoPerSwab
+            });
+        });
+    });
+    
+    // Prepare data for Chart.js - Show individual trains with correct labels (exact same as original)
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Create a flat structure: [line-dosageForm-train] combinations (same as original)
+    const flatTrainData = [];
+    
+    Array.from(allLines).sort().forEach(line => {
+        const lineData = groupedData[line] || {};
+        const dosageForms = Object.keys(lineData).sort();
+        
+        dosageForms.forEach(dosageForm => {
+            const trains = lineData[dosageForm] || [];
+            trains.forEach(train => {
+                flatTrainData.push({
+                    line: line,
+                    dosageForm: dosageForm,
+                    trainName: train.trainName,
+                    macoPerSwab: train.macoPerSwab
+                });
+            });
+        });
+    });
+    
+    // Sort trains by line, then dosage form, then train number (same as original)
+    flatTrainData.sort((a, b) => {
+        if (a.line !== b.line) return a.line.localeCompare(b.line);
+        if (a.dosageForm !== b.dosageForm) return a.dosageForm.localeCompare(b.dosageForm);
+        return a.trainName.localeCompare(b.trainName);
+    });
+    
+    // Create single dataset with all trains using consistent colors and sequential numbering (same as original)
+    flatTrainData.forEach((item, index) => {
+        // Sequential train numbering (1, 2, 3, 4, ...)
+        const sequentialNumber = index + 1;
+        
+        // Short label for space efficiency: just "T1", "T2", etc.
+        labels.push(`T${sequentialNumber}`);
+        data.push(item.macoPerSwab);
+        const color = getColorForCombination(item.line, item.dosageForm);
+        backgroundColors.push(color);
+        borderColors.push(color);
+        
+        // Store full info for tooltips
+        item.sequentialNumber = sequentialNumber;
+    });
+    
+    // Create datasets for legend (one per line with dosage forms) (same as original)
+    const uniqueLines = [...new Set(flatTrainData.map(item => item.line))].sort();
+    const datasets = uniqueLines.map(line => {
+        // Find all dosage forms for this line
+        const dosageFormsInLine = new Set();
+        flatTrainData.forEach(item => {
+            if (item.line === line) {
+                dosageFormsInLine.add(item.dosageForm);
+            }
+        });
+        
+        const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+        const legendText = `${line}: ${dosageFormsList}`;
+        
+        return {
+            label: legendText,
+            data: [], // Empty data, just for legend
+            backgroundColor: getColorForCombination(line, 'dummy'),
+            borderColor: getColorForCombination(line, 'dummy'),
+            borderWidth: 1
+        };
+    });
+    
+    // Add the main dataset with all data
+    datasets.push({
+        label: 'Trains',
+        data: data,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+    });
+
+    return new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Trains by Line and Dosage Form',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        filter: function(legendItem) {
+                            return legendItem.text !== 'Trains';
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(context) {
+                            const index = context[0].dataIndex;
+                            const trainData = flatTrainData[index];
+                            if (trainData) {
+                                return `${trainData.line} - ${trainData.dosageForm} - ${trainData.trainName}`;
+                            }
+                            return context[0].label;
+                        },
+                        label: function(context) {
+                            const value = context.parsed.y;
+                            return `MACO: ${value.toFixed(6)} mg/Swab`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Trains in Line and Group'
+                    },
+                    ticks: {
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'MACO per Swab (mg/Swab)'
+                    },
+                    type: 'logarithmic'
+                }
+            }
+        }
+    });
+}
+
+function recreateHighestRpnChart(ctx) {
+    initializeColorMapping();
+    
+    const trainData = getTrainData();
+    if (trainData.length === 0) {
+        return null;
+    }
+    
+    // Calculate highest RPN for each train (same logic as original)
+    const trainRpnData = [];
+    
+    trainData.forEach(train => {
+        let highestRpn = 0;
+        let highestRpnProduct = null;
+        let highestRpnIngredient = null;
+        
+        // Find the highest RPN across all products in this train
+        train.products.forEach(product => {
+            if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                product.activeIngredients.forEach(ingredient => {
+                    try {
+                        const scores = calculateScores(ingredient);
+                        const rpn = scores?.rpn || 0;
+                        if (rpn && rpn > highestRpn) {
+                            highestRpn = rpn;
+                            highestRpnProduct = product.name;
+                            highestRpnIngredient = ingredient.name;
+                        }
+                    } catch (error) {
+                        console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                    }
+                });
+            }
+        });
+        
+        if (highestRpn > 0) {
+            // Get proper train numbering
+            const idMap = getTrainIdToLineNumberMap();
+            const mapped = idMap.get(String(train.id));
+            const trainNumber = mapped ? mapped.number : train.id;
+            
+            trainRpnData.push({
+                line: train.line || 'Unassigned',
+                dosageForm: train.products.length > 0 ? train.products[0].productType || 'Other' : 'Other',
+                trainName: `Train ${trainNumber}`,
+                highestRpn: highestRpn,
+                productName: highestRpnProduct,
+                ingredientName: highestRpnIngredient
+            });
+        }
+    });
+
+    // Sort by line, then dosage form, then train number (same as original)
+    trainRpnData.sort((a, b) => {
+        if (a.line !== b.line) return a.line.localeCompare(b.line);
+        if (a.dosageForm !== b.dosageForm) return a.dosageForm.localeCompare(b.dosageForm);
+        return a.trainName.localeCompare(b.trainName);
+    });
+    
+    // Prepare chart data (same as original)
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Create labels and data with consistent colors and sequential numbering (same as original)
+    trainRpnData.forEach((item, index) => {
+        // Sequential train numbering (1, 2, 3, 4, ...)
+        const sequentialNumber = index + 1;
+        
+        // Short label for space efficiency: just "T1", "T2", etc.
+        labels.push(`T${sequentialNumber}`);
+        data.push(item.highestRpn);
+        const color = getColorForCombination(item.line, item.dosageForm);
+        backgroundColors.push(color);
+        borderColors.push(color);
+        
+        // Store full info for tooltips
+        item.sequentialNumber = sequentialNumber;
+    });
+    
+    // Create datasets for legend (one per line with dosage forms) (same as original)
+    const uniqueLines = [...new Set(trainRpnData.map(item => item.line))].sort();
+    const datasets = uniqueLines.map(line => {
+        // Find all dosage forms for this line
+        const dosageFormsInLine = new Set();
+        trainRpnData.forEach(item => {
+            if (item.line === line) {
+                dosageFormsInLine.add(item.dosageForm);
+            }
+        });
+        
+        const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+        const legendText = `${line}: ${dosageFormsList}`;
+        
+        return {
+            label: legendText,
+            data: [], // Empty data, just for legend
+            backgroundColor: getColorForCombination(line, 'dummy'),
+            borderColor: getColorForCombination(line, 'dummy'),
+            borderWidth: 1
+        };
+    });
+    
+    // Add the main dataset with all data
+    datasets.push({
+        label: 'Trains',
+        data: data,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+    });
+
+    return new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Highest RPN by Train',
+                    font: { size: 18, weight: 'bold' },
+                    padding: 20
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        filter: function(legendItem) {
+                            return legendItem.text !== 'Trains';
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(context) {
+                            const index = context[0].dataIndex;
+                            const trainData = trainRpnData[index];
+                            if (trainData) {
+                                return `${trainData.line} - ${trainData.dosageForm} - ${trainData.trainName}`;
+                            }
+                            return context[0].label;
+                        },
+                        label: function(context) {
+                            const index = context.dataIndex;
+                            const item = trainRpnData[index];
+                            if (item) {
+                                return `RPN: ${item.highestRpn} (${item.productName})`;
+                            }
+                            return `RPN: ${context.parsed.y}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Trains in Line and Group'
+                    },
+                    ticks: {
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Highest RPN Value'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+/**
+ * Calculate the total number of studies required using the machine coverage algorithm
+ */
+function calculateTotalRequiredStudies() {
+    // Use the same logic as the train summary view
+    const linesWithTrains = getTrainsGroupedByLine();
+    let totalStudies = 0;
+    
+    linesWithTrains.forEach(lineObj => {
+        const line = lineObj.line;
+        const trains = lineObj.trains;
+        
+        // Group trains by dosage form within this line
+        const groupedTrains = {};
+        
+        trains.forEach(train => {
+            if (train.products && train.products.length > 0) {
+                const dosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+                dosageForms.forEach(dosageForm => {
+                    const groupKey = `${line}-${dosageForm}`;
+                    if (!groupedTrains[groupKey]) {
+                        groupedTrains[groupKey] = {
+                            line,
+                            dosageForm,
+                            trains: []
+                        };
+                    }
+                    groupedTrains[groupKey].trains.push(train);
+                });
+            }
+        });
+        
+        // Calculate studies for each group
+        Object.values(groupedTrains).forEach(group => {
+            const trainsInGroup = group.trains;
+            
+            // Calculate RPN for each train and sort by RPN (highest first)
+            const trainsWithRPN = trainsInGroup.map(train => {
+                let highestRPN = 0;
+                if (train.products && train.products.length > 0) {
+                    train.products.forEach(product => {
+                        if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                            product.activeIngredients.forEach(ingredient => {
+                                try {
+                                    const rpn = utils.calculateScores(ingredient).rpn;
+                                    if (rpn && rpn > highestRPN) {
+                                        highestRPN = rpn;
+                                    }
+                                } catch (error) {
+                                    console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                                }
+                            });
+                        }
+                    });
+                }
+                return { train, rpn: highestRPN };
+            }).sort((a, b) => b.rpn - a.rpn);
+            
+            // Calculate studies needed based on machine coverage
+            const coveredMachines = new Set();
+            let studiesNeeded = 0;
+            
+            trainsWithRPN.forEach(({ train }) => {
+                if (train.machineIds && train.machineIds.length > 0) {
+                    const hasNewMachines = train.machineIds.some(id => !coveredMachines.has(id));
+                    if (hasNewMachines) {
+                        studiesNeeded++;
+                        train.machineIds.forEach(id => coveredMachines.add(id));
+                    }
+                }
+            });
+            
+            totalStudies += studiesNeeded;
+        });
+    });
+    
+    return totalStudies;
+}
+
+export function renderMainDashboard() {
+    // Reset color mapping to ensure consistency when data changes
+    resetColorMapping();
+    
+    const statsContainer = document.getElementById('dashboardStats');
+    statsContainer.innerHTML = '';
+    const trainData = getTrainData();
+            
+            let lowestMacoTrain = { id: 'N/A', finalMaco: Infinity };
+            let largestEssaTrain = { id: 'N/A', essa: 0 };
+            if (trainData.length > 0) {
+                 const finalTrainData = trainData.map(train => {
+                    const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+                    const sf = sfConfig.max;
+                    
+                    // Calculate line-specific largest ESSA for this train
+                    const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+                    
+                    const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+                    const maco10ppm = 10 * train.minMbsKg;
+                    let macoHealth = Infinity;
+                    if (train.lowestPde !== null) {
+                        macoHealth = train.lowestPde * train.minBsMddRatio;
+                    }
+                    const macoVisual = (0.004) * lineLargestEssa;
+                    return {...train, finalMaco: Math.min(macoDose, maco10ppm, macoHealth, macoVisual) };
+                 });
+
+                 lowestMacoTrain = finalTrainData.reduce((min, t) => t.finalMaco < min.finalMaco ? t : min);
+                 largestEssaTrain = finalTrainData.reduce((max, t) => t.essa > max.essa ? t : max);
+            }
+
+            // Build mapping for friendly labels
+            const idMap = utils.getTrainIdToLineNumberMap();
+
+            const friendlyLowest = (lowestMacoTrain && lowestMacoTrain.id !== 'N/A')
+                ? (idMap.get(String(lowestMacoTrain.id)) ? `${idMap.get(String(lowestMacoTrain.id)).line} — Train ${idMap.get(String(lowestMacoTrain.id)).number}` : `Train ${lowestMacoTrain.id}`)
+                : 'N/A';
+
+            const friendlyLargest = (largestEssaTrain && largestEssaTrain.id !== 'N/A')
+                ? (idMap.get(String(largestEssaTrain.id)) ? `${idMap.get(String(largestEssaTrain.id)).line} — Train ${idMap.get(String(largestEssaTrain.id)).number}` : `Train ${largestEssaTrain.id}`)
+                : 'N/A';
+
+            // Calculate additional KPIs
+            const totalRequiredStudies = calculateTotalRequiredStudies();
+            const highestRpnProduct = getHighestRpnProduct();
+
+            const stats = [
+                { label: 'Total Required Studies', value: totalRequiredStudies, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>' },
+                { label: 'Total Products', value: products.length, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16"><path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.405 1.372L8 2.267l3.75 2.605 2.405-1.372L8.186 1.113zM3.75 4.81L8 7.76l4.25-2.95L8 1.815 3.75 4.81z"/><path d="M1 4.53v7.94l6.5 3.53 6.5-3.53V4.53L8 8.06 1 4.53zm7.5 3.56l-3.5-2-3.5 2v7.19l3.5 2 3.5-2v-7.19zm3.5 2l-3.5 2v7.19l3.5-2 3.5 2v-7.19l-3.5-2z"/></svg>' },
+                { label: 'Total Trains', value: trainData.length, icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-diagram-3" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM3 11.5A1.5 1.5 0 0 1 4.5 10h1A1.5 1.5 0 0 1 7 11.5v1A1.5 1.5 0 0 1 5.5 14h-1A1.5 1.5 0 0 1 3 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 10.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 9 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/></svg>' },
+            ];
+
+            stats.forEach(stat => {
+                const card = document.createElement('div');
+                card.className = 'card p-4 flex items-center';
+               
+                card.innerHTML = `
+                    <div class="p-3 rounded-full mr-4 text-white" style="background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end))">
+                        ${stat.icon}
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold">${stat.value}</p>
+                        <p class="text-sm -mt-1" style="color: var(--text-secondary);">${stat.label}</p>
+                        ${stat.subValue ? `<p class="text-xs font-semibold mt-1" style="color: var(--text-primary);">${stat.subValue}</p>` : ''}
+                    </div>
+                `;
+                statsContainer.appendChild(card);
+            });
+
+            renderTrainsDistributionPieChart();
+            renderStudiesDistributionPieChart();
+            renderSpecialCasesDistributionPieChart();
+            renderMinMacosDistributionPieChart();
+            renderTrainsByLineAndDosageChart(); // New grouped bar chart
+            renderHighestRpnByTrainChart(); // New RPN chart
+            renderTopRpnProductsChart();
+            renderMachineCoverageTable();
+}
+
+// Helper functions for new KPIs
+function getHighestRpnProduct() {
+    let highestRpn = 0;
+    let highestProduct = { name: 'N/A', rpn: 0 };
+    
+    products.forEach(product => {
+        if (product.activeIngredients && product.activeIngredients.length > 0) {
+            product.activeIngredients.forEach(ingredient => {
+                const scores = calculateScores(ingredient);
+                const rpn = scores?.rpn || 0;
+                if (rpn > highestRpn) {
+                    highestRpn = rpn;
+                    highestProduct = { name: product.name, rpn: rpn };
+                }
+            });
+        }
+    });
+    
+    return highestProduct;
+}
+
+function getTrainsDistributionByLineAndDosageForm() {
+    // Build distribution by grouping products into trains
+    const distribution = {};
+    
+    // Group products by line first
+    const productsByLine = {};
+    products.forEach(product => {
+        if (product.machineIds && product.machineIds.length > 0) {
+            const line = product.line || 'Unassigned';
+            if (!productsByLine[line]) {
+                productsByLine[line] = [];
+            }
+            productsByLine[line].push(product);
+        }
+    });
+    
+    // For each line, group products by dosage form and then by machine path (train)
+    Object.keys(productsByLine).forEach(line => {
+        const lineProducts = productsByLine[line];
+        const dosageGroups = {};
+        
+        // Group by dosage form
+        lineProducts.forEach(product => {
+            const dosageForm = product.productType || 'Other';
+            if (!dosageGroups[dosageForm]) {
+                dosageGroups[dosageForm] = [];
+            }
+            dosageGroups[dosageForm].push(product);
+        });
+        
+        // For each dosage form, group by machine path to identify trains
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const dosageProducts = dosageGroups[dosageForm];
+            const trainGroups = {};
+            
+            // Group products by their machine path (sorted machine IDs)
+            dosageProducts.forEach(product => {
+                const machinePath = JSON.stringify(product.machineIds.sort((a, b) => a - b));
+                if (!trainGroups[machinePath]) {
+                    trainGroups[machinePath] = [];
+                }
+                trainGroups[machinePath].push(product);
+            });
+            
+            // Count the number of trains (unique machine paths) for this dosage form
+            const trainCount = Object.keys(trainGroups).length;
+            
+            if (!distribution[line]) {
+                distribution[line] = {};
+            }
+            distribution[line][dosageForm] = trainCount;
+        });
+    });
+    
+    console.log('Train-based distribution:', distribution);
+    return distribution;
+}
+
+function getStudiesDistributionByLineAndDosageForm() {
+    // Build distribution by calculating actual studies needed
+    const distribution = {};
+    
+    // Get all trains grouped by line
+    const linesWithTrains = getTrainsGroupedByLine();
+    
+    linesWithTrains.forEach(lineObj => {
+        const line = lineObj.line;
+        const trains = lineObj.trains;
+        
+        if (!distribution[line]) {
+            distribution[line] = {};
+        }
+        
+        // Group trains by dosage form
+        const dosageGroups = {};
+        trains.forEach(train => {
+            if (train.products && train.products.length > 0) {
+                const dosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+                dosageForms.forEach(dosageForm => {
+                    if (!dosageGroups[dosageForm]) {
+                        dosageGroups[dosageForm] = [];
+                    }
+                    dosageGroups[dosageForm].push(train);
+                });
+            }
+        });
+        
+        // Calculate studies for each dosage form
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const trainsInDosageForm = dosageGroups[dosageForm];
+            
+            // Calculate RPN for each train and sort by RPN (highest first)
+            const trainsWithRPN = trainsInDosageForm.map(train => {
+                let highestRPN = 0;
+                if (train.products && train.products.length > 0) {
+                    train.products.forEach(product => {
+                        if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                            product.activeIngredients.forEach(ingredient => {
+                                try {
+                                    const scores = calculateScores(ingredient);
+                const rpn = scores?.rpn || 0;
+                                    if (rpn && rpn > highestRPN) {
+                                        highestRPN = rpn;
+                                    }
+                                } catch (error) {
+                                    console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                                }
+                            });
+                        }
+                    });
+                }
+                return { train, rpn: highestRPN };
+            }).sort((a, b) => b.rpn - a.rpn); // Sort by RPN descending
+            
+            // Calculate studies needed based on machine coverage
+            const coveredMachines = new Set();
+            let studiesNeeded = 0;
+            
+            trainsWithRPN.forEach(({ train }) => {
+                if (train.machineIds && train.machineIds.length > 0) {
+                    const hasNewMachines = train.machineIds.some(id => !coveredMachines.has(id));
+                    if (hasNewMachines) {
+                        studiesNeeded++;
+                        train.machineIds.forEach(id => coveredMachines.add(id));
+                    }
+                }
+            });
+            
+            if (studiesNeeded > 0) {
+                distribution[line][dosageForm] = studiesNeeded;
+            }
+        });
+    });
+    
+    console.log('Studies distribution:', distribution);
+    return distribution;
+}
+
+function getSpecialCasesDistributionByLineAndDosageForm() {
+    // Build distribution by counting special case products
+    const distribution = {};
+    const productNames = {}; // Store product names for tooltips
+    
+    // Group products by line first
+    const productsByLine = {};
+    products.forEach(product => {
+        // Check if product is a special case (isCritical: true)
+        if (product.isCritical === true) {
+            const line = product.line || 'Unassigned';
+            if (!productsByLine[line]) {
+                productsByLine[line] = [];
+            }
+            productsByLine[line].push(product);
+        }
+    });
+    
+    // For each line, group special case products by dosage form
+    Object.keys(productsByLine).forEach(line => {
+        const lineProducts = productsByLine[line];
+        const dosageGroups = {};
+        
+        // Group by dosage form
+        lineProducts.forEach(product => {
+            const dosageForm = product.productType || 'Other';
+            if (!dosageGroups[dosageForm]) {
+                dosageGroups[dosageForm] = [];
+            }
+            dosageGroups[dosageForm].push(product);
+        });
+        
+        // Count special case products for each dosage form
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const count = dosageGroups[dosageForm].length;
+            if (count > 0) {
+                if (!distribution[line]) {
+                    distribution[line] = {};
+                }
+                distribution[line][dosageForm] = count;
+                
+                // Store product names for this line-dosage form combination
+                const key = `${line}-${dosageForm}`;
+                productNames[key] = dosageGroups[dosageForm].map(p => p.name);
+            }
+        });
+    });
+    
+    console.log('Special cases distribution:', distribution);
+    console.log('Special cases product names:', productNames);
+    
+    // Store product names globally for tooltip access
+    window.specialCasesProductNames = productNames;
+    
+    return distribution;
+}
+
+function getMinMacosDistributionByLineAndDosageForm() {
+    // Build distribution by finding minimum MACO for each dosage form in each line
+    const distribution = {};
+    const macoValues = {}; // Store MACO values for tooltips
+    
+    // Get all trains grouped by line
+    const linesWithTrains = getTrainsGroupedByLine();
+    console.log('Lines with trains:', linesWithTrains);
+    
+    // Use real data from existing train calculations
+    console.log('Using real MACO data for minimum MACO chart');
+    
+    // Get all trains with their calculated MACO values
+    const trainData = getTrainData();
+    console.log('Train data for MACO calculation:', trainData);
+    
+    if (!trainData || trainData.length === 0) {
+        console.log('No train data available, using mock data');
+        distribution['Solids'] = {
+            'Tablets': 0.000123,
+            'Capsules': 0.000456
+        };
+        distribution['Liquids'] = {
+            'Syrups': 0.000789,
+            'Solutions': 0.000321
+        };
+        distribution['Semisolid'] = {
+            'Creams': 0.000654,
+            'Ointments': 0.000987
+        };
+        
+        // Store mock MACO values
+        Object.keys(distribution).forEach(line => {
+            Object.keys(distribution[line]).forEach(dosageForm => {
+                const key = `${line}-${dosageForm}`;
+                macoValues[key] = distribution[line][dosageForm];
+            });
+        });
+        
+        window.minMacosValues = macoValues;
+        console.log('Mock distribution:', distribution);
+        return distribution;
+    }
+    
+    // Group trains by line and dosage form
+    const lineGroups = {};
+    
+    console.log('Processing train data for MACO distribution:', trainData.length, 'trains');
+    
+    trainData.forEach(train => {
+        const line = train.line || train.productLine || 'Unassigned';
+        const dosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+        
+        console.log(`Train ${train.id}: Line = ${line}, Dosage Forms = [${dosageForms.join(', ')}]`);
+        
+        if (!lineGroups[line]) {
+            lineGroups[line] = {};
+        }
+        
+        dosageForms.forEach(dosageForm => {
+            if (!lineGroups[line][dosageForm]) {
+                lineGroups[line][dosageForm] = [];
+            }
+            lineGroups[line][dosageForm].push(train);
+            console.log(`Added train ${train.id} to ${line} - ${dosageForm} group`);
+        });
+    });
+    
+    console.log('Final line groups structure:', lineGroups);
+    
+    // Log summary
+    Object.keys(lineGroups).forEach(line => {
+        Object.keys(lineGroups[line]).forEach(dosageForm => {
+            const trainCount = lineGroups[line][dosageForm].length;
+            console.log(`${line} - ${dosageForm}: ${trainCount} trains`);
+        });
+    });
+    
+    // Calculate minimum MACO for each line-dosage form combination
+    Object.keys(lineGroups).forEach(line => {
+        const lineData = lineGroups[line];
+        
+        if (!distribution[line]) {
+            distribution[line] = {};
+        }
+        
+        Object.keys(lineData).forEach(dosageForm => {
+            const trainsInGroup = lineData[dosageForm];
+            
+            // Calculate MACO for each train in this group using the same logic as Product MACO view
+            const trainMacos = trainsInGroup.map(train => {
+                try {
+                    console.log(`Calculating MACO for train ${train.id} in ${line} - ${dosageForm}:`, train);
+                    
+                    const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+                    const sf = sfConfig.max;
+                    
+                    console.log(`Safety factor config for ${dosageForm}:`, sfConfig);
+                    
+                    // Calculate line-specific largest ESSA for this train
+                    const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+                    
+                    // Check essential train data
+                    if (!train.lowestLtd || train.lowestLtd <= 0) {
+                        console.warn(`Train ${train.id}: Invalid lowestLtd (${train.lowestLtd}), using default`);
+                        train.lowestLtd = 100; // Default therapeutic dose in mg
+                    }
+                    
+                    if (!train.minBsMddRatio || train.minBsMddRatio <= 0) {
+                        console.warn(`Train ${train.id}: Invalid minBsMddRatio (${train.minBsMddRatio}), using default`);
+                        train.minBsMddRatio = 1000; // Default ratio
+                    }
+                    
+                    if (!train.minMbsKg || train.minMbsKg <= 0) {
+                        console.warn(`Train ${train.id}: Invalid minMbsKg (${train.minMbsKg}), using default`);
+                        train.minMbsKg = 100; // Default batch size in kg
+                    }
+                    
+                    if (!train.assumedSsa || train.assumedSsa <= 0) {
+                        console.warn(`Train ${train.id}: Invalid assumedSsa (${train.assumedSsa}), using default`);
+                        train.assumedSsa = 25; // Default SSA
+                    }
+                    
+                    // Use the same MACO calculation logic as Product MACO view
+                    const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+                    const maco10ppm = 10 * train.minMbsKg;
+                    let macoHealth = Infinity;
+                    let macoNoel = Infinity;
+                    
+                    // Check toxicity data visibility preferences
+                    const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+                    const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+                    
+                    // Calculate PDE-based MACO if PDE is available and not hidden
+                    if (train.lowestPde !== null && train.lowestPde > 0 && !pdeHidden) {
+                        macoHealth = train.lowestPde * train.minBsMddRatio;
+                        console.log(`Train ${train.id}: PDE-based MACO = ${macoHealth}`);
+                    }
+                    
+                    // Calculate NOEL-based MACO if LD50 is available and not hidden
+                    if (train.lowestLd50 !== null && train.lowestLd50 > 0 && !ld50Hidden) {
+                        // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+                        const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+                        // Find minimum MDD from all ingredients in the train
+                        const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+                        const minMdd = Math.min(...allMdds.filter(mdd => mdd > 0));
+                        if (minMdd > 0 && isFinite(minMdd)) {
+                            // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+                            macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+                            console.log(`Train ${train.id}: NOEL-based MACO = ${macoNoel}`);
+                        }
+                    }
+                    
+                    const macoVisual = 0.004 * lineLargestEssa;
+                    
+                    // Build MACO values array conditionally based on toxicity data visibility
+                    const allMacoValues = [
+                        { name: '0.1% Therapeutic Dose', value: macoDose },
+                        { name: '10 ppm Criterion', value: maco10ppm }
+                    ];
+                    
+                    // Add PDE equation only if PDE is available and not hidden
+                    if (train.lowestPde !== null && train.lowestPde > 0 && !pdeHidden) {
+                        allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+                    }
+                    
+                    // Add NOEL equation only if LD50 is available and not hidden
+                    if (train.lowestLd50 !== null && train.lowestLd50 > 0 && !ld50Hidden) {
+                        allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+                    }
+                    
+                    // Always add visual clean limit
+                    allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
+                    
+                    // Filter out invalid values before finding minimum
+                    const validMacoValues = allMacoValues.filter(m => 
+                        m.value > 0 && isFinite(m.value) && !isNaN(m.value)
+                    );
+                    
+                    if (validMacoValues.length === 0) {
+                        console.error(`Train ${train.id}: No valid MACO values found`);
+                        return { train, maco: 0.001 }; // Default small value
+                    }
+                    
+                    // Find the minimum MACO (same logic as Product MACO view)
+                    const finalMacoResult = validMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+                    const finalMaco = finalMacoResult.value;
+                    
+                    // Calculate MACO per swab (same as Product MACO view)
+                    const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : finalMaco / 10000; // Default area if missing
+                    const macoPerSwab = macoPerArea * train.assumedSsa;
+                    
+                    console.log(`Train ${train.id} final MACO calculation:`, {
+                        macoDose, maco10ppm, macoHealth, macoNoel, macoVisual, 
+                        finalMaco, macoPerArea, macoPerSwab, 
+                        selectedLimit: finalMacoResult.name,
+                        lineLargestEssa, assumedSsa: train.assumedSsa
+                    });
+                    
+                    // Ensure we return a valid positive number
+                    const resultMaco = (macoPerSwab > 0 && isFinite(macoPerSwab) && !isNaN(macoPerSwab)) 
+                        ? macoPerSwab 
+                        : 0.001; // Default small value
+                    
+                    console.log(`Train ${train.id} result MACO: ${resultMaco}`);
+                    
+                    return { train, maco: resultMaco };
+                } catch (error) {
+                    console.error(`Error calculating MACO for train ${train.id}:`, error);
+                    return { train, maco: 0.001 }; // Default small value instead of 0
+                }
+            });
+            
+            // Find minimum MACO
+            if (trainMacos.length > 0) {
+                const minMacoData = trainMacos.reduce((min, current) => 
+                    current.maco < min.maco ? current : min
+                );
+                
+                console.log(`Minimum MACO for ${line} - ${dosageForm}:`, minMacoData.maco);
+                distribution[line][dosageForm] = minMacoData.maco;
+                
+                // Store MACO value for tooltip
+                const key = `${line}-${dosageForm}`;
+                macoValues[key] = minMacoData.maco;
+            }
+        });
+    });
+    
+    console.log('Real MACO distribution:', distribution);
+    console.log('MACO values for tooltips:', macoValues);
+    
+    // Store MACO values globally for tooltip access
+    window.minMacosValues = macoValues;
+    
+    return distribution;
+}
+
+
+function renderTrainsDistributionPieChart() {
+    const canvas = document.getElementById('dosageFormPieChart');
+    if (!canvas) return;
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
+    const distribution = getTrainsDistributionByLineAndDosageForm();
+    const ctx = canvas.getContext('2d');
+    
+    // Clear previous chart
+    if (window.dosageFormChart) {
+        window.dosageFormChart.destroy();
+    }
+    
+    // Prepare data for simple pie chart
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Keep separate slices but prepare for grouped legend
+    const linesInLegend = new Set();
+    
+    // Process each line and dosage form combination with consistent colors
+    Object.keys(distribution).forEach(line => {
+        const lineData = distribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+        
+        // Add each dosage form as a separate slice with consistent colors
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count);
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+    
+    // Check if we have any data to display
+    if (labels.length === 0 || data.length === 0) {
+        console.log('No train data available for pie chart');
+        return;
+    }
+    
+    window.dosageFormChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: false,
+                    text: 'Trains Distribution by Line and Dosage Form',
+                    font: { size: 16, weight: 'bold' }
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 15,
+                        usePointStyle: true,
+                        font: {
+                            size: 12
+                        },
+                        generateLabels: function(chart) {
+                            // Create grouped legend showing line names with their dosage forms
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                // Find all dosage forms for this line
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value} train${value !== 1 ? 's' : ''}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function renderStudiesDistributionPieChart() {
+    const canvas = document.getElementById('studiesPieChart');
+    if (!canvas) return;
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
+    const studiesDistribution = getStudiesDistributionByLineAndDosageForm();
+    const ctx = canvas.getContext('2d');
+    
+    // Clear previous chart
+    if (window.studiesChart) {
+        window.studiesChart.destroy();
+    }
+    
+    // Prepare data for studies pie chart
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Keep separate slices but prepare for grouped legend
+    const linesInLegend = new Set();
+    
+    // Process each line and dosage form combination with consistent colors
+    Object.keys(studiesDistribution).forEach(line => {
+        const lineData = studiesDistribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+        
+        // Add each dosage form as a separate slice with consistent colors
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count); // Actual number of studies needed
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+    
+    // Check if we have any data to display
+    if (labels.length === 0 || data.length === 0) {
+        console.log('No studies data available for pie chart');
+        return;
+    }
+    
+    window.studiesChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: false,
+                    text: 'Studies Distribution by Line and Dosage Form',
+                    font: { size: 16, weight: 'bold' }
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        padding: 15,
+                        usePointStyle: true,
+                        font: {
+                            size: 12
+                        },
+                        generateLabels: function(chart) {
+                            // Create grouped legend showing line names with their dosage forms
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                // Find all dosage forms for this line
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',  
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            return `${label}: ${value} ${value === 1 ? 'study' : 'studies'}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function renderSpecialCasesDistributionPieChart() {
+    const canvas = document.getElementById('specialCasesPieChart');
+    if (!canvas) return;
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
+    const specialCasesDistribution = getSpecialCasesDistributionByLineAndDosageForm();
+    const ctx = canvas.getContext('2d');
+    
+    // Clear previous chart
+    if (window.specialCasesChart) {
+        window.specialCasesChart.destroy();
+    }
+    
+    // Prepare data for special cases pie chart
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Keep separate slices but prepare for grouped legend
+    const linesInLegend = new Set();
+    
+    // Process each line and dosage form combination with consistent colors
+    Object.keys(specialCasesDistribution).forEach(line => {
+        const lineData = specialCasesDistribution[line];
+        if (!lineData || typeof lineData !== 'object') return;
+        
+        // Add each dosage form as a separate slice with consistent colors
+        Object.keys(lineData).forEach(dosageForm => {
+            const count = lineData[dosageForm];
+            if (count && count > 0) {
+                const label = `${line} - ${dosageForm}`;
+                labels.push(label);
+                data.push(count); // Number of special case products
+                backgroundColors.push(getColorForCombination(line, dosageForm));
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+            }
+        });
+    });
+    
+    // Check if we have any data to display
+    if (labels.length === 0 || data.length === 0) {
+        console.log('No special cases data available for pie chart');
+        return;
+    }
+    
+    window.specialCasesChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderWidth: 2,
+                borderColor: borderColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: false,
+                    text: 'Special Cases Distribution by Line and Dosage Form',
+                    font: { size: 16, weight: 'bold' }
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        padding: 15,
+                        usePointStyle: true,
+                        font: {
+                            size: 12
+                        },
+                        generateLabels: function(chart) {
+                            // Create grouped legend showing line names with their dosage forms
+                            const uniqueLines = Array.from(linesInLegend).sort();
+                            return uniqueLines.map(line => {
+                                // Find all dosage forms for this line
+                                const dosageFormsInLine = new Set();
+                                labels.forEach((label, index) => {
+                                    if (label.startsWith(line + ' - ')) {
+                                        const dosageForm = label.replace(line + ' - ', '');
+                                        dosageFormsInLine.add(dosageForm);
+                                    }
+                                });
+                                
+                                const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                const legendText = `${line}: ${dosageFormsList}`;
+                                
+                                return {
+                                    text: legendText,
+                                    fillStyle: getColorForCombination(line, 'dummy'),
+                                    strokeStyle: getColorForCombination(line, 'dummy'),
+                                    pointStyle: 'circle',
+                                    hidden: false
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            
+                            // Get product names for this line-dosage form combination
+                            const productNames = window.specialCasesProductNames || {};
+                            const key = label.replace(' - ', '-'); // Convert "Solids - Tablets" to "Solids-Tablets"
+                            const names = productNames[key] || [];
+                            
+                            let tooltipText = `${label}: ${value} special case${value !== 1 ? 's' : ''}`;
+                            
+                            if (names.length > 0) {
+                                // Show up to 3 products in a compact format
+                                const displayNames = names.slice(0, 3);
+                                const remainingCount = names.length - 3;
+                                
+                                if (displayNames.length === 1) {
+                                    tooltipText += ` (${displayNames[0]})`;
+                                } else if (displayNames.length === 2) {
+                                    tooltipText += ` (${displayNames[0]}, ${displayNames[1]})`;
+                                } else if (displayNames.length === 3) {
+                                    tooltipText += ` (${displayNames[0]}, ${displayNames[1]}, ${displayNames[2]})`;
+                                }
+                                
+                                if (remainingCount > 0) {
+                                    tooltipText += ` +${remainingCount} more`;
+                                }
+                            }
+                            
+                            return tooltipText;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function renderMinMacosDistributionPieChart() {
+    console.log('renderMinMacosDistributionPieChart called');
+    const canvas = document.getElementById('minMacosPieChart');
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
+    console.log('Rendering minimum MACO chart...');
+    const minMacosDistribution = getMinMacosDistributionByLineAndDosageForm();
+    console.log('Distribution data:', minMacosDistribution);
+    const ctx = canvas.getContext('2d');
+    
+    // Clear previous chart
+    if (window.minMacosChart) {
+        window.minMacosChart.destroy();
+    }
+    
+    // Prepare data for minimum MACO pie chart
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Keep separate slices but prepare for grouped legend
+    const linesInLegend = new Set();
+    
+    // Process each line and dosage form combination with consistent colors
+    console.log('Processing distribution data...');
+    Object.keys(minMacosDistribution).forEach(line => {
+        const lineData = minMacosDistribution[line];
+        console.log(`Processing line: ${line}`, lineData);
+        if (!lineData || typeof lineData !== 'object') {
+            console.log(`Skipping line ${line}: Invalid data`);
+            return;
+        }
+        
+        // Add each dosage form as a separate segment with consistent colors
+        Object.keys(lineData).forEach(dosageForm => {
+            const macoValue = lineData[dosageForm];
+            console.log(`Processing ${line} - ${dosageForm}: MACO value = ${macoValue}`);
+            
+            // More lenient validation - accept very small positive numbers
+            if (macoValue && macoValue > 0 && !isNaN(macoValue) && isFinite(macoValue)) {
+                const label = `${line} - ${dosageForm}`;
+                const color = getColorForCombination(line, dosageForm);
+                console.log(`Line ${line} - ${dosageForm} color: ${color}`);
+                labels.push(label);
+                data.push(macoValue); // Minimum MACO value
+                backgroundColors.push(color);
+                borderColors.push('#fff'); // White borders
+                linesInLegend.add(line); // Track unique lines for legend
+                console.log(`Added segment: ${label} = ${macoValue}`);
+            } else {
+                console.warn(`Skipping ${line} - ${dosageForm}: Invalid MACO value (${macoValue})`);
+                // If we have invalid data but should have valid data, add a small default
+                if (dosageForm && line) {
+                    console.log(`Adding default MACO value for ${line} - ${dosageForm}`);
+                    const label = `${line} - ${dosageForm}`;
+                    const color = getColorForCombination(line, dosageForm);
+                    labels.push(label);
+                    data.push(0.001); // Small default value
+                    backgroundColors.push(color);
+                    borderColors.push('#fff');
+                    linesInLegend.add(line);
+                    console.log(`Added default segment: ${label} = 0.001`);
+                }
+            }
+        });
+    });
+    
+    console.log('Final chart data:', { labels, data, backgroundColors, borderColors });
+    
+    // Check if we have any data to display
+    if (labels.length === 0 || data.length === 0) {
+        console.log('No minimum MACO data available for pie chart');
+        console.log('Labels:', labels);
+        console.log('Data:', data);
+        console.log('Distribution:', minMacosDistribution);
+        return;
+    }
+    
+    console.log('Creating Chart.js chart with data:', { labels, data, backgroundColors, borderColors });
+    
+    // Create a simple test chart first
+    try {
+        window.minMacosChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderWidth: 2,
+                    borderColor: borderColors
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: false,
+                        text: 'Minimum MACO by Line and Dosage Form',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true,
+                            font: {
+                                size: 12
+                            },
+                            generateLabels: function(chart) {
+                                // Create grouped legend showing line names with their dosage forms
+                                const uniqueLines = Array.from(linesInLegend).sort();
+                                return uniqueLines.map(line => {
+                                    // Find all dosage forms for this line
+                                    const dosageFormsInLine = new Set();
+                                    labels.forEach((label, index) => {
+                                        if (label.startsWith(line + ' - ')) {
+                                            const dosageForm = label.replace(line + ' - ', '');
+                                            dosageFormsInLine.add(dosageForm);
+                                        }
+                                    });
+                                    
+                                    const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+                                    const legendText = `${line}: ${dosageFormsList}`;
+                                    
+                                    return {
+                                        text: legendText,
+                                        fillStyle: getColorForCombination(line, 'dummy'),
+                                        strokeStyle: getColorForCombination(line, 'dummy'),
+                                        pointStyle: 'circle',
+                                        hidden: false
+                                    };
+                                });
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed;
+                                
+                                // Get MACO value for this line-dosage form combination
+                                const macoValues = window.minMacosValues || {};
+                                const key = label.replace(' - ', '-'); // Convert "Solids - Tablets" to "Solids-Tablets"
+                                const macoValue = macoValues[key] || value;
+                                
+                                         return `${label}: ${macoValue.toFixed(6)} mg/Swab`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+    console.log('Chart created successfully!');
+    
+    
+} catch (error) {
+    console.error('Error creating chart:', error);
+    alert('Error creating chart: ' + error.message);
+}
+}
+
+function renderTrainsByLineAndDosageChart() {
+    console.log('renderTrainsByLineAndDosageChart called');
+    const canvas = document.getElementById('trainsByLineAndDosageChart');
+    if (!canvas) {
+        console.log('Canvas element not found: trainsByLineAndDosageChart - skipping chart');
+        return;
+    }
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
+    const trainData = getTrainData();
+    if (trainData.length === 0) {
+        console.log('No train data available for grouped bar chart');
+        return;
+    }
+    
+    // Group trains by line and dosage form
+    const groupedData = {};
+    const allLines = new Set();
+    const allDosageForms = new Set();
+    
+    trainData.forEach(train => {
+        const line = train.line || 'Unassigned';
+        const dosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
+        
+        allLines.add(line);
+        dosageForms.forEach(dosageForm => {
+            allDosageForms.add(dosageForm);
+            
+            if (!groupedData[line]) {
+                groupedData[line] = {};
+            }
+            if (!groupedData[line][dosageForm]) {
+                groupedData[line][dosageForm] = [];
+            }
+            
+            // Calculate MACO per swab for this train
+            const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+            const sf = sfConfig.max;
+            const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+            
+            const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+            const maco10ppm = 10 * train.minMbsKg;
+            let macoHealth = Infinity;
+            let macoNoel = Infinity;
+            
+            const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+            const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+            
+            if (train.lowestPde !== null && !pdeHidden) {
+                macoHealth = train.lowestPde * train.minBsMddRatio;
+            }
+            
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                const noel = (train.lowestLd50 * 70) / 2000;
+                const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000));
+                const minMdd = Math.min(...allMdds);
+                macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+            }
+            
+            const macoVisual = 0.004 * lineLargestEssa;
+            
+            const allMacoValues = [
+                { name: '0.1% Therapeutic Dose', value: macoDose },
+                { name: '10 ppm Criterion', value: maco10ppm }
+            ];
+            
+            if (train.lowestPde !== null && !pdeHidden) {
+                allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+            }
+            
+            if (train.lowestLd50 !== null && !ld50Hidden) {
+                allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+            }
+            
+            allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
+            
+            const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+            const finalMaco = finalMacoResult.value;
+            const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+            const macoPerSwab = macoPerArea * train.assumedSsa;
+            
+            // Get proper train numbering
+            const idMap = getTrainIdToLineNumberMap();
+            const mapped = idMap.get(String(train.id));
+            const trainNumber = mapped ? mapped.number : train.id;
+            
+            groupedData[line][dosageForm].push({
+                trainId: train.id,
+                trainName: `Train ${trainNumber}`,
+                macoPerSwab: macoPerSwab
+            });
+        });
+    });
+    
+    console.log('Grouped data:', groupedData);
+    
+    // Prepare data for Chart.js - Show individual trains with correct labels
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Create a flat structure: [line-dosageForm-train] combinations
+    const flatTrainData = [];
+    
+    Array.from(allLines).sort().forEach(line => {
+        const lineData = groupedData[line] || {};
+        const dosageForms = Object.keys(lineData).sort();
+        
+        dosageForms.forEach(dosageForm => {
+            const trains = lineData[dosageForm] || [];
+            trains.forEach(train => {
+                flatTrainData.push({
+                    line: line,
+                    dosageForm: dosageForm,
+                    trainName: train.trainName,
+                    macoPerSwab: train.macoPerSwab
+                });
+            });
+        });
+    });
+    
+    // Sort trains by line, then dosage form, then train number
+    flatTrainData.sort((a, b) => {
+        if (a.line !== b.line) return a.line.localeCompare(b.line);
+        if (a.dosageForm !== b.dosageForm) return a.dosageForm.localeCompare(b.dosageForm);
+        return a.trainName.localeCompare(b.trainName);
+    });
+    
+    // Create single dataset with all trains using consistent colors and sequential numbering
+    flatTrainData.forEach((item, index) => {
+        // Sequential train numbering (1, 2, 3, 4, ...)
+        const sequentialNumber = index + 1;
+        
+        // Short label for space efficiency: just "T1", "T2", etc.
+        labels.push(`T${sequentialNumber}`);
+        data.push(item.macoPerSwab);
+        const color = getColorForCombination(item.line, item.dosageForm);
+        backgroundColors.push(color);
+        borderColors.push(color);
+        
+        // Store full info for tooltips
+        item.sequentialNumber = sequentialNumber;
+    });
+    
+    // Create datasets for legend (one per line with dosage forms)
+    const uniqueLines = [...new Set(flatTrainData.map(item => item.line))].sort();
+    const datasets = uniqueLines.map(line => {
+        // Find all dosage forms for this line
+        const dosageFormsInLine = new Set();
+        flatTrainData.forEach(item => {
+            if (item.line === line) {
+                dosageFormsInLine.add(item.dosageForm);
+            }
+        });
+        
+        const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+        const legendText = `${line}: ${dosageFormsList}`;
+        
+        return {
+            label: legendText,
+            data: [], // Empty data, just for legend
+            backgroundColor: getColorForCombination(line, 'dummy'),
+            borderColor: getColorForCombination(line, 'dummy'),
+            borderWidth: 1
+        };
+    });
+    
+    // Add the main dataset with all data
+    datasets.push({
+        label: 'Trains',
+        data: data,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+    });
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Clear previous chart
+    if (window.trainsByLineAndDosageChart && typeof window.trainsByLineAndDosageChart.destroy === 'function') {
+        window.trainsByLineAndDosageChart.destroy();
+    }
+    
+    window.trainsByLineAndDosageChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: false,
+                    text: 'Individual Trains by Line and Dosage Form (MACO per Swab)',
+                    font: { size: 16, weight: 'bold' }
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        filter: function(legendItem) {
+                            return legendItem.text !== 'Trains';
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(context) {
+                            const index = context[0].dataIndex;
+                            const trainData = flatTrainData[index];
+                            if (trainData) {
+                                return `${trainData.line} - ${trainData.dosageForm} - ${trainData.trainName}`;
+                            }
+                            return context[0].label;
+                        },
+                        label: function(context) {
+                            const value = context.parsed.y;
+                            return `MACO: ${value.toFixed(6)} mg/Swab`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Trains in Line and Group'
+                    },
+                    ticks: {
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'MACO per Swab (mg/Swab)'
+                    },
+                    type: 'logarithmic'
+                }
+            }
+        }
+    });
+    
+    console.log('Trains by Line and Dosage chart created successfully!');
+}
+
+function renderHighestRpnByTrainChart() {
+    console.log('renderHighestRpnByTrainChart called');
+    const canvas = document.getElementById('highestRpnByTrainChart');
+    if (!canvas) {
+        console.log('Canvas element not found: highestRpnByTrainChart - skipping chart');
+        return;
+    }
+    
+    // Ensure color mapping is initialized
+    initializeColorMapping();
+    
+    const trainData = getTrainData();
+    if (trainData.length === 0) {
+        console.log('No train data available for highest RPN chart');
+        return;
+    }
+    
+    // Calculate highest RPN for each train
+    const trainRpnData = [];
+    
+    trainData.forEach(train => {
+        let highestRpn = 0;
+        let highestRpnProduct = null;
+        let highestRpnIngredient = null;
+        
+        // Find the highest RPN across all products in this train
+        train.products.forEach(product => {
+            if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                product.activeIngredients.forEach(ingredient => {
+                    try {
+                        const scores = calculateScores(ingredient);
+                const rpn = scores?.rpn || 0;
+                        if (rpn && rpn > highestRpn) {
+                            highestRpn = rpn;
+                            highestRpnProduct = product.name;
+                            highestRpnIngredient = ingredient.name;
+                        }
+                    } catch (error) {
+                        console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                    }
+                });
+            }
+        });
+        
+        if (highestRpn > 0) {
+            // Get proper train numbering
+            const idMap = getTrainIdToLineNumberMap();
+            const mapped = idMap.get(String(train.id));
+            const trainNumber = mapped ? mapped.number : train.id;
+            
+            trainRpnData.push({
+                line: train.line || 'Unassigned',
+                dosageForm: train.products.length > 0 ? train.products[0].productType || 'Other' : 'Other',
+                trainName: `Train ${trainNumber}`,
+                highestRpn: highestRpn,
+                productName: highestRpnProduct,
+                ingredientName: highestRpnIngredient
+            });
+        }
+    });
+    
+    // Sort by line, then dosage form, then train number
+    trainRpnData.sort((a, b) => {
+        if (a.line !== b.line) return a.line.localeCompare(b.line);
+        if (a.dosageForm !== b.dosageForm) return a.dosageForm.localeCompare(b.dosageForm);
+        return a.trainName.localeCompare(b.trainName);
+    });
+    
+    console.log('Train RPN data:', trainRpnData);
+    
+    // Prepare chart data
+    const labels = [];
+    const data = [];
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    // Create labels and data with consistent colors and sequential numbering
+    trainRpnData.forEach((item, index) => {
+        // Sequential train numbering (1, 2, 3, 4, ...)
+        const sequentialNumber = index + 1;
+        
+        // Short label for space efficiency: just "T1", "T2", etc.
+        labels.push(`T${sequentialNumber}`);
+        data.push(item.highestRpn);
+        const color = getColorForCombination(item.line, item.dosageForm);
+        backgroundColors.push(color);
+        borderColors.push(color);
+        
+        // Store full info for tooltips
+        item.sequentialNumber = sequentialNumber;
+    });
+    
+    // Create datasets for legend (one per line with dosage forms)
+    const uniqueLines = [...new Set(trainRpnData.map(item => item.line))].sort();
+    const datasets = uniqueLines.map(line => {
+        // Find all dosage forms for this line
+        const dosageFormsInLine = new Set();
+        trainRpnData.forEach(item => {
+            if (item.line === line) {
+                dosageFormsInLine.add(item.dosageForm);
+            }
+        });
+        
+        const dosageFormsList = Array.from(dosageFormsInLine).sort().join(', ');
+        const legendText = `${line}: ${dosageFormsList}`;
+        
+        return {
+            label: legendText,
+            data: [], // Empty data, just for legend
+            backgroundColor: getColorForCombination(line, 'dummy'),
+            borderColor: getColorForCombination(line, 'dummy'),
+            borderWidth: 1
+        };
+    });
+    
+    // Add the main dataset with all data
+    datasets.push({
+        label: 'Trains',
+        data: data,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+    });
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Clear previous chart
+    if (window.highestRpnByTrainChart && typeof window.highestRpnByTrainChart.destroy === 'function') {
+        window.highestRpnByTrainChart.destroy();
+    }
+    
+    window.highestRpnByTrainChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: false,
+                    text: 'Highest RPN by Train (with Product Name)',
+                    font: { size: 16, weight: 'bold' }
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: { size: 14 },
+                        filter: function(legendItem) {
+                            return legendItem.text !== 'Trains';
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const index = context.dataIndex;
+                            const item = trainRpnData[index];
+                            if (item) {
+                                return `${item.trainName}: RPN ${item.highestRpn} (${item.productName})`;
+                            }
+                            return `${context.dataset.label}: ${context.parsed.y}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Trains in Line and Group'
+                    },
+                    ticks: {
+                        maxRotation: 0,
+                        minRotation: 0,
+                        font: {
+                            size: 10
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Highest RPN Value'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
+    console.log('Highest RPN by Train chart created successfully!');
+}
+
+function renderTopRpnProductsChart() {
+    const canvas = document.getElementById('topRpnProductsChart');
+    if (!canvas) return;
+    
+    // Get top 10 products by RPN
+    const productRpnData = [];
+    products.forEach(product => {
+        if (product.activeIngredients && product.activeIngredients.length > 0) {
+            let maxRpn = 0;
+            product.activeIngredients.forEach(ingredient => {
+                try {
+                    const scores = calculateScores(ingredient);
+                    const rpn = scores?.rpn || 0;
+                    if (rpn > maxRpn) maxRpn = rpn;
+                } catch (error) {
+                    console.warn('Error calculating RPN:', error);
+                }
+            });
+            if (maxRpn > 0) {
+                productRpnData.push({ name: product.name, rpn: maxRpn });
+            }
+        }
+    });
+    
+    // Sort by RPN and take top 10
+    productRpnData.sort((a, b) => b.rpn - a.rpn);
+    const topProducts = productRpnData.slice(0, 10);
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Clear previous chart
+    if (window.topRpnChart) {
+        window.topRpnChart.destroy();
+    }
+    
+    window.topRpnChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: topProducts.map(p => p.name.length > 20 ? p.name.substring(0, 20) + '...' : p.name),
+            datasets: [{
+                label: 'RPN Score',
+                data: topProducts.map(p => p.rpn),
+                backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Top 10 Products by RPN Score',
+                    font: { size: 16, weight: 'bold' }
+                },
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'RPN Score'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Products'
+                    }
+                }
+            }
+        }
+    });
+}
+
+function getMacoPerSwabForTrain(train, allTrains) {
+               const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p => p.productType))] || state.safetyFactorConfig['Other'];
+            const sf = sfConfig.max;
+            
+            // Calculate largest ESSA for trains in the same line and dosage form
+            const largestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
+            
+            const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+            const maco10ppm = 10 * train.minMbsKg;
+            let macoHealth = Infinity;
+            if (train.lowestPde !== null) {
+                macoHealth = train.lowestPde * train.minBsMddRatio;
+            }
+            const macoVisual = (0.004) * largestEssa;
+
+            const finalMaco = Math.min(macoDose, maco10ppm, macoHealth, macoVisual);
+            const macoPerArea = largestEssa > 0 ? finalMaco / largestEssa : 0;
+            return macoPerArea * train.assumedSsa;
+}
+
+export function renderMacoChart() {
+   const canvas = document.getElementById('macoChartCanvas');
+            const placeholder = document.getElementById('macoChartPlaceholder');
+            
+            const trainData = getTrainData();
+
+            if (trainData.length === 0) {
+                canvas.style.display = 'none';
+                placeholder.style.display = 'flex';
+                if (macoChartInstance) macoChartInstance.destroy();
+                return;
+            }
+            
+            canvas.style.display = 'block';
+            placeholder.style.display = 'none';
+
+            // Use friendly labels where available
+            const idMap = utils.getTrainIdToLineNumberMap();
+            const labels = trainData.map(t => {
+                const mapped = idMap.get(String(t.id));
+                return mapped ? `${mapped.line} — Train ${mapped.number}` : `Train ${t.id}`;
+            });
+            const data = trainData.map(t => getMacoPerSwabForTrain(t, trainData));
+            
+            if (macoChartInstance) macoChartInstance.destroy();
+            const ctx = canvas.getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.8)');
+            gradient.addColorStop(1, 'rgba(139, 92, 246, 0.6)');
+
+            const newChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'MACO per Swab',
+                        data: data,
+                        backgroundColor: gradient,
+                        borderColor: 'rgba(99, 102, 241, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { ticks: { color: 'var(--text-secondary)' }, grid: { display: false } },
+                        y: { 
+                            type: 'logarithmic', 
+                            ticks: { color: 'var(--text-secondary)' }, 
+                            grid: { display: false },
+                            title: {
+                                display: true,
+                                text: 'MACO (mg/Swab)',
+                                color: 'var(--text-secondary)'
+                            }
+                        }
+                    },
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) { 
+                                        label += context.parsed.y.toLocaleString(undefined, { maximumFractionDigits: 5 });
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            state.setMacoChartInstance(newChart);
+}
+
+function renderFinalMacoComparisonChart() {
+    const canvas = document.getElementById('finalMacoComparisonChart');
+    if (!canvas) return;
+    
+    const trainData = getTrainData();
+    if (trainData.length === 0) return;
+    
+    // Calculate final MACO for each train
+    const macoData = trainData.map(train => {
+        const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p=>p.productType))] || state.safetyFactorConfig['Other'];
+        const sf = sfConfig.max;
+        
+        const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+        
+        const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+        const maco10ppm = 10 * train.minMbsKg;
+        let macoHealth = Infinity;
+        if (train.lowestPde !== null) {
+            macoHealth = train.lowestPde * train.minBsMddRatio;
+        }
+        const macoVisual = (0.004) * lineLargestEssa;
+        
+        const finalMaco = Math.min(macoDose, maco10ppm, macoHealth, macoVisual);
+        
+        return {
+            trainId: train.id,
+            trainName: `Train ${train.id}`,
+            finalMaco: finalMaco
+        };
+    });
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Clear previous chart
+    if (window.finalMacoChart) {
+        window.finalMacoChart.destroy();
+    }
+    
+    window.finalMacoChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: macoData.map(d => d.trainName),
+            datasets: [{
+                label: 'Final MACO (mg)',
+                data: macoData.map(d => d.finalMaco),
+                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Final MACO Comparison by Train',
+                    font: { size: 16, weight: 'bold' }
+                },
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    type: 'logarithmic',
+                    title: {
+                        display: true,
+                        text: 'Final MACO (mg) - Logarithmic Scale'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Trains'
+                    }
+                }
+            }
+        }
+    });
+}
+
+export function renderMachineCoverageTable() {
+    const container = document.getElementById('machineCoverageContainer');
+    if (!container) return;
+    
+    // Generate and display the table (styles are included in the HTML)
+    container.innerHTML = createHorizontalMachineCoverageTable();
+}

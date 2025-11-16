@@ -1,6 +1,6 @@
 // Line Report View - generates a printable report per line using in-app data
 import { getTrainData, getLargestEssaForLineAndDosageForm, getWorstCaseProductType, countStudiesForTrains, calculateScores } from './utils.js';
-import { machines, safetyFactorConfig, products } from './state.js';
+import { machines, safetyFactorConfig, products, getSafetyFactorForDosageForm } from './state.js';
 
 // Smart number formatting that avoids showing 0 when there's actually a value
 function formatSmallNumber(value, unit = '') {
@@ -187,7 +187,8 @@ class CleaningValidationReportGenerator {
 
     calculateMacoForTrain(train, allTrains) {
         try {
-            const sfConfig = safetyFactorConfig[getWorstCaseProductType(train.products.map(p => p.productType))] || safetyFactorConfig['Other'];
+            const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
             const sf = sfConfig.max;
             
             // Calculate line-specific largest ESSA for this train

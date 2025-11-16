@@ -1,1 +1,2361 @@
-const a7_0x58064c=a7_0x48e7;(function(_0x19870d,_0x3d734a){const _0x44d342=a7_0x48e7,_0x16a32d=_0x19870d();while(!![]){try{const _0x5837cb=parseInt(_0x44d342(0x15d))/0x1+-parseInt(_0x44d342(0x310))/0x2+-parseInt(_0x44d342(0x1d7))/0x3+parseInt(_0x44d342(0x357))/0x4+parseInt(_0x44d342(0x14a))/0x5+parseInt(_0x44d342(0x3be))/0x6+-parseInt(_0x44d342(0x25a))/0x7;if(_0x5837cb===_0x3d734a)break;else _0x16a32d['push'](_0x16a32d['shift']());}catch(_0x18c9e1){_0x16a32d['push'](_0x16a32d['shift']());}}}(a7_0x42da,0x24914));import*as a7_0x31eb33 from'./state.js';import{fullAppRender as a7_0x12fdf7}from'./app.js';import{showCustomAlert as a7_0x305bab,hideModal as a7_0x42d7fc,showModal as a7_0x5ac44c,saveStateForUndo as a7_0x5f2dd0}from'./ui.js';import{getProductTrainId as a7_0x391143,getProductTrainNumber as a7_0x51e9cd,getToxicityPreference as a7_0x208633,calculateScores as a7_0x40a40c,getRpnRatingClass as a7_0x84d93a,getUniqueProductLines as a7_0x1053c0}from'./utils.js';let m=null,h=null;export function populateMachineLineOptions(){const _0x4b23c2=a7_0x48e7,_0x1e207c={'mPtpQ':function(_0x1ba935,_0x27e96b){return _0x1ba935(_0x27e96b);},'PCKqW':function(_0x286feb){return _0x286feb();},'cmbpG':_0x4b23c2(0x1ee)},_0x11e125=document[_0x4b23c2(0x258)]('machineLine');if(!_0x11e125)return;const _0x55a646=_0x1e207c[_0x4b23c2(0x380)](a7_0x1053c0,a7_0x31eb33[_0x4b23c2(0x3cb)]),_0x42e77b=[...new Set(a7_0x31eb33['machines'][_0x4b23c2(0x2e9)](_0x310205=>_0x310205[_0x4b23c2(0x2f9)])[_0x4b23c2(0x270)](Boolean))],_0x71be6a=[...new Set([..._0x55a646,..._0x42e77b])]['sort'](),_0x42b40c=_0x11e125[_0x4b23c2(0x3af)];_0x11e125[_0x4b23c2(0x242)]=_0x4b23c2(0x3b4),_0x71be6a[_0x4b23c2(0x318)](_0x171b29=>{const _0x25caba=_0x4b23c2;_0x11e125[_0x25caba(0x242)]+=_0x25caba(0x236)+_0x171b29+'\x22>'+_0x171b29+_0x25caba(0x11d);}),_0x11e125['innerHTML']+=_0x4b23c2(0x21d),_0x42b40c&&Array[_0x4b23c2(0x278)](_0x11e125['options'])[_0x4b23c2(0x26c)](_0xced223=>_0xced223[_0x4b23c2(0x3af)]===_0x42b40c)&&(_0x11e125[_0x4b23c2(0x3af)]=_0x42b40c),_0x1e207c[_0x4b23c2(0x3c4)](populateAdditionalLinesCheckboxes),_0x11e125[_0x4b23c2(0x27f)](_0x1e207c[_0x4b23c2(0x10d)],updateAdditionalLinesCheckboxes);}export function populateAdditionalLinesCheckboxes(){const _0x5679ca=a7_0x48e7,_0x181de0={'BQweG':_0x5679ca(0x25e),'wUgHu':_0x5679ca(0x113),'GnDem':function(_0x192983){return _0x192983();}},_0x589cd1=document[_0x5679ca(0x258)](_0x181de0[_0x5679ca(0x2fd)]);if(!_0x589cd1)return;const _0xffbad1=a7_0x1053c0(a7_0x31eb33[_0x5679ca(0x3cb)]),_0x315237=[...new Set(a7_0x31eb33[_0x5679ca(0x332)][_0x5679ca(0x2e9)](_0x35026c=>_0x35026c[_0x5679ca(0x2f9)])['filter'](Boolean))],_0x5b028e=[...new Set([..._0xffbad1,..._0x315237])]['sort']();_0x589cd1[_0x5679ca(0x242)]='',_0x5b028e[_0x5679ca(0x318)](_0x3909df=>{const _0x18b444=_0x5679ca,_0x465c3e=document[_0x18b444(0x339)](_0x18b444(0x294));_0x465c3e[_0x18b444(0x20d)]=_0x181de0['BQweG'],_0x465c3e['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22checkbox\x22\x20id=\x22additionalLine_'+_0x3909df+_0x18b444(0x1fa)+_0x3909df+'\x22\x20class=\x22mr-2\x22\x20onchange=\x22updateAdditionalLinesCheckboxes()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22additionalLine_'+_0x3909df+'\x22\x20class=\x22text-sm\x22>'+_0x3909df+'</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x589cd1[_0x18b444(0x12c)](_0x465c3e);}),_0x181de0['GnDem'](updateAdditionalLinesCheckboxes);}window[a7_0x58064c(0x123)]=function(){const _0x3e3747=a7_0x58064c,_0x11f1bf={'UFifd':function(_0x2b339f,_0x98e683){return _0x2b339f===_0x98e683;},'NtOqp':_0x3e3747(0x31f),'BmAzi':_0x3e3747(0x1ca),'tCoIc':_0x3e3747(0x24e),'OFYZA':_0x3e3747(0x155)},_0x2c23f4=document[_0x3e3747(0x258)](_0x11f1bf[_0x3e3747(0x245)]),_0x4d576e=document['querySelectorAll'](_0x11f1bf[_0x3e3747(0x17d)]);if(!_0x2c23f4||!_0x4d576e[_0x3e3747(0x115)])return;const _0x156add=_0x2c23f4[_0x3e3747(0x3af)];_0x4d576e[_0x3e3747(0x318)](_0x5d2b17=>{const _0x2c0082=_0x3e3747;_0x11f1bf[_0x2c0082(0x32f)](_0x5d2b17[_0x2c0082(0x3af)],_0x156add)?(_0x5d2b17['disabled']=!0x0,_0x5d2b17[_0x2c0082(0x13e)]=!0x1,_0x5d2b17[_0x2c0082(0x14c)][_0x2c0082(0x195)][_0x2c0082(0x204)]=_0x11f1bf[_0x2c0082(0x22b)],_0x5d2b17[_0x2c0082(0x14c)][_0x2c0082(0x195)][_0x2c0082(0x287)]=_0x2c0082(0x266)):(_0x5d2b17[_0x2c0082(0x2c9)]=!0x1,_0x5d2b17['parentElement'][_0x2c0082(0x195)]['opacity']='1',_0x5d2b17[_0x2c0082(0x14c)][_0x2c0082(0x195)][_0x2c0082(0x287)]=_0x11f1bf[_0x2c0082(0x19f)]);});},window[a7_0x58064c(0x323)]=function(){const _0x1d0dde=a7_0x58064c,_0x2b1ad2={'EshaT':'specificLineOptions','GiEnu':_0x1d0dde(0x23a),'SHjjC':function(_0x4dc493,_0xfbd49f){return _0x4dc493===_0xfbd49f;},'jRCTu':_0x1d0dde(0x119),'hczyw':_0x1d0dde(0x126)},_0x30c124=document[_0x1d0dde(0x258)](_0x2b1ad2['EshaT']),_0x4e65c9=document[_0x1d0dde(0x185)](_0x2b1ad2[_0x1d0dde(0x13a)]);if(!_0x30c124||!_0x4e65c9['length'])return;const _0x16764c=Array[_0x1d0dde(0x278)](_0x4e65c9)[_0x1d0dde(0x149)](_0x2a22fa=>_0x2a22fa['checked'])?.[_0x1d0dde(0x3af)];_0x30c124[_0x1d0dde(0x195)][_0x1d0dde(0x3a7)]=_0x2b1ad2[_0x1d0dde(0x2ad)](_0x2b1ad2['jRCTu'],_0x16764c)?_0x2b1ad2[_0x1d0dde(0x1f5)]:_0x1d0dde(0x1e8);};export function updateMachineLineOptionsIfModalOpen(){const _0x33732a=a7_0x58064c,_0x4c9926={'jNRlg':'machineModal','cEwyl':function(_0x2075b4,_0xaaf864){return _0x2075b4!==_0xaaf864;},'pbctH':_0x33732a(0x3cc)},_0x4e8809=document['getElementById'](_0x4c9926[_0x33732a(0x313)]);_0x4e8809&&_0x4c9926[_0x33732a(0x397)]('none',_0x4e8809['style']['display'])&&!_0x4e8809[_0x33732a(0x30b)][_0x33732a(0x143)](_0x4c9926[_0x33732a(0x1b9)])&&populateMachineLineOptions();}export function sortMachines(_0x14be6d){const _0x292d65=a7_0x58064c,_0x51d5d0={'GVVIC':function(_0x38ead8,_0x52bd38){return _0x38ead8===_0x52bd38;},'hKHhf':_0x292d65(0x38c),'COqGX':_0x292d65(0x277)};a7_0x31eb33[_0x292d65(0x2df)][_0x292d65(0x259)]===_0x14be6d?a7_0x31eb33[_0x292d65(0x2df)][_0x292d65(0x3ad)]=_0x51d5d0['GVVIC'](_0x51d5d0[_0x292d65(0x12b)],a7_0x31eb33['machineSortState'][_0x292d65(0x3ad)])?_0x51d5d0['COqGX']:_0x51d5d0[_0x292d65(0x12b)]:(a7_0x31eb33['machineSortState'][_0x292d65(0x259)]=_0x14be6d,a7_0x31eb33['machineSortState']['direction']=_0x292d65(0x38c)),a7_0x31eb33[_0x292d65(0x335)](a7_0x31eb33['machineSortState']),renderMachinesTable();}export function renderMachinesTable(){const _0x2c6186=a7_0x58064c,_0x5c990c={'jRbZG':_0x2c6186(0x36d),'vHbsV':function(_0x509283,_0xa0c43){return _0x509283>_0xa0c43;},'ToHik':function(_0x29700e,_0x52fd1b){return _0x29700e===_0x52fd1b;},'QPyem':_0x2c6186(0x38c),'vVeTx':function(_0x55e214,_0xe7ac31){return _0x55e214===_0xe7ac31;},'UHeYI':_0x2c6186(0x2ea),'VtJnf':function(_0x343ae9,_0x50cbe8){return _0x343ae9!==_0x50cbe8;},'iYNUj':function(_0x383b63,_0x1a38bb){return _0x383b63*_0x1a38bb;},'iTcth':function(_0x44c2e1,_0xdd7cba){return _0x44c2e1-_0xdd7cba;},'zRCbB':function(_0x11bffc,_0x351af7){return _0x11bffc!==_0x351af7;},'CqYyg':function(_0x262ff3,_0x12aa23){return _0x262ff3*_0x12aa23;},'WfPvN':function(_0x537d84,_0x2aa991){return _0x537d84*_0x2aa991;},'xxjZx':function(_0x499494,_0x359d30){return _0x499494(_0x359d30);},'FORJV':function(_0x1543ac,_0x5d4f79){return _0x1543ac!==_0x5d4f79;},'ZidBM':function(_0x425e36,_0x40610f){return _0x425e36!==_0x40610f;},'EelgG':function(_0x21fb36,_0x2a5456){return _0x21fb36===_0x2a5456;},'EkHsh':_0x2c6186(0x254),'QwCve':function(_0x4d1085,_0x4e1e87){return _0x4d1085(_0x4e1e87);},'OtqVc':function(_0x480851,_0x57273b){return _0x480851*_0x57273b;},'bLgzz':function(_0x4d4ebe,_0x3e4b16){return _0x4d4ebe>_0x3e4b16;},'XFzte':function(_0x2d5a38,_0x4fae91){return _0x2d5a38*_0x4fae91;},'Jkyxx':function(_0x827434,_0x1f9c5a){return _0x827434==_0x1f9c5a;},'yzdli':_0x2c6186(0x33d),'iazNq':_0x2c6186(0x3b0),'eyAJH':_0x2c6186(0x3c8),'sMDma':'link','GhfJU':function(_0x48f34e,_0x47e623){return _0x48f34e>_0x47e623;},'VwmTe':_0x2c6186(0x118),'oDpoQ':_0x2c6186(0x2cd),'mjVWS':function(_0x558325,_0x2ca760){return _0x558325>_0x2ca760;},'zDeXC':'None','yzpNN':_0x2c6186(0x2e7),'fdjtj':_0x2c6186(0x1f8),'Rzlly':_0x2c6186(0x303),'guJhg':'<span\x20style=\x22color:\x20var(--text-secondary);\x20font-style:\x20italic;\x22>Not\x20Assigned</span>','VFVWA':_0x2c6186(0x33b),'TtGjI':_0x2c6186(0x36b),'bPsOI':'Show','paZWv':_0x2c6186(0x134),'QLktj':_0x2c6186(0x2da),'KPEvU':_0x2c6186(0x129),'XDVNo':function(_0x3be761,_0x41d52c){return _0x3be761===_0x41d52c;},'kQmdQ':_0x2c6186(0x2d5),'jurZB':_0x2c6186(0x19c),'vBGnd':_0x2c6186(0x203),'nhdxv':function(_0x554746,_0x421582){return _0x554746===_0x421582;},'wXdkg':'block','JPSIB':'none'},_0x308aea=document['getElementById'](_0x2c6186(0x210)),_0x463b1b=document[_0x2c6186(0x258)](_0x5c990c[_0x2c6186(0x283)]);if(_0x308aea[_0x2c6186(0x242)]='',_0x5c990c[_0x2c6186(0x3a0)](0x0,a7_0x31eb33[_0x2c6186(0x332)][_0x2c6186(0x115)]))return void(_0x463b1b[_0x2c6186(0x195)][_0x2c6186(0x3a7)]=_0x5c990c[_0x2c6186(0x307)]);_0x463b1b[_0x2c6186(0x195)]['display']=_0x5c990c[_0x2c6186(0x229)];const _0x84537b={};a7_0x31eb33[_0x2c6186(0x332)]['forEach'](_0x2bdf1e=>{const _0x2941c6=_0x2c6186,_0xc533bc=_0x2bdf1e[_0x2941c6(0x2f9)]||_0x5c990c[_0x2941c6(0x325)];_0x84537b[_0xc533bc]||(_0x84537b[_0xc533bc]=[]),_0x84537b[_0xc533bc][_0x2941c6(0x3ba)](_0x2bdf1e),_0x2bdf1e[_0x2941c6(0x1dd)]&&_0x5c990c[_0x2941c6(0x3bf)](_0x2bdf1e[_0x2941c6(0x1dd)][_0x2941c6(0x115)],0x0)&&_0x2bdf1e['additionalLines'][_0x2941c6(0x318)](_0x44b983=>{const _0xab765b=_0x2941c6;_0x84537b[_0x44b983]||(_0x84537b[_0x44b983]=[]),_0x84537b[_0x44b983][_0xab765b(0x3ba)](_0x2bdf1e);});}),Object[_0x2c6186(0x260)](_0x84537b)[_0x2c6186(0x318)](_0x5da82a=>{const _0x41c257=_0x2c6186,_0x4f3bf7=_0x5da82a[_0x41c257(0x1b7)]()[_0x41c257(0x225)](/\s+/g,''),_0x8f7ea0=_0x5c990c[_0x41c257(0x3e0)](_0x5c990c[_0x41c257(0x1bb)],localStorage[_0x41c257(0x11e)](_0x41c257(0x1b6)+_0x4f3bf7+_0x41c257(0x388))),_0x425ac9=_0x84537b[_0x5da82a];if(_0x5c990c[_0x41c257(0x3e0)](0x0,_0x425ac9[_0x41c257(0x115)]))return;const _0x7753fe=[..._0x425ac9][_0x41c257(0x21f)]((_0x4a98e1,_0x1213f9)=>{const _0x22c52a=_0x41c257,_0x266a4a=a7_0x31eb33[_0x22c52a(0x2df)][_0x22c52a(0x259)],_0x344b63=_0x5c990c['ToHik'](_0x5c990c[_0x22c52a(0x22e)],a7_0x31eb33[_0x22c52a(0x2df)][_0x22c52a(0x3ad)])?0x1:-0x1;if(_0x5c990c[_0x22c52a(0x122)](_0x5c990c['UHeYI'],_0x266a4a)){const _0x13b10d=a7_0x31eb33['machineStageDisplayOrder'],_0x55e702=_0x13b10d['indexOf'](_0x4a98e1[_0x22c52a(0x2ea)]||''),_0xf3aac2=_0x13b10d['indexOf'](_0x1213f9[_0x22c52a(0x2ea)]||'');return _0x5c990c[_0x22c52a(0x125)](-0x1,_0x55e702)&&_0x5c990c[_0x22c52a(0x125)](-0x1,_0xf3aac2)?_0x5c990c[_0x22c52a(0x2cf)](_0x5c990c[_0x22c52a(0x2e3)](_0x55e702,_0xf3aac2),_0x344b63):_0x5c990c[_0x22c52a(0x125)](-0x1,_0x55e702)&&_0x5c990c[_0x22c52a(0x122)](-0x1,_0xf3aac2)?-0x1*_0x344b63:-0x1===_0x55e702&&_0x5c990c[_0x22c52a(0x110)](-0x1,_0xf3aac2)?_0x5c990c[_0x22c52a(0x146)](0x1,_0x344b63):_0x5c990c[_0x22c52a(0x11b)](_0x5c990c[_0x22c52a(0x2c0)](String,_0x4a98e1[_0x22c52a(0x2ea)]||'')[_0x22c52a(0x2a3)](_0x5c990c['xxjZx'](String,_0x1213f9[_0x22c52a(0x2ea)]||'')),_0x344b63);}const _0x1f3a95=a7_0x31eb33[_0x22c52a(0x1e0)],_0x6baca9=_0x1f3a95[_0x22c52a(0x315)](_0x4a98e1[_0x22c52a(0x2ea)]||''),_0x35518a=_0x1f3a95['indexOf'](_0x1213f9['stage']||'');if(_0x5c990c[_0x22c52a(0x162)](-0x1,_0x6baca9)&&-0x1!==_0x35518a){if(_0x6baca9!==_0x35518a)return _0x5c990c[_0x22c52a(0x2e3)](_0x6baca9,_0x35518a);}else{if(_0x5c990c['ZidBM'](-0x1,_0x6baca9)&&_0x5c990c[_0x22c52a(0x2b2)](-0x1,_0x35518a))return-0x1;if(_0x5c990c['EelgG'](-0x1,_0x6baca9)&&_0x5c990c[_0x22c52a(0x162)](-0x1,_0x35518a))return 0x1;}let _0x55c13a,_0x2435f4;return _0x5c990c['ToHik'](_0x5c990c[_0x22c52a(0x37a)],_0x266a4a)?(_0x55c13a=_0x4a98e1[_0x22c52a(0x254)],_0x2435f4=_0x1213f9['area']):(_0x55c13a=_0x5c990c[_0x22c52a(0x2c0)](String,_0x4a98e1[_0x266a4a]||'')['toLowerCase'](),_0x2435f4=_0x5c990c[_0x22c52a(0x17b)](String,_0x1213f9[_0x266a4a]||'')['toLowerCase']()),_0x55c13a<_0x2435f4?_0x5c990c[_0x22c52a(0x161)](-0x1,_0x344b63):_0x5c990c[_0x22c52a(0x26d)](_0x55c13a,_0x2435f4)?_0x5c990c[_0x22c52a(0x276)](0x1,_0x344b63):0x0;}),_0x2f01f7=document[_0x41c257(0x339)](_0x41c257(0x294));_0x2f01f7[_0x41c257(0x20d)]=_0x5c990c[_0x41c257(0x188)];let _0x325809=_0x41c257(0x2b9)+_0x5da82a+_0x41c257(0x1a4)+_0x425ac9[_0x41c257(0x115)]+_0x41c257(0x30f)+_0x5da82a+_0x41c257(0x2ac)+_0x4f3bf7+'\x27)\x22\x20class=\x22text-sm\x20px-3\x20py-1\x20rounded\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x20color:\x20var(--text-secondary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x8f7ea0?_0x5c990c['bPsOI']:_0x5c990c[_0x41c257(0x2fb)])+_0x41c257(0x272)+_0x4f3bf7+'\x22\x20'+(_0x8f7ea0?'style=\x22display:\x20none;\x22':'')+_0x41c257(0x2eb);_0x7753fe['forEach'](_0x42e114=>{const _0x593e93=_0x41c257,_0x56e78e={'dkDFU':function(_0x54a1c1,_0x4c8498){const _0x5bb6f7=a7_0x48e7;return _0x5c990c[_0x5bb6f7(0x29d)](_0x54a1c1,_0x4c8498);},'yNxzB':_0x593e93(0x2c1),'xkYjm':_0x5c990c[_0x593e93(0x153)],'NoulJ':_0x5c990c['iazNq'],'gyMHs':_0x5c990c['eyAJH'],'ArlRg':_0x5c990c['sMDma'],'KYDeW':function(_0x5d4aed,_0x38b608){const _0x5dbceb=_0x593e93;return _0x5c990c[_0x5dbceb(0x393)](_0x5d4aed,_0x38b608);},'PGNZw':function(_0x45c44e,_0x351729){return _0x45c44e+_0x351729;},'GMDZk':_0x5c990c[_0x593e93(0x311)]},_0x2487a8=a7_0x31eb33[_0x593e93(0x3cb)][_0x593e93(0x270)](_0x1ea550=>_0x1ea550[_0x593e93(0x19b)]&&_0x1ea550[_0x593e93(0x19b)][_0x593e93(0x391)](_0x42e114['id'])),_0x367898=_0x2487a8[_0x593e93(0x115)];let _0x244a5d=_0x5c990c[_0x593e93(0x178)];_0x244a5d+=_0x5c990c[_0x593e93(0x24b)](_0x367898,0x0)?'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-xs\x20font-semibold\x20px-2\x20py-1\x20rounded-full\x22\x20style=\x22background-color:\x20var(--bg-accent);\x20color:\x20var(--text-primary);\x22>'+_0x367898+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showMachineProductsModal('+_0x42e114['id']+_0x593e93(0x3a4)+_0x367898+_0x593e93(0x1b1):_0x593e93(0x230),_0x244a5d+=_0x593e93(0x2d7)+(_0x2487a8[_0x593e93(0x2e9)](_0x17c515=>_0x17c515[_0x593e93(0x3b5)])[_0x593e93(0x11a)](',\x20')||_0x5c990c[_0x593e93(0x107)])+_0x593e93(0x308);const _0x393b16=_0x42e114['group']?_0x5c990c[_0x593e93(0x26a)]:_0x5c990c[_0x593e93(0x304)],_0xc05fb=_0x42e114[_0x593e93(0x263)]||_0x5c990c['Rzlly'],_0x3a2363=_0x42e114[_0x593e93(0x2ea)]||_0x5c990c['guJhg'];_0x325809+=_0x593e93(0x248)+_0x42e114[_0x593e93(0x138)]+_0x593e93(0x2b0)+_0x42e114['name']+_0x593e93(0x28a)+_0x3a2363+_0x593e93(0x2dc)+_0x393b16+'\x22>'+_0xc05fb+_0x593e93(0x28a)+_0x42e114[_0x593e93(0x254)]['toLocaleString']()+_0x593e93(0x28a)+function(_0x2fe508,_0x4a87b0){const _0x23c7ef=_0x593e93;if(!_0x2fe508)return'';if(_0x56e78e[_0x23c7ef(0x249)](_0x56e78e['yNxzB'],typeof _0x2fe508))return _0x2fe508;if(_0x2fe508['sopName']){let _0x4516f5=_0x2fe508[_0x23c7ef(0x1fb)],_0x2757bc='';switch(_0x2fe508[_0x23c7ef(0x344)]){case'upload':_0x2fe508[_0x23c7ef(0x3df)]&&(_0x2757bc=_0x23c7ef(0x3da)+_0x4a87b0+')\x22\x20title=\x22Click\x20to\x20open:\x20'+_0x2fe508[_0x23c7ef(0x3df)]+_0x23c7ef(0x34d),_0x4516f5+=_0x2757bc);break;case'link':_0x2fe508[_0x23c7ef(0x2f3)]&&(_0x2757bc=_0x23c7ef(0x3da)+_0x4a87b0+_0x23c7ef(0x196),_0x4516f5+=_0x2757bc);}return _0x4516f5;}switch(_0x2fe508[_0x23c7ef(0x1ce)]){case _0x56e78e[_0x23c7ef(0x16b)]:default:return _0x2fe508[_0x23c7ef(0x3af)]||'';case _0x56e78e['NoulJ']:const _0x5452b1=_0x2fe508[_0x23c7ef(0x3df)]||_0x56e78e[_0x23c7ef(0x1ea)];return'<span\x20class=\x22sop-attachment-link\x22\x20onclick=\x22openMachineSOPFile('+_0x4a87b0+_0x23c7ef(0x33e)+_0x5452b1+_0x23c7ef(0x293)+_0x5452b1;case _0x56e78e[_0x23c7ef(0x174)]:const _0x374528=_0x2fe508[_0x23c7ef(0x3af)]||'';return _0x23c7ef(0x3da)+_0x4a87b0+_0x23c7ef(0x14e)+(_0x56e78e[_0x23c7ef(0x269)](_0x374528[_0x23c7ef(0x115)],0x1e)?_0x56e78e[_0x23c7ef(0x238)](_0x374528[_0x23c7ef(0x2a8)](0x0,0x1e),_0x56e78e[_0x23c7ef(0x169)]):_0x374528);}}(_0x42e114[_0x593e93(0x3de)],_0x42e114['id'])+_0x593e93(0x262)+_0x244a5d+_0x593e93(0x2e8)+_0x42e114['id']+_0x593e93(0x201)+_0x42e114['id']+')\x22\x20class=\x22p-1\x20text-purple-600\x22\x20title=\x22Generate\x20Sample\x20Location\x20Report\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M14\x2014V4.5L9.5\x200H4a2\x202\x200\x200\x200-2\x202v12a2\x202\x200\x200\x200\x202\x202h8a2\x202\x200\x200\x200\x202-2M9.5\x203A1.5\x201.5\x200\x200\x200\x2011\x204.5h2V14a1\x201\x200\x200\x201-1\x201H4a1\x201\x200\x200\x201-1-1V2a1\x201\x200\x200\x201\x201-1h5.5z\x22/><path\x20d=\x22M3\x209.5a.5.5\x200\x200\x201\x20.5-.5h5a.5.5\x200\x200\x201\x200\x201h-5a.5.5\x200\x200\x201-.5-.5m0\x202a.5.5\x200\x200\x201\x20.5-.5h5a.5.5\x200\x200\x201\x200\x201h-5a.5.5\x200\x200\x201-.5-.5\x22/></svg></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showMachineModal('+_0x42e114['id']+')\x22\x20class=\x22p-1\x22\x20style=\x22color:\x20var(--text-secondary);\x22\x20title=\x22Edit\x20Machine\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M15.502\x201.94a.5.5\x200\x200\x201\x200\x20.706L14.459\x203.69l-2-2L13.502.646a.5.5\x200\x200\x201\x20.707\x200l1.293\x201.293zM12.879\x204.379L11\x202.5\x204.939\x208.561a.5.5\x200\x200\x200-.121.196l-.805\x202.414a.25.25\x200\x200\x200\x20.316.316l2.414-.805a.5.5\x200\x200\x200\x20.196-.121L12.879\x204.379z\x22/><path\x20fill-rule=\x22evenodd\x22\x20d=\x22M1\x2013.5A1.5\x201.5\x200\x200\x200\x202.5\x2015h11a1.5\x201.5\x200\x200\x200\x201.5-1.5v-6a.5.5\x200\x200\x200-1\x200v6a.5.5\x200\x200\x201-.5.5h-11a.5.5\x200\x200\x201-.5-.5v-11a.5.5\x200\x200\x201\x20.5-.5H9a.5.5\x200\x200\x200\x200-1H2.5A1.5\x201.5\x200\x200\x200\x201\x202.5v11z\x22/></svg></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22deleteMachine('+_0x42e114['id']+_0x593e93(0x25c);}),_0x325809+=_0x5c990c['QLktj'],_0x2f01f7[_0x41c257(0x242)]=_0x325809,_0x308aea[_0x41c257(0x12c)](_0x2f01f7);}),(function(){const _0x3bbc1f=_0x2c6186,_0x19a733=document['getElementById'](_0x5c990c[_0x3bbc1f(0x309)]);_0x19a733&&_0x19a733['querySelectorAll'](_0x5c990c[_0x3bbc1f(0x3a5)])[_0x3bbc1f(0x318)](_0x220fd1=>{const _0x199d36=_0x3bbc1f,_0x41945e=_0x220fd1[_0x199d36(0x398)](_0x5c990c[_0x199d36(0x1b3)]);_0x5c990c[_0x199d36(0x271)](_0x220fd1[_0x199d36(0x24f)](_0x199d36(0x15e))['match'](/'(.*?)'/)[0x1],a7_0x31eb33['machineSortState'][_0x199d36(0x259)])?_0x41945e[_0x199d36(0x173)]=_0x199d36(0x38c)===a7_0x31eb33[_0x199d36(0x2df)][_0x199d36(0x3ad)]?'▲':'▼':_0x41945e[_0x199d36(0x173)]='';});}());}export function showMachineModal(_0x425969=null){const _0x17b27f=a7_0x58064c,_0x51d3d1={'QddHN':function(_0x4a4e7d,_0x284d50){return _0x4a4e7d===_0x284d50;},'tRRSW':_0x17b27f(0x345),'vGpEu':'Other\x20(Add\x20New\x20Stage)','OclIn':function(_0x685b6){return _0x685b6();},'qffVc':_0x17b27f(0x2c3),'Mcooo':'machineModalTitle','lesrH':_0x17b27f(0x21a),'OGSXm':'machineNumber','WvfZr':_0x17b27f(0x24e),'LLGrJ':'Machine\x20line\x20select\x20element\x20not\x20found.\x20Please\x20refresh\x20the\x20page.','QTNKj':function(_0x5d1d25,_0x5a1b9a,_0x328785){return _0x5d1d25(_0x5a1b9a,_0x328785);},'gryDJ':_0x17b27f(0x3c1),'VKxoB':_0x17b27f(0x27d),'aYRqv':function(_0x5cd5ee){return _0x5cd5ee();},'wisEq':_0x17b27f(0x120),'oxjCU':_0x17b27f(0x3de),'KbRoS':_0x17b27f(0x286),'enNJK':_0x17b27f(0x255),'Kpced':_0x17b27f(0x326),'KIFzC':_0x17b27f(0x112),'RRniU':_0x17b27f(0x3a1),'cOFHS':'Edit\x20Machine','MNVYn':_0x17b27f(0x342),'OlrOZ':_0x17b27f(0x246),'dHRUh':'input[name=\x22machineLineType\x22][value=\x22specific\x22]','uyQWq':_0x17b27f(0x1e8),'zUYad':function(_0x168efb,_0x37b387){return _0x168efb>_0x37b387;},'olfOA':_0x17b27f(0x2f8),'slDUY':_0x17b27f(0x374),'aKLOb':function(_0x3c266d){return _0x3c266d();},'zyXTF':'otherStageContainer','TtdXv':_0x17b27f(0x2bf),'wnxXV':_0x17b27f(0x126),'XEJId':_0x17b27f(0x338),'osQlm':_0x17b27f(0x128),'fXcaN':function(_0x1fa413,_0xb6b20a){return _0x1fa413!==_0xb6b20a;},'hXvLp':function(_0x146de1,_0x41e973){return _0x146de1&&_0x41e973;},'MMVCe':function(_0x26f364,_0x114488){return _0x26f364(_0x114488);},'KUGlS':'machineModal','xasrt':_0x17b27f(0x23b)};document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x3dc)])['reset']();const _0x54a800=document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x3d6)]),_0x3e8137=document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x1ba)]),_0x513667=document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x11c)]),_0x2313a1=document[_0x17b27f(0x258)](_0x17b27f(0x3b3)),_0x13fc51=document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x38d)]);if(!_0x13fc51)return console[_0x17b27f(0x1af)](_0x51d3d1[_0x17b27f(0x375)]),void _0x51d3d1[_0x17b27f(0x38a)](a7_0x305bab,_0x51d3d1[_0x17b27f(0x231)],_0x51d3d1[_0x17b27f(0x133)]);_0x51d3d1[_0x17b27f(0x1b8)](populateMachineLineOptions);const _0x8846af=document['getElementById'](_0x51d3d1[_0x17b27f(0x2b5)]),_0x29e0af=(document['getElementById'](_0x51d3d1[_0x17b27f(0x337)]),document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x2ba)])),_0x2c9466=document['getElementById'](_0x51d3d1['enNJK']);if(_0x29e0af[_0x17b27f(0x242)]=_0x51d3d1[_0x17b27f(0x1ad)],a7_0x31eb33[_0x17b27f(0x1e0)][_0x17b27f(0x318)](_0x24c33c=>{const _0x46d8fb=_0x17b27f,_0x3bc6c7=_0x51d3d1[_0x46d8fb(0x235)](_0x51d3d1[_0x46d8fb(0x2ce)],_0x24c33c)?_0x51d3d1['vGpEu']:_0x24c33c;_0x29e0af[_0x46d8fb(0x242)]+=_0x46d8fb(0x236)+_0x24c33c+'\x22>'+_0x3bc6c7+_0x46d8fb(0x11d);}),_0x2c9466[_0x17b27f(0x242)]=_0x51d3d1[_0x17b27f(0x193)],a7_0x31eb33[_0x17b27f(0x1f1)][_0x17b27f(0x318)](_0x31b783=>{const _0x34f88d=_0x17b27f;_0x2c9466[_0x34f88d(0x242)]+=_0x34f88d(0x236)+_0x31b783+'\x22>'+_0x31b783+_0x34f88d(0x11d);}),_0x2c9466['innerHTML']+=_0x51d3d1[_0x17b27f(0x228)],_0x425969){const _0x457ff3=a7_0x31eb33[_0x17b27f(0x332)][_0x17b27f(0x149)](_0x201bfa=>_0x201bfa['id']===_0x425969);if(_0x457ff3){if(_0x54a800[_0x17b27f(0x173)]=_0x51d3d1[_0x17b27f(0x215)],_0x3e8137[_0x17b27f(0x3af)]=_0x457ff3['id'],_0x513667['value']=_0x457ff3['machineNumber'],_0x2313a1['value']=_0x457ff3['name'],_0x51d3d1['QddHN'](_0x51d3d1[_0x17b27f(0x1bd)],_0x457ff3['line']))document['querySelector'](_0x17b27f(0x38e))[_0x17b27f(0x13e)]=!0x0,document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x19a)])['style'][_0x17b27f(0x3a7)]='none';else(document[_0x17b27f(0x398)](_0x51d3d1[_0x17b27f(0x39f)])[_0x17b27f(0x13e)]=!0x0,document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x19a)])[_0x17b27f(0x195)][_0x17b27f(0x3a7)]=_0x51d3d1[_0x17b27f(0x368)],_0x51d3d1[_0x17b27f(0x1da)](_0x13fc51[_0x17b27f(0x392)][_0x17b27f(0x115)],0x0))&&(Array['from'](_0x13fc51['options'])[_0x17b27f(0x149)](_0x40eece=>_0x40eece[_0x17b27f(0x3af)]===_0x457ff3[_0x17b27f(0x2f9)])?_0x13fc51[_0x17b27f(0x3af)]=_0x457ff3[_0x17b27f(0x2f9)]:(_0x13fc51[_0x17b27f(0x3af)]=_0x51d3d1[_0x17b27f(0x2ce)],document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x16a)])[_0x17b27f(0x195)][_0x17b27f(0x3a7)]=_0x51d3d1['uyQWq'],document['getElementById']('machineOtherLine')['value']=_0x457ff3[_0x17b27f(0x2f9)],document[_0x17b27f(0x258)](_0x51d3d1['slDUY'])[_0x17b27f(0x111)]=!0x0)),_0x457ff3[_0x17b27f(0x1dd)]&&_0x457ff3[_0x17b27f(0x1dd)][_0x17b27f(0x115)]>0x0&&_0x457ff3[_0x17b27f(0x1dd)][_0x17b27f(0x318)](_0xbb804b=>{const _0x18d88d=_0x17b27f,_0x24b5b1=document[_0x18d88d(0x258)]('additionalLine_'+_0xbb804b);_0x24b5b1&&(_0x24b5b1['checked']=!0x0);}),_0x51d3d1[_0x17b27f(0x38a)](setTimeout,()=>{const _0x114113=_0x17b27f;_0x51d3d1[_0x114113(0x38b)](updateAdditionalLinesCheckboxes);},0x64);_0x8846af[_0x17b27f(0x3af)]=_0x457ff3[_0x17b27f(0x254)],_0x51d3d1[_0x17b27f(0x2a1)](initializeSOPHandlers),f(_0x457ff3);const _0x48636d=document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x252)]),_0x3c0970=document['getElementById'](_0x51d3d1[_0x17b27f(0x3d1)]);a7_0x31eb33[_0x17b27f(0x1e0)][_0x17b27f(0x270)](_0x81587b=>'Other'!==_0x81587b)[_0x17b27f(0x391)](_0x457ff3[_0x17b27f(0x2ea)])?(_0x29e0af[_0x17b27f(0x3af)]=_0x457ff3[_0x17b27f(0x2ea)],_0x48636d[_0x17b27f(0x195)][_0x17b27f(0x3a7)]=_0x51d3d1[_0x17b27f(0x21b)],_0x3c0970[_0x17b27f(0x111)]=!0x1):(_0x29e0af[_0x17b27f(0x3af)]=_0x17b27f(0x345),_0x3c0970[_0x17b27f(0x3af)]=_0x457ff3['stage'],_0x48636d['style'][_0x17b27f(0x3a7)]=_0x51d3d1['uyQWq'],_0x3c0970[_0x17b27f(0x111)]=!0x0);const _0x2acbca=document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x280)]),_0x5c9058=document['getElementById'](_0x51d3d1[_0x17b27f(0x233)]);_0x457ff3[_0x17b27f(0x263)]&&_0x51d3d1[_0x17b27f(0x1c5)]('',_0x457ff3[_0x17b27f(0x263)])?a7_0x31eb33[_0x17b27f(0x1f1)][_0x17b27f(0x391)](_0x457ff3[_0x17b27f(0x263)])?(_0x2c9466['value']=_0x457ff3[_0x17b27f(0x263)],_0x2acbca[_0x17b27f(0x195)][_0x17b27f(0x3a7)]=_0x51d3d1[_0x17b27f(0x21b)],_0x5c9058['required']=!0x1):(_0x2c9466[_0x17b27f(0x3af)]='Other',_0x5c9058[_0x17b27f(0x3af)]=_0x457ff3['group'],_0x2acbca[_0x17b27f(0x195)]['display']=_0x17b27f(0x1e8),_0x5c9058['required']=!0x0):(_0x2c9466['value']='',_0x2acbca['style'][_0x17b27f(0x3a7)]=_0x17b27f(0x126),_0x5c9058[_0x17b27f(0x111)]=!0x1);}}else{_0x54a800[_0x17b27f(0x173)]=_0x17b27f(0x218),_0x3e8137[_0x17b27f(0x3af)]='',document['getElementById'](_0x51d3d1[_0x17b27f(0x252)])[_0x17b27f(0x195)]['display']=_0x51d3d1['wnxXV'],document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x3d1)])[_0x17b27f(0x111)]=!0x1,document[_0x17b27f(0x258)]('otherGroupContainer')[_0x17b27f(0x195)][_0x17b27f(0x3a7)]=_0x51d3d1[_0x17b27f(0x21b)],document[_0x17b27f(0x258)]('otherMachineGroup')[_0x17b27f(0x111)]=!0x1;const _0xaa8ee0=document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x16a)]),_0x28bc13=document['getElementById'](_0x17b27f(0x374));_0x51d3d1[_0x17b27f(0x1a6)](_0xaa8ee0,_0x28bc13)&&(_0xaa8ee0['style'][_0x17b27f(0x3a7)]='none',_0x28bc13['value']='',_0x28bc13['required']=!0x1),initializeSOPHandlers(),_0x51d3d1[_0x17b27f(0x369)](f,{});}if(_0x425969){const _0x2a5a93=a7_0x31eb33[_0x17b27f(0x332)][_0x17b27f(0x149)](_0x16bd54=>_0x16bd54['id']===_0x425969);if(_0x2a5a93&&_0x2a5a93[_0x17b27f(0x2f9)]){const _0x3339d0=_0x2a5a93['line'],_0x4422ab=document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x38d)]);if(_0x4422ab){if(Array['from'](_0x4422ab[_0x17b27f(0x392)])[_0x17b27f(0x2e9)](_0x3b7678=>_0x3b7678[_0x17b27f(0x3af)])[_0x17b27f(0x270)](Boolean)[_0x17b27f(0x391)](_0x3339d0)){_0x4422ab['value']=_0x3339d0;const _0x2cac42=document[_0x17b27f(0x258)]('machineOtherLineContainer');_0x2cac42&&(_0x2cac42[_0x17b27f(0x195)]['display']=_0x51d3d1[_0x17b27f(0x21b)]);}else{_0x4422ab['value']=_0x51d3d1['tRRSW'];const _0x28218e=document['getElementById'](_0x17b27f(0x2f8)),_0x49c0a6=document[_0x17b27f(0x258)](_0x51d3d1['slDUY']);_0x51d3d1[_0x17b27f(0x1a6)](_0x28218e,_0x49c0a6)&&(_0x28218e[_0x17b27f(0x195)][_0x17b27f(0x3a7)]=_0x17b27f(0x1e8),_0x49c0a6['value']=_0x3339d0,_0x49c0a6[_0x17b27f(0x111)]=!0x0);}}}}document[_0x17b27f(0x258)](_0x51d3d1[_0x17b27f(0x104)])[_0x17b27f(0x195)][_0x17b27f(0x3a7)]=_0x51d3d1[_0x17b27f(0x1a1)];}export function saveMachine(_0x31d43e){const _0x3ebd72=a7_0x58064c,_0x17a4f6={'wNCXS':_0x3ebd72(0x1fb),'QPylr':_0x3ebd72(0x206),'nHDUF':_0x3ebd72(0x292),'EiZVc':_0x3ebd72(0x3b0),'jRgox':_0x3ebd72(0x34a),'tBfOs':_0x3ebd72(0x2c5),'ozMxk':_0x3ebd72(0x3c3),'ZriCD':_0x3ebd72(0x192),'ywfxe':_0x3ebd72(0x3d8),'FAkLJ':function(_0x4c24e7,_0x295df7,_0x2e410c){return _0x4c24e7(_0x295df7,_0x2e410c);},'KTrzq':function(_0x2b3158,_0x3b7ec4){return _0x2b3158!==_0x3b7ec4;},'vNhXJ':_0x3ebd72(0x21a),'hWueX':_0x3ebd72(0x138),'JYiqo':'machineName','wrPhz':_0x3ebd72(0x23a),'meEOy':_0x3ebd72(0x119),'FCDsG':_0x3ebd72(0x342),'pzvcH':_0x3ebd72(0x24e),'fNDFb':function(_0x1b90d8,_0x491819){return _0x1b90d8===_0x491819;},'ptPEQ':_0x3ebd72(0x345),'dwxqF':_0x3ebd72(0x374),'KgfOY':_0x3ebd72(0x3c6),'UZUQS':_0x3ebd72(0x321),'ySaGJ':'#additionalLinesContainer\x20input[type=\x22checkbox\x22]:checked','Mllwl':_0x3ebd72(0x286),'IQGDX':_0x3ebd72(0x120),'BtLoS':function(_0x55f692,_0x30758c,_0x36af09){return _0x55f692(_0x30758c,_0x36af09);},'HYLwg':_0x3ebd72(0x23f),'nkesT':_0x3ebd72(0x255),'FwdAV':function(_0x2648ba,_0x238642){return _0x2648ba===_0x238642;},'Joevr':'otherMachineStage','jBsgu':'Please\x20specify\x20the\x20new\x20stage\x20name.','gBKMY':function(_0xb54299,_0x5e7c0e){return _0xb54299>_0x5e7c0e;},'RJVhE':_0x3ebd72(0x128),'jlmRe':_0x3ebd72(0x1f1),'oZYcP':_0x3ebd72(0x20e),'kqgqw':function(_0x358f71,_0x1b30f5){return _0x358f71||_0x1b30f5;},'YVopn':function(_0x50eb2e,_0xece499,_0x1d74c4){return _0x50eb2e(_0xece499,_0x1d74c4);},'TvOkr':_0x3ebd72(0x3c1),'Jarnf':_0x3ebd72(0x28f),'cONRy':function(_0x56a8e4,_0x22736d){return _0x56a8e4||_0x22736d;},'FsBoa':function(_0x50cdf2){return _0x50cdf2();},'PqXAg':function(_0x2549e5,_0x5a4a25){return _0x2549e5(_0x5a4a25);},'lDpEx':_0x3ebd72(0x137)};_0x31d43e[_0x3ebd72(0x28b)]();const _0x40996e=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x2bc)])[_0x3ebd72(0x3af)],_0x38fb1d=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x3b7)])[_0x3ebd72(0x3af)]['trim'](),_0x4ce3c5=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x136)])[_0x3ebd72(0x3af)][_0x3ebd72(0x1d5)](),_0xf8069e=document[_0x3ebd72(0x185)](_0x17a4f6[_0x3ebd72(0x21c)]),_0x2a8aa9=Array[_0x3ebd72(0x278)](_0xf8069e)[_0x3ebd72(0x149)](_0x20143d=>_0x20143d[_0x3ebd72(0x13e)])?.[_0x3ebd72(0x3af)];let _0x19cc61='',_0x4b00b2=[];if(_0x17a4f6[_0x3ebd72(0x31b)]===_0x2a8aa9)_0x19cc61=_0x17a4f6['FCDsG'];else{const _0x186e16=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x3b9)]);if(!_0x186e16)return void a7_0x305bab('Error','Machine\x20line\x20field\x20not\x20found.\x20Please\x20refresh\x20the\x20page\x20to\x20load\x20the\x20updated\x20interface.');if(_0x19cc61=_0x186e16[_0x3ebd72(0x3af)],_0x17a4f6[_0x3ebd72(0x1d2)](_0x17a4f6[_0x3ebd72(0x148)],_0x19cc61)){const _0xf1787a=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x3bd)])[_0x3ebd72(0x3af)]['trim']();if(!_0xf1787a)return void _0x17a4f6[_0x3ebd72(0x1ec)](a7_0x305bab,_0x17a4f6[_0x3ebd72(0x3c0)],_0x17a4f6[_0x3ebd72(0x360)]);_0x19cc61=_0xf1787a;}const _0x307f6d=document[_0x3ebd72(0x185)](_0x17a4f6[_0x3ebd72(0x274)]);_0x4b00b2=Array[_0x3ebd72(0x278)](_0x307f6d)[_0x3ebd72(0x2e9)](_0x4e7a45=>_0x4e7a45['value']);}let _0x3f44ff=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x1bf)])[_0x3ebd72(0x3af)];const _0x92efe6=_0x17a4f6[_0x3ebd72(0x1ec)](parseInt,document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x30d)])[_0x3ebd72(0x3af)],0xa);let _0x59b620;try{_0x59b620=(function(){const _0x185c76=_0x3ebd72,_0x45ef39=document['getElementById'](_0x17a4f6['wNCXS'])[_0x185c76(0x3af)][_0x185c76(0x1d5)]();if(!_0x45ef39)throw new Error(_0x17a4f6[_0x185c76(0x2f4)]);const _0xcdfc7a=document[_0x185c76(0x398)](_0x17a4f6['nHDUF'])[_0x185c76(0x3af)],_0x1d67d0={'sopName':_0x45ef39,'attachmentType':_0xcdfc7a};switch(_0xcdfc7a){case _0x185c76(0x126):_0x1d67d0['attachmentValue']=null,_0x1d67d0[_0x185c76(0x3df)]=null,_0x1d67d0['fileData']=null;break;case _0x17a4f6['EiZVc']:if(!m)throw new Error(_0x17a4f6[_0x185c76(0x1cf)]);_0x1d67d0[_0x185c76(0x2f3)]=m[_0x185c76(0x3b5)],_0x1d67d0[_0x185c76(0x3df)]=m['name'],_0x1d67d0[_0x185c76(0x27e)]=m[_0x185c76(0x341)];break;case _0x17a4f6[_0x185c76(0x130)]:const _0x5ac5a1=document[_0x185c76(0x258)](_0x17a4f6[_0x185c76(0x144)])[_0x185c76(0x3af)][_0x185c76(0x1d5)]();if(!_0x5ac5a1)throw new Error(_0x17a4f6[_0x185c76(0x1c3)]);_0x1d67d0[_0x185c76(0x2f3)]=_0x5ac5a1,_0x1d67d0[_0x185c76(0x3df)]=null,_0x1d67d0['fileData']=null;break;default:throw new Error(_0x17a4f6['ywfxe']);}return _0x1d67d0;}());}catch(_0x33ccbf){return void _0x17a4f6[_0x3ebd72(0x170)](a7_0x305bab,_0x17a4f6[_0x3ebd72(0x289)],_0x33ccbf[_0x3ebd72(0x234)]);}let _0x794e19=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x2a6)])[_0x3ebd72(0x3af)];if(_0x17a4f6[_0x3ebd72(0x2cc)](_0x17a4f6[_0x3ebd72(0x148)],_0x3f44ff)){const _0x1b5446=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0x371)])[_0x3ebd72(0x3af)][_0x3ebd72(0x1d5)]();if(!_0x1b5446)return void a7_0x305bab(_0x17a4f6[_0x3ebd72(0x3c0)],_0x17a4f6[_0x3ebd72(0x1ac)]);if(_0x3f44ff=_0x1b5446,!a7_0x31eb33[_0x3ebd72(0x1e0)]['includes'](_0x3f44ff)){const _0x5c98af=a7_0x31eb33['machineStageDisplayOrder'][_0x3ebd72(0x315)](_0x3ebd72(0x345));_0x17a4f6[_0x3ebd72(0x36f)](_0x5c98af,-0x1)?a7_0x31eb33[_0x3ebd72(0x1e0)]['splice'](_0x5c98af,0x0,_0x3f44ff):a7_0x31eb33[_0x3ebd72(0x1e0)][_0x3ebd72(0x3ba)](_0x3f44ff),localStorage[_0x3ebd72(0x23e)](_0x3ebd72(0x1e0),JSON[_0x3ebd72(0x147)](a7_0x31eb33[_0x3ebd72(0x1e0)]));}}if(_0x17a4f6['fNDFb'](_0x17a4f6[_0x3ebd72(0x148)],_0x794e19)){const _0x19c6a2=document[_0x3ebd72(0x258)](_0x17a4f6[_0x3ebd72(0xfd)])[_0x3ebd72(0x3af)][_0x3ebd72(0x1d5)]();if(!_0x19c6a2)return void _0x17a4f6['FAkLJ'](a7_0x305bab,_0x17a4f6[_0x3ebd72(0x3c0)],_0x3ebd72(0x205));_0x794e19=_0x19c6a2,a7_0x31eb33[_0x3ebd72(0x1f1)][_0x3ebd72(0x391)](_0x794e19)||(a7_0x31eb33[_0x3ebd72(0x1f1)][_0x3ebd72(0x3ba)](_0x794e19),localStorage[_0x3ebd72(0x23e)](_0x17a4f6['jlmRe'],JSON[_0x3ebd72(0x147)](a7_0x31eb33[_0x3ebd72(0x1f1)])));}if(_0x794e19&&_0x17a4f6[_0x3ebd72(0x3e2)]('',_0x794e19)){const _0x540975=a7_0x31eb33['machines'][_0x3ebd72(0x270)](_0x5659e1=>_0x5659e1['group']===_0x794e19&&(!_0x40996e||_0x5659e1['id']!==parseInt(_0x40996e)));if(_0x540975[_0x3ebd72(0x115)]>0x0){const _0x2ca1db=[...new Set(_0x540975[_0x3ebd72(0x2e9)](_0x4f719c=>_0x4f719c[_0x3ebd72(0x2ea)]))];if(_0x17a4f6[_0x3ebd72(0x36f)](_0x2ca1db[_0x3ebd72(0x115)],0x0)&&!_0x2ca1db[_0x3ebd72(0x391)](_0x3f44ff)){const _0xbdbe73=_0x2ca1db[_0x3ebd72(0x11a)](',\x20');return void a7_0x305bab(_0x17a4f6[_0x3ebd72(0x37c)],_0x3ebd72(0x1c7)+_0x794e19+_0x3ebd72(0x36c)+_0xbdbe73+'\x0aNew\x20machine\x20stage:\x20'+_0x3f44ff+_0x3ebd72(0x3d2));}}}if(_0x17a4f6[_0x3ebd72(0x17f)](!_0x38fb1d,!_0x4ce3c5)||!_0x19cc61||!_0x3f44ff||isNaN(_0x92efe6)||!_0x59b620)return void _0x17a4f6['YVopn'](a7_0x305bab,_0x17a4f6[_0x3ebd72(0x353)],_0x3ebd72(0x35f));if(a7_0x31eb33[_0x3ebd72(0x332)][_0x3ebd72(0x26c)](_0x5cfab7=>{const _0x433d2e=_0x3ebd72,_0x14f983=_0x40996e?_0x17a4f6[_0x433d2e(0x1ec)](parseInt,_0x40996e,0xa):null;return _0x17a4f6[_0x433d2e(0x3e2)](_0x5cfab7['id'],_0x14f983)&&_0x5cfab7[_0x433d2e(0x138)][_0x433d2e(0x1b7)]()===_0x38fb1d[_0x433d2e(0x1b7)]();}))_0x17a4f6['BtLoS'](a7_0x305bab,_0x17a4f6['KgfOY'],_0x17a4f6[_0x3ebd72(0x11f)]);else{if(_0x40996e){const _0x5bff10=a7_0x31eb33[_0x3ebd72(0x332)][_0x3ebd72(0x149)](_0x44359e=>_0x44359e['id']===parseInt(_0x40996e));_0x5bff10&&(_0x5bff10[_0x3ebd72(0x138)]=_0x38fb1d,_0x5bff10['name']=_0x4ce3c5,_0x5bff10[_0x3ebd72(0x2f9)]=_0x19cc61,_0x5bff10[_0x3ebd72(0x1dd)]=_0x4b00b2,_0x5bff10[_0x3ebd72(0x2ea)]=_0x3f44ff,_0x5bff10['area']=_0x92efe6,_0x5bff10['cleaningSOP']=_0x59b620,_0x5bff10[_0x3ebd72(0x263)]=_0x17a4f6[_0x3ebd72(0x17f)](_0x794e19,''));}else a7_0x31eb33[_0x3ebd72(0x1d3)](a7_0x31eb33['nextMachineId']+0x1),a7_0x31eb33['machines'][_0x3ebd72(0x3ba)]({'id':a7_0x31eb33['nextMachineId'],'machineNumber':_0x38fb1d,'name':_0x4ce3c5,'line':_0x19cc61,'additionalLines':_0x4b00b2,'stage':_0x3f44ff,'area':_0x92efe6,'cleaningSOP':_0x59b620,'group':_0x17a4f6[_0x3ebd72(0x102)](_0x794e19,'')});a7_0x5f2dd0(),_0x17a4f6[_0x3ebd72(0x3bc)](a7_0x12fdf7),_0x17a4f6[_0x3ebd72(0x1e7)](a7_0x42d7fc,_0x3ebd72(0x212)),console[_0x3ebd72(0x1ab)](_0x17a4f6[_0x3ebd72(0x346)]);}}export function deleteMachine(_0x2f0c22){const _0x8449f1=a7_0x58064c,_0x12de7c={'ftlBI':function(_0x4c1297,_0x372312){return _0x4c1297(_0x372312);},'WwMsm':_0x8449f1(0x2cb),'CDQZD':function(_0x165e2e){return _0x165e2e();},'YVEUE':function(_0x38660f){return _0x38660f();}};if(_0x12de7c['ftlBI'](confirm,_0x12de7c[_0x8449f1(0x298)])){const _0x192ce1=a7_0x31eb33['machines'][_0x8449f1(0x270)](_0x298b5c=>_0x298b5c['id']!==_0x2f0c22);a7_0x31eb33[_0x8449f1(0x36a)](_0x192ce1),a7_0x31eb33[_0x8449f1(0x3cb)][_0x8449f1(0x318)](_0x2a39d6=>{const _0x3a457d=_0x8449f1;_0x2a39d6[_0x3a457d(0x19b)]&&(_0x2a39d6['machineIds']=_0x2a39d6[_0x3a457d(0x19b)][_0x3a457d(0x270)](_0x347aa2=>_0x347aa2!==_0x2f0c22));}),_0x12de7c[_0x8449f1(0x34c)](a7_0x5f2dd0),_0x12de7c['YVEUE'](a7_0x12fdf7);}}let u=null;export function showMachineProductsModal(_0x61d370){const _0xcb6600=a7_0x58064c,_0x1f115f={'Vpyhr':function(_0x1ae098,_0x206590,_0x12a0ef){return _0x1ae098(_0x206590,_0x12a0ef);},'CFJfd':function(_0x2ca0a9,_0x3bb874){return _0x2ca0a9>_0x3bb874;},'wHFgE':function(_0x427294,_0x61c00c){return _0x427294>_0x61c00c;},'baMBl':_0xcb6600(0x1c9),'QGonS':_0xcb6600(0x33c),'TWQWl':function(_0x2baa1a,_0x31f992){return _0x2baa1a(_0x31f992);},'nKjhC':function(_0x2b533a,_0x2a6d35){return _0x2b533a===_0x2a6d35;},'IYVdB':_0xcb6600(0x1cc),'iAMct':_0xcb6600(0x343),'DrsFm':'machineProductsModalTitle','YtUPX':_0xcb6600(0x331),'hkaOv':function(_0x5ecc51,_0xc1ff9c){return _0x5ecc51>_0xc1ff9c;},'lqvke':function(_0x33f3c7){return _0x33f3c7();},'FCkLz':'<p\x20style=\x22color:var(--text-secondary);\x22>No\x20products\x20are\x20currently\x20assigned\x20to\x20this\x20machine.</p>','coCYU':'machineProductsModal','ewbgV':_0xcb6600(0x23b)},_0x1e7044=a7_0x31eb33[_0xcb6600(0x332)][_0xcb6600(0x149)](_0x153e0a=>_0x153e0a['id']===_0x61d370);if(!_0x1e7044)return;u=_0x1e7044;const _0x1c4b58=document[_0xcb6600(0x258)](_0x1f115f['DrsFm']),_0x594919=document['getElementById'](_0x1f115f['YtUPX']);_0x1c4b58[_0xcb6600(0x173)]=_0xcb6600(0x18e)+_0x1e7044[_0xcb6600(0x3b5)]+'\x20('+_0x1e7044[_0xcb6600(0x138)]+')';const _0x53255c=a7_0x31eb33['products']['filter'](_0x2895a0=>_0x2895a0['machineIds']&&_0x2895a0[_0xcb6600(0x19b)][_0xcb6600(0x391)](_0x61d370));if(_0x1f115f[_0xcb6600(0x197)](_0x53255c[_0xcb6600(0x115)],0x0)){const _0x15829c=_0x1f115f[_0xcb6600(0x179)](a7_0x208633);let _0x217716=0x0;_0x53255c['forEach'](_0x3016df=>{const _0x134e04=_0xcb6600;_0x3016df[_0x134e04(0x224)][_0x134e04(0x318)](_0xe7f90c=>{const _0x4015a0=_0x134e04,_0x1c1d16=_0x1f115f[_0x4015a0(0x37b)](a7_0x40a40c,_0xe7f90c,_0x15829c);_0x1f115f[_0x4015a0(0x281)](_0x1c1d16['rpn'],_0x217716)&&(_0x217716=_0x1c1d16[_0x4015a0(0x1e3)]);});});let _0x1cef33=_0xcb6600(0x295);_0x53255c['forEach']((_0x4a8ac2,_0x3d354f)=>{const _0x2c222d=_0xcb6600,_0x2f042c={'UBxRp':function(_0x48bcd2,_0xf6ca3b,_0x590d3e){return _0x48bcd2(_0xf6ca3b,_0x590d3e);},'zDycE':function(_0x76d169,_0x1fd324){const _0x5aa182=a7_0x48e7;return _0x1f115f[_0x5aa182(0x25d)](_0x76d169,_0x1fd324);}};a7_0x51e9cd(_0x4a8ac2);const _0x1e7c12=_0x4a8ac2['isCritical']?_0x1f115f['baMBl']:'No',_0x3b01bc=_0x4a8ac2['isCritical']?_0x2c222d(0x37e):'';new Date(_0x4a8ac2[_0x2c222d(0x3b1)])[_0x2c222d(0x30a)]();let _0xa40f37=0x0,_0x49150c=_0x1f115f[_0x2c222d(0x183)];_0x4a8ac2[_0x2c222d(0x224)][_0x2c222d(0x318)](_0x1d3b40=>{const _0x322bad=_0x2c222d,_0x40512a=_0x2f042c[_0x322bad(0x373)](a7_0x40a40c,_0x1d3b40,_0x15829c);_0x2f042c[_0x322bad(0x101)](_0x40512a[_0x322bad(0x1e3)],_0xa40f37)&&(_0xa40f37=_0x40512a[_0x322bad(0x1e3)],_0x49150c=_0x40512a[_0x322bad(0x300)]);});const _0x2a21ac=_0x1f115f[_0x2c222d(0x35a)](a7_0x84d93a,_0x49150c),_0x232e07=_0x1f115f[_0x2c222d(0x10c)](_0xa40f37,_0x217716);_0x1cef33+='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22py-3\x20px-2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20justify-between\x20items-center\x20mb-2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20class=\x22font-semibold\x20text-lg\x22>'+_0x4a8ac2[_0x2c222d(0x3b5)]+_0x2c222d(0x18f)+_0x4a8ac2['productCode']+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-xs\x20flex\x20flex-wrap\x20gap-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20><strong>'+(_0x232e07?_0x1f115f[_0x2c222d(0x217)]:_0x1f115f[_0x2c222d(0x386)])+'</strong>\x20<span\x20class=\x22'+_0x2a21ac+_0x2c222d(0x2f5)+_0xa40f37['toFixed'](0x1)+_0x2c222d(0x389)+_0x3b01bc+'\x22>'+_0x1e7c12+'</span></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x4a8ac2[_0x2c222d(0x1f6)]&&_0x4a8ac2[_0x2c222d(0x30e)]?'<span\x20class=\x22text-xs\x20italic\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Reason:\x20'+_0x4a8ac2[_0x2c222d(0x30e)]+_0x2c222d(0x175):'')+_0x2c222d(0x2d1);}),_0x1cef33+=_0xcb6600(0x34b),_0x594919[_0xcb6600(0x242)]=_0x1cef33;}else _0x594919[_0xcb6600(0x242)]=_0x1f115f['FCkLz'];document[_0xcb6600(0x258)](_0x1f115f[_0xcb6600(0x33f)])[_0xcb6600(0x195)]['display']=_0x1f115f[_0xcb6600(0x351)];}export function exportMachineProductsToExcel(){const _0x186320=a7_0x58064c,_0x5b19b5={'qGkYr':function(_0x4c2d21,_0x2879d0,_0x112635){return _0x4c2d21(_0x2879d0,_0x112635);},'DNtOQ':_0x186320(0x23d),'eglWp':function(_0x51a1a0,_0x25c5d9){return _0x51a1a0===_0x25c5d9;},'ngOdw':function(_0xfd79a9,_0x4ddfa8){return _0xfd79a9(_0x4ddfa8);},'cPYrG':_0x186320(0x24c),'xBeEK':function(_0x3afb91){return _0x3afb91();},'khtqk':_0x186320(0xff)};if(!u)return void console[_0x186320(0x1af)](_0x5b19b5[_0x186320(0x39c)]);const _0x5b84a2=u,_0xe6545c=a7_0x31eb33[_0x186320(0x3cb)]['filter'](_0x6655bc=>_0x6655bc[_0x186320(0x19b)]&&_0x6655bc[_0x186320(0x19b)][_0x186320(0x391)](_0x5b84a2['id']));if(_0x5b19b5[_0x186320(0x20b)](0x0,_0xe6545c[_0x186320(0x115)]))return void _0x5b19b5[_0x186320(0x267)](alert,_0x5b19b5[_0x186320(0x241)]);const _0x32d440=_0x5b19b5[_0x186320(0x17e)](a7_0x208633),_0x1b92b5=_0xe6545c['map'](_0x5387cf=>{const _0x110f7e=_0x186320,_0x6d780=_0x5387cf[_0x110f7e(0x1f6)]?'Yes':'No';let _0xc96f48=0x0;return _0x5387cf[_0x110f7e(0x224)][_0x110f7e(0x318)](_0x521a0c=>{const _0x5e040c=_0x110f7e,_0x15879e=_0x5b19b5[_0x5e040c(0x2d9)](a7_0x40a40c,_0x521a0c,_0x32d440);_0x15879e[_0x5e040c(0x1e3)]>_0xc96f48&&(_0xc96f48=_0x15879e[_0x5e040c(0x1e3)]);}),{'Product\x20Name':_0x5387cf[_0x110f7e(0x3b5)],'Highest\x20RPN':_0xc96f48[_0x110f7e(0x2ff)](0x1),'Special\x20Case\x20Product':_0x6d780};}),_0xa30ec2=XLSX[_0x186320(0x358)][_0x186320(0x257)](_0x1b92b5),_0x18738b=XLSX['utils'][_0x186320(0x232)](),_0x224f5a=_0x5b84a2[_0x186320(0x3b5)]+_0x186320(0x14b);XLSX[_0x186320(0x358)][_0x186320(0x1c8)](_0x18738b,_0xa30ec2,_0x224f5a);const _0x365eca=Object[_0x186320(0x260)](_0x1b92b5[0x0]||{})['map'](_0x5c20d9=>({'wch':Math['max'](_0x5c20d9[_0x186320(0x115)],..._0x1b92b5[_0x186320(0x2e9)](_0xaeb95a=>String(_0xaeb95a[_0x5c20d9]||'')[_0x186320(0x115)]))+0x2}));_0xa30ec2[_0x5b19b5[_0x186320(0x172)]]=_0x365eca;const _0x585e03=new Date()[_0x186320(0x365)]()[_0x186320(0x3ae)](0x0,0x13)['replace'](/[:\-T]/g,''),_0x233ade=_0x186320(0x30c)+_0x5b84a2[_0x186320(0x138)]+'_Products_'+_0x585e03+_0x186320(0x306);XLSX[_0x186320(0x154)](_0x18738b,_0x233ade);}export function printMachineProducts(){const _0x549446=a7_0x58064c,_0x27a678={'VVrhD':function(_0x50849f,_0x45959b){return _0x50849f>_0x45959b;},'BuXPa':_0x549446(0x1c9),'QTWRf':function(_0x5a9532){return _0x5a9532();},'flhXg':function(_0x485403,_0x3b83cb){return _0x485403===_0x3b83cb;},'SBAlm':function(_0x341708,_0x1373dd){return _0x341708(_0x1373dd);},'OTQpM':_0x549446(0x2b8),'tktmO':_0x549446(0x2d6),'YTbDV':_0x549446(0x334),'UPTaN':_0x549446(0x247),'hbrGG':_0x549446(0x176),'RrthJ':function(_0x5b0840,_0x4e10ee,_0x122711){return _0x5b0840(_0x4e10ee,_0x122711);},'EGAwn':'Error\x20printing\x20machine\x20products:','Pwbjh':'Failed\x20to\x20generate\x20print\x20report.\x20Please\x20try\x20again.'};if(u)try{const _0x58740e=u,_0x2732a4=a7_0x31eb33[_0x549446(0x3cb)][_0x549446(0x270)](_0x2bd4cc=>_0x2bd4cc[_0x549446(0x19b)]&&_0x2bd4cc['machineIds']['includes'](_0x58740e['id']));if(!_0x2732a4||_0x27a678[_0x549446(0x396)](0x0,_0x2732a4['length']))return void _0x27a678[_0x549446(0x16d)](alert,_0x27a678['OTQpM']);let _0x19b2e8=_0x27a678[_0x549446(0x1bc)];_0x2732a4['forEach'](_0x25b767=>{const _0x294cb0=_0x549446,_0x52eb82={'HbDXX':function(_0x2f4beb,_0x372fc6,_0x4eb6f2){return _0x2f4beb(_0x372fc6,_0x4eb6f2);},'KgjsV':function(_0x36822a,_0x29e4b2){const _0x5340d9=a7_0x48e7;return _0x27a678[_0x5340d9(0x3aa)](_0x36822a,_0x29e4b2);}},_0x45ceba=_0x25b767[_0x294cb0(0x1f6)]?_0x27a678[_0x294cb0(0x31d)]:'No',_0x1cd57d=_0x27a678['QTWRf'](a7_0x208633);let _0x4dd30d=0x0;_0x25b767[_0x294cb0(0x224)][_0x294cb0(0x318)](_0xd6edb0=>{const _0x55deb3=_0x294cb0,_0x59ce4b=_0x52eb82[_0x55deb3(0x117)](a7_0x40a40c,_0xd6edb0,_0x1cd57d);_0x52eb82[_0x55deb3(0x347)](_0x59ce4b['rpn'],_0x4dd30d)&&(_0x4dd30d=_0x59ce4b[_0x55deb3(0x1e3)]);}),_0x19b2e8+=_0x294cb0(0x187)+_0x25b767[_0x294cb0(0x3b5)]+_0x294cb0(0x264)+_0x4dd30d[_0x294cb0(0x2ff)](0x1)+_0x294cb0(0x264)+_0x45ceba+_0x294cb0(0x207);}),_0x19b2e8+=_0x549446(0x1e9)+new Date()[_0x549446(0x3b6)]()+_0x549446(0x15c);const _0x2f01f9=document[_0x549446(0x339)](_0x549446(0x199));_0x2f01f9[_0x549446(0x195)]['position']=_0x27a678[_0x549446(0x13c)],_0x2f01f9[_0x549446(0x195)][_0x549446(0x2ca)]=_0x27a678[_0x549446(0x291)],_0x2f01f9[_0x549446(0x195)][_0x549446(0x3cd)]=_0x27a678[_0x549446(0x364)],_0x2f01f9['style']['height']=_0x549446(0x176),document[_0x549446(0x32c)][_0x549446(0x12c)](_0x2f01f9);const _0x493b68=_0x2f01f9[_0x549446(0x2c8)][_0x549446(0x1de)];_0x493b68['write'](_0x19b2e8),_0x493b68['close'](),_0x2f01f9[_0x549446(0x2c8)][_0x549446(0x362)](),_0x2f01f9[_0x549446(0x2c8)][_0x549446(0x157)](),_0x27a678[_0x549446(0x28d)](setTimeout,()=>{const _0x1c0359=_0x549446;document[_0x1c0359(0x32c)][_0x1c0359(0x3b2)](_0x2f01f9);},0x3e8);}catch(_0x150140){console[_0x549446(0x1af)](_0x27a678[_0x549446(0x37d)],_0x150140),_0x27a678['SBAlm'](alert,_0x27a678['Pwbjh']);}else alert(_0x549446(0x250));}export function showAssignMachinesModal(_0x4965f1){const _0x3c6e0b=a7_0x58064c,_0x1f4473={'TEeUE':function(_0x37b59d,_0x44d6d6){return _0x37b59d(_0x44d6d6);},'LsldH':function(_0x176eda,_0x3e114a){return _0x176eda===_0x3e114a;},'geicG':_0x3c6e0b(0x342),'NTPmH':function(_0xae08a9,_0x4be628){return _0xae08a9||_0x4be628;},'AOWEF':'bin','oAESs':function(_0x28978d,_0x467668){return _0x28978d&&_0x467668;},'oIjcX':function(_0x1d5561,_0x5b01c1){return _0x1d5561-_0x5b01c1;},'iDCIV':_0x3c6e0b(0x25e),'XUYmS':_0x3c6e0b(0x13e),'qpBLH':_0x3c6e0b(0x105),'UeNQM':function(_0x46f1c5,_0x321fef){return _0x46f1c5>_0x321fef;},'BrqiE':_0x3c6e0b(0x156),'DwmRc':_0x3c6e0b(0x363),'DygEF':'var(--text-secondary)','SThao':function(_0x459511,_0x55a71d){return _0x459511===_0x55a71d;},'XsDpm':_0x3c6e0b(0x345),'wpjyZ':_0x3c6e0b(0x282),'iJJWg':_0x3c6e0b(0x294),'pyFPX':_0x3c6e0b(0x1e1),'dhlzw':_0x3c6e0b(0x20a),'ssZbG':'assignMachinesModalTitle','MIvyt':_0x3c6e0b(0x1f0),'nWXrE':_0x3c6e0b(0x25b)},_0x5a322b=a7_0x31eb33[_0x3c6e0b(0x3cb)]['find'](_0xa17576=>_0xa17576['id']===_0x4965f1);if(!_0x5a322b)return;document[_0x3c6e0b(0x258)](_0x1f4473[_0x3c6e0b(0x1a2)])[_0x3c6e0b(0x3af)]=_0x4965f1,document[_0x3c6e0b(0x258)](_0x1f4473[_0x3c6e0b(0x181)])['textContent']=_0x3c6e0b(0x19d)+_0x5a322b[_0x3c6e0b(0x3b5)];const _0x2aef77=document['getElementById'](_0x1f4473['MIvyt']);_0x2aef77['innerHTML']='';const _0x3e1212=a7_0x31eb33[_0x3c6e0b(0x332)][_0x3c6e0b(0x26c)](_0x35444b=>void 0x0!==_0x35444b[_0x3c6e0b(0x2f9)]&&null!==_0x35444b[_0x3c6e0b(0x2f9)]),_0x3a61a1=_0x5a322b['line']?String(_0x5a322b[_0x3c6e0b(0x2f9)])['trim']():null;a7_0x31eb33['machineStageDisplayOrder'][_0x3c6e0b(0x318)](_0x5719fe=>{const _0x121fd1=_0x3c6e0b,_0x6d79cc={'EDxqA':_0x1f4473['AOWEF'],'WesNo':function(_0x1ace60,_0x258394){const _0x78ab98=a7_0x48e7;return _0x1f4473[_0x78ab98(0x2b7)](_0x1ace60,_0x258394);},'PBJTA':function(_0x425b48,_0x24d99c){const _0x5b5b20=a7_0x48e7;return _0x1f4473[_0x5b5b20(0x2b7)](_0x425b48,_0x24d99c);},'AeICQ':function(_0x45fc2c,_0x55a861){return _0x1f4473['oIjcX'](_0x45fc2c,_0x55a861);},'yBKPK':function(_0x559e10,_0x4d8152,_0x3b410e){return _0x559e10(_0x4d8152,_0x3b410e);},'vVaHb':_0x1f4473[_0x121fd1(0x2f6)],'IcUlC':_0x1f4473[_0x121fd1(0x394)]};let _0x171b50=a7_0x31eb33['machines'][_0x121fd1(0x270)](_0x430d88=>_0x430d88['stage']===_0x5719fe);if(_0x1f4473['oAESs'](_0x3e1212,_0x3a61a1)&&(_0x171b50=_0x171b50[_0x121fd1(0x270)](_0xeadb2f=>{const _0x4f3c08=_0x121fd1,_0x463772=_0x1f4473['TEeUE'](String,_0xeadb2f[_0x4f3c08(0x2f9)]||'')[_0x4f3c08(0x1d5)](),_0x4ba320=_0x1f4473[_0x4f3c08(0x3a9)](_0x1f4473[_0x4f3c08(0xfe)],_0x463772),_0x39e7e3=_0x1f4473['LsldH'](_0x463772,_0x3a61a1),_0x1a2d03=_0xeadb2f[_0x4f3c08(0x1dd)]&&_0xeadb2f[_0x4f3c08(0x1dd)][_0x4f3c08(0x391)](_0x3a61a1);return _0x1f4473[_0x4f3c08(0x202)](_0x39e7e3,_0x4ba320)||_0x1a2d03;})),_0x1f4473[_0x121fd1(0x3a9)](_0x1f4473[_0x121fd1(0x213)],_0x5719fe)?_0x171b50[_0x121fd1(0x21f)]((_0x3d28c4,_0x5613d5)=>{const _0x2fd28e=_0x121fd1,_0x5eb9c6=_0x3d28c4[_0x2fd28e(0x3b5)][_0x2fd28e(0x1b7)]()['includes'](_0x6d79cc[_0x2fd28e(0x33a)]),_0x1a8b64=_0x5613d5[_0x2fd28e(0x3b5)][_0x2fd28e(0x1b7)]()[_0x2fd28e(0x391)](_0x2fd28e(0x35c));if(_0x6d79cc['WesNo'](_0x5eb9c6,!_0x1a8b64))return-0x1;if(_0x6d79cc['PBJTA'](!_0x5eb9c6,_0x1a8b64))return 0x1;if(_0x6d79cc[_0x2fd28e(0x2b4)](_0x5eb9c6,_0x1a8b64))return _0x6d79cc[_0x2fd28e(0x1ae)](_0x6d79cc[_0x2fd28e(0x29b)](parseInt,(_0x3d28c4[_0x2fd28e(0x3b5)][_0x2fd28e(0x378)](/\d+/)||[0x0])[0x0],0xa),parseInt((_0x5613d5[_0x2fd28e(0x3b5)][_0x2fd28e(0x378)](/\d+/)||[0x0])[0x0],0xa));return _0x3d28c4[_0x2fd28e(0x3b5)][_0x2fd28e(0x2a3)](_0x5613d5[_0x2fd28e(0x3b5)]);}):_0x171b50[_0x121fd1(0x21f)]((_0xf25444,_0x9e10ee)=>_0xf25444['name']['localeCompare'](_0x9e10ee[_0x121fd1(0x3b5)])),_0x1f4473[_0x121fd1(0x2a2)](_0x171b50[_0x121fd1(0x115)],0x0)){const _0x531ce1=document[_0x121fd1(0x339)](_0x121fd1(0x294)),_0x1ea1f3=document[_0x121fd1(0x339)]('h4');_0x1ea1f3[_0x121fd1(0x20d)]=_0x1f4473[_0x121fd1(0x2e2)],_0x1ea1f3[_0x121fd1(0x195)][_0x121fd1(0x1a7)]=_0x1f4473[_0x121fd1(0x116)],_0x1ea1f3[_0x121fd1(0x195)][_0x121fd1(0x2ee)]=_0x1f4473[_0x121fd1(0x1b2)],_0x1ea1f3['textContent']=_0x1f4473['SThao'](_0x1f4473[_0x121fd1(0x18d)],_0x5719fe)?_0x1f4473['wpjyZ']:_0x5719fe,_0x531ce1['appendChild'](_0x1ea1f3);const _0x6ac24b=document[_0x121fd1(0x339)](_0x1f4473['iJJWg']);_0x6ac24b[_0x121fd1(0x20d)]=_0x1f4473[_0x121fd1(0x317)],_0x171b50[_0x121fd1(0x318)](_0x2c73fd=>{const _0x5f1cab=_0x121fd1,_0x113fd9=_0x5a322b['machineIds']&&_0x5a322b[_0x5f1cab(0x19b)][_0x5f1cab(0x391)](_0x2c73fd['id']),_0x52065b=document[_0x5f1cab(0x339)](_0x5f1cab(0x294));_0x52065b[_0x5f1cab(0x20d)]=_0x6d79cc[_0x5f1cab(0x275)],_0x52065b[_0x5f1cab(0x242)]=_0x5f1cab(0x165)+_0x2c73fd['id']+_0x5f1cab(0x1fa)+_0x2c73fd['id']+'\x22\x20'+(_0x113fd9?_0x6d79cc[_0x5f1cab(0x12d)]:'')+_0x5f1cab(0x268)+_0x2c73fd['id']+_0x5f1cab(0x180)+_0x2c73fd[_0x5f1cab(0x3b5)]+_0x5f1cab(0x312)+_0x2c73fd[_0x5f1cab(0x138)]+_0x5f1cab(0x209),_0x6ac24b['appendChild'](_0x52065b);}),_0x531ce1[_0x121fd1(0x12c)](_0x6ac24b),_0x2aef77[_0x121fd1(0x12c)](_0x531ce1);}}),document['getElementById'](_0x1f4473[_0x3c6e0b(0x3c2)])['style'][_0x3c6e0b(0x3a7)]=_0x3c6e0b(0x23b);}export function saveProductMachines(_0x38f424){const _0x433ec0=a7_0x58064c,_0x47e750={'HCfdQ':function(_0x37ed8d,_0x444890){return _0x37ed8d(_0x444890);},'RkFJi':_0x433ec0(0x20c),'EhbWT':function(_0x5014a0){return _0x5014a0();},'ySYYx':function(_0x4daab5,_0x2247d0,_0x46698b){return _0x4daab5(_0x2247d0,_0x46698b);},'Dwbgo':_0x433ec0(0x2dd),'KqANM':_0x433ec0(0x216)};_0x38f424[_0x433ec0(0x28b)]();const _0x10a686=_0x47e750[_0x433ec0(0x3ab)](parseInt,document['getElementById'](_0x433ec0(0x20a))[_0x433ec0(0x3af)]),_0x1348df=a7_0x31eb33[_0x433ec0(0x3cb)][_0x433ec0(0x149)](_0x3608da=>_0x3608da['id']===_0x10a686);if(!_0x1348df)return;const _0xce60aa=[];document[_0x433ec0(0x185)](_0x47e750[_0x433ec0(0x3ac)])['forEach'](_0x2421dc=>{const _0xcda62b=_0x433ec0;_0xce60aa[_0xcda62b(0x3ba)](_0x47e750['HCfdQ'](parseInt,_0x2421dc[_0xcda62b(0x3af)]));}),_0x1348df[_0x433ec0(0x19b)]=_0xce60aa,a7_0x5f2dd0(),a7_0x42d7fc(_0x433ec0(0x25b)),_0x47e750['EhbWT'](a7_0x12fdf7),_0x47e750[_0x433ec0(0x3d9)](a7_0x305bab,_0x47e750[_0x433ec0(0x2a4)],_0x47e750[_0x433ec0(0x1ef)]);}export function showAddProductsToMachineModal(_0x19ca69){const _0x1e1f9c=a7_0x58064c,_0x2146b5={'sIfxv':function(_0x442d35,_0x35403d){return _0x442d35(_0x35403d);},'Iutik':function(_0xfc8849,_0x5c009d){return _0xfc8849===_0x5c009d;},'sVZRd':'Shared','UBQng':_0x1e1f9c(0x1f9),'nPQSx':'flex\x20items-center','GCmwR':_0x1e1f9c(0x1e6),'lxqsI':_0x1e1f9c(0x1fc),'ELoBC':_0x1e1f9c(0x273),'kluZE':_0x1e1f9c(0x288),'GBuGR':_0x1e1f9c(0x126),'rQZbe':_0x1e1f9c(0x1e8),'jNHKn':'There\x20are\x20no\x20products\x20registered\x20in\x20the\x20system.','PyMxu':_0x1e1f9c(0x23b)},_0x4e8294=a7_0x31eb33[_0x1e1f9c(0x332)]['find'](_0x47ce1f=>_0x47ce1f['id']===_0x19ca69);if(!_0x4e8294)return;document[_0x1e1f9c(0x258)](_0x2146b5[_0x1e1f9c(0x1a9)])[_0x1e1f9c(0x3af)]=_0x19ca69,document[_0x1e1f9c(0x258)](_0x2146b5[_0x1e1f9c(0x1c0)])[_0x1e1f9c(0x173)]='Assign\x20Products\x20to:\x20'+_0x4e8294['name'];const _0x1ab1db=document[_0x1e1f9c(0x258)](_0x2146b5[_0x1e1f9c(0x336)]),_0x153c73=document[_0x1e1f9c(0x258)](_0x2146b5[_0x1e1f9c(0x383)]),_0x233108=document[_0x1e1f9c(0x258)](_0x1e1f9c(0x29c));_0x1ab1db[_0x1e1f9c(0x242)]='';const _0x11aa81=a7_0x31eb33[_0x1e1f9c(0x332)][_0x1e1f9c(0x26c)](_0x367043=>void 0x0!==_0x367043[_0x1e1f9c(0x2f9)]&&null!==_0x367043[_0x1e1f9c(0x2f9)]),_0x255c64=_0x4e8294[_0x1e1f9c(0x2f9)]?String(_0x4e8294[_0x1e1f9c(0x2f9)])[_0x1e1f9c(0x1d5)]():null;let _0x2339ab=a7_0x31eb33[_0x1e1f9c(0x3cb)];if(_0x11aa81&&_0x255c64&&(_0x2339ab=a7_0x31eb33[_0x1e1f9c(0x3cb)][_0x1e1f9c(0x270)](_0x501556=>{const _0x1153c2=_0x1e1f9c,_0x484109=_0x501556['line']?_0x2146b5[_0x1153c2(0x39e)](String,_0x501556['line'])[_0x1153c2(0x1d5)]():null;return!_0x484109||_0x2146b5['Iutik'](_0x484109,_0x255c64)||_0x2146b5['Iutik'](_0x2146b5[_0x1153c2(0x25f)],_0x255c64);})),_0x2339ab[_0x1e1f9c(0x115)]>0x0)_0x153c73['style'][_0x1e1f9c(0x3a7)]=_0x2146b5[_0x1e1f9c(0x256)],_0x1ab1db['style'][_0x1e1f9c(0x3a7)]=_0x2146b5[_0x1e1f9c(0x2ae)],_0x233108['style'][_0x1e1f9c(0x3a7)]=_0x1e1f9c(0x1e8),_0x2339ab['sort']((_0x5f3985,_0x53b5ac)=>_0x5f3985[_0x1e1f9c(0x3b5)][_0x1e1f9c(0x2a3)](_0x53b5ac[_0x1e1f9c(0x3b5)]))[_0x1e1f9c(0x318)](_0x3817f7=>{const _0x4fcce2=_0x1e1f9c,_0x2175fd=_0x3817f7[_0x4fcce2(0x19b)]&&_0x3817f7[_0x4fcce2(0x19b)]['includes'](_0x19ca69);let _0x49035b='';_0x3817f7['machineIds']&&_0x3817f7[_0x4fcce2(0x19b)][_0x4fcce2(0x26c)](_0x59070d=>_0x59070d!==_0x19ca69)&&(_0x49035b=_0x2146b5[_0x4fcce2(0x3d0)]);const _0x98a18b=document[_0x4fcce2(0x339)](_0x4fcce2(0x294));_0x98a18b[_0x4fcce2(0x20d)]=_0x2146b5[_0x4fcce2(0x2e0)],_0x98a18b['innerHTML']=_0x4fcce2(0x2f0)+_0x3817f7['id']+'\x22\x20value=\x22'+_0x3817f7['id']+'\x22\x20'+(_0x2175fd?_0x4fcce2(0x13e):'')+_0x4fcce2(0x222)+_0x3817f7['id']+_0x4fcce2(0x2b1)+_0x3817f7[_0x4fcce2(0x3b5)]+_0x4fcce2(0x312)+_0x3817f7[_0x4fcce2(0x320)]+_0x4fcce2(0x152)+_0x49035b+_0x4fcce2(0x2db),_0x1ab1db[_0x4fcce2(0x12c)](_0x98a18b);});else{const _0x2f8b48=_0x2146b5[_0x1e1f9c(0x100)](0x0,a7_0x31eb33[_0x1e1f9c(0x3cb)]['length'])?_0x2146b5['jNHKn']:_0x1e1f9c(0x194)+_0x255c64+'\x22.\x20Products\x20must\x20be\x20from\x20the\x20same\x20line\x20as\x20the\x20machine.';_0x153c73[_0x1e1f9c(0x173)]=_0x2f8b48,_0x153c73[_0x1e1f9c(0x195)]['display']=_0x2146b5[_0x1e1f9c(0x2ae)],_0x1ab1db['style']['display']=_0x2146b5[_0x1e1f9c(0x256)],_0x233108[_0x1e1f9c(0x195)][_0x1e1f9c(0x3a7)]=_0x2146b5[_0x1e1f9c(0x256)];}document[_0x1e1f9c(0x258)]('addProductsToMachineModal')[_0x1e1f9c(0x195)][_0x1e1f9c(0x3a7)]=_0x2146b5['PyMxu'];}export function saveProductsToMachine(_0x56d660){const _0x90082e=a7_0x58064c,_0x3239d7={'vqDgw':function(_0x11736d,_0x4ee9e2){return _0x11736d(_0x4ee9e2);},'cNLXz':function(_0x43f4cf,_0x58c25e){return _0x43f4cf&&_0x58c25e;},'reCbR':function(_0x544d0b,_0x5ca1d6){return _0x544d0b&&_0x5ca1d6;},'wENYq':_0x90082e(0x1e6),'hOyby':function(_0x42e40c,_0xf35a00){return _0x42e40c(_0xf35a00);},'ddhgl':_0x90082e(0x159),'wHxPG':function(_0x4d83ad){return _0x4d83ad();},'PLqcf':function(_0x351db4,_0x5987b2){return _0x351db4(_0x5987b2);},'mKXfh':_0x90082e(0x2bb),'RzVyP':function(_0x24b67b,_0xb7c1e6,_0x537614){return _0x24b67b(_0xb7c1e6,_0x537614);},'BsBit':_0x90082e(0x2dd),'cFsml':'Machine\x20assignments\x20updated.'};_0x56d660[_0x90082e(0x28b)]();const _0x5721da=_0x3239d7['vqDgw'](parseInt,document[_0x90082e(0x258)](_0x3239d7['wENYq'])[_0x90082e(0x3af)]);if(_0x3239d7[_0x90082e(0x3a6)](isNaN,_0x5721da))return;const _0x3c414c=[];document[_0x90082e(0x185)](_0x3239d7[_0x90082e(0x208)])['forEach'](_0xf941eb=>{const _0x1c393f=_0x90082e;_0x3c414c[_0x1c393f(0x3ba)](_0x3239d7[_0x1c393f(0x251)](parseInt,_0xf941eb[_0x1c393f(0x3af)]));}),a7_0x31eb33['products'][_0x90082e(0x318)](_0x16d832=>{const _0x4d5719=_0x90082e;_0x16d832[_0x4d5719(0x19b)]||(_0x16d832[_0x4d5719(0x19b)]=[]);const _0x486d4d=_0x16d832[_0x4d5719(0x19b)][_0x4d5719(0x391)](_0x5721da),_0x4f2b96=_0x3c414c[_0x4d5719(0x391)](_0x16d832['id']);_0x3239d7['cNLXz'](_0x4f2b96,!_0x486d4d)?_0x16d832[_0x4d5719(0x19b)][_0x4d5719(0x3ba)](_0x5721da):_0x3239d7['reCbR'](!_0x4f2b96,_0x486d4d)&&(_0x16d832['machineIds']=_0x16d832[_0x4d5719(0x19b)][_0x4d5719(0x270)](_0x2539cb=>_0x2539cb!==_0x5721da));}),_0x3239d7[_0x90082e(0x10b)](a7_0x5f2dd0),a7_0x12fdf7(),_0x3239d7[_0x90082e(0x1a5)](a7_0x42d7fc,_0x3239d7[_0x90082e(0x34f)]),_0x3239d7[_0x90082e(0x3d4)](a7_0x305bab,_0x3239d7[_0x90082e(0x1a8)],_0x3239d7[_0x90082e(0x32a)]);}window[a7_0x58064c(0x39a)]=function(_0x103761){const _0xaea143=a7_0x58064c,_0x51d9dd={'YEOai':function(_0x4ed004,_0x4586a8){return _0x4ed004===_0x4586a8;},'aMhgd':_0xaea143(0x126),'NSzDq':_0xaea143(0x134),'XtqtB':'false','gGili':_0xaea143(0x33b)},_0x460900=document['getElementById'](_0xaea143(0x27c)+_0x103761),_0xa30f84=event[_0xaea143(0x16c)];_0x51d9dd[_0xaea143(0x38f)](_0x51d9dd[_0xaea143(0x2de)],_0x460900[_0xaea143(0x195)][_0xaea143(0x3a7)])?(_0x460900[_0xaea143(0x195)][_0xaea143(0x3a7)]='block',_0xa30f84['textContent']=_0x51d9dd[_0xaea143(0x1fd)],localStorage[_0xaea143(0x23e)]('machineLine-'+_0x103761+_0xaea143(0x388),_0x51d9dd[_0xaea143(0x2e1)])):(_0x460900[_0xaea143(0x195)]['display']=_0x51d9dd['aMhgd'],_0xa30f84[_0xaea143(0x173)]=_0xaea143(0x13f),localStorage[_0xaea143(0x23e)](_0xaea143(0x1b6)+_0x103761+_0xaea143(0x388),_0x51d9dd['gGili']));},window[a7_0x58064c(0x2fe)]=function(_0x3c800){const _0x352fd0=a7_0x58064c,_0x3386b9={'PqyHr':function(_0x97e12e,_0xc50cbb){return _0x97e12e(_0xc50cbb);},'TeMVd':function(_0x535b73,_0x406fa1){return _0x535b73===_0x406fa1;},'SYaKH':function(_0x360b57,_0x41fc4b){return _0x360b57>_0x41fc4b;},'eXHgt':function(_0x598968,_0x5a3a1c){return _0x598968/_0x5a3a1c;},'bcHps':_0x352fd0(0x356),'ikmFJ':_0x352fd0(0x2a9),'jYMLX':_0x352fd0(0x2c7),'fahRa':'machineSummaryContent','OAzom':_0x352fd0(0x319),'jRVrb':function(_0x183f75,_0x44439f){return _0x183f75>_0x44439f;},'hWyWT':_0x352fd0(0x36e),'xsuVj':'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','ldCRm':function(_0x29816e,_0x1a902e){return _0x29816e(_0x1a902e);}};document[_0x352fd0(0x258)](_0x3386b9['jYMLX']);const _0xd56465=document[_0x352fd0(0x258)](_0x352fd0(0x3d5)),_0x207b52=document[_0x352fd0(0x258)](_0x3386b9[_0x352fd0(0x2ed)]);_0xd56465['textContent']=_0x3c800+_0x352fd0(0x1c2);const _0x3a2087=a7_0x31eb33[_0x352fd0(0x332)][_0x352fd0(0x270)](_0x576c24=>_0x576c24[_0x352fd0(0x2f9)]===_0x3c800);if(_0x3386b9['TeMVd'](0x0,_0x3a2087[_0x352fd0(0x115)]))return _0x207b52[_0x352fd0(0x242)]=_0x3386b9[_0x352fd0(0x18c)],void _0x3386b9[_0x352fd0(0x23c)](a7_0x5ac44c,'machineSummaryModal');const _0x2bcf8e=function(_0x40a2c7){const _0x17c15d=_0x352fd0,_0x20a33e={'tnIJD':function(_0x139adc,_0x397372){const _0x14f06c=a7_0x48e7;return _0x3386b9[_0x14f06c(0x390)](_0x139adc,_0x397372);}},_0x5dcc20={'worstCaseProducts':[],'specialCases':[],'totalMachines':_0x40a2c7['length'],'totalArea':0x0,'avgProductsPerMachine':0x0,'machineWorstCases':{},'sharedWorstCaseGroups':[]};let _0x5f1815=0x0;_0x40a2c7['forEach'](_0x1fb642=>{const _0x55352b=a7_0x48e7,_0x3145fd={'jkPMm':function(_0x9ce1ef,_0x59b42d){return _0x3386b9['PqyHr'](_0x9ce1ef,_0x59b42d);}};_0x5dcc20['totalArea']+=_0x1fb642['area'];const _0x1be893=a7_0x31eb33['products'][_0x55352b(0x270)](_0xf281e8=>_0xf281e8[_0x55352b(0x19b)]&&_0xf281e8[_0x55352b(0x19b)]['includes'](_0x1fb642['id']));_0x5f1815+=_0x1be893['length'];let _0x167414=null,_0x26c6e5=-0x1;_0x1be893['forEach'](_0x37f402=>{const _0x4a3691=_0x55352b;_0x37f402[_0x4a3691(0x224)][_0x4a3691(0x318)](_0x33d6ac=>{const _0x56ed5a=_0x4a3691,{rpn:_0x173331}=_0x3145fd[_0x56ed5a(0x2f7)](a7_0x40a40c,_0x33d6ac);_0x173331>_0x26c6e5&&(_0x26c6e5=_0x173331,_0x167414={'name':_0x37f402[_0x56ed5a(0x3b5)],'rpn':_0x173331,'ingredient':_0x33d6ac[_0x56ed5a(0x3b5)],'productId':_0x37f402['id']});});}),_0x167414&&(_0x5dcc20['machineWorstCases'][_0x1fb642['id']]=_0x167414);});const _0x29ede8={};if(Object[_0x17c15d(0x260)](_0x5dcc20[_0x17c15d(0x22c)])['forEach'](_0x3e1543=>{const _0x1783e8=_0x17c15d,_0x2a777a=_0x5dcc20[_0x1783e8(0x22c)][_0x3e1543],_0x3915fe=_0x2a777a[_0x1783e8(0x1b0)]+'-'+_0x2a777a[_0x1783e8(0x198)];_0x29ede8[_0x3915fe]||(_0x29ede8[_0x3915fe]={'productName':_0x2a777a[_0x1783e8(0x3b5)],'ingredient':_0x2a777a['ingredient'],'rpn':_0x2a777a[_0x1783e8(0x1e3)],'machines':[]});const _0xafd053=_0x40a2c7[_0x1783e8(0x149)](_0x12cdca=>_0x12cdca['id']==_0x3e1543);_0xafd053&&_0x29ede8[_0x3915fe]['machines'][_0x1783e8(0x3ba)](_0xafd053[_0x1783e8(0x3b5)]);}),_0x5dcc20[_0x17c15d(0x1f7)]=Object[_0x17c15d(0x26f)](_0x29ede8)[_0x17c15d(0x21f)]((_0x1e1e33,_0x2d47c6)=>_0x2d47c6[_0x17c15d(0x1e3)]-_0x1e1e33['rpn']),_0x3386b9[_0x17c15d(0x127)](_0x5dcc20[_0x17c15d(0x1f7)][_0x17c15d(0x115)],0x0)){const _0x6dc097=_0x5dcc20[_0x17c15d(0x1f7)][0x0][_0x17c15d(0x1e3)];_0x5dcc20[_0x17c15d(0x1f7)][_0x17c15d(0x318)](_0x4caaf3=>{const _0x6df23=_0x17c15d;_0x4caaf3['isHighestRpn']=_0x20a33e[_0x6df23(0x3ce)](_0x4caaf3[_0x6df23(0x1e3)],_0x6dc097);});}const _0x4f5564=Object[_0x17c15d(0x26f)](_0x5dcc20[_0x17c15d(0x22c)]);return _0x5dcc20[_0x17c15d(0x12e)]=_0x4f5564[_0x17c15d(0x21f)]((_0x420be0,_0x5bd3d4)=>_0x5bd3d4['rpn']-_0x420be0[_0x17c15d(0x1e3)]),_0x5dcc20[_0x17c15d(0x2e5)]=_0x5dcc20[_0x17c15d(0x12e)]['filter'](_0x5417d9=>_0x5417d9[_0x17c15d(0x1e3)]>=0x64),_0x5dcc20[_0x17c15d(0x132)]=_0x3386b9['eXHgt'](_0x5f1815,_0x40a2c7[_0x17c15d(0x115)]),_0x5dcc20;}(_0x3a2087);let _0x299e2b=_0x352fd0(0x327);_0x3386b9[_0x352fd0(0x243)](_0x2bcf8e['sharedWorstCaseGroups'][_0x352fd0(0x115)],0x0)?_0x2bcf8e[_0x352fd0(0x1f7)][_0x352fd0(0x318)](_0x2a9cfe=>{const _0x415b61=_0x352fd0;_0x299e2b+=_0x415b61(0x10e)+_0x2a9cfe[_0x415b61(0x211)]+_0x415b61(0x377)+_0x2a9cfe['ingredient']+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20text-center\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22px-2\x20py-1\x20rounded\x20text-sm\x20font-bold\x22\x20style=\x22background-color:\x20var(--bg-accent);\x20color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x2a9cfe[_0x415b61(0x1fe)]?_0x3386b9['bcHps']:_0x3386b9[_0x415b61(0x186)])+_0x2a9cfe[_0x415b61(0x1e3)]+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20flex-wrap\x20gap-1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x2a9cfe[_0x415b61(0x332)][_0x415b61(0x2e9)](_0x2f9940=>{const _0xd923e8=_0x415b61,_0x391993=_0x3a2087[_0xd923e8(0x149)](_0xd70a46=>_0xd70a46[_0xd923e8(0x3b5)]===_0x2f9940),_0x12ce6f=_0x391993&&_0x391993[_0xd923e8(0x263)]?'\x20('+_0x391993[_0xd923e8(0x263)]+')':'';return _0xd923e8(0x3a3)+_0x2f9940+'<strong>'+_0x12ce6f+_0xd923e8(0x219);})['join']('')+_0x415b61(0x3db);}):_0x299e2b+=_0x3386b9[_0x352fd0(0x131)],_0x299e2b+=_0x3386b9['xsuVj'],_0x207b52[_0x352fd0(0x242)]=_0x299e2b,_0x3386b9[_0x352fd0(0x19e)](a7_0x5ac44c,_0x3386b9[_0x352fd0(0x265)]);};function a7_0x42da(){const _0xeb57b2=['forEach','<p\x20class=\x22text-center\x20text-gray-500\x22>No\x20machines\x20found\x20for\x20this\x20line.</p>','gaYXs','meEOy','twqKN','BuXPa','files','0.5','productCode','Please\x20specify\x20the\x20custom\x20line\x20name.','split','toggleMachineLineOptions','ezFBl','jRbZG','<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20a\x20Stage</option>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Shared\x20Worst\x20Case\x20Groups\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card\x20p-4\x20mb-6\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20class=\x22text-lg\x20font-semibold\x20mb-4\x20text-blue-600\x22>Machines\x20Sharing\x20Same\x20Worst\x20Case\x20Products</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22overflow-hidden\x20rounded-lg\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22w-full\x20text-sm\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20class=\x22bg-gray-200\x20dark:bg-gray-700\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Product</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Ingredient</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-center\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>RPN</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Shared\x20Machines</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20var(--bg-secondary);\x22>\x0a\x20\x20\x20\x20','File\x20size\x20must\x20be\x20less\x20than\x2010MB.','sbWmQ','cFsml','toUpperCase','body','yixMk','No\x20file\x20data\x20is\x20available\x20for\x20this\x20SOP.','UFifd','No\x20SOP\x20file\x20is\x20attached\x20to\x20this\x20machine.','machineProductsList','machines','OIzHR','absolute','setMachineSortState','ELoBC','oxjCU','otherGroupContainer','createElement','EDxqA','true','N/A','text',')\x22\x20title=\x22Click\x20to\x20open:\x20','coCYU','JNBcp','data','Shared','RPN:','attachmentType','Other','lDpEx','KgjsV','then','sopFileName','Please\x20upload\x20a\x20SOP\x20file.','</div>','CDQZD','\x22\x20style=\x22cursor:\x20pointer;\x20color:\x20#1976d2;\x20text-decoration:\x20none;\x22>\x20📎</span>','OGoqH','mKXfh','sopLinkSection','ewbgV','UtZeH','TvOkr','nNHCO','open','Highest\x20RPN:\x20','273120ArkidF','utils','removeSOPFile','TWQWl','doc','bin','startsWith','PXsTV','All\x20fields\x20are\x20required.','UZUQS','kXXYC','focus','var(--border-color)','hbrGG','toISOString','lbsNb','sopAttachmentLink','uyQWq','MMVCe','setMachines','card\x20p-6','\x22.\x20All\x20machines\x20in\x20a\x20group\x20must\x20belong\x20to\x20the\x20same\x20stage.\x0a\x0aCurrent\x20group\x20stage(s):\x20','Unassigned','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x224\x22\x20class=\x22px-4\x20py-8\x20text-center\x20text-gray-500\x22>No\x20shared\x20groups\x20found</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','gBKMY','dqhJN','Joevr','kTYSM','UBxRp','machineOtherLine','LLGrJ','input[name=\x22sopAttachmentMethod\x22]','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x22\x20style=\x22color:\x20var(--text-primary);\x22>','match','Error\x20generating\x20sample\x20location\x20report:','EkHsh','Vpyhr','oZYcP','EGAwn','text-red-600\x20font-bold','onerror','mPtpQ','revokeObjectURL','hFKUy','kluZE','GfHWg','sampleLocations','iAMct','oSXBf','-hidden','</span></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span><strong>Special\x20Case\x20Product:</strong>\x20<span\x20class=\x22','QTNKj','OclIn','asc','WvfZr','input[name=\x22machineLineType\x22][value=\x22shared\x22]','YEOai','TeMVd','includes','options','GhfJU','XUYmS','application/msword','flhXg','cEwyl','querySelector','_blank','toggleLineSection','This\x20SOP\x20is\x20a\x20text\x20reference\x20only\x20with\x20no\x20attached\x20file.','DNtOQ','aYZHD','sIfxv','dHRUh','nhdxv','<option\x20value=\x22Other\x22>Other\x20(Create\x20New\x20Group)</option>','BTxzo','<span\x20class=\x22px-2\x20py-1\x20rounded\x20border\x20text-xs\x22\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20var(--bg-secondary);\x22>',')\x22\x20class=\x22p-1\x22\x20style=\x22color:\x20var(--text-secondary);\x22\x20title=\x22View\x20','jurZB','hOyby','display','exportMachineProductsToExcel','LsldH','VVrhD','HCfdQ','RkFJi','direction','slice','value','upload','date','removeChild','machineName','<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20Primary\x20Line</option>','name','toLocaleString','hWueX','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','pzvcH','push','xNPZb','FsBoa','dwxqF','420144KrvLsd','vHbsV','KgfOY','Error','nWXrE','sopFileLink','PCKqW','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22material-cell\x22>','Validation\x20Error','PIhqq','File\x20Attached','Cannot\x20Open\x20File','File\x20Too\x20Large','products','hidden','width','tnIJD','.txt','UBQng','TtdXv','\x0a\x0aPlease\x20either:\x0a•\x20Change\x20the\x20machine\x27s\x20stage\x20to\x20match\x20the\x20group\x0a•\x20Choose\x20a\x20different\x20group\x0a•\x20Create\x20a\x20new\x20group\x20for\x20this\x20stage','text/plain','RzVyP','machineSummaryModalTitle','Mcooo','file:///','Please\x20select\x20an\x20attachment\x20method.','ySYYx','<span\x20class=\x22sop-attachment-link\x22\x20onclick=\x22openMachineSOPFile(','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','qffVc','tcMkX','cleaningSOP','fileName','EelgG','bDDyF','KTrzq','XnDao','RJVhE','geicG','!cols','Iutik','zDycE','cONRy','Cannot\x20Open\x20Link','KUGlS','Mixing','WxsfQ','zDeXC','IKXzB','Failed\x20to\x20generate\x20sample\x20location\x20report:\x20','xzXKn','wHxPG','nKjhC','cmbpG','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22border-b\x20hover:bg-gray-50\x20dark:hover:bg-gray-800/50\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20font-semibold\x22\x20style=\x22color:\x20var(--text-primary);\x22>','accessibilityForCleaning','zRCbB','required','<option\x20value=\x22\x22>No\x20Group\x20(Individual\x20Machine)</option>','additionalLinesContainer','Ystvk','length','DwmRc','HbDXX','...','shared','join','WfPvN','OGSXm','</option>','getItem','Jarnf','machineArea','result','vVeTx','updateAdditionalLinesCheckboxes','flaAv','VtJnf','none','SYaKH','otherMachineGroup','.sort-indicator','uTpdU','hKHhf','appendChild','IcUlC','worstCaseProducts','createObjectURL','tBfOs','hWyWT','avgProductsPerMachine','VKxoB','Hide','No\x20link\x20is\x20available\x20for\x20this\x20SOP.','JYiqo','Saving\x20machines\x20to\x20Firestore','machineNumber','No\x20File\x20Found','GiEnu','cHJdE','YTbDV','YQhoq','checked','Show','Unable\x20to\x20open\x20the\x20linked\x20file.\x20Please\x20check\x20the\x20file\x20path\x20or\x20URL.','hardToClean','bvkvP','contains','ozMxk','onload','CqYyg','stringify','ptPEQ','find','1340535UfVnis','\x20Products','parentElement','write',')\x22\x20title=\x22Click\x20to\x20open\x20link\x22\x20style=\x22cursor:\x20pointer;\x20color:\x20#1976d2;\x20text-decoration:\x20none;\x22>🔗</span>\x20','material','OaSMJ','width=1200,height=800',')</span></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','yzdli','writeFile','#additionalLinesContainer\x20input[type=\x22checkbox\x22]','text-sm\x20font-bold\x20uppercase\x20tracking-wider\x20pb-1\x20mb-2\x20border-b','print','LHmMt','#addProductsToMachineList\x20input[type=\x22checkbox\x22]:checked','\x0a<!DOCTYPE\x20html>\x0a<html\x20lang=\x22en\x22>\x0a<head>\x0a\x20\x20\x20\x20<meta\x20charset=\x22UTF-8\x22>\x0a\x20\x20\x20\x20<meta\x20name=\x22viewport\x22\x20content=\x22width=device-width,\x20initial-scale=1.0\x22>\x0a\x20\x20\x20\x20<title>Sample\x20Location\x20Report\x20-\x20','pop','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','187993RRPOFp','onclick','Error\x20opening\x20SOP\x20file:','pFHWH','OtqVc','FORJV','./ui.js','Gpybp','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22checkbox\x22\x20id=\x22machine-check-','numberOfSamples','UlsvI','CkkzV','GMDZk','olfOA','xkYjm','target','SBAlm','OYyWY','tAVFl','BtLoS','lqTtX','khtqk','textContent','ArlRg','</span>','0px','sopUploadArea','oDpoQ','lqvke','accessibilityForSampling','QwCve','krkKR','OFYZA','xBeEK','kqgqw','\x22\x20class=\x22ml-2\x20text-sm\x20font-medium\x22\x20style=\x22color:\x20var(--text-primary);\x22>','ssZbG','jnFPE','QGonS','pdf','querySelectorAll','ikmFJ','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','TtGjI','yxkRA','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','fcAQv','OAzom','XsDpm','Products\x20on:\x20','</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-xs\x20px-2\x20py-1\x20rounded\x22\x20style=\x22background-color:\x20var(--bg-accent);\x20color:\x20var(--text-secondary);\x22>','No\x20Attachment','LOhvw','Please\x20enter\x20a\x20file\x20link\x20or\x20path.','KIFzC','No\x20products\x20available\x20for\x20line\x20\x22','style',')\x22\x20title=\x22Click\x20to\x20open\x20link\x22\x20style=\x22cursor:\x20pointer;\x20color:\x20#1976d2;\x20text-decoration:\x20none;\x22>\x20🔗</span>','hkaOv','ingredient','iframe','OlrOZ','machineIds','.card\x20th.sortable','Assign\x20Machines\x20to:\x20','ldCRm','BmAzi','OLuyd','xasrt','dhlzw','VZoCg','\x20Line\x20Machines\x20(','PLqcf','hXvLp','borderColor','BsBit','GCmwR','http://','log','jBsgu','Kpced','AeICQ','error','productId','\x20Product(s)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20class=\x22bi\x20bi-eye\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M16\x208s-3-5.5-8-5.5S0\x208\x200\x208s3\x205.5\x208\x205.5S16\x208\x2016\x208zM1.173\x208a13.133\x2013.133\x200\x200\x201\x201.66-2.043C4.12\x204.668\x205.88\x203.5\x208\x203.5c2.12\x200\x203.879\x201.168\x205.168\x202.457A13.133\x2013.133\x200\x200\x201\x2014.828\x208c-.058.087-.122.183-.195.288-.335.48-.83\x201.12-1.465\x201.755C11.879\x2011.332\x2010.119\x2012.5\x208\x2012.5c-2.12\x200-3.879-1.168-5.168-2.457A13.134\x2013.134\x200\x200\x201\x201.172\x208z\x22/><path\x20d=\x22M8\x205.5a2.5\x202.5\x200\x201\x200\x200\x205\x202.5\x202.5\x200\x200\x200\x200-5zM4.5\x208a3.5\x203.5\x200\x201\x201\x207\x200\x203.5\x203.5\x200\x200\x201-7\x200z\x22/></svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>','DygEF','KPEvU','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22rpn-cell\x22>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22description\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Determine\x20the\x20Number\x20of\x20samples\x20must\x20be\x20taken\x20from\x20each\x20location\x20in\x20this\x20machine\x20according\x20to\x20RPN\x20study.\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22sample-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22location-cell\x22>Location</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22material-cell\x22>Material\x20of\x20Construction</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Area<br/>(cm²)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Hard\x20to\x20Clean</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Not\x20Accessible<br/>for\x20Cleaning</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Not\x20Accessible<br/>for\x20Sampling</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Not\x20Visible</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>RPN</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>No.\x20of\x20samples</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','machineLine-','toLowerCase','aYRqv','pbctH','lesrH','VFVWA','tktmO','MNVYn','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22margin-top:\x2030px;\x20font-size:\x2012px;\x20color:\x20#666;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Note:</strong>\x20RPN\x20is\x20calculated\x20as:\x20Hard\x20to\x20Clean\x20×\x20Not\x20Accessible\x20for\x20Cleaning\x20×\x20Not\x20Accessible\x20for\x20Sampling\x20×\x20Not\x20Visible</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Sample\x20Guidelines:</strong>\x201-27\x20RPN\x20=\x201\x20Sample\x20|\x2036-54\x20RPN\x20=\x202\x20Samples\x20|\x2081+\x20RPN\x20=\x203\x20Samples</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>\x0a</body>\x0a</html>','Mllwl','lxqsI','sopUploadedFile','\x20-\x20Machine\x20Summary','ZriCD','VmkCM','fXcaN','Unable\x20to\x20open\x20the\x20SOP\x20file.\x20The\x20file\x20may\x20be\x20corrupted.','Cannot\x20assign\x20this\x20machine\x20to\x20group\x20\x22','book_append_sheet','Yes','pointer','fLDIm','Highest\x20RPN:','bPXvP','type','jRgox','julMp','TJZMR','fNDFb','setNextMachineId','tMgHK','trim','Failed\x20to\x20read\x20the\x20file.','137046BJzIQj','docx','File\x20Link:\x20','zUYad','MmqYA','FJTJs','additionalLines','document','.\x20Please\x20contact\x20administrator\x20to\x20add\x20sample\x20location\x20data.','machineStageDisplayOrder','grid\x20grid-cols-1\x20sm:grid-cols-2\x20gap-x-4\x20gap-y-2\x20pl-2','Uploaded\x20File:\x20','rpn','GsEHA','zihqo','addProductsMachineId','PqXAg','block','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22margin-top:\x2030px;\x20font-size:\x2010px;\x20color:\x20#666;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Generated\x20on:\x20','gyMHs','mcAEO','FAkLJ','AHOky','change','KqANM','assignMachinesList','machineGroups','This\x20SOP\x20has\x20no\x20attached\x20file\x20or\x20link.','sopUploadSection','.doc','hczyw','isCritical','sharedWorstCaseGroups','machine-group-cell\x20individual','<span\x20class=\x22ml-auto\x20text-xs\x20font-semibold\x20px-1.5\x20py-0.5\x20rounded\x22\x20style=\x22background-color:\x20var(--bg-accent);\x20color:\x20var(--text-secondary);\x22\x20title=\x22This\x20product\x20is\x20also\x20assigned\x20to\x20other\x20machines.\x22>Linked</span>','\x22\x20value=\x22','sopName','addProductsToMachineModalTitle','NSzDq','isHighestRpn','application/octet-stream','editCurrentSOP',')\x22\x20class=\x22p-1\x20text-blue-500\x22\x20title=\x22Assign\x20Products\x20to\x20this\x20Machine\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20class=\x22bi\x20bi-plus-square\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M14\x201a1\x201\x200\x200\x201\x201\x201v12a1\x201\x200\x200\x201-1\x201H2a1\x201\x200\x200\x201-1-1V2a1\x201\x200\x200\x201\x201-1h12zM2\x200a2\x202\x200\x200\x200-2\x202v12a2\x202\x200\x200\x200\x202\x202h12a2\x202\x200\x200\x200\x202-2V2a2\x202\x200\x200\x200-2-2H2z\x22/><path\x20d=\x22M8\x204a.5.5\x200\x200\x201\x20.5.5v3h3a.5.5\x200\x200\x201\x200\x201h-3v3a.5.5\x200\x200\x201-1\x200v-3h-3a.5.5\x200\x200\x201\x200-1h3v-3A.5.5\x200\x200\x201\x208\x204z\x22/></svg></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22generateSampleLocationReport(','NTPmH','noMachinesMessage','opacity','Please\x20specify\x20the\x20new\x20group\x20name.','Please\x20enter\x20a\x20SOP\x20name/reference.','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','ddhgl',')</span></label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','assignMachineProductId','eglWp','#assignMachinesList\x20input[type=\x22checkbox\x22]:checked','className','Group\x20Stage\x20Mismatch','txt','machinesContainer','productName','machineModal','qpBLH','UzDUD','cOFHS','Product\x20machines\x20updated\x20successfully.','IYVdB','Add\x20Machine','</strong></span>','machineId','wnxXV','wrPhz','<option\x20value=\x22Other\x22>Other</option>','SbKuF','sort','generateSampleLocationReport','SpZMm','\x20class=\x22w-4\x20h-4\x20rounded\x20border-gray-300\x20text-blue-600\x20focus:ring-blue-500\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22product-assign-check-','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22samples-cell\x22>','activeIngredients','replace','ffFEj','openSOPBtn','RRniU','JPSIB','application/vnd.openxmlformats-officedocument.wordprocessingml.document','NtOqp','machineWorstCases','DjtlN','QPyem','readAsDataURL','<span\x20class=\x22text-xs\x22\x20style=\x22color:\x20var(--text-secondary);\x22>None</span>','gryDJ','book_new','osQlm','message','QddHN','<option\x20value=\x22','odjmP','PGNZw','application/pdf','input[name=\x22machineLineType\x22]','flex','PqyHr','No\x20machine\x20data\x20available\x20for\x20export','setItem','SOP\x20Error','ssZcA','cPYrG','innerHTML','jRVrb','qYVPG','tCoIc','specificLineOptions','-9999px','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20whitespace-nowrap\x22>','dkDFU','lsBCl','mjVWS','No\x20products\x20to\x20export\x20for\x20this\x20machine.','sopFileUpload','machineLine','getAttribute','No\x20machine\x20selected\x20for\x20printing','vqDgw','zyXTF','hDmcY','area','machineGroup','GBuGR','json_to_sheet','getElementById','key','2417856GDAqhW','assignMachinesModal',')\x22\x20class=\x22p-1\x20text-red-500\x22\x20title=\x22Delete\x20Machine\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M5.5\x205.5A.5.5\x200\x200\x201\x206\x206v6a.5.5\x200\x200\x201-1\x200V6a.5.5\x200\x200\x201\x20.5-.5m2.5\x200a.5.5\x200\x200\x201\x20.5.5v6a.5.5\x200\x200\x201-1\x200V6a.5.5\x200\x200\x201\x20.5-.5zm3\x20.5a.5.5\x200\x200\x200-1\x200v6a.5.5\x200\x200\x200\x201\x200z\x22/><path\x20fill-rule=\x22evenodd\x22\x20d=\x22M14.5\x203a1\x201\x200\x200\x201-1\x201H13v9a2\x202\x200\x200\x201-2\x202H5a2\x202\x200\x200\x201-2-2V4h-.5a1\x201\x200\x200\x201-1-1V2a1\x201\x200\x200\x201\x201-1H6a1\x201\x200\x200\x201\x201-1h2a1\x201\x200\x200\x201\x201\x201h3.5a1\x201\x200\x200\x201\x201\x201v1zM4.118\x204L4\x204.059V13a1\x201\x200\x200\x200\x201\x201h6a1\x201\x200\x200\x200\x201-1V4.059L11.882\x204zM2.5\x203V2h11v1h-11z\x22/></svg></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','wHFgE','flex\x20items-center','sVZRd','keys','uDpYD','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x22>','group','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','jYMLX','not-allowed','ngOdw','\x20class=\x22w-4\x20h-4\x20rounded\x20border-gray-300\x20text-blue-600\x20focus:ring-blue-500\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22machine-check-','KYDeW','yzpNN','\x20(📎\x20','some','bLgzz','currentSOPDisplay','values','filter','XDVNo','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22line-','addProductsToMachineList','ySaGJ','vVaHb','XFzte','desc','from','CBQcY','INOIJ','lQcyC','line-','Machine\x20line\x20field\x20not\x20found.\x20Please\x20refresh\x20the\x20page\x20to\x20load\x20the\x20updated\x20interface.','fileData','addEventListener','XEJId','CFJfd','Other\x20/\x20Custom\x20Stages','vBGnd','currentSOPText','\x20(🔗\x20Link\x20attached)','machineStage','cursor','noAvailableProductsMessage','HYLwg','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20whitespace-nowrap\x22>','preventDefault','raYCI','RrthJ','XOvDz','A\x20machine\x20with\x20this\x20number\x20already\x20exists.','inline-block','UPTaN','input[name=\x22sopAttachmentMethod\x22]:checked','\x22\x20style=\x22cursor:\x20pointer;\x20color:\x20#1976d2;\x20text-decoration:\x20none;\x22>📎</span>\x20','div','<div\x20class=\x22divide-y\x22\x20style=\x22border-color:\x20var(--border-color);\x22>','Invalid\x20File\x20Type','sopNoAttachmentSection','WwMsm','iqZDo','RJBTI','yBKPK','addProductsToMachineSaveBtn','Jkyxx','Machine\x20not\x20found','ZZrFh','charCodeAt','aKLOb','UeNQM','localeCompare','Dwbgo','JrZGl','nkesT','https://','substring','RPN:\x20','wwdtx','</title>\x0a\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20Arial,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#f9f9f9;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.report-container\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x201100px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2030px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x202px\x2010px\x20rgba(0,0,0,0.1);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.report-header\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2030px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-bottom:\x202px\x20solid\x20#333;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding-bottom:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.report-title\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-transform:\x20uppercase;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.equipment-name\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2018px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2015px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#2563eb;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.description\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#555;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.sample-table\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-collapse:\x20collapse;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2020px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.sample-table\x20th,\x0a\x20\x20\x20\x20\x20\x20\x20\x20.sample-table\x20td\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#333;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20vertical-align:\x20middle;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.sample-table\x20th\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#f0f0f0;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.sample-table\x20td\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.location-cell\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-width:\x20120px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.material-cell\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-width:\x20100px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.rpn-cell\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#fef3c7;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.samples-cell\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#dbeafe;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#1e40af;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.print-btn\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#2563eb;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2010px\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x204px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.print-btn:hover\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#1d4ed8;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20@media\x20print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.print-btn\x20{\x20display:\x20none;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20background-color:\x20white;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.report-container\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x20none;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20</style>\x0a</head>\x0a<body>\x0a\x20\x20\x20\x20<div\x20class=\x22report-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22print-btn\x22\x20onclick=\x22window.print()\x22>🖨️\x20Print\x20Report</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22report-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22report-title\x22>Sample\x20Location\x20and\x20Number\x20of\x20Samples</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22equipment-name\x22>Equipment\x20Name:\x20','\x27)\x22\x20class=\x22text-sm\x20px-3\x20py-1\x20rounded\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x20color:\x20var(--text-primary);\x20background-color:\x20var(--bg-accent);\x22\x20title=\x22Show\x20Machine\x20Summary\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20d=\x22M8\x204a.5.5\x200\x200\x201\x20.5.5v3h3a.5.5\x200\x200\x201\x200\x201h-3v3a.5.5\x200\x200\x201-1\x200v-3h-3a.5.5\x200\x200\x201\x200-1h3v-3A.5.5\x200\x200\x201\x208\x204z\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Summary\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22toggleLineSection(\x27','SHjjC','rQZbe','LrqpC','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20font-medium\x22>','\x22\x20class=\x22ml-3\x20flex-1\x20flex\x20items-center\x20text-sm\x20font-medium\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','ToHik','RlvUW','WesNo','wisEq','cZFlz','oAESs','No\x20products\x20found\x20for\x20this\x20machine','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20justify-between\x20mb-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x22text-xl\x20font-bold\x22>','KbRoS','addProductsToMachineModal','vNhXJ','Please\x20upload\x20a\x20PDF,\x20DOC,\x20DOCX,\x20or\x20TXT\x20file.','VGYtl','otherMachineStage','xxjZx','string','jOsxB','machineForm','Duniy','link','mieZL','machineSummaryModal','contentWindow','disabled','left','Are\x20you\x20sure\x20you\x20want\x20to\x20delete\x20this\x20machine?\x20It\x20will\x20be\x20removed\x20from\x20all\x20products\x20that\x20use\x20it.','FwdAV','<div\x20class=\x22flex\x20items-center\x20gap-x-2\x22>','tRRSW','iYNUj','GOnQz','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Ijacr','KigOg','.pdf','machineManagement','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<title>Machine\x20Products\x20Report</title>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20Arial,\x20sans-serif;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h1\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#333;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-bottom:\x202px\x20solid\x20#ddd;\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding-bottom:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.info-table\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-collapse:\x20collapse;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.info-table\x20th,\x20.info-table\x20td\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#ddd;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.info-table\x20th\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-color:\x20#f5f5f5;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20@media\x20print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20margin:\x200;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h1\x20{\x20page-break-after:\x20avoid;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1>Machine\x20Products\x20Report</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22info-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Product\x20Name</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Highest\x20RPN</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Special\x20Case</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22only-print\x20text-xs\x22\x20style=\x22display:\x20none;\x20white-space:\x20normal;\x20word-break:\x20break-word;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','close','qGkYr','</tbody></table></div></div>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20whitespace-nowrap\x20','Success','aMhgd','machineSortState','nPQSx','XtqtB','BrqiE','iTcth','SOP:\x20','specialCases','size','machine-group-cell\x20grouped','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20whitespace-nowrap\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20gap-x-2\x20no-print\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showAddProductsToMachineModal(','map','stage','>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22overflow-x-auto\x20overflow-hidden\x20rounded-md\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22w-full\x20text-sm\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20class=\x22border-b\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x20sortable\x22\x20onclick=\x22sortMachines(\x27machineNumber\x27)\x22>Number\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x20sortable\x22\x20onclick=\x22sortMachines(\x27name\x27)\x22>Name\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x20sortable\x22\x20onclick=\x22sortMachines(\x27stage\x27)\x22>Stage\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x20sortable\x22\x20onclick=\x22sortMachines(\x27group\x27)\x22>Group\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x20sortable\x22\x20onclick=\x22sortMachines(\x27area\x27)\x22>Area\x20(cm²)\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x20sortable\x22\x20onclick=\x22sortMachines(\x27cleaningSOP\x27)\x22>Cleaning\x20SOP\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22>Products</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22>Actions</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20class=\x22divide-y\x22\x20style=\x22border-color:\x20var(--border-color);\x22>','MuMUl','fahRa','color','CzMds','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22checkbox\x22\x20id=\x22product-assign-check-','hHado','handleSOPFileUpload','attachmentValue','QPylr','\x22\x20style=\x22font-weight:\x20bold;\x22>','iDCIV','jkPMm','machineOtherLineContainer','line','ltYUO','paZWv','visibility','wUgHu','showMachineSummary','toFixed','rpnRatingText','BUpQe','kFmaz','<span\x20style=\x22color:\x20var(--text-secondary);\x20font-style:\x20italic;\x22>Individual</span>','fdjtj','aHNuF','.xlsx','wXdkg','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>','kQmdQ','toLocaleDateString','classList','Machine_','IQGDX','criticalReason',')</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20gap-2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showMachineSummary(\x27','107068ckxpxA','VwmTe','\x20<span\x20class=\x22text-xs\x22\x20style=\x22color:var(--text-secondary)\x22>(','jNRlg','RrKlH','indexOf','eptOQ','pyFPX'];a7_0x42da=function(){return _0xeb57b2;};return a7_0x42da();}export function initializeSOPHandlers(){const _0x11e521=a7_0x58064c,_0x31f549={'CkkzV':_0x11e521(0x1ee),'flaAv':_0x11e521(0x376)};document['querySelectorAll'](_0x31f549[_0x11e521(0x124)])[_0x11e521(0x318)](_0x507249=>{const _0x558164=_0x11e521;_0x507249[_0x558164(0x27f)](_0x31f549[_0x558164(0x168)],g);});}function g(_0x57cfbd){const _0xe92b5e=a7_0x58064c,_0x574b32={'DjtlN':'none','VmkCM':_0xe92b5e(0x350),'LrqpC':_0xe92b5e(0x297),'uTpdU':_0xe92b5e(0x24d),'Duniy':'sopFileLink','uDpYD':_0xe92b5e(0x3b0),'jnFPE':'sopUploadSection','FHggp':_0xe92b5e(0x1e8)},_0x5b4fa8=_0x57cfbd['target'][_0xe92b5e(0x3af)];switch(document[_0xe92b5e(0x258)](_0xe92b5e(0x297))[_0xe92b5e(0x195)][_0xe92b5e(0x3a7)]=_0x574b32['DjtlN'],document[_0xe92b5e(0x258)](_0xe92b5e(0x1f3))[_0xe92b5e(0x195)][_0xe92b5e(0x3a7)]=_0x574b32['DjtlN'],document[_0xe92b5e(0x258)](_0x574b32[_0xe92b5e(0x1c4)])[_0xe92b5e(0x195)][_0xe92b5e(0x3a7)]=_0x574b32[_0xe92b5e(0x22d)],_0x5b4fa8){case _0x574b32[_0xe92b5e(0x22d)]:document[_0xe92b5e(0x258)](_0x574b32[_0xe92b5e(0x2af)])['style'][_0xe92b5e(0x3a7)]=_0xe92b5e(0x1e8),document[_0xe92b5e(0x258)](_0x574b32[_0xe92b5e(0x12a)])['required']=!0x1,document['getElementById'](_0x574b32[_0xe92b5e(0x2c4)])[_0xe92b5e(0x111)]=!0x1;break;case _0x574b32[_0xe92b5e(0x261)]:document[_0xe92b5e(0x258)](_0x574b32[_0xe92b5e(0x182)])[_0xe92b5e(0x195)][_0xe92b5e(0x3a7)]=_0xe92b5e(0x1e8),document[_0xe92b5e(0x258)](_0xe92b5e(0x24d))[_0xe92b5e(0x111)]=!0x1,document[_0xe92b5e(0x258)](_0xe92b5e(0x3c3))[_0xe92b5e(0x111)]=!0x1;break;case _0xe92b5e(0x2c5):document[_0xe92b5e(0x258)](_0x574b32[_0xe92b5e(0x1c4)])['style']['display']=_0x574b32['FHggp'],document[_0xe92b5e(0x258)](_0x574b32[_0xe92b5e(0x12a)])[_0xe92b5e(0x111)]=!0x1,document[_0xe92b5e(0x258)](_0x574b32[_0xe92b5e(0x2c4)])['required']=!0x0;}}function y(){const _0x431fa0=a7_0x58064c,_0x4a1540={'ATrHZ':_0x431fa0(0x24d),'tcMkX':_0x431fa0(0x177),'XJkiF':'sopUploadedFile'};m=null,document['getElementById'](_0x4a1540['ATrHZ'])[_0x431fa0(0x3af)]='',document[_0x431fa0(0x258)](_0x4a1540[_0x431fa0(0x3dd)])[_0x431fa0(0x195)]['display']=_0x431fa0(0x1e8),document[_0x431fa0(0x258)](_0x4a1540['XJkiF'])[_0x431fa0(0x195)][_0x431fa0(0x3a7)]=_0x431fa0(0x126),document[_0x431fa0(0x258)](_0x431fa0(0x349))[_0x431fa0(0x173)]='';}function f(_0x5c205f){const _0x5787c9=a7_0x58064c,_0x51ef62={'lbsNb':'currentSOPDisplay','GsEHA':_0x5787c9(0x227),'ssZcA':_0x5787c9(0x1e8),'VxcJq':_0x5787c9(0x3b0),'OaSMJ':_0x5787c9(0x290),'Ijacr':_0x5787c9(0x126),'qDWql':_0x5787c9(0x285),'bpzLs':function(_0x394b26,_0xfa06b4){return _0x394b26==_0xfa06b4;},'BUpQe':_0x5787c9(0x2c1),'julMp':_0x5787c9(0x2c5),'WxsfQ':'sopAttachmentNone','CBQcY':function(_0x185efb,_0x3757bc){return _0x185efb(_0x3757bc);},'lqTtX':function(_0x1c4dc6){return _0x1c4dc6();},'fLDIm':'sopName','bvkvP':function(_0x113258,_0x2d3e97){return _0x113258==_0x2d3e97;},'PXsTV':function(_0x57e18b,_0x5b2840){return _0x57e18b(_0x5b2840);},'Gpybp':_0x5787c9(0x177),'iqZDo':_0x5787c9(0x1c1),'nNHCO':_0x5787c9(0x349),'podBO':_0x5787c9(0x367)};if(document[_0x5787c9(0x258)](_0x51ef62[_0x5787c9(0x106)])[_0x5787c9(0x13e)]=!0x0,document[_0x5787c9(0x258)](_0x51ef62[_0x5787c9(0x366)])['style']['display']=_0x51ef62[_0x5787c9(0x2d2)],_0x51ef62[_0x5787c9(0x279)](g,{'target':{'value':_0x51ef62[_0x5787c9(0x2d2)]}}),m=null,h=null,_0x51ef62[_0x5787c9(0x171)](y),!_0x5c205f[_0x5787c9(0x3de)])return void(document['getElementById'](_0x51ef62['fLDIm'])[_0x5787c9(0x3af)]='');if(_0x51ef62[_0x5787c9(0x142)](_0x51ef62[_0x5787c9(0x301)],typeof _0x5c205f[_0x5787c9(0x3de)]))return void(document[_0x5787c9(0x258)](_0x51ef62[_0x5787c9(0x1cb)])[_0x5787c9(0x3af)]=_0x5c205f[_0x5787c9(0x3de)]);const _0x320325=_0x5c205f[_0x5787c9(0x3de)];switch(h=_0x320325,document[_0x5787c9(0x258)](_0x51ef62[_0x5787c9(0x1cb)])[_0x5787c9(0x3af)]=_0x320325['sopName']||'',_0x320325['attachmentType']){case _0x51ef62['Ijacr']:default:document[_0x5787c9(0x258)](_0x51ef62['WxsfQ'])[_0x5787c9(0x13e)]=!0x0,g({'target':{'value':_0x51ef62['Ijacr']}});break;case _0x51ef62['VxcJq']:_0x320325[_0x5787c9(0x3df)]&&_0x320325[_0x5787c9(0x27e)]&&(document[_0x5787c9(0x258)]('sopAttachmentUpload')[_0x5787c9(0x13e)]=!0x0,_0x51ef62[_0x5787c9(0x35e)](g,{'target':{'value':_0x51ef62['VxcJq']}}),m={'name':_0x320325[_0x5787c9(0x3df)],'data':_0x320325[_0x5787c9(0x27e)]},document[_0x5787c9(0x258)](_0x51ef62[_0x5787c9(0x164)])['style']['display']=_0x51ef62[_0x5787c9(0x2d2)],document['getElementById'](_0x51ef62[_0x5787c9(0x299)])[_0x5787c9(0x195)][_0x5787c9(0x3a7)]=_0x51ef62[_0x5787c9(0x240)],document[_0x5787c9(0x258)](_0x51ef62[_0x5787c9(0x354)])[_0x5787c9(0x173)]=_0x320325[_0x5787c9(0x3df)]);break;case _0x51ef62[_0x5787c9(0x1d0)]:document['getElementById'](_0x51ef62['podBO'])[_0x5787c9(0x13e)]=!0x0,document[_0x5787c9(0x258)](_0x5787c9(0x3c3))['value']=_0x320325[_0x5787c9(0x2f3)]||'',_0x51ef62['CBQcY'](g,{'target':{'value':_0x51ef62[_0x5787c9(0x1d0)]}});}(_0x320325[_0x5787c9(0x1fb)]||_0x320325[_0x5787c9(0x3df)]||_0x320325[_0x5787c9(0x2f3)])&&function(_0x1b563a){const _0x17ddec=_0x5787c9,_0x2854ad=document[_0x17ddec(0x258)](_0x51ef62['lbsNb']),_0x571636=document[_0x17ddec(0x258)](_0x17ddec(0x284)),_0x452a8a=document[_0x17ddec(0x258)](_0x51ef62[_0x17ddec(0x1e4)]);if(_0x2854ad[_0x17ddec(0x195)][_0x17ddec(0x3a7)]=_0x51ef62[_0x17ddec(0x240)],_0x1b563a['sopName']){let _0x4357b6=_0x17ddec(0x2e4)+_0x1b563a[_0x17ddec(0x1fb)];switch(_0x1b563a[_0x17ddec(0x344)]){case _0x51ef62['VxcJq']:_0x1b563a[_0x17ddec(0x3df)]?(_0x4357b6+=_0x17ddec(0x26b)+_0x1b563a['fileName']+')',_0x452a8a[_0x17ddec(0x195)]['display']=_0x51ef62[_0x17ddec(0x150)]):_0x452a8a[_0x17ddec(0x195)][_0x17ddec(0x3a7)]=_0x51ef62['Ijacr'];break;case'link':_0x1b563a[_0x17ddec(0x2f3)]?(_0x4357b6+=_0x51ef62['qDWql'],_0x452a8a['style'][_0x17ddec(0x3a7)]=_0x51ef62[_0x17ddec(0x150)]):_0x452a8a[_0x17ddec(0x195)]['display']=_0x51ef62['Ijacr'];break;default:_0x452a8a[_0x17ddec(0x195)][_0x17ddec(0x3a7)]=_0x51ef62[_0x17ddec(0x2d2)];}return void(_0x571636[_0x17ddec(0x173)]=_0x4357b6);}if(_0x51ef62['bpzLs'](_0x51ef62[_0x17ddec(0x301)],typeof _0x1b563a))return _0x571636[_0x17ddec(0x173)]=_0x17ddec(0x2e4)+_0x1b563a,void(_0x452a8a[_0x17ddec(0x195)][_0x17ddec(0x3a7)]=_0x17ddec(0x126));switch(_0x1b563a['type']){case'text':_0x571636[_0x17ddec(0x173)]='SOP\x20Reference:\x20'+_0x1b563a['value'],_0x452a8a['style'][_0x17ddec(0x3a7)]=_0x51ef62[_0x17ddec(0x2d2)];break;case _0x17ddec(0x3b0):_0x571636[_0x17ddec(0x173)]=_0x17ddec(0x1e2)+_0x1b563a[_0x17ddec(0x3df)],_0x452a8a[_0x17ddec(0x195)][_0x17ddec(0x3a7)]=_0x17ddec(0x290);break;case _0x51ef62['julMp']:_0x571636[_0x17ddec(0x173)]=_0x17ddec(0x1d9)+_0x1b563a[_0x17ddec(0x3af)],_0x452a8a['style'][_0x17ddec(0x3a7)]=_0x51ef62[_0x17ddec(0x150)];break;default:_0x571636[_0x17ddec(0x173)]=_0x17ddec(0x2e4)+_0x1b563a,_0x452a8a['style'][_0x17ddec(0x3a7)]=_0x51ef62[_0x17ddec(0x2d2)];}}(_0x320325);}window['openMachineSOPFile']=function(_0x34c777){const _0x544be1=a7_0x58064c,_0x25f164={'OIzHR':function(_0x45ca7e,_0x14d9d9,_0x363dbc){return _0x45ca7e(_0x14d9d9,_0x363dbc);},'eptOQ':_0x544be1(0x330),'kXXYC':_0x544be1(0x3b0),'cZFlz':_0x544be1(0x1ff),'OGoqH':_0x544be1(0x184),'ZZrFh':_0x544be1(0x239),'INOIJ':_0x544be1(0x395),'ltYUO':_0x544be1(0x1d8),'GOnQz':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','pDxGg':_0x544be1(0x20f),'kFmaz':function(_0x2cc695,_0x313d5b){return _0x2cc695<_0x313d5b;},'yixMk':function(_0x1d3e2e,_0x3ca2ee,_0x43b927){return _0x1d3e2e(_0x3ca2ee,_0x43b927);},'Cswxb':_0x544be1(0x15f),'OYyWY':_0x544be1(0x1c6),'SpZMm':_0x544be1(0x139),'CzMds':_0x544be1(0x32e),'TJZMR':_0x544be1(0x1aa),'GUeer':'https://','lsBCl':_0x544be1(0x399),'zmFeN':function(_0x522e76,_0x290c69){return _0x522e76+_0x290c69;},'qYVPG':'Error\x20opening\x20SOP\x20link:','GfHWg':_0x544be1(0x103),'xzXKn':_0x544be1(0x140),'hFKUy':_0x544be1(0x135),'KpqQu':function(_0x181de6,_0x565644,_0x5f1555){return _0x181de6(_0x565644,_0x5f1555);},'YygMn':_0x544be1(0x1f2),'tkbfU':'doc','RJBTI':function(_0x33c4e3,_0x58d7f0){return _0x33c4e3(_0x58d7f0);},'pFHWH':_0x544be1(0x3c1),'LHmMt':function(_0x322795,_0x489420,_0x2b9a3c){return _0x322795(_0x489420,_0x2b9a3c);},'tAVFl':_0x544be1(0x2c5),'dqhJN':_0x544be1(0x3d7),'kITAg':function(_0x5c4e47,_0x3072f6,_0x4e2478){return _0x5c4e47(_0x3072f6,_0x4e2478);},'GwKOF':function(_0x58ddb0,_0x49f546,_0x7973d){return _0x58ddb0(_0x49f546,_0x7973d);},'UzDUD':'No\x20Link\x20Found','XOvDz':_0x544be1(0x190),'sbWmQ':_0x544be1(0x39b)},_0x53148c=a7_0x31eb33[_0x544be1(0x332)]['find'](_0xd36297=>_0xd36297['id']===_0x34c777);if(!_0x53148c||!_0x53148c['cleaningSOP'])return void _0x25f164[_0x544be1(0x333)](a7_0x305bab,'No\x20SOP\x20Found',_0x25f164[_0x544be1(0x316)]);const _0x444b87=_0x53148c[_0x544be1(0x3de)];if(_0x444b87[_0x544be1(0x344)])switch(_0x444b87[_0x544be1(0x344)]){case _0x25f164[_0x544be1(0x361)]:if(_0x444b87[_0x544be1(0x27e)])try{const _0x66310f=(_0x444b87[_0x544be1(0x3df)]||'')[_0x544be1(0x1b7)]()[_0x544be1(0x322)]('.')[_0x544be1(0x15b)]();let _0xd7e0d0=_0x25f164['cZFlz'];switch(_0x66310f){case _0x25f164[_0x544be1(0x34e)]:_0xd7e0d0=_0x25f164[_0x544be1(0x29f)];break;case _0x544be1(0x35b):_0xd7e0d0=_0x25f164['INOIJ'];break;case _0x25f164[_0x544be1(0x2fa)]:_0xd7e0d0=_0x25f164[_0x544be1(0x2d0)];break;case _0x25f164['pDxGg']:_0xd7e0d0=_0x544be1(0x3d3);}const _0x2efa6e=atob(_0x444b87[_0x544be1(0x27e)]['split'](',')[0x1]),_0x4b730f=new Array(_0x2efa6e[_0x544be1(0x115)]);for(let _0x25e63f=0x0;_0x25f164[_0x544be1(0x302)](_0x25e63f,_0x2efa6e[_0x544be1(0x115)]);_0x25e63f++)_0x4b730f[_0x25e63f]=_0x2efa6e[_0x544be1(0x2a0)](_0x25e63f);const _0x59f146=new Uint8Array(_0x4b730f),_0x85c2cc=new Blob([_0x59f146],{'type':_0xd7e0d0}),_0x1d9d0a=URL[_0x544be1(0x12f)](_0x85c2cc);window['open'](_0x1d9d0a,_0x544be1(0x399)),_0x25f164[_0x544be1(0x32d)](setTimeout,()=>URL['revokeObjectURL'](_0x1d9d0a),0x1388);}catch(_0x1fcd2b){console[_0x544be1(0x1af)](_0x25f164['Cswxb'],_0x1fcd2b),_0x25f164[_0x544be1(0x32d)](a7_0x305bab,'Error',_0x25f164[_0x544be1(0x16e)]);}else _0x25f164[_0x544be1(0x32d)](a7_0x305bab,_0x25f164[_0x544be1(0x221)],_0x25f164[_0x544be1(0x2ef)]);break;case'link':if(_0x444b87['attachmentValue'])try{_0x444b87[_0x544be1(0x2f3)][_0x544be1(0x35d)](_0x25f164['TJZMR'])||_0x444b87['attachmentValue'][_0x544be1(0x35d)](_0x25f164['GUeer'])?window[_0x544be1(0x355)](_0x444b87[_0x544be1(0x2f3)],_0x25f164[_0x544be1(0x24a)]):window[_0x544be1(0x355)](_0x25f164['zmFeN']('file:///',_0x444b87[_0x544be1(0x2f3)][_0x544be1(0x225)](/\\/g,'/')),_0x25f164[_0x544be1(0x24a)]);}catch(_0x22e45f){console['error'](_0x25f164[_0x544be1(0x244)],_0x22e45f),_0x25f164[_0x544be1(0x32d)](a7_0x305bab,_0x25f164[_0x544be1(0x384)],_0x25f164[_0x544be1(0x10a)]);}else a7_0x305bab('No\x20Link\x20Found',_0x25f164[_0x544be1(0x382)]);break;default:_0x25f164['KpqQu'](a7_0x305bab,_0x544be1(0x190),_0x25f164['YygMn']);}else switch(_0x444b87[_0x544be1(0x1ce)]){case _0x25f164['kXXYC']:if(_0x444b87[_0x544be1(0x27e)])try{const _0x41e013=(_0x444b87[_0x544be1(0x3df)]||'')['toLowerCase']()[_0x544be1(0x322)]('.')['pop']();let _0x126811=_0x25f164[_0x544be1(0x2b6)];switch(_0x41e013){case'pdf':_0x126811=_0x25f164[_0x544be1(0x29f)];break;case _0x25f164['tkbfU']:_0x126811=_0x25f164[_0x544be1(0x27a)];break;case _0x25f164['ltYUO']:_0x126811=_0x25f164[_0x544be1(0x2d0)];break;case _0x25f164['pDxGg']:_0x126811='text/plain';}const _0x3c2074=_0x25f164[_0x544be1(0x29a)](atob,_0x444b87[_0x544be1(0x27e)][_0x544be1(0x322)](',')[0x1]),_0x2ccd8d=new Array(_0x3c2074[_0x544be1(0x115)]);for(let _0x119dcd=0x0;_0x119dcd<_0x3c2074[_0x544be1(0x115)];_0x119dcd++)_0x2ccd8d[_0x119dcd]=_0x3c2074[_0x544be1(0x2a0)](_0x119dcd);const _0x182457=new Uint8Array(_0x2ccd8d),_0x2724c9=new Blob([_0x182457],{'type':_0x126811}),_0xd640ff=URL[_0x544be1(0x12f)](_0x2724c9);window[_0x544be1(0x355)](_0xd640ff,_0x25f164[_0x544be1(0x24a)]),setTimeout(()=>URL[_0x544be1(0x381)](_0xd640ff),0x1388);}catch(_0x516898){console[_0x544be1(0x1af)](_0x544be1(0x15f),_0x516898),a7_0x305bab(_0x25f164[_0x544be1(0x160)],'Unable\x20to\x20open\x20the\x20SOP\x20file.\x20The\x20file\x20may\x20be\x20corrupted.');}else _0x25f164[_0x544be1(0x158)](a7_0x305bab,_0x25f164[_0x544be1(0x221)],'No\x20file\x20data\x20is\x20available\x20for\x20this\x20SOP.');break;case _0x25f164[_0x544be1(0x16f)]:if(_0x444b87[_0x544be1(0x3af)])try{_0x444b87[_0x544be1(0x3af)]['startsWith'](_0x25f164[_0x544be1(0x1d1)])||_0x444b87[_0x544be1(0x3af)][_0x544be1(0x35d)](_0x25f164['GUeer'])?window[_0x544be1(0x355)](_0x444b87['value'],_0x25f164[_0x544be1(0x24a)]):window[_0x544be1(0x355)](_0x25f164[_0x544be1(0x370)]+_0x444b87[_0x544be1(0x3af)][_0x544be1(0x225)](/\\/g,'/'),_0x544be1(0x399));}catch(_0x3f39df){console[_0x544be1(0x1af)](_0x25f164[_0x544be1(0x244)],_0x3f39df),_0x25f164['kITAg'](a7_0x305bab,_0x25f164[_0x544be1(0x384)],_0x25f164[_0x544be1(0x10a)]);}else _0x25f164['GwKOF'](a7_0x305bab,_0x25f164[_0x544be1(0x214)],_0x25f164[_0x544be1(0x382)]);break;default:a7_0x305bab(_0x25f164[_0x544be1(0x28e)],_0x25f164[_0x544be1(0x329)]);}};function a7_0x48e7(_0x52abff,_0x356741){const _0x42da13=a7_0x42da();return a7_0x48e7=function(_0x48e766,_0xcd1d14){_0x48e766=_0x48e766-0xfc;let _0x534114=_0x42da13[_0x48e766];return _0x534114;},a7_0x48e7(_0x52abff,_0x356741);}export function generateSampleLocationReport(_0x32b7ed){const _0x168e69=a7_0x58064c,_0x12216a={'cnnbX':function(_0x1f307d,_0x205d09){return _0x1f307d*_0x205d09;},'eLjKZ':function(_0x54b3fc,_0x56d57d){return _0x54b3fc>=_0x56d57d;},'aYZHD':function(_0xd14fb8,_0x55a556){return _0xd14fb8<=_0x55a556;},'hHado':function(_0x7bbded,_0x3c482f){return _0x7bbded>=_0x3c482f;},'SbKuF':function(_0x7d54a4){return _0x7d54a4();},'yxkRA':_0x168e69(0x29e),'MuMUl':function(_0x54ec68,_0x470cbc){return _0x54ec68===_0x470cbc;},'CqUpJ':_0x168e69(0x399),'PIhqq':_0x168e69(0x151),'AHOky':_0x168e69(0x379),'qGmLT':function(_0x4498dd,_0x47b01a,_0x5edb33){return _0x4498dd(_0x47b01a,_0x5edb33);},'AhJsI':_0x168e69(0x3c1),'FJTJs':function(_0x353be6,_0x26275f){return _0x353be6+_0x26275f;},'OLuyd':_0x168e69(0x109),'RlvUW':_0x168e69(0x163)};import(_0x12216a[_0x168e69(0x2b3)])[_0x168e69(0x348)](_0x463ec2=>{const _0x9e2ef4=_0x168e69,_0x5cee84={'LChnr':function(_0x28a9a7,_0x4f3324){return _0x12216a['eLjKZ'](_0x28a9a7,_0x4f3324);},'mcAEO':function(_0x3d08af,_0x2566d7){const _0x6933a=a7_0x48e7;return _0x12216a[_0x6933a(0x39d)](_0x3d08af,_0x2566d7);},'HslfQ':function(_0x5e7882,_0x5aa11f){return _0x12216a['eLjKZ'](_0x5e7882,_0x5aa11f);},'IKXzB':function(_0x17ff32,_0x311d4d){const _0x406a59=a7_0x48e7;return _0x12216a[_0x406a59(0x2f1)](_0x17ff32,_0x311d4d);}},{showLoader:_0x64a270,hideLoader:_0x233b4e,showCustomAlert:_0x3c0b69}=_0x463ec2;_0x12216a[_0x9e2ef4(0x21e)](_0x64a270);try{const _0x335bdd=a7_0x31eb33[_0x9e2ef4(0x332)][_0x9e2ef4(0x149)](_0x1d83e1=>_0x1d83e1['id']===parseInt(_0x32b7ed));if(!_0x335bdd)throw new Error(_0x12216a[_0x9e2ef4(0x189)]);if(!_0x335bdd[_0x9e2ef4(0x385)]||_0x12216a[_0x9e2ef4(0x2ec)](0x0,_0x335bdd[_0x9e2ef4(0x385)]['length']))return void _0x3c0b69('No\x20Sample\x20Locations','No\x20sample\x20locations\x20defined\x20for\x20'+_0x335bdd[_0x9e2ef4(0x3b5)]+_0x9e2ef4(0x1df));const _0x54bd2b=window[_0x9e2ef4(0x355)]('',_0x12216a['CqUpJ'],_0x12216a[_0x9e2ef4(0x3c7)]),_0xb57f93=_0x335bdd[_0x9e2ef4(0x385)][_0x9e2ef4(0x2e9)](_0x2bce3e=>{const _0x218bf9={'cHJdE':function(_0x937002,_0x6fa53b){return _0x12216a['cnnbX'](_0x937002,_0x6fa53b);}},_0x445d59=function(_0x51c315){const _0x76950c=a7_0x48e7;return _0x218bf9[_0x76950c(0x13b)](_0x218bf9[_0x76950c(0x13b)](_0x51c315[_0x76950c(0x141)]*_0x51c315[_0x76950c(0x10f)],_0x51c315[_0x76950c(0x17a)]),_0x51c315[_0x76950c(0x2fc)]);}(_0x2bce3e),_0x200081=function(_0xe19c07){const _0x3bfdcb=a7_0x48e7;return _0x5cee84['LChnr'](_0xe19c07,0x1)&&_0x5cee84[_0x3bfdcb(0x1eb)](_0xe19c07,0x1b)?0x1:_0x5cee84['HslfQ'](_0xe19c07,0x24)&&_0x5cee84[_0x3bfdcb(0x1eb)](_0xe19c07,0x36)?0x2:_0x5cee84[_0x3bfdcb(0x108)](_0xe19c07,0x51)?0x3:0x1;}(_0x445d59);return{..._0x2bce3e,'rpn':_0x445d59,'numberOfSamples':_0x200081};}),_0x5cb433=_0x9e2ef4(0x15a)+_0x335bdd[_0x9e2ef4(0x3b5)]+_0x9e2ef4(0x2ab)+_0x335bdd[_0x9e2ef4(0x3b5)][_0x9e2ef4(0x32b)]()+_0x9e2ef4(0x1b5)+_0xb57f93['map'](_0x8ea427=>'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22location-cell\x22>'+_0x8ea427['location']+_0x9e2ef4(0x3c5)+_0x8ea427[_0x9e2ef4(0x14f)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+(_0x8ea427['area']||'_')+_0x9e2ef4(0x3b8)+_0x8ea427[_0x9e2ef4(0x141)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+_0x8ea427[_0x9e2ef4(0x10f)]+_0x9e2ef4(0x3b8)+_0x8ea427['accessibilityForSampling']+_0x9e2ef4(0x3b8)+_0x8ea427[_0x9e2ef4(0x2fc)]+_0x9e2ef4(0x1b4)+_0x8ea427[_0x9e2ef4(0x1e3)]+_0x9e2ef4(0x223)+_0x8ea427[_0x9e2ef4(0x166)]+_0x9e2ef4(0x18a))[_0x9e2ef4(0x11a)]('')+_0x9e2ef4(0x1be);_0x54bd2b[_0x9e2ef4(0x1de)][_0x9e2ef4(0x14d)](_0x5cb433),_0x54bd2b[_0x9e2ef4(0x1de)][_0x9e2ef4(0x2d8)]();}catch(_0x16848b){console[_0x9e2ef4(0x1af)](_0x12216a[_0x9e2ef4(0x1ed)],_0x16848b),_0x12216a['qGmLT'](_0x3c0b69,_0x12216a['AhJsI'],_0x12216a[_0x9e2ef4(0x1dc)](_0x12216a[_0x9e2ef4(0x1a0)],_0x16848b[_0x9e2ef4(0x234)]));}finally{_0x233b4e();}});}window[a7_0x58064c(0x3a8)]=exportMachineProductsToExcel,window['printMachineProducts']=printMachineProducts,window[a7_0x58064c(0x2f2)]=function(_0x378de8){const _0x19e0f4=a7_0x58064c,_0x5d20b9={'odjmP':_0x19e0f4(0x126),'JOKwG':'sopUploadedFile','RrKlH':_0x19e0f4(0x1e8),'UlsvI':_0x19e0f4(0x349),'IEaBC':function(_0x8a2116,_0x198b54,_0x476ca4){return _0x8a2116(_0x198b54,_0x476ca4);},'VZoCg':'Upload\x20Error','Ystvk':_0x19e0f4(0x1d6),'BTxzo':function(_0x226a82,_0x869fa8){return _0x226a82+_0x869fa8;},'JrZGl':_0x19e0f4(0x2d4),'bDDyF':_0x19e0f4(0x1f4),'hsJbG':'.docx','ffFEj':_0x19e0f4(0x3cf),'krkKR':function(_0x71699b,_0x4559b2,_0x1b3596){return _0x71699b(_0x4559b2,_0x1b3596);},'CHdmC':_0x19e0f4(0x296),'jOsxB':_0x19e0f4(0x2bd),'bPXvP':function(_0x2db094,_0x1e2b7f){return _0x2db094>_0x1e2b7f;}},_0x695945=_0x378de8[_0x19e0f4(0x16c)][_0x19e0f4(0x31e)][0x0];if(!_0x695945)return;const _0x463e81=_0x5d20b9[_0x19e0f4(0x3a2)]('.',_0x695945[_0x19e0f4(0x3b5)][_0x19e0f4(0x322)]('.')['pop']()[_0x19e0f4(0x1b7)]());if(![_0x5d20b9[_0x19e0f4(0x2a5)],_0x5d20b9[_0x19e0f4(0x3e1)],_0x5d20b9['hsJbG'],_0x5d20b9[_0x19e0f4(0x226)]][_0x19e0f4(0x391)](_0x463e81))return _0x5d20b9[_0x19e0f4(0x17c)](a7_0x305bab,_0x5d20b9['CHdmC'],_0x5d20b9[_0x19e0f4(0x2c2)]),void(_0x378de8[_0x19e0f4(0x16c)]['value']='');if(_0x5d20b9[_0x19e0f4(0x1cd)](_0x695945[_0x19e0f4(0x2e6)],0xa00000))return a7_0x305bab(_0x19e0f4(0x3ca),_0x19e0f4(0x328)),void(_0x378de8[_0x19e0f4(0x16c)]['value']='');const _0x2b4723=new FileReader();_0x2b4723[_0x19e0f4(0x145)]=function(_0xc2b2ef){const _0x58c54d=_0x19e0f4;m={'name':_0x695945[_0x58c54d(0x3b5)],'size':_0x695945[_0x58c54d(0x2e6)],'type':_0x695945[_0x58c54d(0x1ce)],'data':_0xc2b2ef[_0x58c54d(0x16c)][_0x58c54d(0x121)]},document['getElementById'](_0x58c54d(0x177))['style'][_0x58c54d(0x3a7)]=_0x5d20b9[_0x58c54d(0x237)],document[_0x58c54d(0x258)](_0x5d20b9['JOKwG'])['style'][_0x58c54d(0x3a7)]=_0x5d20b9[_0x58c54d(0x314)],document['getElementById'](_0x5d20b9[_0x58c54d(0x167)])[_0x58c54d(0x173)]=_0x695945[_0x58c54d(0x3b5)];},_0x2b4723[_0x19e0f4(0x37f)]=function(){const _0x33142c=_0x19e0f4;_0x5d20b9['IEaBC'](a7_0x305bab,_0x5d20b9[_0x33142c(0x1a3)],_0x5d20b9[_0x33142c(0x114)]),_0x378de8['target'][_0x33142c(0x3af)]='';},_0x2b4723[_0x19e0f4(0x22f)](_0x695945);},window[a7_0x58064c(0x359)]=y,window['openCurrentSOP']=function(){const _0xa0fce1=a7_0x58064c,_0x32afa3={'MmqYA':_0xa0fce1(0x3b0),'gaYXs':'application/octet-stream','wwdtx':_0xa0fce1(0x184),'hDmcY':_0xa0fce1(0x239),'EOOtR':_0xa0fce1(0x35b),'lQcyC':_0xa0fce1(0x395),'dTGGa':_0xa0fce1(0x1d8),'twqKN':_0xa0fce1(0x20f),'kTYSM':_0xa0fce1(0x3d3),'BdaXc':function(_0x505d71,_0x2c65be){return _0x505d71<_0x2c65be;},'LOhvw':function(_0x4d4495,_0x38828d,_0x5aec94){return _0x4d4495(_0x38828d,_0x5aec94);},'KigOg':_0xa0fce1(0x15f),'raYCI':_0xa0fce1(0x3c1),'aHNuF':'Unable\x20to\x20open\x20the\x20SOP\x20file.\x20The\x20file\x20may\x20be\x20corrupted.','fcAQv':_0xa0fce1(0x1aa),'oSXBf':_0xa0fce1(0x2a7),'tMgHK':_0xa0fce1(0x399),'JNBcp':function(_0x44dddf,_0x22e6c0){return _0x44dddf+_0x22e6c0;},'ezFBl':_0xa0fce1(0x3d7),'YQhoq':_0xa0fce1(0x140),'zihqo':_0xa0fce1(0x22a),'mhcgU':function(_0x2c5af6,_0x1d9744){return _0x2c5af6<_0x1d9744;},'XnDao':'link','jWoFg':function(_0x4d3450,_0x54f46a){return _0x4d3450+_0x54f46a;},'xNPZb':function(_0x4b1875,_0x6aaf5,_0x22ac9d){return _0x4b1875(_0x6aaf5,_0x22ac9d);},'UtZeH':_0xa0fce1(0x3c9)};if(h){if(h[_0xa0fce1(0x344)])switch(h[_0xa0fce1(0x344)]){case _0x32afa3[_0xa0fce1(0x1db)]:if(h[_0xa0fce1(0x27e)])try{const _0x430f2b=(h['fileName']||'')[_0xa0fce1(0x1b7)]()[_0xa0fce1(0x322)]('.')['pop']();let _0x22af92=_0x32afa3[_0xa0fce1(0x31a)];switch(_0x430f2b){case _0x32afa3[_0xa0fce1(0x2aa)]:_0x22af92=_0x32afa3[_0xa0fce1(0x253)];break;case _0x32afa3['EOOtR']:_0x22af92=_0x32afa3[_0xa0fce1(0x27b)];break;case _0x32afa3['dTGGa']:_0x22af92=_0xa0fce1(0x22a);break;case _0x32afa3[_0xa0fce1(0x31c)]:_0x22af92=_0x32afa3[_0xa0fce1(0x372)];}const _0x2d39b8=atob(h[_0xa0fce1(0x27e)][_0xa0fce1(0x322)](',')[0x1]),_0x2d6521=new Array(_0x2d39b8[_0xa0fce1(0x115)]);for(let _0x3f6fc1=0x0;_0x32afa3['BdaXc'](_0x3f6fc1,_0x2d39b8[_0xa0fce1(0x115)]);_0x3f6fc1++)_0x2d6521[_0x3f6fc1]=_0x2d39b8[_0xa0fce1(0x2a0)](_0x3f6fc1);const _0x1c333a=new Uint8Array(_0x2d6521),_0x503aa4=new Blob([_0x1c333a],{'type':_0x22af92}),_0x39de9a=URL[_0xa0fce1(0x12f)](_0x503aa4);window[_0xa0fce1(0x355)](_0x39de9a,_0xa0fce1(0x399)),_0x32afa3[_0xa0fce1(0x191)](setTimeout,()=>URL[_0xa0fce1(0x381)](_0x39de9a),0x1388);}catch(_0x3bce81){console['error'](_0x32afa3[_0xa0fce1(0x2d3)],_0x3bce81),a7_0x305bab(_0x32afa3[_0xa0fce1(0x28c)],_0x32afa3[_0xa0fce1(0x305)]);}break;case _0xa0fce1(0x2c5):if(h[_0xa0fce1(0x2f3)])try{h['attachmentValue']['startsWith'](_0x32afa3['fcAQv'])||h['attachmentValue'][_0xa0fce1(0x35d)](_0x32afa3[_0xa0fce1(0x387)])?window[_0xa0fce1(0x355)](h[_0xa0fce1(0x2f3)],_0x32afa3[_0xa0fce1(0x1d4)]):window[_0xa0fce1(0x355)](_0x32afa3[_0xa0fce1(0x340)](_0x32afa3[_0xa0fce1(0x324)],h['attachmentValue'][_0xa0fce1(0x225)](/\\/g,'/')),_0x32afa3[_0xa0fce1(0x1d4)]);}catch(_0x59d421){_0x32afa3[_0xa0fce1(0x191)](a7_0x305bab,_0xa0fce1(0x3c9),_0x32afa3[_0xa0fce1(0x13d)]);}}else switch(h['type']){case _0xa0fce1(0x3b0):if(h[_0xa0fce1(0x27e)])try{const _0x2851ce=(h[_0xa0fce1(0x3df)]||'')['toLowerCase']()[_0xa0fce1(0x322)]('.')[_0xa0fce1(0x15b)]();let _0x3634a5=_0x32afa3[_0xa0fce1(0x31a)];switch(_0x2851ce){case _0x32afa3[_0xa0fce1(0x2aa)]:_0x3634a5=_0xa0fce1(0x239);break;case'doc':_0x3634a5=_0x32afa3[_0xa0fce1(0x27b)];break;case _0xa0fce1(0x1d8):_0x3634a5=_0x32afa3[_0xa0fce1(0x1e5)];break;case _0x32afa3[_0xa0fce1(0x31c)]:_0x3634a5=_0x32afa3[_0xa0fce1(0x372)];}const _0x1c0537=atob(h[_0xa0fce1(0x27e)][_0xa0fce1(0x322)](',')[0x1]),_0x5b3077=new Array(_0x1c0537[_0xa0fce1(0x115)]);for(let _0x36279c=0x0;_0x32afa3['mhcgU'](_0x36279c,_0x1c0537['length']);_0x36279c++)_0x5b3077[_0x36279c]=_0x1c0537['charCodeAt'](_0x36279c);const _0x3bbbc9=new Uint8Array(_0x5b3077),_0x207e42=new Blob([_0x3bbbc9],{'type':_0x3634a5}),_0x3c1457=URL[_0xa0fce1(0x12f)](_0x207e42);window[_0xa0fce1(0x355)](_0x3c1457,_0x32afa3[_0xa0fce1(0x1d4)]),_0x32afa3[_0xa0fce1(0x191)](setTimeout,()=>URL[_0xa0fce1(0x381)](_0x3c1457),0x1388);}catch(_0x597155){console[_0xa0fce1(0x1af)](_0x32afa3[_0xa0fce1(0x2d3)],_0x597155),a7_0x305bab(_0x32afa3['raYCI'],_0x32afa3[_0xa0fce1(0x305)]);}break;case _0x32afa3[_0xa0fce1(0xfc)]:if(h[_0xa0fce1(0x3af)])try{h[_0xa0fce1(0x3af)][_0xa0fce1(0x35d)](_0x32afa3[_0xa0fce1(0x18b)])||h[_0xa0fce1(0x3af)]['startsWith'](_0x32afa3[_0xa0fce1(0x387)])?window['open'](h[_0xa0fce1(0x3af)],_0x32afa3[_0xa0fce1(0x1d4)]):window[_0xa0fce1(0x355)](_0x32afa3['jWoFg'](_0x32afa3[_0xa0fce1(0x324)],h[_0xa0fce1(0x3af)][_0xa0fce1(0x225)](/\\/g,'/')),_0xa0fce1(0x399));}catch(_0x453d7b){_0x32afa3[_0xa0fce1(0x3bb)](a7_0x305bab,_0x32afa3[_0xa0fce1(0x352)],_0x32afa3['YQhoq']);}}}},window[a7_0x58064c(0x200)]=function(){const _0x595571=a7_0x58064c,_0x49154a={'VGYtl':_0x595571(0x26e),'mieZL':_0x595571(0x126)};document[_0x595571(0x258)](_0x49154a[_0x595571(0x2be)])[_0x595571(0x195)][_0x595571(0x3a7)]=_0x49154a[_0x595571(0x2c6)];},window[a7_0x58064c(0x220)]=generateSampleLocationReport;
+// Renders the machine management table and its modals
+// js/machineView.js
+
+import * as state from './state.js';
+import { fullAppRender } from './app.js';
+import { showCustomAlert, hideModal, showModal, saveStateForUndo } from './ui.js';
+import { getProductTrainId, getProductTrainNumber, getToxicityPreference, calculateScores, getRpnRatingClass, getUniqueProductLines } from './utils.js';
+import * as db from './indexedDB.js';
+import { storeSOPFile, getSOPFile, deleteSOPFile } from './indexedDB.js';
+
+// Global variables for SOP file management
+let currentSOPFile = null;
+let currentSOPData = null;
+
+// Track active machine line tab
+let activeMachineLineTab = null;
+
+/**
+ * Populate the machine line dropdown with current product lines
+ */
+export function populateMachineLineOptions() {
+    const machineLineSelect = document.getElementById('machineLine');
+    if (!machineLineSelect) return;
+    
+    // Get lines from both products and machines
+    const productLines = getUniqueProductLines(state.products);
+    const machineLines = [...new Set(state.machines.map(m => m.line).filter(Boolean))];
+    
+    // Combine and deduplicate lines
+    const allLines = [...new Set([...productLines, ...machineLines])].sort();
+    const currentValue = machineLineSelect.value; // Preserve current selection
+    
+    // Clear existing options except the first placeholder
+    machineLineSelect.innerHTML = '<option value="" disabled selected>Select Primary Line</option>';
+    
+    // Add all lines
+    allLines.forEach(line => {
+        machineLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
+    });
+    
+    // Add "Other" option for custom lines
+    machineLineSelect.innerHTML += '<option value="Other">Other</option>';
+    
+    // Restore previous selection if it still exists
+    if (currentValue && Array.from(machineLineSelect.options).some(opt => opt.value === currentValue)) {
+        machineLineSelect.value = currentValue;
+    }
+    
+    // Populate additional lines checkboxes
+    populateAdditionalLinesCheckboxes();
+    
+    // Add event listener to primary line dropdown
+    machineLineSelect.addEventListener('change', updateAdditionalLinesCheckboxes);
+}
+
+/**
+ * Populate additional lines checkboxes
+ */
+export function populateAdditionalLinesCheckboxes() {
+    const container = document.getElementById('additionalLinesContainer');
+    if (!container) return;
+    
+    // Get lines from both products and machines
+    const productLines = getUniqueProductLines(state.products);
+    const machineLines = [...new Set(state.machines.map(m => m.line).filter(Boolean))];
+    const allLines = [...new Set([...productLines, ...machineLines])].sort();
+    
+    container.innerHTML = '';
+    
+    allLines.forEach(line => {
+        const checkboxDiv = document.createElement('div');
+        checkboxDiv.className = 'flex items-center';
+        checkboxDiv.innerHTML = `
+            <input type="checkbox" id="additionalLine_${line}" value="${line}" class="mr-2" onchange="updateAdditionalLinesCheckboxes()">
+            <label for="additionalLine_${line}" class="text-sm">${line}</label>
+        `;
+        container.appendChild(checkboxDiv);
+    });
+    
+    // Update checkboxes based on primary line selection
+    updateAdditionalLinesCheckboxes();
+}
+
+/**
+ * Update additional lines checkboxes based on primary line selection
+ */
+window.updateAdditionalLinesCheckboxes = function() {
+    const primaryLineSelect = document.getElementById('machineLine');
+    const additionalCheckboxes = document.querySelectorAll('#additionalLinesContainer input[type="checkbox"]');
+    
+    if (!primaryLineSelect || !additionalCheckboxes.length) return;
+    
+    const selectedPrimaryLine = primaryLineSelect.value;
+    
+    additionalCheckboxes.forEach(checkbox => {
+        const lineValue = checkbox.value;
+        const isPrimaryLine = lineValue === selectedPrimaryLine;
+        
+        if (isPrimaryLine) {
+            checkbox.disabled = true;
+            checkbox.checked = false;
+            checkbox.parentElement.style.opacity = '0.5';
+            checkbox.parentElement.style.cursor = 'not-allowed';
+        } else {
+            checkbox.disabled = false;
+            checkbox.parentElement.style.opacity = '1';
+            checkbox.parentElement.style.cursor = 'pointer';
+        }
+    });
+}
+
+/**
+ * Toggle machine line options based on radio button selection
+ */
+window.toggleMachineLineOptions = function() {
+    const specificOptions = document.getElementById('specificLineOptions');
+    const lineTypeRadios = document.querySelectorAll('input[name="machineLineType"]');
+    
+    if (!specificOptions || !lineTypeRadios.length) return;
+    
+    const selectedType = Array.from(lineTypeRadios).find(radio => radio.checked)?.value;
+    
+    if (selectedType === 'shared') {
+        specificOptions.style.display = 'none';
+    } else {
+        specificOptions.style.display = 'block';
+    }
+}
+
+/**
+ * Update machine line options if the machine modal is currently open
+ * This is called automatically when products are saved to keep the dropdown in sync
+ */
+export function updateMachineLineOptionsIfModalOpen() {
+    const modal = document.getElementById('machineModal');
+    if (modal && modal.style.display !== 'none' && !modal.classList.contains('hidden')) {
+        populateMachineLineOptions();
+    }
+}
+
+export function sortMachines(key) {
+    if (state.machineSortState.key === key) {
+        state.machineSortState.direction = state.machineSortState.direction === 'asc' ? 'desc' : 'asc';
+    } else {
+        state.machineSortState.key = key;
+        state.machineSortState.direction = 'asc';
+    }
+    state.setMachineSortState(state.machineSortState);
+    renderMachinesTable();
+}
+
+function updateMachineSortIndicators() {
+    const container = document.getElementById('machineManagement');
+    if (!container) return;
+    container.querySelectorAll('.card th.sortable').forEach(th => {
+        const indicator = th.querySelector('.sort-indicator');
+        const key = th.getAttribute('onclick').match(/'(.*?)'/)[1];
+        if (key === state.machineSortState.key) {
+            indicator.textContent = state.machineSortState.direction === 'asc' ? '▲' : '▼';
+        } else {
+            indicator.textContent = '';
+        }
+    });
+}
+
+export function renderMachinesTable() {
+    const container = document.getElementById('machinesContainer');
+    const noMachinesMsg = document.getElementById('noMachinesMessage');
+    const tabNavigation = document.getElementById('machineTabNavigation');
+    container.innerHTML = '';
+
+    if (state.machines.length === 0) {
+        noMachinesMsg.style.display = 'block';
+        if (tabNavigation) tabNavigation.style.display = 'none';
+        return;
+    }
+    noMachinesMsg.style.display = 'none';
+
+    // Group machines by line instead of stage
+    const machinesByLine = {};
+    
+    // Add machines to their respective lines
+    state.machines.forEach(machine => {
+        const primaryLine = machine.line || 'Unassigned';
+        
+        // Add to primary line
+        if (!machinesByLine[primaryLine]) {
+            machinesByLine[primaryLine] = [];
+        }
+        machinesByLine[primaryLine].push(machine);
+        
+        // Add to additional lines if they exist
+        if (machine.additionalLines && machine.additionalLines.length > 0) {
+            machine.additionalLines.forEach(additionalLine => {
+                if (!machinesByLine[additionalLine]) {
+                    machinesByLine[additionalLine] = [];
+                }
+                machinesByLine[additionalLine].push(machine);
+            });
+        }
+    });
+
+    const lines = Object.keys(machinesByLine).filter(line => machinesByLine[line].length > 0);
+    
+    // If only one line or no lines, don't show tabs
+    if (lines.length <= 1) {
+        if (tabNavigation) tabNavigation.style.display = 'none';
+        // Render single line without tabs (fallback to old behavior)
+        lines.forEach(line => {
+            renderLineTable(container, line, machinesByLine[line]);
+        });
+        updateMachineSortIndicators();
+        return;
+    }
+
+    // Show tab navigation
+    if (tabNavigation) {
+        tabNavigation.style.display = 'block';
+        const nav = tabNavigation.querySelector('nav');
+        nav.innerHTML = '';
+        
+        // Create tab buttons
+        lines.forEach((line, index) => {
+        const lineKey = line.toLowerCase().replace(/\s+/g, '');
+            const isActive = index === 0 || activeMachineLineTab === lineKey;
+            if (isActive) {
+                activeMachineLineTab = lineKey;
+            }
+            
+            const button = document.createElement('button');
+            button.onclick = () => changeMachineLineTab(lineKey, button);
+            button.className = `machine-line-tab-button py-3 px-1 text-sm font-medium ${isActive ? 'active-machine-line-tab' : ''}`;
+            button.textContent = `${line} (${machinesByLine[line].length})`;
+            nav.appendChild(button);
+        });
+    }
+
+    // Create tab content for each line
+    lines.forEach((line, index) => {
+        const lineKey = line.toLowerCase().replace(/\s+/g, '');
+        const isActive = index === 0 || activeMachineLineTab === lineKey;
+        
+        const tabContent = document.createElement('div');
+        tabContent.id = `machine-tab-${lineKey}`;
+        tabContent.className = 'machine-line-tab-content';
+        tabContent.style.display = isActive ? 'block' : 'none';
+        
+        renderLineTable(tabContent, line, machinesByLine[line]);
+        container.appendChild(tabContent);
+    });
+
+    updateMachineSortIndicators();
+}
+
+function renderLineTable(container, line, lineMachines) {
+        // Sort machines within this line
+        const sortedMachines = [...lineMachines].sort((a, b) => {
+            const key = state.machineSortState.key;
+            const dir = state.machineSortState.direction === 'asc' ? 1 : -1;
+            
+            // If sorting by stage, use the stage display order
+            if (key === 'stage') {
+                const stageOrder = state.machineStageDisplayOrder;
+                const aIndex = stageOrder.indexOf(a.stage || '');
+                const bIndex = stageOrder.indexOf(b.stage || '');
+                
+                // If both stages are in the order, sort by their position
+                if (aIndex !== -1 && bIndex !== -1) {
+                    return (aIndex - bIndex) * dir;
+                }
+                // If only one is in the order, prioritize it
+                if (aIndex !== -1 && bIndex === -1) return -1 * dir;
+                if (aIndex === -1 && bIndex !== -1) return 1 * dir;
+                // If neither is in the order, sort alphabetically
+                return String(a.stage || '').localeCompare(String(b.stage || '')) * dir;
+            }
+            
+            // Default sorting: first by stage order, then by the selected key
+            const stageOrder = state.machineStageDisplayOrder;
+            const aStageIndex = stageOrder.indexOf(a.stage || '');
+            const bStageIndex = stageOrder.indexOf(b.stage || '');
+            
+            // If both have stages in the order, sort by stage first
+            if (aStageIndex !== -1 && bStageIndex !== -1) {
+                if (aStageIndex !== bStageIndex) {
+                    return aStageIndex - bStageIndex;
+                }
+            }
+            // If only one has a stage in the order, prioritize it
+            else if (aStageIndex !== -1 && bStageIndex === -1) return -1;
+            else if (aStageIndex === -1 && bStageIndex !== -1) return 1;
+            
+            // Then sort by the selected key
+            let valA, valB;
+            if (key === 'area') {
+                valA = a.area;
+                valB = b.area;
+            } else {
+                valA = String(a[key] || '').toLowerCase();
+                valB = String(b[key] || '').toLowerCase();
+            }
+            if (valA < valB) return -1 * dir;
+            if (valA > valB) return 1 * dir;
+            return 0;
+        });
+
+        const tableCard = document.createElement('div');
+        tableCard.className = 'card p-6';
+        
+        let tableHTML = `
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold">${line} Line Machines (${lineMachines.length})</h3>
+                <div class="flex items-center gap-2">
+                    <button onclick="showMachineSummary('${line}')" class="text-sm px-3 py-1 rounded border" style="border-color: var(--border-color); color: var(--text-primary); background-color: var(--bg-accent);" title="Show Machine Summary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        Summary
+                    </button>
+                </div>
+            </div>
+                <div class="overflow-x-auto overflow-hidden rounded-md border" style="border-color: var(--border-color);">
+                    <table class="w-full text-sm">
+                        <thead class="border-b" style="border-color: var(--border-color);">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('machineNumber')">Number <span class="sort-indicator"></span></th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('name')">Name <span class="sort-indicator"></span></th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('stage')">Stage <span class="sort-indicator"></span></th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('group')">Group <span class="sort-indicator"></span></th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('area')">Area (cm²) <span class="sort-indicator"></span></th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('cleaningSOP')">Cleaning SOP <span class="sort-indicator"></span></th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider">Products</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y" style="border-color: var(--border-color);">`;
+
+        sortedMachines.forEach(machine => {
+            const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(machine.id));
+            const productCount = assignedProducts.length;
+
+            let productsCellHTML = `<div class="flex items-center gap-x-2">`;
+            if (productCount > 0) {
+                productsCellHTML += `
+                    <span class="text-xs font-semibold px-2 py-1 rounded-full" style="background-color: var(--bg-accent); color: var(--text-primary);">${productCount}</span>
+                    <button onclick="showMachineProductsModal(${machine.id})" class="p-1" style="color: var(--text-secondary);" title="View ${productCount} Product(s)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/></svg>
+                    </button>`;
+            } else {
+                productsCellHTML += `<span class="text-xs" style="color: var(--text-secondary);">None</span>`;
+            }
+            productsCellHTML += `</div>
+                <div class="only-print text-xs" style="display: none; white-space: normal; word-break: break-word;">
+                    ${assignedProducts.map(p => p.name).join(', ') || 'None'}
+                </div>`;
+            
+            // Format group cell with appropriate styling
+            const groupCellClass = machine.group ? 'machine-group-cell grouped' : 'machine-group-cell individual';
+            const groupCellContent = machine.group || '<span style="color: var(--text-secondary); font-style: italic;">Individual</span>';
+            
+            // Format stage cell with appropriate styling
+            const stageCellContent = machine.stage || '<span style="color: var(--text-secondary); font-style: italic;">Not Assigned</span>';
+            
+            tableHTML += `
+                <tr>
+                    <td class="px-4 py-3 whitespace-nowrap">${machine.machineNumber}</td>
+                    <td class="px-4 py-3 font-medium">${machine.name}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">${stageCellContent}</td>
+                    <td class="px-4 py-3 whitespace-nowrap ${groupCellClass}">${groupCellContent}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">${machine.area.toLocaleString()}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">${formatSOPDisplay(machine.cleaningSOP, machine.id)}</td>
+                    <td class="px-4 py-3">${productsCellHTML}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <div class="flex items-center gap-x-2 no-print">
+                            <button onclick="showAddProductsToMachineModal(${machine.id})" class="p-1 text-blue-500" title="Assign Products to this Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></button>
+                            <button onclick="generateSampleLocationReport(${machine.id})" class="p-1 text-purple-600" title="Generate Sample Location Report"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M3 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/></svg></button>
+                            <button onclick="showMachineModal(${machine.id})" class="p-1" style="color: var(--text-secondary);" title="Edit Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zM12.879 4.379L11 2.5 4.939 8.561a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.121L12.879 4.379z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></button>
+                            <button onclick="deleteMachine(${machine.id})" class="p-1 text-red-500" title="Delete Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3V2h11v1h-11z"/></svg></button>
+                        </div>
+                    </td>
+                </tr>`;
+        });
+
+    tableHTML += `</tbody></table></div>`;
+        tableCard.innerHTML = tableHTML;
+        container.appendChild(tableCard);
+}
+
+// Change active machine line tab
+export function changeMachineLineTab(lineKey, element) {
+    activeMachineLineTab = lineKey;
+    
+    // Update tab button styles
+    document.querySelectorAll('.machine-line-tab-button').forEach(btn => {
+        btn.classList.remove('active-machine-line-tab');
+    });
+    if (element) {
+        element.classList.add('active-machine-line-tab');
+    }
+    
+    // Show/hide tab content
+    document.querySelectorAll('.machine-line-tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+    const activeTabContent = document.getElementById(`machine-tab-${lineKey}`);
+    if (activeTabContent) {
+        activeTabContent.style.display = 'block';
+    }
+}
+
+// Make function available globally
+window.changeMachineLineTab = changeMachineLineTab;
+
+export function showMachineModal(id = null) {
+      const form = document.getElementById('machineForm');
+            form.reset();
+            const modalTitle = document.getElementById('machineModalTitle');
+            const machineIdInput = document.getElementById('machineId');
+            const machineNumberInput = document.getElementById('machineNumber');
+            const machineNameInput = document.getElementById('machineName');
+            const machineLineSelect = document.getElementById('machineLine');
+            
+            // Check if the element exists (for backward compatibility)
+            if (!machineLineSelect) {
+                console.error('Machine line select element not found. Please refresh the page.');
+                showCustomAlert('Error', 'Machine line field not found. Please refresh the page to load the updated interface.');
+                return;
+            }
+            
+            // Populate line options dynamically based on current product lines
+            populateMachineLineOptions();
+            
+            const machineAreaInput = document.getElementById('machineArea');
+            const cleaningSOPInput = document.getElementById('cleaningSOP');
+            const machineStageSelect = document.getElementById('machineStage');
+            const machineGroupSelect = document.getElementById('machineGroup');
+
+            // Populate stage select, ensuring "Other" is handled correctly
+            machineStageSelect.innerHTML = `<option value="" disabled selected>Select a Stage</option>`;
+            state.machineStageDisplayOrder.forEach(stage => {
+                const displayText = stage === 'Other' ? 'Other (Add New Stage)' : stage;
+                machineStageSelect.innerHTML += `<option value="${stage}">${displayText}</option>`;
+            });
+
+            // Populate group select
+            machineGroupSelect.innerHTML = `<option value="">No Group (Individual Machine)</option>`;
+            state.machineGroups.forEach(group => {
+                machineGroupSelect.innerHTML += `<option value="${group}">${group}</option>`;
+            });
+            machineGroupSelect.innerHTML += `<option value="Other">Other (Create New Group)</option>`;
+
+            if (id) {
+                const machine = state.machines.find(m => m.id === id);
+                if (machine) {
+                    modalTitle.textContent = 'Edit Machine';
+                    machineIdInput.value = machine.id;
+                    machineNumberInput.value = machine.machineNumber;
+                    machineNameInput.value = machine.name;
+                    
+                    // Line selection will be handled after populateMachineLineOptions() is called
+                    
+                    // Handle line assignment type and additional lines
+                    if (machine.line === 'Shared') {
+                        document.querySelector('input[name="machineLineType"][value="shared"]').checked = true;
+                        document.getElementById('specificLineOptions').style.display = 'none';
+                    } else {
+                        document.querySelector('input[name="machineLineType"][value="specific"]').checked = true;
+                        document.getElementById('specificLineOptions').style.display = 'block';
+                        
+                        // Set primary line
+                        if (machineLineSelect.options.length > 0) {
+                            const lineOption = Array.from(machineLineSelect.options).find(opt => opt.value === machine.line);
+                            if (lineOption) {
+                                machineLineSelect.value = machine.line;
+                            } else {
+                                // Custom line not in dropdown
+                                machineLineSelect.value = 'Other';
+                                document.getElementById('machineOtherLineContainer').style.display = 'block';
+                                document.getElementById('machineOtherLine').value = machine.line;
+                                document.getElementById('machineOtherLine').required = true;
+                            }
+                        }
+                        
+                        // Set additional lines
+                        if (machine.additionalLines && machine.additionalLines.length > 0) {
+                            machine.additionalLines.forEach(line => {
+                                const checkbox = document.getElementById(`additionalLine_${line}`);
+                                if (checkbox) {
+                                    checkbox.checked = true;
+                                }
+                            });
+                        }
+                        
+                        // Update checkboxes after setting values
+                        setTimeout(() => {
+                            updateAdditionalLinesCheckboxes();
+                        }, 100);
+                    }
+                    
+                    machineAreaInput.value = machine.area;
+                    
+                    // Initialize SOP handlers and load SOP data
+                    initializeSOPHandlers();
+                    loadSOPData(machine);
+                    
+                    const otherContainer = document.getElementById('otherStageContainer');
+                    const otherInput = document.getElementById('otherMachineStage');
+                    
+                    // Check if the machine's stage is one of the standard options (excluding 'Other')
+                    if (state.machineStageDisplayOrder.filter(s => s !== 'Other').includes(machine.stage)) {
+                        machineStageSelect.value = machine.stage;
+                        otherContainer.style.display = 'none';
+                        otherInput.required = false;
+                    } else { // It's a custom stage
+                        machineStageSelect.value = 'Other';
+                        otherInput.value = machine.stage;
+                        otherContainer.style.display = 'block';
+                        otherInput.required = true;
+                    }
+
+                    // Handle machine group selection
+                    const otherGroupContainer = document.getElementById('otherGroupContainer');
+                    const otherGroupInput = document.getElementById('otherMachineGroup');
+                    
+                    if (!machine.group || machine.group === '') {
+                        machineGroupSelect.value = '';
+                        otherGroupContainer.style.display = 'none';
+                        otherGroupInput.required = false;
+                    } else if (state.machineGroups.includes(machine.group)) {
+                        machineGroupSelect.value = machine.group;
+                        otherGroupContainer.style.display = 'none';
+                        otherGroupInput.required = false;
+                    } else { // It's a custom group
+                        machineGroupSelect.value = 'Other';
+                        otherGroupInput.value = machine.group;
+                        otherGroupContainer.style.display = 'block';
+                        otherGroupInput.required = true;
+                    }
+                }
+            } else {
+                modalTitle.textContent = 'Add Machine';
+                machineIdInput.value = '';
+                document.getElementById('otherStageContainer').style.display = 'none';
+                document.getElementById('otherMachineStage').required = false;
+                document.getElementById('otherGroupContainer').style.display = 'none';
+                document.getElementById('otherMachineGroup').required = false;
+                
+                // Reset "Other" line container for new machine
+                const otherLineContainer = document.getElementById('machineOtherLineContainer');
+                const otherLineInput = document.getElementById('machineOtherLine');
+                if (otherLineContainer && otherLineInput) {
+                    otherLineContainer.style.display = 'none';
+                    otherLineInput.value = '';
+                    otherLineInput.required = false;
+                }
+                
+                // Initialize SOP handlers for new machine
+                initializeSOPHandlers();
+                loadSOPData({}); // Empty object for new machine
+            }
+            
+            // Now handle line selection for edit modal (after dropdown is populated)
+            if (id) {
+                const machine = state.machines.find(m => m.id === id);
+                if (machine && machine.line) {
+                    const machineLine = machine.line;
+                    const machineLineSelect = document.getElementById('machineLine');
+                    if (machineLineSelect) {
+                        const availableLines = Array.from(machineLineSelect.options).map(o => o.value).filter(Boolean);
+                        if (availableLines.includes(machineLine)) {
+                            machineLineSelect.value = machineLine;
+                            // Hide the "Other" line field since we found the line in the dropdown
+                            const otherLineContainer = document.getElementById('machineOtherLineContainer');
+                            if (otherLineContainer) {
+                                otherLineContainer.style.display = 'none';
+                            }
+                        } else {
+                            machineLineSelect.value = 'Other';
+                            const otherLineContainer = document.getElementById('machineOtherLineContainer');
+                            const otherLineInput = document.getElementById('machineOtherLine');
+                            if (otherLineContainer && otherLineInput) {
+                                otherLineContainer.style.display = 'block';
+                                otherLineInput.value = machineLine;
+                                otherLineInput.required = true;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            document.getElementById('machineModal').style.display = 'flex';
+}
+
+export async function saveMachine(event) {
+   event.preventDefault();
+            const id = document.getElementById('machineId').value;
+            const number = document.getElementById('machineNumber').value.trim();
+            const name = document.getElementById('machineName').value.trim();
+            // Get line assignment type
+            const lineTypeRadios = document.querySelectorAll('input[name="machineLineType"]');
+            const selectedType = Array.from(lineTypeRadios).find(radio => radio.checked)?.value;
+            
+            let line = '';
+            let additionalLines = [];
+            
+            if (selectedType === 'shared') {
+                line = 'Shared';
+            } else {
+                const lineElement = document.getElementById('machineLine');
+                if (!lineElement) {
+                    showCustomAlert('Error', 'Machine line field not found. Please refresh the page to load the updated interface.');
+                    return;
+                }
+                line = lineElement.value;
+                
+                // Handle custom line
+                if (line === 'Other') {
+                    const customLine = document.getElementById('machineOtherLine').value.trim();
+                    if (!customLine) {
+                        showCustomAlert('Validation Error', 'Please specify the custom line name.');
+                        return;
+                    }
+                    line = customLine;
+                }
+                
+                // Get additional lines
+                const additionalCheckboxes = document.querySelectorAll('#additionalLinesContainer input[type="checkbox"]:checked');
+                additionalLines = Array.from(additionalCheckboxes).map(cb => cb.value);
+            }
+            let stage = document.getElementById('machineStage').value;
+            const area = parseInt(document.getElementById('machineArea').value, 10);
+            
+            // Get SOP data using the new enhanced functionality
+            let cleaningSOPData;
+            try {
+                cleaningSOPData = getCurrentSOPData();
+            } catch (error) {
+                showCustomAlert('SOP Error', error.message);
+                return;
+            }
+            let group = document.getElementById('machineGroup').value;
+
+            // Handle custom stage
+            if (stage === 'Other') {
+                const customStage = document.getElementById('otherMachineStage').value.trim();
+                if (!customStage) {
+                    showCustomAlert('Validation Error', 'Please specify the new stage name.');
+                    return;
+                }
+                stage = customStage;
+                
+                // Add the new stage to the display order if it doesn't exist, right before "Other"
+                if (!state.machineStageDisplayOrder.includes(stage)) {
+                    const otherIndex = state.machineStageDisplayOrder.indexOf('Other');
+                    if (otherIndex > -1) {
+                        state.machineStageDisplayOrder.splice(otherIndex, 0, stage);
+                    } else {
+                        state.machineStageDisplayOrder.push(stage); // Fallback
+                    }
+                    db.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder)).catch(e => console.error('Error saving machine stage order:', e));
+                    localStorage.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder)); // Also save to localStorage
+                }
+            }
+
+            // Handle custom group
+            if (group === 'Other') {
+                const customGroup = document.getElementById('otherMachineGroup').value.trim();
+                if (!customGroup) {
+                    showCustomAlert('Validation Error', 'Please specify the new group name.');
+                    return;
+                }
+                group = customGroup;
+                
+                // Add the new group to the list if it doesn't exist
+                if (!state.machineGroups.includes(group)) {
+                    state.machineGroups.push(group);
+                    db.setItem('machineGroups', JSON.stringify(state.machineGroups)).catch(e => console.error('Error saving machine groups:', e));
+                    localStorage.setItem('machineGroups', JSON.stringify(state.machineGroups)); // Also save to localStorage
+                }
+            }
+
+            // Validate group-stage compatibility
+            if (group && group !== '') {
+                const existingMachinesInGroup = state.machines.filter(m => 
+                    m.group === group && (!id || m.id !== parseInt(id))
+                );
+                
+                if (existingMachinesInGroup.length > 0) {
+                    const existingStages = [...new Set(existingMachinesInGroup.map(m => m.stage))];
+                    if (existingStages.length > 0 && !existingStages.includes(stage)) {
+                        const stageList = existingStages.join(', ');
+                        showCustomAlert(
+                            'Group Stage Mismatch', 
+                            `Cannot assign this machine to group "${group}". All machines in a group must belong to the same stage.\n\nCurrent group stage(s): ${stageList}\nNew machine stage: ${stage}\n\nPlease either:\n• Change the machine's stage to match the group\n• Choose a different group\n• Create a new group for this stage`
+                        );
+                        return;
+                    }
+                }
+            }
+
+            if (!number || !name || !line || !stage || isNaN(area) || !cleaningSOPData) {
+                showCustomAlert('Error', 'All fields are required.');
+                return;
+            }
+                 // Check for duplicate machine number
+            const isDuplicate = state.machines.some(machine => {
+                const currentId = id ? parseInt(id, 10) : null;
+                // If editing, exclude the current machine from the check.
+                // If adding, currentId is null, so the first part of the AND is always true.
+                return machine.id !== currentId && machine.machineNumber.toLowerCase() === number.toLowerCase();
+            });
+
+            if (isDuplicate) {
+                showCustomAlert('Validation Error', 'A machine with this number already exists.');
+                return;
+            }
+            
+            
+            // Store SOP file in IndexedDB if it's an upload
+            const machineId = id ? parseInt(id, 10) : state.nextMachineId + 1;
+            if (cleaningSOPData.attachmentType === 'upload' && cleaningSOPData.fileData) {
+                try {
+                    await storeSOPFile(machineId.toString(), cleaningSOPData.fileName, cleaningSOPData.fileData);
+                } catch (error) {
+                    console.error('Error storing SOP file in IndexedDB:', error);
+                    showCustomAlert('Warning', 'Machine saved but SOP file storage failed. Please try uploading again.');
+                }
+            } else if (cleaningSOPData.attachmentType !== 'upload') {
+                // Delete SOP file from IndexedDB if attachment type changed from upload
+                try {
+                    await deleteSOPFile(machineId.toString());
+                } catch (error) {
+                    console.error('Error deleting SOP file from IndexedDB:', error);
+                }
+            }
+            
+            if (id) { // Edit
+                const machine = state.machines.find(m => m.id === parseInt(id));
+                if (machine) {
+                    machine.machineNumber = number;
+                    machine.name = name;
+                    machine.line = line;
+                    machine.additionalLines = additionalLines;
+                    machine.stage = stage;
+                    machine.area = area;
+                    machine.cleaningSOP = cleaningSOPData;
+                    machine.group = group || '';
+                }
+            } else { // Add
+                state.setNextMachineId(state.nextMachineId+1);
+                state.machines.push({ 
+                    id: state.nextMachineId, 
+                    machineNumber: number, 
+                    name: name, 
+                    line: line, 
+                    additionalLines: additionalLines,
+                    stage: stage, 
+                    area: area, 
+                    cleaningSOP: cleaningSOPData, 
+                    group: group || '' 
+                });
+            }
+            saveStateForUndo();
+            fullAppRender();
+            hideModal('machineModal');
+               console.log('Saving machines to Firestore');
+            // Save to Firestore after add/edit
+            // if (window.saveAllDataToFirestore && window.orgId) {
+            //     console.log('Saving machines to Firestore');
+            //     window.saveAllDataToFirestore(window.orgId);
+            // } else {
+            //     console.warn('Firestore save function or orgId not available');
+            // }
+}
+
+export async function deleteMachine(id) {
+    if (confirm("Are you sure you want to delete this machine? It will be removed from all products that use it.")) {
+        // Delete SOP file from IndexedDB
+        try {
+            await deleteSOPFile(id.toString());
+        } catch (error) {
+            console.error('Error deleting SOP file from IndexedDB:', error);
+        }
+        
+        const newMachines = state.machines.filter(m => m.id !== id);
+        state.setMachines(newMachines);
+        // Remove the machine ID from all products
+        state.products.forEach(p => {
+            if (p.machineIds) {
+                p.machineIds = p.machineIds.filter(mid => mid !== id);
+            }
+        });
+        saveStateForUndo();
+        fullAppRender();
+    }
+}
+
+// Store current machine data for export/print
+let currentMachineForModal = null;
+
+export function showMachineProductsModal(machineId) {
+     const machine = state.machines.find(m => m.id === machineId);
+            if (!machine) return;
+
+            // Store machine data for export/print functions
+            currentMachineForModal = machine;
+
+            const modalTitle = document.getElementById('machineProductsModalTitle');
+            const listContainer = document.getElementById('machineProductsList');
+
+            modalTitle.textContent = `Products on: ${machine.name} (${machine.machineNumber})`;
+            
+            const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(machineId));
+            
+            if (assignedProducts.length > 0) {
+                // First, calculate the overall highest RPN among all products on this machine
+                const toxicityPreference = getToxicityPreference();
+                let overallHighestRPN = 0;
+                
+                assignedProducts.forEach(p => {
+                    p.activeIngredients.forEach(ing => {
+                        const scores = calculateScores(ing, toxicityPreference);
+                        if (scores.rpn > overallHighestRPN) {
+                            overallHighestRPN = scores.rpn;
+                        }
+                    });
+                });
+                
+                let productListHTML = '<div class="divide-y" style="border-color: var(--border-color);">';
+                assignedProducts.forEach((p, index) => {
+                    const trainNumber = getProductTrainNumber(p);
+                    const trainIdDisplay = trainNumber !== 'N/A' ? 'T' + trainNumber : 'N/A';
+                    const criticalText = p.isCritical ? 'Yes' : 'No';
+                    const criticalClass = p.isCritical ? 'text-red-600 font-bold' : '';
+                    const dateFormatted = new Date(p.date).toLocaleDateString();
+                    
+                    // Calculate highest RPN for the product
+                    let highestRPN = 0;
+                    let highestRPNRating = 'N/A';
+                    
+                    p.activeIngredients.forEach(ing => {
+                        const scores = calculateScores(ing, toxicityPreference);
+                        if (scores.rpn > highestRPN) {
+                            highestRPN = scores.rpn;
+                            highestRPNRating = scores.rpnRatingText;
+                        }
+                    });
+                    
+                    const rpnClass = getRpnRatingClass(highestRPNRating);
+                    const isHighestRPN = (highestRPN === overallHighestRPN);
+                    
+                    productListHTML += `
+                        <div class="py-3 px-2">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold text-lg">${p.name}</h4>
+                                <span class="text-xs px-2 py-1 rounded" style="background-color: var(--bg-accent); color: var(--text-secondary);">${p.productCode}</span>
+                            </div>
+                            <div class="text-xs flex flex-wrap gap-4">
+                                <span ><strong>${isHighestRPN ? 'Highest RPN:' : 'RPN:'}</strong> <span class="${rpnClass}" style="font-weight: bold;">${highestRPN.toFixed(1)}</span></span>
+                                <span><strong>Special Case Product:</strong> <span class="${criticalClass}">${criticalText}</span></span>
+                                ${p.isCritical && p.criticalReason ? `<span class="text-xs italic" style="color: var(--text-secondary);">Reason: ${p.criticalReason}</span>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+                productListHTML += '</div>';
+                listContainer.innerHTML = productListHTML;
+            } else {
+                listContainer.innerHTML = `<p style="color:var(--text-secondary);">No products are currently assigned to this machine.</p>`;
+            }
+            
+            document.getElementById('machineProductsModal').style.display = 'flex';
+       
+}
+
+// Export machine products to Excel
+export function exportMachineProductsToExcel() {
+    if (!currentMachineForModal) {
+        console.error('No machine data available for export');
+        return;
+    }
+
+    const machine = currentMachineForModal;
+    const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(machine.id));
+    
+    if (assignedProducts.length === 0) {
+        alert('No products to export for this machine.');
+        return;
+    }
+
+    const toxicityPreference = getToxicityPreference();
+    
+    // Prepare data for export
+    const data = assignedProducts.map(p => {
+        const criticalText = p.isCritical ? 'Yes' : 'No';
+        
+        // Calculate highest RPN for the product
+        let highestRPN = 0;
+        
+        p.activeIngredients.forEach(ing => {
+            const scores = calculateScores(ing, toxicityPreference);
+            if (scores.rpn > highestRPN) {
+                highestRPN = scores.rpn;
+            }
+        });
+
+        return {
+            'Product Name': p.name,
+            'Highest RPN': highestRPN.toFixed(1),
+            'Special Case Product': criticalText
+        };
+    });
+
+    // Create worksheet
+    const ws = XLSX.utils.json_to_sheet(data);
+    
+    // Create workbook
+    const wb = XLSX.utils.book_new();
+    const sheetName = `${machine.name} Products`;
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+    
+    // Auto-fit columns
+    const colWidths = Object.keys(data[0] || {}).map(key => {
+        return {
+            wch: Math.max(key.length, ...data.map(row => String(row[key] || '').length)) + 2
+        };
+    });
+    ws['!cols'] = colWidths;
+    
+    // Generate filename with timestamp
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/[:\-T]/g, '');
+    const filename = `Machine_${machine.machineNumber}_Products_${timestamp}.xlsx`;
+    
+    // Save file
+    XLSX.writeFile(wb, filename);
+}
+
+// Print machine products
+export function printMachineProducts() {
+    if (!currentMachineForModal) {
+        alert('No machine selected for printing');
+        return;
+    }
+
+    try {
+        const machine = currentMachineForModal;
+        const products = state.products.filter(p => p.machineIds && p.machineIds.includes(machine.id));
+        
+        if (!products || products.length === 0) {
+            alert('No products found for this machine');
+            return;
+        }
+
+        // Create print content
+        let printContent = `
+            <html>
+            <head>
+                <title>Machine Products Report</title>
+                <style>
+                    body { 
+                        font-family: Arial, sans-serif; 
+                        margin: 20px;
+                        font-size: 12px;
+                    }
+                    h1 { 
+                        color: #333; 
+                        border-bottom: 2px solid #ddd; 
+                        padding-bottom: 10px;
+                    }
+                    .info-table {
+                        border-collapse: collapse;
+                        width: 100%;
+                        margin-bottom: 20px;
+                    }
+                    .info-table th, .info-table td {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        text-align: left;
+                    }
+                    .info-table th {
+                        background-color: #f5f5f5;
+                        font-weight: bold;
+                    }
+                    @media print {
+                        body { margin: 0; }
+                        h1 { page-break-after: avoid; }
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>Machine Products Report</h1>
+                
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Highest RPN</th>
+                            <th>Special Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+        
+        products.forEach(product => {
+            const criticalText = product.isCritical ? 'Yes' : 'No';
+            
+            // Calculate highest RPN for the product
+            const toxicityPreference = getToxicityPreference();
+            let highestRPN = 0;
+            
+            product.activeIngredients.forEach(ing => {
+                const scores = calculateScores(ing, toxicityPreference);
+                if (scores.rpn > highestRPN) {
+                    highestRPN = scores.rpn;
+                }
+            });
+            
+            printContent += `
+                <tr>
+                    <td>${product.name}</td>
+                    <td>${highestRPN.toFixed(1)}</td>
+                    <td>${criticalText}</td>
+                </tr>
+            `;
+        });
+        
+        printContent += `
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 30px; font-size: 10px; color: #666;">
+                    Generated on: ${new Date().toLocaleString()}
+                </div>
+            </body>
+            </html>
+        `;
+        
+        // Create a temporary iframe for printing without opening new window
+        const iframe = document.createElement('iframe');
+        iframe.style.position = 'absolute';
+        iframe.style.left = '-9999px';
+        iframe.style.width = '0px';
+        iframe.style.height = '0px';
+        document.body.appendChild(iframe);
+        
+        const iframeDoc = iframe.contentWindow.document;
+        iframeDoc.write(printContent);
+        iframeDoc.close();
+        
+        // Print the iframe content
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+        
+        // Clean up - remove iframe after printing
+        setTimeout(() => {
+            document.body.removeChild(iframe);
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Error printing machine products:', error);
+        alert('Failed to generate print report. Please try again.');
+    }
+}
+
+
+// --- Product-Machine Assignment Functions ---
+export function showAssignMachinesModal(productId) {
+  const product = state.products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('assignMachineProductId').value = productId;
+            document.getElementById('assignMachinesModalTitle').textContent = `Assign Machines to: ${product.name}`;
+            
+            const listContainer = document.getElementById('assignMachinesList');
+            listContainer.innerHTML = ''; // Clear previous content
+
+            // If machines have a 'line' property and the product has an assigned line,
+            // only show machines belonging to that line. If no machines declare lines,
+            // fall back to previous behavior.
+            const machinesHaveLine = state.machines.some(m => m.line !== undefined && m.line !== null);
+            const productLine = product.line ? String(product.line).trim() : null;
+
+            state.machineStageDisplayOrder.forEach(stage => {
+                let machinesInStage = state.machines.filter(m => m.stage === stage);
+                if (machinesHaveLine && productLine) {
+                    // Show machines from the same line OR shared machines OR machines with additional lines
+                    machinesInStage = machinesInStage.filter(m => {
+                        const machineLine = String(m.line || '').trim();
+                        const isShared = machineLine === "Shared";
+                        const isSameLine = machineLine === productLine;
+                        const hasAdditionalLine = m.additionalLines && m.additionalLines.includes(productLine);
+                        return isSameLine || isShared || hasAdditionalLine;
+                    });
+                }
+                
+                // Custom sorting logic
+                if (stage === 'Mixing') {
+                    machinesInStage.sort((a, b) => {
+                        const aIsBin = a.name.toLowerCase().includes('bin');
+                        const bIsBin = b.name.toLowerCase().includes('bin');
+                        if (aIsBin && !bIsBin) return -1;
+                        if (!aIsBin && bIsBin) return 1;
+                        if (aIsBin && bIsBin) {
+                            const aNum = parseInt((a.name.match(/\d+/) || [0])[0], 10);
+                            const bNum = parseInt((b.name.match(/\d+/) || [0])[0], 10);
+                            return aNum - bNum;
+                        }
+                        return a.name.localeCompare(b.name);
+                    });
+                } else {
+                    machinesInStage.sort((a, b) => a.name.localeCompare(b.name));
+                }
+
+                if (machinesInStage.length > 0) {
+                    const groupDiv = document.createElement('div');
+                    
+                    const stageHeader = document.createElement('h4');
+                    stageHeader.className = 'text-sm font-bold uppercase tracking-wider pb-1 mb-2 border-b';
+                    stageHeader.style.borderColor = 'var(--border-color)';
+                    stageHeader.style.color = 'var(--text-secondary)';
+                    stageHeader.textContent = stage === 'Other' ? 'Other / Custom Stages' : stage;
+                    groupDiv.appendChild(stageHeader);
+
+                    const machinesGrid = document.createElement('div');
+                    machinesGrid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 pl-2';
+
+                    machinesInStage.forEach(machine => {
+                        const isChecked = product.machineIds && product.machineIds.includes(machine.id);
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'flex items-center';
+                        itemDiv.innerHTML = `
+                            <input type="checkbox" id="machine-check-${machine.id}" value="${machine.id}" ${isChecked ? 'checked' : ''} class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                            <label for="machine-check-${machine.id}" class="ml-2 text-sm font-medium" style="color: var(--text-primary);">${machine.name} <span class="text-xs" style="color:var(--text-secondary)">(${machine.machineNumber})</span></label>
+                        `;
+                        machinesGrid.appendChild(itemDiv);
+                    });
+                    
+                    groupDiv.appendChild(machinesGrid);
+                    listContainer.appendChild(groupDiv);
+                }
+            });
+
+            document.getElementById('assignMachinesModal').style.display = 'flex';
+      
+}
+
+export function saveProductMachines(event) {
+     event.preventDefault();
+            const productId = parseInt(document.getElementById('assignMachineProductId').value);
+            const product = state.products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const selectedIds = [];
+            document.querySelectorAll('#assignMachinesList input[type="checkbox"]:checked').forEach(checkbox => {
+                selectedIds.push(parseInt(checkbox.value));
+            });
+            
+            product.machineIds = selectedIds;
+            saveStateForUndo();
+            hideModal('assignMachinesModal');
+            fullAppRender();
+            showCustomAlert('Success', 'Product machines updated successfully.');
+        }
+     
+
+export function showAddProductsToMachineModal(machineId) {
+            const machine = state.machines.find(m => m.id === machineId);
+            if (!machine) return;
+
+            document.getElementById('addProductsMachineId').value = machineId;
+            document.getElementById('addProductsToMachineModalTitle').textContent = `Assign Products to: ${machine.name}`;
+            
+            const listContainer = document.getElementById('addProductsToMachineList');
+            const noProductsMsg = document.getElementById('noAvailableProductsMessage');
+            const saveBtn = document.getElementById('addProductsToMachineSaveBtn');
+            listContainer.innerHTML = '';
+
+            // Filter products by line if both machines and products have line properties
+            const machinesHaveLine = state.machines.some(m => m.line !== undefined && m.line !== null);
+            const machineLine = machine.line ? String(machine.line).trim() : null;
+            
+            let availableProducts = state.products;
+            if (machinesHaveLine && machineLine) {
+                // Only show products from the same line, or products without a line (for backward compatibility)
+                availableProducts = state.products.filter(p => {
+                    const productLine = p.line ? String(p.line).trim() : null;
+                    return !productLine || productLine === machineLine || machineLine === "Shared";
+                });
+            }
+
+            if (availableProducts.length > 0) {
+                noProductsMsg.style.display = 'none';
+                listContainer.style.display = 'block';
+                saveBtn.style.display = 'block';
+
+                availableProducts.sort((a,b) => a.name.localeCompare(b.name)).forEach(p => {
+                    const isAssignedToThisMachine = p.machineIds && p.machineIds.includes(machineId);
+                    const isAssignedToAnyOtherMachine = p.machineIds && p.machineIds.some(id => id !== machineId);
+
+                    let otherAssignmentIndicator = '';
+                    if (isAssignedToAnyOtherMachine) {
+                         otherAssignmentIndicator = `<span class="ml-auto text-xs font-semibold px-1.5 py-0.5 rounded" style="background-color: var(--bg-accent); color: var(--text-secondary);" title="This product is also assigned to other machines.">Linked</span>`;
+                    }
+                    
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center';
+                    div.innerHTML = `
+                        <input type="checkbox" id="product-assign-check-${p.id}" value="${p.id}" ${isAssignedToThisMachine ? 'checked' : ''} class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                        <label for="product-assign-check-${p.id}" class="ml-3 flex-1 flex items-center text-sm font-medium" style="color: var(--text-primary);">
+                            <span>${p.name} <span class="text-xs" style="color:var(--text-secondary)">(${p.productCode})</span></span>
+                            ${otherAssignmentIndicator}
+                        </label>
+                    `;
+                    listContainer.appendChild(div);
+                });
+            } else {
+                const message = state.products.length === 0 
+                    ? 'There are no products registered in the system.'
+                    : `No products available for line "${machineLine}". Products must be from the same line as the machine.`;
+                noProductsMsg.textContent = message;
+                noProductsMsg.style.display = 'block';
+                listContainer.style.display = 'none';
+                saveBtn.style.display = 'none';
+            }
+            
+            document.getElementById('addProductsToMachineModal').style.display = 'flex';
+      
+}
+
+export function saveProductsToMachine(event) {
+     event.preventDefault();
+            const machineId = parseInt(document.getElementById('addProductsMachineId').value);
+            if (isNaN(machineId)) return;
+
+            const selectedProductIds = [];
+            document.querySelectorAll('#addProductsToMachineList input[type="checkbox"]:checked').forEach(checkbox => {
+                selectedProductIds.push(parseInt(checkbox.value));
+            });
+
+            // Iterate through ALL products to sync assignments for this machine
+            state.products.forEach(product => {
+                if (!product.machineIds) {
+                    product.machineIds = [];
+                }
+                const isCurrentlyAssigned = product.machineIds.includes(machineId);
+                const isSelected = selectedProductIds.includes(product.id);
+
+                if (isSelected && !isCurrentlyAssigned) {
+                    // Add assignment if selected but not currently assigned
+                    product.machineIds.push(machineId);
+                } else if (!isSelected && isCurrentlyAssigned) {
+                    // Remove assignment if not selected but currently assigned
+                    product.machineIds = product.machineIds.filter(id => id !== machineId);
+                }
+            });
+
+            saveStateForUndo();
+            fullAppRender();
+            hideModal('addProductsToMachineModal');
+            showCustomAlert('Success', 'Machine assignments updated.');
+}
+
+// Toggle line section visibility
+window.toggleLineSection = async function(lineKey) {
+    const lineElement = document.getElementById(`line-${lineKey}`);
+    const button = event.target;
+    
+    if (lineElement.style.display === 'none') {
+        lineElement.style.display = 'block';
+        button.textContent = 'Hide';
+        await db.setItem(`machineLine-${lineKey}-hidden`, 'false');
+        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'false'); // Also save to localStorage
+    } else {
+        lineElement.style.display = 'none';
+        button.textContent = 'Show';
+        await db.setItem(`machineLine-${lineKey}-hidden`, 'true');
+        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'true'); // Also save to localStorage
+    }
+};
+
+// Show machine summary modal
+window.showMachineSummary = function(line) {
+    const modal = document.getElementById('machineSummaryModal');
+    const modalTitle = document.getElementById('machineSummaryModalTitle');
+    const modalContent = document.getElementById('machineSummaryContent');
+    
+    // Set modal title
+    modalTitle.textContent = `${line} - Machine Summary`;
+    
+    // Get machines for this line
+    const lineMachines = state.machines.filter(machine => machine.line === line);
+    
+    if (lineMachines.length === 0) {
+        modalContent.innerHTML = '<p class="text-center text-gray-500">No machines found for this line.</p>';
+        showModal('machineSummaryModal');
+        return;
+    }
+    
+    // Calculate summary data
+    const summaryData = calculateMachineSummary(lineMachines);
+    
+    // Generate summary HTML
+    let summaryHTML = `
+        <!-- Shared Worst Case Groups -->
+        <div class="card p-4 mb-6">
+            <h4 class="text-lg font-semibold mb-4 text-blue-600">Machines Sharing Same Worst Case Products</h4>
+            <div class="overflow-hidden rounded-lg border" style="border-color: var(--border-color);">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-200 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Product</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Ingredient</th>
+                            <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">RPN</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Shared Machines</th>
+                        </tr>
+                    </thead>
+                    <tbody style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+    `;
+    
+    if (summaryData.sharedWorstCaseGroups.length > 0) {
+        summaryData.sharedWorstCaseGroups.forEach(group => {
+            summaryHTML += `
+                <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color);">
+                    <td class="px-4 py-3 font-semibold" style="color: var(--text-primary);">${group.productName}</td>
+                    <td class="px-4 py-3" style="color: var(--text-primary);">${group.ingredient}</td>
+                    <td class="px-4 py-3 text-center" style="color: var(--text-primary);">
+                        <span class="px-2 py-1 rounded text-sm font-bold" style="background-color: var(--bg-accent); color: var(--text-primary);">
+                            ${group.isHighestRpn ? 'Highest RPN: ' : 'RPN: '}${group.rpn}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3" style="color: var(--text-primary);">
+                        <div class="flex flex-wrap gap-1">
+                            ${group.machines.map(machineName => {
+                                const machine = lineMachines.find(m => m.name === machineName);
+                                const groupInfo = machine && machine.group ? ` (${machine.group})` : '';
+                                return `<span class="px-2 py-1 rounded border text-xs" style="border-color: var(--border-color); background-color: var(--bg-secondary);">${machineName}<strong>${groupInfo}</strong></span>`;
+                            }).join('')}
+                        </div>
+                    </td>
+                </tr>
+            `;
+        });
+    } else {
+        summaryHTML += `
+            <tr>
+                <td colspan="4" class="px-4 py-8 text-center text-gray-500">No shared groups found</td>
+            </tr>
+        `;
+    }
+    
+    summaryHTML += `
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    
+    modalContent.innerHTML = summaryHTML;
+    showModal('machineSummaryModal');
+};
+
+// Calculate machine summary data
+function calculateMachineSummary(machines) {
+    const summary = {
+        worstCaseProducts: [],
+        specialCases: [],
+        totalMachines: machines.length,
+        totalArea: 0,
+        avgProductsPerMachine: 0,
+        machineWorstCases: {},
+        sharedWorstCaseGroups: []
+    };
+    
+    let totalProducts = 0;
+    
+    machines.forEach(machine => {
+        summary.totalArea += machine.area;
+        
+        const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(machine.id));
+        totalProducts += assignedProducts.length;
+        
+        // Find worst case product for this machine
+        let worstProduct = null;
+        let maxRpn = -1;
+        
+        assignedProducts.forEach(product => {
+            product.activeIngredients.forEach(ingredient => {
+                const { rpn } = calculateScores(ingredient);
+                if (rpn > maxRpn) {
+                    maxRpn = rpn;
+                    worstProduct = {
+                        name: product.name,
+                        rpn: rpn,
+                        ingredient: ingredient.name,
+                        productId: product.id
+                    };
+                }
+            });
+        });
+        
+        if (worstProduct) {
+            summary.machineWorstCases[machine.id] = worstProduct;
+        }
+    });
+    
+    // Group machines by their worst case product
+    const productGroups = {};
+    Object.keys(summary.machineWorstCases).forEach(machineId => {
+        const worstCase = summary.machineWorstCases[machineId];
+        const key = `${worstCase.productId}-${worstCase.ingredient}`;
+        
+        if (!productGroups[key]) {
+            productGroups[key] = {
+                productName: worstCase.name,
+                ingredient: worstCase.ingredient,
+                rpn: worstCase.rpn,
+                machines: []
+            };
+        }
+        
+        const machine = machines.find(m => m.id == machineId);
+        if (machine) {
+            productGroups[key].machines.push(machine.name);
+        }
+    });
+    
+    // Convert to array and sort by RPN
+    summary.sharedWorstCaseGroups = Object.values(productGroups)
+        .sort((a, b) => b.rpn - a.rpn);
+    
+    // Mark the highest RPN groups (all groups with the same highest RPN value)
+    if (summary.sharedWorstCaseGroups.length > 0) {
+        const highestRpn = summary.sharedWorstCaseGroups[0].rpn;
+        summary.sharedWorstCaseGroups.forEach(group => {
+            group.isHighestRpn = (group.rpn === highestRpn);
+        });
+    }
+    
+    // Collect all worst case products
+    const allWorstCases = Object.values(summary.machineWorstCases);
+    summary.worstCaseProducts = allWorstCases.sort((a, b) => b.rpn - a.rpn);
+    
+    // Find special cases (high RPN products)
+    summary.specialCases = summary.worstCaseProducts.filter(product => product.rpn >= 100);
+    
+    summary.avgProductsPerMachine = totalProducts / machines.length;
+    
+    return summary;
+}
+
+// ========== SOP MANAGEMENT FUNCTIONS ==========
+
+/**
+ * Format SOP display for machine table
+ */
+function formatSOPDisplay(sopData, machineId) {
+    if (!sopData) return '';
+    
+    // Handle legacy string format
+    if (typeof sopData === 'string') {
+        return sopData;
+    }
+    
+    // Handle new format with sopName + attachment
+    if (sopData.sopName) {
+        let display = sopData.sopName;
+        let clickableContent = '';
+        
+        switch (sopData.attachmentType) {
+            case 'upload':
+                if (sopData.fileName) {
+                    clickableContent = `<span class="sop-attachment-link" onclick="openMachineSOPFile(${machineId})" title="Click to open: ${sopData.fileName}" style="cursor: pointer; color: #1976d2; text-decoration: none;"> 📎</span>`;
+                    display += clickableContent;
+                }
+                break;
+            case 'link':
+                if (sopData.attachmentValue) {
+                    clickableContent = `<span class="sop-attachment-link" onclick="openMachineSOPFile(${machineId})" title="Click to open link" style="cursor: pointer; color: #1976d2; text-decoration: none;"> 🔗</span>`;
+                    display += clickableContent;
+                }
+                break;
+            // 'none' or no attachment - just show the name
+        }
+        
+        return display;
+    }
+    
+    // Handle old object format (backwards compatibility)
+    switch (sopData.type) {
+        case 'text':
+            return sopData.value || '';
+        case 'upload':
+            const fileName = sopData.fileName || 'File Attached';
+            return `<span class="sop-attachment-link" onclick="openMachineSOPFile(${machineId})" title="Click to open: ${fileName}" style="cursor: pointer; color: #1976d2; text-decoration: none;">📎</span> ${fileName}`;
+        case 'link':
+            const linkText = sopData.value || '';
+            const shortLink = linkText.length > 30 ? linkText.substring(0, 30) + '...' : linkText;
+            return `<span class="sop-attachment-link" onclick="openMachineSOPFile(${machineId})" title="Click to open link" style="cursor: pointer; color: #1976d2; text-decoration: none;">🔗</span> ${shortLink}`;
+        default:
+            return sopData.value || '';
+    }
+}
+
+/**
+ * Initialize SOP method selection handlers
+ */
+export function initializeSOPHandlers() {
+    const attachmentMethodRadios = document.querySelectorAll('input[name="sopAttachmentMethod"]');
+    
+    attachmentMethodRadios.forEach(radio => {
+        radio.addEventListener('change', handleSOPAttachmentMethodChange);
+    });
+}
+
+/**
+ * Handle SOP attachment method selection change
+ */
+function handleSOPAttachmentMethodChange(event) {
+    const selectedMethod = event.target.value;
+    
+    // Hide all sections
+    document.getElementById('sopNoAttachmentSection').style.display = 'none';
+    document.getElementById('sopUploadSection').style.display = 'none';
+    document.getElementById('sopLinkSection').style.display = 'none';
+    
+    // Show selected section and manage required fields
+    switch (selectedMethod) {
+        case 'none':
+            document.getElementById('sopNoAttachmentSection').style.display = 'block';
+            document.getElementById('sopFileUpload').required = false;
+            document.getElementById('sopFileLink').required = false;
+            break;
+        case 'upload':
+            document.getElementById('sopUploadSection').style.display = 'block';
+            document.getElementById('sopFileUpload').required = false; // Will validate manually
+            document.getElementById('sopFileLink').required = false;
+            break;
+        case 'link':
+            document.getElementById('sopLinkSection').style.display = 'block';
+            document.getElementById('sopFileUpload').required = false;
+            document.getElementById('sopFileLink').required = true;
+            break;
+    }
+}
+
+/**
+ * Handle SOP file upload
+ */
+function handleSOPFileUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    // Validate file type
+    const allowedTypes = ['.pdf', '.doc', '.docx', '.txt'];
+    const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+    
+    if (!allowedTypes.includes(fileExtension)) {
+        showCustomAlert('Invalid File Type', 
+            'Please upload a PDF, DOC, DOCX, or TXT file.');
+        event.target.value = '';
+        return;
+    }
+    
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+        showCustomAlert('File Too Large', 
+            'File size must be less than 10MB.');
+        event.target.value = '';
+        return;
+    }
+    
+    // Read file as base64
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        currentSOPFile = {
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            data: e.target.result
+        };
+        
+        // Update UI
+        document.getElementById('sopUploadArea').style.display = 'none';
+        document.getElementById('sopUploadedFile').style.display = 'block';
+        document.getElementById('sopFileName').textContent = file.name;
+    };
+    reader.onerror = function() {
+        showCustomAlert('Upload Error', 'Failed to read the file.');
+        event.target.value = '';
+    };
+    reader.readAsDataURL(file);
+}
+
+/**
+ * Remove uploaded SOP file
+ */
+function removeSOPFile() {
+    currentSOPFile = null;
+    document.getElementById('sopFileUpload').value = '';
+    document.getElementById('sopUploadArea').style.display = 'block';
+    document.getElementById('sopUploadedFile').style.display = 'none';
+    document.getElementById('sopFileName').textContent = '';
+}
+
+/**
+ * Load existing SOP data into the form
+ */
+async function loadSOPData(machine) {
+    // Reset form
+    document.getElementById('sopAttachmentNone').checked = true;
+    document.getElementById('currentSOPDisplay').style.display = 'none';
+    handleSOPAttachmentMethodChange({ target: { value: 'none' } });
+    
+    // Clear any previous data
+    currentSOPFile = null;
+    currentSOPData = null;
+    removeSOPFile();
+    
+    if (!machine.cleaningSOP) {
+        // New machine - set empty values
+        document.getElementById('sopName').value = '';
+        return;
+    }
+    
+    if (typeof machine.cleaningSOP === 'string') {
+        // Legacy format - convert to new format
+        document.getElementById('sopName').value = machine.cleaningSOP;
+        return;
+    }
+    
+    // Handle new format
+    const sopData = machine.cleaningSOP;
+    currentSOPData = sopData;
+    
+    // Set SOP name (always required)
+    document.getElementById('sopName').value = sopData.sopName || '';
+    
+    // Set attachment method and data
+    switch (sopData.attachmentType) {
+        case 'none':
+            document.getElementById('sopAttachmentNone').checked = true;
+            handleSOPAttachmentMethodChange({ target: { value: 'none' } });
+            break;
+            
+        case 'upload':
+            if (sopData.fileName) {
+                document.getElementById('sopAttachmentUpload').checked = true;
+                handleSOPAttachmentMethodChange({ target: { value: 'upload' } });
+                
+                // Try to load file from IndexedDB first, then fall back to machine object
+                let fileData = sopData.fileData;
+                if (!fileData && machine.id) {
+                    try {
+                        const sopFile = await getSOPFile(machine.id.toString());
+                        if (sopFile && sopFile.fileData) {
+                            fileData = sopFile.fileData;
+                            // Update machine object with file data for immediate access
+                            sopData.fileData = fileData;
+                        }
+                    } catch (error) {
+                        console.error('Error loading SOP file from IndexedDB:', error);
+                    }
+                }
+                
+                if (fileData) {
+                    // Show existing file
+                    currentSOPFile = {
+                        name: sopData.fileName,
+                        data: fileData
+                    };
+                    document.getElementById('sopUploadArea').style.display = 'none';
+                    document.getElementById('sopUploadedFile').style.display = 'block';
+                    document.getElementById('sopFileName').textContent = sopData.fileName;
+                } else {
+                    // File not found - show warning but allow editing
+                    console.warn('SOP file data not found for machine', machine.id);
+                }
+            }
+            break;
+            
+        case 'link':
+            document.getElementById('sopAttachmentLink').checked = true;
+            document.getElementById('sopFileLink').value = sopData.attachmentValue || '';
+            handleSOPAttachmentMethodChange({ target: { value: 'link' } });
+            break;
+            
+        default:
+            // Legacy or text format
+            document.getElementById('sopAttachmentNone').checked = true;
+            handleSOPAttachmentMethodChange({ target: { value: 'none' } });
+    }
+    
+    // Show current SOP display if editing
+    if (sopData.sopName || sopData.fileName || sopData.attachmentValue) {
+        showCurrentSOPDisplay(sopData);
+    }
+}
+
+/**
+ * Show current SOP display for existing machines
+ */
+function showCurrentSOPDisplay(sopData) {
+    const currentSOPDisplay = document.getElementById('currentSOPDisplay');
+    const currentSOPText = document.getElementById('currentSOPText');
+    const openSOPBtn = document.getElementById('openSOPBtn');
+    
+    currentSOPDisplay.style.display = 'block';
+    
+    // Handle new format
+    if (sopData.sopName) {
+        let displayText = `SOP: ${sopData.sopName}`;
+        
+        switch (sopData.attachmentType) {
+            case 'upload':
+                if (sopData.fileName) {
+                    displayText += ` (📎 ${sopData.fileName})`;
+                    openSOPBtn.style.display = 'inline-block';
+                } else {
+                    openSOPBtn.style.display = 'none';
+                }
+                break;
+            case 'link':
+                if (sopData.attachmentValue) {
+                    displayText += ` (🔗 Link attached)`;
+                    openSOPBtn.style.display = 'inline-block';
+                } else {
+                    openSOPBtn.style.display = 'none';
+                }
+                break;
+            default:
+                openSOPBtn.style.display = 'none';
+        }
+        
+        currentSOPText.textContent = displayText;
+        return;
+    }
+    
+    // Handle legacy format
+    if (typeof sopData === 'string') {
+        currentSOPText.textContent = `SOP: ${sopData}`;
+        openSOPBtn.style.display = 'none';
+        return;
+    }
+    
+    // Handle old format (backwards compatibility)
+    switch (sopData.type) {
+        case 'text':
+            currentSOPText.textContent = `SOP Reference: ${sopData.value}`;
+            openSOPBtn.style.display = 'none';
+            break;
+        case 'upload':
+            currentSOPText.textContent = `Uploaded File: ${sopData.fileName}`;
+            openSOPBtn.style.display = 'inline-block';
+            break;
+        case 'link':
+            currentSOPText.textContent = `File Link: ${sopData.value}`;
+            openSOPBtn.style.display = 'inline-block';
+            break;
+        default:
+            currentSOPText.textContent = `SOP: ${sopData}`;
+            openSOPBtn.style.display = 'none';
+    }
+}
+
+/**
+ * Get current SOP data from form
+ */
+function getCurrentSOPData() {
+    // Get SOP name (always required)
+    const sopName = document.getElementById('sopName').value.trim();
+    if (!sopName) {
+        throw new Error('Please enter a SOP name/reference.');
+    }
+    
+    // Get attachment method
+    const selectedAttachmentMethod = document.querySelector('input[name="sopAttachmentMethod"]:checked').value;
+    
+    const sopData = {
+        sopName: sopName,
+        attachmentType: selectedAttachmentMethod
+    };
+    
+    switch (selectedAttachmentMethod) {
+        case 'none':
+            sopData.attachmentValue = null;
+            sopData.fileName = null;
+            sopData.fileData = null;
+            break;
+            
+        case 'upload':
+            if (!currentSOPFile) {
+                throw new Error('Please upload a SOP file.');
+            }
+            sopData.attachmentValue = currentSOPFile.name;
+            sopData.fileName = currentSOPFile.name;
+            sopData.fileData = currentSOPFile.data;
+            break;
+            
+        case 'link':
+            const linkValue = document.getElementById('sopFileLink').value.trim();
+            if (!linkValue) {
+                throw new Error('Please enter a file link or path.');
+            }
+            sopData.attachmentValue = linkValue;
+            sopData.fileName = null;
+            sopData.fileData = null;
+            break;
+            
+        default:
+            throw new Error('Please select an attachment method.');
+    }
+    
+    return sopData;
+}
+
+/**
+ * Open current SOP (for files and links)
+ */
+function openCurrentSOP() {
+    if (!currentSOPData) return;
+    
+    // Handle new format
+    if (currentSOPData.attachmentType) {
+        switch (currentSOPData.attachmentType) {
+            case 'upload':
+                if (currentSOPData.fileData) {
+                    try {
+                        // Determine MIME type based on file extension
+                        const fileName = currentSOPData.fileName || '';
+                        const extension = fileName.toLowerCase().split('.').pop();
+                        let mimeType = 'application/octet-stream'; // Default fallback
+                        
+                        switch (extension) {
+                            case 'pdf':
+                                mimeType = 'application/pdf';
+                                break;
+                            case 'doc':
+                                mimeType = 'application/msword';
+                                break;
+                            case 'docx':
+                                mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                                break;
+                            case 'txt':
+                                mimeType = 'text/plain';
+                                break;
+                        }
+                        
+                        // Create blob URL and open in new tab
+                        const byteCharacters = atob(currentSOPData.fileData.split(',')[1]);
+                        const byteNumbers = new Array(byteCharacters.length);
+                        for (let i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        const byteArray = new Uint8Array(byteNumbers);
+                        const blob = new Blob([byteArray], { type: mimeType });
+                        const url = URL.createObjectURL(blob);
+                        window.open(url, '_blank');
+                        
+                        // Clean up the URL after a delay
+                        setTimeout(() => URL.revokeObjectURL(url), 5000);
+                    } catch (error) {
+                        console.error('Error opening SOP file:', error);
+                        showCustomAlert('Error', 'Unable to open the SOP file. The file may be corrupted.');
+                    }
+                }
+                break;
+                
+            case 'link':
+                if (currentSOPData.attachmentValue) {
+                    // Try to open as URL first
+                    try {
+                        if (currentSOPData.attachmentValue.startsWith('http://') || currentSOPData.attachmentValue.startsWith('https://')) {
+                            window.open(currentSOPData.attachmentValue, '_blank');
+                        } else {
+                            // For file paths, try to open with file protocol
+                            window.open('file:///' + currentSOPData.attachmentValue.replace(/\\/g, '/'), '_blank');
+                        }
+                    } catch (error) {
+                        showCustomAlert('Cannot Open File', 
+                            'Unable to open the linked file. Please check the file path or URL.');
+                    }
+                }
+                break;
+        }
+        return;
+    }
+    
+    // Handle old format (backwards compatibility)
+    switch (currentSOPData.type) {
+        case 'upload':
+            if (currentSOPData.fileData) {
+                try {
+                    // Determine MIME type based on file extension
+                    const fileName = currentSOPData.fileName || '';
+                    const extension = fileName.toLowerCase().split('.').pop();
+                    let mimeType = 'application/octet-stream'; // Default fallback
+                    
+                    switch (extension) {
+                        case 'pdf':
+                            mimeType = 'application/pdf';
+                            break;
+                        case 'doc':
+                            mimeType = 'application/msword';
+                            break;
+                        case 'docx':
+                            mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                            break;
+                        case 'txt':
+                            mimeType = 'text/plain';
+                            break;
+                    }
+                    
+                    // Create blob URL and open in new tab
+                    const byteCharacters = atob(currentSOPData.fileData.split(',')[1]);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: mimeType });
+                    const url = URL.createObjectURL(blob);
+                    window.open(url, '_blank');
+                    
+                    // Clean up the URL after a delay
+                    setTimeout(() => URL.revokeObjectURL(url), 5000);
+                } catch (error) {
+                    console.error('Error opening SOP file:', error);
+                    showCustomAlert('Error', 'Unable to open the SOP file. The file may be corrupted.');
+                }
+            }
+            break;
+            
+        case 'link':
+            if (currentSOPData.value) {
+                // Try to open as URL first
+                try {
+                    if (currentSOPData.value.startsWith('http://') || currentSOPData.value.startsWith('https://')) {
+                        window.open(currentSOPData.value, '_blank');
+                    } else {
+                        // For file paths, try to open with file protocol
+                        window.open('file:///' + currentSOPData.value.replace(/\\/g, '/'), '_blank');
+                    }
+                } catch (error) {
+                    showCustomAlert('Cannot Open File', 
+                        'Unable to open the linked file. Please check the file path or URL.');
+                }
+            }
+            break;
+    }
+}
+
+/**
+ * Edit current SOP
+ */
+function editCurrentSOP() {
+    document.getElementById('currentSOPDisplay').style.display = 'none';
+}
+
+/**
+ * Open SOP file for a specific machine (from the machine table)
+ */
+window.openMachineSOPFile = async function(machineId) {
+    const machine = state.machines.find(m => m.id === machineId);
+    if (!machine || !machine.cleaningSOP) {
+        showCustomAlert('No SOP Found', 'No SOP file is attached to this machine.');
+        return;
+    }
+    
+    const sopData = machine.cleaningSOP;
+    
+    // Handle new format
+    if (sopData.attachmentType) {
+        switch (sopData.attachmentType) {
+            case 'upload':
+                // Try to get file data from machine object first, then IndexedDB
+                let fileData = sopData.fileData;
+                if (!fileData) {
+                    try {
+                        const sopFile = await getSOPFile(machineId.toString());
+                        if (sopFile && sopFile.fileData) {
+                            fileData = sopFile.fileData;
+                            // Update machine object for future access
+                            sopData.fileData = fileData;
+                        }
+                    } catch (error) {
+                        console.error('Error loading SOP file from IndexedDB:', error);
+                    }
+                }
+                
+                if (fileData) {
+                    try {
+                        // Determine MIME type based on file extension
+                        const fileName = sopData.fileName || '';
+                        const extension = fileName.toLowerCase().split('.').pop();
+                        let mimeType = 'application/octet-stream'; // Default fallback
+                        
+                        switch (extension) {
+                            case 'pdf':
+                                mimeType = 'application/pdf';
+                                break;
+                            case 'doc':
+                                mimeType = 'application/msword';
+                                break;
+                            case 'docx':
+                                mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                                break;
+                            case 'txt':
+                                mimeType = 'text/plain';
+                                break;
+                        }
+                        
+                        // Create blob URL and open in new tab
+                        const byteCharacters = atob(fileData.split(',')[1]);
+                        const byteNumbers = new Array(byteCharacters.length);
+                        for (let i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        const byteArray = new Uint8Array(byteNumbers);
+                        const blob = new Blob([byteArray], { type: mimeType });
+                        const url = URL.createObjectURL(blob);
+                        window.open(url, '_blank');
+                        
+                        // Clean up the URL after a delay
+                        setTimeout(() => URL.revokeObjectURL(url), 5000);
+                    } catch (error) {
+                        console.error('Error opening SOP file:', error);
+                        showCustomAlert('Error', 'Unable to open the SOP file. The file may be corrupted.');
+                    }
+                } else {
+                    showCustomAlert('No File Found', 'No file data is available for this SOP.');
+                }
+                break;
+                
+            case 'link':
+                if (sopData.attachmentValue) {
+                    try {
+                        // Try to open as URL first
+                        if (sopData.attachmentValue.startsWith('http://') || sopData.attachmentValue.startsWith('https://')) {
+                            window.open(sopData.attachmentValue, '_blank');
+                        } else {
+                            // For file paths, try to open with file protocol
+                            window.open('file:///' + sopData.attachmentValue.replace(/\\/g, '/'), '_blank');
+                        }
+                    } catch (error) {
+                        console.error('Error opening SOP link:', error);
+                        showCustomAlert('Cannot Open Link', 
+                            'Unable to open the linked file. Please check the file path or URL.');
+                    }
+                } else {
+                    showCustomAlert('No Link Found', 'No link is available for this SOP.');
+                }
+                break;
+                
+            case 'none':
+            default:
+                showCustomAlert('No Attachment', 'This SOP has no attached file or link.');
+                break;
+        }
+        return;
+    }
+    
+    // Handle old format (backwards compatibility)
+    switch (sopData.type) {
+        case 'upload':
+            if (sopData.fileData) {
+                try {
+                    // Determine MIME type based on file extension
+                    const fileName = sopData.fileName || '';
+                    const extension = fileName.toLowerCase().split('.').pop();
+                    let mimeType = 'application/octet-stream'; // Default fallback
+                    
+                    switch (extension) {
+                        case 'pdf':
+                            mimeType = 'application/pdf';
+                            break;
+                        case 'doc':
+                            mimeType = 'application/msword';
+                            break;
+                        case 'docx':
+                            mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+                            break;
+                        case 'txt':
+                            mimeType = 'text/plain';
+                            break;
+                    }
+                    
+                    // Create blob URL and open in new tab
+                    const byteCharacters = atob(sopData.fileData.split(',')[1]);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: mimeType });
+                    const url = URL.createObjectURL(blob);
+                    window.open(url, '_blank');
+                    
+                    // Clean up the URL after a delay
+                    setTimeout(() => URL.revokeObjectURL(url), 5000);
+                } catch (error) {
+                    console.error('Error opening SOP file:', error);
+                    showCustomAlert('Error', 'Unable to open the SOP file. The file may be corrupted.');
+                }
+            } else {
+                showCustomAlert('No File Found', 'No file data is available for this SOP.');
+            }
+            break;
+            
+        case 'link':
+            if (sopData.value) {
+                try {
+                    // Try to open as URL first
+                    if (sopData.value.startsWith('http://') || sopData.value.startsWith('https://')) {
+                        window.open(sopData.value, '_blank');
+                    } else {
+                        // For file paths, try to open with file protocol
+                        window.open('file:///' + sopData.value.replace(/\\/g, '/'), '_blank');
+                    }
+                } catch (error) {
+                    console.error('Error opening SOP link:', error);
+                    showCustomAlert('Cannot Open Link', 
+                        'Unable to open the linked file. Please check the file path or URL.');
+                }
+            } else {
+                showCustomAlert('No Link Found', 'No link is available for this SOP.');
+            }
+            break;
+            
+        case 'text':
+        default:
+            showCustomAlert('No Attachment', 'This SOP is a text reference only with no attached file.');
+            break;
+    }
+};
+
+// Calculate RPN for a sample location
+function calculateLocationRPN(location) {
+    // RPN = Hard to Clean × Accessibility for Cleaning × Accessibility for Sampling × Visibility
+    return location.hardToClean * location.accessibilityForCleaning * location.accessibilityForSampling * location.visibility;
+}
+
+// Determine number of samples based on RPN using the scoring criteria
+function getNumberOfSamples(rpn) {
+    // Synchronous fallback based on standard ranges
+    if (rpn >= 1 && rpn <= 27) return 1;
+    else if (rpn >= 36 && rpn <= 54) return 2;
+    else if (rpn >= 81) return 3;
+    else return 1; // Default
+}
+
+// Generate Sample Location Report for a machine
+export function generateSampleLocationReport(machineId) {
+    import('./ui.js').then(ui => {
+        const { showLoader, hideLoader, showCustomAlert } = ui;
+        
+        showLoader();
+        
+        try {
+            const machine = state.machines.find(m => m.id === parseInt(machineId));
+            if (!machine) {
+                throw new Error('Machine not found');
+            }
+            
+            if (!machine.sampleLocations || machine.sampleLocations.length === 0) {
+                showCustomAlert("No Sample Locations", `No sample locations defined for ${machine.name}. Please contact administrator to add sample location data.`);
+                return;
+            }
+            
+            // Create a new window for the report
+            const reportWindow = window.open('', '_blank', 'width=1200,height=800');
+            
+            // Calculate RPN and samples for each location
+            const processedLocations = machine.sampleLocations.map(location => {
+                const rpn = calculateLocationRPN(location);
+                const samples = getNumberOfSamples(rpn);
+                return {
+                    ...location,
+                    rpn: rpn,
+                    numberOfSamples: samples
+                };
+            });
+            
+            // Generate HTML report
+            const reportHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Location Report - ${machine.name}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .report-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+        .report-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .equipment-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #2563eb;
+        }
+        .description {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .sample-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 12px;
+        }
+        .sample-table th,
+        .sample-table td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .sample-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .sample-table td {
+            background-color: white;
+        }
+        .location-cell {
+            text-align: left;
+            font-weight: bold;
+            min-width: 120px;
+        }
+        .material-cell {
+            text-align: left;
+            min-width: 100px;
+        }
+        .rpn-cell {
+            background-color: #fef3c7;
+            font-weight: bold;
+        }
+        .samples-cell {
+            background-color: #dbeafe;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        .print-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .print-btn:hover {
+            background-color: #1d4ed8;
+        }
+        @media print {
+            .print-btn { display: none; }
+            body { background-color: white; }
+            .report-container { 
+                box-shadow: none; 
+                padding: 0;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <button class="print-btn" onclick="window.print()">🖨️ Print Report</button>
+        
+        <div class="report-header">
+            <div class="report-title">Sample Location and Number of Samples</div>
+        </div>
+        
+        <div class="equipment-name">Equipment Name: ${machine.name.toUpperCase()}</div>
+        <div class="description">
+            Determine the Number of samples must be taken from each location in this machine according to RPN study.
+        </div>
+        
+        <table class="sample-table">
+            <thead>
+                <tr>
+                    <th class="location-cell">Location</th>
+                    <th class="material-cell">Material of Construction</th>
+                    <th>Area<br/>(cm²)</th>
+                    <th>Hard to Clean</th>
+                    <th>Not Accessible<br/>for Cleaning</th>
+                    <th>Not Accessible<br/>for Sampling</th>
+                    <th>Not Visible</th>
+                    <th>RPN</th>
+                    <th>No. of samples</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${processedLocations.map(location => `
+                    <tr>
+                        <td class="location-cell">${location.location}</td>
+                        <td class="material-cell">${location.material}</td>
+                        <td>${location.area || '_'}</td>
+                        <td>${location.hardToClean}</td>
+                        <td>${location.accessibilityForCleaning}</td>
+                        <td>${location.accessibilityForSampling}</td>
+                        <td>${location.visibility}</td>
+                        <td class="rpn-cell">${location.rpn}</td>
+                        <td class="samples-cell">${location.numberOfSamples}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 30px; font-size: 12px; color: #666;">
+            <p><strong>Note:</strong> RPN is calculated as: Hard to Clean × Not Accessible for Cleaning × Not Accessible for Sampling × Not Visible</p>
+            <p><strong>Sample Guidelines:</strong> 1-27 RPN = 1 Sample | 36-54 RPN = 2 Samples | 81+ RPN = 3 Samples</p>
+        </div>
+    </div>
+</body>
+</html>`;
+            
+            reportWindow.document.write(reportHTML);
+            reportWindow.document.close();
+            
+        } catch (error) {
+            console.error('Error generating sample location report:', error);
+            showCustomAlert("Error", "Failed to generate sample location report: " + error.message);
+        } finally {
+            hideLoader();
+        }
+    });
+}
+
+// Make functions globally available
+window.exportMachineProductsToExcel = exportMachineProductsToExcel;
+window.printMachineProducts = printMachineProducts;
+window.handleSOPFileUpload = handleSOPFileUpload;
+window.removeSOPFile = removeSOPFile;
+window.openCurrentSOP = openCurrentSOP;
+window.editCurrentSOP = editCurrentSOP;
+window.generateSampleLocationReport = generateSampleLocationReport;

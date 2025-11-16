@@ -1,1 +1,979 @@
-const a15_0xcc077a=a15_0x1b47;(function(_0x1dc9a4,_0x2d7f20){const _0x3ba61f=a15_0x1b47,_0x1f3207=_0x1dc9a4();while(!![]){try{const _0x5b8c5f=-parseInt(_0x3ba61f(0x276))/0x1+parseInt(_0x3ba61f(0x257))/0x2+parseInt(_0x3ba61f(0x291))/0x3+-parseInt(_0x3ba61f(0x2f3))/0x4*(parseInt(_0x3ba61f(0x229))/0x5)+-parseInt(_0x3ba61f(0x33c))/0x6*(-parseInt(_0x3ba61f(0x345))/0x7)+parseInt(_0x3ba61f(0x26b))/0x8+-parseInt(_0x3ba61f(0x221))/0x9*(-parseInt(_0x3ba61f(0x2f8))/0xa);if(_0x5b8c5f===_0x2d7f20)break;else _0x1f3207['push'](_0x1f3207['shift']());}catch(_0x2ef930){_0x1f3207['push'](_0x1f3207['shift']());}}}(a15_0x44bc,0x3a1ba));import*as a15_0x38fba8 from'./state.js';import{hideLoader as a15_0x4e35e2}from'./ui.js';function a15_0x44bc(){const _0x1926cf=['appendChild','innerHTML','input','CZCLU','bycaL','jxXLz','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mt-6\x20mb-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x22text-lg\x20font-semibold\x20mb-3\x20text-red-600\x22>Special\x20Case\x20Products\x20in\x20','JCWfL','35884jHEZji','\x20studies\x20for\x20line\x20','neBUh','OMmbE','</span>','757220oTSHEx','Individual\x20checkboxes\x20found:','hidden','OMYYd','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','hHwRz','AJxbg','updateAllTrainSummaryTrainsCheckbox','TrainSummaryAllTrainsCheckbox','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','FZdrX','pBOfN','rqyss','studyBreakdown','ImwKr','uNsGy','EkltL','gxCKV','lowestPde','executeTrainSummaryPrintSelection','lowestLd50','All\x20lines\x20with\x20trains:','jvZpJ','umQmF','then','\x20-\x20no\x20new\x20machines','WqIml','Please\x20select\x20at\x20least\x20one\x20train\x20to\x20print.','export','tdPfe','Train\x20Summary:\x20Total\x20studies\x20for\x20','gZbCg','rKzCi','pCdGT','VMIbe','line','localeCompare','catch','YptPF','aATHx','EYpiD','sort','createElement','none','No\x20Selection','executeTrainSummaryExportSelection','ZTUYY','kkUZg','KrjAq','Please\x20select\x20at\x20least\x20one\x20train\x20to\x20export.','kbGBo','RKBor','toLocaleString','log','currentLineFilter','qVWLb','XETQy','.print-trainsummary-train-checkbox:checked','max','productRegister-pdeHidden','click','display','bToYm','number','JCLCs','Print\x20dropdown\x20elements\x20not\x20found.\x20Please\x20try\x20refreshing\x20the\x20page.','className','lUDpr','4962rwNwOV','getElementById','Train\x20Summary:\x20Skipped\x20train\x20','gkDXO','unknown','<span\x20class=\x22font-semibold\x20text-green-600\x22>','\x27)\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20class=\x22p-1\x20mb-2\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20style=\x22color:\x20var(--text-secondary);\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20title=\x22View\x20Study\x20Details\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20class=\x22bi\x20bi-eye\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M16\x208s-3-5.5-8-5.5S0\x208\x200\x208s3\x205.5\x208\x205.5S16\x208\x2016\x208zM1.173\x208a13.133\x2013.133\x200\x200\x201\x201.66-2.043C4.12\x204.668\x205.88\x203.5\x208\x203.5c2.12\x200\x203.879\x201.168\x205.168\x202.457A13.133\x2013.133\x200\x200\x201\x2014.828\x208c-.058.087-.122.183-.195.288-.335.48-.83\x201.12-1.465\x201.755C11.879\x2011.332\x2010.119\x2012.5\x208\x2012.5c-2.12\x200-3.879-1.168-5.168-2.457A13.134\x2013.134\x200\x200\x201\x201.172\x208z\x22/><path\x20d=\x22M8\x205.5a2.5\x202.5\x200\x201\x200\x200\x205\x202.5\x202.5\x200\x200\x200\x200-5zM4.5\x208a3.5\x203.5\x200\x201\x201\x207\x200\x203.5\x203.5\x200\x200\x201-7\x200z\x22/></svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22breakdown-','trainSummaryContainer','trainLabel','2863tqitGb','JcDtB','LVZlT','Train\x20Summary:\x20Train\x20','Train\x20Summary:\x20All\x20machines\x20in\x20line:','has','mr-2\x20print-trainsummary-train-checkbox','Error\x20in\x20executeTrainSummaryPrintSelection:','studyNumber','renderTrainSummary\x20called\x20with\x20lineFilter:','PDGOo','print','UjHMw','Train\x20Summary:\x20Train\x20machines:','textContent','trainSummary','FfKDy','EcILr','add','nPflU','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Selected\x20trains\x20for\x20printing:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mb-2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22font-semibold\x20text-blue-600\x22>Machines:</span><br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-sm\x22>','aOcXM','key','getItem','trainSummaryExportDropdown','ToIsi','safetyFactorConfig','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22overflow-hidden\x20rounded-lg\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22w-full\x20text-sm\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20class=\x22bg-gray-200\x20dark:bg-gray-700\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-center\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x20width:\x2013%;\x22>Line\x20-\x20Dosage\x20Form</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-center\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x20width:\x209%;\x22>Train</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x20width:\x2035%;\x22>Machines\x20&\x20Products</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x20width:\x2020%;\x22>Worst\x20Case\x20Product</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-center\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x20width:\x2010%;\x22>MACO</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-center\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x20border-left:\x202px\x20solid\x20var(--border-color);\x20width:\x2013%;\x22>Studies\x20Needed</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20var(--bg-secondary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','indeterminate','DTStg','map','trains','FcUze','krHau','Solids','IkFIw','UCLdg','from','Error\x20populating\x20train\x20summary\x20train\x20options:','Error\x20loading\x20print\x20function:','train','CGFKc','trainSummaryPrintTrainOptions','<td\x20class=\x22px-4\x20py-4\x20text-center\x20align-middle\x22\x20style=\x22color:\x20var(--text-primary);\x20border-left:\x202px\x20solid\x20var(--border-color);\x22\x20rowspan=\x22','PVoeu','yXEKs','lowestLtd','fWfLK','remove','lfRTn','\x20Studies</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onclick=\x22toggleStudyBreakdown(\x27','Train\x20','XVaMu','iKTAN','WLTGA','mjoYe','#trainSummaryPrintDropdown','9UwsTuV','reason','Other','10\x20ppm\x20Criterion','lYfTv','shIsQ','Available\x20trains:','not\x20found','260OUHCqD','mr-2\x20export-trainsummary-train-checkbox','MVyqM','No\x20trains\x20to\x20render\x20after\x20filtering','OXwwl','Unassigned','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>','snnXL','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','JdToq','all','0.1%\x20Therapeutic\x20Dose','minMbsKg','TQyma','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20flex-wrap\x20gap-1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','indexOf','Error\x20loading\x20print\x20function:\x20','NrcsM','rVGsd','ImsFs','block','dRTrQ','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-sm\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22font-semibold\x20text-orange-600\x22>','Train\x20Summary:\x20New\x20machines:','ZCLgs','HnqTs','Unknown','iiQOz','filter','Error\x20loading\x20export\x20function:','productType','kccDz','ffGal','ugjID','stSHe','UoiDZ','printSelectedTrain','get','message','minBsMddRatio','Train\x20Summary:\x20Now\x20covered\x20','qOkmO','label','button[onclick=\x22toggleTrainSummaryExportDropdown()\x22]','ingredientName','min','47332WAfGHi','style','lHjVW','fkfhv','products','breakdown-','toggleAllTrainSummaryTrainsSelection','YuOTv','Print\x20function\x20error:\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bg-gray-100\x20dark:bg-gray-700\x20p-2\x20rounded\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22font-semibold\x20text-blue-600\x22>Study\x20','nHUVZ','EVkAU','-trainsummary-train-checkbox','HQrlh','cmztZ','<span\x20class=\x22px-2\x20py-1\x20rounded\x20text-xs\x22\x20style=\x22background-color:\x20var(--bg-accent);\x20color:\x20var(--text-primary);\x22>','.export-trainsummary-train-checkbox:checked','bnfke','atFBw','printTrainSummaryAllTrainsCheckbox','1228344WpxCwA','-trainsummary-train-checkbox:checked','push','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-gray-600\x20dark:text-gray-400\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><strong>Product:</strong>\x20','machineIds','qBMmX','target','checked','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-sm\x22>','trainSummaryContainer\x20not\x20found','\x20-\x20','17018qkYvVG','llMfi','lZfOI','\x20-\x20RPN:\x20','Health-Based\x20Limit\x20(PDE)','WWGsn','name','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','machines','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-4\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','warn','RGfTY','span','toggle','length','nizlz','DqzOu','tZINT','mDSBs','BADBp','error','Fgroi','fNqhP','USWTu','includes','productName','oUDzn','391038zsjJNX','\x20for\x20study\x20','qksoP','toFixed','\x20—\x20Train\x20','YbTGh','pZIrF','toggleStudyBreakdown','forEach','criticalReason','dVqys','VDJMT','ZWftG','totalStudies','find','flatMap','mqIvM','color','Error\x20loading\x20export\x20function','Train\x20Summary:\x20Currently\x20covered:','xgBGZ','\x20trains\x20for\x20line\x20','mNDSh','classList','checkbox','Error\x20calculating\x20scores\x20for\x20ingredient:','vHnqe','ZbDty','upgtp','activeIngredients','TmBIR','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-4\x20text-center\x20font-bold\x20text-lg\x22\x20style=\x22color:\x20var(--text-primary);\x22>','BAAGP','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22overflow-hidden\x20rounded-lg\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22w-full\x20text-sm\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20class=\x22bg-gray-200\x20dark:bg-gray-700\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Product</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Machines</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Reason</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20var(--bg-secondary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','wcJOp','JFVLV','Visual\x20Clean\x20Limit','UUENS','isCritical','Train\x20Summary:\x20Total\x20studies\x20across\x20all\x20groups:\x20','Unknown\x20(ID:\x20','IBnmB','Health-Based\x20Limit\x20(NOEL)','toggleTrainSummaryExportDropdown','type','KFTZF','Printing\x20all\x20trains','toggleTrainSummaryPrintDropdown','jpDJW','UuaJv','cKKjR','JKPfW','addEventListener','seiIm','bEoHH','var(--text-primary)','Error\x20in\x20getWorstCaseProductForTrain:','onchange','mSAGW','noTrainSummaryMessage','./ui.js','productCode','removeEventListener','contains','tSUVb','closest','IpnQZ','YILDy','value','mPXqk','size','trainSummaryPrintDropdown','rBHEs','rpn','isArray','\x0a\x20\x20\x20\x20','mdd','exportTrainSummaryAllTrainsCheckbox','join','Train\x20Summary:\x20Selected\x20train\x20','uOlwf','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-sm\x20text-gray-600\x22>','ZkYTL','Filtering\x20trains\x20for\x20print:','ojZsz','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-4\x20text-center\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','nzvVL','uVPsZ','querySelectorAll','TREYl'];a15_0x44bc=function(){return _0x1926cf;};return a15_0x44bc();}import{getTrainData as a15_0xdd72fe,calculateScores as a15_0x17852a,getMacoPerSwabForTrain as a15_0x74252c,getTrainsGroupedByLine as a15_0x54e325,getLargestEssaForLineAndDosageForm as a15_0x786405,getConsistentTrainOrder as a15_0x181bc6}from'./utils.js';import*as a15_0x585abe from'./utils.js';export function renderTrainSummary(_0x4bc712=null){const _0x521ace=a15_0x1b47,_0x159c20={'EYpiD':_0x521ace(0x22e),'rKzCi':function(_0x8acf9,_0x1e17c8){return _0x8acf9!==_0x1e17c8;},'Fgroi':_0x521ace(0x20a),'yEzmd':'Semisolid','pZIrF':'Liquids','ImsFs':_0x521ace(0x223),'WWGsn':function(_0x2d5e81,_0x4b62ff){return _0x2d5e81!==_0x4b62ff;},'fWfLK':function(_0x14e798,_0x28da8b){return _0x14e798-_0x28da8b;},'qksoP':function(_0x80359d,_0x22bba2){return _0x80359d>_0x22bba2;},'uOlwf':'Error\x20calculating\x20RPN\x20for\x20ingredient:','OMziO':function(_0x253485,_0x2d50ff){return _0x253485>_0x2d50ff;},'ZCLgs':function(_0xf33397,_0x3543e8){return _0xf33397(_0x3543e8);},'pKchb':function(_0xdead8e,_0x4ef10c){return _0xdead8e>_0x4ef10c;},'mPXqk':function(_0x5e77b4,_0x24ac82){return _0x5e77b4>_0x24ac82;},'nPflU':_0x521ace(0x349),'umQmF':_0x521ace(0x240),'USWTu':_0x521ace(0x2a4),'zsqcD':function(_0x31db8a,_0x442fe5){return _0x31db8a>_0x442fe5;},'DqzOu':function(_0x183104,_0x256c50){return _0x183104(_0x256c50);},'YptPF':'Unknown','gxCKV':function(_0x2acb07,_0xc873db){return _0x2acb07===_0xc873db;},'JCWfL':'Train\x20Summary:\x20All\x20machines\x20covered,\x20stopping\x20selection','lfRTn':'Unknown\x20Product','BsKzM':'Unknown\x20Ingredient','JKPfW':'Not\x20calculated','nzvVL':function(_0x275f1c,_0xb28a9,_0x464af9){return _0x275f1c(_0xb28a9,_0x464af9);},'OXwwl':function(_0xbe556,_0x578e6f){return _0xbe556<=_0x578e6f;},'tSUVb':function(_0xb589f7,_0x51de65){return _0xb589f7(_0x51de65);},'TREYl':function(_0x204702,_0xc54e9f){return _0x204702*_0xc54e9f;},'tdPfe':'true','lYfTv':'productRegister-ld50Hidden','XETQy':function(_0x279873,_0x523b99){return _0x279873/_0x523b99;},'neBUh':_0x521ace(0x224),'aATHx':_0x521ace(0x27a),'rBOly':_0x521ace(0x2bb),'ZkYTL':_0x521ace(0x2b5),'RdhaL':function(_0x366b9a,_0x5bd48d){return _0x366b9a>_0x5bd48d;},'HpXDF':'Error\x20calculating\x20MACO\x20for\x20train:','wcJOp':'<span\x20class=\x22text-gray-500\x20text-sm\x22>No\x20data\x20available</span>','iBNCI':function(_0xaba04b,_0x3980f8){return _0xaba04b(_0x3980f8);},'gwFwW':function(_0x5390bb,_0x29624b){return _0x5390bb>_0x29624b;},'PRHlQ':_0x521ace(0x2aa),'VMIbe':function(_0x2dfc1b,_0x2b8b7d){return _0x2dfc1b>_0x2b8b7d;},'lUDpr':_0x521ace(0x343),'pBOfN':_0x521ace(0x2cc),'FfKDy':_0x521ace(0x30d),'VDJMT':'Filtered\x20lines\x20with\x20trains\x20for','fNqhP':_0x521ace(0x23d),'PDGOo':_0x521ace(0x323),'imkOZ':'all','kzNBN':_0x521ace(0x2e4),'ffGal':_0x521ace(0x227),'qOkmO':'Filtered\x20trains:','GBlPi':_0x521ace(0x22c),'ZWftG':function(_0x36a223){return _0x36a223();}};console['log'](_0x521ace(0x34e),_0x4bc712);const _0x14e5f2=document[_0x521ace(0x33d)](_0x159c20[_0x521ace(0x33b)]),_0x54400f=document[_0x521ace(0x33d)](_0x159c20[_0x521ace(0x303)]);if(!_0x14e5f2)return void console[_0x521ace(0x28a)](_0x521ace(0x274));_0x14e5f2[_0x521ace(0x2ec)]='';let _0x2e5d69=a15_0x54e325();console['log'](_0x159c20[_0x521ace(0x1f6)],_0x2e5d69),_0x4bc712&&(_0x2e5d69=_0x2e5d69['filter'](_0x1bcbdf=>_0x1bcbdf[_0x521ace(0x31b)]===_0x4bc712),console['log'](_0x159c20[_0x521ace(0x29c)],_0x4bc712,':',_0x2e5d69));const _0xb0ee8e=[];_0x2e5d69['forEach'](_0x5493dc=>{const _0x488a5e=_0x521ace;_0x5493dc[_0x488a5e(0x207)]['forEach'](_0x3ac125=>{const _0x35858d=_0x488a5e;_0xb0ee8e[_0x35858d(0x26d)]({..._0x3ac125,'line':_0x5493dc[_0x35858d(0x31b)]});});});const _0x1883b3=a15_0x181bc6(_0xb0ee8e);if(0x0===_0x1883b3[_0x521ace(0x284)])return _0x54400f[_0x521ace(0x258)][_0x521ace(0x335)]=_0x159c20['fNqhP'],void(_0x14e5f2[_0x521ace(0x258)][_0x521ace(0x335)]=_0x159c20[_0x521ace(0x34f)]);let _0x46f1a7=_0x1883b3;if(window[_0x521ace(0x24d)]&&_0x159c20['imkOZ']!==window[_0x521ace(0x24d)]&&(console[_0x521ace(0x32d)](_0x159c20['kzNBN'],window['printSelectedTrain']),console[_0x521ace(0x32d)](_0x159c20[_0x521ace(0x249)],_0x1883b3[_0x521ace(0x206)](_0x590505=>_0x590505['id'])),_0x46f1a7=Array['isArray'](window['printSelectedTrain'])?_0x1883b3[_0x521ace(0x245)](_0x2f9d14=>window['printSelectedTrain']['includes'](String(_0x2f9d14['id']))):_0x1883b3[_0x521ace(0x245)](_0x4be2f7=>String(_0x4be2f7['id'])===String(window[_0x521ace(0x24d)])),console['log'](_0x159c20[_0x521ace(0x252)],_0x46f1a7[_0x521ace(0x206)](_0x715ca9=>_0x715ca9['id']))),_0x159c20[_0x521ace(0x309)](0x0,_0x46f1a7[_0x521ace(0x284)]))return console[_0x521ace(0x32d)](_0x159c20['GBlPi']),_0x54400f[_0x521ace(0x258)][_0x521ace(0x335)]=_0x159c20[_0x521ace(0x28c)],void(_0x14e5f2[_0x521ace(0x258)][_0x521ace(0x335)]=_0x159c20['PDGOo']);_0x54400f[_0x521ace(0x258)][_0x521ace(0x335)]=_0x521ace(0x323),_0x14e5f2[_0x521ace(0x258)]['display']=_0x159c20[_0x521ace(0x28c)];const _0xfac0bd=a15_0x585abe['getTrainIdToLineNumberMap'](),_0x5b3626=_0x46f1a7[_0x521ace(0x321)]((_0x2f944b,_0x11e278)=>_0x2f944b['line']!==_0x11e278[_0x521ace(0x31b)]?_0x2f944b[_0x521ace(0x31b)][_0x521ace(0x31c)](_0x11e278[_0x521ace(0x31b)]):_0x2f944b['id']-_0x11e278['id']),_0x43bef2={};_0x5b3626[_0x521ace(0x299)](_0xa016cc=>{const _0x52e0c7=_0x521ace,_0xa217f9=_0xa016cc[_0x52e0c7(0x31b)]||_0x159c20[_0x52e0c7(0x320)],_0x599f7e=[...new Set(_0xa016cc[_0x52e0c7(0x25b)][_0x52e0c7(0x206)](_0x379063=>_0x379063['productType']||'Unknown'))][_0x52e0c7(0x2df)](',\x20'),_0x1c8987=_0xa217f9+'|'+_0x599f7e;_0x43bef2[_0x1c8987]||(_0x43bef2[_0x1c8987]={'line':_0xa217f9,'dosageForm':_0x599f7e,'trains':[],'totalStudies':0x0}),_0x43bef2[_0x1c8987][_0x52e0c7(0x207)][_0x52e0c7(0x26d)](_0xa016cc);});const _0xfe835d=Object['keys'](_0x43bef2)['sort']((_0x175f25,_0x5de65d)=>{const _0x9e3c4b=_0x521ace,_0x5df4d8=_0x43bef2[_0x175f25],_0xca4c75=_0x43bef2[_0x5de65d];if(_0x159c20[_0x9e3c4b(0x318)](_0x5df4d8[_0x9e3c4b(0x31b)],_0xca4c75['line'])){const _0x3d004a=[_0x159c20[_0x9e3c4b(0x28b)],_0x159c20['yEzmd'],_0x159c20[_0x9e3c4b(0x297)],_0x159c20[_0x9e3c4b(0x23c)]],_0x4b2fe0=-0x1!==_0x3d004a[_0x9e3c4b(0x238)](_0x5df4d8[_0x9e3c4b(0x31b)])?_0x3d004a[_0x9e3c4b(0x238)](_0x5df4d8[_0x9e3c4b(0x31b)]):_0x3d004a[_0x9e3c4b(0x284)],_0xf90a3=-0x1!==_0x3d004a[_0x9e3c4b(0x238)](_0xca4c75[_0x9e3c4b(0x31b)])?_0x3d004a[_0x9e3c4b(0x238)](_0xca4c75['line']):_0x3d004a[_0x9e3c4b(0x284)];if(_0x159c20[_0x9e3c4b(0x27b)](_0x4b2fe0,_0xf90a3))return _0x4b2fe0-_0xf90a3;}return _0x159c20[_0x9e3c4b(0x217)](Math[_0x9e3c4b(0x256)](..._0x5df4d8[_0x9e3c4b(0x207)]['map'](_0x37ae93=>_0x37ae93[_0x9e3c4b(0x337)])),Math[_0x9e3c4b(0x256)](..._0xca4c75[_0x9e3c4b(0x207)][_0x9e3c4b(0x206)](_0x460c07=>_0x460c07[_0x9e3c4b(0x337)])));});_0xfe835d[_0x521ace(0x299)](_0x196a19=>{const _0x3c24b9=_0x521ace,_0x5a57b8={'tEamQ':function(_0x6e0dcd,_0x2e100a){return _0x159c20['OMziO'](_0x6e0dcd,_0x2e100a);}},_0x35afe8=_0x43bef2[_0x196a19],_0x3cdd4a=_0x35afe8[_0x3c24b9(0x207)],_0x14f833=(_0x3cdd4a[_0x3c24b9(0x206)](_0x140905=>{const _0x571e88=_0x3c24b9,_0x26787c={'RGfTY':function(_0x574071,_0x387d42){return _0x574071(_0x387d42);},'nWIaB':function(_0x38667f,_0x2f35d9){return _0x159c20['qksoP'](_0x38667f,_0x2f35d9);},'lZfOI':_0x159c20[_0x571e88(0x2e1)]};let _0x1c0664=0x0,_0x48b8aa=null,_0x12509d=null;return _0x140905[_0x571e88(0x25b)]&&_0x159c20['OMziO'](_0x140905['products'][_0x571e88(0x284)],0x0)&&_0x140905[_0x571e88(0x25b)][_0x571e88(0x299)](_0xd8c580=>{const _0x5508fd=_0x571e88;_0xd8c580[_0x5508fd(0x2ae)]&&Array['isArray'](_0xd8c580[_0x5508fd(0x2ae)])&&_0xd8c580['activeIngredients'][_0x5508fd(0x299)](_0x33b175=>{const _0x1d38ad=_0x5508fd;try{const _0xcad972=_0x26787c[_0x1d38ad(0x281)](a15_0x17852a,_0x33b175);_0xcad972&&_0x26787c['nWIaB'](_0xcad972[_0x1d38ad(0x2da)],_0x1c0664)&&(_0x1c0664=_0xcad972[_0x1d38ad(0x2da)],_0x48b8aa=_0xd8c580,_0x12509d=_0x33b175);}catch(_0x13b65b){console['warn'](_0x26787c[_0x1d38ad(0x278)],_0x33b175,_0x13b65b);}});}),{'train':_0x140905,'rpn':_0x1c0664,'worstProduct':_0x48b8aa,'worstIngredient':_0x12509d};})[_0x3c24b9(0x321)]((_0x199326,_0x128337)=>_0x128337[_0x3c24b9(0x2da)]-_0x199326[_0x3c24b9(0x2da)]),new Set());_0x3cdd4a[_0x3c24b9(0x299)](_0x37f915=>{const _0x1d9836=_0x3c24b9;_0x37f915[_0x1d9836(0x26f)]&&_0x5a57b8['tEamQ'](_0x37f915['machineIds']['length'],0x0)&&_0x37f915[_0x1d9836(0x26f)][_0x1d9836(0x299)](_0x285d67=>_0x14f833[_0x1d9836(0x1f8)](_0x285d67));});const _0x5d3664=_0x3cdd4a[_0x3c24b9(0x245)](_0x11e4fb=>_0x11e4fb[_0x3c24b9(0x26f)]&&_0x11e4fb[_0x3c24b9(0x26f)][_0x3c24b9(0x284)]>0x0)['map'](_0x5487c4=>{const _0x8b4325=_0x3c24b9,_0x5a5909={'MVyqM':function(_0x6005a5,_0x455404){const _0x2ad641=a15_0x1b47;return _0x159c20[_0x2ad641(0x241)](_0x6005a5,_0x455404);},'zGxpl':function(_0x5156f5,_0x2fab4a){return _0x159c20['pKchb'](_0x5156f5,_0x2fab4a);},'YMjhJ':_0x159c20['uOlwf']};let _0x45edb2=0x0,_0x398211=null,_0x5a5381=null;return _0x5487c4['products']&&_0x159c20['mPXqk'](_0x5487c4[_0x8b4325(0x25b)][_0x8b4325(0x284)],0x0)&&_0x5487c4['products'][_0x8b4325(0x299)](_0x1ad823=>{const _0x20769e=_0x8b4325;_0x1ad823[_0x20769e(0x2ae)]&&Array['isArray'](_0x1ad823[_0x20769e(0x2ae)])&&_0x1ad823[_0x20769e(0x2ae)]['forEach'](_0x37e879=>{const _0x20dc39=_0x20769e;try{const _0x2e5b63=_0x5a5909[_0x20dc39(0x22b)](a15_0x17852a,_0x37e879);_0x2e5b63&&_0x5a5909['zGxpl'](_0x2e5b63[_0x20dc39(0x2da)],_0x45edb2)&&(_0x45edb2=_0x2e5b63[_0x20dc39(0x2da)],_0x398211=_0x1ad823,_0x5a5381=_0x37e879);}catch(_0x17d7d5){console[_0x20dc39(0x280)](_0x5a5909['YMjhJ'],_0x37e879,_0x17d7d5);}});}),{'train':_0x5487c4,'rpn':_0x45edb2,'worstProduct':_0x398211,'worstIngredient':_0x5a5381};})[_0x3c24b9(0x321)]((_0x1ee10f,_0x4bef2d)=>_0x4bef2d['rpn']-_0x1ee10f['rpn']),_0x3f6690=new Set(),_0x3111e8=[];let _0x377734=0x0;console[_0x3c24b9(0x32d)]('Train\x20Summary:\x20Processing\x20'+_0x5d3664[_0x3c24b9(0x284)]+_0x3c24b9(0x2a6)+_0x196a19),console['log'](_0x159c20[_0x3c24b9(0x1f9)],Array['from'](_0x14f833));for(const {train:_0xefcad8,rpn:_0x210d38,worstProduct:_0x11fe16,worstIngredient:_0x1dd43a}of _0x5d3664)if(_0xefcad8[_0x3c24b9(0x26f)]&&_0x159c20[_0x3c24b9(0x293)](_0xefcad8[_0x3c24b9(0x26f)][_0x3c24b9(0x284)],0x0)){const _0x34d652=new Set(_0xefcad8[_0x3c24b9(0x26f)]),_0x3e9e1=[..._0x34d652][_0x3c24b9(0x245)](_0x4146c0=>_0x14f833[_0x3c24b9(0x34a)](_0x4146c0)&&!_0x3f6690[_0x3c24b9(0x34a)](_0x4146c0));if(console[_0x3c24b9(0x32d)](_0x3c24b9(0x348)+_0xefcad8['id']+_0x3c24b9(0x279)+_0x210d38),console[_0x3c24b9(0x32d)](_0x3c24b9(0x1f3),Array[_0x3c24b9(0x20d)](_0x34d652)),console['log'](_0x159c20[_0x3c24b9(0x30f)],_0x3e9e1),console[_0x3c24b9(0x32d)](_0x159c20[_0x3c24b9(0x28d)],Array['from'](_0x3f6690)),_0x159c20['zsqcD'](_0x3e9e1[_0x3c24b9(0x284)],0x0)){_0x377734++;const _0xf5bdb5=_0xfac0bd['get'](_0x159c20[_0x3c24b9(0x286)](String,_0xefcad8['id'])),_0x545c6e=_0xf5bdb5?_0x3c24b9(0x21b)+_0xf5bdb5[_0x3c24b9(0x337)]:'T'+_0xefcad8['id'],_0xebc04f=_0x3e9e1[_0x3c24b9(0x206)](_0x10c210=>{const _0x3ecf49=_0x3c24b9,_0x52dea6=a15_0x38fba8['machines']['find'](_0x30849b=>_0x30849b['id']===_0x10c210);return _0x52dea6?_0x52dea6['name']:_0x3ecf49(0x2b9)+_0x10c210+')';})[_0x3c24b9(0x2df)](',\x20');if(_0x3111e8[_0x3c24b9(0x26d)]({'studyNumber':_0x377734,'trainLabel':_0x545c6e,'productName':_0x11fe16?_0x11fe16[_0x3c24b9(0x27c)]:_0x159c20[_0x3c24b9(0x31e)],'ingredientName':_0x1dd43a?_0x1dd43a[_0x3c24b9(0x27c)]:'Unknown','rpn':_0x210d38[_0x3c24b9(0x294)](0x2),'machines':_0xebc04f}),console[_0x3c24b9(0x32d)](_0x3c24b9(0x2e0)+_0xefcad8['id']+_0x3c24b9(0x292)+_0x377734),_0x3e9e1['forEach'](_0x1fa7e2=>_0x3f6690[_0x3c24b9(0x1f8)](_0x1fa7e2)),console[_0x3c24b9(0x32d)](_0x3c24b9(0x251)+_0x3f6690[_0x3c24b9(0x2d7)]+'/'+_0x14f833[_0x3c24b9(0x2d7)]+'\x20machines'),_0x159c20[_0x3c24b9(0x309)](_0x3f6690[_0x3c24b9(0x2d7)],_0x14f833[_0x3c24b9(0x2d7)])){console['log'](_0x159c20[_0x3c24b9(0x2f2)]);break;}}else console[_0x3c24b9(0x32d)](_0x3c24b9(0x33e)+_0xefcad8['id']+_0x3c24b9(0x311));}_0x35afe8[_0x3c24b9(0x305)]=_0x3111e8,console[_0x3c24b9(0x32d)]('Train\x20Summary:\x20Selected\x20'+_0x3111e8[_0x3c24b9(0x284)]+_0x3c24b9(0x2f4)+_0x196a19),_0x35afe8['totalStudies']=_0x3111e8[_0x3c24b9(0x284)],console['log'](_0x3c24b9(0x316)+_0x196a19+':\x20'+_0x35afe8['totalStudies']);});const _0x542b74=_0xfe835d['reduce']((_0x128fb3,_0x275f6b)=>_0x128fb3+(_0x43bef2[_0x275f6b][_0x521ace(0x29e)]||0x0),0x0);console[_0x521ace(0x32d)](_0x521ace(0x2b8)+_0x542b74);const _0x2d3259=_0xfe835d[_0x521ace(0x206)](_0x2f7a1f=>{const _0x5846a5=_0x521ace,_0x33c384={'rjuGR':_0x159c20[_0x5846a5(0x2e1)],'bEoHH':function(_0x5a9339,_0x140dcb){return _0x5a9339>_0x140dcb;},'gZbCg':function(_0x5982fb,_0x1367ee){const _0x1c35d9=_0x5846a5;return _0x159c20[_0x1c35d9(0x241)](_0x5982fb,_0x1367ee);},'IkFIw':function(_0x44dad5,_0x22e9b8){return _0x44dad5>_0x22e9b8;},'qVWLb':_0x159c20[_0x5846a5(0x219)],'BAAGP':_0x159c20['BsKzM'],'lHjVW':'Error\x20calculating\x20scores\x20for\x20ingredient:','YbTGh':_0x159c20[_0x5846a5(0x2c4)],'UuaJv':function(_0x1c14bd,_0x14f76a,_0x23bc3e){const _0x501e56=_0x5846a5;return _0x159c20[_0x501e56(0x2e7)](_0x1c14bd,_0x14f76a,_0x23bc3e);},'kccDz':function(_0x5be3e7,_0x1e6a2a){const _0x449210=_0x5846a5;return _0x159c20[_0x449210(0x22d)](_0x5be3e7,_0x1e6a2a);},'aOcXM':function(_0x1407fb,_0x2f70a9){const _0x5cc663=_0x5846a5;return _0x159c20[_0x5cc663(0x2d1)](_0x1407fb,_0x2f70a9);},'ToIsi':function(_0x431c81,_0x592f47){const _0x3ee64d=_0x5846a5;return _0x159c20[_0x3ee64d(0x2ea)](_0x431c81,_0x592f47);},'OMYYd':function(_0x44a9a1,_0x79344a){const _0x3d0419=_0x5846a5;return _0x159c20[_0x3d0419(0x2ea)](_0x44a9a1,_0x79344a);},'krHau':_0x159c20[_0x5846a5(0x315)],'IpnQZ':_0x159c20[_0x5846a5(0x225)],'bnfke':function(_0x2fb2a8,_0xf6d5da){const _0x39ceb6=_0x5846a5;return _0x159c20[_0x39ceb6(0x309)](_0x2fb2a8,_0xf6d5da);},'rVGsd':function(_0x5dd935,_0x584412){return _0x5dd935*_0x584412;},'abdhU':function(_0x55a2fb,_0xd91f10){return _0x55a2fb!==_0xd91f10;},'bToYm':function(_0x273706,_0x467074){const _0x44e9a6=_0x5846a5;return _0x159c20[_0x44e9a6(0x330)](_0x273706,_0x467074);},'JcDtB':_0x159c20[_0x5846a5(0x2f5)],'snnXL':_0x159c20[_0x5846a5(0x31f)],'kbGBo':_0x159c20['rBOly'],'JCLCs':_0x159c20[_0x5846a5(0x2e3)],'gkDXO':function(_0x325c12,_0x5256bb){return _0x159c20['RdhaL'](_0x325c12,_0x5256bb);},'DTStg':_0x159c20['HpXDF'],'dpWwr':_0x159c20[_0x5846a5(0x2b3)],'PrBZR':function(_0x582cdc,_0x2b88f7){const _0x39e7c6=_0x5846a5;return _0x159c20[_0x39e7c6(0x2d6)](_0x582cdc,_0x2b88f7);},'jxXLz':function(_0x53fef7,_0x19d1cd){return _0x159c20['iBNCI'](_0x53fef7,_0x19d1cd);},'uVPsZ':function(_0x470654,_0x49ed23){const _0x4dbab2=_0x5846a5;return _0x159c20[_0x4dbab2(0x309)](_0x470654,_0x49ed23);}},_0x1552e5=_0x43bef2[_0x2f7a1f];return _0x1552e5['trains'][_0x5846a5(0x206)](_0xdc4b42=>{const _0x29e986=_0x5846a5,_0x9bd8af={'HnqTs':_0x33c384['rjuGR']};let _0xaa2713=0x0;return _0xdc4b42[_0x29e986(0x25b)]&&_0x33c384[_0x29e986(0x2c7)](_0xdc4b42[_0x29e986(0x25b)][_0x29e986(0x284)],0x0)&&_0xdc4b42['products'][_0x29e986(0x299)](_0x45b737=>{const _0x541c73=_0x29e986,_0x414c53={'mDSBs':_0x9bd8af[_0x541c73(0x242)]};_0x45b737['activeIngredients']&&Array[_0x541c73(0x2db)](_0x45b737[_0x541c73(0x2ae)])&&_0x45b737[_0x541c73(0x2ae)][_0x541c73(0x299)](_0xba8701=>{const _0x292aa5=_0x541c73;try{const _0x3d251f=a15_0x17852a(_0xba8701);_0x3d251f&&_0x3d251f[_0x292aa5(0x2da)]>_0xaa2713&&(_0xaa2713=_0x3d251f[_0x292aa5(0x2da)]);}catch(_0x4d398c){console[_0x292aa5(0x280)](_0x414c53[_0x292aa5(0x288)],_0xba8701,_0x4d398c);}});}),{'train':_0xdc4b42,'rpn':_0xaa2713};})[_0x5846a5(0x321)]((_0xa287f8,_0x2f8cac)=>_0xa287f8[_0x5846a5(0x210)]['id']-_0x2f8cac[_0x5846a5(0x210)]['id'])['map'](({train:_0x4d2c9d},_0x4fdbd0)=>{const _0x2cadde=_0x5846a5,_0x3c302d={'kYnoC':function(_0x4081a3,_0x56e5c5){return _0x4081a3||_0x56e5c5;},'HQrlh':_0x33c384[_0x2cadde(0x296)],'KFTZF':function(_0xbab6ac,_0x327dee,_0x314323){const _0x281555=_0x2cadde;return _0x33c384[_0x281555(0x2c2)](_0xbab6ac,_0x327dee,_0x314323);},'KrjAq':function(_0x44c65e,_0x442d6e){const _0x26d2eb=_0x2cadde;return _0x33c384[_0x26d2eb(0x248)](_0x44c65e,_0x442d6e);},'LNYwy':function(_0x205b51,_0x517b6c){const _0x2a5ab6=_0x2cadde;return _0x33c384[_0x2a5ab6(0x1fd)](_0x205b51,_0x517b6c);},'RKBor':function(_0x397737,_0x4f66df){return _0x397737/_0x4f66df;},'iKTAN':function(_0x158a8f,_0x1587bf){const _0x467661=_0x2cadde;return _0x33c384[_0x467661(0x201)](_0x158a8f,_0x1587bf);},'gmAoU':function(_0x166b48,_0xaac98e){const _0xe7acf3=_0x2cadde;return _0x33c384[_0xe7acf3(0x2fb)](_0x166b48,_0xaac98e);},'RHkpt':function(_0x37b334,_0x292031){return _0x37b334/_0x292031;},'kkUZg':_0x33c384[_0x2cadde(0x209)],'LVZlT':function(_0x4f023a,_0x1816d2){return _0x4f023a===_0x1816d2;},'UCLdg':_0x33c384[_0x2cadde(0x2d3)],'atFBw':function(_0x165889,_0x26ac6d){const _0x15f0cd=_0x2cadde;return _0x33c384[_0x15f0cd(0x268)](_0x165889,_0x26ac6d);},'oUDzn':function(_0x116637,_0x2703a3){const _0xbb67c8=_0x2cadde;return _0x33c384[_0xbb67c8(0x23b)](_0x116637,_0x2703a3);},'vHnqe':function(_0x2adfd9,_0x56c562){return _0x33c384['abdhU'](_0x2adfd9,_0x56c562);},'cmztZ':function(_0x5cd70f,_0x1d67e4){const _0x104831=_0x2cadde;return _0x33c384[_0x104831(0x336)](_0x5cd70f,_0x1d67e4);},'TmBIR':function(_0x24f4ea,_0xe958ba){const _0x4b2d81=_0x2cadde;return _0x33c384[_0x4b2d81(0x23b)](_0x24f4ea,_0xe958ba);},'mSAGW':function(_0x4a41f1,_0x3fccfc){return _0x4a41f1*_0x3fccfc;},'BADBp':_0x33c384[_0x2cadde(0x346)],'NrcsM':function(_0x5d35e1,_0x12c7a4){const _0x48117c=_0x2cadde;return _0x33c384[_0x48117c(0x268)](_0x5d35e1,_0x12c7a4);},'shIsQ':_0x33c384[_0x2cadde(0x230)],'llMfi':function(_0x12a9f1,_0x11c617){return _0x12a9f1===_0x11c617;},'JFVLV':_0x33c384[_0x2cadde(0x32a)],'lRZOk':_0x33c384[_0x2cadde(0x338)],'IBnmB':function(_0x196c2,_0x18d8ce){const _0x1bd251=_0x2cadde;return _0x33c384[_0x1bd251(0x33f)](_0x196c2,_0x18d8ce);},'wEpBW':function(_0x20987d,_0x4ca0ba){return _0x20987d/_0x4ca0ba;},'AJxbg':function(_0x259bf0,_0x47c3c7){return _0x259bf0>_0x47c3c7;},'TQyma':_0x33c384[_0x2cadde(0x205)],'jpDJW':_0x2cadde(0x340)},_0x156f8b=_0x2cadde(0x1fc)+_0x4d2c9d['machineIds'][_0x2cadde(0x206)](_0x183b54=>{const _0x141776=_0x2cadde,_0x59881c=a15_0x38fba8['machines'][_0x141776(0x29f)](_0x1c68b0=>_0x1c68b0['id']===_0x183b54);return _0x3c302d['kYnoC'](_0x59881c,{'id':_0x183b54,'name':_0x141776(0x2b9)+_0x183b54+')','machineNumber':'N/A'});})[_0x2cadde(0x206)](_0x4370b3=>_0x4370b3['name'])[_0x2cadde(0x2df)](',\x20')+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22font-semibold\x20text-purple-600\x22>Products:</span><br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-sm\x22>'+_0x4d2c9d[_0x2cadde(0x25b)][_0x2cadde(0x206)](_0x30906c=>_0x30906c[_0x2cadde(0x27c)])[_0x2cadde(0x2df)](',\x20')+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x113322=function(_0x123dc7){const _0x4125dd=_0x2cadde;let _0x3ad105=null,_0x46cfe9=0x0;try{if(!_0x123dc7||!_0x123dc7[_0x4125dd(0x25b)]||!Array[_0x4125dd(0x2db)](_0x123dc7[_0x4125dd(0x25b)]))return null;for(const _0x50445c of _0x123dc7[_0x4125dd(0x25b)])if(_0x50445c&&_0x50445c['activeIngredients']&&Array['isArray'](_0x50445c[_0x4125dd(0x2ae)])){for(const _0x377cb2 of _0x50445c[_0x4125dd(0x2ae)])if(_0x377cb2)try{const _0x690da6=_0x33c384[_0x4125dd(0x317)](a15_0x17852a,_0x377cb2);_0x690da6&&_0x33c384[_0x4125dd(0x20b)](_0x690da6[_0x4125dd(0x2da)],_0x46cfe9)&&(_0x46cfe9=_0x690da6['rpn'],_0x3ad105={'productCode':_0x50445c[_0x4125dd(0x2ce)]||_0x4125dd(0x243),'productName':_0x50445c[_0x4125dd(0x27c)]||_0x33c384[_0x4125dd(0x32f)],'ingredientName':_0x377cb2['name']||_0x33c384[_0x4125dd(0x2b1)],'rpn':_0x690da6[_0x4125dd(0x2da)]});}catch(_0x12d039){console[_0x4125dd(0x280)](_0x33c384[_0x4125dd(0x259)],_0x377cb2,_0x12d039);continue;}}}catch(_0x4a75dc){return console[_0x4125dd(0x28a)](_0x4125dd(0x2c9),_0x4a75dc),null;}return _0x3ad105;}(_0x4d2c9d),_0x59d5fa=_0x113322?_0x2cadde(0x23f)+_0x113322[_0x2cadde(0x28f)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-xs\x20text-gray-600\x22>Ingredient:\x20'+_0x113322[_0x2cadde(0x255)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-xs\x20font-bold\x20text-red-600\x22>RPN:\x20'+_0x113322['rpn'][_0x2cadde(0x294)](0x2)+_0x2cadde(0x1fa):_0x33c384['dpWwr'],_0x5e73e7=function(_0x455e9d){const _0x3baaab=_0x2cadde;try{const _0x5dba4a=a15_0xdd72fe(),_0x3ddbbe=_0x5dba4a[_0x3baaab(0x29f)](_0x2c9602=>_0x2c9602['id']===_0x455e9d['id']);if(!_0x3ddbbe)return{'value':0x0,'display':_0x3c302d[_0x3baaab(0x264)]};const _0x114f0c=_0x3c302d[_0x3baaab(0x2be)](a15_0x786405,_0x455e9d,_0x5dba4a);if(_0x3c302d[_0x3baaab(0x328)](_0x114f0c,0x0))return{'value':0x0,'display':_0x3c302d[_0x3baaab(0x264)]};const _0x88ec2d=(a15_0x38fba8[_0x3baaab(0x202)][_0x3c302d['LNYwy'](getWorstCaseProductType,_0x3ddbbe[_0x3baaab(0x25b)][_0x3baaab(0x206)](_0x46adfa=>_0x46adfa[_0x3baaab(0x247)]))]||a15_0x38fba8[_0x3baaab(0x202)][_0x3baaab(0x223)])[_0x3baaab(0x332)],_0x55bf11=_0x3c302d[_0x3baaab(0x32b)](_0x3c302d[_0x3baaab(0x21d)](_0x3ddbbe[_0x3baaab(0x216)],_0x3ddbbe[_0x3baaab(0x250)]),_0x88ec2d),_0x49734f=_0x3c302d['gmAoU'](0xa,_0x3ddbbe[_0x3baaab(0x235)]);let _0x1640a4=0x1/0x0,_0x16706a=_0x3c302d['RHkpt'](0x1,0x0);const _0x54cdf3=_0x3c302d[_0x3baaab(0x327)]===localStorage[_0x3baaab(0x1ff)](_0x3baaab(0x333)),_0x30739f=_0x3c302d[_0x3baaab(0x347)](_0x3c302d['kkUZg'],localStorage['getItem'](_0x3c302d[_0x3baaab(0x20c)]));if(_0x3c302d[_0x3baaab(0x269)](null,_0x3ddbbe[_0x3baaab(0x30a)])||_0x54cdf3||(_0x1640a4=_0x3c302d['oUDzn'](_0x3ddbbe[_0x3baaab(0x30a)],_0x3ddbbe[_0x3baaab(0x250)])),_0x3c302d[_0x3baaab(0x2ab)](null,_0x3ddbbe[_0x3baaab(0x30c)])&&!_0x30739f){const _0x5b2101=_0x3c302d[_0x3baaab(0x265)](_0x3c302d[_0x3baaab(0x2af)](0x46,_0x3ddbbe[_0x3baaab(0x30c)]),0x7d0),_0x4e98e6=_0x3ddbbe['products'][_0x3baaab(0x2a0)](_0x3c2b0d=>_0x3c2b0d['activeIngredients'][_0x3baaab(0x206)](_0xd30748=>_0xd30748[_0x3baaab(0x2dd)]/0x3e8)),_0x5378b3=Math[_0x3baaab(0x256)](..._0x4e98e6);_0x16706a=_0x3c302d[_0x3baaab(0x2cb)](_0x5b2101,_0x3ddbbe[_0x3baaab(0x235)])*0x3e8/_0x3c302d[_0x3baaab(0x290)](_0x88ec2d,_0x5378b3);}const _0x44be69=_0x3c302d[_0x3baaab(0x290)](0.004,_0x114f0c),_0x1afdac=[{'name':_0x3baaab(0x234),'value':_0x55bf11},{'name':_0x3c302d[_0x3baaab(0x289)],'value':_0x49734f}];_0x3c302d[_0x3baaab(0x23a)](null,_0x3ddbbe[_0x3baaab(0x30a)])||_0x54cdf3||_0x1afdac[_0x3baaab(0x26d)]({'name':_0x3c302d[_0x3baaab(0x226)],'value':_0x1640a4}),_0x3c302d[_0x3baaab(0x277)](null,_0x3ddbbe['lowestLd50'])||_0x30739f||_0x1afdac['push']({'name':_0x3c302d[_0x3baaab(0x2b4)],'value':_0x16706a}),_0x1afdac[_0x3baaab(0x26d)]({'name':_0x3c302d['lRZOk'],'value':_0x44be69});const _0x136fd5=_0x1afdac['reduce']((_0x15d1ba,_0x4c0251)=>_0x4c0251[_0x3baaab(0x2d5)]<_0x15d1ba[_0x3baaab(0x2d5)]?_0x4c0251:_0x15d1ba)[_0x3baaab(0x2d5)],_0x3100fd=_0x3c302d[_0x3baaab(0x290)](_0x3c302d[_0x3baaab(0x2ba)](_0x114f0c,0x0)?_0x3c302d['wEpBW'](_0x136fd5,_0x114f0c):0x0,_0x3ddbbe['assumedSsa']),_0x3e4d9c=_0x3c302d[_0x3baaab(0x2fe)](_0x3100fd,0x0)?_0x3100fd[_0x3baaab(0x32c)](void 0x0,{'minimumFractionDigits':0x4,'maximumFractionDigits':0x4})+'\x20mg/Swab':_0x3c302d[_0x3baaab(0x264)];return{'value':_0x3100fd,'display':_0x3e4d9c};}catch(_0x4bc193){return console[_0x3baaab(0x28a)](_0x3c302d[_0x3baaab(0x236)],_0x455e9d?.['id']||_0x3c302d[_0x3baaab(0x2c1)],_0x4bc193),{'value':0x0,'display':_0x3c302d['HQrlh']};}}(_0x4d2c9d),_0x95b6f7=_0x33c384['PrBZR'](_0x5e73e7[_0x2cadde(0x2d5)],0x0)?_0x2cadde(0x341)+_0x5e73e7[_0x2cadde(0x335)]+_0x2cadde(0x2f7):'<span\x20class=\x22text-gray-500\x22>'+_0x5e73e7[_0x2cadde(0x335)]+'</span>',_0x14600e=_0xfac0bd[_0x2cadde(0x24e)](_0x33c384[_0x2cadde(0x2f0)](String,_0x4d2c9d['id'])),_0xf27f15=_0x14600e?_0x2cadde(0x21b)+_0x14600e[_0x2cadde(0x337)]:'T'+_0x4d2c9d['id'],_0xacd6a3=_0x33c384[_0x2cadde(0x2e8)](0x0,_0x4fdbd0)?_0x2cadde(0x213)+_0x1552e5[_0x2cadde(0x207)][_0x2cadde(0x284)]+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22font-bold\x20text-orange-600\x20text-lg\x20mb-2\x22>'+_0x1552e5[_0x2cadde(0x29e)]+_0x2cadde(0x21a)+_0x2f7a1f+_0x2cadde(0x342)+_0x2f7a1f+'\x22\x20class=\x22text-xs\x20space-y-1\x20hidden\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x1552e5[_0x2cadde(0x305)][_0x2cadde(0x206)](_0x72d2cd=>_0x2cadde(0x260)+_0x72d2cd[_0x2cadde(0x34d)]+':\x20'+_0x72d2cd[_0x2cadde(0x344)]+_0x2cadde(0x26e)+_0x72d2cd[_0x2cadde(0x28f)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><strong>Machines:</strong>\x20'+_0x72d2cd[_0x2cadde(0x27e)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')['join']('')+_0x2cadde(0x22f):'';return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22border-b\x20hover:bg-gray-50\x20dark:hover:bg-gray-800/50\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-4\x20text-center\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22font-semibold\x20text-indigo-600\x22>'+_0x1552e5[_0x2cadde(0x31b)]+_0x2cadde(0x275)+_0x1552e5['dosageForm']+_0x2cadde(0x2b0)+_0xf27f15+_0x2cadde(0x27f)+_0x156f8b+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-4\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x59d5fa+_0x2cadde(0x2e6)+_0x95b6f7+_0x2cadde(0x27d)+_0xacd6a3+_0x2cadde(0x231);})['join']('');})['join']('');let _0x45bdd3='';_0x2e5d69['forEach'](_0x1e2932=>{const _0x2b5c41=_0x521ace,_0x11bc8a=function(_0x489f32){const _0xe99799=a15_0x1b47,_0x3a7328={'qBMmX':function(_0x4fb602,_0xc512d6){return _0x4fb602(_0xc512d6);},'fkfhv':function(_0x1df3ad,_0x4def6e){return _0x159c20['gwFwW'](_0x1df3ad,_0x4def6e);},'nizlz':_0x159c20['PRHlQ']},_0x52abd5=[];return a15_0x38fba8['products'][_0xe99799(0x245)](_0x32eada=>_0x32eada[_0xe99799(0x31b)]===_0x489f32&&!0x0===_0x32eada[_0xe99799(0x2b7)])[_0xe99799(0x299)](_0x270d42=>{const _0x1e5763=_0xe99799;if(_0x270d42['activeIngredients']&&Array['isArray'](_0x270d42['activeIngredients'])){let _0x9a3f57=null,_0x1ead2c=0x0;if(_0x270d42[_0x1e5763(0x2ae)]['forEach'](_0x594037=>{const _0x114091=_0x1e5763;try{const _0x51b9e3=_0x3a7328[_0x114091(0x270)](a15_0x17852a,_0x594037);_0x51b9e3&&_0x3a7328[_0x114091(0x25a)](_0x51b9e3[_0x114091(0x2da)],_0x1ead2c)&&(_0x1ead2c=_0x51b9e3['rpn'],_0x9a3f57=_0x594037);}catch(_0x3384fc){console[_0x114091(0x280)](_0x3a7328[_0x114091(0x285)],_0x594037,_0x3384fc);}}),_0x9a3f57){const _0xf02a71=a15_0x38fba8[_0x1e5763(0x27e)][_0x1e5763(0x245)](_0x50668a=>_0x270d42[_0x1e5763(0x26f)]&&_0x270d42[_0x1e5763(0x26f)][_0x1e5763(0x28e)](_0x50668a['id']));_0x52abd5[_0x1e5763(0x26d)]({'name':_0x270d42[_0x1e5763(0x27c)],'productCode':_0x270d42[_0x1e5763(0x2ce)],'ingredient':_0x9a3f57[_0x1e5763(0x27c)],'dosageForm':_0x270d42[_0x1e5763(0x247)],'rpn':_0x1ead2c,'machines':_0xf02a71[_0x1e5763(0x206)](_0x138689=>_0x138689[_0x1e5763(0x27c)]),'reason':_0x270d42[_0x1e5763(0x29a)]||null});}}}),_0x52abd5[_0xe99799(0x321)]((_0x1e797d,_0x5642ce)=>_0x5642ce['rpn']-_0x1e797d[_0xe99799(0x2da)]);}(_0x1e2932['line']);_0x159c20[_0x2b5c41(0x31a)](_0x11bc8a['length'],0x0)&&(_0x45bdd3+=_0x2b5c41(0x2f1)+_0x1e2932[_0x2b5c41(0x31b)]+_0x2b5c41(0x2b2)+_0x11bc8a['map'](_0x1c030d=>'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22border-b\x20hover:bg-gray-50\x20dark:hover:bg-gray-800/50\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22font-semibold\x22>'+_0x1c030d[_0x2b5c41(0x27c)]+_0x2b5c41(0x2e2)+_0x1c030d['ingredient']+_0x2b5c41(0x237)+_0x1c030d[_0x2b5c41(0x27e)][_0x2b5c41(0x206)](_0x2f92e8=>_0x2b5c41(0x266)+_0x2f92e8+_0x2b5c41(0x2f7))['join']('')+_0x2b5c41(0x273)+(_0x1c030d[_0x2b5c41(0x222)]||'No\x20reason\x20provided')+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')[_0x2b5c41(0x2df)]('')+_0x2b5c41(0x2fc));}),_0x14e5f2[_0x521ace(0x2ec)]=_0x521ace(0x203)+_0x2d3259+_0x521ace(0x301)+_0x45bdd3+_0x521ace(0x2dc),_0x159c20[_0x521ace(0x29d)](c),_0x159c20['ZWftG'](a15_0x4e35e2);}window[a15_0xcc077a(0x298)]=function(_0x29918a){const _0x2b9f5e=a15_0xcc077a,_0x12a581={'dVqys':_0x2b9f5e(0x2fa)},_0x5b8a26=document[_0x2b9f5e(0x33d)](_0x2b9f5e(0x25c)+_0x29918a);_0x5b8a26[_0x2b9f5e(0x2a8)][_0x2b9f5e(0x2d0)](_0x12a581['dVqys'])?_0x5b8a26[_0x2b9f5e(0x2a8)][_0x2b9f5e(0x218)](_0x12a581[_0x2b9f5e(0x29b)]):_0x5b8a26['classList'][_0x2b9f5e(0x1f8)](_0x2b9f5e(0x2fa));};export function toggleTrainSummaryExportDropdown(){const _0x128b77=a15_0xcc077a,_0x3e1075={'UoiDZ':_0x128b77(0x254),'EVkAU':'hidden','NuTQD':_0x128b77(0x200),'XVaMu':function(_0xabe066){return _0xabe066();},'EcILr':_0x128b77(0x334)},_0x4574f8=document[_0x128b77(0x33d)](_0x3e1075['NuTQD']);_0x4574f8[_0x128b77(0x2a8)][_0x128b77(0x283)](_0x128b77(0x2fa)),_0x3e1075[_0x128b77(0x21c)](c),document[_0x128b77(0x2c5)](_0x3e1075[_0x128b77(0x1f7)],function _0x1ae940(_0x3831f0){const _0x469648=_0x128b77;_0x3831f0[_0x469648(0x271)][_0x469648(0x2d2)]('#trainSummaryExportDropdown')||_0x3831f0[_0x469648(0x271)][_0x469648(0x2d2)](_0x3e1075[_0x469648(0x24c)])||(_0x4574f8[_0x469648(0x2a8)][_0x469648(0x1f8)](_0x3e1075[_0x469648(0x262)]),document[_0x469648(0x2cf)](_0x469648(0x334),_0x1ae940));});}function a15_0x1b47(_0x2de89b,_0x30521d){const _0x44bc6a=a15_0x44bc();return a15_0x1b47=function(_0x1b47c0,_0x398f0a){_0x1b47c0=_0x1b47c0-0x1f1;let _0x3d9921=_0x44bc6a[_0x1b47c0];return _0x3d9921;},a15_0x1b47(_0x2de89b,_0x30521d);}export function toggleTrainSummaryPrintDropdown(){const _0x33abb2=a15_0xcc077a,_0x5be1f3={'mjoYe':_0x33abb2(0x220),'JdToq':_0x33abb2(0x2fa),'UUENS':_0x33abb2(0x334),'VnPez':function(_0x294bd3){return _0x294bd3();}},_0x268a06=document[_0x33abb2(0x33d)](_0x33abb2(0x2d8));_0x268a06['classList'][_0x33abb2(0x283)](_0x5be1f3[_0x33abb2(0x232)]),_0x5be1f3['VnPez'](c),document[_0x33abb2(0x2c5)](_0x5be1f3[_0x33abb2(0x2b6)],function _0x2316e0(_0x3fb0ad){const _0x245f88=_0x33abb2;_0x3fb0ad[_0x245f88(0x271)]['closest'](_0x5be1f3[_0x245f88(0x21f)])||_0x3fb0ad['target'][_0x245f88(0x2d2)]('button[onclick=\x22toggleTrainSummaryPrintDropdown()\x22]')||(_0x268a06[_0x245f88(0x2a8)]['add'](_0x5be1f3[_0x245f88(0x232)]),document[_0x245f88(0x2cf)](_0x5be1f3['UUENS'],_0x2316e0));});}function c(){const _0x256d62=a15_0xcc077a,_0x577fd4={'EkltL':_0x256d62(0x253),'pCdGT':'flex\x20items-center\x20px-4\x20py-2\x20text-sm\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20cursor-pointer','FZdrX':_0x256d62(0x2c8),'lFwoG':_0x256d62(0x2ed),'UjHMw':_0x256d62(0x2a9),'FcUze':_0x256d62(0x243),'ZTUYY':_0x256d62(0x34b),'NHurr':'span','bycaL':function(_0x2e6435,_0x1b3e59){return _0x2e6435!==_0x1b3e59;},'PVoeu':function(_0x39ea11){return _0x39ea11();},'seiIm':'trainSummaryExportTrainOptions','uNsGy':_0x256d62(0x20e),'OmACN':'./utils.js'};import(_0x577fd4['OmACN'])[_0x256d62(0x310)](_0xa4e0c1=>{const _0x4f3e04=_0x256d62,_0x5b7739={'YILDy':_0x577fd4[_0x4f3e04(0x308)],'hHwRz':_0x577fd4[_0x4f3e04(0x319)],'CGFKc':_0x577fd4[_0x4f3e04(0x302)],'stSHe':_0x577fd4[_0x4f3e04(0x1f2)],'TDJUj':_0x577fd4[_0x4f3e04(0x326)],'ojZsz':_0x577fd4['NHurr'],'hQHRs':_0x577fd4['FcUze']},{getTrainsGroupedByLine:_0x10f542,getTrainData:_0x2003ea}=_0xa4e0c1;let _0x3b1cbc=_0x10f542();const _0x4001d3=window[_0x4f3e04(0x32e)]&&_0x577fd4[_0x4f3e04(0x2ef)]('all',window[_0x4f3e04(0x32e)])?window['currentLineFilter']:null;_0x4001d3&&(_0x3b1cbc=_0x3b1cbc['filter'](_0x599b28=>_0x599b28[_0x4f3e04(0x31b)]===_0x4001d3));const _0x526252=_0x577fd4[_0x4f3e04(0x214)](_0x2003ea),_0xe18252={};_0x526252[_0x4f3e04(0x299)](_0x251e0c=>{const _0x3ad1e9=_0x4f3e04;_0x251e0c[_0x3ad1e9(0x1fe)]&&(_0xe18252[_0x251e0c[_0x3ad1e9(0x1fe)]]=_0x251e0c);});const _0x884238=[];_0x3b1cbc[_0x4f3e04(0x299)](_0x2ac022=>{const _0x139f14=_0x4f3e04;_0x2ac022[_0x139f14(0x207)][_0x139f14(0x299)](_0x36a104=>{const _0xcd1fa6=_0x139f14,_0x349b15=_0xe18252[_0x36a104[_0xcd1fa6(0x1fe)]];_0x349b15&&_0x884238[_0xcd1fa6(0x26d)]({..._0x36a104,'id':_0x349b15['id'],'number':_0x349b15[_0xcd1fa6(0x337)]||_0x349b15['id']});});});const _0x22e583=document[_0x4f3e04(0x33d)](_0x577fd4[_0x4f3e04(0x2c6)]);_0x22e583&&(_0x22e583[_0x4f3e04(0x2ec)]='',_0x884238[_0x4f3e04(0x299)](_0x39112c=>{const _0x147db3=_0x4f3e04,_0x4b164e=document[_0x147db3(0x322)](_0x577fd4['EkltL']);_0x4b164e['className']=_0x577fd4[_0x147db3(0x319)],_0x4b164e[_0x147db3(0x258)][_0x147db3(0x2a2)]=_0x577fd4[_0x147db3(0x302)];const _0x2a3bb3=document[_0x147db3(0x322)](_0x577fd4['lFwoG']);_0x2a3bb3[_0x147db3(0x2bd)]=_0x577fd4[_0x147db3(0x1f2)],_0x2a3bb3[_0x147db3(0x33a)]=_0x147db3(0x22a),_0x2a3bb3['value']=_0x39112c['id'],_0x2a3bb3[_0x147db3(0x2ca)]=()=>updateAllTrainSummaryTrainsCheckbox(_0x147db3(0x314));const _0x5c6420=document[_0x147db3(0x322)](_0x147db3(0x282)),_0x5b9d32=_0x39112c['dosageForm']||_0x39112c[_0x147db3(0x247)]||_0x577fd4[_0x147db3(0x208)];_0x5c6420[_0x147db3(0x1f4)]=_0x5b9d32+_0x147db3(0x295)+_0x39112c[_0x147db3(0x337)],_0x4b164e[_0x147db3(0x2eb)](_0x2a3bb3),_0x4b164e[_0x147db3(0x2eb)](_0x5c6420),_0x22e583[_0x147db3(0x2eb)](_0x4b164e);}));const _0xa9d308=document[_0x4f3e04(0x33d)](_0x4f3e04(0x212));_0xa9d308&&(_0xa9d308['innerHTML']='',_0x884238['forEach'](_0x1b6074=>{const _0x23e3e9=_0x4f3e04,_0x34975b=document[_0x23e3e9(0x322)](_0x5b7739[_0x23e3e9(0x2d4)]);_0x34975b['className']=_0x5b7739[_0x23e3e9(0x2fd)],_0x34975b['style']['color']=_0x5b7739[_0x23e3e9(0x211)];const _0xaae870=document[_0x23e3e9(0x322)](_0x23e3e9(0x2ed));_0xaae870[_0x23e3e9(0x2bd)]=_0x5b7739[_0x23e3e9(0x24b)],_0xaae870['className']=_0x5b7739['TDJUj'],_0xaae870[_0x23e3e9(0x2d5)]=_0x1b6074['id'],_0xaae870[_0x23e3e9(0x2ca)]=()=>updateAllTrainSummaryTrainsCheckbox(_0x23e3e9(0x1f1));const _0x52188d=document['createElement'](_0x5b7739[_0x23e3e9(0x2e5)]),_0x18ce9=_0x1b6074['dosageForm']||_0x1b6074['productType']||_0x5b7739['hQHRs'];_0x52188d['textContent']=_0x18ce9+_0x23e3e9(0x295)+_0x1b6074[_0x23e3e9(0x337)],_0x34975b[_0x23e3e9(0x2eb)](_0xaae870),_0x34975b[_0x23e3e9(0x2eb)](_0x52188d),_0xa9d308[_0x23e3e9(0x2eb)](_0x34975b);}));})[_0x256d62(0x31d)](_0x3abdbb=>{const _0x394c88=_0x256d62;console[_0x394c88(0x28a)](_0x577fd4[_0x394c88(0x307)],_0x3abdbb);});}export function toggleAllTrainSummaryTrainsSelection(_0x1ab14b){const _0x4bf3c8=a15_0xcc077a,_0x1c34b0=document['getElementById'](_0x1ab14b+'TrainSummaryAllTrainsCheckbox');document[_0x4bf3c8(0x2e9)]('.'+_0x1ab14b+_0x4bf3c8(0x263))[_0x4bf3c8(0x299)](_0x5d0be2=>{const _0x223a1e=_0x4bf3c8;_0x5d0be2[_0x223a1e(0x272)]=_0x1c34b0[_0x223a1e(0x272)];});}export function updateAllTrainSummaryTrainsCheckbox(_0x3abebb){const _0x473232=a15_0xcc077a,_0xbf8d9f={'RkLOp':function(_0x188e6f,_0x260eb2){return _0x188e6f===_0x260eb2;}},_0x21297e=document[_0x473232(0x33d)](_0x3abebb+_0x473232(0x300)),_0x36a894=document[_0x473232(0x2e9)]('.'+_0x3abebb+_0x473232(0x263)),_0x7b54db=document[_0x473232(0x2e9)]('.'+_0x3abebb+_0x473232(0x26c));0x0===_0x7b54db[_0x473232(0x284)]?(_0x21297e[_0x473232(0x272)]=!0x1,_0x21297e[_0x473232(0x204)]=!0x1):_0xbf8d9f['RkLOp'](_0x7b54db[_0x473232(0x284)],_0x36a894[_0x473232(0x284)])?(_0x21297e[_0x473232(0x272)]=!0x0,_0x21297e[_0x473232(0x204)]=!0x1):(_0x21297e[_0x473232(0x272)]=!0x1,_0x21297e[_0x473232(0x204)]=!0x0);}export function executeTrainSummaryExportSelection(){const _0x161d9d=a15_0xcc077a,_0x1b96ff={'OMmbE':_0x161d9d(0x2de),'cKKjR':function(_0x185be5,_0x5d71ed){return _0x185be5(_0x5d71ed);},'dRTrQ':_0x161d9d(0x233),'Ngial':_0x161d9d(0x267),'CZCLU':function(_0x5eaf5a,_0x181d57){return _0x5eaf5a===_0x181d57;},'yXEKs':function(_0x4a8b95,_0x49243f,_0x114c3d){return _0x4a8b95(_0x49243f,_0x114c3d);},'WLTGA':_0x161d9d(0x324),'xgBGZ':_0x161d9d(0x2fa),'QHpjH':_0x161d9d(0x246),'ZQjeH':_0x161d9d(0x2a3),'ugjID':_0x161d9d(0x2cd)};import(_0x1b96ff[_0x161d9d(0x24a)])[_0x161d9d(0x310)](_0x1c8622=>{const _0x3a9362=_0x161d9d,{showCustomAlert:_0x2e6329,exportTrainSummaryToExcel:_0x3ed43d}=_0x1c8622,_0x5224f1=document[_0x3a9362(0x33d)](_0x1b96ff[_0x3a9362(0x2f6)]),_0x2cfa36=[];if(_0x5224f1[_0x3a9362(0x272)])_0x1b96ff[_0x3a9362(0x2c3)](_0x3ed43d,_0x1b96ff[_0x3a9362(0x23e)]);else{if(document[_0x3a9362(0x2e9)](_0x1b96ff['Ngial'])['forEach'](_0xe26c9a=>{const _0x4c34bd=_0x3a9362;_0x2cfa36[_0x4c34bd(0x26d)](_0xe26c9a[_0x4c34bd(0x2d5)]);}),_0x1b96ff[_0x3a9362(0x2ee)](0x0,_0x2cfa36[_0x3a9362(0x284)]))return void _0x1b96ff[_0x3a9362(0x215)](_0x2e6329,_0x1b96ff[_0x3a9362(0x21e)],_0x3a9362(0x329));_0x1b96ff[_0x3a9362(0x2c3)](_0x3ed43d,_0x2cfa36);}document[_0x3a9362(0x33d)]('trainSummaryExportDropdown')['classList'][_0x3a9362(0x1f8)](_0x1b96ff[_0x3a9362(0x2a5)]);})[_0x161d9d(0x31d)](_0x20022a=>{const _0xbc9bc0=_0x161d9d;console[_0xbc9bc0(0x28a)](_0x1b96ff['QHpjH'],_0x20022a),_0x1b96ff[_0xbc9bc0(0x2c3)](alert,_0x1b96ff['ZQjeH']);});}export function executeTrainSummaryPrintSelection(){const _0x40b053=a15_0xcc077a,_0x591d2c={'rqyss':_0x40b053(0x2bf),'WqIml':function(_0x3bb07,_0x343dea,_0x2b35dc){return _0x3bb07(_0x343dea,_0x2b35dc);},'ZbDty':_0x40b053(0x1f5),'tZINT':_0x40b053(0x233),'iiQOz':_0x40b053(0x1fb),'ImwKr':function(_0x4f53eb,_0x56b366,_0x2193f3){return _0x4f53eb(_0x56b366,_0x2193f3);},'upgtp':_0x40b053(0x324),'mNDSh':_0x40b053(0x313),'rBHEs':_0x40b053(0x2fa),'pRlik':function(_0x44abb5,_0x1e6855){return _0x44abb5+_0x1e6855;},'hAgEr':'All\x20checkbox\x20checked:','nHUVZ':_0x40b053(0x228),'YuOTv':_0x40b053(0x2f9),'etkMj':_0x40b053(0x2cd),'jvZpJ':function(_0x2f2a8d,_0x361d46){return _0x2f2a8d+_0x361d46;},'mqIvM':_0x40b053(0x25f)};try{const _0x42d9f1=document[_0x40b053(0x33d)](_0x40b053(0x26a)),_0x98ae8b=document['querySelectorAll'](_0x40b053(0x331));if(console[_0x40b053(0x32d)](_0x591d2c['hAgEr'],_0x42d9f1?_0x42d9f1[_0x40b053(0x272)]:_0x591d2c[_0x40b053(0x261)]),console[_0x40b053(0x32d)](_0x591d2c[_0x40b053(0x25e)],_0x98ae8b[_0x40b053(0x284)]),!_0x42d9f1)return void alert(_0x40b053(0x339));import(_0x591d2c['etkMj'])['then'](_0x465f98=>{const _0x171299=_0x40b053,{showCustomAlert:_0x4455ba,printCurrentView:_0x567e3f}=_0x465f98,_0x50dfe4=[];if(_0x42d9f1['checked'])console[_0x171299(0x32d)](_0x591d2c[_0x171299(0x304)]),_0x591d2c[_0x171299(0x312)](_0x567e3f,_0x591d2c[_0x171299(0x2ac)],_0x591d2c[_0x171299(0x287)]);else{if(_0x98ae8b[_0x171299(0x299)](_0xe070b7=>{const _0x1154fd=_0x171299;_0x50dfe4[_0x1154fd(0x26d)](_0xe070b7['value']);}),console[_0x171299(0x32d)](_0x591d2c[_0x171299(0x244)],_0x50dfe4),0x0===_0x50dfe4[_0x171299(0x284)])return void _0x591d2c[_0x171299(0x306)](_0x4455ba,_0x591d2c[_0x171299(0x2ad)],_0x591d2c[_0x171299(0x2a7)]);_0x567e3f(_0x171299(0x1f5),_0x50dfe4);}const _0x162e25=document[_0x171299(0x33d)]('trainSummaryPrintDropdown');_0x162e25&&_0x162e25['classList'][_0x171299(0x1f8)](_0x591d2c[_0x171299(0x2d9)]);})[_0x40b053(0x31d)](_0x1e40e8=>{const _0x28e2b5=_0x40b053;console[_0x28e2b5(0x28a)](_0x28e2b5(0x20f),_0x1e40e8),alert(_0x591d2c['pRlik'](_0x28e2b5(0x239),_0x1e40e8[_0x28e2b5(0x24f)]));});}catch(_0x35184d){console['error'](_0x40b053(0x34c),_0x35184d),alert(_0x591d2c[_0x40b053(0x30e)](_0x591d2c[_0x40b053(0x2a1)],_0x35184d[_0x40b053(0x24f)]));}}window[a15_0xcc077a(0x2bc)]=toggleTrainSummaryExportDropdown,window[a15_0xcc077a(0x2c0)]=toggleTrainSummaryPrintDropdown,window[a15_0xcc077a(0x25d)]=toggleAllTrainSummaryTrainsSelection,window[a15_0xcc077a(0x2ff)]=updateAllTrainSummaryTrainsCheckbox,window[a15_0xcc077a(0x325)]=executeTrainSummaryExportSelection,window[a15_0xcc077a(0x30b)]=executeTrainSummaryPrintSelection;
+// Renders the "Train Summary" tab
+// js/trainSummaryView.js
+
+import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
+import { hideLoader } from './ui.js';
+import { getTrainData, calculateScores, getMacoPerSwabForTrain, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder, getWorstCaseProductType } from './utils.js';
+import * as utils from './utils.js';
+
+// Helper function to find the worst case product (highest RPN) in a train
+function getWorstCaseProductForTrain(train) {
+    let worstProduct = null;
+    let highestRPN = 0;
+    
+    try {
+        if (!train || !train.products || !Array.isArray(train.products)) {
+            return null;
+        }
+        
+        for (const product of train.products) {
+            // Check if product has activeIngredients and if it's an array
+            if (!product || !product.activeIngredients || !Array.isArray(product.activeIngredients)) {
+                continue;
+            }
+            
+            for (const ingredient of product.activeIngredients) {
+                if (!ingredient) continue;
+                
+                try {
+                    const scores = calculateScores(ingredient);
+                    if (scores && scores.rpn > highestRPN) {
+                        highestRPN = scores.rpn;
+                        worstProduct = {
+                            productCode: product.productCode || 'Unknown',
+                            productName: product.name || 'Unknown Product',
+                            ingredientName: ingredient.name || 'Unknown Ingredient',
+                            rpn: scores.rpn
+                        };
+                    }
+                } catch (scoreError) {
+                    console.warn('Error calculating scores for ingredient:', ingredient, scoreError);
+                    continue;
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Error in getWorstCaseProductForTrain:', error);
+        return null;
+    }
+    
+    return worstProduct;
+}
+
+// Helper function to calculate number of studies needed for a train using machine coverage algorithm
+function calculateStudiesNeeded(train) {
+    if (!train || !train.products || train.products.length === 0) {
+        return 0;
+    }
+
+    // Get all machines in this train
+    const allMachines = new Set(train.machineIds);
+    if (allMachines.size === 0) {
+        return 0;
+    }
+
+    // Get all trains grouped by line and dosage form to calculate studies incrementally
+    const linesWithTrains = getTrainsGroupedByLine();
+    const allTrains = [];
+    linesWithTrains.forEach(lineObj => {
+        lineObj.trains.forEach(t => allTrains.push({
+            ...t,
+            line: lineObj.line
+        }));
+    });
+
+    // Find trains with same line and dosage form as current train
+    const trainLine = train.line || 'Unassigned';
+    const trainDosageForms = [...new Set(train.products.map(p => p.productType || 'Unknown'))];
+    
+    const relatedTrains = allTrains.filter(t => {
+        const tLine = t.line || 'Unassigned';
+        const tDosageForms = [...new Set(t.products.map(p => p.productType || 'Unknown'))];
+        return tLine === trainLine && 
+               tDosageForms.some(df => trainDosageForms.includes(df));
+    });
+
+    // Calculate RPN for each related train and sort by RPN (highest first)
+    const trainsWithRPN = relatedTrains.map(t => {
+        let highestRPN = 0;
+        if (t.products && t.products.length > 0) {
+            t.products.forEach(product => {
+                if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                    product.activeIngredients.forEach(ingredient => {
+                        try {
+                            const scores = calculateScores(ingredient);
+                            if (scores && scores.rpn > highestRPN) {
+                                highestRPN = scores.rpn;
+                            }
+                        } catch (error) {
+                            console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                        }
+                    });
+                }
+            });
+        }
+        return { train: t, rpn: highestRPN };
+    }).sort((a, b) => b.rpn - a.rpn); // Sort by RPN descending (highest first)
+
+    // Use machine coverage algorithm to determine if this train would be selected
+    const coveredMachines = new Set();
+    let studyIndex = 0;
+    
+    for (const { train: t } of trainsWithRPN) {
+        const trainMachines = new Set(t.machineIds || []);
+        const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
+        
+        if (newMachines.length > 0) {
+            studyIndex++;
+            
+            // If this is the current train, return its study number
+            if (t.id === train.id) {
+                return studyIndex;
+            }
+            
+            // Add covered machines
+            newMachines.forEach(machine => coveredMachines.add(machine));
+        }
+    }
+    
+    // If train wasn't selected, return 0
+    return 0;
+}
+
+
+// Helper function to get special case products for a specific line
+function getSpecialCaseProductsForLine(line) {
+    const specialCases = [];
+    
+    // Get all products for this line that are marked as critical (special cases)
+    const lineProducts = state.products.filter(product => 
+        product.line === line && product.isCritical === true
+    );
+    
+    lineProducts.forEach(product => {
+        if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+            // Find the ingredient with highest RPN for this product
+            let highestRpnIngredient = null;
+            let highestRpn = 0;
+            
+            product.activeIngredients.forEach(ingredient => {
+                try {
+                    const scores = calculateScores(ingredient);
+                    if (scores && scores.rpn > highestRpn) {
+                        highestRpn = scores.rpn;
+                        highestRpnIngredient = ingredient;
+                    }
+                } catch (error) {
+                    console.warn('Error calculating scores for ingredient:', ingredient, error);
+                }
+            });
+            
+            if (highestRpnIngredient) {
+                // Get machines that manufacture this product
+                const productMachines = state.machines.filter(machine => 
+                    product.machineIds && product.machineIds.includes(machine.id)
+                );
+                
+                specialCases.push({
+                    name: product.name,
+                    productCode: product.productCode,
+                    ingredient: highestRpnIngredient.name,
+                    dosageForm: product.productType,
+                    rpn: highestRpn,
+                    machines: productMachines.map(machine => machine.name),
+                    reason: product.criticalReason || null
+                });
+            }
+        }
+    });
+    
+    return specialCases.sort((a, b) => b.rpn - a.rpn);
+}
+
+// Helper function to get MACO value for a train using exact same logic as Product MACO Calculation
+function getMacoValueForTrain(train) {
+    try {
+        // Use getTrainData() to get the same train structure as Product MACO Calculation
+        const trainData = getTrainData();
+        const matchingTrain = trainData.find(t => t.id === train.id);
+        
+        if (!matchingTrain) {
+            return { value: 0, display: 'Not calculated' };
+        }
+        
+        // Calculate largest ESSA from trains in the same line and dosage form
+        const largestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
+        
+        if (largestEssa <= 0) {
+            return { value: 0, display: 'Not calculated' };
+        }
+        
+        // Use the exact same MACO calculation logic as Product MACO Calculation
+        const worstCaseType = getWorstCaseProductType(matchingTrain.products.map(p => p.productType));
+        const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+        const sf = sfConfig.max;
+        
+        const macoDose = (matchingTrain.lowestLtd * matchingTrain.minBsMddRatio) / sf;
+        const maco10ppm = 10 * matchingTrain.minMbsKg;
+        let macoHealth = Infinity;
+        let macoNoel = Infinity;
+        
+        // Check toxicity preference to determine which equations to show
+        const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+        const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+        
+        // Calculate PDE-based MACO if PDE is available and not hidden
+        if (matchingTrain.lowestPde !== null && !pdeHidden) {
+            macoHealth = matchingTrain.lowestPde * matchingTrain.minBsMddRatio;
+        }
+        
+        // Calculate NOEL-based MACO if LD50 is available and not hidden
+        if (matchingTrain.lowestLd50 !== null && !ld50Hidden) {
+            // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+            const noel = (matchingTrain.lowestLd50 * 70) / 2000; // NOEL in g
+            // Find minimum MDD from all ingredients in the train
+            const allMdds = matchingTrain.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+            const minMdd = Math.min(...allMdds);
+            // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+            macoNoel = (noel * matchingTrain.minMbsKg * 1000) / (sf * minMdd);
+        }
+        
+        const macoVisual = 0.004 * largestEssa;
+
+        // Build MACO values array conditionally based on toxicity data visibility
+        const allMacoValues = [
+            { name: '0.1% Therapeutic Dose', value: macoDose },
+            { name: '10 ppm Criterion', value: maco10ppm }
+        ];
+        
+        // Add PDE equation only if PDE is available and not hidden
+        if (matchingTrain.lowestPde !== null && !pdeHidden) {
+            allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+        }
+        
+        // Add NOEL equation only if LD50 is available and not hidden
+        if (matchingTrain.lowestLd50 !== null && !ld50Hidden) {
+            allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+        }
+        
+        // Always add visual clean limit
+        allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
+
+        const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+        const finalMaco = finalMacoResult.value;
+        const macoPerArea = largestEssa > 0 ? finalMaco / largestEssa : 0;
+        const macoPerSwab = macoPerArea * matchingTrain.assumedSsa;
+        
+        // Use the exact same display format as Product MACO Calculation
+        const display = macoPerSwab > 0 
+            ? `${macoPerSwab.toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })} mg/Swab`
+            : 'Not calculated';
+            
+        return { value: macoPerSwab, display };
+    } catch (error) {
+        console.error('Error calculating MACO for train:', train?.id || 'unknown', error);
+        return { value: 0, display: 'Not calculated' };
+    }
+}
+
+
+export function renderTrainSummary(lineFilter = null) {
+    console.log('renderTrainSummary called with lineFilter:', lineFilter);
+    
+    const container = document.getElementById('trainSummaryContainer');
+    const noTrainsMsg = document.getElementById('noTrainSummaryMessage');
+    
+    if (!container) {
+        console.error('trainSummaryContainer not found');
+        return;
+    }
+    
+    container.innerHTML = '';
+
+    // Use the same train generation logic as Worst Case view
+    let linesWithTrains = getTrainsGroupedByLine();
+    console.log('All lines with trains:', linesWithTrains);
+    
+    // Filter by line if specified
+    if (lineFilter) {
+        linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === lineFilter);
+        console.log('Filtered lines with trains for', lineFilter, ':', linesWithTrains);
+    }
+    
+    // Flatten all trains from all lines
+    const allTrains = [];
+    linesWithTrains.forEach(lineObj => {
+        lineObj.trains.forEach(train => {
+            allTrains.push({
+                ...train,
+                line: lineObj.line
+            });
+        });
+    });
+
+    // Apply consistent train ordering
+    const orderedTrains = getConsistentTrainOrder(allTrains);
+
+    if (orderedTrains.length === 0) {
+        noTrainsMsg.style.display = 'block';
+        container.style.display = 'none';
+        return;
+    }
+
+    // Filter trains if specific trains are selected for printing
+    let trainsToRender = orderedTrains;
+    if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
+        console.log('Filtering trains for print:', window.printSelectedTrain);
+        console.log('Available trains:', orderedTrains.map(t => t.id));
+        
+        if (Array.isArray(window.printSelectedTrain)) {
+            // Multiple trains selected
+            trainsToRender = orderedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)));
+        } else {
+            // Single train selected (backward compatibility)
+            trainsToRender = orderedTrains.filter(train => String(train.id) === String(window.printSelectedTrain));
+        }
+        
+        console.log('Filtered trains:', trainsToRender.map(t => t.id));
+    }
+
+    if (trainsToRender.length === 0) {
+        console.log('No trains to render after filtering');
+        noTrainsMsg.style.display = 'block';
+        container.style.display = 'none';
+        return;
+    }
+
+    noTrainsMsg.style.display = 'none';
+    container.style.display = 'block';
+
+    // Create a single comprehensive table with columns
+    // Build a mapping of legacy train id -> { line, number } for friendly labels
+    const idMap = utils.getTrainIdToLineNumberMap();
+
+    // Sort trains by line first, then by train ID
+    const sortedTrains = trainsToRender.sort((a, b) => {
+        if (a.line !== b.line) {
+            return a.line.localeCompare(b.line);
+        }
+        return a.id - b.id;
+    });
+
+    // Group trains by line and dosage form
+    const groupedTrains = {};
+    sortedTrains.forEach(train => {
+        const line = train.line || 'Unassigned';
+        const dosageForms = [...new Set(train.products.map(p => p.productType || 'Unknown'))];
+        const dosageFormKey = dosageForms.join(', ');
+        const groupKey = `${line}|${dosageFormKey}`;
+        
+        if (!groupedTrains[groupKey]) {
+            groupedTrains[groupKey] = {
+                line,
+                dosageForm: dosageFormKey,
+                trains: [],
+                totalStudies: 0
+            };
+        }
+        groupedTrains[groupKey].trains.push(train);
+    });
+
+    // Sort groups by line first, then by lowest train number within each dosage form
+    const sortedGroupKeys = Object.keys(groupedTrains).sort((a, b) => {
+        const groupA = groupedTrains[a];
+        const groupB = groupedTrains[b];
+        
+        // First sort by line
+        if (groupA.line !== groupB.line) {
+            const lineOrder = ['Solids', 'Semisolid', 'Liquids', 'Other'];
+            const aIndex = lineOrder.indexOf(groupA.line) !== -1 ? lineOrder.indexOf(groupA.line) : lineOrder.length;
+            const bIndex = lineOrder.indexOf(groupB.line) !== -1 ? lineOrder.indexOf(groupB.line) : lineOrder.length;
+            if (aIndex !== bIndex) return aIndex - bIndex;
+        }
+        
+        // Then sort by lowest train number within each dosage form
+        const aMinNumber = Math.min(...groupA.trains.map(t => t.number));
+        const bMinNumber = Math.min(...groupB.trains.map(t => t.number));
+        return aMinNumber - bMinNumber;
+    });
+
+    // Calculate total studies for each group and create study breakdown
+    sortedGroupKeys.forEach(groupKey => {
+        const group = groupedTrains[groupKey];
+        const trainsInGroup = group.trains;
+        
+        // Calculate RPN for each train and sort by RPN (highest first)
+        const trainsWithRPN = trainsInGroup.map(t => {
+            let highestRPN = 0;
+            let worstProduct = null;
+            let worstIngredient = null;
+            
+            if (t.products && t.products.length > 0) {
+                t.products.forEach(product => {
+                    if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                        product.activeIngredients.forEach(ingredient => {
+                            try {
+                                const scores = calculateScores(ingredient);
+                                if (scores && scores.rpn > highestRPN) {
+                                    highestRPN = scores.rpn;
+                                    worstProduct = product;
+                                    worstIngredient = ingredient;
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                            }
+                        });
+                    }
+                });
+            }
+            return { 
+                train: t, 
+                rpn: highestRPN, 
+                worstProduct, 
+                worstIngredient 
+            };
+        }).sort((a, b) => b.rpn - a.rpn);
+        
+        // Create study breakdown with machine coverage logic (using RPN-sorted trains for studies)
+        const allMachinesInGroup = new Set();
+        trainsInGroup.forEach(train => {
+            if (train.machineIds && train.machineIds.length > 0) {
+                train.machineIds.forEach(id => allMachinesInGroup.add(id));
+            }
+        });
+        
+        // For study calculation, we still need RPN-sorted trains
+        // Filter out trains without machines first
+        const trainsWithMachines = trainsInGroup.filter(t => 
+            t.machineIds && t.machineIds.length > 0
+        );
+        
+        const trainsWithRPNForStudies = trainsWithMachines.map(t => {
+            let highestRPN = 0;
+            let worstProduct = null;
+            let worstIngredient = null;
+            
+            if (t.products && t.products.length > 0) {
+                t.products.forEach(product => {
+                    if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                        product.activeIngredients.forEach(ingredient => {
+                            try {
+                                const scores = calculateScores(ingredient);
+                                if (scores && scores.rpn > highestRPN) {
+                                    highestRPN = scores.rpn;
+                                    worstProduct = product;
+                                    worstIngredient = ingredient;
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                            }
+                        });
+                    }
+                });
+            }
+            return { train: t, rpn: highestRPN, worstProduct, worstIngredient };
+        }).sort((a, b) => b.rpn - a.rpn); // Sort by RPN for study calculation
+        
+        const coveredMachines = new Set();
+        const studyBreakdown = [];
+        let studyIndex = 0;
+        
+        console.log(`Train Summary: Processing ${trainsWithRPNForStudies.length} trains for line ${groupKey}`);
+        console.log(`Train Summary: All machines in line:`, Array.from(allMachinesInGroup));
+        
+        // Use machine coverage algorithm (same as machine coverage view)
+        for (const { train, rpn, worstProduct, worstIngredient } of trainsWithRPNForStudies) {
+            if (train.machineIds && train.machineIds.length > 0) {
+                const trainMachines = new Set(train.machineIds);
+                const newMachines = [...trainMachines].filter(machineId => 
+                    allMachinesInGroup.has(machineId) && !coveredMachines.has(machineId)
+                );
+                
+                console.log(`Train Summary: Train ${train.id} - RPN: ${rpn}`);
+                console.log(`Train Summary: Train machines:`, Array.from(trainMachines));
+                console.log(`Train Summary: New machines:`, newMachines);
+                console.log(`Train Summary: Currently covered:`, Array.from(coveredMachines));
+                
+                if (newMachines.length > 0) {
+                    studyIndex++;
+                    const mapped = idMap.get(String(train.id));
+                    const trainLabel = mapped ? `Train ${mapped.number}` : `T${train.id}`;
+                    
+                    // Get machine names for covered machines only
+                    const coveredMachineNames = newMachines.map(id => {
+                        const machine = state.machines.find(m => m.id === id);
+                        return machine ? machine.name : `Unknown (ID: ${id})`;
+                    }).join(', ');
+                    
+                    studyBreakdown.push({
+                        studyNumber: studyIndex,
+                        trainLabel,
+                        productName: worstProduct ? worstProduct.name : 'Unknown',
+                        ingredientName: worstIngredient ? worstIngredient.name : 'Unknown',
+                        rpn: rpn.toFixed(2),
+                        machines: coveredMachineNames
+                    });
+                    
+                    console.log(`Train Summary: Selected train ${train.id} for study ${studyIndex}`);
+                    
+                    // Add these machines to the covered set
+                    newMachines.forEach(machineId => coveredMachines.add(machineId));
+                    console.log(`Train Summary: Now covered ${coveredMachines.size}/${allMachinesInGroup.size} machines`);
+                    
+                    // Stop if all machines are covered
+                    if (coveredMachines.size === allMachinesInGroup.size) {
+                        console.log(`Train Summary: All machines covered, stopping selection`);
+                        break;
+                    }
+                } else {
+                    console.log(`Train Summary: Skipped train ${train.id} - no new machines`);
+                }
+            }
+        }
+        
+        group.studyBreakdown = studyBreakdown;
+        console.log(`Train Summary: Selected ${studyBreakdown.length} studies for line ${groupKey}`);
+        
+        // Total studies = number of studies that will actually be displayed (with machines)
+        group.totalStudies = studyBreakdown.length;
+        
+        console.log(`Train Summary: Total studies for ${groupKey}: ${group.totalStudies}`);
+    });
+
+    // Log total studies across all groups
+    const totalStudiesAcrossAllGroups = sortedGroupKeys.reduce((total, groupKey) => {
+        return total + (groupedTrains[groupKey].totalStudies || 0);
+    }, 0);
+    console.log(`Train Summary: Total studies across all groups: ${totalStudiesAcrossAllGroups}`);
+
+    // Generate table rows grouped by dosage form
+    const tableRows = sortedGroupKeys.map(groupKey => {
+        const group = groupedTrains[groupKey];
+        const trainsInGroup = group.trains;
+        
+        // Sort trains by train ID for proper order (Train 1, Train 2, Train 3)
+        const trainsWithRPN = trainsInGroup.map(t => {
+            let highestRPN = 0;
+            if (t.products && t.products.length > 0) {
+                t.products.forEach(product => {
+                    if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                        product.activeIngredients.forEach(ingredient => {
+                            try {
+                                const scores = calculateScores(ingredient);
+                                if (scores && scores.rpn > highestRPN) {
+                                    highestRPN = scores.rpn;
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                            }
+                        });
+                    }
+                });
+            }
+            return { train: t, rpn: highestRPN };
+        }).sort((a, b) => a.train.id - b.train.id); // Sort by train ID instead of RPN
+        
+        // Generate rows for each train in the group
+        const trainRows = trainsWithRPN.map(({ train }, index) => {
+        // Get machine details
+        const machines = train.machineIds.map(id => {
+            const machine = state.machines.find(m => m.id === id);
+            return machine ? machine : { id, name: `Unknown (ID: ${id})`, machineNumber: 'N/A' };
+        });
+
+            // Format machines display (individual machines only)
+            const machinesDisplay = machines.map(m => m.name).join(', ');
+
+            // Format products display (product names only)
+        const productsDisplay = train.products.map(p => p.name).join(', ');
+
+        // Combine machines and products
+        const machinesAndProducts = `
+            <div class="mb-2">
+                <span class="font-semibold text-blue-600">Machines:</span><br>
+                <span class="text-sm">${machinesDisplay}</span>
+            </div>
+            <div>
+                <span class="font-semibold text-purple-600">Products:</span><br>
+                <span class="text-sm">${productsDisplay}</span>
+            </div>
+        `;
+
+        // Get worst case product for this train
+        const worstCaseProduct = getWorstCaseProductForTrain(train);
+        const worstCaseDisplay = worstCaseProduct 
+            ? `
+                <div class="text-sm">
+                    <div class="font-semibold text-orange-600">${worstCaseProduct.productName}</div>
+                    <div class="text-xs text-gray-600">Ingredient: ${worstCaseProduct.ingredientName}</div>
+                    <div class="text-xs font-bold text-red-600">RPN: ${worstCaseProduct.rpn.toFixed(2)}</div>
+                </div>
+            `
+            : '<span class="text-gray-500 text-sm">No data available</span>';
+
+        // Get MACO value for this train
+            const macoResult = getMacoValueForTrain(train);
+            const macoDisplay = macoResult.value > 0 
+                ? `<span class="font-semibold text-green-600">${macoResult.display}</span>`
+                : `<span class="text-gray-500">${macoResult.display}</span>`;
+
+        const mapped = idMap.get(String(train.id));
+            const trainLabel = mapped ? `Train ${mapped.number}` : `T${train.id}`;
+
+            // Only show studies cell on the first row, with rowspan for the entire group
+            const studiesCell = index === 0 
+                ? `<td class="px-4 py-4 text-center align-middle" style="color: var(--text-primary); border-left: 2px solid var(--border-color);" rowspan="${group.trains.length}">
+                    <div class="text-center">
+                        <div class="font-bold text-orange-600 text-lg mb-2">${group.totalStudies} Studies</div>
+                        <button 
+                            onclick="toggleStudyBreakdown('${groupKey}')" 
+                            class="p-1 mb-2" 
+                            style="color: var(--text-secondary);" 
+                            title="View Study Details"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/></svg>
+                        </button>
+                        <div id="breakdown-${groupKey}" class="text-xs space-y-1 hidden">
+                            ${group.studyBreakdown.map(study => `
+                                <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded border" style="border-color: var(--border-color);">
+                                    <div class="font-semibold text-blue-600">Study ${study.studyNumber}: ${study.trainLabel}</div>
+                                    <div class="text-gray-600 dark:text-gray-400">
+                                        <div><strong>Product:</strong> ${study.productName}</div>
+                                        <div><strong>Machines:</strong> ${study.machines}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                   </td>`
+                : '';
+
+        return `
+            <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color);">
+                    <td class="px-4 py-4 text-center" style="color: var(--text-primary);">
+                        <span class="font-semibold text-indigo-600">${group.line} - ${group.dosageForm}</span>
+                    </td>
+                <td class="px-4 py-4 text-center font-bold text-lg" style="color: var(--text-primary);">${trainLabel}</td>
+                <td class="px-4 py-4" style="color: var(--text-primary);">
+                    ${machinesAndProducts}
+                </td>
+                <td class="px-4 py-4" style="color: var(--text-primary);">
+                    ${worstCaseDisplay}
+                </td>
+                <td class="px-4 py-4 text-center" style="color: var(--text-primary);">
+                    ${macoDisplay}
+                </td>
+                    ${studiesCell}
+            </tr>
+        `;
+    }).join('');
+        
+        return trainRows;
+    }).join('');
+
+    // Generate special case products sections for each line
+    let specialCaseSections = '';
+    linesWithTrains.forEach(lineObj => {
+        const lineSpecialCases = getSpecialCaseProductsForLine(lineObj.line);
+        if (lineSpecialCases.length > 0) {
+            specialCaseSections += `
+                <div class="mt-6 mb-4">
+                    <h3 class="text-lg font-semibold mb-3 text-red-600">Special Case Products in ${lineObj.line}</h3>
+                    <div class="overflow-hidden rounded-lg border" style="border-color: var(--border-color);">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-200 dark:bg-gray-700">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Product</th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Machines</th>
+                                    <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                                ${lineSpecialCases.map(product => `
+                                    <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color);">
+                                        <td class="px-4 py-3" style="color: var(--text-primary);">
+                                            <div class="font-semibold">${product.name}</div>
+                                            <div class="text-sm text-gray-600">${product.ingredient}</div>
+                                        </td>
+                                        <td class="px-4 py-3" style="color: var(--text-primary);">
+                                            <div class="flex flex-wrap gap-1">
+                                                ${product.machines.map(machine => `<span class="px-2 py-1 rounded text-xs" style="background-color: var(--bg-accent); color: var(--text-primary);">${machine}</span>`).join('')}
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-3" style="color: var(--text-primary);">
+                                            <span class="text-sm">${product.reason || 'No reason provided'}</span>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+    });
+
+    container.innerHTML = `
+        <div class="overflow-hidden rounded-lg border" style="border-color: var(--border-color);">
+            <table class="w-full text-sm">
+                <thead class="bg-gray-200 dark:bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 13%;">Line - Dosage Form</th>
+                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 9%;">Train</th>
+                               <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 35%;">Machines & Products</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 20%;">Worst Case Product</th>
+                        <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); width: 10%;">MACO</th>
+                               <th class="px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary); border-left: 2px solid var(--border-color); width: 13%;">Studies Needed</th>
+                    </tr>
+                </thead>
+                <tbody style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                    ${tableRows}
+                </tbody>
+            </table>
+        </div>
+        ${specialCaseSections}
+    `;
+    
+    // Update dropdown options after rendering
+    populateTrainSummaryTrainOptions();
+    
+    // Hide loader when rendering is complete
+    hideLoader();
+}
+
+// Toggle function for study breakdown details
+window.toggleStudyBreakdown = function(groupKey) {
+    const breakdown = document.getElementById(`breakdown-${groupKey}`);
+    
+    if (breakdown.classList.contains('hidden')) {
+        breakdown.classList.remove('hidden');
+    } else {
+        breakdown.classList.add('hidden');
+    }
+};
+
+// Dropdown toggle functions for Train Summary export and print
+export function toggleTrainSummaryExportDropdown() {
+    const dropdown = document.getElementById('trainSummaryExportDropdown');
+    dropdown.classList.toggle('hidden');
+    populateTrainSummaryTrainOptions();
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!e.target.closest('#trainSummaryExportDropdown') && !e.target.closest('button[onclick="toggleTrainSummaryExportDropdown()"]')) {
+            dropdown.classList.add('hidden');
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
+}
+
+export function toggleTrainSummaryPrintDropdown() {
+    const dropdown = document.getElementById('trainSummaryPrintDropdown');
+    dropdown.classList.toggle('hidden');
+    populateTrainSummaryTrainOptions();
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!e.target.closest('#trainSummaryPrintDropdown') && !e.target.closest('button[onclick="toggleTrainSummaryPrintDropdown()"]')) {
+            dropdown.classList.add('hidden');
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
+}
+
+function populateTrainSummaryTrainOptions() {
+    import('./utils.js').then(utils => {
+        const { getTrainsGroupedByLine, getTrainData } = utils;
+        
+        // Use the same filtering logic as other tabs
+        let linesWithTrains = getTrainsGroupedByLine();
+        
+        // Apply current line filter (same as view)
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        // Get full train data for ID mapping
+        const fullTrainData = getTrainData();
+        const fullTrainByKey = {};
+        fullTrainData.forEach(t => { if (t.key) fullTrainByKey[t.key] = t; });
+        
+        // Flatten and get only visible trains (same as view)
+        const visibleTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                const fullTrain = fullTrainByKey[train.key];
+                if (fullTrain) {
+                    visibleTrains.push({ ...train, id: fullTrain.id, number: fullTrain.number || fullTrain.id });
+                }
+            });
+        });
+        
+        // Populate export dropdown with checkboxes
+        const exportContainer = document.getElementById('trainSummaryExportTrainOptions');
+        if (exportContainer) {
+            exportContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 export-trainsummary-train-checkbox';
+                checkbox.value = train.id;
+                checkbox.onchange = () => updateAllTrainSummaryTrainsCheckbox('export');
+                
+                const span = document.createElement('span');
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                exportContainer.appendChild(labelElement);
+            });
+        }
+        
+        // Populate print dropdown with checkboxes
+        const printContainer = document.getElementById('trainSummaryPrintTrainOptions');
+        if (printContainer) {
+            printContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 print-trainsummary-train-checkbox';
+                checkbox.value = train.id;
+                checkbox.onchange = () => updateAllTrainSummaryTrainsCheckbox('print');
+                
+                const span = document.createElement('span');
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                printContainer.appendChild(labelElement);
+            });
+        }
+    }).catch(error => {
+        console.error('Error populating train summary train options:', error);
+    });
+}
+
+// Multi-select train functions for Train Summary
+export function toggleAllTrainSummaryTrainsSelection(type) {
+    const allCheckbox = document.getElementById(`${type}TrainSummaryAllTrainsCheckbox`);
+    const trainCheckboxes = document.querySelectorAll(`.${type}-trainsummary-train-checkbox`);
+    
+    trainCheckboxes.forEach(checkbox => {
+        checkbox.checked = allCheckbox.checked;
+    });
+}
+
+export function updateAllTrainSummaryTrainsCheckbox(type) {
+    const allCheckbox = document.getElementById(`${type}TrainSummaryAllTrainsCheckbox`);
+    const trainCheckboxes = document.querySelectorAll(`.${type}-trainsummary-train-checkbox`);
+    const checkedBoxes = document.querySelectorAll(`.${type}-trainsummary-train-checkbox:checked`);
+    
+    // Update "All" checkbox based on individual selections
+    if (checkedBoxes.length === 0) {
+        allCheckbox.checked = false;
+        allCheckbox.indeterminate = false;
+    } else if (checkedBoxes.length === trainCheckboxes.length) {
+        allCheckbox.checked = true;
+        allCheckbox.indeterminate = false;
+    } else {
+        allCheckbox.checked = false;
+        allCheckbox.indeterminate = true;
+    }
+}
+
+export function executeTrainSummaryExportSelection() {
+    import('./ui.js').then(ui => {
+        const { showCustomAlert, exportTrainSummaryToExcel } = ui;
+        const allCheckbox = document.getElementById('exportTrainSummaryAllTrainsCheckbox');
+        const selectedTrains = [];
+        
+        if (allCheckbox.checked) {
+            // Export all trains
+            exportTrainSummaryToExcel('all');
+        } else {
+            // Get selected individual trains
+            const checkedBoxes = document.querySelectorAll('.export-trainsummary-train-checkbox:checked');
+            checkedBoxes.forEach(checkbox => {
+                selectedTrains.push(checkbox.value);
+            });
+            
+            if (selectedTrains.length === 0) {
+                showCustomAlert("No Selection", "Please select at least one train to export.");
+                return;
+            }
+            
+            // Export selected trains
+            exportTrainSummaryToExcel(selectedTrains);
+        }
+        
+        // Close dropdown
+        document.getElementById('trainSummaryExportDropdown').classList.add('hidden');
+    }).catch(error => {
+        console.error('Error loading export function:', error);
+        alert('Error loading export function');
+    });
+}
+
+export function executeTrainSummaryPrintSelection() {
+    try {
+        const allCheckbox = document.getElementById('printTrainSummaryAllTrainsCheckbox');
+        const checkedBoxes = document.querySelectorAll('.print-trainsummary-train-checkbox:checked');
+        
+        // Debug: Check what we have
+        console.log('All checkbox checked:', allCheckbox ? allCheckbox.checked : 'not found');
+        console.log('Individual checkboxes found:', checkedBoxes.length);
+        
+        if (!allCheckbox) {
+            alert('Print dropdown elements not found. Please try refreshing the page.');
+            return;
+        }
+        
+        import('./ui.js').then(ui => {
+            const { showCustomAlert, printCurrentView } = ui;
+            const selectedTrains = [];
+            
+            if (allCheckbox.checked) {
+                console.log('Printing all trains');
+                // Print all trains
+                printCurrentView('trainSummary', 'all');
+            } else {
+                // Get selected individual trains
+                checkedBoxes.forEach(checkbox => {
+                    selectedTrains.push(checkbox.value);
+                });
+                
+                console.log('Selected trains for printing:', selectedTrains);
+                
+                if (selectedTrains.length === 0) {
+                    showCustomAlert("No Selection", "Please select at least one train to print.");
+                    return;
+                }
+                
+                // Print selected trains
+                printCurrentView('trainSummary', selectedTrains);
+            }
+            
+            // Close dropdown
+            const dropdown = document.getElementById('trainSummaryPrintDropdown');
+            if (dropdown) {
+                dropdown.classList.add('hidden');
+            }
+        }).catch(error => {
+            console.error('Error loading print function:', error);
+            alert('Error loading print function: ' + error.message);
+        });
+    } catch (error) {
+        console.error('Error in executeTrainSummaryPrintSelection:', error);
+        alert('Print function error: ' + error.message);
+    }
+}
+
+// Make new functions globally available
+window.toggleTrainSummaryExportDropdown = toggleTrainSummaryExportDropdown;
+window.toggleTrainSummaryPrintDropdown = toggleTrainSummaryPrintDropdown;
+window.toggleAllTrainSummaryTrainsSelection = toggleAllTrainSummaryTrainsSelection;
+window.updateAllTrainSummaryTrainsCheckbox = updateAllTrainSummaryTrainsCheckbox;
+window.executeTrainSummaryExportSelection = executeTrainSummaryExportSelection;
+window.executeTrainSummaryPrintSelection = executeTrainSummaryPrintSelection;

@@ -2,7 +2,7 @@
 // js/dashboardView.js
 // js/utils.js
 
-import { products, machines, trainIdMap, scoringCriteria, productTypeHierarchy, safetyFactorConfig } from './state.js';
+import { products, machines, trainIdMap, scoringCriteria, productTypeHierarchy, safetyFactorConfig, getSafetyFactorForDosageForm } from './state.js';
 
 // --- TOXICITY PREFERENCE LOGIC ---
 export function getToxicityPreference() {
@@ -607,7 +607,8 @@ export function getLargestEssaForLineAndDosageForm(targetTrain, allTrains) {
 }
 
 export function getMacoPerSwabForTrain(train, largestEssa) {
-    const sfConfig = safetyFactorConfig[getWorstCaseProductType(train.products.map(p => p.productType))] || safetyFactorConfig['Other'];
+    const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
+    const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
     const sf = sfConfig.max;
     
     const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;

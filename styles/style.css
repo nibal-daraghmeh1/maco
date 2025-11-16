@@ -64,6 +64,56 @@
         .tab-button.active-tab { color: var(--gradient-mid); border-image: linear-gradient(to right, var(--gradient-start), var(--gradient-mid)) 1; font-weight: 600; }
         .tab-content { display: none; }
         .tab-content.active-tab-content { display: block; }
+        
+        /* Scoring Tab Styles */
+        .scoring-tab-button { 
+            background-color: transparent; 
+            color: var(--text-secondary); 
+            border-bottom: 3px solid transparent; 
+            transition: all 0.3s ease; 
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem 0.375rem 0 0;
+        }
+        .scoring-tab-button:hover { 
+            color: var(--text-primary); 
+            background-color: var(--bg-accent);
+        }
+        .scoring-tab-button.active-scoring-tab { 
+            color: white; 
+            background-color: #3b82f6;
+            border-bottom: 3px solid #3b82f6;
+            font-weight: 600; 
+        }
+        html.dark .scoring-tab-button.active-scoring-tab {
+            background-color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+
+        /* Machine Line Tab Styles (reuse scoring tab styles) */
+        .machine-line-tab-button { 
+            background-color: transparent; 
+            color: var(--text-secondary); 
+            border-bottom: 3px solid transparent; 
+            transition: all 0.3s ease; 
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem 0.375rem 0 0;
+        }
+        .machine-line-tab-button:hover { 
+            color: var(--text-primary); 
+            background-color: var(--bg-accent);
+        }
+        .machine-line-tab-button.active-machine-line-tab { 
+            color: white; 
+            background-color: #3b82f6;
+            border-bottom: 3px solid #3b82f6;
+            font-weight: 600; 
+        }
+        html.dark .machine-line-tab-button.active-machine-line-tab {
+            background-color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
 
         input, select, textarea { background-color: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); transition: all 0.2s ease-in-out; border-radius: 0.375rem; }
         input:focus, select:focus, textarea:focus {

@@ -598,26 +598,36 @@ function changeTab(tabId, element) {
  * The main initialization function for the entire application.
  * Runs once when the DOM is loaded.
  */
-function initializeApp() {
+async function initializeApp() {
     ui.showLoader();
     try {
+        // Import IndexedDB module
+        const db = await import('./indexedDB.js');
+        
+        // Migrate data from localStorage to IndexedDB (one-time migration)
+        await db.migrateFromLocalStorage();
+        
         // Prompt for org and user ID (replace with a real login UI for production)
         // let orgId = localStorage.getItem('orgId') || prompt('Enter your organization ID:');
         // let userId = localStorage.getItem('userId') || prompt('Enter your user ID:');
-         let orgId, userId;
+        let orgId = await db.getItem('orgId') || localStorage.getItem('orgId');
+        let userId = await db.getItem('userId') || localStorage.getItem('userId');
         if (!orgId) orgId = 'defaultOrg';
         if (!userId) userId = 'defaultUser';
-        localStorage.setItem('orgId', orgId);
+        await db.setItem('orgId', orgId);
+        await db.setItem('userId', userId);
+        localStorage.setItem('orgId', orgId); // Keep in localStorage for immediate access
         localStorage.setItem('userId', userId);
         window.orgId = orgId;
         window.userId = userId;
 
-        // Set theme from localStorage
-        if (localStorage.getItem('theme') === 'dark') { ui.toggleDarkMode(true); } 
+        // Set theme from IndexedDB (with localStorage fallback)
+        const theme = await db.getItem('theme') || localStorage.getItem('theme');
+        if (theme === 'dark') { ui.toggleDarkMode(true); } 
         else { ui.toggleDarkMode(false); }
 
-        // Load all data from localStorage
-        ui.loadAllDataFromLocalStorage();
+        // Load all data from IndexedDB
+        await ui.loadAllDataFromLocalStorage();
         // After loading, recalculate dynamic "nextId" counters
         if (state.products.length > 0) {
             state.setNextProductId(Math.max(0, ...state.products.map(p => p.id)) + 1);
@@ -700,10 +710,13 @@ document.addEventListener('DOMContentLoaded', function() {
     Object.assign(window, ui, utils, productViewWithoutHandler, machineView, worstCaseViewWithoutHandler, macoProductViewWithoutPrint, macoDetergentView, dashboardView, summaryView, trainSummaryView, scoringView);
     // --- EVENT LISTENERS FOR STATIC ELEMENTS ---
     // These are elements that are always present in your HTML.
-    document.getElementById('theme-toggle').addEventListener('click', () => { 
+    document.getElementById('theme-toggle').addEventListener('click', async () => { 
         const isDark = document.documentElement.classList.contains('dark'); 
         ui.toggleDarkMode(!isDark); 
-        localStorage.setItem('theme', !isDark ? 'dark' : 'light'); 
+        const theme = !isDark ? 'dark' : 'light';
+        const db = await import('./indexedDB.js');
+        await db.setItem('theme', theme);
+        localStorage.setItem('theme', theme); // Also save to localStorage for immediate access
     });
 
     window.addEventListener('beforeprint', () => {

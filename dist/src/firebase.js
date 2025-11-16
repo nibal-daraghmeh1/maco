@@ -1,1 +1,27 @@
-const a3_0xa0dcfa=a3_0x14c3;(function(_0x530fc8,_0x2aa8b){const _0x5d1791=a3_0x14c3,_0x3adaef=_0x530fc8();while(!![]){try{const _0xe8536f=parseInt(_0x5d1791(0xef))/0x1*(-parseInt(_0x5d1791(0xf6))/0x2)+-parseInt(_0x5d1791(0xe6))/0x3*(-parseInt(_0x5d1791(0xec))/0x4)+parseInt(_0x5d1791(0xe9))/0x5*(-parseInt(_0x5d1791(0xf4))/0x6)+parseInt(_0x5d1791(0xe5))/0x7+-parseInt(_0x5d1791(0xe7))/0x8+-parseInt(_0x5d1791(0xea))/0x9*(-parseInt(_0x5d1791(0xf3))/0xa)+parseInt(_0x5d1791(0xf2))/0xb*(parseInt(_0x5d1791(0xed))/0xc);if(_0xe8536f===_0x2aa8b)break;else _0x3adaef['push'](_0x3adaef['shift']());}catch(_0x556793){_0x3adaef['push'](_0x3adaef['shift']());}}}(a3_0x5828,0x42a8a));import{initializeApp as a3_0x34173a}from'firebase/app';function a3_0x5828(){const _0x5802b0=['error','805NkefWL','3bobsRp','3487432PXrKWo','[Firebase]\x20Error\x20initializing\x20Firebase:','115rbzFoe','3882537JCvAfe','G-H1FZSW8L3K','1668948XjLhtC','12JjOCtc','maco-a16fb.firebaseapp.com','287223BGbnXA','maco-a16fb.firebasestorage.app','log','6814170LUdTsO','10HKBhNy','123138njPJGL','maco-a16fb','2BigbLs','1:14843865865:web:a42f60266e5f471dce81d8'];a3_0x5828=function(){return _0x5802b0;};return a3_0x5828();}import{getFirestore as a3_0x45422f}from'firebase/firestore';const i={'apiKey':'AIzaSyBXq1WuHg8SNfLs0ft7to35-Wp8KhcKgVw','authDomain':a3_0xa0dcfa(0xee),'projectId':a3_0xa0dcfa(0xf5),'storageBucket':a3_0xa0dcfa(0xf0),'messagingSenderId':'14843865865','appId':a3_0xa0dcfa(0xf7),'measurementId':a3_0xa0dcfa(0xeb)};function a3_0x14c3(_0x4b5db4,_0x314c89){const _0x582843=a3_0x5828();return a3_0x14c3=function(_0x14c37c,_0x48444f){_0x14c37c=_0x14c37c-0xe5;let _0x5bafe2=_0x582843[_0x14c37c];return _0x5bafe2;},a3_0x14c3(_0x4b5db4,_0x314c89);}let r,o;try{console[a3_0xa0dcfa(0xf1)]('[Firebase]\x20Initializing\x20Firebase\x20app...'),r=a3_0x34173a(i),o=a3_0x45422f(r),console['log']('[Firebase]\x20Firebase\x20initialized\x20successfully.');}catch(a3_0x3f433e){console[a3_0xa0dcfa(0xf8)](a3_0xa0dcfa(0xe8),a3_0x3f433e);}export{o as db};
+// Replace the below config with your Firebase project settings from the Firebase Console
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBXq1WuHg8SNfLs0ft7to35-Wp8KhcKgVw",
+  authDomain: "maco-a16fb.firebaseapp.com",
+  projectId: "maco-a16fb",
+  storageBucket: "maco-a16fb.firebasestorage.app",
+  messagingSenderId: "14843865865",
+  appId: "1:14843865865:web:a42f60266e5f471dce81d8",
+  measurementId: "G-H1FZSW8L3K"
+};
+
+
+
+let app, db;
+try {
+  console.log('[Firebase] Initializing Firebase app...');
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  console.log('[Firebase] Firebase initialized successfully.');
+} catch (e) {
+  console.error('[Firebase] Error initializing Firebase:', e);
+}
+
+export { db };

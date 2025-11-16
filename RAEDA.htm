@@ -433,7 +433,14 @@
                          </button>
                     </div>
                 </div>
-                <div id="machinesContainer" class="space-y-8">
+                <!-- Tab Navigation -->
+                <div id="machineTabNavigation" class="border-b mb-6" style="border-color: var(--border-color); display: none;">
+                    <nav class="-mb-px flex gap-4" aria-label="Machine Line Tabs">
+                        <!-- Tab buttons will be rendered here by JS -->
+                    </nav>
+                </div>
+                <!-- Tab Content -->
+                <div id="machinesContainer">
                     <!-- Machines will be rendered here by JS -->
                 </div>
                 <p id="noMachinesMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">
@@ -621,6 +628,14 @@
                             </button>
                         </div>
                     </div>
+                    <!-- Tab Navigation -->
+                    <div class="border-b mb-6" style="border-color: var(--border-color);">
+                        <nav class="-mb-px flex gap-4" aria-label="Scoring Tabs">
+                            <button onclick="changeScoringTab('productRpn', this)" class="scoring-tab-button py-3 px-1 text-sm font-medium active-scoring-tab">Product RPN Criteria</button>
+                            <button onclick="changeScoringTab('locationRpn', this)" class="scoring-tab-button py-3 px-1 text-sm font-medium">Location RPN Criteria</button>
+                        </nav>
+                    </div>
+                    <!-- Tab Content -->
                     <div id="scoringSystemContainer"></div>
                  </div>
             </div>

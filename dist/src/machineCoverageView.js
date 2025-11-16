@@ -1,1 +1,685 @@
-function a5_0x3c04(_0x3b582c,_0x2fce4e){const _0x59a5e0=a5_0x59a5();return a5_0x3c04=function(_0x3c046a,_0x34e549){_0x3c046a=_0x3c046a-0x1b0;let _0x5e7c18=_0x59a5e0[_0x3c046a];return _0x5e7c18;},a5_0x3c04(_0x3b582c,_0x2fce4e);}const a5_0x3d6d34=a5_0x3c04;(function(_0x3c2ab8,_0x1826f6){const _0xd8f5ba=a5_0x3c04,_0x1ddf2a=_0x3c2ab8();while(!![]){try{const _0x1f00f1=-parseInt(_0xd8f5ba(0x1c9))/0x1+-parseInt(_0xd8f5ba(0x1f3))/0x2+parseInt(_0xd8f5ba(0x22b))/0x3*(-parseInt(_0xd8f5ba(0x1ce))/0x4)+-parseInt(_0xd8f5ba(0x218))/0x5+-parseInt(_0xd8f5ba(0x1b9))/0x6*(-parseInt(_0xd8f5ba(0x1bd))/0x7)+parseInt(_0xd8f5ba(0x236))/0x8+-parseInt(_0xd8f5ba(0x1e1))/0x9*(-parseInt(_0xd8f5ba(0x1b2))/0xa);if(_0x1f00f1===_0x1826f6)break;else _0x1ddf2a['push'](_0x1ddf2a['shift']());}catch(_0xc7a9da){_0x1ddf2a['push'](_0x1ddf2a['shift']());}}}(a5_0x59a5,0x96fa7));import{getTrainData as a5_0x191111,getTrainIdToLineNumberMap as a5_0x564814,countStudiesForTrains as a5_0x427309,getConsistentTrainOrder as a5_0x4e9ba6,calculateScores as a5_0x1a4bff}from'./utils.js';import{products as a5_0x170396,machines as a5_0x46f894}from'./state.js';class s{constructor(){const _0x4ac1c8=a5_0x3c04,_0x1ed1e1={'Plbth':_0x4ac1c8(0x238),'zCggY':'#f59e0b','HFZmr':'#facc15','utSgj':'#60a5fa','lPOwk':'#a78bfa'};this[_0x4ac1c8(0x1be)]=[],this[_0x4ac1c8(0x22d)]=[],this[_0x4ac1c8(0x227)]=[],this[_0x4ac1c8(0x1e4)]=[_0x1ed1e1[_0x4ac1c8(0x215)],_0x1ed1e1[_0x4ac1c8(0x214)],_0x1ed1e1[_0x4ac1c8(0x1ef)],'#34d399',_0x1ed1e1[_0x4ac1c8(0x1cb)],_0x1ed1e1[_0x4ac1c8(0x21d)]];}['generateTable'](_0xe15366){const _0x3a1bc1=a5_0x3c04;return this[_0x3a1bc1(0x216)](_0xe15366),this[_0x3a1bc1(0x1f8)]();}[a5_0x3d6d34(0x216)](_0x2a52cf){const _0x59737d=a5_0x3d6d34,_0x2aba77={'mxtnu':_0x59737d(0x207),'EVyCS':function(_0x8d6e20,_0x502c6f){return _0x8d6e20(_0x502c6f);}},_0x4290b0={};_0x2a52cf[_0x59737d(0x1d4)]['forEach'](_0x3ded97=>{const _0x474cba=_0x59737d,_0x55b0ac=_0x3ded97[_0x474cba(0x205)]||_0x2aba77['mxtnu'];_0x4290b0[_0x55b0ac]||(_0x4290b0[_0x55b0ac]=[]),_0x4290b0[_0x55b0ac][_0x474cba(0x23b)](_0x3ded97);});const _0x309cb6=[];Object[_0x59737d(0x1f4)](_0x4290b0)[_0x59737d(0x234)](_0x5db6b7=>{const _0x340444=_0x59737d,_0x2582c6=_0x4290b0[_0x5db6b7];_0x309cb6[_0x340444(0x23b)]({'dosageForm':_0x5db6b7,'trains':_0x2582c6});}),_0x309cb6[_0x59737d(0x234)](_0x207b45=>{const _0x4434a1=_0x59737d;_0x207b45[_0x4434a1(0x1d4)]=_0x2aba77[_0x4434a1(0x1e2)](a5_0x4e9ba6,_0x207b45[_0x4434a1(0x1d4)]);}),this[_0x59737d(0x22d)]=[],_0x309cb6[_0x59737d(0x234)](_0x154b53=>{const _0x2f6465=_0x59737d,_0x3889f6=_0x154b53[_0x2f6465(0x1d4)][_0x2f6465(0x1d9)]((_0xd1783b,_0x77bb69)=>parseInt(_0xd1783b[_0x2f6465(0x1b7)]?.[_0x2f6465(0x231)](/\D/g,'')||'0')-parseInt(_0x77bb69['trainId']?.['replace'](/\D/g,'')||'0'));this['allTrains'][_0x2f6465(0x23b)](..._0x3889f6);}),this['machines']=[...new Set(_0x2a52cf[_0x59737d(0x1d4)][_0x59737d(0x1b1)](_0x43dee8=>_0x43dee8[_0x59737d(0x1d1)]))][_0x59737d(0x1d9)](),this[_0x59737d(0x1bb)]();}[a5_0x3d6d34(0x1bb)](){const _0x5ece2f=a5_0x3d6d34,_0x8980c8={'rvmQo':'Unknown','Jghza':_0x5ece2f(0x1fc),'scziY':function(_0x442a50,_0x26c8af){return _0x442a50%_0x26c8af;},'eFwxT':function(_0x4c182b,_0x56dad2){return _0x4c182b-_0x56dad2;}},_0x5e2e73={};this[_0x5ece2f(0x22d)][_0x5ece2f(0x234)](_0x235824=>{const _0x395b9c=_0x5ece2f,_0x1f736a=_0x235824['productGroup']||_0x8980c8['rvmQo'];_0x5e2e73[_0x1f736a]||(_0x5e2e73[_0x1f736a]=[]),_0x5e2e73[_0x1f736a][_0x395b9c(0x23b)](_0x235824);}),this[_0x5ece2f(0x1be)]=[];let _0x38dcd8=0x0;Object[_0x5ece2f(0x1f4)](_0x5e2e73)[_0x5ece2f(0x234)](_0xf46856=>{const _0x1bbb48=_0x5ece2f,_0x5b6c1b=_0x5e2e73[_0xf46856],_0x236f9e=[...new Set(_0x5b6c1b[_0x1bbb48(0x1b1)](_0x27b189=>_0x27b189[_0x1bbb48(0x1d1)]))],_0x8e32e9=new Set(),_0x5ab3a0=_0x5b6c1b[_0x1bbb48(0x21c)](_0x131d0e=>({'train':_0x131d0e,'rpn':_0x131d0e[_0x1bbb48(0x20c)]||0x0}))['sort']((_0x195aef,_0x1b7432)=>_0x1b7432[_0x1bbb48(0x20c)]-_0x195aef['rpn']);console[_0x1bbb48(0x1e5)](_0x1bbb48(0x203)+_0x5b6c1b[_0x1bbb48(0x1cc)]+_0x1bbb48(0x21e)+_0xf46856),console[_0x1bbb48(0x1e5)](_0x8980c8[_0x1bbb48(0x21a)],_0x5ab3a0[_0x1bbb48(0x21c)](_0x5b9a0d=>{const _0x5e38bd=_0x1bbb48,_0x36cefc=_0x5b9a0d['train'][_0x5e38bd(0x1da)]||_0x5b9a0d[_0x5e38bd(0x20f)][_0x5e38bd(0x1c3)]?.['id'];return _0x5b9a0d[_0x5e38bd(0x20f)]['trainId']+_0x5e38bd(0x217)+_0x36cefc+_0x5e38bd(0x23c)+_0x5b9a0d[_0x5e38bd(0x20c)]+')';}));for(const {train:_0x1d15bf,rpn:_0x532853}of _0x5ab3a0){const _0x49860b=[...new Set(_0x1d15bf[_0x1bbb48(0x1d1)])]['filter'](_0x4d4fd3=>!_0x8e32e9['has'](_0x4d4fd3)),_0x5466e3=_0x1d15bf[_0x1bbb48(0x1da)]||_0x1d15bf[_0x1bbb48(0x1c3)]?.['id'];if(console[_0x1bbb48(0x1e5)]('Machine\x20Coverage:\x20Checking\x20train\x20'+_0x1d15bf['trainId']+_0x1bbb48(0x217)+_0x5466e3+_0x1bbb48(0x1e7)+_0x532853+',\x20new\x20machines:\x20'+_0x49860b[_0x1bbb48(0x1cc)]),_0x49860b[_0x1bbb48(0x1cc)]>0x0){if(_0x38dcd8++,console['log'](_0x1bbb48(0x1ba)+_0x1d15bf[_0x1bbb48(0x1b7)]+_0x1bbb48(0x239)+_0x38dcd8),this[_0x1bbb48(0x1be)][_0x1bbb48(0x23b)]({..._0x1d15bf,'studyNumber':_0x38dcd8,'studyColor':this[_0x1bbb48(0x1e4)][_0x8980c8[_0x1bbb48(0x20a)](_0x8980c8[_0x1bbb48(0x1dc)](_0x38dcd8,0x1),this[_0x1bbb48(0x1e4)]['length'])],'newMachinesCovered':_0x49860b,'trainInternalId':_0x5466e3}),_0x49860b[_0x1bbb48(0x234)](_0x5deda7=>_0x8e32e9['add'](_0x5deda7)),_0x8e32e9[_0x1bbb48(0x21b)]===_0x236f9e[_0x1bbb48(0x1cc)])break;}else console['log'](_0x1bbb48(0x232)+_0x1d15bf['trainId']+_0x1bbb48(0x1fd));}}),console[_0x5ece2f(0x1e5)](_0x5ece2f(0x1c5)+this[_0x5ece2f(0x1be)][_0x5ece2f(0x1cc)]+'\x20studies\x20total');}[a5_0x3d6d34(0x1f8)](){const _0x27b758=a5_0x3d6d34;return _0x27b758(0x1fb)+this['getLineAndDosageForm']()+_0x27b758(0x1bf)+this[_0x27b758(0x1e3)]()+_0x27b758(0x22a)+this['generateTableBody']()+_0x27b758(0x1b6)+this[_0x27b758(0x229)]()+_0x27b758(0x1f9)+this[_0x27b758(0x20b)]()+_0x27b758(0x1f7);}[a5_0x3d6d34(0x1e3)](){const _0x987736=a5_0x3d6d34;return'\x0a\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Train</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Product\x20Group</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Worst\x20Case\x20Product</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>RPN</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Study\x20No.</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+this[_0x987736(0x227)][_0x987736(0x21c)](_0x1a13e7=>'<th\x20class=\x22machine-header\x22>'+_0x1a13e7+_0x987736(0x1eb))[_0x987736(0x20e)]('')+_0x987736(0x1c1);}['generateTableBody'](){const _0x1ae014=a5_0x3d6d34,_0x3dbdef={'GToUN':function(_0x12b315,_0x9ed2d){return _0x12b315||_0x9ed2d;},'KBrmU':function(_0x4cc4db,_0x1b0bd2){return _0x4cc4db===_0x1b0bd2;},'njHnW':function(_0x851ad8,_0xa8eb1c){return _0x851ad8===_0xa8eb1c;},'UMooR':function(_0x1f89a8,_0x59ed4f){return _0x1f89a8&&_0x59ed4f;},'fuapZ':function(_0x32929f,_0x186bb8){return _0x32929f-_0x186bb8;},'HkSbh':function(_0x3a9ea6,_0x1f48e5){return _0x3a9ea6&&_0x1f48e5;},'UHQzo':function(_0x4324ab,_0x127eb4){return _0x4324ab&&_0x127eb4;},'tYggg':function(_0x5715c1,_0x19e4bf){return _0x5715c1!==_0x19e4bf;},'ensEK':_0x1ae014(0x1fa)};return'<tbody>'+[...this['allTrains']]['sort']((_0x907433,_0x4d6903)=>{const _0x3423d1=_0x1ae014,_0x135359={'VmDeO':function(_0x4114e6,_0x5050ac){const _0x31dc5f=a5_0x3c04;return _0x3dbdef[_0x31dc5f(0x200)](_0x4114e6,_0x5050ac);}},_0x27d746=this['selectedTrains'][_0x3423d1(0x1ff)](_0x2fc644=>{const _0x1f43e6=_0x3423d1,_0x224a54=_0x907433[_0x1f43e6(0x1da)]||_0x907433[_0x1f43e6(0x1c3)]?.['id'],_0x4b0510=_0x2fc644['trainInternalId']||_0x2fc644['originalTrain']?.['id'];return!(!_0x224a54||!_0x4b0510||_0x224a54!==_0x4b0510)&&_0x135359[_0x1f43e6(0x1b0)](_0x2fc644['productGroup'],_0x907433[_0x1f43e6(0x205)]);}),_0x42e074=this['selectedTrains']['find'](_0x36a2af=>{const _0x33c20a=_0x3423d1,_0x172ed6=_0x4d6903['trainInternalId']||_0x4d6903[_0x33c20a(0x1c3)]?.['id'],_0x5df502=_0x36a2af[_0x33c20a(0x1da)]||_0x36a2af[_0x33c20a(0x1c3)]?.['id'];return!(_0x3dbdef[_0x33c20a(0x1f5)](!_0x172ed6,!_0x5df502)||_0x172ed6!==_0x5df502)&&_0x3dbdef[_0x33c20a(0x1cd)](_0x36a2af[_0x33c20a(0x205)],_0x4d6903[_0x33c20a(0x205)]);});return _0x3dbdef['UMooR'](_0x27d746,_0x42e074)?_0x3dbdef[_0x3423d1(0x1f2)](_0x27d746['studyNumber'],_0x42e074['studyNumber']):_0x3dbdef[_0x3423d1(0x208)](_0x27d746,!_0x42e074)?-0x1:_0x3dbdef[_0x3423d1(0x1c2)](!_0x27d746,_0x42e074)?0x1:0x0;})['map'](_0x23ae4c=>{const _0x2ca117=_0x1ae014,_0x5bed41={'OFEIm':_0x3dbdef[_0x2ca117(0x1d5)]},_0x501237=this['selectedTrains'][_0x2ca117(0x1ff)](_0x438335=>{const _0x32492e=_0x2ca117,_0x111036=_0x23ae4c[_0x32492e(0x1da)]||_0x23ae4c[_0x32492e(0x1c3)]?.['id'],_0x30b2b8=_0x438335[_0x32492e(0x1da)]||_0x438335[_0x32492e(0x1c3)]?.['id'];return!(!_0x111036||!_0x30b2b8||_0x3dbdef[_0x32492e(0x1ec)](_0x111036,_0x30b2b8))&&_0x3dbdef[_0x32492e(0x200)](_0x438335[_0x32492e(0x205)],_0x23ae4c[_0x32492e(0x205)]);}),_0x22d8c8=_0x501237?_0x501237[_0x2ca117(0x1d2)]:null,_0x1d2037=_0x22d8c8?_0x2ca117(0x1e9)+_0x22d8c8+';\x22':'',_0x21633a=this[_0x2ca117(0x227)][_0x2ca117(0x21c)](_0x481b1f=>{const _0x367d4d=_0x2ca117,_0x5c5e95=_0x23ae4c['usedMachines'][_0x367d4d(0x20d)](_0x481b1f);return'<td\x20class=\x22machine-cell\x22\x20style=\x22background-color:\x20'+(_0x501237&&_0x501237[_0x367d4d(0x226)]&&_0x501237[_0x367d4d(0x226)][_0x367d4d(0x20d)](_0x481b1f)?_0x22d8c8:_0x5bed41[_0x367d4d(0x1c7)])+';\x20text-align:center;\x20font-weight:700;\x22>'+(_0x5c5e95?'✓':'')+_0x367d4d(0x204);})[_0x2ca117(0x20e)](''),_0x160ddb=_0x501237?'Yes':'No',_0x184306=_0x23ae4c[_0x2ca117(0x205)]||'-',_0x544e98=_0x23ae4c[_0x2ca117(0x228)]||'-';return console[_0x2ca117(0x1e5)](_0x2ca117(0x1dd)+_0x23ae4c[_0x2ca117(0x1b7)]+'\x20('+_0x23ae4c['productGroup']+'):\x20selectedTrain\x20=',_0x501237),console[_0x2ca117(0x1e5)]('Train\x20'+_0x23ae4c['trainId']+'\x20('+_0x23ae4c['productGroup']+'):\x20newMachinesCovered\x20=',_0x501237?.['newMachinesCovered']),'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22train-label\x22\x20'+_0x1d2037+'>'+_0x23ae4c[_0x2ca117(0x1b7)]+_0x2ca117(0x225)+_0x1d2037+'>'+_0x184306+_0x2ca117(0x225)+_0x1d2037+'>'+_0x544e98+_0x2ca117(0x225)+_0x1d2037+'>'+_0x23ae4c[_0x2ca117(0x20c)]+_0x2ca117(0x225)+_0x1d2037+'>'+(_0x501237?_0x501237[_0x2ca117(0x224)]:'-')+_0x2ca117(0x220)+_0x21633a+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+_0x160ddb+_0x2ca117(0x1f0);})[_0x1ae014(0x20e)]('')+'</tbody>';}['generateStudyLegend'](){const _0x57e0d6=a5_0x3d6d34;return _0x57e0d6(0x1c0)+this['selectedTrains']['map'](_0x5f4d6e=>_0x57e0d6(0x202)+_0x5f4d6e[_0x57e0d6(0x1d2)]+';\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Study\x20'+_0x5f4d6e['studyNumber']+':\x20'+_0x5f4d6e[_0x57e0d6(0x1b7)]+'\x20('+(_0x5f4d6e[_0x57e0d6(0x228)]||'-')+')</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>')['join']('')+_0x57e0d6(0x211);}['generateSummaryStats'](){const _0x20a3b5=a5_0x3d6d34,_0x51dd91={'pDQsO':function(_0x48b66f,_0x567092){return _0x48b66f(_0x567092);},'fjWTX':function(_0x4a0a33,_0x4a7d57){return _0x4a0a33>_0x4a7d57;},'UsZGN':function(_0x56f14b,_0xda203d){return _0x56f14b*_0xda203d;},'bXArC':function(_0x5a5fab,_0x5c49b3){return _0x5a5fab-_0x5c49b3;},'TaDSx':function(_0x107746,_0x2bfe57){return _0x107746/_0x2bfe57;}},_0xd9369=this[_0x20a3b5(0x1be)][_0x20a3b5(0x1d3)](_0x586984=>_0x586984['newMachinesCovered']&&_0x586984[_0x20a3b5(0x226)][_0x20a3b5(0x1cc)]>0x0)[_0x20a3b5(0x1cc)],_0x55937e=_0x51dd91[_0x20a3b5(0x213)](Number,this['allTrains']?.[_0x20a3b5(0x1cc)]||0x0),_0x5b6cdf=_0x51dd91[_0x20a3b5(0x213)](Number,this[_0x20a3b5(0x227)]?.[_0x20a3b5(0x1cc)]||0x0),_0x2b2d26=_0x51dd91[_0x20a3b5(0x1f6)](_0x55937e,0x0)?Math[_0x20a3b5(0x206)](_0x51dd91[_0x20a3b5(0x212)](0x64,_0x51dd91['bXArC'](0x1,_0x51dd91['TaDSx'](_0xd9369,_0x55937e)))):0x0;return console[_0x20a3b5(0x1e5)](_0x20a3b5(0x1c4)+_0xd9369+_0x20a3b5(0x1b3)+_0x55937e+_0x20a3b5(0x1f1)),_0x20a3b5(0x1ca)+_0xd9369+_0x20a3b5(0x1df)+_0x55937e+_0x20a3b5(0x1b5)+_0x5b6cdf+_0x20a3b5(0x221)+_0x2b2d26+'%</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-label\x22>Studies\x20Saved</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>';}[a5_0x3d6d34(0x223)](){const _0x38be40=a5_0x3d6d34;return this[_0x38be40(0x1e0)]?''+this[_0x38be40(0x1e0)]:_0x38be40(0x237);}}export function createHorizontalMachineCoverageTable(){const _0x2f7c58=a5_0x3d6d34,_0x12f922={'GcMkM':'Train','aMmOP':function(_0x5f53f5,_0x31621d){return _0x5f53f5(_0x31621d);},'WVmTY':function(_0x19ea76,_0x50aa10,_0x388d86){return _0x19ea76(_0x50aa10,_0x388d86);},'lLPdR':function(_0x39825e){return _0x39825e();},'XRPfx':function(_0x4ed44d,_0x1ff9ae){return _0x4ed44d!==_0x1ff9ae;}};let _0x3804b6=_0x12f922[_0x2f7c58(0x233)](a5_0x191111);const _0x483e9b=a5_0x46f894[_0x2f7c58(0x21c)](_0x11c52b=>({'id':_0x11c52b['id'],'name':_0x11c52b['name'],'machineNumber':_0x11c52b[_0x2f7c58(0x1d0)]}))['sort']((_0x57b4b3,_0x120d57)=>(parseInt(_0x57b4b3['machineNumber'][_0x2f7c58(0x231)](/\D/g,''))||0x0)-(parseInt(_0x120d57[_0x2f7c58(0x1d0)]['replace'](/\D/g,''))||0x0)),_0x17a7d3=window[_0x2f7c58(0x209)]&&_0x12f922[_0x2f7c58(0x1e8)]('all',window[_0x2f7c58(0x209)])?window[_0x2f7c58(0x209)]:null;_0x17a7d3&&(_0x3804b6=_0x3804b6[_0x2f7c58(0x1d3)](_0x72babe=>(_0x72babe[_0x2f7c58(0x23a)]||_0x72babe['productLine'])===_0x17a7d3));const _0x454c4d=(_0x2cc201,_0x4f4626)=>{const _0x10e4c0=_0x2f7c58,_0x21e63c=new Set();_0x4f4626[_0x10e4c0(0x234)](_0x5db7c8=>(_0x5db7c8['machineIds']||[])['forEach'](_0xbe4d8c=>_0x21e63c[_0x10e4c0(0x1db)](_0xbe4d8c)));const _0x215df6=function(_0xf7b11f,_0x5b3ba5){const _0x455bd2={'VVWCB':function(_0x490dd8,_0xa322c8){return _0x490dd8>_0xa322c8;},'XzIxN':_0x12f922['GcMkM'],'kQMnF':function(_0x1e29fa){return _0x1e29fa();},'GRMFq':function(_0x4b704d,_0x68efd4){const _0xc22530=a5_0x3c04;return _0x12f922[_0xc22530(0x1ed)](_0x4b704d,_0x68efd4);}},_0x15f653={'trains':[]};return _0xf7b11f['forEach'](_0xe84eb8=>{const _0xc6630c=a5_0x3c04,_0x154213={'NiRrd':function(_0x123b18,_0x3bb2ea){return _0x455bd2['VVWCB'](_0x123b18,_0x3bb2ea);},'pRADD':_0x455bd2['XzIxN']},_0x2269ef=(_0xe84eb8[_0xc6630c(0x222)]||[])['map'](_0x54e0ca=>{const _0x19a3e3=_0xc6630c,_0x1e604f=_0x5b3ba5['find'](_0xd37eef=>_0xd37eef['id']===_0x54e0ca);return _0x1e604f?_0x1e604f[_0x19a3e3(0x22e)]:null;})['filter'](Boolean),_0x36c4aa=_0x455bd2['kQMnF'](a5_0x564814)[_0xc6630c(0x210)](_0x455bd2[_0xc6630c(0x22f)](String,_0xe84eb8['id'])),_0x19f031=_0x36c4aa?_0x36c4aa['number']:_0xe84eb8['id'];[...new Set((_0xe84eb8[_0xc6630c(0x1c8)]||[])['map'](_0x1d2ddc=>_0x1d2ddc[_0xc6630c(0x21f)]||_0xc6630c(0x207)))]['forEach'](_0x5a7a5d=>{const _0x5b02fc=_0xc6630c;let _0x1aa050=null,_0x5d4bf7=0x0;(_0xe84eb8[_0x5b02fc(0x1c8)]||[])[_0x5b02fc(0x1d3)](_0x1c53d8=>(_0x1c53d8[_0x5b02fc(0x21f)]||_0x5b02fc(0x207))===_0x5a7a5d)[_0x5b02fc(0x234)](_0x254db5=>{const _0x219a6e=_0x5b02fc,_0x4a0242={'bTwHt':function(_0x3f0220,_0x17594a){const _0x32156f=a5_0x3c04;return _0x154213[_0x32156f(0x1e6)](_0x3f0220,_0x17594a);}};_0x254db5['activeIngredients']&&Array[_0x219a6e(0x235)](_0x254db5[_0x219a6e(0x1fe)])&&_0x254db5[_0x219a6e(0x1fe)]['forEach'](_0x527299=>{const _0x2998b2=_0x219a6e;try{const _0x3daf0c=a5_0x1a4bff(_0x527299),_0x12dc49=_0x3daf0c?.[_0x2998b2(0x20c)]||0x0;_0x4a0242[_0x2998b2(0x1b8)](_0x12dc49,_0x5d4bf7)&&(_0x5d4bf7=_0x12dc49,_0x1aa050=_0x254db5[_0x2998b2(0x22e)]);}catch(_0x2a9e74){console[_0x2998b2(0x1ea)]('Error\x20calculating\x20RPN\x20for\x20ingredient:',_0x527299,_0x2a9e74);}});});const _0x422587=_0x19f031+'-'+_0x5a7a5d;_0x15f653['trains'][_0x5b02fc(0x23b)]({'trainId':_0xe84eb8['id']?_0x5b02fc(0x1dd)+_0x19f031:_0xe84eb8[_0x5b02fc(0x1b7)]||_0x154213[_0x5b02fc(0x1d8)],'uniqueId':_0x422587,'productGroup':_0x5a7a5d,'worstCaseProduct':_0x1aa050||'-','rpn':_0x5d4bf7,'usedMachines':_0x2269ef,'originalTrain':_0xe84eb8,'trainInternalId':_0xe84eb8['id']});});}),_0x15f653;}(_0x4f4626,_0x483e9b[_0x10e4c0(0x1d3)](_0x5af0c4=>_0x21e63c[_0x10e4c0(0x201)](_0x5af0c4['id']))),_0x3f458e=new s();return _0x3f458e[_0x10e4c0(0x1e0)]=_0x2cc201,_0x3f458e['generateTable'](_0x215df6);};if(_0x17a7d3)return _0x12f922[_0x2f7c58(0x1c6)](_0x454c4d,_0x17a7d3,_0x3804b6);const _0x1362ab=[...new Set(_0x3804b6['map'](_0x22b1b4=>_0x22b1b4['line']||_0x22b1b4[_0x2f7c58(0x230)]||_0x2f7c58(0x1cf)))];let _0x420984='';return _0x1362ab[_0x2f7c58(0x234)](_0x4fd934=>{const _0x47a583=_0x2f7c58,_0x747f06=_0x3804b6[_0x47a583(0x1d3)](_0x330840=>(_0x330840['line']||_0x330840[_0x47a583(0x230)])===_0x4fd934);_0x420984+=_0x12f922['WVmTY'](_0x454c4d,_0x4fd934,_0x747f06);}),_0x420984;}window[a5_0x3d6d34(0x1b4)]=createHorizontalMachineCoverageTable,window[a5_0x3d6d34(0x1d6)]=function(){const _0x4f9500=a5_0x3d6d34,_0x420497={'Hfxea':'machineCoverageContainer','xTtRj':function(_0x1ea73c){return _0x1ea73c();},'EsCNS':_0x4f9500(0x1d7),'MpSFD':'Container\x20not\x20found!'},_0x12d654=document[_0x4f9500(0x219)](_0x420497[_0x4f9500(0x1de)]);_0x12d654?(_0x12d654[_0x4f9500(0x22c)]=_0x420497['xTtRj'](createHorizontalMachineCoverageTable),console[_0x4f9500(0x1e5)](_0x420497[_0x4f9500(0x1ee)])):console[_0x4f9500(0x1e5)](_0x420497[_0x4f9500(0x1bc)]);};function a5_0x59a5(){const _0x12afd1=['</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20','newMachinesCovered','machines','worstCaseProduct','generateStudyLegend','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','6CspOVG','innerHTML','allTrains','name','GRMFq','productLine','replace','Machine\x20Coverage:\x20Skipped\x20train\x20','lLPdR','forEach','isArray','9226024PUriNV','All\x20Lines','#f87171','\x20for\x20study\x20','line','push',',\x20RPN:\x20','VmDeO','flatMap','470SabZCK','\x20studies\x20from\x20','createHorizontalMachineCoverageTable','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-label\x22>Total\x20Products</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-value\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','trainId','bTwHt','45324zXzqhO','Machine\x20Coverage:\x20Selected\x20train\x20','selectTrainsForStudy','MpSFD','791EUWAqr','selectedTrains','</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22coverage-description\x22>Products\x20selected\x20for\x20cleaning\x20validation\x20studies\x20based\x20on\x20machine\x20coverage\x20optimization</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22coverage-table-wrapper\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22coverage-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','<div\x20class=\x22study-legend\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Selected\x20for\x20Study</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</thead>','UHQzo','originalTrain','Machine\x20Coverage\x20Stats:\x20','Machine\x20Coverage:\x20Selected\x20','WVmTY','OFEIm','products','235675mSsRIl','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-stats\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-value\x22>','utSgj','length','KBrmU','920512asPSYQ','Unassigned','machineNumber','usedMachines','studyColor','filter','trains','ensEK','testMachineCoverage','Machine\x20coverage\x20table\x20rendered!','pRADD','sort','trainInternalId','add','eFwxT','Train\x20','Hfxea','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-label\x22>Studies\x20Required</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-value\x22>','_lineContext','26739qAOpOh','EVyCS','generateTableHeader','studyColors','log','NiRrd',')\x20-\x20RPN:\x20','XRPfx','style=\x22background-color:\x20','warn','</th>','tYggg','aMmOP','EsCNS','HFZmr','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','\x20trains','fuapZ','501406bUVmCp','keys','GToUN','fjWTX','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20.machine-coverage-container\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20-apple-system,\x20BlinkMacSystemFont,\x20\x27Segoe\x20UI\x27,\x20Roboto,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x201200px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2020px\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x202px\x208px\x20rgba(0,0,0,0.1);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20@media\x20print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.machine-coverage-container\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20white\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20black\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-break-inside:\x20avoid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-collapse:\x20collapse\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2010px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20th,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20td\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#000\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x204px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20white\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20black\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20-webkit-print-color-adjust:\x20exact\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20print-color-adjust:\x20exact\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20th\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#f0f0f0\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.no-print\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20none\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.coverage-header\x20h2\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20black\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2016px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.coverage-description\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#333\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012px\x20!important;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-header\x20h2\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#1a1a1a;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2024px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200\x200\x208px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-description\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#666;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200\x200\x2024px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table-wrapper\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20overflow-x:\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2024px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-collapse:\x20collapse;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20white;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20th\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#f8f9fa;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#495057;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2012px\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#dee2e6;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20th.machine-header\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20writing-mode:\x20vertical-rl;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-orientation:\x20mixed;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-width:\x2024px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x2024px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20white-space:\x20nowrap;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20transform:\x20rotate(180deg);\x20/*\x20bottom-to-top\x20*/\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20transform-origin:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20th:first-child\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-width:\x2090px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x20120px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20th:nth-child(2)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20min-width:\x2080px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20td\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2012px\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#dee2e6;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20td:first-child\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20left;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20500;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#212529;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x2090px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20white-space:\x20nowrap;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20overflow:\x20hidden;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-overflow:\x20ellipsis;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20td:nth-child(2)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20600;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#495057;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20/*\x20Cells\x20colored\x20per\x20study;\x20empty\x20cells\x20are\x20white\x20*/\x0a\x20\x20\x20\x20\x20\x20\x20\x20.coverage-table\x20.machine-cell\x20{\x20min-width:\x2028px;\x20height:\x2024px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.study-legend\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20flex-wrap:\x20wrap;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20gap:\x2016px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2016px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#f8f9fa;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x206px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.legend-item\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20gap:\x208px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20500;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.legend-color\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x2016px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20height:\x2016px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x203px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20#dee2e6;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.summary-stats\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20grid;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20grid-template-columns:\x20repeat(auto-fit,\x20minmax(200px,\x201fr));\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20gap:\x2016px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.stat-card\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#f8f9fa;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2016px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x206px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.stat-value\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2024px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#495057;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x204px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20.stat-label\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#6c757d;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20text-transform:\x20uppercase;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20500;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20</style>','generateHTML','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','#ffffff','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22machine-coverage-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22coverage-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2>Machine\x20Coverage\x20Details\x20–\x20','Machine\x20Coverage:\x20RPN-sorted\x20order:','\x20-\x20no\x20new\x20machines','activeIngredients','find','njHnW','has','<div\x20class=\x22legend-item\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22legend-color\x22\x20style=\x22background-color:\x20','Machine\x20Coverage:\x20Processing\x20','</td>','productGroup','round','Unknown','HkSbh','currentLineFilter','scziY','generateSummaryStats','rpn','includes','join','train','get','</div>','UsZGN','pDQsO','zCggY','Plbth','processData','\x20(Internal\x20ID:\x20','2907255eJOHyL','getElementById','Jghza','size','map','lPOwk','\x20trains\x20in\x20dosage\x20form:\x20','productType','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-label\x22>Machines\x20Covered</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stat-value\x22>','machineIds','getLineAndDosageForm','studyNumber'];a5_0x59a5=function(){return _0x12afd1;};return a5_0x59a5();}
+/**
+ * Simplified Machine Coverage Table Generator
+ * Creates a clean, simple table with horizontal row coloring only
+ * Based on the cleaner mockup design
+ */
+
+import { getTrainData, getTrainIdToLineNumberMap, countStudiesForTrains, getConsistentTrainOrder, calculateScores } from './utils.js';
+import { products, machines } from './state.js';
+
+class SimplifiedMachineCoverageTable {
+    constructor() {
+        this.selectedTrains = [];
+        this.allTrains = [];
+        this.machines = [];
+        // Darker, high-contrast colors starting with RED for highest risk
+        this.studyColors = [
+            '#f87171', // Study 1 - Red
+            '#f59e0b', // Study 2 - Orange
+            '#facc15', // Study 3 - Yellow
+            '#34d399', // Study 4 - Green
+            '#60a5fa', // Study 5 - Blue
+            '#a78bfa'  // Study 6 - Purple
+        ];
+    }
+
+    /**
+     * Generate the simplified machine coverage table
+     * @param {Object} data - Input data containing products and machine coverage
+     * @returns {string} HTML string for the table
+     */
+    generateTable(data) {
+        // Process the data
+        this.processData(data);
+        
+        // Generate HTML
+        return this.generateHTML();
+    }
+
+    /**
+     * Process input data and determine selected products
+     * @param {Object} data - Raw input data
+     */
+    processData(data) {
+        // Group trains by dosage form (same logic as train summary)
+        const dosageGroups = {};
+        data.trains.forEach(train => {
+            const dosageForm = train.productGroup || 'Unknown';
+            if (!dosageGroups[dosageForm]) {
+                dosageGroups[dosageForm] = [];
+            }
+            dosageGroups[dosageForm].push(train);
+        });
+        
+        // Process each dosage form group separately and apply consistent train ordering
+        const dosageFormGroups = [];
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const trainsInGroup = dosageGroups[dosageForm];
+            dosageFormGroups.push({ dosageForm, trains: trainsInGroup });
+        });
+        
+        // Apply consistent train ordering within each dosage form group
+        dosageFormGroups.forEach(group => {
+            group.trains = getConsistentTrainOrder(group.trains);
+        });
+        
+        // Combine back into single array maintaining dosage form grouping
+        this.allTrains = [];
+        dosageFormGroups.forEach(group => {
+            // Sort by train ID within each dosage form group (like train summary)
+            const sortedTrains = group.trains.sort((a, b) => {
+                // Extract train number from trainId (e.g., "Train 1" -> 1)
+                const aNum = parseInt(a.trainId?.replace(/\D/g, '') || '0');
+                const bNum = parseInt(b.trainId?.replace(/\D/g, '') || '0');
+                return aNum - bNum;
+            });
+            this.allTrains.push(...sortedTrains);
+        });
+        
+        // Extract unique machines
+        this.machines = [...new Set(data.trains.flatMap(t => t.usedMachines))].sort();
+        
+        // Apply machine coverage algorithm
+        this.selectTrainsForStudy();
+    }
+
+    /**
+     * Apply the machine coverage selection algorithm
+     */
+    selectTrainsForStudy() {
+        // Group trains by dosage form (like train summary)
+        const dosageGroups = {};
+        this.allTrains.forEach(train => {
+            const dosageForm = train.productGroup || 'Unknown';
+            if (!dosageGroups[dosageForm]) {
+                dosageGroups[dosageForm] = [];
+            }
+            dosageGroups[dosageForm].push(train);
+        });
+        
+        // Process each dosage form group separately (EXACTLY like train summary)
+        this.selectedTrains = [];
+        let globalStudyIndex = 0;
+        
+        Object.keys(dosageGroups).forEach(dosageForm => {
+            const trainsInGroup = dosageGroups[dosageForm];
+            const machinesInGroup = [...new Set(trainsInGroup.flatMap(t => t.usedMachines))];
+            const coveredMachines = new Set();
+            
+            // Sort by RPN (highest first) within dosage form group (EXACTLY like train summary)
+            const trainsWithRPN = trainsInGroup.map(train => ({
+                train,
+                rpn: train.rpn || 0
+            })).sort((a, b) => b.rpn - a.rpn);
+            
+            console.log(`Machine Coverage: Processing ${trainsInGroup.length} trains in dosage form: ${dosageForm}`);
+            console.log(`Machine Coverage: RPN-sorted order:`, trainsWithRPN.map(t => {
+                const internalId = t.train.trainInternalId || t.train.originalTrain?.id;
+                return `${t.train.trainId} (Internal ID: ${internalId}, RPN: ${t.rpn})`;
+            }));
+            
+            for (const { train, rpn } of trainsWithRPN) {
+                const trainMachines = new Set(train.usedMachines);
+                const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
+                const internalId = train.trainInternalId || train.originalTrain?.id;
+                
+                console.log(`Machine Coverage: Checking train ${train.trainId} (Internal ID: ${internalId}) - RPN: ${rpn}, new machines: ${newMachines.length}`);
+                
+                if (newMachines.length > 0) {
+                    globalStudyIndex++;
+                    console.log(`Machine Coverage: Selected train ${train.trainId} for study ${globalStudyIndex}`);
+                    
+                    this.selectedTrains.push({
+                        ...train,
+                        studyNumber: globalStudyIndex,
+                        studyColor: this.studyColors[(globalStudyIndex - 1) % this.studyColors.length],
+                        newMachinesCovered: newMachines,
+                        trainInternalId: internalId
+                    });
+                    
+                    newMachines.forEach(machine => coveredMachines.add(machine));
+                    
+                    if (coveredMachines.size === machinesInGroup.length) {
+                        break;
+                    }
+                } else {
+                    console.log(`Machine Coverage: Skipped train ${train.trainId} - no new machines`);
+                }
+            }
+        });
+        
+        console.log(`Machine Coverage: Selected ${this.selectedTrains.length} studies total`);
+    }
+
+    /**
+     * Generate clean HTML table
+     * @returns {string} HTML string
+     */
+    generateHTML() {
+        return `
+        <div class="machine-coverage-container">
+            <div class="coverage-header">
+                <h2>Machine Coverage Details – ${this.getLineAndDosageForm()}</h2>
+                <p class="coverage-description">Products selected for cleaning validation studies based on machine coverage optimization</p>
+            </div>
+            
+            <div class="coverage-table-wrapper">
+                <table class="coverage-table">
+                    ${this.generateTableHeader()}
+                    ${this.generateTableBody()}
+                </table>
+            </div>
+            
+            ${this.generateStudyLegend()}
+            
+            ${this.generateSummaryStats()}
+        </div>
+        
+        <style>
+        .machine-coverage-container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        @media print {
+            .machine-coverage-container {
+                margin: 0;
+                padding: 10px;
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+                background: white !important;
+                color: black !important;
+                page-break-inside: avoid;
+            }
+            
+            .coverage-table {
+                border-collapse: collapse !important;
+                width: 100% !important;
+                font-size: 10px !important;
+            }
+            
+            .coverage-table th,
+            .coverage-table td {
+                border: 1px solid #000 !important;
+                padding: 4px !important;
+                background: white !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .coverage-table th {
+                background: #f0f0f0 !important;
+                font-weight: bold !important;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            .coverage-header h2 {
+                color: black !important;
+                font-size: 16px !important;
+            }
+            
+            .coverage-description {
+                color: #333 !important;
+                font-size: 12px !important;
+            }
+        }
+        
+        .coverage-header h2 {
+            color: #1a1a1a;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+        
+        .coverage-description {
+            color: #666;
+            font-size: 14px;
+            margin: 0 0 24px 0;
+        }
+        
+        .coverage-table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 24px;
+        }
+        
+        .coverage-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .coverage-table th {
+            background: #f8f9fa;
+            color: #495057;
+            font-weight: 600;
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+            font-size: 13px;
+        }
+        .coverage-table th.machine-header {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            min-width: 24px;
+            max-width: 24px;
+            white-space: nowrap;
+            transform: rotate(180deg); /* bottom-to-top */
+            transform-origin: center;
+        }
+        
+        .coverage-table th:first-child {
+            text-align: left;
+            min-width: 90px;
+            max-width: 120px;
+        }
+        
+        .coverage-table th:nth-child(2) {
+            min-width: 80px;
+        }
+        
+        .coverage-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+            font-size: 13px;
+        }
+        
+        .coverage-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+            color: #212529;
+            width: 90px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .coverage-table td:nth-child(2) {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        /* Cells colored per study; empty cells are white */
+        .coverage-table .machine-cell { min-width: 28px; height: 24px; }
+        
+        .study-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #495057;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #6c757d;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        </style>`;
+    }
+
+    /**
+     * Generate table header
+     * @returns {string} HTML string for header
+     */
+    generateTableHeader() {
+        const machineHeaders = this.machines.map(machine => 
+            `<th class="machine-header">${machine}</th>`
+        ).join('');
+        
+        return `
+        <thead>
+            <tr>
+                <th>Train</th>
+                <th>Product Group</th>
+                <th>Worst Case Product</th>
+                <th>RPN</th>
+                <th>Study No.</th>
+                ${machineHeaders}
+                <th>Selected for Study</th>
+            </tr>
+        </thead>`;
+    }
+
+    /**
+     * Generate table body with horizontal row coloring
+     * @returns {string} HTML string for body
+     */
+    generateTableBody() {
+        // Sort trains by study number (ascending): Study 1, Study 2, Study 3, then non-selected trains
+        const sortedTrains = [...this.allTrains].sort((a, b) => {
+            const aSelected = this.selectedTrains.find(st => {
+                const aInternalId = a.trainInternalId || a.originalTrain?.id;
+                const stInternalId = st.trainInternalId || st.originalTrain?.id;
+                
+                if (aInternalId && stInternalId && aInternalId === stInternalId) {
+                    return st.productGroup === a.productGroup;
+                }
+                return false;
+            });
+            
+            const bSelected = this.selectedTrains.find(st => {
+                const bInternalId = b.trainInternalId || b.originalTrain?.id;
+                const stInternalId = st.trainInternalId || st.originalTrain?.id;
+                
+                if (bInternalId && stInternalId && bInternalId === stInternalId) {
+                    return st.productGroup === b.productGroup;
+                }
+                return false;
+            });
+            
+            // Both selected: sort by study number ascending (Study 1, Study 2, Study 3...)
+            if (aSelected && bSelected) {
+                return aSelected.studyNumber - bSelected.studyNumber;
+            }
+            
+            // Selected trains (studies) come first
+            if (aSelected && !bSelected) return -1;
+            if (!aSelected && bSelected) return 1;
+            
+            // For non-selected trains, maintain original order
+            return 0;
+        });
+        
+        const rows = sortedTrains.map(train => {
+            // Match by internal ID and productGroup for proper train matching
+            const selectedTrain = this.selectedTrains.find(st => {
+                const trainInternalId = train.trainInternalId || train.originalTrain?.id;
+                const stInternalId = st.trainInternalId || st.originalTrain?.id;
+                
+                if (trainInternalId && stInternalId && trainInternalId === stInternalId) {
+                    return st.productGroup === train.productGroup;
+                }
+                return false;
+            });
+            const studyColor = selectedTrain ? selectedTrain.studyColor : null;
+            const metaStyle = studyColor ? `style="background-color: ${studyColor};"` : '';
+            
+            const machineCells = this.machines.map(machine => {
+                const isUsed = train.usedMachines.includes(machine);
+                const isNewCoverage = selectedTrain && selectedTrain.newMachinesCovered && selectedTrain.newMachinesCovered.includes(machine);
+                const fillColor = isNewCoverage ? studyColor : '#ffffff';
+                const mark = isUsed ? '✓' : '';
+                return `<td class="machine-cell" style="background-color: ${fillColor}; text-align:center; font-weight:700;">${mark}</td>`;
+            }).join('');
+            
+            const selectedText = selectedTrain ? 'Yes' : 'No';
+            const group = train.productGroup || '-';
+            const wcp = train.worstCaseProduct || '-';
+            
+            console.log(`Train ${train.trainId} (${train.productGroup}): selectedTrain =`, selectedTrain);
+            console.log(`Train ${train.trainId} (${train.productGroup}): newMachinesCovered =`, selectedTrain?.newMachinesCovered);
+            
+            return `
+            <tr>
+                <td class="train-label" ${metaStyle}>${train.trainId}</td>
+                <td ${metaStyle}>${group}</td>
+                <td ${metaStyle}>${wcp}</td>
+                <td ${metaStyle}>${train.rpn}</td>
+                <td ${metaStyle}>${selectedTrain ? selectedTrain.studyNumber : '-'}</td>
+                ${machineCells}
+                <td>${selectedText}</td>
+            </tr>`;
+        }).join('');
+        
+        return `<tbody>${rows}</tbody>`;
+    }
+
+    /**
+     * Generate study legend
+     * @returns {string} HTML string for legend
+     */
+    generateStudyLegend() {
+        const legendItems = this.selectedTrains.map(train => 
+            `<div class="legend-item">
+                <div class="legend-color" style="background-color: ${train.studyColor};"></div>
+                <span>Study ${train.studyNumber}: ${train.trainId} (${train.worstCaseProduct || '-'})</span>
+            </div>`
+        ).join('');
+        
+        return `<div class="study-legend">${legendItems}</div>`;
+    }
+
+    /**
+     * Generate summary statistics
+     * @returns {string} HTML string for stats
+     */
+    generateSummaryStats() {
+        // Use the actual study selection count from the algorithm
+        const selectedCount = this.selectedTrains.filter(study => 
+            study.newMachinesCovered && study.newMachinesCovered.length > 0
+        ).length;
+        
+        const totalProducts = Number(this.allTrains?.length || 0);
+        const totalMachines = Number(this.machines?.length || 0);
+        const savingsPercent = totalProducts > 0
+            ? Math.round((1 - selectedCount / totalProducts) * 100)
+            : 0;
+        
+        console.log(`Machine Coverage Stats: ${selectedCount} studies from ${totalProducts} trains`);
+        
+        return `
+        <div class="summary-stats">
+            <div class="stat-card">
+                <div class="stat-value">${selectedCount}</div>
+                <div class="stat-label">Studies Required</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${totalProducts}</div>
+                <div class="stat-label">Total Products</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${totalMachines}</div>
+                <div class="stat-label">Machines Covered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${savingsPercent}%</div>
+                <div class="stat-label">Studies Saved</div>
+            </div>
+        </div>`;
+    }
+
+    /**
+     * Get line and dosage form for header
+     * @returns {string} Line and dosage form string
+     */
+    getLineAndDosageForm() {
+        // Prefer injected context from caller (current selected line)
+        if (this._lineContext) {
+            return `${this._lineContext}`;
+        }
+        return "All Lines";
+    }
+}
+
+export function createHorizontalMachineCoverageTable() {
+    // Get full train data
+    let trainData = getTrainData();
+    const allMachines = getAllMachines();
+    
+    // Apply current line filter to reflect Train Summary behavior
+    const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+    if (currentLine) {
+        trainData = trainData.filter(t => (t.line || t.productLine) === currentLine);
+    }
+    
+    // Helper to render a single line section
+    const renderLineSection = (lineName, trainsForLine) => {
+        // Build machine list only used by this line's trains (for compact width)
+        const usedMachineIds = new Set();
+        trainsForLine.forEach(t => (t.machineIds || []).forEach(id => usedMachineIds.add(id)));
+        const machinesForLine = allMachines.filter(m => usedMachineIds.has(m.id));
+        
+        const dataForLine = convertTrainDataToProductData(trainsForLine, machinesForLine);
+        const table = new SimplifiedMachineCoverageTable();
+        table._lineContext = lineName;
+        return table.generateTable(dataForLine);
+    };
+    
+    if (currentLine) {
+        return renderLineSection(currentLine, trainData);
+    }
+    
+    // No specific line selected: render a section per line similar to Product MACO/Train Summary
+    const lineNames = [...new Set(trainData.map(t => (t.line || t.productLine) || 'Unassigned'))];
+    let html = '';
+    lineNames.forEach(line => {
+        const trainsForLine = trainData.filter(t => (t.line || t.productLine) === line);
+        html += renderLineSection(line, trainsForLine);
+    });
+    return html;
+}
+
+function getAllMachines() {
+    // Get all unique machines from the state
+    const machineList = machines.map(m => ({
+        id: m.id,
+        name: m.name,
+        machineNumber: m.machineNumber
+    }));
+    
+    // Sort by machine number for consistent display
+    return machineList.sort((a, b) => {
+        const aNum = parseInt(a.machineNumber.replace(/\D/g, '')) || 0;
+        const bNum = parseInt(b.machineNumber.replace(/\D/g, '')) || 0;
+        return aNum - bNum;
+    });
+}
+
+function convertTrainDataToProductData(trainData, allMachines) {
+    const data = { trains: [] };
+    
+    trainData.forEach(train => {
+        // Map machine ids to names (vertical headers)
+        const usedMachines = (train.machineIds || []).map(id => {
+            const m = allMachines.find(x => x.id === id);
+            return m ? m.name : null;
+        }).filter(Boolean);
+        
+        // Get proper train numbering
+        const idMap = getTrainIdToLineNumberMap();
+        const mapped = idMap.get(String(train.id));
+        const trainNumber = mapped ? mapped.number : train.id;
+        
+        // Get unique dosage forms in this train (same logic as train summary)
+        const dosageForms = [...new Set((train.products || []).map(p => p.productType || 'Unknown'))];
+        
+        // Create separate entry for each dosage form (like train summary)
+        dosageForms.forEach(dosageForm => {
+            // Find worst case product and highest RPN for this specific dosage form
+            let worstProduct = null;
+            let highestRpn = 0;
+            
+            const productsInDosageForm = (train.products || []).filter(p => (p.productType || 'Unknown') === dosageForm);
+            
+            productsInDosageForm.forEach(product => {
+                if (product.activeIngredients && Array.isArray(product.activeIngredients)) {
+                    product.activeIngredients.forEach(ingredient => {
+                        try {
+                            const scores = calculateScores(ingredient);
+                            const rpn = scores?.rpn || 0;
+                            if (rpn > highestRpn) {
+                                highestRpn = rpn;
+                                worstProduct = product.name;
+                            }
+                        } catch (error) {
+                            console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                        }
+                    });
+                }
+            });
+            
+            // Create unique train identifier that includes dosage form
+            const uniqueTrainId = `${trainNumber}-${dosageForm}`;
+            
+            data.trains.push({
+                trainId: train.id ? `Train ${trainNumber}` : (train.trainId || 'Train'),
+                uniqueId: uniqueTrainId, // Add unique identifier
+                productGroup: dosageForm,
+                worstCaseProduct: worstProduct || '-',
+                rpn: highestRpn,
+                usedMachines,
+                originalTrain: train, // Keep reference to original train
+                trainInternalId: train.id // Add internal ID for matching
+            });
+        });
+    });
+    
+    return data;
+}
+
+function calculateRPN(ingredient) {
+    // RPN calculation based on solubility and cleanability
+    const solubility = ingredient.solubility === 'Freely soluble' ? 1 : 
+                     ingredient.solubility === 'Soluble' ? 2 :
+                     ingredient.solubility === 'Slightly soluble' ? 3 : 4;
+    
+    const cleanability = ingredient.cleanability === 'Easy' ? 1 :
+                        ingredient.cleanability === 'Medium' ? 2 : 3;
+    
+    return solubility * cleanability;
+}
+
+// Make function globally available
+window.createHorizontalMachineCoverageTable = createHorizontalMachineCoverageTable;
+
+// Demo function for testing
+window.testMachineCoverage = function() {
+    const container = document.getElementById('machineCoverageContainer');
+    if (container) {
+        container.innerHTML = createHorizontalMachineCoverageTable();
+        console.log('Machine coverage table rendered!');
+    } else {
+        console.log('Container not found!');
+    }
+};

@@ -1,1 +1,1043 @@
-const a9_0x4add99=a9_0x54c1;function a9_0x45b2(){const _0x5c910e=['ADCXt','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Train\x20','FaAQh','</span>\x20<span\x20class=\x22rpn-rating-badge\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-header\x22\x20onclick=\x22toggleTrain(\x27pm-','dUPMx','var(--bg-accent)','KhwJh','print','\x27)\x22\x20class=\x22w-full\x20text-sm\x20py-2\x20px-4\x20rounded-md\x20border\x22\x20style=\x22color:\x20var(--gradient-mid);\x20border-color:\x20var(--gradient-mid);\x22>Show\x20MACO\x20Calculation\x20Breakdown</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22maco-breakdown-details-','unknown','.export-maco-train-checkbox:checked','0.1%\x20Therapeutic\x20Dose','activeIngredients','gQPFJ','printMacoAllTrainsCheckbox','XLVjA','EWHoK','<span\x20class=\x22text-xs\x20ml-1\x22\x20title=\x22Minimum\x20BS/MDD\x20Ratio\x20in\x20Train\x22>★</span>','fyxJY','</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Analysis\x20&\x20Calculations\x20Grid\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grid\x20grid-cols-1\x20lg:grid-cols-2\x20gap-6\x20pt-4\x20border-t\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Left\x20Column:\x20RPN\x20&\x20MACO\x20Limits\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22space-y-6\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-4\x20rounded-lg\x22\x20style=\x22background-color:var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20gap-2\x20mb-2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22relative\x20group\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20class=\x22bi\x20bi-info-circle\x22\x20viewBox=\x220\x200\x2016\x2016\x22\x20style=\x22color:\x20var(--text-secondary);\x22\x20title=\x22Information\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20d=\x22M8\x2015A7\x207\x200\x201\x201\x208\x201a7\x207\x200\x200\x201\x200\x2014zm0\x201A8\x208\x200\x201\x200\x208\x200a8\x208\x200\x200\x200\x200\x2016z\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20d=\x22m8.93\x206.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738\x203.468c-.194.897.105\x201.319.808\x201.319.545\x200\x201.178-.252\x201.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275\x200-.375-.193-.304-.533L8.93\x206.588zM9\x204.5a1\x201\x200\x201\x201-2\x200\x201\x201\x200\x200\x201\x202\x200z\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h5\x20class=\x22text-sm\x20font-semibold\x22>Worst-Case\x20Product\x20for\x20Cleaning\x20Study\x20(by\x20RPN)</h5>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','TzEGL','appendChild','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-xs\x20font-mono\x20bg-gray-100\x20dark:bg-gray-700\x20p-2\x20rounded\x20mt-1\x22\x20style=\x22color:\x20var(--text-secondary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','length','\x20—\x20Train\x20','JHWGQ','dBSOB','DsgPf','ZQqsK','indeterminate','PgGjj','forEach','gntwx','aUpia','ULECH','label','printSelectedTrain','BNisP','Unknown','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-xs\x20px-2\x20py-1\x20rounded-full\x22\x20style=\x22background-color:\x20var(--bg-accent);\x20color:\x20var(--text-secondary);\x22>','final-maco-val-','trains','niFoc','KerYd','urWNE','Odkyl','mxxgl','warn','zINoW','p-4\x20rounded-lg\x20mt-4','rotate(0deg)','gEwLY','closest','</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','MuntG','66GVvNLN','nENbs','GdhmB','sIYMa','log','xzXwZ','\x20→\x20','GfQDs','\x22\x20oninput=\x22recalculateProductMacoForTrain(','worstProductRpn','QKtHv','HxTsk','\x20mg\x20<span\x20class=\x22text-xs\x22\x20style=\x22color:var(--text-secondary);\x22>(from\x20','checkbox','MACO\x20=\x200.004\x20×\x20<span\x20title=\x22Equipment\x20Surface\x20Shared\x20Area\x20(cm²)\x22>Largest\x20ESSA</span>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22inline-flex\x20items-center\x20px-2\x20py-1\x20rounded-full\x20text-xs\x20font-medium\x20bg-gray-200\x20text-gray-700\x20border\x20border-gray-300\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20🏆\x20Largest\x20ESSA:\x20','SjrOh','batchSizeKg','ebZSr','Gpeep','omDWd','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-xs\x20mt-1\x22\x20style=\x22color:var(--text-secondary);\x22>Range\x20for\x20','XxDXo','ld50','\x20-\x20Area:\x20','macoExportDropdown','EBYoS','macoPrintDropdown','textContent','</span>','\x22\x20onclick=\x22toggleMacoBreakdown(\x27','Vcorv','XgkcU','minBsMddRatio','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','nJoCU','</span></p>','WDtVM','\x20cm²</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mt-4\x20p-3\x20rounded-md\x22\x20style=\x22background-color:var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-xs\x20uppercase\x20font-semibold\x20mb-1\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Machines\x20in\x20Train</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x22>','MuuFl','\x22\x20data-value=\x22','XvpzZ','onchange','none','input','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','zaetQ','add','getItem','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','all','find','product-maco-train-','XkMIa','</b>\x20(TD:\x20','PnUBl','wTgTw','route','(same\x20line\x20&\x20dosage\x20form)','lowestLd50','error','BqcQP','kteBu','className','collapsed','10\x20ppm\x20Criterion','productRegister-pdeHidden','uyHUh','\x22\x20style=\x22','2627144sJQoVf','0px','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-sm\x20text-right\x22>','get','XbkAV','maco-per-swab-main-','pLhiQ','replace',')\x22\x20onchange=\x22clampSafetyFactor(this,\x20','machines','BsWEh','number','QybXG','<span\x20class=\x22text-xs\x20font-semibold\x20px-2\x20py-1\x20rounded-full\x20bg-red-100\x20text-red-800\x20dark:bg-red-900/50\x20dark:text-red-300\x20ml-2\x22>Lowest\x20MACO</span>','17469660hQnsCc','toExponential','pUUxO','sysoK','czgIq','exportMacoAllTrainsCheckbox','color:\x20var(--gradient-start);','pcMqW','ZOUtG','Hzfhr','GEBKL','Please\x20select\x20at\x20least\x20one\x20train\x20to\x20print.','assumedSsa','\x20kg\x20<span\x20class=\x22text-xs\x22\x20style=\x22color:var(--text-secondary);\x22>(from\x20','MbMgd','\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Train\x20','Visual\x20Clean\x20Limit','var(--text-primary)','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','N/A','IIDEI','checked','type','sort','KbXID','<h3\x20class=\x22text-lg\x20font-bold\x20mb-2\x22>','Error\x20loading\x20export\x20function:','line','wmvBP','rjApK','aEpih','Error\x20loading\x20export\x20function','</h5>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22space-y-3\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><p\x20class=\x22text-sm\x22\x20style=\x22color:var(--text-secondary);\x22>MACO\x20/\x20Area</p><p\x20class=\x22text-md\x20font-bold\x22\x20id=\x22maco-per-area-val-','\x22>▶</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-content\x20collapsed\x22\x20id=\x22content-pm-','ptVgS','RikKY','toggleDosageGroup','join','vDlGv','SRliU','isArray','block','toLocaleString','MACO\x20=\x20(<span\x20title=\x22No\x20Observed\x20Effect\x20Level\x20(g)\x22>NOEL</span>\x20×\x20<span\x20title=\x22Minimum\x20Batch\x20Size\x20(kg)\x22>MBS(kg)</span>\x20×\x201000)\x20/\x20(<span\x20title=\x22Safety\x20Factor\x22>SF</span>\x20×\x20<span\x20title=\x22Minimum\x20Daily\x20Dose\x20(g)\x22>MDD(g)</span>)','rpn','products','transform','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22train-toggle\x22\x20id=\x22toggle-pm-','LxNnp','finalMaco','mb-6','PuPrk','djYKR','lStcU','93966VRVwAg','<li><b>NOEL\x20Calculation:</b>\x20(','\x20route:\x20','bDxOE','No\x20Selection','\x20cm²\x22>','font-bold','AuqDP','printCurrentView','\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-right\x20flex-shrink-0\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x20uppercase\x20font-semibold\x22\x20style=\x22color:\x20var(--text-secondary);\x22>Train\x20Area\x20(ESSA)</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-lg\x20font-bold\x22\x20style=\x22color:\x20var(--gradient-mid);\x22>','MACO\x20=\x2010\x20×\x20<span\x20title=\x22Minimum\x20Batch\x20Size\x20(kg)\x22>MBS(kg)</span>','RQGRP','mg,\x20MDD:\x20','#macoPrintDropdown','MPniI','Error\x20calculating\x20RPN\x20for\x20ingredient:','IymdO','</p>','aVUAh','rfuZz','<p\x20class=\x22text-sm\x20mt-1\x22\x20style=\x22color:var(--text-secondary);\x22>10\x20ppm\x20Criterion:\x20','<span\x20class=\x22text-xs\x20ml-1\x22\x20title=\x22Minimum\x20Batch\x20Size\x20in\x20Train\x22>★</span>','CXjAk','SEptz','lowestLtdProductId','\x20</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22maco-breakdown-container-','IdxvE','flatMap','wGhiM','area','Health-Based\x20Limit\x20(NOEL)','push','color:\x20var(--gradient-end);','background-color:\x20#dcfce7;\x20color:\x20#166534;','URWmM','bbVjp','backgroundColor','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','tfIOv','BHLhv','maxHeight','mr-2\x20print-maco-train-checkbox','filter','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22inline-flex\x20items-center\x20px-2\x20py-1\x20rounded-full\x20text-xs\x20font-medium\x20bg-blue-200\x20text-blue-700\x20border\x20border-blue-300\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20🎯\x20Lowest\x20MACO:\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Right\x20Column:\x20MACO\x20Calculation\x20Details\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22space-y-4\x22>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20class=\x22text-md\x20font-semibold\x22>MACO\x20Calculation\x20Breakdown</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22breakdown-toggle-btn-','min','rDHGz','bjwNg','safetyFactorConfig','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20justify-between\x20items-start\x20mb-1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-sm\x20font-medium\x22>','Other','XEXdt','dosage-group-content\x20transition-all\x20duration-300\x20','toggle','lowestLtd','noMMo','QYxzQ','DPMgj','VrYBp','./ui.js','yixhv','therapeuticDose','XJxse','awnOT','yBsSM','flex\x20items-center\x20px-4\x20py-2\x20text-sm\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20cursor-pointer','productName','\x22\x20class=\x22hidden\x20space-y-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-4\x20rounded-lg\x22\x20style=\x22background-color:\x20var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x22><b>Worst-Case\x20Dosage\x20Form:</b>\x20','fuPdm','IbCSn','\x22>▼</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','span','<p><b\x20class=\x22text-sm\x22\x20>','getElementById','machineIds',')</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22mt-0.4\x22>RPN:\x20<span\x20class=\x22font-bold\x20text-sm\x22\x20style=\x22color:var(--gradient-mid);\x22>','classList','XlaQq','CyTBh','OMVsp','train-card','ingredientName','vUtBn','minRatioProductId','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x20font-semibold\x20mb-2\x22\x20style=\x22color:var(--text-secondary);\x22>Selected\x20Limit:\x20','div','innerHTML','VCbgp','BOTiy','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20for=\x22product-sf-input-train-','group-toggle-','1073177dPtinE','#macoExportDropdown','key','reduce','hpyfk','\x20cm²\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','color','rating','uGkCf','Show\x20MACO\x20Calculation\x20Breakdown','includes','dppNO','productRegister-ld50Hidden','group-content-','rotate(-90deg)','aXeoA','OfccA','25712KxqhdR','\x20<span\x20class=\x22text-xs\x22\x20style=\x22color:var(--text-secondary);\x22>(from\x20','RdBhh','zQfUx','maco-breakdown-details-','target','sxuiF','AuUjF','PjmXS','pde',')</span></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><b>Minimum\x20BS(g)/MDD(g)\x20Ratio:</b>\x20','Oovnk','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20whitespace-nowrap\x20','p-3\x20border-t-2\x20border-dashed\x20mt-4','FhUTp','<span\x20class=\x22individual-machine\x22\x20title=\x22Machine:\x20','\x20mg/cm²</p></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','Wmslu','Wvuym','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20gap-2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','ltXoa','Itjre','borderColor','iqWoy','ywgyo','<p\x20style=\x22color:var(--text-secondary);\x22>N/A</p>','toggleMacoPrintDropdown','rrofx','\x20Details</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20gap-x-2\x20mt-1\x22\x20id=\x22train-badges-','value','nFyVQ','hidden','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20font-medium\x22>','minMbsProductId','NjMei','Group\x20elements\x20not\x20found\x20for\x20groupId:\x20','click','toggleAllMacoTrainsSelection','createElement','lowestPde','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22train-content-inner\x20space-y-6\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Train\x20Details\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20justify-between\x20items-start\x20gap-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x22text-lg\x20font-bold\x22>Train\x20','Health-Based\x20Limit\x20(PDE)','</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><b>Lowest\x20LD50:</b>\x20','style','executeMacoPrintSelection','enqfV','productCode','DplCJ','dosageForm','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h5\x20class=\x22text-sm\x20font-semibold\x20mb-2\x22>Final\x20MACO\x20Limits\x20for\x20Train\x20','YTmCJ','then','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Products\x20Table\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22space-y-2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20class=\x22text-lg\x20font-semibold\x22>Products\x20in\x20Train</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22overflow-hidden\x20rounded-md\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22w-full\x20text-sm\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20class=\x22border-b\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22>Code</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22>Product\x20Name</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22>Batch\x20Size\x20(Kg)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-4\x20py-3\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22>BS/MDD\x20Ratio</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20class=\x22divide-y\x22\x20style=\x22border-color:\x20var(--border-color);\x22>','Error\x20loading\x20print\x20function','fGaJg','XPxxD','dhfEe','UvPWt','name','SnrOs','<li><b>','Hide\x20MACO\x20Calculation\x20Breakdown','ZVnmQ','FsfGa','289808vkkPPH','catch','ECjwZ','lfUgT','showCustomAlert','executeMacoExportSelection','ratio','addEventListener','ISXFJ','27vIvxJD','breakdown-toggle-btn-','toFixed','macoForTrains','essa','ecTZr','Prhua','vloxJ','brPve','cZeJf','aftmk','map','mdd','qJCdl','dgRsy','NndnI','511FlvVxl','TjfCx','\x20cm²\x20','scrollHeight','querySelectorAll','lAQCR','dgmSj','OKMhZ','qhEum','updateAllMacoTrainsCheckbox','\x20-\x20','display','dosage-group-header\x20pl-4\x20mb-3\x20cursor-pointer\x20select-none','cchpG','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22product-main-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20whitespace-nowrap\x22>','\x22\x20min=\x22','\x20train','MCOpZ','toggleMacoExportDropdown','YARej','geTwA','max','lOKtZ','xblsE','currentLineFilter','minMbsKg','sLEKi','productType','contains','dataset','YrxiR','CfvdW','MacoAllTrainsCheckbox','abs','8492805WnOBbI','qRgGs','keys','xDXUS','MACO\x20=\x20(<span\x20title=\x22Lowest\x20Therapeutic\x20Dose\x20(mg)\x22>LTD</span>\x20×\x20<span\x20title=\x22Batch\x20Size\x20/\x20Maximum\x20Daily\x20Dose\x20Ratio\x22>BS/MDD\x20Ratio</span>)\x20/\x20<span\x20title=\x22Safety\x20Factor\x22>SF</span>','.print-maco-train-checkbox:checked'];a9_0x45b2=function(){return _0x5c910e;};return a9_0x45b2();}(function(_0x389005,_0x359915){const _0x1fe381=a9_0x54c1,_0x5eaf6b=_0x389005();while(!![]){try{const _0x203113=parseInt(_0x1fe381(0x1ea))/0x1+-parseInt(_0x1fe381(0x23b))/0x2+parseInt(_0x1fe381(0x2b6))/0x3*(-parseInt(_0x1fe381(0x1fb))/0x4)+parseInt(_0x1fe381(0x276))/0x5+-parseInt(_0x1fe381(0x33f))/0x6*(-parseInt(_0x1fe381(0x254))/0x7)+-parseInt(_0x1fe381(0x2fb))/0x8*(parseInt(_0x1fe381(0x244))/0x9)+-parseInt(_0x1fe381(0x309))/0xa;if(_0x203113===_0x359915)break;else _0x5eaf6b['push'](_0x5eaf6b['shift']());}catch(_0x2f5546){_0x5eaf6b['push'](_0x5eaf6b['shift']());}}}(a9_0x45b2,0xdae0e));import*as a9_0x2c851d from'./state.js';import{hideLoader as a9_0x117404}from'./ui.js';import{getTrainData as a9_0x57f09b,getWorstCaseProductType as a9_0x2ac70d,getRpnRatingClass as a9_0x1d774b,getTrainsGroupedByLine as a9_0x222a46,getLargestEssaForLineAndDosageForm as a9_0x50a017,getToxicityPreference as a9_0x21737e,getConsistentTrainOrder as a9_0x1571f8,calculateScores as a9_0x2d8d1b,getRpnRatingText as a9_0xe96d23}from'./utils.js';function m(_0x3dc572,_0x2e7fb4=''){const _0x319e5c=a9_0x54c1,_0xc9fa13={'oTzzY':function(_0x2bc4e2,_0x33bdb6){return _0x2bc4e2===_0x33bdb6;},'GfQDs':function(_0x91e4a3,_0x216c28){return _0x91e4a3(_0x216c28);},'Odkyl':function(_0x48e722,_0x2368bf){return _0x48e722+_0x2368bf;}};if(_0xc9fa13['oTzzY'](0x0,_0x3dc572)||null==_0x3dc572||_0xc9fa13[_0x319e5c(0x2bd)](isNaN,_0x3dc572))return _0xc9fa13['Odkyl']('0',_0x2e7fb4?_0xc9fa13[_0x319e5c(0x2ac)]('\x20',_0x2e7fb4):'');const _0x879149=Math[_0x319e5c(0x275)](_0x3dc572);return _0x879149<0.0001?''+_0x3dc572[_0x319e5c(0x30a)](0x3)+(_0x2e7fb4?_0xc9fa13[_0x319e5c(0x2ac)]('\x20',_0x2e7fb4):''):_0x879149<0.01?''+_0x3dc572[_0x319e5c(0x246)](0x6)+(_0x2e7fb4?_0xc9fa13[_0x319e5c(0x2ac)]('\x20',_0x2e7fb4):''):''+_0x3dc572[_0x319e5c(0x246)](0x4)+(_0x2e7fb4?_0xc9fa13[_0x319e5c(0x2ac)]('\x20',_0x2e7fb4):'');}window[a9_0x4add99(0x32d)]=function(_0x140226){const _0x810e39=a9_0x4add99,_0x55bfe9={'CfvdW':_0x810e39(0x2e1),'rfuZz':'collapsed','aVUAh':function(_0x2dc075,_0x3f0814){return _0x2dc075||_0x3f0814;},'nJoCU':function(_0x1cbf83,_0x162860){return _0x1cbf83+_0x162860;},'VkDLK':function(_0x631272,_0x273590){return _0x631272(_0x273590);}},_0x9497ad=document['getElementById'](_0x810e39(0x1f7)+_0x140226),_0x55fa1e=document['getElementById'](_0x810e39(0x1e9)+_0x140226);if(_0x55bfe9[_0x810e39(0x351)](!_0x9497ad,!_0x55fa1e))return void console[_0x810e39(0x2ae)](_0x810e39(0x21e)+_0x140226);_0x9497ad[_0x810e39(0x1db)][_0x810e39(0x270)](_0x55bfe9[_0x810e39(0x352)])?(_0x9497ad[_0x810e39(0x1db)]['remove'](_0x55bfe9[_0x810e39(0x352)]),_0x55fa1e['textContent']='▼',_0x55fa1e[_0x810e39(0x226)][_0x810e39(0x337)]=_0x810e39(0x2b1),_0x9497ad['style'][_0x810e39(0x1b7)]=_0x55bfe9[_0x810e39(0x2d9)](_0x9497ad[_0x810e39(0x257)],'px'),setTimeout(()=>{const _0x4da599=_0x810e39;_0x9497ad[_0x4da599(0x1db)][_0x4da599(0x270)](_0x4da599(0x2f6))||(_0x9497ad[_0x4da599(0x226)]['maxHeight']=_0x55bfe9[_0x4da599(0x273)]);},0x12c)):(_0x9497ad[_0x810e39(0x226)][_0x810e39(0x1b7)]=_0x55bfe9[_0x810e39(0x2d9)](_0x9497ad['scrollHeight'],'px'),_0x55bfe9['VkDLK'](requestAnimationFrame,()=>{const _0x597f52=_0x810e39;_0x9497ad['classList'][_0x597f52(0x2e5)](_0x55bfe9[_0x597f52(0x352)]),_0x55fa1e['textContent']='▶',_0x55fa1e[_0x597f52(0x226)]['transform']=_0x597f52(0x1f8),_0x9497ad['style'][_0x597f52(0x1b7)]=_0x597f52(0x2fc);}));};export function renderMacoForTrains(_0x276af1=null){const _0x541e86=a9_0x4add99,_0x3a718a={'vQCOl':function(_0x347c03,_0xc8703f){return _0x347c03<_0xc8703f;},'zaetQ':function(_0x3060b3,_0x1b78e5){return _0x3060b3(_0x1b78e5);},'xblsE':function(_0x39a2a8,_0x518a47){return _0x39a2a8-_0x518a47;},'gQPFJ':function(_0x1f80c2,_0x2bbe41){return _0x1f80c2/_0x2bbe41;},'GEBKL':function(_0x559902,_0x4857ae){return _0x559902*_0x4857ae;},'fGaJg':function(_0x343794,_0x56616f){return _0x343794*_0x56616f;},'XbkAV':'true','aEpih':function(_0x378b8e,_0x57c73f){return _0x378b8e*_0x57c73f;},'DsgPf':'0.1%\x20Therapeutic\x20Dose','KbXID':_0x541e86(0x2f7),'MuuFl':'Health-Based\x20Limit\x20(PDE)','yOcCL':_0x541e86(0x319),'ecTZr':function(_0x275e48,_0x4bfc45){return _0x275e48>_0x4bfc45;},'BsWEh':_0x541e86(0x354),'FhUTp':_0x541e86(0x1af),'dhfEe':_0x541e86(0x31c),'IIDEI':function(_0x342190,_0x4046ba,_0x1b8fa9){return _0x342190(_0x4046ba,_0x1b8fa9);},'rDHGz':_0x541e86(0x1df),'dBSOB':_0x541e86(0x288),'PjmXS':_0x541e86(0x2bc),'FsfGa':_0x541e86(0x214),'AuqDP':_0x541e86(0x2a5),'wmvBP':function(_0x2e5aab,_0x12d147){return _0x2e5aab===_0x12d147;},'MPniI':'\x20mg','khQrF':function(_0x44afae,_0x44d12b){return _0x44afae+_0x44d12b;},'KckPI':'\x20mg/kg','CXjAk':_0x541e86(0x1e4),'YrxiR':_0x541e86(0x1c3),'niFoc':'hidden','DplCJ':'trainsContainer','xDXUS':function(_0x109015){return _0x109015();},'KerYd':_0x541e86(0x2e1),'aftmk':_0x541e86(0x332),'XLVjA':_0x541e86(0x2e8),'cZeJf':function(_0x3d27ea,_0xa6de1c){return _0x3d27ea===_0xa6de1c;},'LrPmo':function(_0x3c425e,_0x10ea52){return _0x3c425e>_0x10ea52;},'sffVB':_0x541e86(0x308)},_0x29760e=document[_0x541e86(0x1d8)](_0x3a718a[_0x541e86(0x22a)]),_0x3554d9=document[_0x541e86(0x1d8)]('noTrainsMessage');_0x29760e[_0x541e86(0x1e5)]='';let _0x39f476=_0x3a718a['xDXUS'](a9_0x222a46);if(_0x276af1&&(_0x39f476=_0x39f476[_0x541e86(0x1b9)](_0x91dc50=>_0x91dc50[_0x541e86(0x324)]===_0x276af1)),!_0x39f476||_0x3a718a[_0x541e86(0x325)](0x0,_0x39f476[_0x541e86(0x296)]))return _0x3554d9[_0x541e86(0x226)]['display']=_0x541e86(0x332),void(_0x29760e[_0x541e86(0x226)][_0x541e86(0x25f)]=_0x3a718a[_0x541e86(0x2aa)]);_0x3554d9[_0x541e86(0x226)][_0x541e86(0x25f)]=_0x3a718a['KerYd'],_0x29760e[_0x541e86(0x226)][_0x541e86(0x25f)]=_0x3a718a[_0x541e86(0x24e)];const _0x534617=_0x3a718a[_0x541e86(0x279)](a9_0x57f09b),_0x2a9109={};_0x534617[_0x541e86(0x29e)](_0x58a1e3=>{const _0x58d550=_0x541e86;_0x58a1e3[_0x58d550(0x1ec)]&&(_0x2a9109[_0x58a1e3[_0x58d550(0x1ec)]]=_0x58a1e3);});const _0x72b672=[];_0x39f476['forEach'](_0x2ed3a9=>{const _0x26f9cf=_0x541e86,_0x5047ef={'cchpG':function(_0x2f371e,_0x179607){return _0x3a718a['vQCOl'](_0x2f371e,_0x179607);},'YTmCJ':function(_0x15f771,_0x3f90c2){const _0x50243c=a9_0x54c1;return _0x3a718a[_0x50243c(0x2e4)](_0x15f771,_0x3f90c2);},'WMJgD':function(_0x5a4233,_0x1819dc){return _0x5a4233(_0x1819dc);}};_0x2ed3a9[_0x26f9cf(0x2a8)][_0x26f9cf(0x29e)](_0x2880a9=>{const _0x259948=_0x26f9cf,_0x1b1ef9={'lStcU':function(_0x50958c,_0x5c3038){const _0x5d03cf=a9_0x54c1;return _0x5047ef[_0x5d03cf(0x261)](_0x50958c,_0x5c3038);},'pUUxO':function(_0x39c23a,_0xa3ef21){return _0x39c23a/_0xa3ef21;},'ZCYDM':'Error\x20calculating\x20RPN\x20for\x20ingredient:'},_0x51f58f=_0x2a9109[_0x2880a9[_0x259948(0x1ec)]];if(!_0x51f58f)return;const _0x4f27f6={..._0x2880a9,'id':_0x51f58f['id'],'essa':_0x51f58f[_0x259948(0x248)],'lowestLtd':null,'lowestPde':null,'lowestLd50':null,'minBsMddRatio':null,'minMbsKg':null,'assumedSsa':_0x51f58f[_0x259948(0x315)]||0x19};let _0x7999f8=0x1/0x0,_0x1801fb=null,_0x559a95=0x1/0x0,_0x5af804=0x1/0x0,_0x23a67f=0x1/0x0,_0xb90bd4=null,_0x5417c8=null,_0xd4cd97=-0x1;const _0x40bbb2=[];if(_0x4f27f6[_0x259948(0x336)]['forEach'](_0xac7e7=>{const _0x321708=_0x259948,_0x29904e={'HxTsk':function(_0x32adad,_0x179de5){return _0x1b1ef9['lStcU'](_0x32adad,_0x179de5);},'sIYMa':function(_0x4c1804,_0x54ce45){const _0x382569=a9_0x54c1;return _0x1b1ef9[_0x382569(0x33e)](_0x4c1804,_0x54ce45);},'QYxzQ':function(_0x4e0704,_0x9848e3){const _0x3cfd85=a9_0x54c1;return _0x1b1ef9[_0x3cfd85(0x30b)](_0x4e0704,_0x9848e3);},'spPUV':function(_0x541ddb,_0x5c7899){return _0x1b1ef9['pUUxO'](_0x541ddb,_0x5c7899);},'ZVnmQ':function(_0x6f7c7d,_0x4f27b5){return _0x6f7c7d(_0x4f27b5);},'ltXoa':_0x1b1ef9['ZCYDM']};_0x1b1ef9[_0x321708(0x33e)](_0xac7e7[_0x321708(0x2c7)],_0x23a67f)&&(_0x23a67f=_0xac7e7[_0x321708(0x2c7)],_0xb90bd4=_0xac7e7['id']),_0xac7e7[_0x321708(0x28b)][_0x321708(0x29e)](_0x1bcfd2=>{const _0x483d24=_0x321708;_0x29904e[_0x483d24(0x2c1)](_0x1bcfd2[_0x483d24(0x1cc)],_0x7999f8)&&(_0x7999f8=_0x1bcfd2[_0x483d24(0x1cc)],_0x1801fb=_0xac7e7['id']),_0x1bcfd2[_0x483d24(0x204)]&&_0x29904e[_0x483d24(0x2b9)](_0x1bcfd2['pde'],_0x559a95)&&(_0x559a95=_0x1bcfd2['pde']),_0x1bcfd2[_0x483d24(0x2cd)]&&_0x1bcfd2[_0x483d24(0x2cd)]<_0x5af804&&(_0x5af804=_0x1bcfd2['ld50']);const _0x4d2670=_0x29904e[_0x483d24(0x1c7)](0x3e8*_0xac7e7[_0x483d24(0x2c7)],_0x29904e['spPUV'](_0x1bcfd2[_0x483d24(0x250)],0x3e8));_0x40bbb2[_0x483d24(0x35e)]({'productId':_0xac7e7['id'],'ratio':_0x4d2670});try{const _0x3a291b=a9_0x2d8d1b(_0x1bcfd2),_0x58d42a=_0x3a291b?.[_0x483d24(0x335)]||0x0;_0x58d42a>_0xd4cd97&&(_0xd4cd97=_0x58d42a,_0x5417c8={'productName':_0xac7e7[_0x483d24(0x235)],'ingredientName':_0x1bcfd2[_0x483d24(0x235)],'rpn':_0xd4cd97,'rating':_0x29904e[_0x483d24(0x239)](a9_0xe96d23,_0xd4cd97)});}catch(_0x3e78cf){console[_0x483d24(0x2ae)](_0x29904e[_0x483d24(0x20f)],_0x1bcfd2,_0x3e78cf);}});}),_0x4f27f6[_0x259948(0x1c5)]=_0x5047ef[_0x259948(0x22d)](isFinite,_0x7999f8)?_0x7999f8:0x0,_0x4f27f6['lowestLtdProductId']=_0x1801fb,_0x4f27f6[_0x259948(0x222)]=_0x5047ef[_0x259948(0x22d)](isFinite,_0x559a95)?_0x559a95:null,_0x4f27f6[_0x259948(0x2f1)]=_0x5047ef['WMJgD'](isFinite,_0x5af804)?_0x5af804:null,_0x4f27f6[_0x259948(0x26d)]=_0x5047ef['WMJgD'](isFinite,_0x23a67f)?_0x23a67f:0x0,_0x4f27f6['minMbsProductId']=_0xb90bd4,_0x4f27f6[_0x259948(0x2bf)]=_0x5417c8,_0x40bbb2[_0x259948(0x296)]>0x0){const _0x5c1092=_0x40bbb2[_0x259948(0x1ed)]((_0x5780e7,_0x261254)=>_0x261254[_0x259948(0x241)]<_0x5780e7[_0x259948(0x241)]?_0x261254:_0x5780e7);_0x4f27f6[_0x259948(0x2d7)]=_0x5c1092[_0x259948(0x241)],_0x4f27f6[_0x259948(0x1e2)]=_0x5c1092['productId'];}else _0x4f27f6['minBsMddRatio']=0x0,_0x4f27f6[_0x259948(0x1e2)]=null;_0x72b672['push'](_0x4f27f6);});});const _0x3e69e4=_0x3a718a[_0x541e86(0x2e4)](a9_0x1571f8,_0x72b672);let _0x13a863=_0x3e69e4;if(window[_0x541e86(0x2a3)]&&_0x3a718a[_0x541e86(0x28e)]!==window[_0x541e86(0x2a3)]&&(_0x13a863=Array[_0x541e86(0x331)](window[_0x541e86(0x2a3)])?_0x3e69e4['filter'](_0x397a1e=>window[_0x541e86(0x2a3)][_0x541e86(0x1f4)](String(_0x397a1e['id']))||window[_0x541e86(0x2a3)][_0x541e86(0x1f4)](String(_0x397a1e[_0x541e86(0x306)]))):_0x3e69e4[_0x541e86(0x1b9)](_0x4cef70=>String(_0x4cef70['id'])===String(window[_0x541e86(0x2a3)])||String(_0x4cef70[_0x541e86(0x306)])===String(window['printSelectedTrain']))),_0x3a718a[_0x541e86(0x24d)](0x0,_0x13a863['length']))return _0x3554d9[_0x541e86(0x226)][_0x541e86(0x25f)]=_0x3a718a[_0x541e86(0x24e)],void(_0x29760e['style']['display']=_0x3a718a[_0x541e86(0x2aa)]);const _0x360b70={};_0x13a863[_0x541e86(0x29e)](_0x29c898=>{const _0x10fe12=_0x541e86;_0x360b70[_0x29c898[_0x10fe12(0x324)]]||(_0x360b70[_0x29c898[_0x10fe12(0x324)]]=[]),_0x360b70[_0x29c898[_0x10fe12(0x324)]]['push'](_0x29c898);}),Object[_0x541e86(0x278)](_0x360b70)[_0x541e86(0x29e)](_0x5cb492=>{const _0x55689d=_0x541e86,_0x4fa4f2={'TjfCx':function(_0xf1be24,_0x2e2a15){const _0xda0af4=a9_0x54c1;return _0x3a718a[_0xda0af4(0x26b)](_0xf1be24,_0x2e2a15);},'Prhua':function(_0x586841,_0x445924){const _0xb0104e=a9_0x54c1;return _0x3a718a[_0xb0104e(0x2e4)](_0x586841,_0x445924);},'XgkcU':function(_0x6738ca,_0x4208df){const _0x52e5e5=a9_0x54c1;return _0x3a718a[_0x52e5e5(0x28c)](_0x6738ca,_0x4208df);},'EWHoK':function(_0x43f331,_0x4c0ec4){const _0x3bfe5a=a9_0x54c1;return _0x3a718a[_0x3bfe5a(0x313)](_0x43f331,_0x4c0ec4);},'enqfV':function(_0x353a13,_0x392206){const _0xcf7bbc=a9_0x54c1;return _0x3a718a[_0xcf7bbc(0x231)](_0x353a13,_0x392206);},'Gpeep':function(_0x1ab8c8,_0x5c1a13){return _0x1ab8c8/_0x5c1a13;},'bjwNg':function(_0x59e6b7,_0x53681a){return _0x59e6b7===_0x53681a;},'OKMhZ':_0x3a718a[_0x55689d(0x2ff)],'ECjwZ':_0x55689d(0x2f8),'fyxJY':function(_0x3b53ba,_0x5434e2){return _0x3b53ba!==_0x5434e2;},'MuntG':function(_0x44c245,_0x140ee8){const _0x2f1b19=_0x55689d;return _0x3a718a[_0x2f1b19(0x327)](_0x44c245,_0x140ee8);},'PnUBl':function(_0x308d83,_0x17bf75){return _0x308d83*_0x17bf75;},'xdrYa':function(_0x2b87c9,_0x2b9536){const _0x478c6f=_0x55689d;return _0x3a718a[_0x478c6f(0x327)](_0x2b87c9,_0x2b9536);},'iKjBm':_0x3a718a[_0x55689d(0x29a)],'bGQwp':_0x3a718a[_0x55689d(0x321)],'qRgGs':_0x3a718a[_0x55689d(0x2dd)],'dgmSj':'Health-Based\x20Limit\x20(NOEL)','ywgyo':_0x3a718a['yOcCL'],'nphIl':function(_0x19e85b,_0x52fa6b){const _0xf5c971=_0x55689d;return _0x3a718a[_0xf5c971(0x249)](_0x19e85b,_0x52fa6b);},'zQfUx':function(_0x4e856a,_0x96727d){const _0x2958d4=_0x55689d;return _0x3a718a[_0x2958d4(0x28c)](_0x4e856a,_0x96727d);},'LvGeJ':'font-bold','vDZpj':_0x3a718a[_0x55689d(0x305)],'brPve':_0x3a718a[_0x55689d(0x209)],'gntwx':_0x3a718a[_0x55689d(0x233)],'IdxvE':function(_0x23b790,_0x2d148d,_0x104a0c){return _0x3a718a['IIDEI'](_0x23b790,_0x2d148d,_0x104a0c);},'qhEum':function(_0x1e9817,_0xb82e7a){return _0x1e9817(_0xb82e7a);},'Wvuym':_0x3a718a[_0x55689d(0x1bd)],'eFQbY':_0x3a718a[_0x55689d(0x299)],'dppNO':_0x3a718a[_0x55689d(0x203)],'gEwLY':_0x3a718a[_0x55689d(0x23a)],'dgRsy':_0x3a718a[_0x55689d(0x346)],'QKJmQ':function(_0x5d8967,_0x948c39){const _0x5d6abf=_0x55689d;return _0x3a718a[_0x5d6abf(0x325)](_0x5d8967,_0x948c39);},'czgIq':function(_0x3b250a,_0x565ae5){return _0x3b250a===_0x565ae5;},'myJMZ':function(_0xd3ce23,_0x511842,_0x3ab44a){const _0x16d7ed=_0x55689d;return _0x3a718a[_0x16d7ed(0x31d)](_0xd3ce23,_0x511842,_0x3ab44a);},'YARej':'mg/Swab','geTwA':function(_0x594460,_0x2e7cf7){return _0x594460+_0x2e7cf7;},'SEptz':_0x3a718a[_0x55689d(0x34d)],'XEXdt':function(_0xac0797,_0x4dc931){return _0x3a718a['khQrF'](_0xac0797,_0x4dc931);},'QmcBP':_0x3a718a['KckPI'],'LprXw':function(_0x560cc9,_0x21f936){const _0x41a62c=_0x55689d;return _0x3a718a[_0x41a62c(0x28c)](_0x560cc9,_0x21f936);},'AuUjF':_0x3a718a['CXjAk'],'SRliU':_0x55689d(0x260),'PgGjj':function(_0x28ea57,_0x4b2cc1){return _0x28ea57!==_0x4b2cc1;},'Wmslu':_0x3a718a[_0x55689d(0x272)],'BqcQP':_0x3a718a[_0x55689d(0x2a9)]},_0x4da937=document[_0x55689d(0x221)](_0x3a718a[_0x55689d(0x355)]);_0x4da937[_0x55689d(0x2f5)]=_0x55689d(0x33b),_0x4da937[_0x55689d(0x1e5)]=_0x55689d(0x322)+_0x5cb492+'</h3>',_0x29760e[_0x55689d(0x294)](_0x4da937);const _0x487844={};_0x360b70[_0x5cb492][_0x55689d(0x29e)](_0x5c8c26=>{const _0x4b8afb=_0x55689d;_0x487844[_0x5c8c26[_0x4b8afb(0x22b)]]||(_0x487844[_0x5c8c26[_0x4b8afb(0x22b)]]=[]),_0x487844[_0x5c8c26['dosageForm']][_0x4b8afb(0x35e)](_0x5c8c26);}),Object[_0x55689d(0x278)](_0x487844)[_0x55689d(0x320)]((_0x4f9a7a,_0x996cd5)=>{const _0x2bf6b9=_0x55689d,_0x30748a=_0x487844[_0x4f9a7a],_0x48936c=_0x487844[_0x996cd5];return _0x4fa4f2[_0x2bf6b9(0x255)](Math[_0x2bf6b9(0x1bc)](..._0x30748a[_0x2bf6b9(0x24f)](_0x1382b3=>_0x1382b3[_0x2bf6b9(0x306)])),Math[_0x2bf6b9(0x1bc)](..._0x48936c['map'](_0x3e0722=>_0x3e0722[_0x2bf6b9(0x306)])));})[_0x55689d(0x29e)](_0x220766=>{const _0xe9f063=_0x55689d,_0x44519d=_0x5cb492[_0xe9f063(0x302)](/\s+/g,'')+'-'+_0x220766['replace'](/\s+/g,''),_0x3037fe=document['createElement'](_0x4fa4f2[_0xe9f063(0x202)]);_0x3037fe['className']=_0x4fa4f2[_0xe9f063(0x330)],_0x3037fe['onclick']=()=>toggleDosageGroup(_0x44519d),_0x3037fe['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20justify-between\x20py-2\x20px-3\x20rounded-lg\x20border\x20transition-all\x20hover:bg-gray-50\x20dark:hover:bg-gray-800/50\x22\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20transparent;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20class=\x22text-md\x20font-semibold\x20flex\x20items-center\x20gap-2\x22\x20style=\x22color:\x20var(--text-primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22group-toggle-icon\x20transition-transform\x20duration-200\x22\x20id=\x22group-toggle-'+_0x44519d+_0xe9f063(0x1d5)+_0x220766+_0xe9f063(0x2a6)+_0x487844[_0x220766][_0xe9f063(0x296)]+_0xe9f063(0x264)+(_0x4fa4f2[_0xe9f063(0x29d)](0x1,_0x487844[_0x220766][_0xe9f063(0x296)])?'s':'')+_0xe9f063(0x2e7),_0x29760e['appendChild'](_0x3037fe);const _0x19d695=document['createElement'](_0x4fa4f2[_0xe9f063(0x202)]);_0x19d695['className']=_0x4fa4f2[_0xe9f063(0x20c)],_0x19d695['id']='group-content-'+_0x44519d,_0x19d695[_0xe9f063(0x226)]['overflow']=_0x4fa4f2[_0xe9f063(0x2f3)],_0x29760e[_0xe9f063(0x294)](_0x19d695);const _0x3c3683=_0x487844[_0x220766],_0x41c61d=_0x3c3683['reduce']((_0x2f2685,_0x17b0bb)=>_0x17b0bb[_0xe9f063(0x248)]>_0x2f2685[_0xe9f063(0x248)]?_0x17b0bb:_0x2f2685,_0x3c3683[0x0]),_0x2f2c2c=_0x3c3683['map'](_0x1f752c=>{const _0xdfd07f=_0xe9f063,_0x39a242=(a9_0x2c851d[_0xdfd07f(0x1bf)][_0x4fa4f2[_0xdfd07f(0x24a)](a9_0x2ac70d,_0x1f752c[_0xdfd07f(0x336)][_0xdfd07f(0x24f)](_0x38c005=>_0x38c005['productType']))]||a9_0x2c851d[_0xdfd07f(0x1bf)][_0xdfd07f(0x1c1)])[_0xdfd07f(0x269)],_0x33ec6f=_0x4fa4f2[_0xdfd07f(0x2d6)](_0x4fa4f2[_0xdfd07f(0x28f)](_0x1f752c[_0xdfd07f(0x1c5)],_0x1f752c[_0xdfd07f(0x2d7)]),_0x39a242),_0x2b5053=_0x4fa4f2[_0xdfd07f(0x228)](0xa,_0x1f752c[_0xdfd07f(0x26d)]);let _0x4a19b9=_0x4fa4f2[_0xdfd07f(0x2c9)](0x1,0x0),_0x11a5b9=0x1/0x0;const _0x15e55c=_0x4fa4f2[_0xdfd07f(0x1be)](_0x4fa4f2['OKMhZ'],localStorage[_0xdfd07f(0x2e6)](_0x4fa4f2[_0xdfd07f(0x23d)])),_0x4ae99d=_0x4fa4f2[_0xdfd07f(0x25b)]===localStorage[_0xdfd07f(0x2e6)](_0xdfd07f(0x1f6));if(_0x4fa4f2[_0xdfd07f(0x1be)](null,_0x1f752c[_0xdfd07f(0x222)])||_0x15e55c||(_0x4a19b9=_0x4fa4f2[_0xdfd07f(0x228)](_0x1f752c[_0xdfd07f(0x222)],_0x1f752c[_0xdfd07f(0x2d7)])),_0x4fa4f2[_0xdfd07f(0x291)](null,_0x1f752c[_0xdfd07f(0x2f1)])&&!_0x4ae99d){const _0x3ecf34=_0x4fa4f2[_0xdfd07f(0x2d6)](_0x4fa4f2[_0xdfd07f(0x28f)](0x46,_0x1f752c[_0xdfd07f(0x2f1)]),0x7d0),_0x3032a3=_0x1f752c[_0xdfd07f(0x336)][_0xdfd07f(0x35a)](_0x4713cc=>_0x4713cc[_0xdfd07f(0x28b)][_0xdfd07f(0x24f)](_0x597b6c=>_0x597b6c[_0xdfd07f(0x250)]/0x3e8)),_0x20863c=Math[_0xdfd07f(0x1bc)](..._0x3032a3);_0x11a5b9=_0x4fa4f2[_0xdfd07f(0x2d6)](_0x4fa4f2[_0xdfd07f(0x2b5)](_0x3ecf34,_0x1f752c[_0xdfd07f(0x26d)])*0x3e8,_0x4fa4f2[_0xdfd07f(0x2ed)](_0x39a242,_0x20863c));}const _0x1cdb7d=a9_0x50a017(_0x1f752c,_0x3c3683),_0x4838c2=_0x4fa4f2['xdrYa'](0.004,_0x1cdb7d),_0x3f7e76=[{'name':_0x4fa4f2['iKjBm'],'value':_0x33ec6f},{'name':_0x4fa4f2['bGQwp'],'value':_0x2b5053}];null===_0x1f752c[_0xdfd07f(0x222)]||_0x15e55c||_0x3f7e76[_0xdfd07f(0x35e)]({'name':_0x4fa4f2[_0xdfd07f(0x277)],'value':_0x4a19b9}),null===_0x1f752c[_0xdfd07f(0x2f1)]||_0x4ae99d||_0x3f7e76[_0xdfd07f(0x35e)]({'name':_0x4fa4f2[_0xdfd07f(0x25a)],'value':_0x11a5b9}),_0x3f7e76[_0xdfd07f(0x35e)]({'name':_0x4fa4f2[_0xdfd07f(0x213)],'value':_0x4838c2});const _0xb9a057=_0x3f7e76[_0xdfd07f(0x1ed)]((_0x221a78,_0x2fb652)=>_0x2fb652[_0xdfd07f(0x218)]<_0x221a78[_0xdfd07f(0x218)]?_0x2fb652:_0x221a78)[_0xdfd07f(0x218)],_0x4240c2=_0x4fa4f2[_0xdfd07f(0x2b5)](_0x4fa4f2['nphIl'](_0x1cdb7d,0x0)?_0x4fa4f2[_0xdfd07f(0x1fe)](_0xb9a057,_0x1cdb7d):0x0,_0x1f752c[_0xdfd07f(0x315)]);return{..._0x1f752c,'finalMaco':_0x4240c2};}),_0x5eed4d=_0x2f2c2c[_0xe9f063(0x1ed)]((_0x18a5bd,_0x2a0db6)=>_0x2a0db6['finalMaco']<_0x18a5bd[_0xe9f063(0x33a)]?_0x2a0db6:_0x18a5bd,_0x2f2c2c[0x0]);_0x487844[_0x220766]['forEach'](_0x41ee21=>{const _0x421561=_0xe9f063,_0x34cdf5={'XvpzZ':function(_0x46765c,_0x5d2875){return _0x46765c/_0x5d2875;},'rrofx':function(_0x45e0d8,_0x407fb4){const _0x224b6a=a9_0x54c1;return _0x4fa4f2[_0x224b6a(0x1be)](_0x45e0d8,_0x407fb4);},'omDWd':_0x4fa4f2['LvGeJ'],'mbEVt':_0x4fa4f2['vDZpj'],'sRfTz':_0x4fa4f2[_0x421561(0x24c)],'Oovnk':function(_0x2edd61,_0x351715){return _0x2edd61(_0x351715);},'XPxxD':_0x4fa4f2[_0x421561(0x29f)],'PuPrk':function(_0x15c525,_0x9e6535,_0x26786d){const _0x46a06a=_0x421561;return _0x4fa4f2[_0x46a06a(0x359)](_0x15c525,_0x9e6535,_0x26786d);}},_0x4f4d44=_0x41ee21[_0x421561(0x336)][_0x421561(0x24f)](_0xf00eec=>_0xf00eec[_0x421561(0x26f)]),_0x6f339b=_0x4fa4f2[_0x421561(0x25c)](a9_0x2ac70d,_0x4f4d44),_0x14809f=a9_0x2c851d[_0x421561(0x1bf)][_0x6f339b]||a9_0x2c851d['safetyFactorConfig'][_0x421561(0x1c1)],_0x215e0f=document[_0x421561(0x221)]('div');_0x215e0f[_0x421561(0x2f5)]=_0x4fa4f2[_0x421561(0x20d)];const _0x52db6d=_0x41ee21['id']+'-'+(_0x41ee21[_0x421561(0x22b)]||_0x4fa4f2['eFQbY']);_0x215e0f['id']=_0x421561(0x2ea)+_0x52db6d;const _0x4ed325=_0x41ee21[_0x421561(0x1d9)][_0x421561(0x24f)](_0xfc3f2c=>{const _0x58697a=_0x421561,_0x73ad8=a9_0x2c851d[_0x58697a(0x304)][_0x58697a(0x2e9)](_0x28db4e=>_0x28db4e['id']===_0xfc3f2c),_0x3a321a=_0x73ad8?_0x73ad8['name']:'Unknown\x20(ID:\x20'+_0xfc3f2c+')';return _0x58697a(0x20a)+_0x3a321a+_0x58697a(0x2ce)+(_0x73ad8?_0x73ad8[_0x58697a(0x35c)]:0x0)['toLocaleString']()+_0x58697a(0x344)+_0x3a321a+_0x58697a(0x2d3);})[_0x421561(0x32e)](_0x4fa4f2[_0x421561(0x1f5)]),_0x48c70b=_0x41ee21[_0x421561(0x336)]['map'](_0x33aa58=>{const _0x5c1261=_0x421561,_0x22182f=_0x33aa58[_0x5c1261(0x28b)][_0x5c1261(0x296)]>0x0?Math[_0x5c1261(0x1bc)](..._0x33aa58['activeIngredients'][_0x5c1261(0x24f)](_0x5777c9=>0x3e8*_0x33aa58[_0x5c1261(0x2c7)]/(_0x5777c9['mdd']/0x3e8))):_0x34cdf5[_0x5c1261(0x2df)](0x1,0x0),_0x40972e=_0x34cdf5[_0x5c1261(0x216)](_0x33aa58['id'],_0x41ee21[_0x5c1261(0x21c)]),_0x390c7c=_0x34cdf5['rrofx'](_0x33aa58['id'],_0x41ee21['minRatioProductId']);return _0x5c1261(0x262)+_0x33aa58[_0x5c1261(0x229)]+_0x5c1261(0x21b)+_0x33aa58[_0x5c1261(0x235)]+'<p\x20class=\x22text-xs\x20italic\x22\x20style=\x22color:var(--text-secondary);\x22>'+_0x33aa58[_0x5c1261(0x26f)]+'</p></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-4\x20py-3\x20whitespace-nowrap\x20'+(_0x40972e?_0x34cdf5[_0x5c1261(0x2ca)]:'')+'\x22\x20style=\x22'+(_0x40972e?_0x5c1261(0x30f):'')+'\x22>'+_0x33aa58[_0x5c1261(0x2c7)]+'\x20'+(_0x40972e?_0x34cdf5['mbEVt']:'')+_0x5c1261(0x207)+(_0x390c7c?_0x34cdf5[_0x5c1261(0x2ca)]:'')+'\x22\x20style=\x22'+(_0x390c7c?_0x34cdf5['sRfTz']:'')+'\x22>'+(_0x34cdf5[_0x5c1261(0x206)](isFinite,_0x22182f)?_0x22182f[_0x5c1261(0x333)](void 0x0,{'maximumFractionDigits':0x2}):_0x34cdf5[_0x5c1261(0x232)])+'\x20'+(_0x390c7c?_0x5c1261(0x290):'')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22ingredients-sub-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x224\x22\x20class=\x22!pb-0\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-3\x20ingredients-sub-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul\x20class=\x22text-xs\x20list-disc\x20list-inside\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x33aa58[_0x5c1261(0x28b)][_0x5c1261(0x24f)](_0x1a764d=>_0x5c1261(0x237)+_0x1a764d[_0x5c1261(0x235)]+_0x5c1261(0x2ec)+_0x1a764d['therapeuticDose']+_0x5c1261(0x34b)+_0x1a764d[_0x5c1261(0x250)]/0x3e8+'g)</li>')[_0x5c1261(0x32e)]('')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>';})[_0x421561(0x32e)](''),_0x417d37=_0x41ee21[_0x421561(0x2bf)]?_0x421561(0x1d7)+_0x41ee21[_0x421561(0x2bf)][_0x421561(0x1d1)]+'</b>\x20(Ingredient:\x20'+_0x41ee21[_0x421561(0x2bf)][_0x421561(0x1e0)]+_0x421561(0x1da)+_0x41ee21[_0x421561(0x2bf)][_0x421561(0x335)]+_0x421561(0x280)+_0x4fa4f2[_0x421561(0x24a)](a9_0x1d774b,_0x41ee21[_0x421561(0x2bf)][_0x421561(0x1f1)])+'\x22>'+_0x41ee21['worstProductRpn'][_0x421561(0x1f1)]+_0x421561(0x2da):_0x4fa4f2[_0x421561(0x2b2)],_0x44877b=a9_0x2c851d[_0x421561(0x336)][_0x421561(0x2e9)](_0x27b136=>_0x27b136['id']===_0x41ee21[_0x421561(0x357)])||{'name':_0x4fa4f2[_0x421561(0x29f)]},_0x3670e9=a9_0x2c851d[_0x421561(0x336)][_0x421561(0x2e9)](_0xc40440=>_0xc40440['id']===_0x41ee21[_0x421561(0x1e2)])||{'name':_0x4fa4f2[_0x421561(0x29f)]},_0x183c03=a9_0x2c851d['products'][_0x421561(0x2e9)](_0x45bfef=>_0x45bfef['id']===_0x41ee21[_0x421561(0x21c)])||{'name':_0x4fa4f2[_0x421561(0x29f)]};_0x215e0f[_0x421561(0x1e5)]=_0x421561(0x282)+_0x52db6d+_0x421561(0x318)+_0x41ee21[_0x421561(0x306)]+_0x421561(0x25e)+(_0x41ee21[_0x421561(0x22b)]||_0x4fa4f2[_0x421561(0x252)])+_0x421561(0x20e)+(_0x4fa4f2['QKJmQ'](_0x41ee21['id'],_0x41c61d['id'])?_0x421561(0x2c5)+_0x41ee21['essa']['toLocaleString']()+_0x421561(0x1ef):'')+_0x421561(0x2e3)+(_0x4fa4f2[_0x421561(0x30d)](_0x41ee21['id'],_0x5eed4d['id'])?_0x421561(0x1ba)+_0x4fa4f2['myJMZ'](m,_0x5eed4d[_0x421561(0x33a)],_0x4fa4f2[_0x421561(0x267)])+_0x421561(0x2d8):'')+_0x421561(0x338)+_0x52db6d+_0x421561(0x32a)+_0x52db6d+_0x421561(0x223)+_0x41ee21[_0x421561(0x306)]+_0x421561(0x217)+_0x41ee21['id']+_0x421561(0x348)+_0x41ee21['essa'][_0x421561(0x333)]()+_0x421561(0x2dc)+_0x4ed325+_0x421561(0x22f)+_0x48c70b+_0x421561(0x292)+_0x417d37+_0x421561(0x1bb)+_0x52db6d+_0x421561(0x2d4)+_0x52db6d+_0x421561(0x287)+_0x52db6d+_0x421561(0x1d2)+_0x6f339b+_0x421561(0x2cb)+_0x14809f[_0x421561(0x2ef)]+_0x421561(0x341)+_0x14809f['min']['toLocaleString']()+'\x20-\x20'+_0x14809f[_0x421561(0x269)][_0x421561(0x333)]()+_0x421561(0x1e8)+_0x41ee21['id']+'\x22\x20class=\x22block\x20text-sm\x20font-small\x20mt-2\x20mb-1\x22>Safety\x20Factor\x20(SF)</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20id=\x22product-sf-input-train-'+_0x41ee21['id']+'\x22\x20class=\x22w-full\x20px-2\x20py-2\x20border\x20rounded-lg\x22\x20value=\x22'+_0x14809f['max']+_0x421561(0x263)+_0x14809f[_0x421561(0x1bc)]+'\x22\x20max=\x22'+_0x14809f['max']+_0x421561(0x2be)+_0x41ee21['id']+_0x421561(0x303)+_0x41ee21['id']+')\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul\x20class=\x22text-sm\x20space-y-1\x20p-3\x20border-l-4\x20rounded-r-md\x22\x20style=\x22border-color:var(--gradient-mid);\x20background-color:var(--bg-accent);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><b>Minimum\x20Batch\x20Size\x20(MBS):</b>\x20'+_0x41ee21[_0x421561(0x26d)]+_0x421561(0x316)+_0x183c03[_0x421561(0x235)]+')</span></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><b>Lowest\x20LTD:</b>\x20'+_0x41ee21['lowestLtd']+_0x421561(0x2c2)+_0x44877b[_0x421561(0x235)]+_0x421561(0x205)+_0x41ee21[_0x421561(0x2d7)][_0x421561(0x333)](void 0x0,{'maximumFractionDigits':0x2})+_0x421561(0x1fc)+_0x3670e9[_0x421561(0x235)]+')</span></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><b>Lowest\x20PDE:</b>\x20'+(null!==_0x41ee21[_0x421561(0x222)]?_0x4fa4f2[_0x421561(0x268)](_0x41ee21[_0x421561(0x222)],_0x4fa4f2[_0x421561(0x356)]):_0x4fa4f2[_0x421561(0x29f)])+_0x421561(0x225)+(_0x4fa4f2[_0x421561(0x291)](null,_0x41ee21[_0x421561(0x2f1)])?_0x4fa4f2[_0x421561(0x1c2)](_0x41ee21[_0x421561(0x2f1)],_0x4fa4f2['QmcBP']):_0x4fa4f2[_0x421561(0x29f)])+_0x421561(0x2b4)+(null!==_0x41ee21[_0x421561(0x2f1)]?_0x421561(0x340)+_0x41ee21[_0x421561(0x2f1)]+'\x20×\x2070)\x20÷\x202000\x20=\x20<span\x20class=\x22font-semibold\x22>'+_0x4fa4f2['LprXw'](0x46*_0x41ee21['lowestLd50'],0x7d0)['toFixed'](0x6)+'\x20g</span></li>':'')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><b>Line\x20Largest\x20ESSA:</b>\x20'+((()=>{const _0x47c0f0=_0x421561,_0xc0726=_0x34cdf5[_0x47c0f0(0x33c)](a9_0x50a017,_0x41ee21,_0x13a863),_0x4b192a=_0x13a863['find'](_0x2d254f=>_0x2d254f['line']===_0x41ee21[_0x47c0f0(0x324)]&&_0x2d254f[_0x47c0f0(0x248)]===_0xc0726),_0x57aebe=_0x4b192a&&_0x4b192a['number']?_0x47c0f0(0x27e)+_0x4b192a[_0x47c0f0(0x306)]:'';return _0xc0726[_0x47c0f0(0x333)]()+_0x47c0f0(0x256)+(_0x57aebe?'(from\x20'+_0x57aebe+')':_0x47c0f0(0x2f0));})())+_0x421561(0x358)+_0x52db6d+'\x22\x20class=\x22divide-y\x20rounded-md\x20border\x22\x20style=\x22border-color:\x20var(--border-color);\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Always\x20visible\x20MACO\x20/\x20Swab\x20value\x20-\x20always\x20at\x20the\x20bottom\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-4\x20rounded-lg\x20border\x20mt-4\x22\x20style=\x22border-color:var(--gradient-mid);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x22\x20style=\x22color:var(--text-secondary);\x22>MACO\x20/\x20Swab\x20(assuming\x20'+_0x41ee21[_0x421561(0x315)]+'\x20cm²\x20area)</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-lg\x20font-bold\x22\x20id=\x22maco-per-swab-main-'+_0x52db6d+'\x22\x20style=\x22color:var(--gradient-mid);\x22>...</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x19d695[_0x421561(0x294)](_0x215e0f),recalculateProductMacoForTrain(_0x41ee21['id'],void 0x0,_0x41ee21[_0x421561(0x22b)]);});});});const _0x5e18af=_0x13a863[_0x541e86(0x24f)](_0xe7184f=>{const _0x1cace5=_0x541e86,_0x3a939c=_0xe7184f['id']+'-'+(_0xe7184f[_0x1cace5(0x22b)]||_0x3a718a[_0x1cace5(0x299)]),_0x566d38=document[_0x1cace5(0x1d8)](_0x1cace5(0x2a7)+_0x3a939c);return _0x566d38&&_0x566d38[_0x1cace5(0x271)]['value']?{..._0xe7184f,'finalMaco':_0x3a718a[_0x1cace5(0x2e4)](parseFloat,_0x566d38[_0x1cace5(0x271)][_0x1cace5(0x218)])}:{..._0xe7184f,'finalMaco':0x0};});if(_0x3a718a['LrPmo'](_0x5e18af[_0x541e86(0x296)],0x0)){const _0x55e3ae=_0x5e18af[_0x541e86(0x1ed)]((_0x4b64fa,_0x5dde5e)=>_0x5dde5e[_0x541e86(0x33a)]<_0x4b64fa[_0x541e86(0x33a)]?_0x5dde5e:_0x4b64fa),_0x47ffc4=document['getElementById']('train-badges-'+_0x55e3ae['id']);_0x47ffc4&&(_0x47ffc4[_0x541e86(0x1e5)]+=_0x3a718a['sffVB']);}_0x3a718a[_0x541e86(0x279)](p),_0x3a718a[_0x541e86(0x279)](a9_0x117404);}export function recalculateProductMacoForTrain(_0xb7b44a,_0x56675f,_0x30b8a2){const _0x1f4aba=a9_0x4add99,_0x3fd0de={'VCbgp':function(_0x549ec4,_0x5fe790){return _0x549ec4<_0x5fe790;},'kteBu':function(_0x2ba202,_0x491eb9){return _0x2ba202<_0x491eb9;},'wTgTw':function(_0x4e595a,_0x42969a){return _0x4e595a/_0x42969a;},'nFyVQ':function(_0x34dde1,_0x3dcaa4){return _0x34dde1(_0x3dcaa4);},'cYlYt':function(_0x2f2e8d,_0x73d3e4){return _0x2f2e8d>_0x73d3e4;},'fuPdm':function(_0x556cb6,_0x3f9e2b){return _0x556cb6===_0x3f9e2b;},'ptVgS':_0x1f4aba(0x28a),'aJCow':_0x1f4aba(0x27a),'OfccA':_0x1f4aba(0x2f7),'aUpia':_0x1f4aba(0x349),'RikKY':function(_0x381901,_0x34fb31){return _0x381901===_0x34fb31;},'IbCSn':_0x1f4aba(0x224),'bwNhO':'MACO\x20=\x20<span\x20title=\x22Permitted\x20Daily\x20Exposure\x20(mg)\x22>PDE</span>\x20×\x20<span\x20title=\x22Batch\x20Size\x20/\x20Maximum\x20Daily\x20Dose\x20Ratio\x22>BS/MDD\x20Ratio</span>','OMVsp':_0x1f4aba(0x35d),'Hzfhr':_0x1f4aba(0x334),'urWNE':_0x1f4aba(0x319),'RdBhh':_0x1f4aba(0x345),'iqWoy':function(_0x54a15f,_0x4c58eb){return _0x54a15f===_0x4c58eb;},'GdhmB':_0x1f4aba(0x1b0),'ZQqsK':function(_0x13bc13,_0x97b2a1){return _0x13bc13(_0x97b2a1);},'hqfBn':_0x1f4aba(0x31c),'QybXG':function(_0x19fefe,_0x1d040d){return _0x19fefe===_0x1d040d;},'uGkCf':'<span\x20class=\x22text-xs\x20ml-2\x22>✓</span>','XlaQq':function(_0x59fc87){return _0x59fc87();},'SjrOh':function(_0xeb7b5a,_0x7c4a24){return _0xeb7b5a===_0x7c4a24;},'xzXwZ':function(_0x38e18e,_0x3c2898){return _0x38e18e/_0x3c2898;},'CyTBh':function(_0x283afd,_0x85021b){return _0x283afd(_0x85021b);},'BNisP':function(_0x3306cc,_0x58b5ca){return _0x3306cc(_0x58b5ca);},'UvPWt':function(_0x206c3b,_0x3d7efb){return _0x206c3b||_0x3d7efb;},'pLhiQ':_0x1f4aba(0x288),'VrYBp':function(_0x42aa0b){return _0x42aa0b();},'SnrOs':function(_0x10a6ea,_0x5df1ac){return _0x10a6ea/_0x5df1ac;},'JHWGQ':function(_0x207685,_0xbecf54){return _0x207685*_0xbecf54;},'NjMei':function(_0x241599,_0x3a131a){return _0x241599*_0x3a131a;},'ZOUtG':function(_0x482d62,_0x557f42){return _0x482d62===_0x557f42;},'rjApK':'true','kTCxq':_0x1f4aba(0x2f8),'XkMIa':'productRegister-ld50Hidden','XxDXo':function(_0x1e6521,_0xe40ff8){return _0x1e6521===_0xe40ff8;},'bDxOE':function(_0x2cbb97,_0x45a9dc){return _0x2cbb97!==_0x45a9dc;},'awnOT':function(_0xaf5d44,_0x4ef0cd){return _0xaf5d44/_0x4ef0cd;},'URWmM':function(_0x28693e,_0xdc3cb3){return _0x28693e===_0xdc3cb3;},'vloxJ':function(_0x30f255,_0xb22763){return _0x30f255>_0xb22763;},'lgsNd':function(_0x31b605,_0x2c2982,_0x445506){return _0x31b605(_0x2c2982,_0x445506);},'UnFTL':'mg/Swab','zINoW':_0x1f4aba(0x208),'XJxse':function(_0x3d6a60,_0x3d02ac,_0x590276){return _0x3d6a60(_0x3d02ac,_0x590276);},'sLEKi':_0x1f4aba(0x2b0)},_0xda2526=_0x3fd0de[_0x1f4aba(0x1dc)](a9_0x222a46);let _0x25fd20=null;for(const _0x423e8b of _0xda2526){for(const _0x264e37 of _0x423e8b[_0x1f4aba(0x2a8)])if(_0x3fd0de[_0x1f4aba(0x2c6)](_0x264e37['id'],_0xb7b44a)&&_0x3fd0de[_0x1f4aba(0x212)](_0x264e37[_0x1f4aba(0x22b)],_0x30b8a2)){const _0x313d37=a9_0x57f09b()[_0x1f4aba(0x2e9)](_0x1b2eea=>_0x1b2eea['key']===_0x264e37[_0x1f4aba(0x1ec)]);if(_0x313d37){_0x25fd20={..._0x264e37,'id':_0x313d37['id'],'essa':_0x313d37['essa'],'assumedSsa':_0x313d37['assumedSsa']||0x19};let _0x15ddb6=0x1/0x0,_0x34d145=_0x3fd0de[_0x1f4aba(0x2ee)](0x1,0x0),_0x2bd3ea=_0x3fd0de[_0x1f4aba(0x2bb)](0x1,0x0),_0x3821c2=0x1/0x0,_0x292d59=null;const _0x1005e9=[];_0x25fd20[_0x1f4aba(0x336)]['forEach'](_0x20fc1a=>{const _0x81d56f=_0x1f4aba,_0x93600f={'WDtVM':function(_0x1b1a77,_0x92364e){const _0x374ffe=a9_0x54c1;return _0x3fd0de[_0x374ffe(0x1e6)](_0x1b1a77,_0x92364e);},'FaAQh':function(_0x32c01b,_0x46bb3d){return _0x32c01b<_0x46bb3d;},'rHKmV':function(_0x572d8b,_0x150578){return _0x3fd0de['kteBu'](_0x572d8b,_0x150578);},'qJCdl':function(_0x324f2a,_0x5d59e7){const _0x4ac13d=a9_0x54c1;return _0x3fd0de[_0x4ac13d(0x2ee)](_0x324f2a,_0x5d59e7);},'ADCXt':function(_0x5888ea,_0x364912){const _0x1a0e8d=a9_0x54c1;return _0x3fd0de[_0x1a0e8d(0x2ee)](_0x5888ea,_0x364912);}};_0x3fd0de[_0x81d56f(0x2f4)](_0x20fc1a[_0x81d56f(0x2c7)],_0x3821c2)&&(_0x3821c2=_0x20fc1a[_0x81d56f(0x2c7)],_0x292d59=_0x20fc1a['id']),_0x20fc1a[_0x81d56f(0x28b)][_0x81d56f(0x29e)](_0x24dc88=>{const _0x5a7367=_0x81d56f;_0x93600f[_0x5a7367(0x2db)](_0x24dc88[_0x5a7367(0x1cc)],_0x15ddb6)&&(_0x15ddb6=_0x24dc88[_0x5a7367(0x1cc)]),_0x24dc88['pde']&&_0x93600f[_0x5a7367(0x27f)](_0x24dc88[_0x5a7367(0x204)],_0x34d145)&&(_0x34d145=_0x24dc88[_0x5a7367(0x204)]),_0x24dc88[_0x5a7367(0x2cd)]&&_0x93600f['rHKmV'](_0x24dc88['ld50'],_0x2bd3ea)&&(_0x2bd3ea=_0x24dc88[_0x5a7367(0x2cd)]);const _0x4a82a4=_0x93600f[_0x5a7367(0x251)](0x3e8*_0x20fc1a[_0x5a7367(0x2c7)],_0x93600f[_0x5a7367(0x27c)](_0x24dc88[_0x5a7367(0x250)],0x3e8));_0x1005e9[_0x5a7367(0x35e)](_0x4a82a4);});});let _0x275830=null,_0x4bb991=-0x1;_0x25fd20[_0x1f4aba(0x336)][_0x1f4aba(0x29e)](_0x408bd3=>{const _0x3a23e5=_0x1f4aba,_0x3ae691={'QKtHv':function(_0x3fe5bb,_0x650bed){const _0x4c41eb=a9_0x54c1;return _0x3fd0de[_0x4c41eb(0x219)](_0x3fe5bb,_0x650bed);},'sxuiF':function(_0x39dee7,_0x4ef653){return _0x3fd0de['cYlYt'](_0x39dee7,_0x4ef653);}};_0x408bd3[_0x3a23e5(0x28b)][_0x3a23e5(0x29e)](_0x2ca515=>{const _0x25b19b=_0x3a23e5;try{const _0x497d15=_0x3ae691[_0x25b19b(0x2c0)](a9_0x2d8d1b,_0x2ca515),_0xa96e94=_0x497d15?.[_0x25b19b(0x335)]||0x0;_0x3ae691[_0x25b19b(0x201)](_0xa96e94,_0x4bb991)&&(_0x4bb991=_0xa96e94,_0x275830={'productName':_0x408bd3[_0x25b19b(0x235)],'ingredientName':_0x2ca515[_0x25b19b(0x235)],'rpn':_0x4bb991,'rating':a9_0xe96d23(_0x4bb991)});}catch(_0x511268){console['warn'](_0x25b19b(0x34e),_0x2ca515,_0x511268);}});}),_0x25fd20[_0x1f4aba(0x1c5)]=_0x3fd0de[_0x1f4aba(0x1dd)](isFinite,_0x15ddb6)?_0x15ddb6:0x0,_0x25fd20[_0x1f4aba(0x222)]=_0x3fd0de['BNisP'](isFinite,_0x34d145)?_0x34d145:null,_0x25fd20[_0x1f4aba(0x2f1)]=_0x3fd0de[_0x1f4aba(0x219)](isFinite,_0x2bd3ea)?_0x2bd3ea:null,_0x25fd20[_0x1f4aba(0x26d)]=isFinite(_0x3821c2)?_0x3821c2:0x0,_0x25fd20['minMbsProductId']=_0x292d59,_0x25fd20[_0x1f4aba(0x2d7)]=_0x1005e9['length']>0x0?Math[_0x1f4aba(0x1bc)](..._0x1005e9):0x0,_0x25fd20[_0x1f4aba(0x2bf)]=_0x275830;}break;}if(_0x25fd20)break;}if(!_0x25fd20)return;const _0x41d377=_0xb7b44a+'-'+_0x3fd0de[_0x1f4aba(0x234)](_0x30b8a2,_0x3fd0de[_0x1f4aba(0x301)]);let _0x227ae5=_0xb7b44a;for(const _0x5b05a8 of _0xda2526){const _0x3b3559=_0x5b05a8[_0x1f4aba(0x2a8)]['find'](_0x55aeb8=>_0x55aeb8['id']===_0xb7b44a);if(_0x3b3559&&_0x3b3559['number']){_0x227ae5=_0x3b3559[_0x1f4aba(0x306)];break;}}if(_0x3fd0de[_0x1f4aba(0x1d3)](void 0x0,_0x56675f)){const _0xad249c=_0x3fd0de[_0x1f4aba(0x1c9)](a9_0x57f09b);_0x56675f=a9_0x50a017(_0x25fd20,_0xad249c);}const _0xda4fd1=document[_0x1f4aba(0x1d8)]('product-sf-input-train-'+_0x25fd20['id']),_0x55e00f=_0x3fd0de[_0x1f4aba(0x2a4)](parseFloat,_0xda4fd1?.[_0x1f4aba(0x218)])||0x3e8;if(_0x3fd0de[_0x1f4aba(0x219)](isNaN,_0x55e00f))return;const _0x17aa2d=_0x3fd0de[_0x1f4aba(0x236)](_0x3fd0de[_0x1f4aba(0x298)](_0x25fd20[_0x1f4aba(0x1c5)],_0x25fd20[_0x1f4aba(0x2d7)]),_0x55e00f),_0x4334ff=_0x3fd0de[_0x1f4aba(0x21d)](0xa,_0x25fd20[_0x1f4aba(0x26d)]);let _0x2d3522=_0x3fd0de['wTgTw'](0x1,0x0),_0x496c42=0x1/0x0;_0x3fd0de[_0x1f4aba(0x1c9)](a9_0x21737e);const _0x5e7451=_0x3fd0de[_0x1f4aba(0x311)](_0x3fd0de[_0x1f4aba(0x326)],localStorage[_0x1f4aba(0x2e6)](_0x3fd0de['kTCxq'])),_0x3573d9=_0x3fd0de[_0x1f4aba(0x307)](_0x3fd0de[_0x1f4aba(0x326)],localStorage[_0x1f4aba(0x2e6)](_0x3fd0de[_0x1f4aba(0x2eb)]));if(_0x3fd0de[_0x1f4aba(0x2cc)](null,_0x25fd20['lowestPde'])||_0x5e7451||(_0x2d3522=_0x25fd20[_0x1f4aba(0x222)]*_0x25fd20[_0x1f4aba(0x2d7)]),_0x3fd0de[_0x1f4aba(0x342)](null,_0x25fd20[_0x1f4aba(0x2f1)])&&!_0x3573d9){const _0x2f16b6=0x46*_0x25fd20[_0x1f4aba(0x2f1)]/0x7d0,_0x58b66c=_0x25fd20[_0x1f4aba(0x336)][_0x1f4aba(0x35a)](_0x12998b=>_0x12998b['activeIngredients'][_0x1f4aba(0x24f)](_0x62b873=>_0x62b873[_0x1f4aba(0x250)]/0x3e8)),_0xac279=Math[_0x1f4aba(0x1bc)](..._0x58b66c);_0x496c42=_0x3fd0de[_0x1f4aba(0x1ce)](_0x3fd0de[_0x1f4aba(0x298)](_0x3fd0de[_0x1f4aba(0x298)](_0x2f16b6,_0x25fd20[_0x1f4aba(0x26d)]),0x3e8),_0x55e00f*_0xac279);}const _0x42741b=0.004*_0x56675f,_0x475a85=[{'name':_0x3fd0de[_0x1f4aba(0x32b)],'value':_0x17aa2d},{'name':_0x3fd0de[_0x1f4aba(0x1fa)],'value':_0x4334ff}];null===_0x25fd20['lowestPde']||_0x5e7451||_0x475a85['push']({'name':_0x3fd0de[_0x1f4aba(0x1d4)],'value':_0x2d3522}),_0x3fd0de[_0x1f4aba(0x1b1)](null,_0x25fd20[_0x1f4aba(0x2f1)])||_0x3573d9||_0x475a85['push']({'name':_0x1f4aba(0x35d),'value':_0x496c42}),_0x475a85[_0x1f4aba(0x35e)]({'name':_0x3fd0de[_0x1f4aba(0x2ab)],'value':_0x42741b});const _0x25d41c=_0x475a85['reduce']((_0x4007a0,_0x33c559)=>_0x33c559['value']<_0x4007a0[_0x1f4aba(0x218)]?_0x33c559:_0x4007a0),_0x5ae7cc=_0x25d41c[_0x1f4aba(0x218)],_0x2bb08e=_0x3fd0de[_0x1f4aba(0x24b)](_0x56675f,0x0)?_0x3fd0de['xzXwZ'](_0x5ae7cc,_0x56675f):0x0,_0x2eac72=_0x2bb08e*_0x25fd20[_0x1f4aba(0x315)];console[_0x1f4aba(0x2ba)]('🔧\x20MacoProductView\x20MACO\x20calculation\x20for\x20Train\x20'+_0xb7b44a+'\x20('+_0x30b8a2+'):',{'finalMaco':_0x5ae7cc,'lineLargestEssa':_0x56675f,'assumedSsa':_0x25fd20['assumedSsa'],'macoPerArea':_0x2bb08e,'macoPerSwab':_0x2eac72,'macoDose':_0x17aa2d,'maco10ppm':_0x4334ff,'macoHealth':_0x2d3522,'macoNoel':_0x496c42,'macoVisual':_0x42741b,'selectedLimit':_0x25d41c[_0x1f4aba(0x235)]});const _0x33f47c=document['getElementById'](_0x1f4aba(0x300)+_0x41d377);_0x33f47c&&(_0x33f47c[_0x1f4aba(0x2d2)]=_0x3fd0de['lgsNd'](m,_0x2eac72,_0x3fd0de['UnFTL']));const _0x39acb3=document[_0x1f4aba(0x1d8)]('maco-breakdown-container-'+_0x41d377);if(_0x39acb3&&(_0x39acb3['innerHTML']=_0x475a85[_0x1f4aba(0x24f)](({value:_0x1af55d,name:_0x12b1c1})=>{const _0x3d888c=_0x1f4aba;let _0xf5959='';return _0x3fd0de[_0x3d888c(0x1d3)](_0x3fd0de[_0x3d888c(0x32b)],_0x12b1c1)?_0xf5959=_0x3fd0de['aJCow']:_0x3fd0de[_0x3d888c(0x1fa)]===_0x12b1c1?_0xf5959=_0x3fd0de[_0x3d888c(0x2a0)]:_0x3fd0de['RikKY'](_0x3fd0de[_0x3d888c(0x1d4)],_0x12b1c1)?_0xf5959=_0x3fd0de['bwNhO']:_0x3fd0de[_0x3d888c(0x32c)](_0x3fd0de[_0x3d888c(0x1de)],_0x12b1c1)?_0xf5959=_0x3fd0de[_0x3d888c(0x312)]:_0x3fd0de['urWNE']===_0x12b1c1&&(_0xf5959=_0x3d888c(0x2c4)),_0x3d888c(0x281)+(_0x3fd0de[_0x3d888c(0x32c)](_0x25d41c[_0x3d888c(0x218)],_0x1af55d)?_0x3fd0de[_0x3d888c(0x1fd)]:'')+_0x3d888c(0x2fa)+(_0x3fd0de[_0x3d888c(0x212)](_0x25d41c['value'],_0x1af55d)?_0x3fd0de[_0x3d888c(0x2b8)]:'')+_0x3d888c(0x1c0)+_0x12b1c1+_0x3d888c(0x2fd)+(_0x3fd0de[_0x3d888c(0x29b)](isFinite,_0x1af55d)?m(_0x1af55d,'mg'):_0x3fd0de['hqfBn'])+'\x20'+(_0x3fd0de[_0x3d888c(0x307)](_0x25d41c[_0x3d888c(0x218)],_0x1af55d)?_0x3fd0de[_0x3d888c(0x1f2)]:'')+_0x3d888c(0x295)+_0xf5959+_0x3d888c(0x27d);})[_0x1f4aba(0x32e)]('')),_0x39acb3){const _0x588559=_0x475a85[_0x1f4aba(0x2e9)](_0x5c1d61=>_0x1f4aba(0x2f7)===_0x5c1d61[_0x1f4aba(0x235)]),_0x2dd1d7=_0x588559?_0x588559[_0x1f4aba(0x218)]:0x0,_0x324ee9=document[_0x1f4aba(0x221)](_0x1f4aba(0x1e4));_0x324ee9[_0x1f4aba(0x2f5)]=_0x3fd0de[_0x1f4aba(0x2af)],_0x324ee9['style'][_0x1f4aba(0x211)]='var(--gradient-mid)',_0x324ee9[_0x1f4aba(0x1e5)]=_0x1f4aba(0x1e3)+_0x25d41c[_0x1f4aba(0x235)]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-lg\x20font-extrabold\x22\x20style=\x22color:var(--gradient-mid);\x22\x20id=\x22final-maco-val-'+_0x41d377+_0x1f4aba(0x2de)+_0x5ae7cc+'\x22>'+_0x3fd0de[_0x1f4aba(0x1cd)](m,_0x5ae7cc,'mg')+_0x1f4aba(0x31b)+(_0x1f4aba(0x2f7)===_0x25d41c[_0x1f4aba(0x235)]?_0x1f4aba(0x353)+m(_0x2dd1d7,'mg')+_0x1f4aba(0x350):'')+_0x1f4aba(0x1b4),_0x39acb3[_0x1f4aba(0x294)](_0x324ee9);const _0x20e40a=document[_0x1f4aba(0x221)](_0x1f4aba(0x1e4));_0x20e40a[_0x1f4aba(0x2f5)]=_0x3fd0de[_0x1f4aba(0x26e)],_0x20e40a[_0x1f4aba(0x226)][_0x1f4aba(0x1b3)]=_0x1f4aba(0x284),_0x20e40a[_0x1f4aba(0x1e5)]=_0x1f4aba(0x22c)+_0x227ae5+_0x1f4aba(0x329)+_0x41d377+'\x22>'+_0x2bb08e[_0x1f4aba(0x30a)](0x3)+_0x1f4aba(0x20b),_0x39acb3[_0x1f4aba(0x294)](_0x20e40a);}}window['toggleMacoBreakdown']=function(_0x3c0ea3){const _0x59447a=a9_0x4add99,_0x3b9d94={'LxNnp':_0x59447a(0x21a),'BHLhv':_0x59447a(0x238)},_0x55de52=document[_0x59447a(0x1d8)](_0x59447a(0x1ff)+_0x3c0ea3),_0x28eb09=document['getElementById'](_0x59447a(0x245)+_0x3c0ea3);_0x55de52[_0x59447a(0x1db)][_0x59447a(0x270)](_0x3b9d94[_0x59447a(0x339)])?(_0x55de52[_0x59447a(0x1db)]['remove']('hidden'),_0x28eb09[_0x59447a(0x2d2)]=_0x3b9d94[_0x59447a(0x1b6)]):(_0x55de52[_0x59447a(0x1db)][_0x59447a(0x2e5)](_0x3b9d94[_0x59447a(0x339)]),_0x28eb09[_0x59447a(0x2d2)]=_0x59447a(0x1f3));};export function toggleMacoExportDropdown(){const _0x34559f=a9_0x4add99,_0x29335d={'noMMo':_0x34559f(0x1eb),'IymdO':'click','BDNwJ':'hidden','ebZSr':function(_0x432e5d){return _0x432e5d();}},_0x431920=document[_0x34559f(0x1d8)](_0x34559f(0x2cf));_0x431920[_0x34559f(0x1db)][_0x34559f(0x1c4)](_0x29335d['BDNwJ']),_0x29335d[_0x34559f(0x2c8)](p),document[_0x34559f(0x242)](_0x34559f(0x21f),function _0x23ccf1(_0x2aef86){const _0x21d9fb=_0x34559f;_0x2aef86[_0x21d9fb(0x200)][_0x21d9fb(0x2b3)](_0x29335d[_0x21d9fb(0x1c6)])||_0x2aef86[_0x21d9fb(0x200)]['closest']('button[onclick=\x22toggleMacoExportDropdown()\x22]')||(_0x431920[_0x21d9fb(0x1db)]['add'](_0x21d9fb(0x21a)),document['removeEventListener'](_0x29335d[_0x21d9fb(0x34f)],_0x23ccf1));});}function a9_0x54c1(_0x4f3c08,_0x378d48){const _0x45b2ec=a9_0x45b2();return a9_0x54c1=function(_0x54c1ed,_0xd1f00a){_0x54c1ed=_0x54c1ed-0x1af;let _0x51cc1=_0x45b2ec[_0x54c1ed];return _0x51cc1;},a9_0x54c1(_0x4f3c08,_0x378d48);}export function toggleMacoPrintDropdown(){const _0x11be9f=a9_0x4add99,_0x1be5ba={'vkGYC':_0x11be9f(0x34c),'mxxgl':_0x11be9f(0x2d1),'bbVjp':_0x11be9f(0x21a),'wGhiM':function(_0x39ee78){return _0x39ee78();}},_0x30520f=document[_0x11be9f(0x1d8)](_0x1be5ba[_0x11be9f(0x2ad)]);_0x30520f[_0x11be9f(0x1db)][_0x11be9f(0x1c4)](_0x1be5ba[_0x11be9f(0x1b2)]),_0x1be5ba[_0x11be9f(0x35b)](p),document[_0x11be9f(0x242)](_0x11be9f(0x21f),function _0xb5810c(_0x277f06){const _0x28d518=_0x11be9f;_0x277f06[_0x28d518(0x200)]['closest'](_0x1be5ba['vkGYC'])||_0x277f06['target'][_0x28d518(0x2b3)]('button[onclick=\x22toggleMacoPrintDropdown()\x22]')||(_0x30520f[_0x28d518(0x1db)][_0x28d518(0x2e5)](_0x28d518(0x21a)),document['removeEventListener'](_0x28d518(0x21f),_0xb5810c));});}function p(){const _0x3fd3b3=a9_0x4add99,_0x467141={'MbMgd':'flex\x20items-center\x20px-4\x20py-2\x20text-sm\x20hover:bg-gray-100\x20dark:hover:bg-gray-700\x20cursor-pointer','sysoK':'var(--text-primary)','Vcorv':_0x3fd3b3(0x2e2),'EBYoS':_0x3fd3b3(0x2c3),'JOmKM':'mr-2\x20export-maco-train-checkbox','hpyfk':_0x3fd3b3(0x1d6),'yBsSM':function(_0x4909c6,_0xd3e628){return _0x4909c6(_0xd3e628);},'lOKtZ':_0x3fd3b3(0x2a5),'ULECH':_0x3fd3b3(0x2a2),'RQGRP':_0x3fd3b3(0x1b8),'vUtBn':function(_0xa909f9){return _0xa909f9();},'Itjre':function(_0x2b9234,_0x47175b){return _0x2b9234!==_0x47175b;},'tfIOv':_0x3fd3b3(0x2e8),'vDlGv':function(_0x1e2abf){return _0x1e2abf();},'NndnI':'macoExportTrainOptions','ISXFJ':'macoPrintTrainOptions','lfUgT':'./utils.js'};import(_0x467141[_0x3fd3b3(0x23e)])['then'](_0x3d2055=>{const _0x2ffab3=_0x3fd3b3,{getTrainData:_0x219a96,getTrainsGroupedByLine:_0x34e2b6,getTrainIdToLineNumberMap:_0x4aead4}=_0x3d2055;let _0x35e256=_0x467141[_0x2ffab3(0x1e1)](_0x34e2b6);const _0x289da8=window['currentLineFilter']&&_0x467141[_0x2ffab3(0x210)](_0x467141[_0x2ffab3(0x1b5)],window[_0x2ffab3(0x26c)])?window[_0x2ffab3(0x26c)]:null;_0x289da8&&(_0x35e256=_0x35e256[_0x2ffab3(0x1b9)](_0x2070ed=>_0x2070ed[_0x2ffab3(0x324)]===_0x289da8));const _0x19ad01=_0x467141[_0x2ffab3(0x32f)](_0x219a96),_0x2a1cd7={};_0x19ad01[_0x2ffab3(0x29e)](_0x5b62b9=>{const _0x384106=_0x2ffab3;_0x5b62b9[_0x384106(0x1ec)]&&(_0x2a1cd7[_0x5b62b9[_0x384106(0x1ec)]]=_0x5b62b9);});const _0x2cd758=[];_0x35e256[_0x2ffab3(0x29e)](_0x497ce7=>{const _0x2f9a91=_0x2ffab3;_0x497ce7[_0x2f9a91(0x2a8)][_0x2f9a91(0x29e)](_0xcec4de=>{const _0x58aa98=_0x2f9a91,_0x48c9b9=_0x2a1cd7[_0xcec4de[_0x58aa98(0x1ec)]];_0x48c9b9&&_0x2cd758[_0x58aa98(0x35e)]({..._0xcec4de,'id':_0x48c9b9['id']});});});const _0x342f02=_0x467141[_0x2ffab3(0x1e1)](_0x4aead4),_0x249b8c=document['getElementById'](_0x467141[_0x2ffab3(0x253)]);_0x249b8c&&(_0x249b8c[_0x2ffab3(0x1e5)]='',_0x2cd758[_0x2ffab3(0x29e)](_0x1f7a0f=>{const _0xf09aeb=_0x2ffab3,_0x1bee26=document[_0xf09aeb(0x221)](_0xf09aeb(0x2a2));_0x1bee26[_0xf09aeb(0x2f5)]=_0x467141[_0xf09aeb(0x317)],_0x1bee26[_0xf09aeb(0x226)]['color']=_0x467141[_0xf09aeb(0x30c)];const _0x53de47=document[_0xf09aeb(0x221)](_0x467141[_0xf09aeb(0x2d5)]);_0x53de47[_0xf09aeb(0x31f)]=_0x467141[_0xf09aeb(0x2d0)],_0x53de47[_0xf09aeb(0x2f5)]=_0x467141['JOmKM'],_0x53de47['value']=_0x1f7a0f['id'],_0x53de47['onchange']=()=>updateAllMacoTrainsCheckbox('export');const _0x2260b6=document[_0xf09aeb(0x221)](_0x467141[_0xf09aeb(0x1ee)]),_0x23e19a=_0x342f02[_0xf09aeb(0x2fe)](_0x467141[_0xf09aeb(0x1cf)](String,_0x1f7a0f['id'])),_0x11f6b1=_0x1f7a0f[_0xf09aeb(0x22b)]||_0x1f7a0f[_0xf09aeb(0x26f)]||_0x467141[_0xf09aeb(0x26a)];_0x2260b6['textContent']=_0x23e19a?_0x11f6b1+_0xf09aeb(0x297)+_0x23e19a['number']:_0x11f6b1+'\x20—\x20Train\x20'+_0x1f7a0f[_0xf09aeb(0x306)],_0x1bee26[_0xf09aeb(0x294)](_0x53de47),_0x1bee26[_0xf09aeb(0x294)](_0x2260b6),_0x249b8c[_0xf09aeb(0x294)](_0x1bee26);}));const _0x34ec0c=document[_0x2ffab3(0x1d8)](_0x467141[_0x2ffab3(0x243)]);_0x34ec0c&&(_0x34ec0c[_0x2ffab3(0x1e5)]='',_0x2cd758[_0x2ffab3(0x29e)](_0x57437f=>{const _0x222c7e=_0x2ffab3,_0x1f1d1b=document['createElement'](_0x467141[_0x222c7e(0x2a1)]);_0x1f1d1b[_0x222c7e(0x2f5)]=_0x222c7e(0x1d0),_0x1f1d1b[_0x222c7e(0x226)][_0x222c7e(0x1f0)]=_0x222c7e(0x31a);const _0x337095=document[_0x222c7e(0x221)](_0x222c7e(0x2e2));_0x337095[_0x222c7e(0x31f)]=_0x467141[_0x222c7e(0x2d0)],_0x337095[_0x222c7e(0x2f5)]=_0x467141[_0x222c7e(0x34a)],_0x337095[_0x222c7e(0x218)]=_0x57437f['id'],_0x337095[_0x222c7e(0x2e0)]=()=>updateAllMacoTrainsCheckbox(_0x222c7e(0x286));const _0x45965c=document[_0x222c7e(0x221)]('span'),_0x27d69d=_0x342f02['get'](String(_0x57437f['id'])),_0x41f512=_0x57437f[_0x222c7e(0x22b)]||_0x57437f[_0x222c7e(0x26f)]||_0x222c7e(0x2a5);_0x45965c[_0x222c7e(0x2d2)]=_0x27d69d?_0x41f512+'\x20—\x20Train\x20'+_0x27d69d['number']:_0x41f512+_0x222c7e(0x297)+_0x57437f[_0x222c7e(0x306)],_0x1f1d1b[_0x222c7e(0x294)](_0x337095),_0x1f1d1b['appendChild'](_0x45965c),_0x34ec0c[_0x222c7e(0x294)](_0x1f1d1b);}));});}export function toggleAllMacoTrainsSelection(_0x661eb9){const _0x3ee6dd=a9_0x4add99,_0xccc4b5=document[_0x3ee6dd(0x1d8)](_0x661eb9+_0x3ee6dd(0x274));document[_0x3ee6dd(0x258)]('.'+_0x661eb9+'-maco-train-checkbox')[_0x3ee6dd(0x29e)](_0x16d8e4=>{const _0x4e6d4=_0x3ee6dd;_0x16d8e4[_0x4e6d4(0x31e)]=_0xccc4b5[_0x4e6d4(0x31e)];});}export function updateAllMacoTrainsCheckbox(_0x2ab721){const _0x1460e9=a9_0x4add99,_0x390f8e=document[_0x1460e9(0x1d8)](_0x2ab721+_0x1460e9(0x274)),_0x5b56f9=document['querySelectorAll']('.'+_0x2ab721+'-maco-train-checkbox'),_0x1123fc=document[_0x1460e9(0x258)]('.'+_0x2ab721+'-maco-train-checkbox:checked');0x0===_0x1123fc[_0x1460e9(0x296)]?(_0x390f8e['checked']=!0x1,_0x390f8e[_0x1460e9(0x29c)]=!0x1):_0x1123fc[_0x1460e9(0x296)]===_0x5b56f9[_0x1460e9(0x296)]?(_0x390f8e[_0x1460e9(0x31e)]=!0x0,_0x390f8e['indeterminate']=!0x1):(_0x390f8e[_0x1460e9(0x31e)]=!0x1,_0x390f8e[_0x1460e9(0x29c)]=!0x0);}export function executeMacoExportSelection(){const _0x3d86e1=a9_0x4add99,_0x1abb90={'uyHUh':_0x3d86e1(0x30e),'TzEGL':_0x3d86e1(0x2e8),'KhwJh':_0x3d86e1(0x289),'DPMgj':function(_0xedb7b8,_0x1b8cae){return _0xedb7b8===_0x1b8cae;},'nENbs':'Please\x20select\x20at\x20least\x20one\x20train\x20to\x20export.','INYXI':_0x3d86e1(0x2cf),'whyMH':function(_0x2d43ba,_0x473485){return _0x2d43ba(_0x473485);}};import(_0x3d86e1(0x1ca))['then'](_0x3bef2f=>{const _0x227432=_0x3d86e1,_0x5a8e25=document[_0x227432(0x1d8)](_0x1abb90[_0x227432(0x2f9)]),_0x23df4f=[];if(_0x5a8e25[_0x227432(0x31e)])_0x3bef2f['exportProductMacoToExcel'](_0x1abb90[_0x227432(0x293)]);else{if(document[_0x227432(0x258)](_0x1abb90[_0x227432(0x285)])[_0x227432(0x29e)](_0x10388c=>{const _0x5459da=_0x227432;_0x23df4f['push'](_0x10388c[_0x5459da(0x218)]);}),_0x1abb90[_0x227432(0x1c8)](0x0,_0x23df4f['length']))return void _0x3bef2f[_0x227432(0x23f)](_0x227432(0x343),_0x1abb90[_0x227432(0x2b7)]);_0x3bef2f['exportProductMacoToExcel'](_0x23df4f);}document[_0x227432(0x1d8)](_0x1abb90['INYXI'])[_0x227432(0x1db)][_0x227432(0x2e5)]('hidden');})[_0x3d86e1(0x23c)](_0x3b347f=>{const _0x89fcf7=_0x3d86e1;console[_0x89fcf7(0x2f2)](_0x89fcf7(0x323),_0x3b347f),_0x1abb90['whyMH'](alert,_0x89fcf7(0x328));});}export function executeMacoPrintSelection(){const _0x28beb9=a9_0x4add99,_0x59d7f8={'yixhv':_0x28beb9(0x247),'BOTiy':'all','dUPMx':function(_0x3aeb43,_0x58b1b4){return _0x3aeb43===_0x58b1b4;},'aXeoA':_0x28beb9(0x343),'XRhtS':_0x28beb9(0x314),'iEgVE':_0x28beb9(0x2d1),'lAQCR':'Error\x20loading\x20print\x20function:','pcMqW':function(_0x2a9032,_0x626289){return _0x2a9032(_0x626289);},'djYKR':_0x28beb9(0x230),'MCOpZ':'./ui.js'};import(_0x59d7f8[_0x28beb9(0x265)])[_0x28beb9(0x22e)](_0x5bfb0e=>{const _0x48e595=_0x28beb9,_0xaf79a7=document['getElementById'](_0x48e595(0x28d)),_0x17e767=[];if(_0xaf79a7[_0x48e595(0x31e)])_0x5bfb0e[_0x48e595(0x347)](_0x59d7f8[_0x48e595(0x1cb)],_0x59d7f8[_0x48e595(0x1e7)]);else{if(document['querySelectorAll'](_0x48e595(0x27b))[_0x48e595(0x29e)](_0x53adac=>{const _0x8f4f6=_0x48e595;_0x17e767[_0x8f4f6(0x35e)](_0x53adac['value']);}),_0x59d7f8[_0x48e595(0x283)](0x0,_0x17e767[_0x48e595(0x296)]))return void _0x5bfb0e[_0x48e595(0x23f)](_0x59d7f8[_0x48e595(0x1f9)],_0x59d7f8['XRhtS']);_0x5bfb0e[_0x48e595(0x347)](_0x59d7f8[_0x48e595(0x1cb)],_0x17e767);}document[_0x48e595(0x1d8)](_0x59d7f8['iEgVE'])[_0x48e595(0x1db)]['add'](_0x48e595(0x21a));})[_0x28beb9(0x23c)](_0xfb142b=>{const _0x5872c3=_0x28beb9;console[_0x5872c3(0x2f2)](_0x59d7f8[_0x5872c3(0x259)],_0xfb142b),_0x59d7f8[_0x5872c3(0x310)](alert,_0x59d7f8[_0x5872c3(0x33d)]);});}window[a9_0x4add99(0x266)]=toggleMacoExportDropdown,window[a9_0x4add99(0x215)]=toggleMacoPrintDropdown,window[a9_0x4add99(0x220)]=toggleAllMacoTrainsSelection,window[a9_0x4add99(0x25d)]=updateAllMacoTrainsCheckbox,window[a9_0x4add99(0x240)]=executeMacoExportSelection,window[a9_0x4add99(0x227)]=executeMacoPrintSelection;
+// Renders the "MACO for Trains" tab
+// js/macoProductView.js
+
+import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
+import { hideLoader } from './ui.js';
+import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference, getConsistentTrainOrder, calculateScores, getRpnRatingText } from './utils.js';
+
+// Smart number formatting that avoids showing 0 when there's actually a value
+function formatSmallNumber(value, unit = '') {
+    if (value === 0 || value === null || value === undefined || isNaN(value)) {
+        return `0${unit ? ' ' + unit : ''}`;
+    }
+    
+    const absValue = Math.abs(value);
+    
+    // For very small values, use scientific notation
+    if (absValue < 0.0001) {
+        return `${value.toExponential(3)}${unit ? ' ' + unit : ''}`;
+    }
+    // For small values, show enough decimal places to see the value
+    else if (absValue < 0.01) {
+        return `${value.toFixed(6)}${unit ? ' ' + unit : ''}`;
+    }
+    // For regular values, use 4 decimal places
+    else {
+        return `${value.toFixed(4)}${unit ? ' ' + unit : ''}`;
+    }
+}
+
+// Group-level expand/collapse functionality for dosage form groups
+window.toggleDosageGroup = function(groupId) {
+    const contentElement = document.getElementById(`group-content-${groupId}`);
+    const toggleElement = document.getElementById(`group-toggle-${groupId}`);
+    
+    if (!contentElement || !toggleElement) {
+        console.warn(`Group elements not found for groupId: ${groupId}`);
+        return;
+    }
+    
+    const isCurrentlyCollapsed = contentElement.classList.contains('collapsed');
+    
+    if (isCurrentlyCollapsed) {
+        // Expand the group
+        contentElement.classList.remove('collapsed');
+        toggleElement.textContent = '▼';
+        toggleElement.style.transform = 'rotate(0deg)';
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Remove maxHeight after animation completes to allow dynamic resizing
+        setTimeout(() => {
+            if (!contentElement.classList.contains('collapsed')) {
+                contentElement.style.maxHeight = 'none';
+            }
+        }, 300);
+    } else {
+        // Collapse the group
+        contentElement.style.maxHeight = contentElement.scrollHeight + 'px';
+        
+        // Force reflow and then start collapsing
+        requestAnimationFrame(() => {
+            contentElement.classList.add('collapsed');
+            toggleElement.textContent = '▶';
+            toggleElement.style.transform = 'rotate(-90deg)';
+            contentElement.style.maxHeight = '0px';
+        });
+    }
+};
+
+export function renderMacoForTrains(lineFilter = null) {
+    const container = document.getElementById('trainsContainer');
+    const noTrainsMsg = document.getElementById('noTrainsMessage');
+    container.innerHTML = '';
+
+    let linesWithTrains = getTrainsGroupedByLine(); // pre-numbered trains per line with proper dosage form separation
+
+    // Filter by line if specified
+    if (lineFilter) {
+        linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === lineFilter);
+    }
+
+    if (!linesWithTrains || linesWithTrains.length === 0) {
+        noTrainsMsg.style.display = 'block';
+        container.style.display = 'none';
+        return;
+    }
+
+    noTrainsMsg.style.display = 'none';
+    container.style.display = 'block';
+
+    // Get full train data for calculations and merge it properly
+    const fullTrainData = getTrainData();
+    const fullTrainByKey = {};
+    fullTrainData.forEach(t => { if (t.key) fullTrainByKey[t.key] = t; });
+
+    // Flatten trains and enhance with calculated metrics while preserving dosage form separation
+    const enhancedTrains = [];
+    linesWithTrains.forEach(lineObj => {
+        lineObj.trains.forEach(train => {
+            // Find full train data by key, but keep dosage form separation
+            const fullTrain = fullTrainByKey[train.key];
+            
+            if (!fullTrain) return; // Skip if no calculated data available
+            
+            // Create enhanced train with calculated metrics but filtered products
+            const enhancedTrain = {
+                ...train,  // Keep dosage form separation and numbering from getTrainsGroupedByLine
+                id: fullTrain.id,  // Use ID from full train data
+                essa: fullTrain.essa,
+                lowestLtd: null,
+                lowestPde: null, 
+                lowestLd50: null,
+                minBsMddRatio: null,
+                minMbsKg: null,
+                assumedSsa: fullTrain.assumedSsa || 25,
+                // Products are already filtered by dosage form in getTrainsGroupedByLine
+            };
+            
+            // Calculate metrics for this specific dosage form's products
+            let lowestLtd = Infinity;
+            let lowestLtdProductId = null;
+            let lowestPde = Infinity;
+            let lowestLd50 = Infinity;
+            let minMbsKg = Infinity;
+            let minMbsProductId = null;
+            let minRatioProductId = null;
+            let worstProductByRpn = null;
+            let maxRpn = -1;
+            
+            const productRatios = [];
+            
+            enhancedTrain.products.forEach(product => {
+                // Find min batch size
+                if (product.batchSizeKg < minMbsKg) {
+                    minMbsKg = product.batchSizeKg;
+                    minMbsProductId = product.id;
+                }
+                
+                // Calculate product ratio and find ingredients data
+                product.activeIngredients.forEach(ingredient => {
+                    // Lowest therapeutic dose
+                    if (ingredient.therapeuticDose < lowestLtd) {
+                        lowestLtd = ingredient.therapeuticDose;
+                        lowestLtdProductId = product.id;
+                    }
+                    
+                    // Lowest PDE
+                    if (ingredient.pde && ingredient.pde < lowestPde) {
+                        lowestPde = ingredient.pde;
+                    }
+                    
+                    // Lowest LD50
+                    if (ingredient.ld50 && ingredient.ld50 < lowestLd50) {
+                        lowestLd50 = ingredient.ld50;
+                    }
+                    
+                    // Calculate BS/MDD ratio
+                    const ratio = (product.batchSizeKg * 1000) / (ingredient.mdd / 1000);
+                    productRatios.push({ productId: product.id, ratio });
+                    
+                    // Calculate RPN for worst-case product identification
+                    try {
+                        const scores = calculateScores(ingredient);
+                        const rpn = scores?.rpn || 0;
+                        if (rpn > maxRpn) {
+                            maxRpn = rpn;
+                            worstProductByRpn = { 
+                                productName: product.name, 
+                                ingredientName: ingredient.name, 
+                                rpn: maxRpn, 
+                                rating: getRpnRatingText(maxRpn) 
+                            };
+                        }
+                    } catch (error) {
+                        console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                    }
+                });
+            });
+            
+            // Set calculated values
+            enhancedTrain.lowestLtd = isFinite(lowestLtd) ? lowestLtd : 0;
+            enhancedTrain.lowestLtdProductId = lowestLtdProductId;
+            enhancedTrain.lowestPde = isFinite(lowestPde) ? lowestPde : null;
+            enhancedTrain.lowestLd50 = isFinite(lowestLd50) ? lowestLd50 : null;
+            enhancedTrain.minMbsKg = isFinite(minMbsKg) ? minMbsKg : 0;
+            enhancedTrain.minMbsProductId = minMbsProductId;
+            enhancedTrain.worstProductRpn = worstProductByRpn; // Add RPN data
+            
+            // Find minimum ratio
+            if (productRatios.length > 0) {
+                const minRatio = productRatios.reduce((min, current) => 
+                    current.ratio < min.ratio ? current : min
+                );
+                enhancedTrain.minBsMddRatio = minRatio.ratio;
+                enhancedTrain.minRatioProductId = minRatio.productId;
+            } else {
+                enhancedTrain.minBsMddRatio = 0;
+                enhancedTrain.minRatioProductId = null;
+            }
+            
+            enhancedTrains.push(enhancedTrain);
+        });
+    });
+
+    // Apply consistent train ordering
+    const orderedTrains = getConsistentTrainOrder(enhancedTrains);
+
+    // Filter based on printSelectedTrain if required (support either numeric train.id or new train.number)
+    let trainsToRender = orderedTrains;
+    if (window.printSelectedTrain && window.printSelectedTrain !== 'all') {
+        if (Array.isArray(window.printSelectedTrain)) {
+            trainsToRender = orderedTrains.filter(train => window.printSelectedTrain.includes(String(train.id)) || window.printSelectedTrain.includes(String(train.number)));
+        } else {
+            trainsToRender = orderedTrains.filter(train => String(train.id) === String(window.printSelectedTrain) || String(train.number) === String(window.printSelectedTrain));
+        }
+    }
+
+    if (trainsToRender.length === 0) {
+        noTrainsMsg.style.display = 'block';
+        container.style.display = 'none';
+        return;
+    }
+
+    // Render grouped by line and dosage for visual grouping
+    const groupedByLine = {};
+    trainsToRender.forEach(t => {
+        if (!groupedByLine[t.line]) groupedByLine[t.line] = [];
+        groupedByLine[t.line].push(t);
+    });
+
+    Object.keys(groupedByLine).forEach(lineName => {
+        const lineSection = document.createElement('div');
+        lineSection.className = 'mb-6';
+        lineSection.innerHTML = `<h3 class="text-lg font-bold mb-2">${lineName}</h3>`;
+        container.appendChild(lineSection);
+
+        // group trains by dosage
+        const byDosage = {};
+        groupedByLine[lineName].forEach(t => {
+            if (!byDosage[t.dosageForm]) byDosage[t.dosageForm] = [];
+            byDosage[t.dosageForm].push(t);
+        });
+
+        // Sort dosage forms by their lowest train number
+        const sortedDosageForms = Object.keys(byDosage).sort((a, b) => {
+            const aTrains = byDosage[a];
+            const bTrains = byDosage[b];
+            const aMinNumber = Math.min(...aTrains.map(t => t.number));
+            const bMinNumber = Math.min(...bTrains.map(t => t.number));
+            return aMinNumber - bMinNumber;
+        });
+        
+        sortedDosageForms.forEach(dosage => {
+            // Create unique group ID for this dosage form
+            const groupId = `${lineName.replace(/\s+/g, '')}-${dosage.replace(/\s+/g, '')}`;
+            const isGroupCollapsed = false; // Default to expanded
+            
+            // Create clickable dosage form header with expand/collapse functionality
+            const dosageHeader = document.createElement('div');
+            dosageHeader.className = 'dosage-group-header pl-4 mb-3 cursor-pointer select-none';
+            dosageHeader.onclick = () => toggleDosageGroup(groupId);
+            dosageHeader.innerHTML = `
+                <div class="flex items-center justify-between py-2 px-3 rounded-lg border transition-all hover:bg-gray-50 dark:hover:bg-gray-800/50" style="border-color: var(--border-color); background-color: transparent;">
+                    <h4 class="text-md font-semibold flex items-center gap-2" style="color: var(--text-primary);">
+                        <span class="group-toggle-icon transition-transform duration-200" id="group-toggle-${groupId}">${isGroupCollapsed ? '▶' : '▼'}</span>
+                        ${dosage}
+                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: var(--bg-accent); color: var(--text-secondary);">${byDosage[dosage].length} train${byDosage[dosage].length !== 1 ? 's' : ''}</span>
+                    </h4>
+                </div>
+            `;
+            container.appendChild(dosageHeader);
+            
+            // Create container for all trains in this dosage form group
+            const trainsContainer = document.createElement('div');
+            trainsContainer.className = `dosage-group-content transition-all duration-300 ${isGroupCollapsed ? 'collapsed' : ''}`;
+            trainsContainer.id = `group-content-${groupId}`;
+            trainsContainer.style.overflow = 'hidden';
+            container.appendChild(trainsContainer);
+
+            // Find the train with largest ESSA in this dosage group
+            const trainsInDosage = byDosage[dosage];
+            const largestEssaTrain = trainsInDosage.reduce((max, train) => 
+                train.essa > max.essa ? train : max, trainsInDosage[0]);
+            
+            // Calculate MACO for each train first to find the lowest
+            const trainsWithMaco = trainsInDosage.map(train => {
+                const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
+                const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+                const sf = sfConfig.max;
+                
+                const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+                const maco10ppm = 10 * train.minMbsKg;
+                let macoHealth = Infinity;
+                let macoNoel = Infinity;
+                
+                // Check toxicity data visibility preferences
+                const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+                const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+                
+                // Calculate PDE-based MACO if PDE is available and not hidden
+                if (train.lowestPde !== null && !pdeHidden) {
+                    macoHealth = train.lowestPde * train.minBsMddRatio;
+                }
+                
+                // Calculate NOEL-based MACO if LD50 is available and not hidden
+                if (train.lowestLd50 !== null && !ld50Hidden) {
+                    // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+                    const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+                    // Find minimum MDD from all ingredients in the train
+                    const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+                    const minMdd = Math.min(...allMdds);
+                    // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+                    macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+                }
+                
+                // Calculate line-specific largest ESSA for this train
+                const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainsInDosage);
+                const macoVisual = 0.004 * lineLargestEssa;
+                
+                // Build MACO values array conditionally based on toxicity data visibility
+                const allMacoValues = [
+                    { name: '0.1% Therapeutic Dose', value: macoDose },
+                    { name: '10 ppm Criterion', value: maco10ppm }
+                ];
+                
+                // Add PDE equation only if PDE is available and not hidden
+                if (train.lowestPde !== null && !pdeHidden) {
+                    allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+                }
+                
+                // Add NOEL equation only if LD50 is available and not hidden
+                if (train.lowestLd50 !== null && !ld50Hidden) {
+                    allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+                }
+                
+                // Always add visual clean limit
+                allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
+                
+                // Find the minimum MACO
+                const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+                const finalMaco = finalMacoResult.value;
+                
+                // Calculate MACO per swab
+                const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+                const macoPerSwab = macoPerArea * train.assumedSsa;
+                
+                return { ...train, finalMaco: macoPerSwab };
+            });
+            
+            // Find the train with lowest MACO in this dosage group
+            const lowestMacoTrain = trainsWithMaco.reduce((min, train) => {
+                return train.finalMaco < min.finalMaco ? train : min;
+            }, trainsWithMaco[0]);
+            
+            byDosage[dosage].forEach(train => {
+                const isCollapsed = true;
+                const productTypesInTrain = train.products.map(p => p.productType);
+                const worstCaseType = getWorstCaseProductType(productTypesInTrain);
+                const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
+
+                const trainCard = document.createElement('div');
+                trainCard.className = 'train-card';
+                // Create unique ID that includes dosage form to avoid conflicts
+                const uniqueTrainId = `${train.id}-${train.dosageForm || 'unknown'}`;
+                trainCard.id = `product-maco-train-${uniqueTrainId}`;
+
+                const machineNames = formatTrainDisplayForMaco(train.machineIds);
+
+                // Function to display individual machines (no grouping)
+                function formatTrainDisplayForMaco(machineIds) {
+                    return machineIds.map(machineId => {
+                        const machine = state.machines.find(m => m.id === machineId);
+                        const machineName = machine ? machine.name : `Unknown (ID: ${machineId})`;
+                        const machineArea = machine ? machine.area : 0;
+                        return `<span class="individual-machine" title="Machine: ${machineName} - Area: ${machineArea.toLocaleString()} cm²">${machineName}</span>`;
+                    }).join(' → ');
+                }
+
+                const productTableRows = train.products.map(p => {
+                    const minRatioForProduct = p.activeIngredients.length > 0
+                        ? Math.min(...p.activeIngredients.map(ing => (p.batchSizeKg * 1000) / (ing.mdd / 1000)))
+                        : Infinity;
+
+                    const isMinBatchSize = p.id === train.minMbsProductId;
+                    const isMinRatio = p.id === train.minRatioProductId;
+
+                    return `
+                            <tr class="product-main-row">
+                                <td class="px-4 py-3 whitespace-nowrap">${p.productCode}</td>
+                                <td class="px-4 py-3 font-medium">${p.name}<p class="text-xs italic" style="color:var(--text-secondary);">${p.productType}</p></td>
+                                <td class="px-4 py-3 whitespace-nowrap ${isMinBatchSize ? 'font-bold' : ''}" style="${isMinBatchSize ? 'color: var(--gradient-start);' : ''}">${p.batchSizeKg} ${isMinBatchSize ? '<span class="text-xs ml-1" title="Minimum Batch Size in Train">★</span>' : ''}</td>
+                                <td class="px-4 py-3 whitespace-nowrap ${isMinRatio ? 'font-bold' : ''}" style="${isMinRatio ? 'color: var(--gradient-end);' : ''}">${isFinite(minRatioForProduct) ? minRatioForProduct.toLocaleString(undefined, { maximumFractionDigits: 2 }) : 'N/A'} ${isMinRatio ? '<span class="text-xs ml-1" title="Minimum BS/MDD Ratio in Train">★</span>' : ''}</td>
+                            </tr>
+                            <tr class="ingredients-sub-row">
+                                <td colspan="4" class="!pb-0">
+                                    <div class="p-3 ingredients-sub-table">
+                                         <ul class="text-xs list-disc list-inside">
+                                         ${p.activeIngredients.map(ing => `<li><b>${ing.name}</b> (TD: ${ing.therapeuticDose}mg, MDD: ${ing.mdd / 1000}g)</li>`).join('')}
+                                         </ul>
+                                    </div>
+                                </td>
+                            </tr>`}).join('');
+
+                const rpnInfo = train.worstProductRpn ?
+                    `<p><b class="text-sm" >${train.worstProductRpn.productName}</b> (Ingredient: ${train.worstProductRpn.ingredientName})</p>
+                         <p class="mt-0.4">RPN: <span class="font-bold text-sm" style="color:var(--gradient-mid);">${train.worstProductRpn.rpn}</span> <span class="rpn-rating-badge ${getRpnRatingClass(train.worstProductRpn.rating)}">${train.worstProductRpn.rating}</span></p>`
+                    : '<p style="color:var(--text-secondary);">N/A</p>';
+
+                const lowestLtdProduct = state.products.find(p => p.id === train.lowestLtdProductId) || { name: 'N/A' };
+                const minRatioProduct = state.products.find(p => p.id === train.minRatioProductId) || { name: 'N/A' };
+                const minMbsProduct = state.products.find(p => p.id === train.minMbsProductId) || { name: 'N/A' };
+
+                trainCard.innerHTML = `
+                            <div class="train-header" onclick="toggleTrain('pm-${uniqueTrainId}')">
+                                <span>Train ${train.number} - ${train.dosageForm || 'Unknown'}</span>
+                                <div class="flex items-center gap-2">
+                                    ${train.id === largestEssaTrain.id ? `
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-200 text-gray-700 border border-gray-300">
+                                            🏆 Largest ESSA: ${train.essa.toLocaleString()} cm²
+                                        </span>
+                                    ` : ''}
+                                    ${train.id === lowestMacoTrain.id ? `
+                                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-200 text-blue-700 border border-blue-300">
+                                            🎯 Lowest MACO: ${formatSmallNumber(lowestMacoTrain.finalMaco, 'mg/Swab')}
+                                        </span>
+                                    ` : ''}
+                                    <button class="train-toggle" id="toggle-pm-${uniqueTrainId}">${isCollapsed ? '▶' : '▼'}</button>
+                                </div>
+                            </div>
+                            <div class="train-content ${isCollapsed ? 'collapsed' : ''}" id="content-pm-${uniqueTrainId}">
+                                <div class="train-content-inner space-y-6">
+                                    <!-- Train Details -->
+                                    <div>
+                                        <div class="flex justify-between items-start gap-4">
+                                            <div>
+                                                <h3 class="text-lg font-bold">Train ${train.number} Details</h3>
+                                                <div class="flex items-center gap-x-2 mt-1" id="train-badges-${train.id}"></div>
+                                            </div>
+                                            <div class="text-right flex-shrink-0">
+                                                <p class="text-sm uppercase font-semibold" style="color: var(--text-secondary);">Train Area (ESSA)</p>
+                                                <p class="text-lg font-bold" style="color: var(--gradient-mid);">${train.essa.toLocaleString()} cm²</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 p-3 rounded-md" style="background-color:var(--bg-accent);">
+                                            <p class="text-xs uppercase font-semibold mb-1" style="color: var(--text-secondary);">Machines in Train</p>
+                                            <p class="text-sm">${machineNames}</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Products Table -->
+                                    <div class="space-y-2">
+                                        <h4 class="text-lg font-semibold">Products in Train</h4>
+                                        <div class="overflow-hidden rounded-md border" style="border-color: var(--border-color);">
+                                            <table class="w-full text-sm">
+                                                <thead class="border-b" style="border-color: var(--border-color);">
+                                                    <tr>
+                                                        <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider">Code</th>
+                                                        <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider">Product Name</th>
+                                                        <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider">Batch Size (Kg)</th>
+                                                        <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider">BS/MDD Ratio</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y" style="border-color: var(--border-color);">${productTableRows}</tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- Analysis & Calculations Grid -->
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4 border-t" style="border-color: var(--border-color);">
+                                        <!-- Left Column: RPN & MACO Limits -->
+                                        <div class="space-y-6">
+                                            <div class="p-4 rounded-lg" style="background-color:var(--bg-accent);">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                           <div class="relative group">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16" style="color: var(--text-secondary);" title="Information">
+                                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                                        </svg>
+                                            
+                                                    </div>
+                                                    <h5 class="text-sm font-semibold">Worst-Case Product for Cleaning Study (by RPN)</h5>
+
+                                                </div>
+                                                ${rpnInfo}
+                                            </div>
+                                          
+                                        </div>
+
+                                        <!-- Right Column: MACO Calculation Details -->
+                                        <div class="space-y-4">
+
+                                             <h4 class="text-md font-semibold">MACO Calculation Breakdown</h4>
+                                             <button id="breakdown-toggle-btn-${uniqueTrainId}" onclick="toggleMacoBreakdown('${uniqueTrainId}')" class="w-full text-sm py-2 px-4 rounded-md border" style="color: var(--gradient-mid); border-color: var(--gradient-mid);">Show MACO Calculation Breakdown</button>
+                                             
+                                             <div id="maco-breakdown-details-${uniqueTrainId}" class="hidden space-y-4">
+                                                 <div class="p-4 rounded-lg" style="background-color: var(--bg-accent);">
+                                                    <p class="text-sm"><b>Worst-Case Dosage Form:</b> ${worstCaseType}</p>
+                                                    <p class="text-xs mt-1" style="color:var(--text-secondary);">Range for ${sfConfig.route} route: ${sfConfig.min.toLocaleString()} - ${sfConfig.max.toLocaleString()}</p>
+                                                    <label for="product-sf-input-train-${train.id}" class="block text-sm font-small mt-2 mb-1">Safety Factor (SF)</label>
+                                                    <input type="number" id="product-sf-input-train-${train.id}" class="w-full px-2 py-2 border rounded-lg" value="${sfConfig.max}" min="${sfConfig.min}" max="${sfConfig.max}" oninput="recalculateProductMacoForTrain(${train.id})" onchange="clampSafetyFactor(this, ${train.id})">
+                                                 </div>
+                                                 <ul class="text-sm space-y-1 p-3 border-l-4 rounded-r-md" style="border-color:var(--gradient-mid); background-color:var(--bg-accent);">
+                                                    <li><b>Minimum Batch Size (MBS):</b> ${train.minMbsKg} kg <span class="text-xs" style="color:var(--text-secondary);">(from ${minMbsProduct.name})</span></li>
+                                                    <li><b>Lowest LTD:</b> ${train.lowestLtd} mg <span class="text-xs" style="color:var(--text-secondary);">(from ${lowestLtdProduct.name})</span></li>
+                                                    <li><b>Minimum BS(g)/MDD(g) Ratio:</b> ${train.minBsMddRatio.toLocaleString(undefined, { maximumFractionDigits: 2 })} <span class="text-xs" style="color:var(--text-secondary);">(from ${minRatioProduct.name})</span></li>
+                                                    <li><b>Lowest PDE:</b> ${train.lowestPde !== null ? train.lowestPde + ' mg' : 'N/A'}</li>
+                                                    <li><b>Lowest LD50:</b> ${train.lowestLd50 !== null ? train.lowestLd50 + ' mg/kg' : 'N/A'}</li>
+                                                    ${train.lowestLd50 !== null ? `<li><b>NOEL Calculation:</b> (${train.lowestLd50} × 70) ÷ 2000 = <span class="font-semibold">${((train.lowestLd50 * 70) / 2000).toFixed(6)} g</span></li>` : ''}
+                                                    <li><b>Line Largest ESSA:</b> ${(() => {
+                                                        const largestEssa = getLargestEssaForLineAndDosageForm(train, trainsToRender);
+                                                        const trainWithLargestEssa = trainsToRender.find(t => t.line === train.line && t.essa === largestEssa);
+                                                        const trainLabel = trainWithLargestEssa && trainWithLargestEssa.number ? `Train ${trainWithLargestEssa.number}` : '';
+                                                        return `${largestEssa.toLocaleString()} cm² ${trainLabel ? `(from ${trainLabel})` : '(same line & dosage form)'}`;
+                                                    })()} </li>
+                                                 </ul>
+                                                 <div id="maco-breakdown-container-${uniqueTrainId}" class="divide-y rounded-md border" style="border-color: var(--border-color);"></div>
+                                            </div>
+                                            
+                                            <!-- Always visible MACO / Swab value - always at the bottom -->
+                                            <div class="p-4 rounded-lg border mt-4" style="border-color:var(--gradient-mid);">
+                                                <div class="text-center">
+                                                    <p class="text-sm" style="color:var(--text-secondary);">MACO / Swab (assuming ${train.assumedSsa} cm² area)</p>
+                                                    <p class="text-lg font-bold" id="maco-per-swab-main-${uniqueTrainId}" style="color:var(--gradient-mid);">...</p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                
+                trainsContainer.appendChild(trainCard);
+                recalculateProductMacoForTrain(train.id, undefined, train.dosageForm);
+            });
+        });
+    });
+
+    const finalTrainData = trainsToRender.map(train => {
+        const uniqueTrainId = `${train.id}-${train.dosageForm || 'unknown'}`;
+        const finalMacoElement = document.getElementById(`final-maco-val-${uniqueTrainId}`);
+        if (finalMacoElement && finalMacoElement.dataset.value) {
+            return { ...train, finalMaco: parseFloat(finalMacoElement.dataset.value) };
+        }
+        return { ...train, finalMaco: 0 };
+    });
+
+    if (finalTrainData.length > 0) {
+        const trainWithLowestMaco = finalTrainData.reduce((minT, currentT) => currentT.finalMaco < minT.finalMaco ? currentT : minT);
+        const lowestMacoBadge = document.getElementById(`train-badges-${trainWithLowestMaco.id}`);
+        
+        if (lowestMacoBadge) {
+            lowestMacoBadge.innerHTML += `<span class="text-xs font-semibold px-2 py-1 rounded-full bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300 ml-2">Lowest MACO</span>`;
+        }
+    }
+    
+    // Update dropdown options after rendering
+    populateMacoTrainOptions();
+    
+    // Hide loader when rendering is complete
+    hideLoader();
+}
+
+export function recalculateProductMacoForTrain(trainId, lineLargestEssa, dosageForm) {
+    // Find the train from the enhanced trains that match both ID and dosage form
+    const trainLines = getTrainsGroupedByLine();
+    let train = null;
+    
+    for (const lineObj of trainLines) {
+        for (const t of lineObj.trains) {
+            if (t.id === trainId && t.dosageForm === dosageForm) {
+                // Re-calculate metrics for this specific dosage form
+                const fullTrainData = getTrainData();
+                const fullTrain = fullTrainData.find(ft => ft.key === t.key);
+                
+                if (fullTrain) {
+                    // Create enhanced train with calculated metrics for this dosage form
+                    train = {
+                        ...t,
+                        id: fullTrain.id,
+                        essa: fullTrain.essa,
+                        assumedSsa: fullTrain.assumedSsa || 25,
+                    };
+                    
+                    // Calculate metrics for this specific dosage form's products
+                    let lowestLtd = Infinity;
+                    let lowestPde = Infinity;
+                    let lowestLd50 = Infinity;
+                    let minMbsKg = Infinity;
+                    let minMbsProductId = null;
+                    
+                    const productRatios = [];
+                    
+                    train.products.forEach(product => {
+                        if (product.batchSizeKg < minMbsKg) {
+                            minMbsKg = product.batchSizeKg;
+                            minMbsProductId = product.id;
+                        }
+                        
+                        product.activeIngredients.forEach(ingredient => {
+                            if (ingredient.therapeuticDose < lowestLtd) {
+                                lowestLtd = ingredient.therapeuticDose;
+                            }
+                            if (ingredient.pde && ingredient.pde < lowestPde) {
+                                lowestPde = ingredient.pde;
+                            }
+                            if (ingredient.ld50 && ingredient.ld50 < lowestLd50) {
+                                lowestLd50 = ingredient.ld50;
+                            }
+                            
+                            const ratio = (product.batchSizeKg * 1000) / (ingredient.mdd / 1000);
+                            productRatios.push(ratio);
+                        });
+                    });
+                    
+                    // Calculate RPN for worst-case product identification
+                    let worstProductByRpn = null;
+                    let maxRpn = -1;
+                    
+                    train.products.forEach(product => {
+                        product.activeIngredients.forEach(ingredient => {
+                            try {
+                                const scores = calculateScores(ingredient);
+                                const rpn = scores?.rpn || 0;
+                                if (rpn > maxRpn) {
+                                    maxRpn = rpn;
+                                    worstProductByRpn = { 
+                                        productName: product.name, 
+                                        ingredientName: ingredient.name, 
+                                        rpn: maxRpn, 
+                                        rating: getRpnRatingText(maxRpn) 
+                                    };
+                                }
+                            } catch (error) {
+                                console.warn('Error calculating RPN for ingredient:', ingredient, error);
+                            }
+                        });
+                    });
+                    
+                    train.lowestLtd = isFinite(lowestLtd) ? lowestLtd : 0;
+                    train.lowestPde = isFinite(lowestPde) ? lowestPde : null;
+                    train.lowestLd50 = isFinite(lowestLd50) ? lowestLd50 : null;
+                    train.minMbsKg = isFinite(minMbsKg) ? minMbsKg : 0;
+                    train.minMbsProductId = minMbsProductId;
+                    train.minBsMddRatio = productRatios.length > 0 ? Math.min(...productRatios) : 0;
+                    train.worstProductRpn = worstProductByRpn; // Add RPN data
+                }
+                break;
+            }
+        }
+        if (train) break;
+    }
+    
+    if (!train) return;
+
+    // Create unique train ID that includes dosage form to match DOM elements
+    const uniqueTrainId = `${trainId}-${dosageForm || 'unknown'}`;
+
+    // Get the train number from the original train data
+    let trainNumber = trainId; // fallback to trainId if not found
+    for (const lineObj of trainLines) {
+        const foundTrain = lineObj.trains.find(t => t.id === trainId);
+        if (foundTrain && foundTrain.number) {
+            trainNumber = foundTrain.number;
+            break;
+        }
+    }
+
+    if (lineLargestEssa === undefined) {
+        const allTrains = getTrainData();
+        // Calculate largest ESSA for trains in the same line and dosage form
+        lineLargestEssa = getLargestEssaForLineAndDosageForm(train, allTrains);
+    }
+
+    const sfInput = document.getElementById(`product-sf-input-train-${train.id}`);
+    const sf = parseFloat(sfInput?.value) || 1000; // Default safety factor
+
+    if (isNaN(sf)) return;
+
+    const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
+    const maco10ppm = 10 * train.minMbsKg;
+    let macoHealth = Infinity;
+    let macoNoel = Infinity;
+    
+    // Check toxicity preference to determine which equations to show
+    const toxicityPreference = getToxicityPreference();
+    const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
+    const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+    
+    // Calculate PDE-based MACO if PDE is available and not hidden
+    if (train.lowestPde !== null && !pdeHidden) {
+        macoHealth = train.lowestPde * train.minBsMddRatio;
+    }
+    
+    // Calculate NOEL-based MACO if LD50 is available and not hidden
+    if (train.lowestLd50 !== null && !ld50Hidden) {
+        // NOEL = (LD50 g/kg × 70 kg) ÷ 2000
+        const noel = (train.lowestLd50 * 70) / 2000; // NOEL in g
+        // Find minimum MDD from all ingredients in the train
+        const allMdds = train.products.flatMap(p => p.activeIngredients.map(ing => ing.mdd / 1000)); // Convert mg to g
+        const minMdd = Math.min(...allMdds);
+        // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
+        macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
+    }
+    
+    const macoVisual = 0.004 * lineLargestEssa;
+
+    // Build MACO values array conditionally based on toxicity data visibility
+    const allMacoValues = [
+        { name: '0.1% Therapeutic Dose', value: macoDose },
+        { name: '10 ppm Criterion', value: maco10ppm }
+    ];
+    
+    // Add PDE equation only if PDE is available and not hidden
+    if (train.lowestPde !== null && !pdeHidden) {
+        allMacoValues.push({ name: 'Health-Based Limit (PDE)', value: macoHealth });
+    }
+    
+    // Add NOEL equation only if LD50 is available and not hidden
+    if (train.lowestLd50 !== null && !ld50Hidden) {
+        allMacoValues.push({ name: 'Health-Based Limit (NOEL)', value: macoNoel });
+    }
+    
+    // Always add visual clean limit
+    allMacoValues.push({ name: 'Visual Clean Limit', value: macoVisual });
+
+    const finalMacoResult = allMacoValues.reduce((min, current) => current.value < min.value ? current : min);
+    const finalMaco = finalMacoResult.value;
+    const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : 0;
+    const macoPerSwab = macoPerArea * train.assumedSsa;
+
+    // Debug logging for MACO calculation comparison
+    console.log(`🔧 MacoProductView MACO calculation for Train ${trainId} (${dosageForm}):`, {
+        finalMaco: finalMaco,
+        lineLargestEssa: lineLargestEssa,
+        assumedSsa: train.assumedSsa,
+        macoPerArea: macoPerArea,
+        macoPerSwab: macoPerSwab,
+        macoDose: macoDose,
+        maco10ppm: maco10ppm,
+        macoHealth: macoHealth,
+        macoNoel: macoNoel,
+        macoVisual: macoVisual,
+        selectedLimit: finalMacoResult.name
+    });
+
+    // Update the always-visible MACO / Swab element
+    const macoPerSwabMainElement = document.getElementById(`maco-per-swab-main-${uniqueTrainId}`);
+    if (macoPerSwabMainElement) {
+        macoPerSwabMainElement.textContent = formatSmallNumber(macoPerSwab, 'mg/Swab');
+    }
+
+    const breakdownContainer = document.getElementById(`maco-breakdown-container-${uniqueTrainId}`);
+    if (breakdownContainer) {
+        breakdownContainer.innerHTML = allMacoValues.map(({ value, name }) => {
+            let equation = '';
+            if (name === '0.1% Therapeutic Dose') {
+                equation = 'MACO = (<span title="Lowest Therapeutic Dose (mg)">LTD</span> × <span title="Batch Size / Maximum Daily Dose Ratio">BS/MDD Ratio</span>) / <span title="Safety Factor">SF</span>';
+            } else if (name === '10 ppm Criterion') {
+                equation = 'MACO = 10 × <span title="Minimum Batch Size (kg)">MBS(kg)</span>';
+            } else if (name === 'Health-Based Limit (PDE)') {
+                equation = 'MACO = <span title="Permitted Daily Exposure (mg)">PDE</span> × <span title="Batch Size / Maximum Daily Dose Ratio">BS/MDD Ratio</span>';
+            } else if (name === 'Health-Based Limit (NOEL)') {
+                equation = 'MACO = (<span title="No Observed Effect Level (g)">NOEL</span> × <span title="Minimum Batch Size (kg)">MBS(kg)</span> × 1000) / (<span title="Safety Factor">SF</span> × <span title="Minimum Daily Dose (g)">MDD(g)</span>)';
+            } else if (name === 'Visual Clean Limit') {
+                equation = 'MACO = 0.004 × <span title="Equipment Surface Shared Area (cm²)">Largest ESSA</span>';
+            }
+            
+            return `
+                    <div class="p-3 ${finalMacoResult.value === value ? 'font-bold' : ''}" style="${finalMacoResult.value === value ? 'background-color: #dcfce7; color: #166534;' : ''}">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-sm font-medium">${name}</span>
+                            <span class="text-sm text-right">${isFinite(value) ? formatSmallNumber(value, 'mg') : 'N/A'} ${finalMacoResult.value === value ? '<span class="text-xs ml-2">✓</span>' : ''}</span>
+                        </div>
+                        <div class="text-xs font-mono bg-gray-100 dark:bg-gray-700 p-2 rounded mt-1" style="color: var(--text-secondary);">
+                            ${equation}
+                        </div>
+                    </div>
+                `;
+        }).join('');
+    }
+
+    // Add both Final MACO Limits and Selected Limit cards to the breakdown section
+    if (breakdownContainer) {
+        // Find the 10 ppm Criterion value
+        const ppmCriterion = allMacoValues.find(item => item.name === '10 ppm Criterion');
+        const ppmValue = ppmCriterion ? ppmCriterion.value : 0;
+        
+        // Add Selected Limit card first
+        const selectedLimitCard = document.createElement('div');
+        selectedLimitCard.className = 'p-3 border-t-2 border-dashed mt-4';
+        selectedLimitCard.style.borderColor = 'var(--gradient-mid)';
+        selectedLimitCard.innerHTML = `
+            <div class="text-center">
+                <p class="text-sm font-semibold mb-2" style="color:var(--text-secondary);">Selected Limit: ${finalMacoResult.name}</p>
+                <p class="text-lg font-extrabold" style="color:var(--gradient-mid);" id="final-maco-val-${uniqueTrainId}" data-value="${finalMaco}">${formatSmallNumber(finalMaco, 'mg')}</p>
+                ${finalMacoResult.name === '10 ppm Criterion' ? `<p class="text-sm mt-1" style="color:var(--text-secondary);">10 ppm Criterion: ${formatSmallNumber(ppmValue, 'mg')}</p>` : ''}
+            </div>
+        `;
+        breakdownContainer.appendChild(selectedLimitCard);
+        
+        // Add Final MACO Limits card (only MACO / Area, since MACO / Swab is always visible) - now at the bottom
+        const finalMacoCard = document.createElement('div');
+        finalMacoCard.className = 'p-4 rounded-lg mt-4';
+        finalMacoCard.style.backgroundColor = 'var(--bg-accent)';
+        finalMacoCard.innerHTML = `
+            <h5 class="text-sm font-semibold mb-2">Final MACO Limits for Train ${trainNumber}</h5>
+            <div class="space-y-3">
+                <div><p class="text-sm" style="color:var(--text-secondary);">MACO / Area</p><p class="text-md font-bold" id="maco-per-area-val-${uniqueTrainId}">${macoPerArea.toExponential(3)} mg/cm²</p></div>
+            </div>
+        `;
+        breakdownContainer.appendChild(finalMacoCard);
+    }
+}
+
+// Toggle function for MACO breakdown
+window.toggleMacoBreakdown = function(trainId) {
+    const breakdown = document.getElementById(`maco-breakdown-details-${trainId}`);
+    const button = document.getElementById(`breakdown-toggle-btn-${trainId}`);
+    
+    if (breakdown.classList.contains('hidden')) {
+        breakdown.classList.remove('hidden');
+        button.textContent = 'Hide MACO Calculation Breakdown';
+    } else {
+        breakdown.classList.add('hidden');
+        button.textContent = 'Show MACO Calculation Breakdown';
+    }
+};
+
+// Dropdown toggle functions for MACO export and print
+export function toggleMacoExportDropdown() {
+    const dropdown = document.getElementById('macoExportDropdown');
+    dropdown.classList.toggle('hidden');
+    populateMacoTrainOptions();
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!e.target.closest('#macoExportDropdown') && !e.target.closest('button[onclick="toggleMacoExportDropdown()"]')) {
+            dropdown.classList.add('hidden');
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
+}
+
+export function toggleMacoPrintDropdown() {
+    const dropdown = document.getElementById('macoPrintDropdown');
+    dropdown.classList.toggle('hidden');
+    populateMacoTrainOptions();
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!e.target.closest('#macoPrintDropdown') && !e.target.closest('button[onclick="toggleMacoPrintDropdown()"]')) {
+            dropdown.classList.add('hidden');
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
+}
+
+function populateMacoTrainOptions() {
+    import('./utils.js').then(utils => {
+        const { getTrainData, getTrainsGroupedByLine, getTrainIdToLineNumberMap } = utils;
+        
+        // Use the same filtering logic as renderMacoForTrains
+        let linesWithTrains = getTrainsGroupedByLine();
+        
+        // Apply current line filter (same as view)
+        const currentLine = (window.currentLineFilter && window.currentLineFilter !== 'all') ? window.currentLineFilter : null;
+        if (currentLine) {
+            linesWithTrains = linesWithTrains.filter(lineGroup => lineGroup.line === currentLine);
+        }
+        
+        // Get full train data for ID mapping
+        const fullTrainData = getTrainData();
+        const fullTrainByKey = {};
+        fullTrainData.forEach(t => { if (t.key) fullTrainByKey[t.key] = t; });
+        
+        // Flatten and get only visible trains (same as view)
+        const visibleTrains = [];
+        linesWithTrains.forEach(lineObj => {
+            lineObj.trains.forEach(train => {
+                const fullTrain = fullTrainByKey[train.key];
+                if (fullTrain) {
+                    visibleTrains.push({ ...train, id: fullTrain.id });
+                }
+            });
+        });
+        
+        const idMap = getTrainIdToLineNumberMap();
+        
+        // Populate export dropdown with checkboxes
+        const exportContainer = document.getElementById('macoExportTrainOptions');
+        if (exportContainer) {
+            exportContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 export-maco-train-checkbox';
+                checkbox.value = train.id;
+                checkbox.onchange = () => updateAllMacoTrainsCheckbox('export');
+                
+                const span = document.createElement('span');
+                const mapped = idMap.get(String(train.id));
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = mapped ? `${dosageForm} — Train ${mapped.number}` : `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                exportContainer.appendChild(labelElement);
+            });
+        }
+        
+        // Populate print dropdown with checkboxes
+        const printContainer = document.getElementById('macoPrintTrainOptions');
+        if (printContainer) {
+            printContainer.innerHTML = '';
+            visibleTrains.forEach(train => {
+                const labelElement = document.createElement('label');
+                labelElement.className = 'flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
+                labelElement.style.color = 'var(--text-primary)';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'mr-2 print-maco-train-checkbox';
+                checkbox.value = train.id;
+                checkbox.onchange = () => updateAllMacoTrainsCheckbox('print');
+                
+                const span = document.createElement('span');
+                const mapped = idMap.get(String(train.id));
+                const dosageForm = train.dosageForm || train.productType || 'Unknown';
+                span.textContent = mapped ? `${dosageForm} — Train ${mapped.number}` : `${dosageForm} — Train ${train.number}`;
+                
+                labelElement.appendChild(checkbox);
+                labelElement.appendChild(span);
+                printContainer.appendChild(labelElement);
+            });
+        }
+    });
+}
+
+// Multi-select train functions for MACO
+export function toggleAllMacoTrainsSelection(type) {
+    const allCheckbox = document.getElementById(`${type}MacoAllTrainsCheckbox`);
+    const trainCheckboxes = document.querySelectorAll(`.${type}-maco-train-checkbox`);
+    
+    trainCheckboxes.forEach(checkbox => {
+        checkbox.checked = allCheckbox.checked;
+    });
+}
+
+export function updateAllMacoTrainsCheckbox(type) {
+    const allCheckbox = document.getElementById(`${type}MacoAllTrainsCheckbox`);
+    const trainCheckboxes = document.querySelectorAll(`.${type}-maco-train-checkbox`);
+    const checkedBoxes = document.querySelectorAll(`.${type}-maco-train-checkbox:checked`);
+    
+    // Update "All" checkbox based on individual selections
+    if (checkedBoxes.length === 0) {
+        allCheckbox.checked = false;
+        allCheckbox.indeterminate = false;
+    } else if (checkedBoxes.length === trainCheckboxes.length) {
+        allCheckbox.checked = true;
+        allCheckbox.indeterminate = false;
+    } else {
+        allCheckbox.checked = false;
+        allCheckbox.indeterminate = true;
+    }
+}
+
+export function executeMacoExportSelection() {
+    // Import UI functions dynamically to avoid circular dependency
+    import('./ui.js').then(ui => {
+        const allCheckbox = document.getElementById('exportMacoAllTrainsCheckbox');
+        const selectedTrains = [];
+        
+        if (allCheckbox.checked) {
+            // Export all trains
+            ui.exportProductMacoToExcel('all');
+        } else {
+            // Get selected individual trains
+            const checkedBoxes = document.querySelectorAll('.export-maco-train-checkbox:checked');
+            checkedBoxes.forEach(checkbox => {
+                selectedTrains.push(checkbox.value);
+            });
+            
+            if (selectedTrains.length === 0) {
+                ui.showCustomAlert("No Selection", "Please select at least one train to export.");
+                return;
+            }
+            
+            // Export selected trains
+            ui.exportProductMacoToExcel(selectedTrains);
+        }
+        
+        // Close dropdown
+        document.getElementById('macoExportDropdown').classList.add('hidden');
+    }).catch(error => {
+        console.error('Error loading export function:', error);
+        alert('Error loading export function');
+    });
+}
+
+export function executeMacoPrintSelection() {
+    // Import UI functions dynamically to avoid circular dependency
+    import('./ui.js').then(ui => {
+        const allCheckbox = document.getElementById('printMacoAllTrainsCheckbox');
+        const selectedTrains = [];
+        
+        if (allCheckbox.checked) {
+            // Print all trains
+            ui.printCurrentView('macoForTrains', 'all');
+        } else {
+            // Get selected individual trains
+            const checkedBoxes = document.querySelectorAll('.print-maco-train-checkbox:checked');
+            checkedBoxes.forEach(checkbox => {
+                selectedTrains.push(checkbox.value);
+            });
+            
+            if (selectedTrains.length === 0) {
+                ui.showCustomAlert("No Selection", "Please select at least one train to print.");
+                return;
+            }
+            
+            // Print selected trains
+            ui.printCurrentView('macoForTrains', selectedTrains);
+        }
+        
+        // Close dropdown
+        document.getElementById('macoPrintDropdown').classList.add('hidden');
+    }).catch(error => {
+        console.error('Error loading print function:', error);
+        alert('Error loading print function');
+    });
+}
+
+// Make new functions globally available
+window.toggleMacoExportDropdown = toggleMacoExportDropdown;
+window.toggleMacoPrintDropdown = toggleMacoPrintDropdown;
+window.toggleAllMacoTrainsSelection = toggleAllMacoTrainsSelection;
+window.updateAllMacoTrainsCheckbox = updateAllMacoTrainsCheckbox;
+window.executeMacoExportSelection = executeMacoExportSelection;
+window.executeMacoPrintSelection = executeMacoPrintSelection;

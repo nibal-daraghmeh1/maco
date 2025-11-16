@@ -1,1 +1,1104 @@
-const a10_0x2e5a68=a10_0x3a18;(function(_0x41e36a,_0x7e303b){const _0x4d761e=a10_0x3a18,_0x558c6a=_0x41e36a();while(!![]){try{const _0x48edba=-parseInt(_0x4d761e(0x2c4))/0x1*(parseInt(_0x4d761e(0x1ca))/0x2)+parseInt(_0x4d761e(0x2f7))/0x3+-parseInt(_0x4d761e(0x1c9))/0x4+-parseInt(_0x4d761e(0x217))/0x5+-parseInt(_0x4d761e(0x1ec))/0x6*(-parseInt(_0x4d761e(0x1a2))/0x7)+parseInt(_0x4d761e(0x28e))/0x8*(-parseInt(_0x4d761e(0x2da))/0x9)+parseInt(_0x4d761e(0x1c3))/0xa;if(_0x48edba===_0x7e303b)break;else _0x558c6a['push'](_0x558c6a['shift']());}catch(_0x2d9ffe){_0x558c6a['push'](_0x558c6a['shift']());}}}(a10_0x37ec,0x98845));import*as a10_0x56b22c from'./state.js';import{fullAppRender as a10_0x32e2c5}from'./app.js';import{showLoader as a10_0x4feb4a,hideLoader as a10_0x31ff31,showCustomAlert as a10_0x366d0,hideModal as a10_0x401e80,saveStateForUndo as a10_0x22bfc8,updateToggleIcons as a10_0xb25e18}from'./ui.js';import{getProductTrainId as a10_0x567162,getProductTrainNumber as a10_0x417555,calculateScores as a10_0x3a0041,populateSelectWithOptions as a10_0x321b09,getUniqueProductLines as a10_0x45bb0e}from'./utils.js';import{renderWorstCaseByTrain as a10_0x5df504}from'./worstCaseView.js';export function renderProducts(_0x5d1828){const _0x5e4ac5=a10_0x3a18,_0x32d010={'BjPzf':_0x5e4ac5(0x185),'eqoQW':_0x5e4ac5(0x12b),'awQPL':_0x5e4ac5(0x2f6),'nEdpn':'Other','EvSDI':_0x5e4ac5(0x2a0),'ubDqK':_0x5e4ac5(0x21d),'rfJHM':function(_0x3805b7,_0x1f4c9e){return _0x3805b7===_0x1f4c9e;},'ykaEI':_0x5e4ac5(0x132),'rIUGE':function(_0xabe772,_0x27d5dd){return _0xabe772<_0x27d5dd;},'tUutY':function(_0x3740d5,_0x2a150f){return _0x3740d5>_0x2a150f;},'Wsnms':function(_0x14a15b,_0x4b4da3){return _0x14a15b!==_0x4b4da3;},'GZKGa':_0x5e4ac5(0x157),'qgerQ':_0x5e4ac5(0x19e),'ykCEN':_0x5e4ac5(0x1fc),'KyOjh':_0x5e4ac5(0x2dd),'DjTrb':function(_0x2153e1,_0x401473){return _0x2153e1(_0x401473);},'gDLDL':_0x5e4ac5(0x20a),'ZrXrN':function(_0x8cbf0e,_0x58adf4){return _0x8cbf0e+_0x58adf4;},'eYioV':_0x5e4ac5(0x167),'itQCu':'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22p-4\x20ingredients-sub-table\x20rounded-b-lg\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22w-full\x20text-xs\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20class=\x22bg-transparent\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22border-b\x22\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20rgb(188\x20194\x20208\x20/\x2045%)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22font-size:\x2012px\x20!important;\x22>Ingredient</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22font-size:\x2012px\x20!important;\x22>TD\x20(mg)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22font-size:\x2012px\x20!important;\x22>MDD\x20(g/day)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22font-size:\x2012px\x20!important;\x22>Solubility</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22font-size:\x2012px\x20!important;\x22>Cleanability</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22pde-col\x20px-3\x20py-2\x20text-left\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22font-size:\x2012px\x20!important;\x22>PDE\x20(mg/day)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22ld50-col\x20px-3\x20py-2\x20text-left\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22font-size:\x2012px\x20!important;\x22>LD50\x20(mg/kg)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-2\x20text-left\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22font-size:\x2012px\x20!important;\x22>Actions</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20class=\x22bg-transparent\x22>','NgAfe':'div','LORfe':_0x5e4ac5(0x214),'OlYVl':_0x5e4ac5(0x2db),'kDYEg':function(_0x5ef292,_0x2f5bdd){return _0x5ef292===_0x2f5bdd;},'hTRiB':function(_0x38e87c){return _0x38e87c();},'hQECs':_0x5e4ac5(0x259)};if(_0x32d010[_0x5e4ac5(0x17d)](_0x5e4ac5(0x292),_0x5d1828))return void _0x32d010['hTRiB'](a10_0x5df504);const _0x5afd92=document[_0x5e4ac5(0x28d)](_0x5d1828);if(!_0x5afd92)return;_0x5afd92[_0x5e4ac5(0x2d2)](_0x32d010[_0x5e4ac5(0x2dc)])[_0x5e4ac5(0x24a)](_0x13c686=>_0x13c686[_0x5e4ac5(0x221)]());let _0xa77cc5=[...a10_0x56b22c[_0x5e4ac5(0x2f3)][_0x5d1828]];const _0x3b2074={};_0xa77cc5['forEach'](_0x1fe77e=>{const _0x4a2620=_0x5e4ac5,_0x3f567b=_0x1fe77e[_0x4a2620(0x192)]||_0x32d010['BjPzf'];_0x3b2074[_0x3f567b]||(_0x3b2074[_0x3f567b]=[]),_0x3b2074[_0x3f567b]['push'](_0x1fe77e);}),Object[_0x5e4ac5(0x265)](_0x3b2074)[_0x5e4ac5(0x245)]()[_0x5e4ac5(0x24a)](_0x3eb714=>{const _0x247423=_0x5e4ac5,_0x4e2435=_0x3b2074[_0x3eb714];_0x4e2435[_0x247423(0x245)]((_0x43f667,_0x928326)=>{const _0x23f6fa=_0x247423;let _0x2c041f,_0x108561;switch(a10_0x56b22c[_0x23f6fa(0x1ea)][_0x23f6fa(0x2ee)]){case _0x32d010[_0x23f6fa(0x29d)]:_0x2c041f=_0x43f667[_0x23f6fa(0x12b)],_0x108561=_0x928326[_0x23f6fa(0x12b)];break;case _0x32d010[_0x23f6fa(0x1ff)]:_0x2c041f=_0x43f667[_0x23f6fa(0x2f6)],_0x108561=_0x928326[_0x23f6fa(0x2f6)];break;case _0x23f6fa(0x22e):_0x2c041f=_0x43f667['productType']||_0x23f6fa(0x19c),_0x108561=_0x928326[_0x23f6fa(0x22e)]||_0x32d010[_0x23f6fa(0x1da)];break;case _0x32d010[_0x23f6fa(0x162)]:_0x2c041f=_0x43f667['batchSizeKg'],_0x108561=_0x928326['batchSizeKg'];break;case _0x32d010['ubDqK']:_0x2c041f=new Date(_0x43f667['date']),_0x108561=new Date(_0x928326['date']);break;default:return 0x0;}const _0x879f8c=_0x32d010['rfJHM'](_0x32d010[_0x23f6fa(0x1b0)],a10_0x56b22c[_0x23f6fa(0x1ea)][_0x23f6fa(0x18c)])?0x1:-0x1;if(_0x32d010[_0x23f6fa(0x1c0)](_0x2c041f,_0x108561))return-0x1*_0x879f8c;if(_0x32d010[_0x23f6fa(0x17c)](_0x2c041f,_0x108561))return 0x1*_0x879f8c;const _0x31f62c=_0x43f667[_0x23f6fa(0x22e)]||_0x32d010[_0x23f6fa(0x1da)],_0x57dabf=_0x928326[_0x23f6fa(0x22e)]||_0x32d010[_0x23f6fa(0x1da)];return _0x32d010[_0x23f6fa(0x233)](_0x31f62c,_0x57dabf)?_0x31f62c['localeCompare'](_0x57dabf):0x0;});const _0x2265db=document[_0x247423(0x19a)](_0x32d010[_0x247423(0x29b)]);_0x2265db[_0x247423(0x1d6)]=_0x32d010[_0x247423(0x216)];const _0x58298a=_0x3eb714[_0x247423(0x226)](/\s+/g,'_')[_0x247423(0x2fb)]();setTimeout(()=>{const _0x24ed9e=_0x247423,_0x5c41d5={'SFDJj':_0x24ed9e(0x284),'VmKZp':_0x32d010[_0x24ed9e(0x23b)],'nTFHW':_0x24ed9e(0x13d)};_0x2265db[_0x24ed9e(0x2d2)](_0x32d010['qgerQ'])['forEach'](_0x1da698=>{const _0x4fec04=_0x24ed9e;_0x1da698[_0x4fec04(0x222)](_0x5c41d5[_0x4fec04(0x1d5)],function(){const _0x1152f5=_0x4fec04,_0x43f5fc=this['getAttribute'](_0x5c41d5[_0x1152f5(0x2d5)]);if(_0x43f5fc){const _0x2621a2=_0x43f5fc[_0x1152f5(0x1f8)](/'(.*?)'/);_0x2621a2&&sortData(_0x2621a2[0x1],_0x5c41d5[_0x1152f5(0x130)]);}});});},0x64),_0x2265db['innerHTML']=_0x247423(0x2e7)+_0x58298a+'\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x22text-xl\x20font-bold\x20text-gray-800\x20dark:text-white\x20mb-1\x22>'+_0x3eb714+_0x247423(0x139)+_0x4e2435[_0x247423(0x2e4)]+_0x247423(0x1a6)+(_0x32d010[_0x247423(0x233)](0x1,_0x4e2435[_0x247423(0x2e4)])?'s':'')+_0x247423(0x194)+_0x58298a+'\x22\x20class=\x22w-5\x20h-5\x20text-gray-500\x20dark:text-gray-400\x20transition-transform\x20duration-200\x22\x20fill=\x22none\x22\x20stroke=\x22currentColor\x22\x20viewBox=\x220\x200\x2024\x2024\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M19\x209l-7\x207-7-7\x22></path>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22table-'+_0x58298a+'\x22\x20class=\x22overflow-hidden\x20rounded-lg\x20border\x20transition-all\x20duration-300\x22\x20style=\x22border-color:\x20var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22w-full\x20text-sm\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20class=\x22bg-gray-200\x20dark:bg-gray-700\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-left\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);\x20font-weight:\x20bold\x20!important;\x22>#</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-left\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);\x20font-weight:\x20bold\x20!important;\x22>Date</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-left\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20sortable\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);font-weight:\x20bold\x20!important;\x20cursor:\x20pointer;\x22\x20onclick=\x22sortData(\x27productCode\x27,\x20\x27productRegister\x27)\x22>Product\x20Code\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-left\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20sortable\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);\x20font-weight:\x20bold\x20!important;\x20cursor:\x20pointer;\x22\x20onclick=\x22sortData(\x27name\x27,\x20\x27productRegister\x27)\x22>Product\x20Name\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-left\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);\x20font-weight:\x20bold\x20!important;\x22>Train\x20No.</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-left\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20sortable\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);font-weight:\x20bold\x20!important;\x20cursor:\x20pointer;\x22\x20onclick=\x22sortData(\x27productType\x27,\x20\x27productRegister\x27)\x22>Dosage\x20Form\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-left\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20sortable\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);\x20font-weight:\x20bold\x20!important;\x20cursor:\x20pointer;\x22\x20onclick=\x22sortData(\x27batchSizeKg\x27,\x20\x27productRegister\x27)\x22>Batch\x20Size\x20<span\x20class=\x22sort-indicator\x22></span></th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-left\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);\x20font-weight:\x20bold\x20!important;\x22>Critical</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20class=\x22px-3\x20py-3\x20text-center\x20text-xs\x20text-center\x20font-medium\x20uppercase\x20tracking-wider\x20bg-gray-200\x20dark:bg-gray-700\x22\x20style=\x22color:\x20var(--text-secondary);\x20font-weight:\x20bold\x20!important;\x22>Actions</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20class=\x22productsTable\x22\x20style=\x22border-color:\x20var(--border-color);\x20background-color:\x20var(--bg-secondary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x5afd92[_0x247423(0x287)](_0x2265db);const _0x318bef=_0x2265db[_0x247423(0x29e)](_0x32d010[_0x247423(0x2e3)]);_0x4e2435[_0x247423(0x24a)]((_0x4e0449,_0x3c095d)=>{const _0x27058c=_0x247423,_0x14684f=document[_0x27058c(0x19a)]('tr');_0x14684f[_0x27058c(0x1d6)]=_0x32d010['ykCEN'];const _0x4f3a60=_0x4e0449[_0x27058c(0x288)]?_0x32d010[_0x27058c(0x1a7)]:'No',_0xce660b=_0x4e0449['isCritical']?_0x27058c(0x134):'',_0xdbafdc=_0x32d010[_0x27058c(0x15c)](a10_0x417555,_0x4e0449),_0x202f18=_0x32d010[_0x27058c(0x233)](_0x32d010[_0x27058c(0x150)],_0xdbafdc)?_0x32d010[_0x27058c(0x2f5)]('T',_0xdbafdc):_0x32d010['gDLDL'];_0x14684f['innerHTML']=_0x27058c(0x2b6)+(_0x3c095d+0x1)+_0x27058c(0x156)+new Date(_0x4e0449[_0x27058c(0x21d)])[_0x27058c(0x2eb)]()+_0x27058c(0x1e6)+_0x4e0449['productCode']+_0x27058c(0x17b)+_0x4e0449[_0x27058c(0x2f6)]+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20font-medium\x20whitespace-nowrap\x20align-top\x20text-center\x22\x20>'+_0x202f18+_0x27058c(0x1cc)+(_0x4e0449[_0x27058c(0x22e)]||_0x32d010[_0x27058c(0x150)])+_0x27058c(0x156)+_0x4e0449[_0x27058c(0x2a0)]+_0x27058c(0x1eb)+_0xce660b+'\x22>'+_0x4f3a60+_0x27058c(0x22a)+(_0x4e0449[_0x27058c(0x288)]&&_0x4e0449[_0x27058c(0x2c1)]?_0x27058c(0x176)+_0x4e0449[_0x27058c(0x2c1)]+'</p>':'')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20whitespace-nowrap\x20align-top\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20gap-x-2\x20no-print\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showAssignMachinesModal('+_0x4e0449['id']+_0x27058c(0x247)+_0x4e0449['id']+')\x22\x20class=\x22p-1\x22\x20style=\x22color:\x20var(--text-secondary);\x22\x20title=\x22Edit\x20Product\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M15.502\x201.94a.5.5\x200\x200\x201\x200\x20.706L14.459\x203.69l-2-2L13.502.646a.5.5\x200\x200\x201\x20.707\x200l1.293\x201.293zM12.879\x204.379L11\x202.5\x204.939\x208.561a.5.5\x200\x200\x200-.121.196l-.805\x202.414a.25.25\x200\x200\x200\x20.316.316l2.414-.805a.5.5\x200\x200\x200\x20.196-.121L12.879\x204.379z\x22/><path\x20fill-rule=\x22evenodd\x22\x20d=\x22M1\x2013.5A1.5\x201.5\x200\x200\x200\x202.5\x2015h11a1.5\x201.5\x200\x200\x200\x201.5-1.5v-6a.5.5\x200\x200\x200-1\x200v6a.5.5\x200\x200\x201-.5.5h-11a.5.5\x200\x200\x201-.5-.5v-11a.5.5\x200\x200\x201\x20.5-.5H9a.5.5\x200\x200\x200\x200-1H2.5A1.5\x201.5\x200\x200\x200\x201\x202.5v11z\x22/></svg></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22deleteProduct('+_0x4e0449['id']+')\x22\x20class=\x22p-1\x20text-red-500\x22\x20title=\x22Delete\x20Product\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M5.5\x205.5A.5.5\x200\x200\x201\x206\x206v6a.5.5\x200\x200\x201-1\x200V6a.5.5\x200\x200\x201\x20.5-.5m2.5\x200a.5.5\x200\x200\x201\x20.5.5v6a.5.5\x200\x200\x201-1\x200V6a.5.5\x200\x200\x201\x20.5-.5zm3\x20.5a.5.5\x200\x200\x200-1\x200v6a.5.5\x200\x200\x200\x201\x200z\x22/><path\x20fill-rule=\x22evenodd\x22\x20d=\x22M14.5\x203a1\x201\x200\x200\x201-1\x201H13v9a2\x202\x200\x200\x201-2\x202H5a2\x202\x200\x200\x201-2-2V4h-.5a1\x201\x200\x200\x201-1-1V2a1\x201\x200\x200\x201\x201-1H6a1\x201\x200\x200\x201\x201-1h2a1\x201\x200\x200\x201\x201\x201h3.5a1\x201\x200\x200\x201\x201\x201v1zM4.118\x204L4\x204.059V13a1\x201\x200\x200\x200\x201\x201h6a1\x201\x200\x200\x200\x201-1V4.059L11.882\x204zM2.5\x203V2h11v1h-11z\x22/></svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';const _0x5b5171=document['createElement']('tr');_0x5b5171[_0x27058c(0x1d6)]=_0x32d010['eYioV'];const _0x12e63e=document[_0x27058c(0x19a)]('td');_0x12e63e[_0x27058c(0x29c)]=0xa;let _0x2ec85b=_0x32d010[_0x27058c(0x26e)];_0x4e0449[_0x27058c(0x12c)][_0x27058c(0x24a)](_0x1cd3bc=>{const _0x3d22e7=_0x27058c;_0x2ec85b+=_0x3d22e7(0x2e2)+_0x1cd3bc[_0x3d22e7(0x2f6)]+_0x3d22e7(0x2d8)+_0x1cd3bc[_0x3d22e7(0x2cc)]+_0x3d22e7(0x2d8)+_0x1cd3bc[_0x3d22e7(0x160)]/0x3e8+_0x3d22e7(0x2d8)+_0x1cd3bc[_0x3d22e7(0x2b7)]+_0x3d22e7(0x2d8)+_0x1cd3bc[_0x3d22e7(0x27b)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22pde-col\x20px-3\x20py-2\x22\x20style=\x22color:\x20var(--text-secondary);\x22>'+(_0x1cd3bc[_0x3d22e7(0x276)]??_0x3d22e7(0x20a))+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22ld50-col\x20px-3\x20py-2\x22\x20style=\x22color:\x20var(--text-secondary);\x22>'+(_0x1cd3bc[_0x3d22e7(0x294)]??'N/A')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-2\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20gap-x-2\x20no-print\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showEditIngredientModal('+_0x4e0449['id']+',\x20'+_0x1cd3bc['id']+_0x3d22e7(0x12e)+_0x4e0449['id']+',\x20'+_0x1cd3bc['id']+')\x22\x20class=\x22p-1\x20text-red-500\x22\x20title=\x22Remove\x20Ingredient\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M4.646\x204.646a.5.5\x200\x200\x201\x20.708\x200L8\x207.293l2.646-2.647a.5.5\x200\x200\x201\x20.708.708L8.707\x208l2.647\x202.646a.5.5\x200\x200\x201-.708.708L8\x208.707l-2.646\x202.647a.5.5\x200\x200\x201-.708-.708L7.293\x208\x204.646\x205.354a.5.5\x200\x200\x201\x200-.708z\x22/></svg></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>';}),_0x2ec85b+='</tbody></table></div>',_0x12e63e[_0x27058c(0x231)]=_0x2ec85b,_0x5b5171[_0x27058c(0x287)](_0x12e63e),_0x318bef[_0x27058c(0x287)](_0x14684f),_0x318bef[_0x27058c(0x287)](_0x5b5171);});}),updateSortIndicators(_0x5d1828),a10_0xb25e18(_0x5d1828),_0x32d010[_0x5e4ac5(0x19f)](a10_0x31ff31);}window[a10_0x2e5a68(0x140)]=function(_0x173fda){const _0x854a59=a10_0x2e5a68,_0x39ed3d={'WDfxO':function(_0x288d50,_0x3fcdd9){return _0x288d50&&_0x3fcdd9;},'tTzTB':'block','IibXc':'rotate(0deg)','TWTsf':'none','mQqPO':_0x854a59(0x20c)},_0x2c6403=document[_0x854a59(0x28d)](_0x854a59(0x172)+_0x173fda),_0x3fa9ca=document[_0x854a59(0x28d)](_0x854a59(0x24f)+_0x173fda);_0x39ed3d['WDfxO'](_0x2c6403,_0x3fa9ca)&&('none'===_0x2c6403[_0x854a59(0x211)][_0x854a59(0x2bd)]?(_0x2c6403[_0x854a59(0x211)][_0x854a59(0x2bd)]=_0x39ed3d[_0x854a59(0x2cf)],_0x3fa9ca['style'][_0x854a59(0x1ed)]=_0x39ed3d[_0x854a59(0x14b)]):(_0x2c6403[_0x854a59(0x211)][_0x854a59(0x2bd)]=_0x39ed3d[_0x854a59(0x15f)],_0x3fa9ca[_0x854a59(0x211)][_0x854a59(0x1ed)]=_0x39ed3d[_0x854a59(0x146)]));};export function handleSearchAndFilter(_0x266d00){const _0x134353=a10_0x2e5a68,_0x47f642={'xUyjL':function(_0x155edc,_0x5cae05,_0x1d4d05){return _0x155edc(_0x5cae05,_0x1d4d05);},'GHGhK':'.filterColProductType','kiWiw':'all','OewkR':function(_0x4b1d5b,_0x47e3ad){return _0x4b1d5b(_0x47e3ad);},'vnGfC':function(_0x3d1f9b,_0x15a1ea){return _0x3d1f9b===_0x15a1ea;},'AGwpS':function(_0x527252,_0x374d40){return _0x527252===_0x374d40;},'SOukM':function(_0x58f75d,_0x4cc61c){return _0x58f75d!==_0x4cc61c;},'TarPC':'N/A','hZbDU':function(_0x42cf31,_0x17b938){return _0x42cf31+_0x17b938;},'OYOhP':function(_0x1a06c9,_0x637dc9){return _0x1a06c9===_0x637dc9;},'TgNvN':function(_0x58bbe5,_0x180fed){return _0x58bbe5&&_0x180fed;},'dQOxz':function(_0x4d0679){return _0x4d0679();},'nHMPW':function(_0x366ece,_0x5194b9){return _0x366ece===_0x5194b9;},'nCkVx':'worstCaseProducts','BOnEv':_0x134353(0x2c2),'HAKSO':function(_0x3d2632,_0x504ea8){return _0x3d2632(_0x504ea8);},'jGroU':_0x134353(0x21c),'tRhHH':'.filterColLine','NpvDZ':_0x134353(0x1fb),'uvmBh':'.filterColIsCritical','QXAAl':_0x134353(0x262),'woxrU':_0x134353(0x256),'eRZFu':_0x134353(0x2be),'EOKBH':function(_0x418296,_0xf4f131){return _0x418296(_0xf4f131);}};_0x47f642['dQOxz'](a10_0x4feb4a),document[_0x134353(0x28d)](_0x266d00);if(_0x47f642[_0x134353(0x2bc)](_0x47f642[_0x134353(0x2c9)],_0x266d00)){const _0x36e5e6=document[_0x134353(0x28d)](_0x47f642['BOnEv']),_0x5bd48c=_0x36e5e6?_0x36e5e6[_0x134353(0x166)][_0x134353(0x2fb)]():'';return a10_0x56b22c[_0x134353(0x2f3)][_0x266d00]=a10_0x56b22c['products'][_0x134353(0x23f)](_0x4fcd4c=>_0x4fcd4c[_0x134353(0x2f6)][_0x134353(0x2fb)]()[_0x134353(0x1e4)](_0x5bd48c)),void _0x47f642['HAKSO'](renderProducts,_0x266d00);}const _0xb33207=document[_0x134353(0x29e)](_0x47f642['jGroU'])?.['value']?.['toLowerCase']()||'',_0xb404f1=document[_0x134353(0x29e)](_0x134353(0x297))?.[_0x134353(0x166)]?.[_0x134353(0x2fb)]()||'',_0x231f00=document[_0x134353(0x29e)](_0x47f642[_0x134353(0x268)])?.['value']||_0x47f642['kiWiw'],_0x1a5d2f=document['querySelector'](_0x47f642[_0x134353(0x304)])?.[_0x134353(0x166)]||_0x47f642[_0x134353(0x29a)],_0xc0a44b=document['querySelector'](_0x47f642[_0x134353(0x273)])?.['value']||_0x47f642['kiWiw'],_0x40cc16=document[_0x134353(0x29e)](_0x47f642[_0x134353(0x28a)])?.[_0x134353(0x166)]||_0x134353(0x2ab);updateTrainNumberOptions(_0x231f00,_0xc0a44b);const _0xbc1943=document[_0x134353(0x29e)](_0x134353(0x236)),_0x255f86=document[_0x134353(0x29e)]('.filterColProductType');_0xbc1943&&!_0xbc1943[_0x134353(0x145)](_0x47f642['QXAAl'])&&(_0xbc1943[_0x134353(0x222)]('change',function(){const _0xf3cff0=_0x134353;_0x47f642[_0xf3cff0(0x20b)](updateTrainNumberOptions,this['value'],document['querySelector'](_0x47f642['GHGhK'])?.[_0xf3cff0(0x166)]||_0x47f642[_0xf3cff0(0x29a)]);}),_0xbc1943[_0x134353(0x228)](_0x47f642[_0x134353(0x277)],_0x47f642[_0x134353(0x1a9)])),_0x255f86&&!_0x255f86[_0x134353(0x145)](_0x47f642[_0x134353(0x277)])&&(_0x255f86[_0x134353(0x222)](_0x47f642[_0x134353(0x207)],function(){const _0x39ca91=_0x134353,_0x3feb9e=this[_0x39ca91(0x166)];_0x47f642[_0x39ca91(0x20b)](updateTrainNumberOptions,document[_0x39ca91(0x29e)](_0x39ca91(0x236))?.['value']||_0x47f642[_0x39ca91(0x29a)],_0x3feb9e);}),_0x255f86[_0x134353(0x228)](_0x47f642[_0x134353(0x277)],_0x47f642['woxrU'])),a10_0x56b22c[_0x134353(0x2f3)][_0x266d00]=a10_0x56b22c[_0x134353(0x1fe)][_0x134353(0x23f)](_0x32d646=>{const _0x5b78b6=_0x134353,_0x52769d=_0x32d646[_0x5b78b6(0x12b)][_0x5b78b6(0x2fb)]()[_0x5b78b6(0x1e4)](_0xb33207),_0x4268ed=_0x32d646[_0x5b78b6(0x2f6)]['toLowerCase']()['includes'](_0xb404f1),_0x43c5ef=_0x47f642[_0x5b78b6(0x2e6)](a10_0x417555,_0x32d646),_0x4a9498=_0x47f642[_0x5b78b6(0x2d7)](_0x47f642[_0x5b78b6(0x29a)],_0x1a5d2f)||_0x47f642[_0x5b78b6(0x12f)](_0x47f642['SOukM'](_0x47f642[_0x5b78b6(0x1e9)],_0x43c5ef)?_0x47f642[_0x5b78b6(0x1bc)]('T',_0x43c5ef):_0x5b78b6(0x20a),_0x1a5d2f),_0x18705e=_0x5b78b6(0x2ab)===_0x231f00||_0x47f642[_0x5b78b6(0x13a)](_0x32d646['line'],_0x231f00),_0x5a76b0=_0x47f642[_0x5b78b6(0x13a)](_0x47f642['kiWiw'],_0xc0a44b)||_0x32d646[_0x5b78b6(0x22e)]===_0xc0a44b,_0x38d80a=_0x47f642[_0x5b78b6(0x2d7)](_0x47f642[_0x5b78b6(0x29a)],_0x40cc16)||_0x47f642['OYOhP'](_0x47f642[_0x5b78b6(0x2e6)](String,_0x32d646[_0x5b78b6(0x288)]),_0x40cc16);return _0x47f642[_0x5b78b6(0x2b8)](_0x52769d,_0x4268ed)&&_0x4a9498&&_0x18705e&&_0x5a76b0&&_0x38d80a;}),_0x47f642['EOKBH'](renderProducts,_0x266d00);}export function updateTrainNumberOptions(_0x27a935,_0x1b02a7){const _0x161f96=a10_0x2e5a68,_0x1b094e={'karlo':function(_0x163584,_0x55ed00){return _0x163584(_0x55ed00);},'xnUSp':function(_0x56093f,_0x301668){return _0x56093f!==_0x301668;},'TBkxr':_0x161f96(0x1fb),'bkZgA':_0x161f96(0x2ab),'AfxoP':_0x161f96(0x2a3)},_0x21600c=document[_0x161f96(0x29e)](_0x1b094e['TBkxr']);if(!_0x21600c)return;let _0xf7beac=a10_0x56b22c[_0x161f96(0x1fe)];_0x1b094e['bkZgA']!==_0x27a935&&(_0xf7beac=_0xf7beac[_0x161f96(0x23f)](_0x257aed=>_0x257aed[_0x161f96(0x192)]===_0x27a935)),_0x1b094e[_0x161f96(0x22c)](_0x1b094e[_0x161f96(0x24d)],_0x1b02a7)&&(_0xf7beac=_0xf7beac[_0x161f96(0x23f)](_0x5093b8=>_0x5093b8['productType']===_0x1b02a7));const _0xe657c2=new Set();_0xf7beac[_0x161f96(0x24a)](_0x1c59aa=>{const _0x2d844f=_0x161f96,_0x5cfe76=_0x1b094e[_0x2d844f(0x18e)](a10_0x417555,_0x1c59aa);_0x1b094e[_0x2d844f(0x22c)](_0x2d844f(0x20a),_0x5cfe76)&&_0xe657c2[_0x2d844f(0x154)]('T'+_0x5cfe76);});const _0x529961=Array[_0x161f96(0x141)](_0xe657c2)['sort']((_0xc7b49d,_0x33e50c)=>parseInt(_0xc7b49d[_0x161f96(0x226)]('T',''))-parseInt(_0x33e50c[_0x161f96(0x226)]('T',''))),_0x495839=_0x21600c['value'];_0x21600c[_0x161f96(0x231)]=_0x1b094e['AfxoP'],_0x529961[_0x161f96(0x24a)](_0xada273=>{const _0x36f822=_0x161f96,_0x38de86=document[_0x36f822(0x19a)](_0x36f822(0x29f));_0x38de86[_0x36f822(0x166)]=_0xada273,_0x38de86[_0x36f822(0x1f1)]=_0xada273,_0x21600c[_0x36f822(0x287)](_0x38de86);}),_0x529961[_0x161f96(0x1e4)](_0x495839)?_0x21600c[_0x161f96(0x166)]=_0x495839:_0x21600c['value']=_0x1b094e[_0x161f96(0x24d)];}export function sortData(_0x1dd463,_0x2463dd){const _0x225b30=a10_0x2e5a68,_0x5957cc={'rdbCY':function(_0x1db27f,_0x3be60b){return _0x1db27f===_0x3be60b;},'GRKfu':function(_0xd64b6,_0x3a2a5f){return _0xd64b6===_0x3a2a5f;},'OhClZ':_0x225b30(0x132),'EfqJq':function(_0x577748,_0xdb24c1){return _0x577748===_0xdb24c1;},'ifPlu':_0x225b30(0x2fe),'abuIc':'desc','iBAfW':_0x225b30(0x292),'IsNyk':function(_0x3a1125){return _0x3a1125();},'AClRi':function(_0xb939ec,_0x280f55){return _0xb939ec(_0x280f55);}};_0x5957cc['rdbCY'](a10_0x56b22c[_0x225b30(0x1ea)]['key'],_0x1dd463)?a10_0x56b22c[_0x225b30(0x1ea)][_0x225b30(0x18c)]=_0x5957cc[_0x225b30(0x2f2)](_0x5957cc['OhClZ'],a10_0x56b22c[_0x225b30(0x1ea)]['direction'])?_0x225b30(0x1b7):_0x5957cc[_0x225b30(0x20d)]:(a10_0x56b22c[_0x225b30(0x1ea)][_0x225b30(0x2ee)]=_0x1dd463,a10_0x56b22c[_0x225b30(0x1ea)][_0x225b30(0x18c)]=_0x5957cc[_0x225b30(0x283)](_0x5957cc['ifPlu'],_0x1dd463)?_0x5957cc[_0x225b30(0x15e)]:_0x5957cc[_0x225b30(0x20d)]),_0x5957cc[_0x225b30(0x2f2)](_0x5957cc[_0x225b30(0x18b)],_0x2463dd)?_0x5957cc[_0x225b30(0x238)](a10_0x5df504):(_0x5957cc[_0x225b30(0x1e0)](renderProducts,_0x2463dd),_0x5957cc[_0x225b30(0x1e0)](updateSortIndicators,_0x2463dd));}export function updateSortIndicators(_0x4f72ba){const _0x12f342=a10_0x2e5a68,_0x32f916={'QGhos':function(_0x3d4ba3,_0x2e43de){return _0x3d4ba3===_0x2e43de;},'iRDcS':_0x12f342(0x292),'wLfid':_0x12f342(0x302)},_0x59b63b=document[_0x12f342(0x28d)](_0x4f72ba);if(!_0x59b63b||_0x32f916['QGhos'](_0x32f916[_0x12f342(0x136)],_0x4f72ba))return;_0x59b63b['querySelectorAll'](_0x32f916[_0x12f342(0x1a0)])[_0x12f342(0x24a)](_0x121a43=>{const _0x1c959d=_0x12f342,_0x23985b={'DnolE':'onclick','KLctY':function(_0x503fcc,_0xb5c065){const _0x3165da=a10_0x3a18;return _0x32f916[_0x3165da(0x22d)](_0x503fcc,_0xb5c065);},'lKMhu':function(_0x155e0b,_0x1902a0){const _0x540cdd=a10_0x3a18;return _0x32f916[_0x540cdd(0x22d)](_0x155e0b,_0x1902a0);},'cEHAj':_0x1c959d(0x132)};_0x121a43[_0x1c959d(0x2d2)](_0x1c959d(0x19e))['forEach'](_0x45382f=>{const _0x3cf8ad=_0x1c959d,_0x753e80=_0x45382f[_0x3cf8ad(0x29e)](_0x3cf8ad(0x26a));if(_0x753e80){const _0x4f7d97=_0x45382f[_0x3cf8ad(0x1e1)](_0x23985b[_0x3cf8ad(0x138)]);if(_0x4f7d97){const _0x2aba36=_0x4f7d97[_0x3cf8ad(0x1f8)](/'(.*?)'/);_0x2aba36&&(_0x23985b['KLctY'](_0x2aba36[0x1],a10_0x56b22c['sortState'][_0x3cf8ad(0x2ee)])?_0x753e80[_0x3cf8ad(0x1f1)]=_0x23985b[_0x3cf8ad(0x2bf)](_0x23985b[_0x3cf8ad(0x14e)],a10_0x56b22c[_0x3cf8ad(0x1ea)][_0x3cf8ad(0x18c)])?'▲':'▼':_0x753e80[_0x3cf8ad(0x1f1)]='');}}});});}export function showAddForm(){const _0x4df15b=a10_0x2e5a68,_0xc86702={'dlXwo':_0x4df15b(0x1c7),'yoMcG':'<div\x20class=\x22grid\x20grid-cols-1\x20md:grid-cols-3\x20gap-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Product\x20Code</label><input\x20type=\x22text\x22\x20id=\x22addProductCode\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20no-proper-case\x22\x20required\x20placeholder=\x22e.g.\x201ABC12345DE\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Product\x20Name</label><input\x20type=\x22text\x22\x20id=\x22addProductName\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Date</label><input\x20type=\x22date\x22\x20id=\x22addProductDate\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grid\x20grid-cols-1\x20md:grid-cols-2\x20gap-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Batch\x20Size\x20(Kg)</label><input\x20type=\x22number\x22\x20step=\x220.01\x22\x20id=\x22addBatchSize\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20min=\x220\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Line</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22addProductLine\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required\x20onchange=\x22document.getElementById(\x27addOtherLineContainer\x27).style.display\x20=\x20this.value\x20===\x20\x27Other\x27\x20?\x20\x27block\x27\x20:\x20\x27none\x27;\x20document.getElementById(\x27addOtherLine\x27).required\x20=\x20this.value\x20===\x20\x27Other\x27;\x20updateDosageFormOptions(\x27add\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20a\x20line...</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Solids\x22>Solids</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Semisolid\x22>Semisolid</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Liquids\x22>Liquids</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Other\x22>Other</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22addOtherLineContainer\x22\x20style=\x22display:none;margin-top:6px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Specify\x20Other\x20Line</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22addOtherLine\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20no-proper-case\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Dosage\x20Form</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22addProductType\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required\x20onchange=\x22document.getElementById(\x27addOtherTypeContainer\x27).style.display\x20=\x20this.value\x20===\x20\x27Other\x27\x20?\x20\x27block\x27\x20:\x20\x27none\x27;\x20document.getElementById(\x27addOtherProductType\x27).required\x20=\x20this.value\x20===\x20\x27Other\x27;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20a\x20form...</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22addOtherTypeContainer\x22\x20style=\x22display:\x20none;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Specify\x20Other\x20Form</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22addOtherProductType\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20no-proper-case\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Special\x20Case\x20Product</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22editIsCritical\x22\x20onchange=\x22document.getElementById(\x27editCriticalReasonContainer2\x27).style.display\x20=\x20this.value\x20===\x20\x27true\x27\x20?\x20\x27block\x27\x20:\x20\x27none\x27;\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22false\x22\x20\x27selected\x27\x20>No</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22true\x22>Yes</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22editCriticalReasonContainer2\x22\x20style=\x22display:\x20none\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Reason\x20for\x20Special\x20Case\x20Status</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<textarea\x20id=\x22editCriticalReason\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20placeholder=\x22Enter\x20reason...\x22></textarea>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><div\x20class=\x22flex\x20justify-between\x20items-center\x20mb-4\x22><h4\x20class=\x22text-lg\x20font-medium\x22>Active\x20Ingredients</h4><button\x20type=\x22button\x22\x20onclick=\x22addIngredientFormFields(\x27ingredientsContainer\x27)\x22\x20class=\x22text-white\x20px-3\x20py-1\x20rounded-lg\x20text-sm\x20btn-gradient\x22>+\x20Add\x20Ingredient</button></div><div\x20id=\x22ingredientsContainer\x22></div></div>','MVcTv':function(_0x5b33bb,_0x250d3c){return _0x5b33bb(_0x250d3c);},'DBuoU':_0x4df15b(0x2ec),'ZvDWA':_0x4df15b(0x1b6),'XTJkz':_0x4df15b(0x22f)};document[_0x4df15b(0x28d)](_0xc86702[_0x4df15b(0x24e)])['innerHTML']=_0xc86702[_0x4df15b(0x190)],document[_0x4df15b(0x28d)](_0x4df15b(0x2ec))[_0x4df15b(0x231)]='',a10_0x56b22c['setIngredientFormCounter'](0x0),_0xc86702['MVcTv'](addIngredientFormFields,_0xc86702[_0x4df15b(0x2f8)]),document['getElementById'](_0xc86702[_0x4df15b(0x2b1)])[_0x4df15b(0x166)]=new Date()[_0x4df15b(0x2b2)]()['split']('T')[0x0],document[_0x4df15b(0x28d)]('addProductModal')[_0x4df15b(0x211)]['display']=_0x4df15b(0x1b1),import(_0xc86702[_0x4df15b(0x272)])['then'](_0x536704=>{_0x536704['initializeProperCaseInputs']();})['catch'](_0x2fe261=>console[_0x4df15b(0x1ad)](_0x4df15b(0x26b),_0x2fe261));}function a10_0x3a18(_0x1dac8d,_0x54b229){const _0x37ec27=a10_0x37ec();return a10_0x3a18=function(_0x3a18dd,_0x1426a3){_0x3a18dd=_0x3a18dd-0x128;let _0x8ac171=_0x37ec27[_0x3a18dd];return _0x8ac171;},a10_0x3a18(_0x1dac8d,_0x54b229);}export function addIngredientFormFields(_0x503c21,_0x1a9ef4=null){const _0xe7e2a8=a10_0x2e5a68,_0x4b8cb9={'kEnYC':_0xe7e2a8(0x195),'dXrwh':function(_0x3e8cb2,_0xd5709){return _0x3e8cb2===_0xd5709;},'SiJYQ':function(_0x59393b,_0x2d1f0c){return _0x59393b>_0x2d1f0c;},'YXCHw':_0xe7e2a8(0x2d6),'CDHsd':function(_0x1ab506,_0x403fc4){return _0x1ab506/_0x403fc4;},'vaBBa':function(_0x3d621f,_0x57d8d9){return _0x3d621f(_0x57d8d9);},'mYqNZ':_0xe7e2a8(0x275),'pRtcv':_0xe7e2a8(0x200),'WzgYT':_0xe7e2a8(0x22f)},_0x5730ae=!!_0x1a9ef4;a10_0x56b22c[_0xe7e2a8(0x131)](a10_0x56b22c[_0xe7e2a8(0x1d0)]+0x1);const _0x3a82a3=document[_0xe7e2a8(0x28d)](_0x503c21),_0x1da98a=document[_0xe7e2a8(0x19a)](_0x4b8cb9[_0xe7e2a8(0x223)]);_0x1da98a[_0xe7e2a8(0x1d6)]='border\x20rounded-lg\x20p-4\x20mb-4\x20relative\x20ingredient-edit-row',_0x1da98a[_0xe7e2a8(0x211)][_0xe7e2a8(0x291)]=_0xe7e2a8(0x26f);const _0x1a213b=_0x5730ae||_0x4b8cb9[_0xe7e2a8(0x293)](_0xe7e2a8(0x1bf),_0x3a82a3['id'])||_0x4b8cb9[_0xe7e2a8(0x1cb)](_0x3a82a3[_0xe7e2a8(0x153)]['length'],0x0)?_0x4b8cb9[_0xe7e2a8(0x2a2)]:'';_0x1da98a['innerHTML']=_0xe7e2a8(0x15a)+_0x1a213b+_0xe7e2a8(0x28f)+(_0x1a9ef4?.['id']||'')+_0xe7e2a8(0x1a8)+(_0x1a9ef4?.[_0xe7e2a8(0x2f6)]||'')+_0xe7e2a8(0x224)+(_0x1a9ef4?.[_0xe7e2a8(0x2cc)]||'')+_0xe7e2a8(0x2c7)+(_0x1a9ef4?_0x4b8cb9[_0xe7e2a8(0x289)](_0x1a9ef4[_0xe7e2a8(0x160)],0x3e8):'')+_0xe7e2a8(0x1f2)+(_0x1a9ef4?.[_0xe7e2a8(0x276)]??'')+_0xe7e2a8(0x282)+(_0x1a9ef4?.['ld50']??'')+_0xe7e2a8(0x263),_0x3a82a3[_0xe7e2a8(0x287)](_0x1da98a),_0x4b8cb9[_0xe7e2a8(0x16d)](populateDynamicSelectsForElement,_0x1da98a),_0x1a9ef4&&(_0x1da98a[_0xe7e2a8(0x29e)](_0x4b8cb9['mYqNZ'])[_0xe7e2a8(0x166)]=_0x1a9ef4['solubility'],_0x1da98a[_0xe7e2a8(0x29e)](_0x4b8cb9[_0xe7e2a8(0x1c4)])[_0xe7e2a8(0x166)]=_0x1a9ef4[_0xe7e2a8(0x27b)]),populateProductLineDropdowns(),import(_0x4b8cb9[_0xe7e2a8(0x2ed)])[_0xe7e2a8(0x2a7)](_0x197c11=>{const _0x2b4b22=_0xe7e2a8;_0x197c11[_0x2b4b22(0x250)]();})[_0xe7e2a8(0x251)](_0x21856b=>console[_0xe7e2a8(0x1ad)]('Error\x20initializing\x20proper\x20case:',_0x21856b));}function a10_0x37ec(){const _0xc29181=['#editOtherLine','Please\x20fill\x20all\x20required\x20fields\x20for\x20each\x20ingredient.','toggleLineTable','from','IPNuR','cJMAS','editSolubility','hasAttribute','mQqPO','Suspension','split','eRuMR','<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20a\x20form...</option>','IibXc','editIngredientForm','none','cEHAj','\x22\x20already\x20exists.\x20Please\x20use\x20a\x20unique\x20product\x20code.','gDLDL','setNextDetergentIngredientId','GEcoV','children','add','ZgwJE','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20whitespace-nowrap\x20align-top\x20text-center\x22\x20>','productRegister','VUtxR','MVNNg','\x0a\x20\x20\x20\x20\x20\x20\x20\x20','nqvBe','DjTrb','JgsIC','abuIc','TWTsf','mdd','OBfTd','EvSDI','kUiYi','PosTb','NbvAo','value','ingredients-sub-row','XWAyn','lpxhY','>Yes</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22editCriticalReasonContainer\x22\x20style=\x22display:\x20','FYYPV','HlZCc','vaBBa','NKhsY','nextIngredientId','editProductType','updateDosageFormOptions','table-','<option\x20value=\x22Other\x22>Other</option>','JBsKF','ZKuxy','<p\x20class=\x22text-xs\x20italic\x22\x20style=\x22\x20max-width:\x20200px;\x20white-space:\x20normal;\x22>','WuJwL','.filterColProductType','yWVGf','CrjRG','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20font-medium\x20whitespace-nowrap\x20align-top\x20text-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22product-name\x22>','tUutY','kDYEg','Solution','xpnQI','Shared','KvLFH','ltEdS','setProducts','sNLEc','Unassigned','editProductModal','LPxpg','some','gzGxT','BwBiL','iBAfW','direction','[name=\x22mdd\x22]','karlo','WeAtm','yoMcG','fHuTf','line','ZRxDP','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22text-sm\x20text-gray-500\x20dark:text-gray-400\x20mr-2\x22></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20id=\x22toggle-icon-','div','cbfSu','SJlIx','required','editMdd','createElement','XbzdB','Other','Yjpon','th.sortable','hTRiB','wLfid','fCDIc','43029VuVbhw','MBsrK','epPvg','All\x20lines:','\x20product','KyOjh','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grid\x20grid-cols-1\x20md:grid-cols-2\x20gap-3\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22md:col-span-2\x22><label\x20class=\x22block\x20text-xs\x20font-medium\x20mb-1\x22>Ingredient\x20Name</label><input\x20type=\x22text\x22\x20name=\x22ingredientName\x22\x20value=\x22','woxrU','KnRpV','[name=\x22ingredientName\x22]','xzGFZ','error','join','\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20no-proper-case\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Product\x20Name</label><input\x20type=\x22text\x22\x20id=\x22editProductName\x22\x20value=\x22','ykaEI','flex','YnKWZ','#editIngredientsContainer','bbXNI','Product\x20code\x20\x22','addProductDate','desc','Error','cHoTB','mSYRn','addProductModal','hZbDU','vtMMf','NZyfp','editIngredientsContainer','rIUGE','oVPAQ','Could\x20not\x20find\x20ingredient\x20to\x20edit.','20345340jxbqVn','pRtcv','OkZsN','iwiRK','addProductForm','selected','476040VxwetL','8YjFaBL','SiJYQ','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20whitespace-nowrap\x20align-top\x20text-center\x22\x20>','Please\x20specify\x20the\x20\x27Other\x27\x20dosage\x20form.','IAsOv','machines','ingredientFormCounter','DwVqa','setNextIngredientId','setNextProductId','oLifV','nTFHW','className','WXBGg','WdmPz','FlwdZ','nEdpn','mFtki','Please\x20specify\x20the\x20Other\x20Line.','editBatchSize','rHuOf','kglfI','AClRi','getAttribute','Mzzxe','editOtherLineContainer','includes','editProductLine','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20font-medium\x20whitespace-nowrap\x20align-top\x20text-center\x22>','uxAJW','oSMSv','TarPC','sortState','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20align-top\x20text-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22','12OZUQsY','transform','[name=\x22cleanability\x22]','push','editProductForm','textContent','\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22\x20min=\x220\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-xs\x20font-medium\x20mb-1\x22>Solubility</label><select\x20name=\x22solubility\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22></select></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-xs\x20font-medium\x20mb-1\x22>Cleanability</label><select\x20name=\x22cleanability\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22\x20required></select></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-xs\x20font-medium\x20mb-1\x22>PDE\x20(mg/day)</label><input\x20type=\x22number\x22\x20step=\x22any\x22\x20name=\x22pde\x22\x20value=\x22','YFltQ','Please\x20fill\x20all\x20required\x20fields.','#editOtherTypeContainer','WOLvZ','KiewP','match','#editProductLine','Are\x20you\x20sure\x20you\x20want\x20to\x20remove\x20this\x20ingredient?','.filterColTrainNo','product-main-row','gHuOw','products','awQPL','select[name=\x22cleanability\x22]','[name=\x22pde\x22]','<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20a\x20Line</option>','pUFiB','Product\x20updated\x20successfully.','vctGl','Save\x20failed.\x20Could\x20not\x20find\x20original\x20ingredient.','eRZFu','editLd50','addProductType','N/A','xUyjL','rotate(-90deg)','OhClZ','PTiTo','dDsBJ','yDskL','style','bqRyZ','nextProductId','mb-8\x20line-table','iQGuU','LORfe','2590245WlmcHG','block','xbXra','BTPKA','find','.filterColProductCode','date','NIAQR','Please\x20specify\x20the\x20\x27Other\x27\x20dosage\x20form\x20or\x20choose\x20a\x20different\x20option.','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grid\x20grid-cols-1\x20md:grid-cols-2\x20gap-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Product\x20Code</label><input\x20type=\x22text\x22\x20id=\x22editProductCode\x22\x20value=\x22','remove','addEventListener','kEnYC','\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-xs\x20font-medium\x20mb-1\x22>TD\x20(mg)</label><input\x20type=\x22number\x22\x20step=\x22any\x22\x20name=\x22therapeuticDose\x22\x20value=\x22','zZKWZ','replace','dqtPK','setAttribute','skYdc','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','PgiYi','xnUSp','QGhos','productType','./utils.js','GFPBm','innerHTML','Could\x20not\x20find\x20product\x20to\x20update.','Wsnms','sBdwM','KrWdL','.filterColLine','gMhCt','IsNyk','\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20min=\x220\x22\x20required></div>\x0a\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22grid\x20grid-cols-1\x20md:grid-cols-2\x20gap-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Line</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22editProductLine\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required\x20onchange=\x22document.getElementById(\x27editOtherLineContainer\x27).style.display\x20=\x20this.value\x20===\x20\x27Other\x27\x20?\x20\x27block\x27\x20:\x20\x27none\x27;\x20document.getElementById(\x27editOtherLine\x27).required\x20=\x20this.value\x20===\x20\x27Other\x27;\x20updateDosageFormOptions(\x27edit\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20a\x20line...</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Solids\x22>Solids</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Semisolid\x22>Semisolid</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Liquids\x22>Liquids</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Other\x22>Other</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22editOtherLineContainer\x22\x20style=\x22display:none;margin-top:6px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Specify\x20Other\x20Line</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22editOtherLine\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20no-proper-case\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label>Dosage\x20Form</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22editProductType\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required\x20onchange=\x22document.getElementById(\x27editOtherTypeContainer\x27).style.display\x20=\x20this.value\x20===\x20\x27Other\x27\x20?\x20\x27block\x27\x20:\x20\x27none\x27;\x20document.getElementById(\x27editOtherProductType\x27).required\x20=\x20this.value\x20===\x20\x27Other\x27;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22\x22\x20disabled\x20selected>Select\x20a\x20form...</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22editOtherTypeContainer\x22\x20style=\x22display:\x20none;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Specify\x20Other\x20Form</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22editOtherProductType\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20no-proper-case\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Special\x20Case\x20Product</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20id=\x22editIsCritical\x22\x20onchange=\x22document.getElementById(\x27editCriticalReasonContainer\x27).style.display\x20=\x20this.value\x20===\x20\x27true\x27\x20?\x20\x27block\x27\x20:\x20\x27none\x27;\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22false\x22\x20','XrtXy','GZKGa','Tnekz','bgGcZ','VlDkV','filter','Product\x20lines:','SJwhs','\x20was\x20updated\x20successfully.','PhVJg','dkGzP','sort','<input\x20type=\x22hidden\x22\x20id=\x22editIngredientProductId\x22\x20value=\x22',')\x22\x20class=\x22p-1\x22\x20style=\x22color:\x20var(--text-secondary);\x22\x20title=\x22Assign\x20Machines\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20class=\x22bi\x20bi-gear-wide-connected\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M7.068.727c.243-.97\x201.62-.97\x201.864\x200l.071.286a.96.96\x200\x200\x200\x201.622.434l.205-.211c.695-.719\x201.888-.03\x201.62\x201.105l-.09.282c-.273.85-.92\x201.368-1.843\x201.368h-1.11c-.923\x200-1.57-.517-1.843\x201.368l-.09-.282c-.268-1.135.925-1.824\x201.62-1.105l.205.211a.96.96\x200\x200\x200\x201.622-.434L7.068.727zM12.973\x208.5H8.25l-1.03-1.03a1\x201\x200\x200\x200-1.414\x201.414l2.5\x202.5a1\x201\x200\x200\x200\x201.414\x200l2.5-2.5a1\x201\x200\x200\x200-1.414-1.414L12.973\x208.5z\x22/><path\x20d=\x22M.242\x204.753a.626.626\x200\x200\x201\x20.884\x200l.058.058a.96.96\x200\x200\x200\x201.353-.14l.17-.186c.695-.761\x201.888.06\x201.62\x201.204l-.066.261c-.273.85-.92\x201.368-1.843\x201.368h-1.11c-.923\x200-1.57-.517-1.843\x201.368l-.066-.261c-.268-1.144.925-1.965\x201.62-1.204l.17.186a.96.96\x200\x200\x200\x201.353.14l.058-.058a.626.626\x200\x200\x201\x200-.884zM15.758\x204.753a.626.626\x200\x200\x201\x20.884\x200l.058.058a.96.96\x200\x200\x200\x201.353.14l.17-.186c.695.761-.925\x201.965-1.62\x201.204l-.066-.261c-.273-.85-.92-1.368-1.843\x201.368h-1.11c-.923\x200-1.57-.517-1.843\x201.368l-.066.261c-.268\x201.144\x201.888.443\x201.62-1.204l.17-.186a.96.96\x200\x200\x200\x201.353-.14l.058-.058a.626.626\x200\x200\x201\x200\x20.884z\x22/></svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22showEditProductModal(','ZzGOE','qadcI','forEach','editIngredientProductId','\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Date</label><input\x20type=\x22date\x22\x20id=\x22editProductDate\x22\x20value=\x22','bkZgA','dlXwo','toggle-icon-','initializeProperCaseInputs','catch','bcDdS','qTNtN','editOtherProductType','Liquids','true','editPde','ANLZp','.line-table','[name=\x22ld50\x22]','Ointment','WxvmS','hOUgk','ymymr','nmCDM','ThRbW','KgUhb','data-listener-added','\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22\x20min=\x220\x22\x20placeholder=\x22Optional\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>','Syrup','keys','Wrhdv','HJAqM','tRhHH','Cannot\x20Remove','.sort-indicator','Error\x20initializing\x20proper\x20case:','Ilxax','editProductDate','itQCu','var(--border-color)','#editIngredientsContainer\x20.ingredient-edit-row','addOtherLineContainer','XTJkz','GHGhK','ZCYdz','select[name=\x22solubility\x22]','pde','QXAAl','wBwHn','AKsDN','bCmpC','cleanability','BZPZH','mHOUO','editIngredientName','edit','editIngredientModal','editIngredientId','\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22\x20min=\x220\x22\x20placeholder=\x22Optional\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-xs\x20font-medium\x20mb-1\x22>LD50\x20(mg/kg)</label><input\x20type=\x22number\x22\x20step=\x22any\x22\x20name=\x22ld50\x22\x20value=\x22','EfqJq','onclick','Wijkr','GQdao','appendChild','isCritical','CDHsd','uvmBh','Edit\x20Product:\x20','log','getElementById','811888WdTroU','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22hidden\x22\x20name=\x22ingredientId\x22\x20value=\x22','qJnjl','borderColor','worstCaseProducts','dXrwh','ld50','uzzci','NLigL','.filterColProductName','jSGfL','editOtherLine','kiWiw','NgAfe','colSpan','eqoQW','querySelector','option','batchSizeKg','AFlqk','YXCHw','<option\x20value=\x22all\x22>All</option>','Yhwwx','InPnN','editIngredientModalTitle','then','</option>','FxPbs','Edit:\x20','all','PwpFd','vjjpW','map','zeZOR','editTherapeuticDose','ZvDWA','toISOString','mZtQP','rLEsC','Powder','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-3\x20text-sm\x20whitespace-nowrap\x20align-top\x20text-center\x22\x20>','solubility','TgNvN','qNyVg','vUyHc','preventDefault','nHMPW','display','change','lKMhu','[name=\x22solubility\x22]','criticalReason','worstCaseProductNameFilter','xgpky','176998fcCnTs','addBatchSize','myQlA','\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x20text-sm\x22\x20min=\x220\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-xs\x20font-medium\x20mb-1\x22>MDD\x20(g/day)</label><input\x20type=\x22number\x22\x20step=\x22any\x22\x20name=\x22mdd\x22\x20value=\x22','JdxJS','nCkVx','select[name=\x22solubility\x22],\x20#editSolubility','ITFvr','therapeuticDose','UISbj','GxTWO','tTzTB','PCHHT','SVKtk','querySelectorAll','UIcEF','ORBCG','SFDJj','<button\x20type=\x22button\x22\x20onclick=\x22this.closest(\x27.ingredient-edit-row\x27).remove()\x22\x20class=\x22absolute\x20top-2\x20right-2\x20text-red-500\x20hover:text-red-700\x20p-1\x22\x20title=\x22Remove\x20Ingredient\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M2.146\x202.854a.5.5\x200\x201\x201\x20.708-.708L8\x207.293l5.146-5.147a.5.5\x200\x200\x201\x20.708.708L8.707\x208l5.147\x205.146a.5.5\x200\x200\x201-.708.708L8\x208.707l-5.146\x205.147a.5.5\x200\x200\x201-.708-.708L7.293\x208\x202.146\x202.854Z\x22/></svg></button>','vnGfC','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-2\x22\x20style=\x22color:\x20var(--text-secondary);\x22>','options','36dkcjiO','.productsTable','hQECs','Yes','Gel','Tablets','BPwUc','Capsules','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-2\x20font-semibold\x22>','OlYVl','length','OTksF','OewkR','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mb-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20items-center\x20justify-between\x20cursor-pointer\x22\x20onclick=\x22toggleLineTable(\x27','\x22><input\x20type=\x22hidden\x22\x20id=\x22editIngredientId\x22\x20value=\x22','rCHeg','UyGXR','toLocaleDateString','ingredientsContainer','WzgYT','key','#ingredientsContainer\x20>\x20div','AXRQB','pQDPN','GRKfu','viewProducts','#editOtherLineContainer','ZrXrN','name','986628XQLjvk','DBuoU','pWodn','trim','toLowerCase','addProductLine','Validation\x20Error','rpn','<option\x20value=\x22','FboNw','pmYqz','table','Semisolid','NpvDZ','Solids','editCleanability','Success','select[name=\x22cleanability\x22],\x20#editCleanability','productCode','activeIngredients','VxIMw',')\x22\x20class=\x22p-1\x22\x20style=\x22color:\x20var(--text-secondary);\x22\x20title=\x22Edit\x20Ingredient\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M15.502\x201.94a.5.5\x200\x200\x201\x200\x20.706L14.459\x203.69l-2-2L13.502.646a.5.5\x200\x200\x201\x20.707\x200l1.293\x201.293zM12.879\x204.379L11\x202.5\x204.939\x208.561a.5.5\x200\x200\x200-.121.196l-.805\x202.414a.25.25\x200\x200\x200\x20.316.316l2.414-.805a.5.5\x200\x200\x200\x20.196-.121L12.879\x204.379z\x22/><path\x20fill-rule=\x22evenodd\x22\x20d=\x22M1\x2013.5A1.5\x201.5\x200\x200\x200\x202.5\x2015h11a1.5\x201.5\x200\x200\x200\x201.5-1.5v-6a.5.5\x200\x200\x200-1\x200v6a.5.5\x200\x200\x201-.5.5h-11a.5.5\x200\x200\x201-.5-.5v-11a.5.5\x200\x200\x201\x20.5-.5H9a.5.5\x200\x200\x200\x200-1H2.5A1.5\x201.5\x200\x200\x200\x201\x202.5v11z\x22/></svg></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22deleteIngredient(','AGwpS','VmKZp','setIngredientFormCounter','asc','[name=\x22therapeuticDose\x22]','text-red-600\x20font-bold','WSEaY','iRDcS','Please\x20fill\x20all\x20required\x20fields\x20for\x20each\x20newly\x20added\x20ingredient.','DnolE','\x20Line</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x20text-gray-600\x20dark:text-gray-400\x22>','OYOhP','addProductCode','wRQUS','click'];a10_0x37ec=function(){return _0xc29181;};return a10_0x37ec();}export function populateDynamicSelectsForElement(_0x44043c){const _0x3daa46=a10_0x2e5a68,_0x4232a6={'ZgwJE':function(_0x31990c,_0x2eff7f,_0x117d6b){return _0x31990c(_0x2eff7f,_0x117d6b);},'bbXNI':_0x3daa46(0x2ca),'KxMTr':_0x3daa46(0x2b7),'zeZOR':_0x3daa46(0x12a),'zsROE':_0x3daa46(0x27b)};_0x4232a6[_0x3daa46(0x155)](a10_0x321b09,_0x44043c[_0x3daa46(0x29e)](_0x4232a6[_0x3daa46(0x1b4)]),_0x4232a6['KxMTr']),_0x4232a6[_0x3daa46(0x155)](a10_0x321b09,_0x44043c[_0x3daa46(0x29e)](_0x4232a6[_0x3daa46(0x2af)]),_0x4232a6['zsROE']);}export function showEditProductModal(_0x1f5701){const _0x41d593=a10_0x2e5a68,_0x3cae38={'mZtQP':_0x41d593(0x1c8),'pWodn':_0x41d593(0x218),'pwYTY':'none','kglfI':'#editOtherProductType','PCHHT':_0x41d593(0x1f5),'qQzvA':'Ointment','oLifV':'Cream','GxTWO':_0x41d593(0x17e),'ITFvr':'Suspension','lZYrT':'Tablets','rLEsC':'Capsules','qTNtN':_0x41d593(0x2b5),'nnVmW':_0x41d593(0x255),'UISbj':function(_0x4aa8ae,_0x5c31af){return _0x4aa8ae(_0x5c31af);},'hNTOP':_0x41d593(0x27f),'rCHeg':_0x41d593(0x19c),'gHuOw':_0x41d593(0x173),'HlZCc':'editProductModalTitle','VUtxR':_0x41d593(0x186),'WuJwL':_0x41d593(0x1b1),'NLigL':function(_0x421da8){return _0x421da8();},'qJnjl':_0x41d593(0x2f4),'Tnekz':_0x41d593(0x13e),'FYYPV':_0x41d593(0x22f)},_0x82a866=a10_0x56b22c[_0x41d593(0x1fe)][_0x41d593(0x21b)](_0x334969=>_0x334969['id']===_0x1f5701);if(!_0x82a866)return;const _0x1db7b6=document[_0x41d593(0x28d)](_0x41d593(0x1f0)),_0x26f0cb=_0x82a866[_0x41d593(0x21d)]?new Date(_0x82a866[_0x41d593(0x21d)])[_0x41d593(0x2b2)]()[_0x41d593(0x148)]('T')[0x0]:'';_0x1db7b6['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22hidden\x22\x20id=\x22editProductId\x22\x20value=\x22'+_0x82a866['id']+_0x41d593(0x220)+_0x82a866[_0x41d593(0x12b)]+_0x41d593(0x1af)+_0x82a866[_0x41d593(0x2f6)]+_0x41d593(0x24c)+_0x26f0cb+'\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Batch\x20Size\x20(Kg)</label><input\x20type=\x22number\x22\x20step=\x220.01\x22\x20id=\x22editBatchSize\x22\x20value=\x22'+_0x82a866[_0x41d593(0x2a0)]+_0x41d593(0x239)+(_0x82a866[_0x41d593(0x288)]?'':_0x3cae38[_0x41d593(0x2b3)])+'>No</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22true\x22\x20'+(_0x82a866[_0x41d593(0x288)]?_0x3cae38[_0x41d593(0x2b3)]:'')+_0x41d593(0x16a)+(_0x82a866[_0x41d593(0x288)]?_0x3cae38[_0x41d593(0x2f9)]:_0x3cae38['pwYTY'])+';\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Reason\x20for\x20Special\x20Case\x20Status</label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<textarea\x20id=\x22editCriticalReason\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20placeholder=\x22Enter\x20reason...\x22>'+(_0x82a866[_0x41d593(0x2c1)]||'')+'</textarea>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22border-t\x20pt-4\x20mt-4\x22\x20style=\x22border-color:var(--border-color);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x20justify-between\x20items-center\x20mb-4\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20class=\x22text-lg\x20font-medium\x22>Add\x20New\x20Ingredients</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20onclick=\x22addIngredientFormFields(\x27editIngredientsContainer\x27)\x22\x20class=\x22text-white\x20px-3\x20py-1\x20rounded-lg\x20text-sm\x20btn-gradient\x22>+\x20Add\x20Ingredient</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22editIngredientsContainer\x22\x20class=\x22space-y-4\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x1db7b6[_0x41d593(0x29e)](_0x41d593(0x1b3))[_0x41d593(0x231)]='',_0x1db7b6['querySelector'](_0x41d593(0x1f9));const _0x326fac=_0x1db7b6['querySelector']('#editProductType'),_0x5bd27a=_0x1db7b6[_0x41d593(0x29e)](_0x3cae38[_0x41d593(0x1df)]),_0x445150=_0x1db7b6[_0x41d593(0x29e)](_0x3cae38[_0x41d593(0x2d0)]);if(!_0x82a866[_0x41d593(0x192)]&&_0x82a866[_0x41d593(0x22e)]){const _0x38f3a6=[_0x3cae38['qQzvA'],_0x3cae38[_0x41d593(0x1d4)],_0x41d593(0x2de)],_0x4dfcc4=[_0x41d593(0x264),_0x3cae38[_0x41d593(0x2ce)],_0x3cae38[_0x41d593(0x2cb)]];[_0x3cae38['lZYrT'],_0x3cae38[_0x41d593(0x2b4)],_0x3cae38[_0x41d593(0x253)]][_0x41d593(0x1e4)](_0x82a866[_0x41d593(0x22e)])?_0x82a866['line']=_0x41d593(0x305):_0x38f3a6[_0x41d593(0x1e4)](_0x82a866[_0x41d593(0x22e)])?_0x82a866['line']=_0x41d593(0x303):_0x4dfcc4['includes'](_0x82a866[_0x41d593(0x22e)])?_0x82a866[_0x41d593(0x192)]=_0x3cae38['nnVmW']:_0x82a866[_0x41d593(0x192)]='';}try{_0x3cae38[_0x41d593(0x2cd)](updateDosageFormOptions,_0x3cae38['hNTOP']);}catch(_0x465df9){}const _0xb7ad33=Array[_0x41d593(0x141)](_0x326fac[_0x41d593(0x2d9)])[_0x41d593(0x2ae)](_0x6a0069=>_0x6a0069[_0x41d593(0x166)])[_0x41d593(0x23f)](Boolean);if(_0x82a866[_0x41d593(0x22e)]&&_0xb7ad33[_0x41d593(0x1e4)](_0x82a866[_0x41d593(0x22e)])?(_0x326fac[_0x41d593(0x166)]=_0x82a866[_0x41d593(0x22e)],_0x445150['style'][_0x41d593(0x2bd)]=_0x41d593(0x14d),_0x5bd27a[_0x41d593(0x198)]=!0x1):_0x82a866[_0x41d593(0x22e)]?(_0xb7ad33[_0x41d593(0x1e4)](_0x3cae38[_0x41d593(0x2e9)])||(_0x326fac[_0x41d593(0x231)]+=_0x3cae38[_0x41d593(0x1fd)]),_0x326fac[_0x41d593(0x166)]=_0x3cae38['rCHeg'],_0x5bd27a[_0x41d593(0x166)]=_0x82a866[_0x41d593(0x22e)]||'',_0x445150[_0x41d593(0x211)][_0x41d593(0x2bd)]=_0x3cae38[_0x41d593(0x2f9)],_0x5bd27a[_0x41d593(0x198)]=!0x0):(_0x445150[_0x41d593(0x211)][_0x41d593(0x2bd)]=_0x3cae38['pwYTY'],_0x5bd27a[_0x41d593(0x198)]=!0x1),document['getElementById'](_0x3cae38[_0x41d593(0x16c)])[_0x41d593(0x1f1)]=_0x41d593(0x28b)+_0x82a866[_0x41d593(0x2f6)],document[_0x41d593(0x28d)](_0x3cae38[_0x41d593(0x158)])[_0x41d593(0x211)]['display']=_0x3cae38[_0x41d593(0x177)],_0x3cae38[_0x41d593(0x296)](populateProductLineDropdowns),_0x82a866[_0x41d593(0x192)]){const _0x42da01=_0x1db7b6[_0x41d593(0x29e)](_0x41d593(0x1f9));if(_0x42da01){if(Array[_0x41d593(0x141)](_0x42da01[_0x41d593(0x2d9)])[_0x41d593(0x2ae)](_0x57f0e4=>_0x57f0e4['value'])[_0x41d593(0x23f)](Boolean)[_0x41d593(0x1e4)](_0x82a866[_0x41d593(0x192)])){_0x42da01[_0x41d593(0x166)]=_0x82a866[_0x41d593(0x192)];const _0x236b74=_0x1db7b6[_0x41d593(0x29e)](_0x3cae38[_0x41d593(0x290)]);_0x236b74&&(_0x236b74['style'][_0x41d593(0x2bd)]=_0x41d593(0x14d));}else{_0x42da01[_0x41d593(0x166)]=_0x3cae38[_0x41d593(0x2e9)];const _0x591c30=_0x1db7b6[_0x41d593(0x29e)](_0x3cae38[_0x41d593(0x23c)]);_0x591c30&&(_0x591c30[_0x41d593(0x166)]=_0x82a866[_0x41d593(0x192)],_0x1db7b6[_0x41d593(0x29e)](_0x3cae38[_0x41d593(0x290)])['style']['display']=_0x41d593(0x218),_0x591c30[_0x41d593(0x198)]=!0x0);}}}import(_0x3cae38[_0x41d593(0x16b)])[_0x41d593(0x2a7)](_0x466062=>{const _0xd874d5=_0x41d593;_0x466062[_0xd874d5(0x250)]();})['catch'](_0x45121c=>console[_0x41d593(0x1ad)](_0x41d593(0x26b),_0x45121c));}export function saveProductChanges(_0x478cc){const _0x4f8d9a=a10_0x2e5a68,_0x2e03d0={'oSMSv':function(_0x24e5f5,_0x4973be){return _0x24e5f5(_0x4973be);},'bgGcZ':_0x4f8d9a(0x133),'iwiRK':function(_0x298808,_0x47f1af){return _0x298808*_0x47f1af;},'XglXD':_0x4f8d9a(0x18d),'SJlIx':_0x4f8d9a(0x2c0),'ZzGOE':_0x4f8d9a(0x1ee),'rRjRQ':_0x4f8d9a(0x201),'mSYRn':_0x4f8d9a(0x25a),'KPapN':function(_0x35f5f8,_0x477935){return _0x35f5f8(_0x477935);},'hOUgk':function(_0x54bb16,_0x3a8b40){return _0x54bb16===_0x3a8b40;},'kUiYi':function(_0xa22a20,_0x5cfded){return _0xa22a20===_0x5cfded;},'oVPAQ':function(_0x407d87,_0x362635){return _0x407d87+_0x362635;},'vctGl':'editProductId','tucud':function(_0x3b8c88,_0x147459,_0x3eb23e){return _0x3b8c88(_0x147459,_0x3eb23e);},'PKYOH':_0x4f8d9a(0x1b8),'wBwHn':_0x4f8d9a(0x232),'yWVGf':_0x4f8d9a(0x170),'cbfSu':_0x4f8d9a(0x19c),'LLtTh':_0x4f8d9a(0x254),'ZCYdz':function(_0x16babd,_0x24bee7,_0x106ca4){return _0x16babd(_0x24bee7,_0x106ca4);},'GQdao':'Validation\x20Error','RmhjQ':_0x4f8d9a(0x1e5),'NPRYD':function(_0x3d8ad9,_0x396b75){return _0x3d8ad9===_0x396b75;},'OTksF':_0x4f8d9a(0x299),'VxIMw':_0x4f8d9a(0x26d),'WeAtm':function(_0x448673,_0xa16b25){return _0x448673(_0xa16b25);},'NIAQR':_0x4f8d9a(0x1dd),'xgpky':function(_0x54bf1a,_0x54cef6){return _0x54bf1a===_0x54cef6;},'KgUhb':_0x4f8d9a(0x256),'Wijkr':'editIsCritical','xpnQI':'editCriticalReason','NbvAo':_0x4f8d9a(0x270),'ZxUpj':_0x4f8d9a(0x137),'nMriS':function(_0x3682c8){return _0x3682c8();},'BwBiL':'editProductModal','TSWrw':_0x4f8d9a(0x129),'FboNw':_0x4f8d9a(0x204)};_0x478cc[_0x4f8d9a(0x2bb)]();const _0x2fb769=parseInt(document[_0x4f8d9a(0x28d)](_0x2e03d0[_0x4f8d9a(0x205)])['value']),_0x5d81be=a10_0x56b22c['products'][_0x4f8d9a(0x21b)](_0x5e3c13=>_0x5e3c13['id']===_0x2fb769);if(!_0x5d81be)return void _0x2e03d0['tucud'](a10_0x366d0,_0x2e03d0['PKYOH'],_0x2e03d0[_0x4f8d9a(0x278)]);let _0x5749a7=document[_0x4f8d9a(0x28d)](_0x2e03d0[_0x4f8d9a(0x179)])['value'];if(_0x2e03d0[_0x4f8d9a(0x25d)](_0x2e03d0[_0x4f8d9a(0x196)],_0x5749a7)){const _0x51d056=document[_0x4f8d9a(0x28d)](_0x2e03d0['LLtTh'])[_0x4f8d9a(0x166)][_0x4f8d9a(0x2fa)]();if(!_0x51d056)return void _0x2e03d0[_0x4f8d9a(0x274)](a10_0x366d0,_0x2e03d0[_0x4f8d9a(0x286)],_0x4f8d9a(0x1cd));_0x5749a7=_0x51d056;}let _0x4e3f95=document[_0x4f8d9a(0x28d)](_0x2e03d0['RmhjQ'])[_0x4f8d9a(0x166)];if(_0x2e03d0['NPRYD'](_0x2e03d0['cbfSu'],_0x4e3f95)&&(_0x4e3f95=document[_0x4f8d9a(0x28d)](_0x2e03d0[_0x4f8d9a(0x2e5)])[_0x4f8d9a(0x166)][_0x4f8d9a(0x2fa)](),!_0x4e3f95))return void a10_0x366d0(_0x2e03d0[_0x4f8d9a(0x286)],_0x4f8d9a(0x1dc));_0x5d81be[_0x4f8d9a(0x192)]=_0x4e3f95,_0x5d81be['productCode']=document[_0x4f8d9a(0x28d)]('editProductCode')[_0x4f8d9a(0x166)],_0x5d81be[_0x4f8d9a(0x2f6)]=document[_0x4f8d9a(0x28d)]('editProductName')[_0x4f8d9a(0x166)],_0x5d81be[_0x4f8d9a(0x21d)]=new Date(document[_0x4f8d9a(0x28d)](_0x2e03d0[_0x4f8d9a(0x12d)])['value'])['toISOString'](),_0x5d81be['batchSizeKg']=_0x2e03d0[_0x4f8d9a(0x18f)](parseFloat,document[_0x4f8d9a(0x28d)](_0x2e03d0[_0x4f8d9a(0x21e)])[_0x4f8d9a(0x166)]),_0x5d81be['productType']=_0x5749a7,_0x5d81be[_0x4f8d9a(0x288)]=_0x2e03d0[_0x4f8d9a(0x2c3)](_0x2e03d0[_0x4f8d9a(0x261)],document[_0x4f8d9a(0x28d)](_0x2e03d0[_0x4f8d9a(0x285)])['value']),_0x5d81be[_0x4f8d9a(0x2c1)]=_0x5d81be['isCritical']?document[_0x4f8d9a(0x28d)](_0x2e03d0[_0x4f8d9a(0x17f)])[_0x4f8d9a(0x166)]:'';if(a10_0x56b22c[_0x4f8d9a(0x1fe)]['find'](_0x555c56=>_0x555c56['id']!==_0x2fb769&&_0x555c56[_0x4f8d9a(0x12b)][_0x4f8d9a(0x2fb)]()===_0x5d81be[_0x4f8d9a(0x12b)]['toLowerCase']()))return void a10_0x366d0(_0x2e03d0[_0x4f8d9a(0x286)],'Product\x20code\x20\x22'+_0x5d81be['productCode']+_0x4f8d9a(0x14f));const _0x2c141c=[],_0x50a811=document['querySelectorAll'](_0x2e03d0[_0x4f8d9a(0x165)]);let _0x174dc9=!0x0;if(_0x50a811[_0x4f8d9a(0x24a)](_0x10f52f=>{const _0x2a35db=_0x4f8d9a;if(!_0x174dc9)return;const _0x2d1238={'id':a10_0x56b22c[_0x2a35db(0x16f)]};_0x2d1238[_0x2a35db(0x2f6)]=_0x10f52f['querySelector'](_0x2a35db(0x1ab))['value'][_0x2a35db(0x2fa)](),_0x2d1238[_0x2a35db(0x2cc)]=_0x2e03d0['oSMSv'](parseFloat,_0x10f52f[_0x2a35db(0x29e)](_0x2e03d0[_0x2a35db(0x23d)])['value']),_0x2d1238['mdd']=_0x2e03d0[_0x2a35db(0x1c6)](0x3e8,parseFloat(_0x10f52f[_0x2a35db(0x29e)](_0x2e03d0['XglXD'])[_0x2a35db(0x166)])),_0x2d1238[_0x2a35db(0x2b7)]=_0x10f52f[_0x2a35db(0x29e)](_0x2e03d0[_0x2a35db(0x197)])[_0x2a35db(0x166)],_0x2d1238[_0x2a35db(0x27b)]=_0x10f52f['querySelector'](_0x2e03d0[_0x2a35db(0x248)])['value'];const _0x2c2af7=_0x10f52f[_0x2a35db(0x29e)](_0x2e03d0['rRjRQ'])[_0x2a35db(0x166)],_0x223bdb=_0x10f52f['querySelector'](_0x2e03d0[_0x2a35db(0x1ba)])[_0x2a35db(0x166)];_0x2d1238['pde']=_0x2c2af7?_0x2e03d0[_0x2a35db(0x1e8)](parseFloat,_0x2c2af7):null,_0x2d1238['ld50']=_0x223bdb?parseFloat(_0x223bdb):null,!_0x2d1238[_0x2a35db(0x2f6)]||isNaN(_0x2d1238['therapeuticDose'])||_0x2e03d0['KPapN'](isNaN,_0x2d1238[_0x2a35db(0x160)])||!_0x2d1238[_0x2a35db(0x2b7)]||!_0x2d1238[_0x2a35db(0x27b)]||_0x2e03d0['hOUgk'](null,_0x2d1238[_0x2a35db(0x276)])&&_0x2e03d0[_0x2a35db(0x163)](null,_0x2d1238[_0x2a35db(0x294)])?_0x174dc9=!0x1:(_0x2c141c[_0x2a35db(0x1ef)](_0x2d1238),a10_0x56b22c[_0x2a35db(0x151)](_0x2e03d0[_0x2a35db(0x1c1)](a10_0x56b22c[_0x2a35db(0x16f)],0x1)));}),!_0x174dc9)return _0x2e03d0[_0x4f8d9a(0x274)](a10_0x366d0,_0x2e03d0[_0x4f8d9a(0x286)],_0x2e03d0['ZxUpj']),void(nextIngredientId-=_0x2c141c[_0x4f8d9a(0x2e4)]);_0x5d81be['activeIngredients'][_0x4f8d9a(0x1ef)](..._0x2c141c),_0x2e03d0['nMriS'](a10_0x22bfc8),a10_0x32e2c5(),a10_0x401e80(_0x2e03d0[_0x4f8d9a(0x18a)]),_0x2e03d0[_0x4f8d9a(0x274)](a10_0x366d0,_0x2e03d0['TSWrw'],_0x2e03d0[_0x4f8d9a(0x300)]);}export function showEditIngredientModal(_0x1dff31,_0x2768a2){const _0x400e99=a10_0x2e5a68,_0x16c93c={'HElCW':function(_0x523d11,_0x2306c0,_0x252e82){return _0x523d11(_0x2306c0,_0x252e82);},'XrtXy':_0x400e99(0x1c2),'ndjKZ':_0x400e99(0x14c),'fHuTf':_0x400e99(0x2a6),'KvLFH':_0x400e99(0x2b0),'rHuOf':'editMdd','Yjpon':function(_0x38d8a4,_0x330f5c){return _0x38d8a4/_0x330f5c;},'yrtKo':_0x400e99(0x208),'ORBCG':function(_0x350d3b,_0x209b58){return _0x350d3b(_0x209b58);},'BZPZH':_0x400e99(0x128),'nmhvN':'editIngredientModal','sBdwM':_0x400e99(0x1b1)},_0x15c820=a10_0x56b22c['products'][_0x400e99(0x21b)](_0x57adf8=>_0x57adf8['id']===_0x1dff31),_0x4fad07=_0x15c820?.[_0x400e99(0x12c)]['find'](_0x2fd43a=>_0x2fd43a['id']===_0x2768a2);if(!_0x4fad07)return void _0x16c93c['HElCW'](a10_0x366d0,_0x400e99(0x1b8),_0x16c93c[_0x400e99(0x23a)]);const _0x52be72=document[_0x400e99(0x28d)](_0x16c93c['ndjKZ']);_0x52be72[_0x400e99(0x231)]=_0x400e99(0x246)+_0x1dff31+_0x400e99(0x2e8)+_0x2768a2+'\x22><div\x20class=\x22grid\x20grid-cols-1\x20md:grid-cols-2\x20gap-4\x22><div\x20class=\x22md:col-span-2\x22><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Ingredient\x20Name</label><input\x20type=\x22text\x22\x20id=\x22editIngredientName\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required></div><div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>TD\x20(mg)</label><input\x20type=\x22number\x22\x20step=\x22any\x22\x20id=\x22editTherapeuticDose\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20min=\x220\x22\x20required></div><div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>MDD\x20(g/day)</label><input\x20type=\x22number\x22\x20step=\x22any\x22\x20id=\x22editMdd\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20min=\x220\x22\x20required></div><div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Solubility</label><select\x20id=\x22editSolubility\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22></select></div><div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>Cleanability</label><select\x20id=\x22editCleanability\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20required></select></div><div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>PDE\x20(mg/day)</label><input\x20type=\x22number\x22\x20step=\x22any\x22\x20id=\x22editPde\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20min=\x220\x22\x20placeholder=\x22Optional\x22></div><div><label\x20class=\x22block\x20text-sm\x20font-medium\x20mb-1\x22>LD50\x20(mg/kg)</label><input\x20type=\x22number\x22\x20step=\x22any\x22\x20id=\x22editLd50\x22\x20class=\x22w-full\x20px-3\x20py-2\x20border\x20rounded-lg\x22\x20min=\x220\x22\x20placeholder=\x22Optional\x22></div></div>',document['getElementById'](_0x16c93c[_0x400e99(0x191)])[_0x400e99(0x1f1)]=_0x400e99(0x2aa)+_0x4fad07[_0x400e99(0x2f6)],document['getElementById'](_0x400e99(0x27e))['value']=_0x4fad07[_0x400e99(0x2f6)],document[_0x400e99(0x28d)](_0x16c93c[_0x400e99(0x181)])[_0x400e99(0x166)]=_0x4fad07[_0x400e99(0x2cc)],document[_0x400e99(0x28d)](_0x16c93c[_0x400e99(0x1de)])[_0x400e99(0x166)]=_0x16c93c[_0x400e99(0x19d)](_0x4fad07[_0x400e99(0x160)],0x3e8),document[_0x400e99(0x28d)](_0x400e99(0x257))[_0x400e99(0x166)]=_0x4fad07['pde']??'',document[_0x400e99(0x28d)](_0x16c93c['yrtKo'])[_0x400e99(0x166)]=_0x4fad07['ld50']??'',_0x16c93c[_0x400e99(0x2d4)](populateDynamicSelectsForElement,_0x52be72),document['getElementById'](_0x400e99(0x144))[_0x400e99(0x166)]=_0x4fad07['solubility'],document['getElementById'](_0x16c93c[_0x400e99(0x27c)])['value']=_0x4fad07[_0x400e99(0x27b)],document['getElementById'](_0x16c93c['nmhvN'])['style'][_0x400e99(0x2bd)]=_0x16c93c[_0x400e99(0x234)];}export function saveIngredientChanges(_0x1a7cf8){const _0x118c37=a10_0x2e5a68,_0x582a42={'pUFiB':function(_0x3205d4,_0x16e57d){return _0x3205d4(_0x16e57d);},'iDFxt':_0x118c37(0x24b),'miuNa':function(_0x3f176b,_0x426da8,_0x196526){return _0x3f176b(_0x426da8,_0x196526);},'wRQUS':'Error','UIcEF':_0x118c37(0x206),'IAsOv':_0x118c37(0x257),'NKhsY':_0x118c37(0x208),'FxPbs':_0x118c37(0x2b0),'PosTb':function(_0x59e807,_0x2e7824){return _0x59e807*_0x2e7824;},'HJAqM':function(_0x3f6d1c,_0x2dc8cf){return _0x3f6d1c(_0x2dc8cf);},'KiewP':'editSolubility','FihkV':'editCleanability','LPxpg':function(_0x525837,_0x1c5869){return _0x525837===_0x1c5869;},'AKsDN':function(_0x48e221,_0x5a1b7f){return _0x48e221===_0x5a1b7f;},'AIdtq':function(_0x4aabe9,_0x1655c8,_0x3334bd){return _0x4aabe9(_0x1655c8,_0x3334bd);},'pQDPN':_0x118c37(0x2fd),'WNesm':function(_0x24f3ee){return _0x24f3ee();},'PgiYi':function(_0x53d658,_0xb83ac1){return _0x53d658(_0xb83ac1);},'Pbuwc':_0x118c37(0x280),'XWAyn':function(_0x354a03){return _0x354a03();},'epPvg':_0x118c37(0x129)};_0x1a7cf8['preventDefault']();const _0x452cd2=_0x582a42[_0x118c37(0x203)](parseInt,document[_0x118c37(0x28d)](_0x582a42['iDFxt'])['value']),_0x54ff13=parseInt(document[_0x118c37(0x28d)](_0x118c37(0x281))['value']),_0x540906=a10_0x56b22c[_0x118c37(0x1fe)][_0x118c37(0x21b)](_0x44b502=>_0x44b502['id']===_0x452cd2),_0x4576b2=_0x540906?.['activeIngredients']['find'](_0x19468f=>_0x19468f['id']===_0x54ff13);if(!_0x4576b2)return void _0x582a42['miuNa'](a10_0x366d0,_0x582a42[_0x118c37(0x13c)],_0x582a42[_0x118c37(0x2d3)]);const _0xa6dac1=document[_0x118c37(0x28d)](_0x582a42[_0x118c37(0x1ce)])[_0x118c37(0x166)],_0x4d1395=document[_0x118c37(0x28d)](_0x582a42[_0x118c37(0x16e)])['value'];_0x4576b2[_0x118c37(0x2f6)]=document['getElementById'](_0x118c37(0x27e))[_0x118c37(0x166)][_0x118c37(0x2fa)](),_0x4576b2[_0x118c37(0x2cc)]=_0x582a42['pUFiB'](parseFloat,document[_0x118c37(0x28d)](_0x582a42[_0x118c37(0x2a9)])['value']),_0x4576b2[_0x118c37(0x160)]=_0x582a42[_0x118c37(0x164)](0x3e8,_0x582a42[_0x118c37(0x267)](parseFloat,document[_0x118c37(0x28d)](_0x118c37(0x199))[_0x118c37(0x166)])),_0x4576b2[_0x118c37(0x2b7)]=document['getElementById'](_0x582a42[_0x118c37(0x1f7)])['value'],_0x4576b2[_0x118c37(0x27b)]=document['getElementById'](_0x582a42['FihkV'])[_0x118c37(0x166)],_0x4576b2['pde']=_0xa6dac1?_0x582a42[_0x118c37(0x267)](parseFloat,_0xa6dac1):null,_0x4576b2[_0x118c37(0x294)]=_0x4d1395?_0x582a42[_0x118c37(0x203)](parseFloat,_0x4d1395):null,!_0x4576b2[_0x118c37(0x2f6)]||_0x582a42[_0x118c37(0x203)](isNaN,_0x4576b2[_0x118c37(0x2cc)])||isNaN(_0x4576b2[_0x118c37(0x160)])||!_0x4576b2['solubility']||!_0x4576b2[_0x118c37(0x27b)]||_0x582a42[_0x118c37(0x187)](null,_0x4576b2['pde'])&&_0x582a42[_0x118c37(0x279)](null,_0x4576b2['ld50'])?_0x582a42['AIdtq'](a10_0x366d0,_0x582a42[_0x118c37(0x2f1)],_0x118c37(0x1f4)):(_0x582a42['WNesm'](a10_0x22bfc8),_0x582a42[_0x118c37(0x22b)](a10_0x401e80,_0x582a42['Pbuwc']),_0x582a42[_0x118c37(0x168)](a10_0x32e2c5),a10_0x366d0(_0x582a42[_0x118c37(0x1a4)],_0x4576b2[_0x118c37(0x2f6)]+_0x118c37(0x242)));}export function deleteProduct(_0x136646){const _0x1e3dd1=a10_0x2e5a68,_0x340448={'WxvmS':'Are\x20you\x20sure\x20you\x20want\x20to\x20delete\x20this\x20entire\x20product?','vjjpW':function(_0x1060f0){return _0x1060f0();},'BTPKA':function(_0x565c92){return _0x565c92();}};if(confirm(_0x340448[_0x1e3dd1(0x25c)])){const _0x34ae62=a10_0x56b22c[_0x1e3dd1(0x1fe)][_0x1e3dd1(0x23f)](_0x2a9316=>_0x2a9316['id']!==_0x136646);a10_0x56b22c[_0x1e3dd1(0x183)](_0x34ae62),_0x340448[_0x1e3dd1(0x2ad)](a10_0x22bfc8),_0x340448[_0x1e3dd1(0x21a)](a10_0x32e2c5);}}export function deleteIngredient(_0xec19a6,_0x52df83){const _0x269680=a10_0x2e5a68,_0x5736bc={'PwpFd':function(_0x28cfef,_0x164343){return _0x28cfef===_0x164343;},'gMhCt':function(_0x1a114c,_0x2f6ae6,_0x54e76e){return _0x1a114c(_0x2f6ae6,_0x54e76e);},'UyGXR':_0x269680(0x269),'PTiTo':'A\x20product\x20must\x20have\x20at\x20least\x20one\x20ingredient.\x20To\x20remove\x20this,\x20please\x20delete\x20the\x20entire\x20product.','sNLEc':_0x269680(0x1fa),'mHOUO':function(_0x11ce59){return _0x11ce59();}},_0x10444d=a10_0x56b22c['products'][_0x269680(0x21b)](_0x1bca4f=>_0x1bca4f['id']===_0xec19a6);if(_0x10444d){if(_0x5736bc[_0x269680(0x2ac)](0x1,_0x10444d[_0x269680(0x12c)]['length']))return void _0x5736bc[_0x269680(0x237)](a10_0x366d0,_0x5736bc[_0x269680(0x2ea)],_0x5736bc[_0x269680(0x20e)]);confirm(_0x5736bc[_0x269680(0x184)])&&(_0x10444d[_0x269680(0x12c)]=_0x10444d[_0x269680(0x12c)][_0x269680(0x23f)](_0x11feca=>_0x11feca['id']!==_0x52df83),_0x5736bc[_0x269680(0x27d)](a10_0x22bfc8),_0x5736bc[_0x269680(0x27d)](a10_0x32e2c5));}}export function populateFilterSelects(){const _0x4ff3f3=a10_0x2e5a68,_0x40feb3={'DwVqa':_0x4ff3f3(0x180),'NZyfp':function(_0x4c8565,_0x50c232,_0x2fe3b7,_0x477576,_0x295454){return _0x4c8565(_0x50c232,_0x2fe3b7,_0x477576,_0x295454);},'JgsIC':_0x4ff3f3(0x178),'MVNNg':_0x4ff3f3(0x236),'FlwdZ':_0x4ff3f3(0x305),'SJwhs':_0x4ff3f3(0x303),'Mzzxe':_0x4ff3f3(0x255),'PhVJg':_0x4ff3f3(0x2a3),'pmYqz':_0x4ff3f3(0x173),'KrWdL':'all'},_0x553c5c=[...new Set(a10_0x56b22c[_0x4ff3f3(0x1fe)][_0x4ff3f3(0x2ae)](_0x56be3c=>_0x56be3c['productType']))][_0x4ff3f3(0x245)]();_0x40feb3[_0x4ff3f3(0x1be)](a10_0x321b09,document[_0x4ff3f3(0x29e)](_0x40feb3[_0x4ff3f3(0x15d)]),null,!0x0,_0x553c5c);const _0x5770e2=document['querySelector'](_0x40feb3[_0x4ff3f3(0x159)]);if(_0x5770e2){const _0x2213c5=a10_0x56b22c[_0x4ff3f3(0x1fe)][_0x4ff3f3(0x2ae)](_0x12eb87=>_0x12eb87['line'])['filter'](Boolean),_0x2385e7=a10_0x56b22c[_0x4ff3f3(0x1cf)][_0x4ff3f3(0x2ae)](_0xfc9148=>_0xfc9148[_0x4ff3f3(0x192)])['filter'](Boolean),_0x479cd9=[...new Set([..._0x2213c5,..._0x2385e7,_0x40feb3[_0x4ff3f3(0x1d9)],_0x40feb3[_0x4ff3f3(0x241)],_0x40feb3[_0x4ff3f3(0x1e2)]])][_0x4ff3f3(0x245)]();_0x5770e2['innerHTML']=_0x40feb3[_0x4ff3f3(0x243)],_0x479cd9[_0x4ff3f3(0x24a)](_0x3d8193=>{const _0x24267f=_0x4ff3f3;_0x3d8193&&_0x40feb3[_0x24267f(0x1d1)]!==_0x3d8193&&(_0x5770e2[_0x24267f(0x231)]+=_0x24267f(0x2ff)+_0x3d8193+'\x22>'+_0x3d8193+'</option>');}),_0x5770e2['innerHTML']+=_0x40feb3[_0x4ff3f3(0x301)];}const _0x192067=document['querySelector'](_0x4ff3f3(0x1fb));if(_0x192067){const _0x30e286=[...new Set(a10_0x56b22c[_0x4ff3f3(0x1fe)][_0x4ff3f3(0x2ae)](_0x54147f=>a10_0x417555(_0x54147f))[_0x4ff3f3(0x23f)](_0x4a55be=>'N/A'!==_0x4a55be))][_0x4ff3f3(0x245)]((_0x4e90c6,_0x147e25)=>_0x4e90c6-_0x147e25);_0x192067[_0x4ff3f3(0x231)]=_0x40feb3[_0x4ff3f3(0x243)],_0x30e286[_0x4ff3f3(0x24a)](_0x29e12e=>{const _0x4102fc=_0x4ff3f3;_0x192067[_0x4102fc(0x231)]+='<option\x20value=\x22T'+_0x29e12e+'\x22>T'+_0x29e12e+_0x4102fc(0x2a8);});}updateTrainNumberOptions(document['querySelector'](_0x4ff3f3(0x236))?.[_0x4ff3f3(0x166)]||_0x40feb3[_0x4ff3f3(0x235)],document[_0x4ff3f3(0x29e)](_0x40feb3['JgsIC'])?.['value']||_0x40feb3[_0x4ff3f3(0x235)]);}export function populateProductLineDropdowns(){const _0x1f6865=a10_0x2e5a68,_0x145712={'JBsKF':function(_0xc3043f,_0x73eddc){return _0xc3043f!==_0x73eddc;},'MBsrK':'Shared','WOLvZ':function(_0x57ccb8,_0x68d7d1){return _0x57ccb8(_0x68d7d1);},'CShsC':'===\x20PRODUCT\x20LINE\x20DROPDOWN\x20DEBUG\x20===','dqtPK':_0x1f6865(0x240),'gzGxT':'Machine\x20lines:','TCYaI':_0x1f6865(0x1a5),'OkZsN':_0x1f6865(0x202),'YFltQ':_0x1f6865(0x173),'ZKuxy':'editProductLine'},_0x3f0675=_0x145712[_0x1f6865(0x1f6)](a10_0x45bb0e,a10_0x56b22c[_0x1f6865(0x1fe)]),_0x47868a=[...new Set(a10_0x56b22c[_0x1f6865(0x1cf)][_0x1f6865(0x2ae)](_0x26b0f7=>_0x26b0f7[_0x1f6865(0x192)])[_0x1f6865(0x23f)](Boolean))],_0x323a44=[...new Set([..._0x3f0675,..._0x47868a])][_0x1f6865(0x245)]();console['log'](_0x145712['CShsC']),console[_0x1f6865(0x28c)](_0x145712[_0x1f6865(0x227)],_0x3f0675),console[_0x1f6865(0x28c)](_0x145712[_0x1f6865(0x189)],_0x47868a),console[_0x1f6865(0x28c)](_0x145712['TCYaI'],_0x323a44);const _0x2de74a=document[_0x1f6865(0x28d)](_0x1f6865(0x2fc));if(_0x2de74a){const _0x4cfe95=_0x2de74a['value'];_0x2de74a[_0x1f6865(0x231)]=_0x145712[_0x1f6865(0x1c5)],_0x323a44[_0x1f6865(0x24a)](_0x43d2cc=>{const _0x41cad0=_0x1f6865;_0x145712[_0x41cad0(0x174)](_0x145712[_0x41cad0(0x1a3)],_0x43d2cc)&&(_0x2de74a[_0x41cad0(0x231)]+=_0x41cad0(0x2ff)+_0x43d2cc+'\x22>'+_0x43d2cc+_0x41cad0(0x2a8));}),_0x2de74a[_0x1f6865(0x231)]+=_0x145712[_0x1f6865(0x1f3)],_0x4cfe95&&Array[_0x1f6865(0x141)](_0x2de74a['options'])[_0x1f6865(0x188)](_0x47c97f=>_0x47c97f[_0x1f6865(0x166)]===_0x4cfe95)&&(_0x2de74a[_0x1f6865(0x166)]=_0x4cfe95);}const _0x51e858=document[_0x1f6865(0x28d)](_0x145712[_0x1f6865(0x175)]);if(_0x51e858){const _0x22e6dd=_0x51e858[_0x1f6865(0x166)];_0x51e858[_0x1f6865(0x231)]=_0x145712[_0x1f6865(0x1c5)],_0x323a44[_0x1f6865(0x24a)](_0x909218=>{const _0x132075=_0x1f6865;_0x145712[_0x132075(0x174)](_0x132075(0x180),_0x909218)&&(_0x51e858[_0x132075(0x231)]+=_0x132075(0x2ff)+_0x909218+'\x22>'+_0x909218+_0x132075(0x2a8));}),_0x51e858[_0x1f6865(0x231)]+=_0x145712[_0x1f6865(0x1f3)],_0x22e6dd&&Array['from'](_0x51e858[_0x1f6865(0x2d9)])['some'](_0x25c44c=>_0x25c44c[_0x1f6865(0x166)]===_0x22e6dd)&&(_0x51e858[_0x1f6865(0x166)]=_0x22e6dd);}}export function resetFilters(_0x5c0011){const _0x413a69=a10_0x2e5a68,_0x1cf0e0={'WXBGg':'.filter-row\x20input[type=\x22text\x22],\x20.filter-row\x20input[type=\x22number\x22]','mDUYy':'.filter-row\x20select','dDsBJ':'rpn','qadcI':function(_0x368215,_0x28dcb8){return _0x368215(_0x28dcb8);}},_0x51024e=document[_0x413a69(0x28d)](_0x5c0011);_0x51024e[_0x413a69(0x2d2)](_0x1cf0e0[_0x413a69(0x1d7)])[_0x413a69(0x24a)](_0x3fb252=>_0x3fb252[_0x413a69(0x166)]=''),_0x51024e[_0x413a69(0x2d2)](_0x1cf0e0['mDUYy'])[_0x413a69(0x24a)](_0x2cf00b=>_0x2cf00b[_0x413a69(0x166)]=_0x413a69(0x2ab)),a10_0x56b22c[_0x413a69(0x1ea)]['key']=_0x1cf0e0[_0x413a69(0x20f)],a10_0x56b22c[_0x413a69(0x1ea)][_0x413a69(0x18c)]='desc',_0x1cf0e0[_0x413a69(0x249)](handleSearchAndFilter,_0x5c0011);}export function addNewProduct(_0x265d13){const _0x3550c0=a10_0x2e5a68,_0x3e37ff={'OBfTd':function(_0x495bc1,_0x2ffd7c){return _0x495bc1+_0x2ffd7c;},'jSGfL':_0x3550c0(0x1ab),'IPNuR':function(_0x4da169,_0x59b5c8){return _0x4da169(_0x59b5c8);},'VlDkV':'[name=\x22therapeuticDose\x22]','AFlqk':function(_0x58160a,_0x3b89ba){return _0x58160a*_0x3b89ba;},'BPwUc':'[name=\x22mdd\x22]','xrwyc':_0x3550c0(0x1ee),'vsAnS':_0x3550c0(0x201),'nmCDM':_0x3550c0(0x25a),'dkGzP':function(_0x876245,_0x79dcca){return _0x876245(_0x79dcca);},'ltEdS':function(_0x57355b,_0x542e06){return _0x57355b(_0x542e06);},'Wrhdv':function(_0x36552f,_0x18254d){return _0x36552f===_0x18254d;},'WSEaY':function(_0x3be4ff,_0x598220){return _0x3be4ff===_0x598220;},'bcDdS':_0x3550c0(0x13b),'vtMMf':function(_0x2f8575,_0x366cdf){return _0x2f8575(_0x366cdf);},'myQlA':_0x3550c0(0x2c5),'xbXra':_0x3550c0(0x1b6),'Yhwwx':_0x3550c0(0x209),'wxREp':function(_0x433dfe,_0x5d9f3d){return _0x433dfe===_0x5d9f3d;},'xzGFZ':'addOtherLine','WdmPz':function(_0x579324,_0x556921,_0xc2f79a){return _0x579324(_0x556921,_0xc2f79a);},'Ilxax':_0x3550c0(0x2fd),'SVKtk':_0x3550c0(0x1dc),'elzjV':function(_0x6bcbe5,_0x51a796){return _0x6bcbe5===_0x51a796;},'vUyHc':'addOtherProductType','nqvBe':_0x3550c0(0x21f),'uzzci':function(_0x9f2129,_0xad2793){return _0x9f2129||_0xad2793;},'XbzdB':function(_0x192806,_0x58218d){return _0x192806<=_0x58218d;},'lpxhY':function(_0x2c145f,_0x4843ef,_0x40968c){return _0x2c145f(_0x4843ef,_0x40968c);},'GEcoV':'Please\x20fill\x20all\x20required\x20product\x20fields,\x20including\x20Dosage\x20Form.','AfQRx':_0x3550c0(0x2ef),'ZRxDP':function(_0x4a7c23,_0x4738c0,_0x4d6939){return _0x4a7c23(_0x4738c0,_0x4d6939);},'CrjRG':function(_0x32e80c,_0x180249){return _0x32e80c+_0x180249;},'dqvUs':function(_0x47e08c){return _0x47e08c();},'ndBLp':_0x3550c0(0x1bb)};_0x265d13[_0x3550c0(0x2bb)]();const _0x890c31=document[_0x3550c0(0x28d)](_0x3e37ff[_0x3550c0(0x252)])['value'][_0x3550c0(0x2fa)](),_0x1a454c=document[_0x3550c0(0x28d)]('addProductName')[_0x3550c0(0x166)][_0x3550c0(0x2fa)](),_0x1f0308=_0x3e37ff[_0x3550c0(0x1bd)](parseFloat,document['getElementById'](_0x3e37ff[_0x3550c0(0x2c6)])[_0x3550c0(0x166)]),_0x484a01=new Date(document['getElementById'](_0x3e37ff[_0x3550c0(0x219)])[_0x3550c0(0x166)])[_0x3550c0(0x2b2)]();let _0x4d0f2c=document[_0x3550c0(0x28d)](_0x3e37ff[_0x3550c0(0x2a4)])[_0x3550c0(0x166)],_0x1d5c29=document[_0x3550c0(0x28d)]('addProductLine')[_0x3550c0(0x166)];if(_0x3e37ff['wxREp'](_0x3550c0(0x19c),_0x1d5c29)){const _0x4df9e0=document['getElementById'](_0x3e37ff[_0x3550c0(0x1ac)])[_0x3550c0(0x166)]['trim']();if(!_0x4df9e0)return void _0x3e37ff[_0x3550c0(0x1d8)](a10_0x366d0,_0x3e37ff[_0x3550c0(0x26c)],_0x3e37ff[_0x3550c0(0x2d1)]);_0x1d5c29=_0x4df9e0;}if(_0x3e37ff['elzjV']('Other',_0x4d0f2c)){const _0x317924=document[_0x3550c0(0x28d)](_0x3e37ff[_0x3550c0(0x2ba)])[_0x3550c0(0x166)][_0x3550c0(0x2fa)]();if(!_0x317924)return void a10_0x366d0(_0x3e37ff[_0x3550c0(0x26c)],_0x3e37ff[_0x3550c0(0x15b)]);_0x4d0f2c=_0x317924;}if(_0x3e37ff[_0x3550c0(0x295)](!_0x890c31,!_0x1a454c)||!_0x484a01||isNaN(_0x1f0308)||_0x3e37ff[_0x3550c0(0x19b)](_0x1f0308,0x0)||!_0x4d0f2c)return void _0x3e37ff[_0x3550c0(0x169)](a10_0x366d0,_0x3e37ff[_0x3550c0(0x26c)],_0x3e37ff[_0x3550c0(0x152)]);if(a10_0x56b22c[_0x3550c0(0x1fe)][_0x3550c0(0x21b)](_0x2a5cce=>_0x2a5cce[_0x3550c0(0x12b)][_0x3550c0(0x2fb)]()===_0x890c31['toLowerCase']()))return void _0x3e37ff['WdmPz'](a10_0x366d0,_0x3e37ff[_0x3550c0(0x26c)],_0x3550c0(0x1b5)+_0x890c31+_0x3550c0(0x14f));const _0x5e7a5f=document[_0x3550c0(0x2d2)](_0x3e37ff['AfQRx']),_0x32c4a2=[];let _0x23c5bd=!0x0;if(_0x5e7a5f['forEach'](_0x2993ee=>{const _0xb6fca7=_0x3550c0;if(!_0x23c5bd)return;const _0x40feaa={'id':a10_0x56b22c[_0xb6fca7(0x16f)]};a10_0x56b22c[_0xb6fca7(0x1d2)](_0x3e37ff[_0xb6fca7(0x161)](a10_0x56b22c[_0xb6fca7(0x16f)],0x1)),_0x40feaa[_0xb6fca7(0x2f6)]=_0x2993ee[_0xb6fca7(0x29e)](_0x3e37ff[_0xb6fca7(0x298)])[_0xb6fca7(0x166)][_0xb6fca7(0x2fa)](),_0x40feaa[_0xb6fca7(0x2cc)]=_0x3e37ff['IPNuR'](parseFloat,_0x2993ee['querySelector'](_0x3e37ff[_0xb6fca7(0x23e)])['value']),_0x40feaa[_0xb6fca7(0x160)]=_0x3e37ff[_0xb6fca7(0x2a1)](0x3e8,_0x3e37ff[_0xb6fca7(0x142)](parseFloat,_0x2993ee[_0xb6fca7(0x29e)](_0x3e37ff[_0xb6fca7(0x2e0)])[_0xb6fca7(0x166)])),_0x40feaa[_0xb6fca7(0x2b7)]=_0x2993ee['querySelector']('[name=\x22solubility\x22]')[_0xb6fca7(0x166)],_0x40feaa['cleanability']=_0x2993ee[_0xb6fca7(0x29e)](_0x3e37ff['xrwyc'])[_0xb6fca7(0x166)];const _0x2f0fd1=_0x2993ee[_0xb6fca7(0x29e)](_0x3e37ff['vsAnS'])[_0xb6fca7(0x166)],_0x384a41=_0x2993ee[_0xb6fca7(0x29e)](_0x3e37ff[_0xb6fca7(0x25f)])['value'];_0x40feaa[_0xb6fca7(0x276)]=_0x2f0fd1?_0x3e37ff[_0xb6fca7(0x244)](parseFloat,_0x2f0fd1):null,_0x40feaa[_0xb6fca7(0x294)]=_0x384a41?_0x3e37ff[_0xb6fca7(0x142)](parseFloat,_0x384a41):null,!_0x40feaa[_0xb6fca7(0x2f6)]||_0x3e37ff['IPNuR'](isNaN,_0x40feaa[_0xb6fca7(0x2cc)])||_0x3e37ff[_0xb6fca7(0x182)](isNaN,_0x40feaa[_0xb6fca7(0x160)])||!_0x40feaa[_0xb6fca7(0x2b7)]||!_0x40feaa['cleanability']||_0x3e37ff[_0xb6fca7(0x266)](null,_0x40feaa[_0xb6fca7(0x276)])&&_0x3e37ff[_0xb6fca7(0x135)](null,_0x40feaa['ld50'])?_0x23c5bd=!0x1:_0x32c4a2[_0xb6fca7(0x1ef)](_0x40feaa);}),!_0x23c5bd)return _0x3e37ff[_0x3550c0(0x193)](a10_0x366d0,'Validation\x20Error',_0x3550c0(0x13f)),void a10_0x56b22c[_0x3550c0(0x1d2)](a10_0x56b22c['nextIngredientId']-_0x32c4a2[_0x3550c0(0x2e4)]);const _0x18c66f={'id':a10_0x56b22c['nextProductId'],'productCode':_0x890c31,'name':_0x1a454c,'batchSizeKg':_0x1f0308,'date':_0x484a01,'productType':_0x4d0f2c,'line':_0x1d5c29,'machineIds':[],'activeIngredients':_0x32c4a2,'isCritical':!0x1,'criticalReason':''};a10_0x56b22c[_0x3550c0(0x1d3)](_0x3e37ff[_0x3550c0(0x17a)](a10_0x56b22c[_0x3550c0(0x213)],0x1));const _0x4118cd=[...a10_0x56b22c[_0x3550c0(0x1fe)],_0x18c66f];a10_0x56b22c[_0x3550c0(0x183)](_0x4118cd),_0x3e37ff['dqvUs'](a10_0x22bfc8),a10_0x32e2c5(),a10_0x401e80(_0x3e37ff['ndBLp']);}window[a10_0x2e5a68(0x171)]=function(_0xee6948){const _0x7fb2f0=a10_0x2e5a68,_0xec4bbb={'mFtki':function(_0x4fddb3,_0x373f7c){return _0x4fddb3===_0x373f7c;},'yDskL':_0x7fb2f0(0x154),'skYdc':'addProductLine','GFPBm':'editProductLine','ymymr':_0x7fb2f0(0x19c),'JdxJS':_0x7fb2f0(0x271),'fCDIc':_0x7fb2f0(0x218),'cJMAS':'addOtherLine','eRuMR':_0x7fb2f0(0x1e3),'bCmpC':_0x7fb2f0(0x299),'zZKWZ':_0x7fb2f0(0x14d),'ThRbW':function(_0x290785,_0x40770a){return _0x290785===_0x40770a;},'PWQLc':_0x7fb2f0(0x305),'iQGuU':'Powder','cHoTB':function(_0x308ef0,_0x1afbc5){return _0x308ef0===_0x1afbc5;},'YnKWZ':_0x7fb2f0(0x303),'qNyVg':'Cream','AXRQB':_0x7fb2f0(0x264),'KnRpV':_0x7fb2f0(0x17e),'ANLZp':_0x7fb2f0(0x147),'bqRyZ':function(_0x1e1906,_0x18ac6b){return _0x1e1906===_0x18ac6b;},'uxAJW':_0x7fb2f0(0x2de),'InPnN':function(_0x45ca22,_0x4381e3){return _0x45ca22+_0x4381e3;}};let _0x5c143d=document['getElementById'](_0xec4bbb['mFtki'](_0xec4bbb[_0x7fb2f0(0x210)],_0xee6948)?_0xec4bbb[_0x7fb2f0(0x229)]:_0xec4bbb[_0x7fb2f0(0x230)])[_0x7fb2f0(0x166)];if(_0xec4bbb[_0x7fb2f0(0x1db)](_0xec4bbb['ymymr'],_0x5c143d))try{_0xec4bbb[_0x7fb2f0(0x1db)](_0xec4bbb[_0x7fb2f0(0x210)],_0xee6948)?(document['getElementById'](_0xec4bbb[_0x7fb2f0(0x2c8)])[_0x7fb2f0(0x211)][_0x7fb2f0(0x2bd)]=_0xec4bbb[_0x7fb2f0(0x1a1)],document[_0x7fb2f0(0x28d)](_0xec4bbb[_0x7fb2f0(0x143)])[_0x7fb2f0(0x198)]=!0x0):(document[_0x7fb2f0(0x28d)](_0xec4bbb[_0x7fb2f0(0x149)])['style'][_0x7fb2f0(0x2bd)]=_0xec4bbb[_0x7fb2f0(0x1a1)],document[_0x7fb2f0(0x28d)](_0xec4bbb[_0x7fb2f0(0x27a)])[_0x7fb2f0(0x198)]=!0x0);}catch(_0x1e046f){}else try{_0xec4bbb[_0x7fb2f0(0x210)]===_0xee6948?(document['getElementById'](_0x7fb2f0(0x271))[_0x7fb2f0(0x211)]['display']=_0xec4bbb['zZKWZ'],document['getElementById'](_0xec4bbb['cJMAS'])[_0x7fb2f0(0x198)]=!0x1):(document[_0x7fb2f0(0x28d)](_0x7fb2f0(0x1e3))['style']['display']=_0xec4bbb[_0x7fb2f0(0x225)],document['getElementById'](_0xec4bbb[_0x7fb2f0(0x27a)])[_0x7fb2f0(0x198)]=!0x1);}catch(_0x57b313){}const _0x57e11c=document[_0x7fb2f0(0x28d)](_0xec4bbb[_0x7fb2f0(0x1db)](_0xec4bbb['yDskL'],_0xee6948)?_0x7fb2f0(0x209):_0x7fb2f0(0x170));let _0x4f41a9=[];if(_0xec4bbb[_0x7fb2f0(0x260)](_0xec4bbb['PWQLc'],_0x5c143d))_0x4f41a9=[_0x7fb2f0(0x2df),_0x7fb2f0(0x2e1),_0xec4bbb[_0x7fb2f0(0x215)],_0xec4bbb[_0x7fb2f0(0x25e)]];else{if(_0xec4bbb[_0x7fb2f0(0x1b9)](_0xec4bbb[_0x7fb2f0(0x1b2)],_0x5c143d))_0x4f41a9=[_0x7fb2f0(0x25b),_0xec4bbb['qNyVg'],'Gel',_0xec4bbb[_0x7fb2f0(0x25e)]];else{if(_0xec4bbb[_0x7fb2f0(0x1b9)](_0x7fb2f0(0x255),_0x5c143d))_0x4f41a9=[_0xec4bbb[_0x7fb2f0(0x2f0)],_0xec4bbb[_0x7fb2f0(0x1aa)],_0xec4bbb[_0x7fb2f0(0x258)],_0xec4bbb[_0x7fb2f0(0x25e)]];else{if(_0xec4bbb[_0x7fb2f0(0x25e)]===_0x5c143d)_0x4f41a9=[_0xec4bbb[_0x7fb2f0(0x25e)]];else{const _0x3b6360=[...new Set(a10_0x56b22c[_0x7fb2f0(0x1fe)][_0x7fb2f0(0x23f)](_0x238bda=>_0x238bda[_0x7fb2f0(0x192)]===_0x5c143d)[_0x7fb2f0(0x2ae)](_0x48014a=>_0x48014a[_0x7fb2f0(0x22e)])['filter'](Boolean))][_0x7fb2f0(0x245)]();_0x4f41a9=[..._0x3b6360],_0x4f41a9[_0x7fb2f0(0x1e4)](_0xec4bbb[_0x7fb2f0(0x25e)])||_0x4f41a9['push'](_0xec4bbb[_0x7fb2f0(0x25e)]),_0xec4bbb[_0x7fb2f0(0x212)](0x0,_0x3b6360[_0x7fb2f0(0x2e4)])&&(_0x4f41a9=[_0x7fb2f0(0x2df),'Capsules',_0xec4bbb[_0x7fb2f0(0x215)],_0x7fb2f0(0x25b),_0xec4bbb[_0x7fb2f0(0x2b9)],_0xec4bbb[_0x7fb2f0(0x1e7)],_0x7fb2f0(0x264),_0xec4bbb[_0x7fb2f0(0x1aa)],_0xec4bbb[_0x7fb2f0(0x258)],_0xec4bbb[_0x7fb2f0(0x25e)]]);}}}}_0x57e11c[_0x7fb2f0(0x231)]=_0xec4bbb[_0x7fb2f0(0x2a5)](_0x7fb2f0(0x14a),_0x4f41a9['map'](_0x302f9b=>_0x7fb2f0(0x2ff)+_0x302f9b+'\x22>'+_0x302f9b+_0x7fb2f0(0x2a8))[_0x7fb2f0(0x1ae)](''));};
+// Renders the main product tables and handles CRUD operations
+// js/productView.js
+
+import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
+import { fullAppRender } from './app.js';
+import { showLoader, hideLoader, showCustomAlert, hideModal, saveStateForUndo, updateToggleIcons } from './ui.js';
+import { getProductTrainId, getProductTrainNumber, calculateScores, populateSelectWithOptions, getUniqueProductLines } from './utils.js';
+import { renderWorstCaseByTrain } from './worstCaseView.js';
+
+export function renderProducts(tabId) {
+    if (tabId === 'worstCaseProducts') {
+        renderWorstCaseByTrain();
+        return;
+    }
+
+    const tabContainer = document.getElementById(tabId);
+    if (!tabContainer) return;
+    
+    // Clear only the table content, not the entire container (to preserve filters and buttons)
+    const existingTables = tabContainer.querySelectorAll('.line-table');
+    existingTables.forEach(table => table.remove());
+
+let dataToRender = [...state.viewProducts[tabId]];
+
+    // Group products by line
+    const productsByLine = {};
+    dataToRender.forEach(product => {
+        const line = product.line || 'Unassigned';
+        if (!productsByLine[line]) {
+            productsByLine[line] = [];
+        }
+        productsByLine[line].push(product);
+    });
+
+    // Create separate table for each line
+    Object.keys(productsByLine).sort().forEach(line => {
+        const products = productsByLine[line];
+        
+        // Sort products within this line
+        products.sort((a, b) => {
+            // Primary sort: by the selected sort key
+            let valA, valB;
+            const key = state.sortState.key;
+            switch (key) {
+                case 'productCode': valA = a.productCode; valB = b.productCode; break;
+                case 'name': valA = a.name; valB = b.name; break;
+                case 'productType': valA = a.productType || 'Other'; valB = b.productType || 'Other'; break;
+                case 'batchSizeKg': valA = a.batchSizeKg; valB = b.batchSizeKg; break;
+                case 'date': valA = new Date(a.date); valB = new Date(b.date); break;
+                default: return 0;
+            }
+
+            const dir = state.sortState.direction === 'asc' ? 1 : -1;
+
+            if (valA < valB) return -1 * dir;
+            if (valA > valB) return 1 * dir;
+            
+            // Secondary sort: by dosage form if primary sort is equal
+            const dosageA = a.productType || 'Other';
+            const dosageB = b.productType || 'Other';
+            if (dosageA !== dosageB) {
+                return dosageA.localeCompare(dosageB);
+            }
+            
+            return 0;
+        });
+
+        // Create table container for this line
+        const lineContainer = document.createElement('div');
+        lineContainer.className = 'mb-8 line-table';
+        const lineId = line.replace(/\s+/g, '_').toLowerCase();
+        
+        // Add event listeners for sorting after table is created
+        setTimeout(() => {
+            const sortableHeaders = lineContainer.querySelectorAll('th.sortable');
+            sortableHeaders.forEach(th => {
+                th.addEventListener('click', function() {
+                    const onclickAttr = this.getAttribute('onclick');
+                    if (onclickAttr) {
+                        const keyMatch = onclickAttr.match(/'(.*?)'/);
+                        if (keyMatch) {
+                            const key = keyMatch[1];
+                            sortData(key, 'productRegister');
+                        }
+                    }
+                });
+            });
+        }, 100);
+        lineContainer.innerHTML = `
+            <div class="mb-4">
+                <div class="flex items-center justify-between cursor-pointer" onclick="toggleLineTable('${lineId}')">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">${line} Line</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">${products.length} product${products.length !== 1 ? 's' : ''}</p>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400 mr-2"></span>
+                        <svg id="toggle-icon-${lineId}" class="w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div id="table-${lineId}" class="overflow-hidden rounded-lg border transition-all duration-300" style="border-color: var(--border-color);">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-200 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">#</th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">Date</th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary);font-weight: bold !important; cursor: pointer;" onclick="sortData('productCode', 'productRegister')">Product Code <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important; cursor: pointer;" onclick="sortData('name', 'productRegister')">Product Name <span class="sort-indicator"></span></th>
+                        
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">Train No.</th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary);font-weight: bold !important; cursor: pointer;" onclick="sortData('productType', 'productRegister')">Dosage Form <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider sortable bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important; cursor: pointer;" onclick="sortData('batchSizeKg', 'productRegister')">Batch Size <span class="sort-indicator"></span></th>
+                            <th class="px-3 py-3 text-left text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">Critical</th>
+                            <th class="px-3 py-3 text-center text-xs text-center font-medium uppercase tracking-wider bg-gray-200 dark:bg-gray-700" style="color: var(--text-secondary); font-weight: bold !important;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="productsTable" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                    </tbody>
+                </table>
+            </div>
+        `;
+        
+        tabContainer.appendChild(lineContainer);
+        
+        // Get the tbody for this line's table
+        const tbody = lineContainer.querySelector('.productsTable');
+
+        // Render products for this line
+        products.forEach((product, index) => {
+        const productRow = document.createElement('tr');
+        productRow.className = "product-main-row";
+        const criticalText = product.isCritical ? 'Yes' : 'No';
+        const criticalClass = product.isCritical ? 'text-red-600 font-bold' : '';
+        const trainNumber = getProductTrainNumber(product);
+        const trainIdDisplay = trainNumber !== 'N/A' ? 'T' + trainNumber : 'N/A';
+
+        productRow.innerHTML = `
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${index + 1}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${new Date(product.date).toLocaleDateString()}</td>
+                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center">${product.productCode}</td>
+                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center">
+                        <span class="product-name">${product.name}</span>
+                    </td>
+                    <td class="px-3 py-3 text-sm font-medium whitespace-nowrap align-top text-center" >${trainIdDisplay}</td>
+                      <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${product.productType || 'N/A'}</td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top text-center" >${product.batchSizeKg}</td>
+                    <td class="px-3 py-3 text-sm align-top text-center">
+                         <span class="${criticalClass}">${criticalText}</span>
+                         ${product.isCritical && product.criticalReason ? `<p class="text-xs italic" style=" max-width: 200px; white-space: normal;">${product.criticalReason}</p>` : ''}
+                    </td>
+                    <td class="px-3 py-3 text-sm whitespace-nowrap align-top">
+                        <div class="flex items-center gap-x-2 no-print">
+                           <button onclick="showAssignMachinesModal(${product.id})" class="p-1" style="color: var(--text-secondary);" title="Assign Machines">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16"><path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.62 1.105l-.09.282c-.273.85-.92 1.368-1.843 1.368h-1.11c-.923 0-1.57-.517-1.843 1.368l-.09-.282c-.268-1.135.925-1.824 1.62-1.105l.205.211a.96.96 0 0 0 1.622-.434L7.068.727zM12.973 8.5H8.25l-1.03-1.03a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l2.5-2.5a1 1 0 0 0-1.414-1.414L12.973 8.5z"/><path d="M.242 4.753a.626.626 0 0 1 .884 0l.058.058a.96.96 0 0 0 1.353-.14l.17-.186c.695-.761 1.888.06 1.62 1.204l-.066.261c-.273.85-.92 1.368-1.843 1.368h-1.11c-.923 0-1.57-.517-1.843 1.368l-.066-.261c-.268-1.144.925-1.965 1.62-1.204l.17.186a.96.96 0 0 0 1.353.14l.058-.058a.626.626 0 0 1 0-.884zM15.758 4.753a.626.626 0 0 1 .884 0l.058.058a.96.96 0 0 0 1.353.14l.17-.186c.695.761-.925 1.965-1.62 1.204l-.066-.261c-.273-.85-.92-1.368-1.843 1.368h-1.11c-.923 0-1.57-.517-1.843 1.368l-.066.261c-.268 1.144 1.888.443 1.62-1.204l.17-.186a.96.96 0 0 0 1.353-.14l.058-.058a.626.626 0 0 1 0 .884z"/></svg>
+                            </button>
+                             <button onclick="showEditProductModal(${product.id})" class="p-1" style="color: var(--text-secondary);" title="Edit Product"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zM12.879 4.379L11 2.5 4.939 8.561a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.121L12.879 4.379z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></button>
+                            <button onclick="deleteProduct(${product.id})" class="p-1 text-red-500" title="Delete Product">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3V2h11v1h-11z"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                `;
+
+        const ingredientsRow = document.createElement('tr');
+        ingredientsRow.className = "ingredients-sub-row";
+        const ingredientsCell = document.createElement('td');
+        ingredientsCell.colSpan = 10;
+
+        let subTableHTML = `
+                    <div class="p-4 ingredients-sub-table rounded-b-lg">
+                        <table class="w-full text-xs">
+                            <thead class="bg-transparent">
+                                <tr class="border-b" style="border-color: var(--border-color); background-color: rgb(188 194 208 / 45%)">
+                                    <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">Ingredient</th>
+                                    <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">TD (mg)</th>
+                                    <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">MDD (g/day)</th>
+                                    <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">Solubility</th>
+                                    <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">Cleanability</th>
+                                    <th class="pde-col px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">PDE (mg/day)</th>
+                                    <th class="ld50-col px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">LD50 (mg/kg)</th>
+                                    <th class="px-3 py-2 text-left font-semibold uppercase tracking-wider" style="font-size: 12px !important;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-transparent">`;
+
+        product.activeIngredients.forEach(ing => {
+            subTableHTML += `
+                        <tr>
+                            <td class="px-3 py-2 font-semibold">${ing.name}</td>
+                            <td class="px-3 py-2" style="color: var(--text-secondary);">${ing.therapeuticDose}</td>
+                            <td class="px-3 py-2" style="color: var(--text-secondary);">${ing.mdd / 1000}</td>
+                            <td class="px-3 py-2" style="color: var(--text-secondary);">${ing.solubility}</td>
+                            <td class="px-3 py-2" style="color: var(--text-secondary);">${ing.cleanability}</td>
+                            <td class="pde-col px-3 py-2" style="color: var(--text-secondary);">${ing.pde ?? 'N/A'}</td>
+                            <td class="ld50-col px-3 py-2" style="color: var(--text-secondary);">${ing.ld50 ?? 'N/A'}</td>
+                            <td class="px-3 py-2">
+                                <div class="flex items-center gap-x-2 no-print">
+                                    <button onclick="showEditIngredientModal(${product.id}, ${ing.id})" class="p-1" style="color: var(--text-secondary);" title="Edit Ingredient"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zM12.879 4.379L11 2.5 4.939 8.561a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.121L12.879 4.379z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></button>
+                                    <button onclick="deleteIngredient(${product.id}, ${ing.id})" class="p-1 text-red-500" title="Remove Ingredient"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
+                                </div>
+                            </td>
+                        </tr>`;
+        });
+
+        subTableHTML += `</tbody></table></div>`;
+        ingredientsCell.innerHTML = subTableHTML;
+        ingredientsRow.appendChild(ingredientsCell);
+
+        tbody.appendChild(productRow);
+        tbody.appendChild(ingredientsRow);
+        });
+    });
+
+    updateSortIndicators(tabId);
+    updateToggleIcons(tabId);
+    hideLoader();
+}
+
+// Toggle function for line tables
+window.toggleLineTable = function(lineId) {
+    const table = document.getElementById(`table-${lineId}`);
+    const icon = document.getElementById(`toggle-icon-${lineId}`);
+    
+    if (table && icon) {
+        if (table.style.display === 'none') {
+            table.style.display = 'block';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            table.style.display = 'none';
+            icon.style.transform = 'rotate(-90deg)';
+        }
+    }
+};
+
+export function handleSearchAndFilter(tabId) {
+    showLoader();
+    const tabContainer = document.getElementById(tabId);
+
+    if (tabId === 'worstCaseProducts') {
+        const productNameFilter = document.getElementById('worstCaseProductNameFilter');
+        const nameFilter = productNameFilter ? productNameFilter.value.toLowerCase() : '';
+        
+    
+        state.viewProducts[tabId] = state.products.filter(product => {
+            return product.name.toLowerCase().includes(nameFilter);
+        });
+        renderProducts(tabId);
+        return;
+    }
+
+    // Get filter elements from the original HTML structure, not from the dynamically created tables
+    const codeFilter = document.querySelector('.filterColProductCode')?.value?.toLowerCase() || '';
+    const nameFilter = document.querySelector('.filterColProductName')?.value?.toLowerCase() || '';
+    const lineFilter = document.querySelector('.filterColLine')?.value || 'all';
+    const trainNoFilter = document.querySelector('.filterColTrainNo')?.value || 'all';
+    const productTypeFilter = document.querySelector('.filterColProductType')?.value || 'all';
+    const isCriticalFilter = document.querySelector('.filterColIsCritical')?.value || 'all';
+    
+    // Update train number options based on selected line and dosage form
+    updateTrainNumberOptions(lineFilter, productTypeFilter);
+    
+    // Add event listeners to Line and Dosage Form filters to update Train No. options
+    const lineSelect = document.querySelector('.filterColLine');
+    const productTypeSelect = document.querySelector('.filterColProductType');
+    
+    if (lineSelect && !lineSelect.hasAttribute('data-listener-added')) {
+        lineSelect.addEventListener('change', function() {
+            const selectedLine = this.value;
+            const selectedDosageForm = document.querySelector('.filterColProductType')?.value || 'all';
+            updateTrainNumberOptions(selectedLine, selectedDosageForm);
+        });
+        lineSelect.setAttribute('data-listener-added', 'true');
+    }
+    
+    if (productTypeSelect && !productTypeSelect.hasAttribute('data-listener-added')) {
+        productTypeSelect.addEventListener('change', function() {
+            const selectedDosageForm = this.value;
+            const selectedLine = document.querySelector('.filterColLine')?.value || 'all';
+            updateTrainNumberOptions(selectedLine, selectedDosageForm);
+        });
+        productTypeSelect.setAttribute('data-listener-added', 'true');
+    }
+
+    
+    state.viewProducts[tabId] = state.products.filter(product => {
+        const productCodeMatch = product.productCode.toLowerCase().includes(codeFilter);
+        const productNameMatch = product.name.toLowerCase().includes(nameFilter);
+
+        const trainNumber = getProductTrainNumber(product);
+        const trainIdDisplay = trainNumber !== 'N/A' ? 'T' + trainNumber : 'N/A';
+        const trainNoMatch = (trainNoFilter === 'all') || (trainIdDisplay === trainNoFilter);
+        
+        const lineMatch = (lineFilter === 'all') || (product.line === lineFilter);
+        const productTypeMatch = (productTypeFilter === 'all') || (product.productType === productTypeFilter);
+
+        const isCriticalMatch = (isCriticalFilter === 'all') || (String(product.isCritical) === isCriticalFilter);
+
+        return productCodeMatch && productNameMatch && trainNoMatch && lineMatch && productTypeMatch && isCriticalMatch;
+    });
+     
+    renderProducts(tabId);
+}
+
+// Function to update train number options based on selected line and dosage form
+export function updateTrainNumberOptions(selectedLine, selectedDosageForm) {
+    const trainNoSelect = document.querySelector('.filterColTrainNo');
+    if (!trainNoSelect) return;
+    
+    // Get all products that match the selected line and dosage form
+    let filteredProducts = state.products;
+    
+    if (selectedLine !== 'all') {
+        filteredProducts = filteredProducts.filter(product => product.line === selectedLine);
+    }
+    
+    if (selectedDosageForm !== 'all') {
+        filteredProducts = filteredProducts.filter(product => product.productType === selectedDosageForm);
+    }
+    
+    // Get unique train numbers from filtered products
+    const trainNumbers = new Set();
+    filteredProducts.forEach(product => {
+        const trainNumber = getProductTrainNumber(product);
+        if (trainNumber !== 'N/A') {
+            trainNumbers.add('T' + trainNumber);
+        }
+    });
+    
+    // Convert to array and sort
+    const sortedTrainNumbers = Array.from(trainNumbers).sort((a, b) => {
+        const numA = parseInt(a.replace('T', ''));
+        const numB = parseInt(b.replace('T', ''));
+        return numA - numB;
+    });
+    
+    // Update the select options
+    const currentValue = trainNoSelect.value;
+    trainNoSelect.innerHTML = '<option value="all">All</option>';
+    
+    sortedTrainNumbers.forEach(trainNo => {
+        const option = document.createElement('option');
+        option.value = trainNo;
+        option.textContent = trainNo;
+        trainNoSelect.appendChild(option);
+    });
+    
+    // Restore the selected value if it's still valid
+    if (sortedTrainNumbers.includes(currentValue)) {
+        trainNoSelect.value = currentValue;
+    } else {
+        trainNoSelect.value = 'all';
+    }
+}
+
+export function sortData(key, tabId) {
+    if (state.sortState.key === key) {
+        state.sortState.direction = state.sortState.direction === 'asc' ? 'desc' : 'asc';
+    } else {
+        state.sortState.key = key;
+        state.sortState.direction = (key === 'rpn') ? 'desc' : 'asc';
+    }
+
+    // You don't need to call setSortState if you're modifying the object directly
+    // state.setSortState(state.sortState); 
+    
+    if (tabId === 'worstCaseProducts') {
+        renderWorstCaseByTrain();
+    } else if (tabId === 'productRegister') {
+        // For product register, re-render all line tables with sorting
+        renderProducts(tabId);
+        updateSortIndicators(tabId);
+    } else {
+        renderProducts(tabId);
+        updateSortIndicators(tabId);
+    }
+}
+
+
+export function updateSortIndicators(tabId) {
+    const tabContainer = document.getElementById(tabId);
+    if (!tabContainer || tabId === 'worstCaseProducts') return; 
+    
+    // Update indicators for both main table and line tables
+    const allTables = tabContainer.querySelectorAll('table');
+    allTables.forEach(table => {
+        table.querySelectorAll('th.sortable').forEach(th => {
+            const indicator = th.querySelector('.sort-indicator');
+            if (indicator) {
+                const onclickAttr = th.getAttribute('onclick');
+                if (onclickAttr) {
+                    const keyMatch = onclickAttr.match(/'(.*?)'/);
+                    if (keyMatch) {
+                        const key = keyMatch[1];
+                        if (key === state.sortState.key) {
+                            indicator.textContent = state.sortState.direction === 'asc' ? '▲' : '▼';
+                        } else {
+                            indicator.textContent = '';
+                        }
+                    }
+                }
+            }
+        });
+    });
+}
+
+export function showAddForm() {
+    const form = document.getElementById('addProductForm');
+    form.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                  <div><label class="block text-sm font-medium mb-1">Product Code</label><input type="text" id="addProductCode" class="w-full px-3 py-2 border rounded-lg no-proper-case" required placeholder="e.g. 1ABC12345DE"></div>
+                                  <div><label class="block text-sm font-medium mb-1">Product Name</label><input type="text" id="addProductName" class="w-full px-3 py-2 border rounded-lg" required></div>
+                                  <div><label class="block text-sm font-medium mb-1">Date</label><input type="date" id="addProductDate" class="w-full px-3 py-2 border rounded-lg" required></div>
+                              </div>
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                  <div><label class="block text-sm font-medium mb-1">Batch Size (Kg)</label><input type="number" step="0.01" id="addBatchSize" class="w-full px-3 py-2 border rounded-lg" min="0" required></div>
+                                
+                                  <div>
+                                    <label class="block text-sm font-medium mb-1">Line</label>
+                                                                        <select id="addProductLine" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('addOtherLineContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('addOtherLine').required = this.value === 'Other'; updateDosageFormOptions('add')">
+                                        <option value="" disabled selected>Select a line...</option>
+                                        <option value="Solids">Solids</option>
+                                        <option value="Semisolid">Semisolid</option>
+                                        <option value="Liquids">Liquids</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                                                        <div id="addOtherLineContainer" style="display:none;margin-top:6px;">
+                                                                                <label class="block text-sm font-medium mb-1">Specify Other Line</label>
+                                                                                <input type="text" id="addOtherLine" class="w-full px-3 py-2 border rounded-lg no-proper-case" />
+                                                                        </div>
+                                                                        </div>
+                                  <div>
+                                      <div class="">
+                                        <div>
+                                            <label class="block text-sm font-medium mb-1">Dosage Form</label>
+                                            <select id="addProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('addOtherTypeContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('addOtherProductType').required = this.value === 'Other'; updateSafetyFactorDisplay('add', this.value);">
+                                            <option value="" disabled selected>Select a form...</option>
+                                            </select>
+                                        </div>
+                                        <div id="addOtherTypeContainer" style="display: none;">
+                                            <label class="block text-sm font-medium mb-1">Specify Other Form</label>
+                                            <input type="text" id="addOtherProductType" class="w-full px-3 py-2 border rounded-lg no-proper-case" oninput="updateSafetyFactorDisplay('add', this.value);" onchange="updateSafetyFactorDisplay('add', this.value);">
+                                        </div>
+                                        <div id="addSafetyFactorDisplay" class="mt-2 p-2 rounded-lg" style="background-color: var(--bg-accent); border: 1px solid var(--border-color); display: none;">
+                                            <div class="text-sm">
+                                                <div><strong>Route:</strong> <span id="addRouteDisplay">-</span></div>
+                                                <div class="mt-1"><strong>Safety Factor Range:</strong> <span id="addSafetyFactorRangeDisplay">-</span></div>
+                                                <div class="mt-1"><strong>Risk Level:</strong> <span id="addRiskLevelDisplay">-</span></div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div>
+                    <label class="block text-sm font-medium mb-1">Special Case Product</label>
+                    <select id="editIsCritical" onchange="document.getElementById('editCriticalReasonContainer2').style.display = this.value === 'true' ? 'block' : 'none';" class="w-full px-3 py-2 border rounded-lg">
+                        <option value="false" 'selected' >No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+                <div id="editCriticalReasonContainer2" style="display: none">
+                    <label class="block text-sm font-medium mb-1">Reason for Special Case Status</label>
+                    <textarea id="editCriticalReason" class="w-full px-3 py-2 border rounded-lg" placeholder="Enter reason..."></textarea>
+                </div>
+                              </div>
+                              <div><div class="flex justify-between items-center mb-4"><h4 class="text-lg font-medium">Active Ingredients</h4><button type="button" onclick="addIngredientFormFields('ingredientsContainer')" class="text-white px-3 py-1 rounded-lg text-sm btn-gradient">+ Add Ingredient</button></div><div id="ingredientsContainer"></div></div>`;
+    document.getElementById('ingredientsContainer').innerHTML = '';
+    state.setIngredientFormCounter(0);
+    addIngredientFormFields('ingredientsContainer');
+    document.getElementById('addProductDate').value = new Date().toISOString().split('T')[0];
+    document.getElementById('addProductModal').style.display = 'flex';
+    
+    // Initialize proper case for dynamically created inputs
+    import('./utils.js').then(utils => {
+        utils.initializeProperCaseInputs();
+    }).catch(error => console.error('Error initializing proper case:', error));
+}
+
+export function addIngredientFormFields(containerId, ingredient = null) {
+const isEdit = !!ingredient;
+    state.setIngredientFormCounter(state.ingredientFormCounter + 1);
+    
+    const container = document.getElementById(containerId); 
+    const ingredientDiv = document.createElement('div');
+    ingredientDiv.className = 'border rounded-lg p-4 mb-4 relative ingredient-edit-row';
+    ingredientDiv.style.borderColor = 'var(--border-color)';
+    
+    // THE FIX IS HERE: Change the onclick handler
+    const removeButton = (isEdit || container.id === 'editIngredientsContainer' || container.children.length > 0) 
+        ? `<button type="button" onclick="this.closest('.ingredient-edit-row').remove()" class="absolute top-2 right-2 text-red-500 hover:text-red-700 p-1" title="Remove Ingredient"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg></button>`
+        : '';
+
+    ingredientDiv.innerHTML = `
+        ${removeButton}
+        <input type="hidden" name="ingredientId" value="${ingredient?.id || ''}">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="md:col-span-2"><label class="block text-xs font-medium mb-1">Ingredient Name</label><input type="text" name="ingredientName" value="${ingredient?.name || ''}" class="w-full px-3 py-2 border rounded-lg text-sm" required></div>
+            <div><label class="block text-xs font-medium mb-1">TD (mg)</label><input type="number" step="any" name="therapeuticDose" value="${ingredient?.therapeuticDose || ''}" class="w-full px-3 py-2 border rounded-lg text-sm" min="0" required></div>
+            <div><label class="block text-xs font-medium mb-1">MDD (g/day)</label><input type="number" step="any" name="mdd" value="${ingredient ? ingredient.mdd / 1000 : ''}" class="w-full px-3 py-2 border rounded-lg text-sm" min="0" required></div>
+            <div><label class="block text-xs font-medium mb-1">Solubility</label><select name="solubility" class="w-full px-3 py-2 border rounded-lg text-sm"></select></div>
+            <div><label class="block text-xs font-medium mb-1">Cleanability</label><select name="cleanability" class="w-full px-3 py-2 border rounded-lg text-sm" required></select></div>
+            <div><label class="block text-xs font-medium mb-1">PDE (mg/day)</label><input type="number" step="any" name="pde" value="${ingredient?.pde ?? ''}" class="w-full px-3 py-2 border rounded-lg text-sm" min="0" placeholder="Optional"></div>
+            <div><label class="block text-xs font-medium mb-1">LD50 (mg/kg)</label><input type="number" step="any" name="ld50" value="${ingredient?.ld50 ?? ''}" class="w-full px-3 py-2 border rounded-lg text-sm" min="0" placeholder="Optional"></div>
+        </div>`; 
+    container.appendChild(ingredientDiv); 
+    populateDynamicSelectsForElement(ingredientDiv); 
+    if (ingredient) {
+        ingredientDiv.querySelector('select[name="solubility"]').value = ingredient.solubility;
+        ingredientDiv.querySelector('select[name="cleanability"]').value = ingredient.cleanability;
+    }
+    
+    // Populate the product line dropdowns with all available lines
+    populateProductLineDropdowns();
+    
+    // Initialize proper case for dynamically created inputs
+    import('./utils.js').then(utils => {
+        utils.initializeProperCaseInputs();
+    }).catch(error => console.error('Error initializing proper case:', error));
+}
+
+export function populateDynamicSelectsForElement(element) {
+    populateSelectWithOptions(element.querySelector('select[name="solubility"], #editSolubility'), 'solubility');
+    populateSelectWithOptions(element.querySelector('select[name="cleanability"], #editCleanability'), 'cleanability');
+}
+
+export function showEditProductModal(productId) {
+    const product = state.products.find(p => p.id === productId);
+    if (!product) return;
+
+    const form = document.getElementById('editProductForm');
+    const dateValue = product.date ? new Date(product.date).toISOString().split('T')[0] : '';
+    form.innerHTML = `
+                <input type="hidden" id="editProductId" value="${product.id}">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-medium mb-1">Product Code</label><input type="text" id="editProductCode" value="${product.productCode}" class="w-full px-3 py-2 border rounded-lg no-proper-case" required></div>
+                    <div><label class="block text-sm font-medium mb-1">Product Name</label><input type="text" id="editProductName" value="${product.name}" class="w-full px-3 py-2 border rounded-lg" required></div>
+                    <div><label class="block text-sm font-medium mb-1">Date</label><input type="date" id="editProductDate" value="${dateValue}" class="w-full px-3 py-2 border rounded-lg" required></div>
+                    <div><label class="block text-sm font-medium mb-1">Batch Size (Kg)</label><input type="number" step="0.01" id="editBatchSize" value="${product.batchSizeKg}" class="w-full px-3 py-2 border rounded-lg" min="0" required></div>
+  
+                    </div>
+    
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                    <label class="block text-sm font-medium mb-1">Line</label>
+                    <select id="editProductLine" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('editOtherLineContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('editOtherLine').required = this.value === 'Other'; updateDosageFormOptions('edit')">
+                        <option value="" disabled selected>Select a line...</option>
+                        <option value="Solids">Solids</option>
+                        <option value="Semisolid">Semisolid</option>
+                        <option value="Liquids">Liquids</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="editOtherLineContainer" style="display:none;margin-top:6px;">
+                        <label class="block text-sm font-medium mb-1">Specify Other Line</label>
+                        <input type="text" id="editOtherLine" class="w-full px-3 py-2 border rounded-lg no-proper-case">
+                    </div>
+                    </div>
+                    <div>
+                        <label>Dosage Form</label>
+                        <select id="editProductType" class="w-full px-3 py-2 border rounded-lg" required onchange="document.getElementById('editOtherTypeContainer').style.display = this.value === 'Other' ? 'block' : 'none'; document.getElementById('editOtherProductType').required = this.value === 'Other'; updateSafetyFactorDisplay('edit', this.value);">
+                        <option value="" disabled selected>Select a form...</option>
+                        </select>
+                    </div>
+                    <div id="editOtherTypeContainer" style="display: none;">
+                        <label class="block text-sm font-medium mb-1">Specify Other Form</label>
+                        <input type="text" id="editOtherProductType" class="w-full px-3 py-2 border rounded-lg no-proper-case" oninput="updateSafetyFactorDisplay('edit', this.value);" onchange="updateSafetyFactorDisplay('edit', this.value);">
+                    </div>
+                    <div id="editSafetyFactorDisplay" class="mt-2 p-2 rounded-lg" style="background-color: var(--bg-accent); border: 1px solid var(--border-color); display: none;">
+                        <div class="text-sm">
+                            <div><strong>Route:</strong> <span id="editRouteDisplay">-</span></div>
+                            <div class="mt-1"><strong>Safety Factor Range:</strong> <span id="editSafetyFactorRangeDisplay">-</span></div>
+                            <div class="mt-1"><strong>Risk Level:</strong> <span id="editRiskLevelDisplay">-</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Special Case Product</label>
+                    <select id="editIsCritical" onchange="document.getElementById('editCriticalReasonContainer').style.display = this.value === 'true' ? 'block' : 'none';" class="w-full px-3 py-2 border rounded-lg">
+                        <option value="false" ${!product.isCritical ? 'selected' : ''}>No</option>
+                        <option value="true" ${product.isCritical ? 'selected' : ''}>Yes</option>
+                    </select>
+                </div>
+                <div id="editCriticalReasonContainer" style="display: ${product.isCritical ? 'block' : 'none'};">
+                    <label class="block text-sm font-medium mb-1">Reason for Special Case Status</label>
+                    <textarea id="editCriticalReason" class="w-full px-3 py-2 border rounded-lg" placeholder="Enter reason...">${product.criticalReason || ''}</textarea>
+                </div>
+                <div class="border-t pt-4 mt-4" style="border-color:var(--border-color);">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="text-lg font-medium">Add New Ingredients</h4>
+                        <button type="button" onclick="addIngredientFormFields('editIngredientsContainer')" class="text-white px-3 py-1 rounded-lg text-sm btn-gradient">+ Add Ingredient</button>
+                    </div>
+                    <div id="editIngredientsContainer" class="space-y-4"></div>
+                </div>
+            `;
+
+    // Clear ingredients container so only new ones can be added
+    const ingredientsContainer = form.querySelector('#editIngredientsContainer');
+    ingredientsContainer.innerHTML = '';
+
+    // Pre-populate product line and then product type/dosage form
+    const lineSelect = form.querySelector('#editProductLine');
+    const typeSelect = form.querySelector('#editProductType');
+    const otherInput = form.querySelector('#editOtherProductType');
+    const otherContainer = form.querySelector('#editOtherTypeContainer');
+
+    // If the product has a saved line, use it. Otherwise try to infer the line
+    // from the saved productType (this helps older records that lack 'line').
+    if (!product.line && product.productType) {
+        const solids = ['Tablets', 'Capsules', 'Powder'];
+        const semisolids = ['Ointment', 'Cream', 'Gel'];
+        const liquids = ['Syrup', 'Solution', 'Suspension'];
+        if (solids.includes(product.productType)) product.line = 'Solids';
+        else if (semisolids.includes(product.productType)) product.line = 'Semisolid';
+        else if (liquids.includes(product.productType)) product.line = 'Liquids';
+        else product.line = '';
+    }
+
+    // Line selection will be handled after populateProductLineDropdowns() is called
+
+    // Populate dosage form options for the currently selected line
+    try { 
+        updateDosageFormOptions('edit');
+        // Update safety factor display for existing product
+        if (product.productType) {
+            updateSafetyFactorDisplay('edit', product.productType);
+        }
+    } catch (e) { /* ignore if not available */ }
+
+    // Now set the dosage form value (or 'Other' handling) after options are populated
+    const standardTypes = Array.from(typeSelect.options).map(opt => opt.value).filter(Boolean);
+    if (product.productType && standardTypes.includes(product.productType)) {
+        typeSelect.value = product.productType;
+        otherContainer.style.display = 'none';
+        otherInput.required = false;
+    } else if (product.productType) {
+        // saved productType isn't in standard list, treat as Other
+        if (!standardTypes.includes('Other')) {
+            typeSelect.innerHTML += '<option value="Other">Other</option>';
+        }
+        typeSelect.value = 'Other';
+        otherInput.value = product.productType || '';
+        otherContainer.style.display = 'block';
+        otherInput.required = true;
+    } else {
+        // No saved productType, ensure Other is hidden
+        otherContainer.style.display = 'none';
+        otherInput.required = false;
+    }
+
+    document.getElementById('editProductModalTitle').textContent = `Edit Product: ${product.name}`;
+    document.getElementById('editProductModal').style.display = 'flex';
+
+    // Populate the product line dropdowns with all available lines
+    populateProductLineDropdowns();
+    
+    // Now handle line selection for edit modal
+    if (product.line) {
+        const lineSelect = form.querySelector('#editProductLine');
+        if (lineSelect) {
+            const availableLines = Array.from(lineSelect.options).map(o => o.value).filter(Boolean);
+            if (availableLines.includes(product.line)) {
+                lineSelect.value = product.line;
+                // Hide the "Other" line field since we found the line in the dropdown
+                const editOtherLineContainer = form.querySelector('#editOtherLineContainer');
+                if (editOtherLineContainer) {
+                    editOtherLineContainer.style.display = 'none';
+                }
+            } else {
+                lineSelect.value = 'Other';
+                const editOtherLine = form.querySelector('#editOtherLine');
+                if (editOtherLine) {
+                    editOtherLine.value = product.line;
+                    form.querySelector('#editOtherLineContainer').style.display = 'block';
+                    editOtherLine.required = true;
+                }
+            }
+        }
+    }
+    
+    // Initialize proper case for dynamically created inputs
+    import('./utils.js').then(utils => {
+        utils.initializeProperCaseInputs();
+    }).catch(error => console.error('Error initializing proper case:', error));
+}
+
+export function saveProductChanges(event) {
+    event.preventDefault();
+    const productId = parseInt(document.getElementById('editProductId').value);
+    const product = state.products.find(p => p.id === productId);
+    if (!product) { showCustomAlert("Error", "Could not find product to update."); return; }
+
+    // Update product-level details
+    let productType = document.getElementById('editProductType').value;
+    if (productType === 'Other') {
+        const otherType = document.getElementById('editOtherProductType').value.trim();
+        if (!otherType) {
+            showCustomAlert("Validation Error", "Please specify the 'Other' dosage form.");
+            return;
+        }
+        productType = otherType;
+    }
+
+    // Save edited line (handle 'Other' custom value)
+    let editedLine = document.getElementById('editProductLine').value;
+    if (editedLine === 'Other') {
+        editedLine = document.getElementById('editOtherLine').value.trim();
+        if (!editedLine) { showCustomAlert('Validation Error', 'Please specify the Other Line.'); return; }
+    }
+    product.line = editedLine;
+
+    product.productCode = document.getElementById('editProductCode').value;
+    product.name = document.getElementById('editProductName').value;
+    product.date = new Date(document.getElementById('editProductDate').value).toISOString();
+    product.batchSizeKg = parseFloat(document.getElementById('editBatchSize').value);
+    product.productType = productType;
+    product.isCritical = document.getElementById('editIsCritical').value === 'true';
+    product.criticalReason = product.isCritical ? document.getElementById('editCriticalReason').value : '';
+
+    // Check for duplicate product code (excluding the current product)
+    const existingProduct = state.products.find(p => 
+        p.id !== productId && p.productCode.toLowerCase() === product.productCode.toLowerCase()
+    );
+    if (existingProduct) {
+        showCustomAlert("Validation Error", `Product code "${product.productCode}" already exists. Please use a unique product code.`);
+        return;
+    }
+
+    // Process and append newly added ingredients
+    const newlyAddedIngredients = [];
+    const ingredientRows = document.querySelectorAll('#editIngredientsContainer .ingredient-edit-row');
+    let allValid = true;
+
+    ingredientRows.forEach(row => {
+        if (!allValid) return;
+        const ing = { id: state.nextIngredientId };
+
+        ing.name = row.querySelector('[name="ingredientName"]').value.trim();
+        ing.therapeuticDose = parseFloat(row.querySelector('[name="therapeuticDose"]').value);
+        ing.mdd = parseFloat(row.querySelector('[name="mdd"]').value) * 1000; // Convert g to mg for storage 
+        ing.solubility = row.querySelector('[name="solubility"]').value;
+        ing.cleanability = row.querySelector('[name="cleanability"]').value;
+        const pdeVal = row.querySelector('[name="pde"]').value;
+        const ld50Val = row.querySelector('[name="ld50"]').value;
+        ing.pde = pdeVal ? parseFloat(pdeVal) : null;
+        ing.ld50 = ld50Val ? parseFloat(ld50Val) : null;
+
+        if (!ing.name || isNaN(ing.therapeuticDose) || isNaN(ing.mdd) || !ing.solubility || !ing.cleanability || (ing.pde === null && ing.ld50 === null)) {
+            allValid = false;
+        } else {
+            newlyAddedIngredients.push(ing);
+            state.setNextDetergentIngredientId(state.nextIngredientId+1);
+        }
+    });
+
+    if (!allValid) {
+        showCustomAlert("Validation Error", "Please fill all required fields for each newly added ingredient.");
+        // Decrement counter for failed adds
+        nextIngredientId -= newlyAddedIngredients.length;
+        return;
+    }
+
+    // Append new ingredients to the existing list
+    product.activeIngredients.push(...newlyAddedIngredients);
+
+    saveStateForUndo();
+    fullAppRender();
+    hideModal('editProductModal');
+    showCustomAlert('Success', 'Product updated successfully.');
+
+}
+
+export function showEditIngredientModal(productId, ingredientId) {
+    const product = state.products.find(p => p.id === productId);
+    const ingredient = product?.activeIngredients.find(i => i.id === ingredientId);
+    if (!ingredient) { showCustomAlert("Error", "Could not find ingredient to edit."); return; }
+    const form = document.getElementById('editIngredientForm');
+    form.innerHTML = `<input type="hidden" id="editIngredientProductId" value="${productId}"><input type="hidden" id="editIngredientId" value="${ingredientId}"><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Ingredient Name</label><input type="text" id="editIngredientName" class="w-full px-3 py-2 border rounded-lg" required></div><div><label class="block text-sm font-medium mb-1">TD (mg)</label><input type="number" step="any" id="editTherapeuticDose" class="w-full px-3 py-2 border rounded-lg" min="0" required></div><div><label class="block text-sm font-medium mb-1">MDD (g/day)</label><input type="number" step="any" id="editMdd" class="w-full px-3 py-2 border rounded-lg" min="0" required></div><div><label class="block text-sm font-medium mb-1">Solubility</label><select id="editSolubility" class="w-full px-3 py-2 border rounded-lg"></select></div><div><label class="block text-sm font-medium mb-1">Cleanability</label><select id="editCleanability" class="w-full px-3 py-2 border rounded-lg" required></select></div><div><label class="block text-sm font-medium mb-1">PDE (mg/day)</label><input type="number" step="any" id="editPde" class="w-full px-3 py-2 border rounded-lg" min="0" placeholder="Optional"></div><div><label class="block text-sm font-medium mb-1">LD50 (mg/kg)</label><input type="number" step="any" id="editLd50" class="w-full px-3 py-2 border rounded-lg" min="0" placeholder="Optional"></div></div>`;
+    document.getElementById('editIngredientModalTitle').textContent = `Edit: ${ingredient.name}`;
+    document.getElementById('editIngredientName').value = ingredient.name;
+    document.getElementById('editTherapeuticDose').value = ingredient.therapeuticDose;
+    document.getElementById('editMdd').value = ingredient.mdd / 1000;
+    document.getElementById('editPde').value = ingredient.pde ?? '';
+    document.getElementById('editLd50').value = ingredient.ld50 ?? '';
+    populateDynamicSelectsForElement(form);
+    document.getElementById('editSolubility').value = ingredient.solubility;
+    document.getElementById('editCleanability').value = ingredient.cleanability;
+    document.getElementById('editIngredientModal').style.display = 'flex';
+}
+
+
+export function saveIngredientChanges(event) {
+    event.preventDefault();
+    const productId = parseInt(document.getElementById('editIngredientProductId').value);
+    const ingredientId = parseInt(document.getElementById('editIngredientId').value);
+    const product = state.products.find(p => p.id === productId);
+    const ingredient = product?.activeIngredients.find(i => i.id === ingredientId);
+    if (!ingredient) { showCustomAlert("Error", "Save failed. Could not find original ingredient."); return; }
+    const pdeVal = document.getElementById('editPde').value; const ld50Val = document.getElementById('editLd50').value;
+    ingredient.name = document.getElementById('editIngredientName').value.trim();
+    ingredient.therapeuticDose = parseFloat(document.getElementById('editTherapeuticDose').value);
+    ingredient.mdd = parseFloat(document.getElementById('editMdd').value) * 1000;
+    ingredient.solubility = document.getElementById('editSolubility').value;
+    ingredient.cleanability = document.getElementById('editCleanability').value;
+    ingredient.pde = pdeVal ? parseFloat(pdeVal) : null;
+    ingredient.ld50 = ld50Val ? parseFloat(ld50Val) : null;
+    if (!ingredient.name || isNaN(ingredient.therapeuticDose) || isNaN(ingredient.mdd) || !ingredient.solubility || !ingredient.cleanability || (ingredient.pde === null && ingredient.ld50 === null)) { showCustomAlert("Validation Error", "Please fill all required fields."); return; }
+    saveStateForUndo();
+    hideModal('editIngredientModal');
+    fullAppRender();
+    showCustomAlert("Success", `${ingredient.name} was updated successfully.`);
+
+}
+
+export function deleteProduct(productId) {
+    if (confirm("Are you sure you want to delete this entire product?")) {
+        const newProducts = state.products.filter(product => product.id !== productId);
+        state.setProducts(newProducts);
+        saveStateForUndo();
+        fullAppRender();
+    }
+}
+
+export function deleteIngredient(productId, ingredientId) {
+    const product = state.products.find(p => p.id === productId);
+
+    if (product) {
+        if (product.activeIngredients.length === 1) {
+            showCustomAlert('Cannot Remove', 'A product must have at least one ingredient. To remove this, please delete the entire product.');
+            return;
+        }
+        if (confirm("Are you sure you want to remove this ingredient?")) {
+            product.activeIngredients = product.activeIngredients.filter(ing => ing.id !== ingredientId);
+            saveStateForUndo();
+            fullAppRender();
+        }
+    }
+}
+
+export function populateFilterSelects() {
+    const productTypeOptions = [...new Set(state.products.map(p => p.productType))].sort();
+    populateSelectWithOptions(document.querySelector('.filterColProductType'), null, true, productTypeOptions);
+
+    // Line Filter - FORCE UPDATE with all available lines
+    const lineFilterSelect = document.querySelector('.filterColLine');
+    if (lineFilterSelect) {
+        // Get ALL possible lines from both sources
+        const allProductLines = state.products.map(p => p.line).filter(Boolean);
+        const allMachineLines = state.machines.map(m => m.line).filter(Boolean);
+        const allLines = [...new Set([...allProductLines, ...allMachineLines, 'Solids', 'Semisolid', 'Liquids'])].sort();
+        
+        // FORCE clear and rebuild
+        lineFilterSelect.innerHTML = '<option value="all">All</option>';
+        
+        allLines.forEach(line => {
+            if (line && line !== 'Shared') {
+                lineFilterSelect.innerHTML += `<option value="${line}">${line}</option>`;
+            }
+        });
+        
+        lineFilterSelect.innerHTML += '<option value="Other">Other</option>';
+    }
+
+    // Train No. Filter - Initialize with all train numbers
+    const trainNoSelect = document.querySelector('.filterColTrainNo');
+    if (trainNoSelect) {
+        const trainIds = [...new Set(state.products.map(p => getProductTrainNumber(p))
+            .filter(id => id !== 'N/A'))]
+            .sort((a, b) => a - b);
+        trainNoSelect.innerHTML = '<option value="all">All</option>';
+        trainIds.forEach(id => {
+            trainNoSelect.innerHTML += `<option value="T${id}">T${id}</option>`;
+        });
+    }
+    
+    // Initialize train number options based on current filter values
+    const currentLine = document.querySelector('.filterColLine')?.value || 'all';
+    const currentDosageForm = document.querySelector('.filterColProductType')?.value || 'all';
+    updateTrainNumberOptions(currentLine, currentDosageForm);
+}
+
+// Populate product line dropdowns in add/edit modals
+export function populateProductLineDropdowns() {
+    // Use EXACT same logic as machine line dropdown
+    const productLines = getUniqueProductLines(state.products);
+    const machineLines = [...new Set(state.machines.map(m => m.line).filter(Boolean))];
+    
+    // Combine and deduplicate lines (same as machine dropdown)
+    const allLines = [...new Set([...productLines, ...machineLines])].sort();
+    
+    console.log('=== PRODUCT LINE DROPDOWN DEBUG ===');
+    console.log('Product lines:', productLines);
+    console.log('Machine lines:', machineLines);
+    console.log('All lines:', allLines);
+    
+    // Update add product line dropdown
+    const addLineSelect = document.getElementById('addProductLine');
+    if (addLineSelect) {
+        const currentValue = addLineSelect.value;
+        addLineSelect.innerHTML = '<option value="" disabled selected>Select a Line</option>';
+        
+        // Add all lines except Shared
+        allLines.forEach(line => {
+            if (line !== 'Shared') { // Don't add Shared to product line dropdown
+                addLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
+            }
+        });
+        
+        // Add Other option
+        addLineSelect.innerHTML += '<option value="Other">Other</option>';
+        
+        // Restore selection if still valid
+        if (currentValue && Array.from(addLineSelect.options).some(opt => opt.value === currentValue)) {
+            addLineSelect.value = currentValue;
+        }
+    }
+    
+    // Update edit product line dropdown
+    const editLineSelect = document.getElementById('editProductLine');
+    if (editLineSelect) {
+        const currentValue = editLineSelect.value;
+        editLineSelect.innerHTML = '<option value="" disabled selected>Select a Line</option>';
+        
+        // Add all lines except Shared
+        allLines.forEach(line => {
+            if (line !== 'Shared') { // Don't add Shared to product line dropdown
+                editLineSelect.innerHTML += `<option value="${line}">${line}</option>`;
+            }
+        });
+        
+        // Add Other option
+        editLineSelect.innerHTML += '<option value="Other">Other</option>';
+        
+        // Restore selection if still valid
+        if (currentValue && Array.from(editLineSelect.options).some(opt => opt.value === currentValue)) {
+            editLineSelect.value = currentValue;
+        }
+    }
+}
+
+export function resetFilters(tabId) {
+    const tabContainer = document.getElementById(tabId);
+    tabContainer.querySelectorAll('.filter-row input[type="text"], .filter-row input[type="number"]').forEach(input => input.value = '');
+    tabContainer.querySelectorAll('.filter-row select').forEach(select => select.value = 'all');
+    
+    // THE FIX IS HERE:
+    state.sortState.key = 'rpn';
+    state.sortState.direction = 'desc';
+
+    handleSearchAndFilter(tabId); 
+}
+
+export function addNewProduct(event) {
+    event.preventDefault(); 
+    const productCode = document.getElementById('addProductCode').value.trim(); 
+    const productName = document.getElementById('addProductName').value.trim(); 
+    const batchSize = parseFloat(document.getElementById('addBatchSize').value); 
+    const date = new Date(document.getElementById('addProductDate').value).toISOString(); 
+    
+    let productType = document.getElementById('addProductType').value;
+    let productLine = document.getElementById('addProductLine').value;
+    if (productLine === 'Other') {
+        const otherLineVal = document.getElementById('addOtherLine').value.trim();
+        if (!otherLineVal) { showCustomAlert('Validation Error', 'Please specify the Other Line.'); return; }
+        productLine = otherLineVal;
+    }
+    if (productType === 'Other') {
+        const otherType = document.getElementById('addOtherProductType').value.trim();
+        if (!otherType) {
+            showCustomAlert("Validation Error", "Please specify the 'Other' dosage form or choose a different option.");
+            return;
+        }
+        productType = otherType;
+    }
+    
+    if (!productCode || !productName || !date || isNaN(batchSize) || batchSize <= 0 || !productType) { 
+        showCustomAlert("Validation Error", "Please fill all required product fields, including Dosage Form."); return; 
+    }
+    
+    // Check for duplicate product code
+    const existingProduct = state.products.find(p => p.productCode.toLowerCase() === productCode.toLowerCase());
+    if (existingProduct) {
+        showCustomAlert("Validation Error", `Product code "${productCode}" already exists. Please use a unique product code.`);
+        return;
+    } 
+    
+    const ingredientDivs = document.querySelectorAll('#ingredientsContainer > div'); 
+    const activeIngredients = []; let allValid = true; 
+    ingredientDivs.forEach((div) => { 
+        if (!allValid) return; 
+        const ing = { id: state.nextIngredientId }; 
+        state.setNextIngredientId(state.nextIngredientId + 1);
+        ing.name = div.querySelector('[name="ingredientName"]').value.trim(); 
+        ing.therapeuticDose = parseFloat(div.querySelector('[name="therapeuticDose"]').value); 
+        ing.mdd = parseFloat(div.querySelector('[name="mdd"]').value) * 1000;
+        ing.solubility = div.querySelector('[name="solubility"]').value; 
+        ing.cleanability = div.querySelector('[name="cleanability"]').value; 
+        const pdeVal = div.querySelector('[name="pde"]').value; 
+        const ld50Val = div.querySelector('[name="ld50"]').value; 
+        ing.pde = pdeVal ? parseFloat(pdeVal) : null; 
+        ing.ld50 = ld50Val ? parseFloat(ld50Val) : null; 
+        if (!ing.name || isNaN(ing.therapeuticDose) || isNaN(ing.mdd) || !ing.solubility || !ing.cleanability || (ing.pde === null && ing.ld50 === null)) { allValid = false; } else { activeIngredients.push(ing); } 
+    }); 
+    if (!allValid) { 
+        showCustomAlert("Validation Error", "Please fill all required fields for each ingredient."); 
+        state.setNextIngredientId(state.nextIngredientId - activeIngredients.length); // Roll back ID increments
+        return; 
+    } 
+    const newProduct = { id: state.nextProductId, productCode: productCode, name: productName, batchSizeKg: batchSize, date: date, productType: productType, line: productLine, machineIds: [], activeIngredients: activeIngredients, isCritical: false, criticalReason: '' };
+    state.setNextProductId(state.nextProductId + 1);
+    
+    const newProducts = [...state.products, newProduct];
+    state.setProducts(newProducts);
+    saveStateForUndo(); 
+    fullAppRender(); 
+    hideModal('addProductModal'); 
+}
+window.updateDosageFormOptions = function(mode) {
+    let line = document.getElementById(mode === 'add' ? 'addProductLine' : 'editProductLine').value;
+    
+    // Only treat as 'Other' if user explicitly selected 'Other', not if they selected an existing custom line
+    if (line === 'Other') {
+        // show the Other Line input
+        try {
+            if (mode === 'add') {
+                document.getElementById('addOtherLineContainer').style.display = 'block';
+                document.getElementById('addOtherLine').required = true;
+            } else {
+                document.getElementById('editOtherLineContainer').style.display = 'block';
+                document.getElementById('editOtherLine').required = true;
+            }
+        } catch (e) { /* ignore DOM errors */ }
+    } else {
+        // Hide the Other Line input for existing lines (including custom ones)
+        try {
+            if (mode === 'add') {
+                document.getElementById('addOtherLineContainer').style.display = 'none';
+                document.getElementById('addOtherLine').required = false;
+            } else {
+                document.getElementById('editOtherLineContainer').style.display = 'none';
+                document.getElementById('editOtherLine').required = false;
+            }
+        } catch (e) { /* ignore DOM errors */ }
+    }
+  const formSelect = document.getElementById(mode === 'add' ? 'addProductType' : 'editProductType');
+  let options = [];
+  if (line === 'Solids') {
+    options = ['Tablets', 'Capsules', 'Powder', 'Other'];
+  } else if (line === 'Semisolid') {
+    options = ['Ointment', 'Cream', 'Gel', 'Other'];
+  } else if (line === 'Liquids') {
+    options = ['Syrup', 'Solution', 'Suspension', 'Other'];
+  } else if (line === 'Other') {
+    options = ['Other'];
+  } else {
+    // For custom/existing lines that aren't standard, get existing dosage forms from that line
+    const existingDosageForms = [...new Set(
+      state.products
+        .filter(p => p.line === line)
+        .map(p => p.productType)
+        .filter(Boolean)
+    )].sort();
+    
+    // Include existing forms and always include 'Other' for flexibility
+    options = [...existingDosageForms];
+    if (!options.includes('Other')) {
+      options.push('Other');
+    }
+    
+    // If no existing forms, provide generic options
+    if (existingDosageForms.length === 0) {
+      options = ['Tablets', 'Capsules', 'Powder', 'Ointment', 'Cream', 'Gel', 'Syrup', 'Solution', 'Suspension', 'Other'];
+    }
+  }
+  formSelect.innerHTML = '<option value=\"\" disabled selected>Select a form...</option>' +
+    options.map(opt => `<option value=\"${opt}\">${opt}</option>`).join('');
+};
+
+// Function to update safety factor display when dosage form changes
+window.updateSafetyFactorDisplay = function(mode, dosageForm) {
+    if (!dosageForm || dosageForm === '') {
+        // Hide display if no dosage form selected
+        const displayDiv = document.getElementById(mode === 'add' ? 'addSafetyFactorDisplay' : 'editSafetyFactorDisplay');
+        if (displayDiv) {
+            displayDiv.style.display = 'none';
+        }
+        return;
+    }
+    
+    // Get safety factor config for the dosage form
+    const sfConfig = getSafetyFactorForDosageForm(dosageForm);
+    
+    // Update display elements
+    const routeDisplay = document.getElementById(mode === 'add' ? 'addRouteDisplay' : 'editRouteDisplay');
+    const rangeDisplay = document.getElementById(mode === 'add' ? 'addSafetyFactorRangeDisplay' : 'editSafetyFactorRangeDisplay');
+    const riskLevelDisplay = document.getElementById(mode === 'add' ? 'addRiskLevelDisplay' : 'editRiskLevelDisplay');
+    const displayDiv = document.getElementById(mode === 'add' ? 'addSafetyFactorDisplay' : 'editSafetyFactorDisplay');
+    
+    if (routeDisplay && rangeDisplay && riskLevelDisplay && displayDiv && sfConfig) {
+        routeDisplay.textContent = sfConfig.route || '-';
+        rangeDisplay.textContent = `${sfConfig.min.toLocaleString()} - ${sfConfig.max.toLocaleString()}`;
+        riskLevelDisplay.textContent = sfConfig.riskLevel || '-';
+        displayDiv.style.display = 'block';
+    }
+};

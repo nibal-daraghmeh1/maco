@@ -1,1 +1,266 @@
-(function(_0x29a076,_0x2da7f9){const _0x319c05=a12_0x25c3,_0x5eb476=_0x29a076();while(!![]){try{const _0x64b81c=parseInt(_0x319c05(0x139))/0x1*(parseInt(_0x319c05(0xb1))/0x2)+-parseInt(_0x319c05(0xd0))/0x3+parseInt(_0x319c05(0xb0))/0x4*(parseInt(_0x319c05(0x97))/0x5)+parseInt(_0x319c05(0xac))/0x6+parseInt(_0x319c05(0xa4))/0x7*(parseInt(_0x319c05(0xc2))/0x8)+parseInt(_0x319c05(0xf6))/0x9+parseInt(_0x319c05(0xe0))/0xa*(-parseInt(_0x319c05(0x102))/0xb);if(_0x64b81c===_0x2da7f9)break;else _0x5eb476['push'](_0x5eb476['shift']());}catch(_0x81595b){_0x5eb476['push'](_0x5eb476['shift']());}}}(a12_0x3103,0x4f78c));import*as a12_0x5f0479 from'./state.js';import{fullAppRender as a12_0x3f54d9}from'./app.js';import{showLoader as a12_0x517cf3,hideLoader as a12_0x49a228,showCustomAlert as a12_0x1ce282,saveStateForUndo as a12_0x505b20}from'./ui.js';function a12_0x25c3(_0x45b500,_0x4c40a9){const _0x3103d6=a12_0x3103();return a12_0x25c3=function(_0x25c39b,_0x3163c4){_0x25c39b=_0x25c39b-0x87;let _0x246692=_0x3103d6[_0x25c39b];return _0x246692;},a12_0x25c3(_0x45b500,_0x4c40a9);}function a12_0x3103(){const _0x1f751b=['scoringForm','nAHOu','appendChild','BRQMH','ckzhs','bEGvE','vSQtA','parse','innerHTML','DEXOP','JGNeP','</span>','<input\x20type=\x22text\x22\x20value=\x22','1784ThOwLI','type','exactMatch','asnSH','find','rating','\x20Sample','gridTemplateColumns','hQPrI','hCUoh','xBrwm','space-y-6','kCNQy','dCgpH','1890210TsCZyc','space-y-2','text','vauCN','bg-white\x20dark:bg-gray-800\x20rounded-lg\x20p-4\x20shadow-sm\x20border\x20border-gray-200\x20dark:border-gray-700','Changes\x20saved\x20successfully.','OrNDx','JtdBN','editScoringBtn','rpnMin','pt-2\x20no-print','target','UqMUS','score','Clfky','SuKdw','1070WjLRlT','Save\x20All\x20Changes','Rating','HgfXj','[data-field=\x22lowerBound\x22]','samples','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-2\x20whitespace-nowrap\x20text-sm\x22>','dXQwA','px-4\x20py-2\x20text-sm\x20rounded-lg\x20bg-gray-200\x20dark:bg-gray-700\x20text-gray-800\x20dark:text-gray-200','range','\x22\x20placeholder=\x22Max\x20RPN\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22rpnMax\x22\x20min=\x220\x22><input\x20type=\x22number\x22\x20value=\x22','</tbody></table></div>','<span\x20class=\x22samples-badge\x22>','qknBV','moBtz','[data-field=\x22rpnMax\x22]','qWCgA','button','className','ZHTbw','TSVxT','iPZyc','3519936ioqhWa','JyeYf','nWppI','CvUJZ','BsmHe','zFHwG','Error','\x22\x20placeholder=\x22Min\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22lowerBound\x22\x20min=\x220\x22><input\x20type=\x22number\x22\x20step=\x22any\x22\x20value=\x22','<span\x20class=\x22rpn-rating-badge\x20','max','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22px-3\x20py-2\x20whitespace-nowrap\x20text-sm\x22>','setScoringCriteria','89903FzdUPk','grid\x20gap-2\x20items-center\x20p-2\x20border\x20rounded-md','</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22overflow-hidden\x20rounded-md\x20border\x20border-gray-300\x20dark:border-gray-600\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22min-w-full\x20divide-y\x20divide-gray-300\x20dark:divide-gray-600\x22>','<button\x20type=\x22button\x22\x20onclick=\x22addCriterionToScoringTab(\x27','rpn_threshold','greater_exclusive','[data-field=\x22maxRpn\x22]','1fr\x201fr\x201fr\x201fr\x200.5fr','kUaiv','div','[data-field=\x22samples\x22]','[data-field=\x22upperBound\x22]','ZcdOw','between_inclusive_both','\x22\x20placeholder=\x22Max\x20RPN\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22maxRpn\x22\x20min=\x220\x22><input\x20type=\x22text\x22\x20value=\x22','zDAyV','0-10','lowerBound','getElementById','vDTOw','<h4\x20class=\x22text-lg\x20font-semibold\x20mb-3\x22>','upperBound','createElement','fields-container-','exkqx','VJyJG','\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22score\x22\x20min=\x220\x22>','MCKRe','</h4>','rpn_samples','querySelector','rangeDescription','Success','borderColor','<input\x20type=\x22number\x22\x20value=\x22','forEach','buGdv','yxQRk','gYtPp','score-','ruthx','mRJza','View','hKtin','New\x20Criterion','scoringInEditMode','2fr\x201fr\x201fr\x201fr\x200.5fr','NnjwO','style','<span\x20class=\x22score-badge\x20','ZBFit','Failed\x20to\x20save\x20changes.\x20Please\x20try\x20again.','deaAw','Number\x20of\x20Samples','[data-field=\x22text\x22]','5DydQVH','Dpzgm','</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20scope=\x22col\x22\x20class=\x22px-3\x20py-2\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>','DyMGq','form','pbXiO','KVvnv','var(--border-color)','YaWxk','[data-field=\x22minRpn\x22]','NkXYj','defaultScore','<button\x20type=\x22button\x22\x20onclick=\x22this.parentElement.remove()\x22\x20class=\x22text-red-500\x20hover:text-red-700\x20p-1\x22\x20title=\x22Remove\x22><svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20width=\x2216\x22\x20height=\x2216\x22\x20fill=\x22currentColor\x22\x20viewBox=\x220\x200\x2016\x2016\x22><path\x20d=\x22M2.146\x202.854a.5.5\x200\x201\x201\x20.708-.708L8\x207.293l5.146-5.147a.5.5\x200\x200\x201\x20.708.708L8.707\x208l5.147\x205.146a.5.5\x200\x200\x201-.708.708L8\x208.707l-5.146\x205.147a.5.5\x200\x200\x201-.708-.708L7.293\x208\x202.146\x202.854Z\x22/></svg></button>','\x20-\x20','OqMCX','\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22text\x22><input\x20type=\x22number\x22\x20step=\x22any\x22\x20value=\x22','min','HsbEV','15vkVcKl','uLRwh','textContent','NEW','jqZit','w-full\x20mt-6\x20py-2.5\x20text-white\x20rounded-lg\x20no-print\x20btn-gradient','EXFnO','between_exclusive_lower_inclusive_upper','\x22\x20placeholder=\x22Samples\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22samples\x22\x20min=\x221\x22><span\x20class=\x22text-xs\x20self-center\x22\x20style=\x22color:var(--text-secondary);\x22>','ylGkX','kcsyC','[data-field=\x22ratingText\x22]','scoringSystemContainer','8771AGsOTL','disabled','scoringCriteria','value','\x20RPN\x20=\x20','\x27)\x22\x20class=\x22text-sm\x20px-3\x20py-1\x20rounded-md\x20text-white\x20btn-gradient\x22>+\x20Add\x20Criterion</button>','oMQjI','uysCv','3159516cablfs','comparison','rpnMax','criteria','14924EmErwu','248718rJdxJv','Infinity','hjYMQ','RVHDV'];a12_0x3103=function(){return _0x1f751b;};return a12_0x3103();}import{getRpnRatingClass as a12_0x47ae97}from'./utils.js';export function toggleScoringEditMode(_0x20088d){const _0xf778fc=a12_0x25c3,_0x222696={'nAHOu':_0xf778fc(0xd8),'iPZyc':_0xf778fc(0x12c),'ZBFit':_0xf778fc(0xe8),'moBtz':'Edit','DEXOP':function(_0xfa33){return _0xfa33();}};a12_0x5f0479['setScoringInEditMode'](_0x20088d);const _0x3e36ea=document[_0xf778fc(0x114)](_0x222696[_0xf778fc(0xb6)]);_0x20088d?(_0x3e36ea['textContent']=_0x222696[_0xf778fc(0xf5)],_0x3e36ea[_0xf778fc(0xf2)]=_0x222696[_0xf778fc(0x134)]):(_0x3e36ea[_0xf778fc(0x99)]=_0x222696[_0xf778fc(0xee)],_0x3e36ea[_0xf778fc(0xf2)]='px-4\x20py-2\x20text-sm\x20rounded-lg\x20btn-gradient'),_0x222696[_0xf778fc(0xbe)](renderScoringSystem);}export function renderScoringSystem(){const _0x430a54=a12_0x25c3,_0x32923={'uysCv':function(_0x112f3a,_0x341f21){return _0x112f3a(_0x341f21);},'SuKdw':_0x430a54(0xa3),'nWppI':_0x430a54(0xb5),'hCUoh':_0x430a54(0xcd),'JyeYf':_0x430a54(0x10b),'qaCpd':_0x430a54(0xd1),'JGNeP':_0x430a54(0xf1),'uLRwh':_0x430a54(0x9c),'jqBtr':'grid\x20grid-cols-1\x20md:grid-cols-2\x20gap-6','ckzhs':_0x430a54(0xd4),'exkqx':function(_0x491112,_0x1aead0){return _0x491112===_0x1aead0;},'hKtin':_0x430a54(0x106),'UqMUS':function(_0x3fb121,_0x5c9c02){return _0x3fb121===_0x5c9c02;},'lCoPO':'Range\x20Description','NnjwO':'RPN\x20Range','vDrfY':_0x430a54(0x137),'xBrwm':'Score','ExFmT':_0x430a54(0xeb)},_0x11153c=document[_0x430a54(0x114)](_0x32923[_0x430a54(0xdf)]);if(_0x11153c[_0x430a54(0xbd)]='',a12_0x5f0479[_0x430a54(0x12f)]){const _0x23d3ff=document[_0x430a54(0x118)](_0x430a54(0x89));_0x23d3ff['id']=_0x32923[_0x430a54(0xf8)],_0x23d3ff[_0x430a54(0xf2)]=_0x32923[_0x430a54(0xcb)];for(const _0x2e6e44 in a12_0x5f0479[_0x430a54(0xa6)]){const _0x14e2fa=a12_0x5f0479[_0x430a54(0xa6)][_0x2e6e44],_0x55bfcb=document[_0x430a54(0x118)](_0x32923[_0x430a54(0xf7)]);_0x55bfcb[_0x430a54(0xbd)]=_0x430a54(0x116)+_0x14e2fa['title']+_0x430a54(0x11e);const _0x45ae5d=document[_0x430a54(0x118)](_0x32923['JyeYf']);_0x45ae5d['id']=_0x430a54(0x119)+_0x2e6e44,_0x45ae5d[_0x430a54(0xf2)]=_0x32923['qaCpd'],_0x14e2fa['criteria']['forEach'](_0x4fc8d=>_0x45ae5d[_0x430a54(0xb7)](s(_0x2e6e44,_0x4fc8d))),_0x55bfcb[_0x430a54(0xb7)](_0x45ae5d);const _0x330642=document[_0x430a54(0x118)]('div');_0x330642['className']=_0x430a54(0xda),_0x330642[_0x430a54(0xbd)]=_0x430a54(0x105)+_0x2e6e44+_0x430a54(0xa9),_0x55bfcb[_0x430a54(0xb7)](_0x330642),_0x23d3ff[_0x430a54(0xb7)](_0x55bfcb);}_0x11153c['appendChild'](_0x23d3ff);const _0x411f8d=document[_0x430a54(0x118)](_0x32923[_0x430a54(0xbf)]);_0x411f8d['onclick']=_0x2f792b=>saveScoringCriteria(_0x2f792b),_0x411f8d['className']=_0x32923[_0x430a54(0x98)],_0x411f8d['textContent']=_0x430a54(0xe1),_0x11153c['appendChild'](_0x411f8d);}else{const _0x30175d=document[_0x430a54(0x118)](_0x32923['JyeYf']);_0x30175d[_0x430a54(0xf2)]=_0x32923['jqBtr'];for(const _0x899a7a in a12_0x5f0479[_0x430a54(0xa6)]){const _0x524260=a12_0x5f0479[_0x430a54(0xa6)][_0x899a7a],_0x3c217a=document[_0x430a54(0x118)](_0x32923[_0x430a54(0xf7)]);_0x3c217a['className']=_0x32923[_0x430a54(0xb9)];let _0x401be2='<h4\x20class=\x22text-lg\x20font-semibold\x20mb-3\x22\x20style=\x22color:\x20var(--text-primary);\x22>'+_0x524260['title']+_0x430a54(0x104);const _0x1dfa4c=_0x32923[_0x430a54(0x11a)](_0x32923[_0x430a54(0x12d)],_0x524260[_0x430a54(0xc3)]),_0x5644e7=_0x32923[_0x430a54(0xdc)](_0x430a54(0x11f),_0x524260['type']);_0x401be2+='<thead\x20class=\x22bg-gray-50\x20dark:bg-gray-700/50\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20scope=\x22col\x22\x20class=\x22px-3\x20py-2\x20text-left\x20text-sm\x20font-semibold\x20uppercase\x20tracking-wider\x22\x20style=\x22color:\x20var(--text-secondary);\x22>'+(_0x1dfa4c?_0x32923['lCoPO']:_0x5644e7?_0x32923[_0x430a54(0x131)]:'Criteria')+_0x430a54(0x87)+(_0x1dfa4c?_0x430a54(0xe2):_0x5644e7?_0x32923['vDrfY']:_0x32923[_0x430a54(0xcc)])+'</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody\x20class=\x22divide-y\x20divide-gray-200\x20dark:divide-gray-600\x22\x20style=\x22background-color:\x20var(--bg-secondary);\x22>',_0x524260['criteria'][_0x430a54(0x125)](_0x43e260=>{const _0x277434=_0x430a54;let _0x33890f,_0x177dd5;if(_0x1dfa4c)_0x33890f=_0x43e260[_0x277434(0x121)],_0x177dd5=_0x277434(0xfe)+_0x32923[_0x277434(0xab)](a12_0x47ae97,_0x43e260[_0x277434(0xc7)])+'\x22>'+_0x43e260['rating']+_0x277434(0xc0);else{if(_0x5644e7)_0x33890f=_0x43e260[_0x277434(0xd9)]+'-'+_0x43e260['rpnMax'],_0x177dd5=_0x277434(0xec)+_0x43e260[_0x277434(0xe5)]+'</span>';else _0x33890f=_0x43e260[_0x277434(0xd2)],_0x177dd5=_0x277434(0x133)+(_0x277434(0x129)+_0x43e260[_0x277434(0xdd)])+'\x22>'+_0x43e260[_0x277434(0xdd)]+_0x277434(0xc0);}_0x401be2+=_0x277434(0xe6)+_0x33890f+_0x277434(0x100)+_0x177dd5+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>';}),_0x401be2+=_0x32923['ExFmT'],_0x3c217a[_0x430a54(0xbd)]=_0x401be2,_0x30175d[_0x430a54(0xb7)](_0x3c217a);}_0x11153c[_0x430a54(0xb7)](_0x30175d);}}function s(_0x34886b,_0x9aa19a){const _0x3d7d78=a12_0x25c3,_0x143359={'fEjFD':_0x3d7d78(0x10b),'rPVHQ':_0x3d7d78(0x103),'YWXlx':_0x3d7d78(0x8c),'oMQjI':function(_0x244fc8,_0x363301){return _0x244fc8===_0x363301;},'EXFnO':_0x3d7d78(0xc4),'ylGkX':'3fr\x201fr\x200.5fr','RVHDV':_0x3d7d78(0xe9),'hQPrI':_0x3d7d78(0x130),'zDAyV':_0x3d7d78(0x109),'pbXiO':function(_0x4cea4b,_0x540a73){return _0x4cea4b===_0x540a73;},'vSQtA':function(_0x3f9b29,_0x12be57){return _0x3f9b29/_0x12be57;},'GDOqi':_0x3d7d78(0x11f)},_0x1a9a95=document[_0x3d7d78(0x118)](_0x143359['fEjFD']);_0x1a9a95[_0x3d7d78(0xf2)]=_0x143359['rPVHQ'],_0x1a9a95['style'][_0x3d7d78(0x123)]=_0x143359['YWXlx'];const _0x53e3ca=a12_0x5f0479['scoringCriteria'][_0x34886b][_0x3d7d78(0xc3)];if(_0x143359[_0x3d7d78(0xaa)](_0x143359[_0x3d7d78(0x9d)],_0x53e3ca))_0x1a9a95[_0x3d7d78(0x132)][_0x3d7d78(0xc9)]=_0x143359[_0x3d7d78(0xa0)],_0x1a9a95[_0x3d7d78(0xbd)]=_0x3d7d78(0xc1)+_0x9aa19a[_0x3d7d78(0xd2)]+'\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22text\x22><input\x20type=\x22number\x22\x20value=\x22'+_0x9aa19a[_0x3d7d78(0xdd)]+_0x3d7d78(0x11c);else{if(_0x143359[_0x3d7d78(0xb4)]===_0x53e3ca)_0x1a9a95[_0x3d7d78(0x132)][_0x3d7d78(0xc9)]=_0x143359[_0x3d7d78(0xca)],_0x1a9a95['innerHTML']=_0x3d7d78(0xc1)+_0x9aa19a[_0x3d7d78(0xd2)]+_0x3d7d78(0x94)+(_0x9aa19a['lowerBound']??'')+_0x3d7d78(0xfd)+(_0x9aa19a['upperBound']??'')+'\x22\x20placeholder=\x22Max\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22upperBound\x22\x20min=\x220\x22><input\x20type=\x22number\x22\x20value=\x22'+_0x9aa19a[_0x3d7d78(0xdd)]+_0x3d7d78(0x11c);else{if(_0x3d7d78(0x106)===_0x53e3ca){_0x1a9a95[_0x3d7d78(0x132)][_0x3d7d78(0xc9)]=_0x143359[_0x3d7d78(0x111)];const _0x9d82c9=_0x143359[_0x3d7d78(0x8a)](_0x9aa19a[_0x3d7d78(0xff)],_0x143359[_0x3d7d78(0xbb)](0x1,0x0))?'':_0x9aa19a[_0x3d7d78(0xff)];_0x1a9a95[_0x3d7d78(0xbd)]=_0x3d7d78(0x124)+_0x9aa19a[_0x3d7d78(0x95)]+'\x22\x20placeholder=\x22Min\x20RPN\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22minRpn\x22\x20min=\x220\x22><input\x20type=\x22number\x22\x20value=\x22'+_0x9d82c9+_0x3d7d78(0x110)+_0x9aa19a[_0x3d7d78(0xc7)]+'\x22\x20placeholder=\x22Rating\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22ratingText\x22><span\x20class=\x22text-xs\x20self-center\x22\x20style=\x22color:var(--text-secondary);\x22>'+_0x9aa19a[_0x3d7d78(0x121)]+_0x3d7d78(0xc0);}else _0x143359['GDOqi']===_0x53e3ca&&(_0x1a9a95['style']['gridTemplateColumns']=_0x143359[_0x3d7d78(0x111)],_0x1a9a95['innerHTML']=_0x3d7d78(0x124)+_0x9aa19a[_0x3d7d78(0xd9)]+'\x22\x20placeholder=\x22Min\x20RPN\x22\x20class=\x22w-full\x20px-2\x20py-1\x20border\x20rounded-md\x20text-sm\x22\x20data-field=\x22rpnMin\x22\x20min=\x220\x22><input\x20type=\x22number\x22\x20value=\x22'+_0x9aa19a['rpnMax']+_0x3d7d78(0xea)+_0x9aa19a[_0x3d7d78(0xe5)]+_0x3d7d78(0x9f)+_0x9aa19a[_0x3d7d78(0xd2)]+_0x3d7d78(0xc0));}}return _0x1a9a95['innerHTML']+=_0x3d7d78(0x91),_0x1a9a95;}export function addCriterionToScoringTab(_0x579c26){const _0x35ccef=a12_0x25c3,_0x487a9b={'vDTOw':function(_0x2c2ed3,_0x57e339){return _0x2c2ed3===_0x57e339;},'OrNDx':_0x35ccef(0x106),'RHcZh':_0x35ccef(0x9a),'deaAw':_0x35ccef(0x11f),'VJyJG':'New\x20RPN\x20Range\x20=\x20New\x20Samples','buGdv':_0x35ccef(0x12e),'ZHTbw':'range','kcsyC':_0x35ccef(0x10f),'ZcdOw':function(_0x2a1557,_0x2a1b36,_0x3f9492){return _0x2a1557(_0x2a1b36,_0x3f9492);}},_0x42d0d7=document[_0x35ccef(0x114)](_0x35ccef(0x119)+_0x579c26),_0x1c6daf=a12_0x5f0479[_0x35ccef(0xa6)][_0x579c26];let _0x28ccb7;_0x487a9b['vDTOw'](_0x487a9b[_0x35ccef(0xd6)],_0x1c6daf['type'])?_0x28ccb7={'min':0x0,'max':0xa,'rating':_0x487a9b['RHcZh'],'rangeDescription':_0x35ccef(0x112)}:_0x487a9b[_0x35ccef(0x115)](_0x487a9b[_0x35ccef(0x136)],_0x1c6daf[_0x35ccef(0xc3)])?_0x28ccb7={'text':_0x487a9b[_0x35ccef(0x11b)],'samples':0x1,'rpnMin':0x0,'rpnMax':0xa}:(_0x28ccb7={..._0x1c6daf[_0x35ccef(0xaf)][0x0]||{'text':'','score':0x0},'text':_0x487a9b[_0x35ccef(0x126)],'score':_0x1c6daf[_0x35ccef(0x90)]||0x1},_0x487a9b[_0x35ccef(0x115)](_0x487a9b[_0x35ccef(0xf3)],_0x1c6daf[_0x35ccef(0xc3)])&&(delete _0x28ccb7['lowerBound'],delete _0x28ccb7[_0x35ccef(0x117)],_0x28ccb7[_0x35ccef(0xad)]=_0x1c6daf[_0x35ccef(0xaf)][0x0]?.['comparison']||_0x487a9b[_0x35ccef(0xa1)])),_0x42d0d7[_0x35ccef(0xb7)](_0x487a9b[_0x35ccef(0x10e)](s,_0x579c26,_0x28ccb7));}export function saveScoringCriteria(_0x603674){const _0x31f767=a12_0x25c3,_0x371052={'gYtPp':function(_0x5b2f43,_0x1c85b3){return _0x5b2f43===_0x1c85b3;},'HgfXj':_0x31f767(0xe9),'kUaiv':_0x31f767(0x138),'CvUJZ':function(_0x696bc0,_0x3a980f){return _0x696bc0(_0x3a980f);},'kCNQy':'[data-field=\x22score\x22]','yxQRk':function(_0xe3491e,_0x5a8724){return _0xe3491e===_0x5a8724;},'qWCgA':_0x31f767(0xe4),'KVvnv':_0x31f767(0x10d),'Clfky':function(_0x58c733,_0x1831f1){return _0x58c733(_0x1831f1);},'qknBV':function(_0x1c48e8,_0x2eeb98){return _0x1c48e8(_0x2eeb98);},'ruthx':function(_0x5544b4,_0x4169a8){return _0x5544b4!==_0x4169a8;},'Dpzgm':function(_0x3e618a,_0x2bf71a){return _0x3e618a>=_0x2bf71a;},'dXQwA':function(_0x577256,_0x3c5cbf){return _0x577256===_0x3c5cbf;},'JtdBN':function(_0x2a2601,_0x4b4afd){return _0x2a2601!==_0x4b4afd;},'dCgpH':'less_inclusive','mTFMN':function(_0x4b529b,_0x10c6c7){return _0x4b529b===_0x10c6c7;},'mRJza':_0x31f767(0x8e),'JxvzL':_0x31f767(0x108),'MCKRe':function(_0x2ccf4a,_0x4ec817){return _0x2ccf4a===_0x4ec817;},'WUYHe':function(_0xec399c,_0x24ebab){return _0xec399c/_0x24ebab;},'zFHwG':_0x31f767(0xa2),'asnSH':function(_0xdf8fa2,_0x36d447){return _0xdf8fa2>=_0x36d447;},'YaWxk':function(_0x3d2f84,_0x1599be){return _0x3d2f84||_0x1599be;},'BRQMH':_0x31f767(0xb2),'ztFqX':'rpn_samples','vauCN':_0x31f767(0xef),'dsaxX':_0x31f767(0x10c),'tTQxQ':function(_0x2543ba,_0x59c202){return _0x2543ba(_0x59c202);},'TSVxT':function(_0x4fe9fd,_0x2d39a4){return _0x4fe9fd(_0x2d39a4);},'kwaIX':function(_0x1c48b0,_0x34c786){return _0x1c48b0<_0x34c786;},'DGSRZ':function(_0x311317,_0xefdd93){return _0x311317>_0xefdd93;},'DyMGq':function(_0x4be58e){return _0x4be58e();},'BsmHe':function(_0x553b96){return _0x553b96();},'bEGvE':_0x31f767(0xd5),'KOJiw':function(_0x50afad,_0x402f0d,_0x4770be){return _0x50afad(_0x402f0d,_0x4770be);},'NkXYj':'Validation\x20Error','HsbEV':'Please\x20check\x20your\x20input.\x20Some\x20fields\x20may\x20be\x20invalid.','hduPN':'Error\x20saving\x20scoring\x20criteria:','OqMCX':function(_0x2d2953,_0x4b9905,_0x4291d0){return _0x2d2953(_0x4b9905,_0x4291d0);},'hjYMQ':_0x31f767(0xfc),'jqZit':_0x31f767(0x135)},_0x25c75d=_0x603674[_0x31f767(0xdb)];_0x371052[_0x31f767(0x88)](a12_0x517cf3),_0x25c75d[_0x31f767(0xa5)]=!0x0;try{const _0x1d9e92=JSON[_0x31f767(0xbc)](JSON['stringify'](a12_0x5f0479['scoringCriteria']));let _0x3eb828=!0x0;for(const _0x4b6c23 in _0x1d9e92){if(!_0x3eb828)break;const _0x343172=_0x1d9e92[_0x4b6c23],_0x2e2411=a12_0x5f0479[_0x31f767(0xa6)][_0x4b6c23][_0x31f767(0xc3)];_0x343172['criteria']=[];const _0x75b459=document[_0x31f767(0x114)]('fields-container-'+_0x4b6c23);_0x75b459&&Array['from'](_0x75b459['children'])['forEach'](_0x43628c=>{const _0x23c782=_0x31f767;if(!_0x3eb828)return;const _0x29380e={};if(_0x23c782(0xc4)===_0x2e2411||_0x371052[_0x23c782(0x128)](_0x371052['HgfXj'],_0x2e2411)){if(_0x29380e[_0x23c782(0xd2)]=_0x43628c[_0x23c782(0x120)](_0x371052[_0x23c782(0x10a)])[_0x23c782(0xa7)],_0x29380e[_0x23c782(0xdd)]=_0x371052['CvUJZ'](parseInt,_0x43628c['querySelector'](_0x371052[_0x23c782(0xce)])[_0x23c782(0xa7)]),!_0x29380e[_0x23c782(0xd2)]||isNaN(_0x29380e[_0x23c782(0xdd)]))return void(_0x3eb828=!0x1);if(_0x371052[_0x23c782(0x127)](_0x371052[_0x23c782(0xe3)],_0x2e2411)){const _0x2496ff=_0x43628c[_0x23c782(0x120)](_0x371052[_0x23c782(0xf0)])['value'],_0x56d3ed=_0x43628c[_0x23c782(0x120)](_0x371052[_0x23c782(0x8b)])[_0x23c782(0xa7)];if(_0x29380e[_0x23c782(0x113)]=_0x2496ff?_0x371052[_0x23c782(0xf9)](parseFloat,_0x2496ff):void 0x0,_0x29380e[_0x23c782(0x117)]=_0x56d3ed?_0x371052[_0x23c782(0xde)](parseFloat,_0x56d3ed):void 0x0,_0x2496ff&&_0x371052[_0x23c782(0xed)](isNaN,_0x29380e[_0x23c782(0x113)])||_0x56d3ed&&_0x371052[_0x23c782(0xed)](isNaN,_0x29380e[_0x23c782(0x117)])||void 0x0!==_0x29380e[_0x23c782(0x113)]&&_0x371052[_0x23c782(0x12a)](void 0x0,_0x29380e[_0x23c782(0x117)])&&_0x371052[_0x23c782(0x13a)](_0x29380e['lowerBound'],_0x29380e[_0x23c782(0x117)]))return void(_0x3eb828=!0x1);_0x371052[_0x23c782(0xe7)](void 0x0,_0x29380e[_0x23c782(0x113)])&&_0x371052[_0x23c782(0xd7)](void 0x0,_0x29380e[_0x23c782(0x117)])?_0x29380e[_0x23c782(0xad)]=_0x371052[_0x23c782(0xcf)]:void 0x0!==_0x29380e[_0x23c782(0x113)]&&_0x371052['gYtPp'](void 0x0,_0x29380e[_0x23c782(0x117)])?_0x29380e[_0x23c782(0xad)]=_0x23c782(0x107):_0x29380e[_0x23c782(0xad)]=a12_0x5f0479[_0x23c782(0xa6)][_0x4b6c23]['criteria'][_0x23c782(0xc6)](_0x52225a=>_0x52225a[_0x23c782(0xd2)]===_0x29380e['text'])?.[_0x23c782(0xad)]||_0x23c782(0x9e);}}else{if(_0x371052['mTFMN'](_0x23c782(0x106),_0x2e2411)){_0x29380e['min']=_0x371052[_0x23c782(0xf9)](parseFloat,_0x43628c[_0x23c782(0x120)](_0x371052[_0x23c782(0x12b)])[_0x23c782(0xa7)]);const _0x34f64d=_0x43628c[_0x23c782(0x120)](_0x371052['JxvzL'])[_0x23c782(0xa7)];if(_0x29380e[_0x23c782(0xff)]=_0x371052[_0x23c782(0x11d)]('',_0x34f64d)||null===_0x34f64d?_0x371052['WUYHe'](0x1,0x0):_0x371052['qknBV'](parseFloat,_0x34f64d),_0x29380e['rating']=_0x43628c[_0x23c782(0x120)](_0x371052[_0x23c782(0xfb)])[_0x23c782(0xa7)]['trim'](),_0x371052['qknBV'](isNaN,_0x29380e['min'])||_0x371052[_0x23c782(0x12a)]('',_0x34f64d)&&isNaN(_0x29380e[_0x23c782(0xff)])||!_0x29380e[_0x23c782(0xc7)]||_0x371052[_0x23c782(0xc5)](_0x29380e[_0x23c782(0x95)],_0x29380e[_0x23c782(0xff)]))return void(_0x3eb828=!0x1);_0x29380e['rangeDescription']=_0x29380e[_0x23c782(0x95)]+_0x23c782(0x92)+_0x371052[_0x23c782(0x8d)](_0x34f64d,_0x371052[_0x23c782(0xb8)]);}else{if(_0x371052['ztFqX']===_0x2e2411){if(_0x29380e[_0x23c782(0xd9)]=parseFloat(_0x43628c[_0x23c782(0x120)]('[data-field=\x22rpnMin\x22]')[_0x23c782(0xa7)]),_0x29380e[_0x23c782(0xae)]=_0x371052[_0x23c782(0xde)](parseFloat,_0x43628c['querySelector'](_0x371052[_0x23c782(0xd3)])[_0x23c782(0xa7)]),_0x29380e['samples']=_0x371052[_0x23c782(0xf9)](parseInt,_0x43628c['querySelector'](_0x371052['dsaxX'])[_0x23c782(0xa7)]),isNaN(_0x29380e[_0x23c782(0xd9)])||_0x371052['tTQxQ'](isNaN,_0x29380e['rpnMax'])||_0x371052[_0x23c782(0xf4)](isNaN,_0x29380e[_0x23c782(0xe5)])||_0x371052[_0x23c782(0xc5)](_0x29380e['rpnMin'],_0x29380e['rpnMax'])||_0x371052['kwaIX'](_0x29380e[_0x23c782(0xe5)],0x1))return void(_0x3eb828=!0x1);_0x29380e['text']=_0x29380e[_0x23c782(0xd9)]+'-'+_0x29380e[_0x23c782(0xae)]+_0x23c782(0xa8)+_0x29380e['samples']+_0x23c782(0xc8)+(_0x371052['DGSRZ'](_0x29380e[_0x23c782(0xe5)],0x1)?'s':'');}}}_0x343172[_0x23c782(0xaf)]['push'](_0x29380e);});}_0x3eb828?(a12_0x5f0479[_0x31f767(0x101)](_0x1d9e92),_0x371052[_0x31f767(0x88)](a12_0x505b20),toggleScoringEditMode(!0x1),_0x371052[_0x31f767(0xfa)](a12_0x3f54d9),a12_0x1ce282(_0x31f767(0x122),_0x371052[_0x31f767(0xba)])):_0x371052['KOJiw'](a12_0x1ce282,_0x371052[_0x31f767(0x8f)],_0x371052[_0x31f767(0x96)]);}catch(_0xd32c4){console['error'](_0x371052['hduPN'],_0xd32c4),_0x371052[_0x31f767(0x93)](a12_0x1ce282,_0x371052[_0x31f767(0xb3)],_0x371052[_0x31f767(0x9b)]);}finally{a12_0x49a228(),_0x25c75d['disabled']=!0x1;}}
+// Renders the "Scoring System" tab
+// js/scoringView.js
+
+import * as state from './state.js';
+import { fullAppRender } from './app.js';
+import { showLoader, hideLoader, showCustomAlert, saveStateForUndo } from './ui.js';
+import { getRpnRatingClass } from './utils.js';
+
+// Track active scoring tab
+let activeScoringTab = 'productRpn';
+
+// Product RPN Criteria keys
+const PRODUCT_RPN_KEYS = ['solubility', 'therapeuticDose', 'cleanability', 'toxicityLd50', 'toxicityPde', 'rpnRating'];
+
+// Location RPN Criteria keys
+const LOCATION_RPN_KEYS = ['hardToClean', 'accessibility', 'visibility', 'numberOfSamples'];
+
+export function changeScoringTab(tabId, element) {
+    activeScoringTab = tabId;
+    
+    // Update tab button styles
+    document.querySelectorAll('.scoring-tab-button').forEach(btn => {
+        btn.classList.remove('active-scoring-tab');
+    });
+    element.classList.add('active-scoring-tab');
+    
+    // Re-render the scoring system with the new tab
+    renderScoringSystem();
+}
+
+export function toggleScoringEditMode(isEdit) {
+    state.setScoringInEditMode(isEdit);
+    const editBtn = document.getElementById('editScoringBtn');
+    const activeStyle = "btn-gradient";
+    const inactiveStyle = "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200";
+    if (isEdit) {
+        editBtn.textContent = 'View';
+        editBtn.className = `px-4 py-2 text-sm rounded-lg ${inactiveStyle}`;
+    } else {
+        editBtn.textContent = 'Edit';
+        editBtn.className = `px-4 py-2 text-sm rounded-lg ${activeStyle}`;
+    }
+    renderScoringSystem();
+}
+
+export function renderScoringSystem() {
+    const container = document.getElementById('scoringSystemContainer');
+    container.innerHTML = '';
+    
+    // Determine which criteria keys to show based on active tab
+    const criteriaKeysToShow = activeScoringTab === 'productRpn' ? PRODUCT_RPN_KEYS : LOCATION_RPN_KEYS;
+    
+    if (state.scoringInEditMode) {
+        const form = document.createElement('form'); 
+        form.id = 'scoringForm';
+        form.className = 'space-y-6';
+        
+        for (const key of criteriaKeysToShow) {
+            if (!state.scoringCriteria[key]) continue;
+            const category = state.scoringCriteria[key];
+            const groupDiv = document.createElement('div');
+            groupDiv.innerHTML = `<h4 class="text-lg font-semibold mb-3">${category.title}</h4>`;
+            const fieldsContainer = document.createElement('div');
+            fieldsContainer.id = `fields-container-${key}`;
+            fieldsContainer.className = 'space-y-2';
+            category.criteria.forEach((c) =>
+                 fieldsContainer.appendChild(createCriterionFieldRow(key, c)));
+            groupDiv.appendChild(fieldsContainer);
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'pt-2 no-print';
+            buttonContainer.innerHTML = `<button type="button" onclick="addCriterionToScoringTab('${key}')" class="text-sm px-3 py-1 rounded-md text-white btn-gradient">+ Add Criterion</button>`;
+            groupDiv.appendChild(buttonContainer);
+            form.appendChild(groupDiv);
+        }
+        container.appendChild(form);
+        const saveButton = document.createElement('button');
+        saveButton.onclick = (event) => saveScoringCriteria(event);
+        saveButton.className = 'w-full mt-6 py-2.5 text-white rounded-lg no-print btn-gradient';
+        saveButton.textContent = 'Save All Changes';
+        container.appendChild(saveButton);
+
+    } else {
+        const grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+        
+        for (const key of criteriaKeysToShow) {
+            if (!state.scoringCriteria[key]) continue;
+            const category = state.scoringCriteria[key];
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700';
+
+            let tableHTML = `<h4 class="text-lg font-semibold mb-3" style="color: var(--text-primary);">${category.title}</h4>
+                             <div class="overflow-hidden rounded-md border border-gray-300 dark:border-gray-600">
+                                 <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600">`;
+
+            const isRpn = category.type === 'rpn_threshold';
+            const isRpnSamples = category.type === 'rpn_samples';
+            const header1 = isRpn ? 'Range Description' : isRpnSamples ? 'RPN Range' : 'Criteria';
+            const header2 = isRpn ? 'Rating' : isRpnSamples ? 'Number of Samples' : 'Score';
+
+            tableHTML += `<thead class="bg-gray-50 dark:bg-gray-700/50">
+                            <tr>
+                                <th scope="col" class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">${header1}</th>
+                                <th scope="col" class="px-3 py-2 text-left text-sm font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">${header2}</th>
+                            </tr>
+                          </thead>
+                          <tbody class="divide-y divide-gray-200 dark:divide-gray-600" style="background-color: var(--bg-secondary);">`;
+
+            category.criteria.forEach(c => {
+                let col1, col2;
+                if (isRpn) {
+                    col1 = c.rangeDescription;
+                    const rpnClass = getRpnRatingClass(c.rating);
+                    col2 = `<span class="rpn-rating-badge ${rpnClass}">${c.rating}</span>`;
+                } else if (isRpnSamples) {
+                    col1 = `${c.rpnMin}-${c.rpnMax}`;
+                    col2 = `<span class="samples-badge">${c.samples}</span>`;
+                } else {
+                    col1 = c.text;
+                    const scoreClass = `score-${c.score}`;
+                    col2 = `<span class="score-badge ${scoreClass}">${c.score}</span>`;
+                }
+                tableHTML += `<tr>
+                                <td class="px-3 py-2 whitespace-nowrap text-sm">${col1}</td>
+                                <td class="px-3 py-2 whitespace-nowrap text-sm">${col2}</td>
+                              </tr>`;
+            });
+
+            tableHTML += `</tbody></table></div>`;
+            cardDiv.innerHTML = tableHTML;
+            grid.appendChild(cardDiv);
+        }
+        container.appendChild(grid);
+    }
+}
+
+function createCriterionFieldRow(key, crit) {
+   const itemDiv = document.createElement('div'); 
+   itemDiv.className = 'grid gap-2 items-center p-2 border rounded-md';
+    itemDiv.style.borderColor = 'var(--border-color)'; 
+    const type = state.scoringCriteria[key].type; 
+    if (type === 'exactMatch') { itemDiv.style.gridTemplateColumns = '3fr 1fr 0.5fr';
+         itemDiv.innerHTML = `<input type="text" value="${crit.text}" class="w-full px-2 py-1 border rounded-md text-sm" data-field="text"><input type="number" value="${crit.score}" class="w-full px-2 py-1 border rounded-md text-sm" data-field="score" min="0">`;
+         } else if (type === 'range') { 
+            itemDiv.style.gridTemplateColumns = '2fr 1fr 1fr 1fr 0.5fr'; 
+            itemDiv.innerHTML = `<input type="text" value="${crit.text}" class="w-full px-2 py-1 border rounded-md text-sm" data-field="text"><input type="number" step="any" value="${crit.lowerBound ?? ''}" placeholder="Min" class="w-full px-2 py-1 border rounded-md text-sm" data-field="lowerBound" min="0"><input type="number" step="any" value="${crit.upperBound ?? ''}" placeholder="Max" class="w-full px-2 py-1 border rounded-md text-sm" data-field="upperBound" min="0"><input type="number" value="${crit.score}" class="w-full px-2 py-1 border rounded-md text-sm" data-field="score" min="0">`;
+         } else if (type === 'rpn_threshold') { 
+            itemDiv.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 0.5fr'; const maxVal = crit.max === Infinity ? '' : crit.max; itemDiv.innerHTML = `<input type="number" value="${crit.min}" placeholder="Min RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="minRpn" min="0"><input type="number" value="${maxVal}" placeholder="Max RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="maxRpn" min="0"><input type="text" value="${crit.rating}" placeholder="Rating" class="w-full px-2 py-1 border rounded-md text-sm" data-field="ratingText"><span class="text-xs self-center" style="color:var(--text-secondary);">${crit.rangeDescription}</span>`; 
+        } else if (type === 'rpn_samples') {
+            itemDiv.style.gridTemplateColumns = '1fr 1fr 1fr 0.5fr';
+            itemDiv.innerHTML = `<input type="number" value="${crit.rpnMin}" placeholder="Min RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="rpnMin" min="0"><input type="number" value="${crit.rpnMax}" placeholder="Max RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="rpnMax" min="0"><input type="number" value="${crit.samples}" placeholder="Samples" class="w-full px-2 py-1 border rounded-md text-sm" data-field="samples" min="1">`;
+        } itemDiv.innerHTML += `<button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700 p-1" title="Remove"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg></button>`;
+    return itemDiv;
+}
+
+export function addCriterionToScoringTab(key) {
+   const container = document.getElementById(`fields-container-${key}`); 
+   const cat = state.scoringCriteria[key]; 
+   let newCrit; 
+   if (cat.type === 'rpn_threshold') { 
+    newCrit = { min: 0, max: 10, rating: 'NEW', rangeDescription: '0-10' }; 
+   } else if (cat.type === 'rpn_samples') {
+    newCrit = { text: 'New RPN Range = New Samples', samples: 1, rpnMin: 0, rpnMax: 10 };
+   } else { 
+    newCrit = { ...(cat.criteria[0] || {text: "", score: 0}), text: "New Criterion",
+      score: cat.defaultScore || 1 }; 
+    if (cat.type === 'range') {
+         delete newCrit.lowerBound; delete newCrit.upperBound; 
+         newCrit.comparison = cat.criteria[0]?.comparison || "between_inclusive_both"; 
+    } 
+   }
+   container.appendChild(createCriterionFieldRow(key, newCrit));
+}
+    
+
+export function saveScoringCriteria(event) {
+    const saveButton = event.target;
+    showLoader();
+    saveButton.disabled = true;
+
+    try {
+        const newCriteria = JSON.parse(JSON.stringify(state.scoringCriteria));
+        let isValid = true;
+        
+        // Determine which criteria keys are currently visible
+        const criteriaKeysToProcess = activeScoringTab === 'productRpn' ? PRODUCT_RPN_KEYS : LOCATION_RPN_KEYS;
+        
+        for (const key in newCriteria) {
+            if (!isValid) break;
+            const cat = newCriteria[key];
+            const type = state.scoringCriteria[key].type;
+            
+            // Only process criteria that are in the current active tab
+            // For other criteria, keep the existing values unchanged
+            if (!criteriaKeysToProcess.includes(key)) {
+                continue; // Skip criteria not in the current tab - keep existing values
+            }
+            
+            cat.criteria = [];
+            const container = document.getElementById(`fields-container-${key}`);
+            if (!container) continue;
+
+            Array.from(container.children).forEach(row => {
+                if (!isValid) return;
+                const crit = {};
+                if (type === 'exactMatch' || type === 'range') {
+                    crit.text = row.querySelector('[data-field="text"]').value;
+                    crit.score = parseInt(row.querySelector('[data-field="score"]').value);
+                    if (!crit.text || isNaN(crit.score)) {
+                        isValid = false;
+                        return;
+                    }
+                    if (type === 'range') {
+                        const lower = row.querySelector('[data-field="lowerBound"]').value;
+                        const upper = row.querySelector('[data-field="upperBound"]').value;
+                        crit.lowerBound = lower ? parseFloat(lower) : undefined;
+                        crit.upperBound = upper ? parseFloat(upper) : undefined;
+                        if ((lower && isNaN(crit.lowerBound)) || (upper && isNaN(crit.upperBound)) || (crit.lowerBound !== undefined && crit.upperBound !== undefined && crit.lowerBound >= crit.upperBound)) {
+                            isValid = false;
+                            return;
+                        }
+                        if (crit.lowerBound === undefined && crit.upperBound !== undefined) crit.comparison = "less_inclusive";
+                        else if (crit.lowerBound !== undefined && crit.upperBound === undefined) crit.comparison = "greater_exclusive";
+                        else crit.comparison = state.scoringCriteria[key].criteria.find(c => c.text === crit.text)?.comparison || "between_exclusive_lower_inclusive_upper";
+                    }
+                } else if (type === 'rpn_threshold') {
+                    crit.min = parseFloat(row.querySelector('[data-field="minRpn"]').value);
+                    const maxStr = row.querySelector('[data-field="maxRpn"]').value;
+                    crit.max = (maxStr === '' || maxStr === null) ? Infinity : parseFloat(maxStr);
+                    crit.rating = row.querySelector('[data-field="ratingText"]').value.trim();
+                    if (isNaN(crit.min) || (maxStr !== '' && isNaN(crit.max)) || !crit.rating || crit.min >= crit.max) {
+                        isValid = false;
+                        return;
+                    }
+                    crit.rangeDescription = `${crit.min} - ${maxStr || 'Infinity'}`;
+                } else if (type === 'rpn_samples') {
+                    crit.rpnMin = parseFloat(row.querySelector('[data-field="rpnMin"]').value);
+                    crit.rpnMax = parseFloat(row.querySelector('[data-field="rpnMax"]').value);
+                    crit.samples = parseInt(row.querySelector('[data-field="samples"]').value);
+                    if (isNaN(crit.rpnMin) || isNaN(crit.rpnMax) || isNaN(crit.samples) || crit.rpnMin >= crit.rpnMax || crit.samples < 1) {
+                        isValid = false;
+                        return;
+                    }
+                    crit.text = `${crit.rpnMin}-${crit.rpnMax} RPN = ${crit.samples} Sample${crit.samples > 1 ? 's' : ''}`;
+                }
+                cat.criteria.push(crit);
+            });
+        }
+
+        if (isValid) {
+            state.setScoringCriteria(newCriteria);
+            saveStateForUndo();
+            toggleScoringEditMode(false); // Switch back to view mode
+            fullAppRender();
+            showCustomAlert("Success", "Changes saved successfully.");
+        } else {
+            showCustomAlert("Validation Error", "Please check your input. Some fields may be invalid.");
+        }
+    } catch (error) {
+        console.error("Error saving scoring criteria:", error);
+        showCustomAlert("Error", "Failed to save changes. Please try again.");
+    } finally {
+        hideLoader();
+        saveButton.disabled = false;
+    }
+}
