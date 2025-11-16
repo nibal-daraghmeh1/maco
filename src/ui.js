@@ -1,12 +1,13 @@
-// --- LocalStorage integration only ---
-// (localStorage save/load functions should already exist below)
+// --- IndexedDB integration ---
 // General UI interaction functions (dark mode, modals, etc.)
 // js/ui.js
 
 import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
 import { fullAppRender } from './app.js'; // Use a forward declaration if needed, or better, pass it as an argument. For simplicity, we import it.
 import { generateTrainMap, getTrainIdToLineNumberMap, getProductTrainNumber } from './utils.js';
 import { toggleScoringEditMode } from './scoringView.js';
+import * as db from './indexedDB.js';
 import { renderRpnChart } from './worstCaseView.js';
 
 // Smart number formatting that avoids showing 0 when there's actually a value
@@ -46,47 +47,112 @@ export function showCustomAlert(title, message) {
 export const hideModal = (modalId) => document.getElementById(modalId).style.display = 'none';
 export const showModal = (modalId) => document.getElementById(modalId).style.display = 'flex';
 
-export function saveAllDataToLocalStorage() {
+export async function saveAllDataToLocalStorage() {
     try {
-        localStorage.setItem('macoProducts', JSON.stringify(state.products));
-        localStorage.setItem('macoMachines', JSON.stringify(state.machines));
-        localStorage.setItem('macoScoringCriteria', JSON.stringify(state.scoringCriteria));
-        localStorage.setItem('macoDetergentIngredients', JSON.stringify(state.detergentIngredients));
-        localStorage.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder));
+        console.log('saveAllDataToLocalStorage: Starting save...');
+        console.log('saveAllDataToLocalStorage: Machines count:', state.machines.length);
+        
+        const machinesJson = JSON.stringify(state.machines);
+        console.log('saveAllDataToLocalStorage: Machines JSON length:', machinesJson.length);
+        
+        await db.setItem('macoProducts', JSON.stringify(state.products));
+        await db.setItem('macoMachines', machinesJson);
+        await db.setItem('macoScoringCriteria', JSON.stringify(state.scoringCriteria));
+        await db.setItem('macoDetergentIngredients', JSON.stringify(state.detergentIngredients));
+        await db.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder));
+        
+        console.log('saveAllDataToLocalStorage: Save completed successfully');
+        
+        // Verify the save
+        const verify = await db.getItem('macoMachines');
+        if (verify) {
+            const parsed = JSON.parse(verify);
+            console.log('saveAllDataToLocalStorage: Verification - saved machines count:', parsed.length);
+        } else {
+            console.error('saveAllDataToLocalStorage: Verification failed - no data found after save!');
+        }
     } catch (e) {
-        console.error("Failed to save data to localStorage", e);
+        console.error("Failed to save data to IndexedDB", e);
         showCustomAlert("Save Error", "Could not save data. Storage might be full.");
+        throw e; // Re-throw to allow caller to handle
     }
 }
 
-export function loadAllDataFromLocalStorage() {
-    const savedProducts = localStorage.getItem('macoProducts');
-    const savedMachines = localStorage.getItem('macoMachines');
-    const savedCriteria = localStorage.getItem('macoScoringCriteria');
-    const savedDetergents = localStorage.getItem('macoDetergentIngredients');
-    const savedStageOrder = localStorage.getItem('machineStageDisplayOrder');
+export async function loadAllDataFromLocalStorage() {
+    try {
+        const savedProducts = await db.getItem('macoProducts');
+        const savedMachines = await db.getItem('macoMachines');
+        const savedCriteria = await db.getItem('macoScoringCriteria');
+        const savedDetergents = await db.getItem('macoDetergentIngredients');
+        const savedStageOrder = await db.getItem('machineStageDisplayOrder');
 
-    if (savedProducts) { try { state.setProducts(JSON.parse(savedProducts)); } catch (e) { console.error("Error loading products", e); } }
-    if (savedMachines) { try { state.setMachines(JSON.parse(savedMachines)); } catch (e) { console.error("Error loading machines", e); } }
-    
-    // Check if saved criteria has the new scoring criteria, if not, use defaults
-    if (savedCriteria) { 
-        try { 
-            const parsedCriteria = JSON.parse(savedCriteria);
-            // Check if new criteria exist
-            if (!parsedCriteria.hardToClean || !parsedCriteria.accessibility || !parsedCriteria.visibility || !parsedCriteria.numberOfSamples) {
-                console.log("Missing new scoring criteria, using defaults from state");
-                // Don't load from localStorage, keep the new criteria from state.js
-            } else {
-                state.setScoringCriteria(parsedCriteria); 
-            }
-        } catch (e) { 
-            console.error("Error loading scoring criteria", e); 
-        } 
+        if (savedProducts) { try { state.setProducts(JSON.parse(savedProducts)); } catch (e) { console.error("Error loading products", e); } }
+        if (savedMachines) { 
+            try { 
+                const machines = JSON.parse(savedMachines);
+                console.log('loadAllDataFromLocalStorage: Loading', machines.length, 'machines from IndexedDB');
+                
+                // Restore fileName for uploaded SOP files from IndexedDB
+                for (const machine of machines) {
+                    if (machine.cleaningSOP && machine.cleaningSOP.attachmentType === 'upload' && machine.id) {
+                        console.log(`Checking SOP for machine ${machine.id}:`, machine.cleaningSOP);
+                        
+                        // If fileName is missing, try to restore it from IndexedDB
+                        if (!machine.cleaningSOP.fileName) {
+                            console.log(`Machine ${machine.id} - fileName missing, attempting to restore from IndexedDB`);
+                            try {
+                                const { getSOPFile } = await import('./indexedDB.js');
+                                const sopFile = await getSOPFile(machine.id.toString());
+                                console.log(`Machine ${machine.id} - SOP file from IndexedDB:`, sopFile);
+                                
+                                if (sopFile && sopFile.fileName) {
+                                    machine.cleaningSOP.fileName = sopFile.fileName;
+                                    // Also restore fileData if available
+                                    if (sopFile.fileData) {
+                                        machine.cleaningSOP.fileData = sopFile.fileData;
+                                    }
+                                    console.log(`Machine ${machine.id} - fileName restored:`, machine.cleaningSOP.fileName);
+                                } else {
+                                    console.warn(`Machine ${machine.id} - No SOP file found in IndexedDB`);
+                                }
+                            } catch (error) {
+                                console.warn(`Could not restore SOP file name for machine ${machine.id}:`, error);
+                            }
+                        } else {
+                            console.log(`Machine ${machine.id} - fileName already present:`, machine.cleaningSOP.fileName);
+                        }
+                    }
+                }
+                state.setMachines(machines);
+                console.log('loadAllDataFromLocalStorage: Machines loaded successfully. Count:', state.machines.length);
+            } catch (e) { 
+                console.error("Error loading machines", e); 
+            } 
+        } else {
+            console.log('loadAllDataFromLocalStorage: No saved machines found in IndexedDB');
+        }
+        
+        // Check if saved criteria has the new scoring criteria, if not, use defaults
+        if (savedCriteria) { 
+            try { 
+                const parsedCriteria = JSON.parse(savedCriteria);
+                // Check if new criteria exist
+                if (!parsedCriteria.hardToClean || !parsedCriteria.accessibility || !parsedCriteria.visibility || !parsedCriteria.numberOfSamples) {
+                    console.log("Missing new scoring criteria, using defaults from state");
+                    // Don't load from storage, keep the new criteria from state.js
+                } else {
+                    state.setScoringCriteria(parsedCriteria); 
+                }
+            } catch (e) { 
+                console.error("Error loading scoring criteria", e); 
+            } 
+        }
+        
+        if (savedDetergents) { try { state.setDetergentIngredients(JSON.parse(savedDetergents)); } catch (e) { console.error("Error loading detergent ingredients", e); } }
+        if (savedStageOrder) { try { state.setMachineStageDisplayOrder(JSON.parse(savedStageOrder)); } catch (e) { console.error("Error loading machine stage order", e); } }
+    } catch (e) {
+        console.error("Error loading data from IndexedDB", e);
     }
-    
-    if (savedDetergents) { try { state.setDetergentIngredients(JSON.parse(savedDetergents)); } catch (e) { console.error("Error loading detergent ingredients", e); } }
-    if (savedStageOrder) { try { state.setMachineStageDisplayOrder(JSON.parse(savedStageOrder)); } catch (e) { console.error("Error loading machine stage order", e); } }
 }
 
 // --- Undo/Redo Functions ---
@@ -462,7 +528,7 @@ export function toggleColumn(col, tabId) {
         
         // Store the state using productRegister as the master reference
         const anyTableHidden = document.querySelector(`#productRegister .mainTable.hide-${col}`) !== null;
-        localStorage.setItem(`productRegister-${col}Hidden`, anyTableHidden);
+        db.setItem(`productRegister-${col}Hidden`, anyTableHidden).catch(e => console.error('Error saving column visibility:', e));
         
         // Update toggle icons for both tabs
         updateToggleIcons('productRegister');
@@ -486,7 +552,7 @@ export function toggleColumn(col, tabId) {
         });
         
         const anyTableHidden = document.querySelector(`#${tabId} .mainTable.hide-${col}`) !== null;
-        localStorage.setItem(`${tabId}-${col}Hidden`, anyTableHidden);
+        db.setItem(`${tabId}-${col}Hidden`, anyTableHidden).catch(e => console.error('Error saving column visibility:', e));
         updateToggleIcons(tabId);
     }
 }
@@ -511,32 +577,54 @@ export function updateToggleIcons(tabId) {
 
     // For toxicity columns, always use productRegister as the master reference
     let pdeHidden, ld50Hidden;
+    // Note: This function is called synchronously, so we'll use a synchronous fallback
+    // For async operations, we'll need to refactor this function
     if (tabId === 'worstCaseProducts') {
         // Use productRegister state as master for toxicity columns
-        // Default to false (visible) if no localStorage value exists
+        // Default to false (visible) if no storage value exists
+        // Use async with fallback to localStorage for immediate access
+        (async () => {
+            const pdeStorage = await db.getItem('productRegister-pdeHidden') || localStorage.getItem('productRegister-pdeHidden');
+            const ld50Storage = await db.getItem('productRegister-ld50Hidden') || localStorage.getItem('productRegister-ld50Hidden');
+            
+            // If no storage values exist (first visit), both should be visible
+            if (pdeStorage === null && ld50Storage === null) {
+                pdeHidden = false;
+                ld50Hidden = false;
+            } else {
+                const masterPdeHidden = pdeStorage === 'true';
+                const masterLd50Hidden = ld50Storage === 'true';
+                
+                // Special case: if both are hidden in Product Register, show PDE in worst case view
+                if (masterPdeHidden && masterLd50Hidden) {
+                    pdeHidden = false; // Show PDE in worst case view
+                    ld50Hidden = true;  // Hide LD50 in worst case view
+                } else {
+                    // Otherwise, mirror the Product Register settings
+                    pdeHidden = masterPdeHidden;
+                    ld50Hidden = masterLd50Hidden;
+                }
+            }
+        })();
+        // Fallback to localStorage for immediate synchronous access
         const pdeStorage = localStorage.getItem('productRegister-pdeHidden');
         const ld50Storage = localStorage.getItem('productRegister-ld50Hidden');
-        
-        // If no localStorage values exist (first visit), both should be visible
         if (pdeStorage === null && ld50Storage === null) {
             pdeHidden = false;
             ld50Hidden = false;
         } else {
             const masterPdeHidden = pdeStorage === 'true';
             const masterLd50Hidden = ld50Storage === 'true';
-            
-            // Special case: if both are hidden in Product Register, show PDE in worst case view
             if (masterPdeHidden && masterLd50Hidden) {
-                pdeHidden = false; // Show PDE in worst case view
-                ld50Hidden = true;  // Hide LD50 in worst case view
+                pdeHidden = false;
+                ld50Hidden = true;
             } else {
-                // Otherwise, mirror the Product Register settings
                 pdeHidden = masterPdeHidden;
                 ld50Hidden = masterLd50Hidden;
             }
         }
     } else {
-        // For productRegister or other tabs, check localStorage values, defaulting to false (visible)
+        // For productRegister or other tabs, check storage values, defaulting to false (visible)
         const pdeStorage = localStorage.getItem(`${tabId}-pdeHidden`);
         const ld50Storage = localStorage.getItem(`${tabId}-ld50Hidden`);
         pdeHidden = pdeStorage === 'true';
@@ -698,11 +786,12 @@ export function importFromJson(event) {
 }
 
 // Reset scoring criteria to defaults (includes new criteria)
-export function resetScoringCriteriaToDefaults() {
+export async function resetScoringCriteriaToDefaults() {
     showLoader();
     try {
-        // Remove the localStorage item to force using new defaults
-        localStorage.removeItem('macoScoringCriteria');
+        // Remove the storage item to force using new defaults
+        await db.removeItem('macoScoringCriteria');
+        localStorage.removeItem('macoScoringCriteria'); // Also remove from localStorage for migration
         
         // The criteria will be loaded from state.js defaults
         import('./state.js').then(stateModule => {
@@ -1159,7 +1248,7 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
         
         trainsToExport.forEach(train => {
             const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
-            const sfConfig = state.safetyFactorConfig[worstCaseType] || state.safetyFactorConfig['Other'];
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
             
             // Calculate MACO values using the same logic as in the view
             const sf = sfConfig.max;
@@ -1169,8 +1258,22 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
             let macoNoel = Infinity;
             
             // Check toxicity preference to determine which equations to show
-            const pdeHidden = localStorage.getItem('productRegister-pdeHidden') === 'true';
-            const ld50Hidden = localStorage.getItem('productRegister-ld50Hidden') === 'true';
+            // Use localStorage as fallback for immediate access, IndexedDB will be checked in background
+            const pdeStorage = localStorage.getItem('productRegister-pdeHidden');
+            const ld50Storage = localStorage.getItem('productRegister-ld50Hidden');
+            const pdeHidden = pdeStorage === 'true';
+            const ld50Hidden = ld50Storage === 'true';
+            // Update from IndexedDB in background
+            db.getItem('productRegister-pdeHidden').then(val => {
+                if (val !== null && val !== pdeStorage) {
+                    localStorage.setItem('productRegister-pdeHidden', val);
+                }
+            }).catch(() => {});
+            db.getItem('productRegister-ld50Hidden').then(val => {
+                if (val !== null && val !== ld50Storage) {
+                    localStorage.setItem('productRegister-ld50Hidden', val);
+                }
+            }).catch(() => {});
             
             // Calculate PDE-based MACO if PDE is available and not hidden
             if (train.lowestPde !== null && !pdeHidden) {
@@ -1394,7 +1497,7 @@ export function exportDetergentMacoToExcel(selectedTrain = 'all') {
         
         trainsToExport.forEach(train => {
             const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
-            const sfConfig = state.safetyFactorConfig[worstCaseType] || state.safetyFactorConfig['Other'];
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
             
             // Get current safety factor from UI or use default max
             const sfInput = document.getElementById(`sf-input-train-${train.id}`);
@@ -1954,7 +2057,7 @@ export function exportAllTabsToExcel() {
             const productMacoData = [];
             trainData.forEach(train => {
                 const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
-                const sfConfig = state.safetyFactorConfig[worstCaseType] || state.safetyFactorConfig['Other'];
+                const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
                 
                 const sf = sfConfig.max;
                 const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
@@ -2070,7 +2173,7 @@ export function exportAllTabsToExcel() {
                 const detergentMacoData = [];
                 trainData.forEach(train => {
                     const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
-                    const sfConfig = state.safetyFactorConfig[worstCaseType] || state.safetyFactorConfig['Other'];
+                    const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
                     
                     const sfInput = document.getElementById(`sf-input-train-${train.id}`);
                     const sf = sfInput ? parseFloat(sfInput.value) || sfConfig.max : sfConfig.max;
@@ -2334,7 +2437,9 @@ export function toggleStageSection(stageKey) {
     
     section.style.display = isHidden ? '' : 'none';
     
-    // Save the state to localStorage
+    // Save the state to IndexedDB
+    db.setItem(`machineStage-${stageKey}-hidden`, !isHidden).catch(e => console.error('Error saving machine stage visibility:', e));
+    // Also save to localStorage for immediate access
     localStorage.setItem(`machineStage-${stageKey}-hidden`, !isHidden);
     
     // Update the toggle button text

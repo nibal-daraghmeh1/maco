@@ -2,6 +2,7 @@
 // js/macoDetergentView.js
 
 import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
 import { getTrainData, getWorstCaseProductType, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getConsistentTrainOrder } from './utils.js';
 import * as utils from './utils.js';
 
@@ -187,7 +188,7 @@ export function renderDetergentMaco(lineFilter = null) {
         const isCollapsed = true; // All trains start collapsed
         const productTypesInTrain = train.products.map(p => p.productType);
         const worstCaseType = getWorstCaseProductType(productTypesInTrain);
-        const sfConfig = state.safetyFactorConfig[worstCaseType] || state.safetyFactorConfig['Other'];
+        const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
 
         const card = document.createElement('div');
         card.className = 'train-card'; // Use train-card for consistent collapsible behavior

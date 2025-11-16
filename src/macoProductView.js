@@ -2,6 +2,7 @@
 // js/macoProductView.js
 
 import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
 import { hideLoader } from './ui.js';
 import { getTrainData, getWorstCaseProductType, getRpnRatingClass, getTrainsGroupedByLine, getLargestEssaForLineAndDosageForm, getToxicityPreference, getConsistentTrainOrder, calculateScores, getRpnRatingText } from './utils.js';
 
@@ -283,7 +284,8 @@ export function renderMacoForTrains(lineFilter = null) {
             
             // Calculate MACO for each train first to find the lowest
             const trainsWithMaco = trainsInDosage.map(train => {
-                const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p => p.productType))] || state.safetyFactorConfig['Other'];
+                const worstCaseType = getWorstCaseProductType(train.products.map(p => p.productType));
+                const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
                 const sf = sfConfig.max;
                 
                 const macoDose = (train.lowestLtd * train.minBsMddRatio) / sf;
@@ -354,7 +356,7 @@ export function renderMacoForTrains(lineFilter = null) {
                 const isCollapsed = true;
                 const productTypesInTrain = train.products.map(p => p.productType);
                 const worstCaseType = getWorstCaseProductType(productTypesInTrain);
-                const sfConfig = state.safetyFactorConfig[worstCaseType] || state.safetyFactorConfig['Other'];
+                const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
 
                 const trainCard = document.createElement('div');
                 trainCard.className = 'train-card';

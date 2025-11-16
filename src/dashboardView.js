@@ -1,6 +1,6 @@
  // Renders the main dashboard with stats and charts
  // js/dashboardView.js
-import { products, machines, macoChartInstance, setMacoChartInstance } from './state.js';
+import { products, machines, macoChartInstance, setMacoChartInstance, getSafetyFactorForDosageForm } from './state.js';
 import { getTrainData, getWorstCaseProductType, getLargestEssaForLineAndDosageForm, getTrainsGroupedByLine, calculateScores } from './utils.js'; // Assuming getTrainData is in utils
 import * as utils from './utils.js';
 import { renderRpnChart } from './worstCaseView.js'; // The RPN chart is on the worst-case tab but shown here too
@@ -70,13 +70,13 @@ function initializeColorMapping() {
 function getColorForCombination(line, dosageForm) {
     const colorMapping = initializeColorMapping();
     const color = colorMapping.get(line) || CHART_COLORS[0];
-    console.log(`Getting color for ${line} - ${dosageForm}: ${color} (using line color)`);
+    // console.log(`Getting color for ${line} - ${dosageForm}: ${color} (using line color)`);
     return color;
 }
 
 // Reset color mapping (call when data changes)
 export function resetColorMapping() {
-    console.log('Resetting color mapping for consistency');
+    // console.log('Resetting color mapping for consistency');
     globalColorMapping = null;
 }
 
@@ -585,7 +585,8 @@ function recreateTrainsByLineChart(ctx) {
             }
             
             // Calculate MACO per swab for this train (same logic as original)
-            const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p=>p.productType))] || state.safetyFactorConfig['Other'];
+            const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
             const sf = sfConfig.max;
             const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
             
@@ -1074,7 +1075,8 @@ export function renderMainDashboard() {
             let largestEssaTrain = { id: 'N/A', essa: 0 };
             if (trainData.length > 0) {
                  const finalTrainData = trainData.map(train => {
-                    const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p=>p.productType))] || state.safetyFactorConfig['Other'];
+                    const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
                     const sf = sfConfig.max;
                     
                     // Calculate line-specific largest ESSA for this train
@@ -1452,7 +1454,8 @@ function getMinMacosDistributionByLineAndDosageForm() {
                 try {
                     console.log(`Calculating MACO for train ${train.id} in ${line} - ${dosageForm}:`, train);
                     
-                    const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p=>p.productType))] || state.safetyFactorConfig['Other'];
+                    const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
                     const sf = sfConfig.max;
                     
                     console.log(`Safety factor config for ${dosageForm}:`, sfConfig);
@@ -2186,7 +2189,8 @@ function renderTrainsByLineAndDosageChart() {
             }
             
             // Calculate MACO per swab for this train
-            const sfConfig = state.safetyFactorConfig[getWorstCaseProductType(train.products.map(p=>p.productType))] || state.safetyFactorConfig['Other'];
+            const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
+            const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
             const sf = sfConfig.max;
             const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
             

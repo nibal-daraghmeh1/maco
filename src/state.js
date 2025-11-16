@@ -101,24 +101,141 @@ export let machineGroups = [
 export let detergentIngredients = [{ id: 1, name: 'Default Detergent', ld50: 5000 }];
 export let nextDetergentIngredientId = 2;
 
+// Route-based Safety Factors Configuration
+export const routeSafetyFactors = {
+    parenteral: { min: 1000, max: 10000, route: 'Parenteral', riskLevel: 'Very High' },
+    inhalation: { min: 1000, max: 10000, route: 'Inhalation', riskLevel: 'Very High' },
+    ophthalmic: { min: 1000, max: 10000, route: 'Ophthalmic', riskLevel: 'Very High' },
+    nasal:      { min: 1000, max: 10000, route: 'Nasal', riskLevel: 'Very High' },
+    oral:       { min: 100,  max: 1000,  route: 'Oral', riskLevel: 'Standard' },
+    rectal:     { min: 100,  max: 1000,  route: 'Rectal', riskLevel: 'Standard' },
+    topical:    { min: 10,   max: 100,   route: 'Topical', riskLevel: 'Low' }
+};
+
+// Dosage Form to Route Mapping
+export const dosageFormToRouteMap = {
+    // Parenteral
+    'Ampoules': 'parenteral',
+    'Vials': 'parenteral',
+    'Injections': 'parenteral',
+    'Sterile Products': 'parenteral',
+    
+    // Oral
+    'Tablets': 'oral',
+    'Capsules': 'oral',
+    'Liquids': 'oral',
+    'Powder': 'oral',
+    
+    // Topical
+    'Cream': 'topical',
+    'Ointment': 'topical',
+    'Gel': 'topical',
+    'Lotion': 'topical',
+    'Semisolids': 'topical',
+    
+    // Ophthalmic
+    'Sterile Ointment': 'ophthalmic',
+    'Eye Drops': 'ophthalmic',
+    
+    // Inhalation
+    'Spray': 'inhalation',
+    'Powder for Inhalation': 'inhalation',
+    
+    // Rectal
+    'Suppository': 'rectal'
+};
+
+// Helper function to intelligently detect route from dosage form name using keywords
+function detectRouteFromDosageForm(dosageForm) {
+    if (!dosageForm) return null;
+    
+    const formLower = dosageForm.toLowerCase().trim();
+    
+    // Parenteral keywords (Very High Risk)
+    const parenteralKeywords = ['injection', 'injectable', 'ampoule', 'ampule', 'vial', 'sterile product', 'sterile solution', 'sterile suspension', 'infusion', 'parenteral'];
+    if (parenteralKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'parenteral';
+    }
+    
+    // Ophthalmic keywords (Very High Risk)
+    const ophthalmicKeywords = ['eye drop', 'ophthalmic', 'ocular', 'ophthalmic solution', 'ophthalmic suspension', 'sterile ointment'];
+    if (ophthalmicKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'ophthalmic';
+    }
+    
+    // Inhalation keywords (Very High Risk)
+    const inhalationKeywords = ['inhalation', 'inhaler', 'spray', 'nebulizer', 'powder for inhalation', 'aerosol'];
+    if (inhalationKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'inhalation';
+    }
+    
+    // Nasal keywords (Very High Risk)
+    const nasalKeywords = ['nasal', 'nose', 'nasal spray', 'nasal drop'];
+    if (nasalKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'nasal';
+    }
+    
+    // Topical keywords (Standard Risk)
+    const topicalKeywords = ['cream', 'ointment', 'gel', 'lotion', 'semisolid', 'topical', 'dermal', 'cutaneous', 'emulsion', 'paste'];
+    if (topicalKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'topical';
+    }
+    
+    // Rectal keywords (Standard Risk)
+    const rectalKeywords = ['suppository', 'rectal', 'enema'];
+    if (rectalKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'rectal';
+    }
+    
+    // Oral keywords (Standard Risk) - check last as it's the most common
+    const oralKeywords = ['tablet', 'capsule', 'liquid', 'syrup', 'suspension', 'solution', 'powder', 'oral', 'pill', 'dragee', 'lozenge', 'chewable', 'granule', 'sachet'];
+    if (oralKeywords.some(keyword => formLower.includes(keyword))) {
+        return 'oral';
+    }
+    
+    return null;
+}
+
+// Helper function to get safety factor config from dosage form
+export function getSafetyFactorForDosageForm(dosageForm) {
+    if (!dosageForm) {
+        // Default to oral if no dosage form provided
+        return routeSafetyFactors.oral;
+    }
+    
+    // First, check exact match in the predefined map
+    const routeKey = dosageFormToRouteMap[dosageForm];
+    if (routeKey && routeSafetyFactors[routeKey]) {
+        return routeSafetyFactors[routeKey];
+    }
+    
+    // If not found, use intelligent detection based on keywords
+    const detectedRoute = detectRouteFromDosageForm(dosageForm);
+    if (detectedRoute && routeSafetyFactors[detectedRoute]) {
+        return routeSafetyFactors[detectedRoute];
+    }
+    
+    // Fallback to oral if no match found
+    return routeSafetyFactors.oral;
+}
+
+// Legacy safetyFactorConfig for backward compatibility (deprecated - use getSafetyFactorForDosageForm instead)
 export const safetyFactorConfig = {
-    'Sterile Products': { min: 1000, max: 10000, route: 'Parenteral' },
-    'Semisolids': { min: 10, max: 100, route: 'Topical' },
-    'Tablets': { min: 100, max: 1000, route: 'Oral' },
-    'Capsules': { min: 100, max: 1000, route: 'Oral' },
-    'Liquids': { min: 100, max: 1000, route: 'Oral' },
-    'Other': { min: 100, max: 1000, route: 'Oral' },
-    'Suppository': { min: 100, max: 1000, route: 'Rectal' },
-    'Sterile Ointment': { min: 100, max: 1000, route: 'Ophthalmic' },
-    'Spray': { min: 1000, max: 10000, route: 'Inhalation' },
-    // Add specific product types that map to main categories
-    'Ampoules': { min: 1000, max: 10000, route: 'Parenteral' },
-    'Vials': { min: 1000, max: 10000, route: 'Parenteral' },
-    'Injections': { min: 1000, max: 10000, route: 'Parenteral' },
-    'Cream': { min: 10, max: 100, route: 'Topical' },
-    'Ointment': { min: 10, max: 100, route: 'Topical' },
-    'Gel': { min: 10, max: 100, route: 'Topical' },
-    'Lotion': { min: 10, max: 100, route: 'Topical' },
+    'Sterile Products': routeSafetyFactors.parenteral,
+    'Semisolids': routeSafetyFactors.topical,
+    'Tablets': routeSafetyFactors.oral,
+    'Capsules': routeSafetyFactors.oral,
+    'Liquids': routeSafetyFactors.oral,
+    'Suppository': routeSafetyFactors.rectal,
+    'Sterile Ointment': routeSafetyFactors.ophthalmic,
+    'Spray': routeSafetyFactors.inhalation,
+    'Ampoules': routeSafetyFactors.parenteral,
+    'Vials': routeSafetyFactors.parenteral,
+    'Injections': routeSafetyFactors.parenteral,
+    'Cream': routeSafetyFactors.topical,
+    'Ointment': routeSafetyFactors.topical,
+    'Gel': routeSafetyFactors.topical,
+    'Lotion': routeSafetyFactors.topical,
 };
 
 export const productTypeHierarchy = [

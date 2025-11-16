@@ -433,7 +433,14 @@
                          </button>
                     </div>
                 </div>
-                <div id="machinesContainer" class="space-y-8">
+                <!-- Tab Navigation -->
+                <div id="machineTabNavigation" class="border-b mb-6" style="border-color: var(--border-color); display: none;">
+                    <nav class="-mb-px flex gap-4" aria-label="Machine Line Tabs">
+                        <!-- Tab buttons will be rendered here by JS -->
+                    </nav>
+                </div>
+                <!-- Tab Content -->
+                <div id="machinesContainer">
                     <!-- Machines will be rendered here by JS -->
                 </div>
                 <p id="noMachinesMessage" class="hidden mt-4 p-4 text-center rounded-md" style="color: var(--text-secondary); background-color: var(--bg-accent);">
@@ -621,6 +628,14 @@
                             </button>
                         </div>
                     </div>
+                    <!-- Tab Navigation -->
+                    <div class="border-b mb-6" style="border-color: var(--border-color);">
+                        <nav class="-mb-px flex gap-4" aria-label="Scoring Tabs">
+                            <button onclick="changeScoringTab('productRpn', this)" class="scoring-tab-button py-3 px-1 text-sm font-medium active-scoring-tab">Product RPN Criteria</button>
+                            <button onclick="changeScoringTab('locationRpn', this)" class="scoring-tab-button py-3 px-1 text-sm font-medium">Location RPN Criteria</button>
+                        </nav>
+                    </div>
+                    <!-- Tab Content -->
                     <div id="scoringSystemContainer"></div>
                  </div>
             </div>
@@ -832,6 +847,10 @@
                     <input type="text" id="machineName" class="w-full px-3 py-2 border rounded-lg" required>
                 </div>
                 <div>
+                    <label for="machineDescription" class="block text-sm font-medium mb-1">Description <span class="text-xs" style="color: var(--text-secondary);">(Optional)</span></label>
+                    <textarea id="machineDescription" class="w-full px-3 py-2 border rounded-lg" rows="3" placeholder="Enter machine description, notes, or additional information..."></textarea>
+                </div>
+                <div>
                     <label class="block text-sm font-medium mb-1">Machine Line Assignment</label>
                     <div class="space-y-3">
                         <div>
@@ -882,8 +901,6 @@
                     <input type="number" id="machineArea" class="w-full px-3 py-2 border rounded-lg" placeholder="e.g., 120000" min="0" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium mb-1">Cleaning SOP</label>
-                    
                     <!-- SOP Name (Always Required) -->
                     <div class="mb-3">
                         <label for="sopName" class="block text-sm font-medium mb-1">SOP Name/Reference *</label>
@@ -1036,6 +1053,122 @@
             <div class="modal-footer"><button type="button" onclick="hideModal('addProductsToMachineModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button><button id="addProductsToMachineSaveBtn" type="submit" form="addProductsToMachineForm" class="px-6 py-2 text-white rounded-lg btn-gradient">Update Assignments</button></div>
         </div>
     </div>
+    
+    <!-- Sample Locations Management Modal -->
+    <div id="sampleLocationsManagerModal" class="modal-container">
+        <div class="modal-content-container max-w-5xl">
+            <div class="modal-header">
+                <h3 class="text-xl font-semibold" id="sampleLocationsManagerModalTitle">Manage Sample Locations</h3>
+                <button type="button" onclick="hideModal('sampleLocationsManagerModal')" class="text-2xl font-bold leading-none p-1" style="color: var(--text-secondary);">&times;</button>
+            </div>
+            <div class="modal-body space-y-4">
+                <input type="hidden" id="sampleLocationsManagerMachineId">
+                
+                <!-- Add Location Button -->
+                <div class="flex justify-between items-center">
+                    <button type="button" onclick="showAddLocationForm()" class="px-4 py-2 text-sm rounded-lg text-white btn-gradient">
+                        + Add Sample Location
+                    </button>
+                    <div class="text-sm" style="color: var(--text-secondary);">
+                        <span id="summaryTotalLocations">0</span> Locations | 
+                        <span id="summaryTotalSamples">0</span> Total Samples
+                    </div>
+                </div>
+                
+                <!-- Add/Edit Location Form -->
+                <div id="locationFormContainer" class="hidden p-4 border rounded-lg" style="border-color: var(--border-color); background-color: var(--bg-accent);">
+                    <h4 id="locationFormTitle" class="text-lg font-semibold mb-3">➕ Add New Sample Location</h4>
+                    <form id="locationForm" onsubmit="handleSaveLocation(event)" class="space-y-3">
+                        <input type="hidden" id="locationEditIndex" value="-1">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div>
+                                <label for="locationNameInput" class="block text-sm font-medium mb-1">Location Name *</label>
+                                <input type="text" id="locationNameInput" class="w-full px-3 py-2 border rounded-lg" required placeholder="e.g., Top Surface, Bottom Corner">
+                            </div>
+                            <div>
+                                <label for="locationAreaInput" class="block text-sm font-medium mb-1">Area (cm²)</label>
+                                <input type="number" id="locationAreaInput" class="w-full px-3 py-2 border rounded-lg" min="0" step="0.01" placeholder="Optional">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div>
+                                <label for="hardToCleanSelect" class="block text-sm font-medium mb-1">Hard to Clean *</label>
+                                <select id="hardToCleanSelect" class="w-full px-3 py-2 border rounded-lg" required onchange="updateLocationCalculation()">
+                                    <option value="1">Low (1)</option>
+                                    <option value="2" selected>Medium (2)</option>
+                                    <option value="3">High (3)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="accessibilitySelect" class="block text-sm font-medium mb-1">Accessibility *</label>
+                                <select id="accessibilitySelect" class="w-full px-3 py-2 border rounded-lg" required onchange="updateLocationCalculation()">
+                                    <option value="1">Low (1)</option>
+                                    <option value="2" selected>Medium (2)</option>
+                                    <option value="3">High (3)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="visibilitySelect" class="block text-sm font-medium mb-1">Visibility *</label>
+                                <select id="visibilitySelect" class="w-full px-3 py-2 border rounded-lg" required onchange="updateLocationCalculation()">
+                                    <option value="1">Low (1)</option>
+                                    <option value="2" selected>Medium (2)</option>
+                                    <option value="3">High (3)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 p-3 rounded-lg" style="background-color: var(--bg-secondary);">
+                            <div>
+                                <span class="text-sm" style="color: var(--text-secondary);">Calculated RPN:</span>
+                                <span id="calculatedRPN" class="ml-2 px-3 py-1 rounded-full font-bold text-white" style="background-color: #9333ea;">8</span>
+                            </div>
+                            <div>
+                                <span class="text-sm" style="color: var(--text-secondary);">Number of Samples:</span>
+                                <span id="calculatedSamples" class="ml-2 px-3 py-1 rounded-full font-bold" style="background-color: #dbeafe; color: #1e40af;">1</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-2">
+                            <button type="submit" class="px-4 py-2 text-sm text-white rounded-lg btn-gradient">Save Location</button>
+                            <button type="button" onclick="hideLocationForm()" class="px-4 py-2 text-sm rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Locations Table -->
+                <div id="locationsTableContainer" class="overflow-x-auto">
+                    <table class="w-full text-sm border rounded-lg" style="border-color: var(--border-color);">
+                        <thead class="border-b" style="border-color: var(--border-color); background-color: var(--bg-accent);">
+                            <tr>
+                                <th class="px-3 py-2 text-left font-semibold">Location</th>
+                                <th class="px-3 py-2 text-center font-semibold">Area (cm²)</th>
+                                <th class="px-3 py-2 text-center font-semibold">Hard to Clean</th>
+                                <th class="px-3 py-2 text-center font-semibold">Accessibility</th>
+                                <th class="px-3 py-2 text-center font-semibold">Visibility</th>
+                                <th class="px-3 py-2 text-center font-semibold">RPN</th>
+                                <th class="px-3 py-2 text-center font-semibold">Samples</th>
+                                <th class="px-3 py-2 text-center font-semibold">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="locationsTableBody" class="divide-y" style="border-color: var(--border-color);">
+                            <!-- Location rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="noLocationsMessage" class="text-center p-8" style="color: var(--text-secondary);">
+                    <p>No sample locations defined. Click "Add Sample Location" to get started.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="hideModal('sampleLocationsManagerModal')" class="px-6 py-2 rounded-lg" style="background-color: var(--bg-accent); color: var(--text-primary);">Close</button>
+                <button type="button" id="saveLocationsBtn" onclick="saveSampleLocations()" class="px-6 py-2 text-white rounded-lg" style="background-color: #10b981; display: none;">💾 Save Locations</button>
+                <button type="button" id="generateReportBtn" onclick="generateReportFromManager()" class="px-6 py-2 text-white rounded-lg btn-gradient" style="display: none;">Generate Protocol</button>
+            </div>
+        </div>
+    </div>
     <div id="machineProductsModal" class="modal-container">
         <div class="modal-content-container max-w-4xl">
             <div class="modal-header">
@@ -1087,7 +1220,7 @@
 
 <!-- Dashboard View with Chart Expand Functions -->
 <script type="module">
-import * as dashboardView from './src/dashboardView.js';
+import * as dashboardView from './dist/src/dashboardView.js';
 
 // Ensure chart expand functions are globally available immediately
 window.expandChart = function(chartId, chartTitle) {

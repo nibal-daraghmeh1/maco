@@ -2,13 +2,19 @@
 // js/machineView.js
 
 import * as state from './state.js';
+import { getSafetyFactorForDosageForm } from './state.js';
 import { fullAppRender } from './app.js';
 import { showCustomAlert, hideModal, showModal, saveStateForUndo } from './ui.js';
 import { getProductTrainId, getProductTrainNumber, getToxicityPreference, calculateScores, getRpnRatingClass, getUniqueProductLines } from './utils.js';
+import * as db from './indexedDB.js';
+import { storeSOPFile, getSOPFile, deleteSOPFile } from './indexedDB.js';
 
 // Global variables for SOP file management
 let currentSOPFile = null;
 let currentSOPData = null;
+
+// Track active machine line tab
+let activeMachineLineTab = null;
 
 /**
  * Populate the machine line dropdown with current product lines
@@ -159,14 +165,27 @@ function updateMachineSortIndicators() {
 }
 
 export function renderMachinesTable() {
+    console.log('renderMachinesTable: Starting render...');
+    console.log('renderMachinesTable: Machine count:', state.machines.length);
+    
     const container = document.getElementById('machinesContainer');
     const noMachinesMsg = document.getElementById('noMachinesMessage');
+    const tabNavigation = document.getElementById('machineTabNavigation');
+    
+    if (!container) {
+        console.error('renderMachinesTable: machinesContainer not found in DOM!');
+        return;
+    }
+    
     container.innerHTML = '';
 
     if (state.machines.length === 0) {
+        console.log('renderMachinesTable: No machines to display');
         noMachinesMsg.style.display = 'block';
+        if (tabNavigation) tabNavigation.style.display = 'none';
         return;
     }
+    console.log('renderMachinesTable: Rendering', state.machines.length, 'machines');
     noMachinesMsg.style.display = 'none';
 
     // Group machines by line instead of stage
@@ -193,14 +212,59 @@ export function renderMachinesTable() {
         }
     });
 
-    // Create tables for each line that has machines
-    Object.keys(machinesByLine).forEach(line => {
-        const lineKey = line.toLowerCase().replace(/\s+/g, '');
-        const lineHidden = localStorage.getItem(`machineLine-${lineKey}-hidden`) === 'true';
-        const lineMachines = machinesByLine[line];
-        
-        if (lineMachines.length === 0) return;
+    const lines = Object.keys(machinesByLine).filter(line => machinesByLine[line].length > 0);
+    
+    // If only one line or no lines, don't show tabs
+    if (lines.length <= 1) {
+        if (tabNavigation) tabNavigation.style.display = 'none';
+        // Render single line without tabs (fallback to old behavior)
+        lines.forEach(line => {
+            renderLineTable(container, line, machinesByLine[line]);
+        });
+        updateMachineSortIndicators();
+        return;
+    }
 
+    // Show tab navigation
+    if (tabNavigation) {
+        tabNavigation.style.display = 'block';
+        const nav = tabNavigation.querySelector('nav');
+        nav.innerHTML = '';
+        
+        // Create tab buttons
+        lines.forEach((line, index) => {
+        const lineKey = line.toLowerCase().replace(/\s+/g, '');
+            const isActive = index === 0 || activeMachineLineTab === lineKey;
+            if (isActive) {
+                activeMachineLineTab = lineKey;
+            }
+            
+            const button = document.createElement('button');
+            button.onclick = () => changeMachineLineTab(lineKey, button);
+            button.className = `machine-line-tab-button py-3 px-1 text-sm font-medium ${isActive ? 'active-machine-line-tab' : ''}`;
+            button.textContent = `${line} (${machinesByLine[line].length})`;
+            nav.appendChild(button);
+        });
+    }
+
+    // Create tab content for each line
+    lines.forEach((line, index) => {
+        const lineKey = line.toLowerCase().replace(/\s+/g, '');
+        const isActive = index === 0 || activeMachineLineTab === lineKey;
+        
+        const tabContent = document.createElement('div');
+        tabContent.id = `machine-tab-${lineKey}`;
+        tabContent.className = 'machine-line-tab-content';
+        tabContent.style.display = isActive ? 'block' : 'none';
+        
+        renderLineTable(tabContent, line, machinesByLine[line]);
+        container.appendChild(tabContent);
+    });
+
+    updateMachineSortIndicators();
+}
+
+function renderLineTable(container, line, lineMachines) {
         // Sort machines within this line
         const sortedMachines = [...lineMachines].sort((a, b) => {
             const key = state.machineSortState.key;
@@ -265,24 +329,45 @@ export function renderMachinesTable() {
                         </svg>
                         Summary
                     </button>
-                    <button onclick="toggleLineSection('${lineKey}')" class="text-sm px-3 py-1 rounded border" style="border-color: var(--border-color); color: var(--text-secondary);">
-                        ${lineHidden ? 'Show' : 'Hide'}
-                    </button>
                 </div>
             </div>
-            <div id="line-${lineKey}" ${lineHidden ? 'style="display: none;"' : ''}>
                 <div class="overflow-x-auto overflow-hidden rounded-md border" style="border-color: var(--border-color);">
                     <table class="w-full text-sm">
-                        <thead class="border-b" style="border-color: var(--border-color);">
+                        <thead class="border-b" style="border-color: var(--border-color); background-color: var(--bg-accent);">
                             <tr>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('machineNumber')">Number <span class="sort-indicator"></span></th>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('name')">Name <span class="sort-indicator"></span></th>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('stage')">Stage <span class="sort-indicator"></span></th>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('group')">Group <span class="sort-indicator"></span></th>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('area')">Area (cm²) <span class="sort-indicator"></span></th>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider sortable" onclick="sortMachines('cleaningSOP')">Cleaning SOP <span class="sort-indicator"></span></th>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider">Products</th>
-                                <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider">Actions</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide sortable" onclick="sortMachines('machineNumber')" style="color: var(--text-primary);">
+                                    Machine Number
+                                    <span class="sort-indicator"></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide sortable" onclick="sortMachines('name')" style="color: var(--text-primary);">
+                                    Machine Name
+                                    <span class="sort-indicator"></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide sortable" onclick="sortMachines('stage')" style="color: var(--text-primary);">
+                                    Production Stage
+                                    <span class="sort-indicator"></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide sortable" onclick="sortMachines('group')" style="color: var(--text-primary);">
+                                    Machine Group
+                                    <span class="sort-indicator"></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide sortable" onclick="sortMachines('area')" style="color: var(--text-primary);">
+                                    Surface Area (cm²)
+                                    <span class="sort-indicator"></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide sortable" onclick="sortMachines('cleaningSOP')" style="color: var(--text-primary);">
+                                    Cleaning SOP
+                                    <span class="sort-indicator"></span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide" style="color: var(--text-primary);">
+                                    Assigned Products
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide" style="color: var(--text-primary);">
+                                    Sample Locations
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold tracking-wide" style="color: var(--text-primary);">
+                                    Quick Actions
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="divide-y" style="border-color: var(--border-color);">`;
@@ -322,10 +407,11 @@ export function renderMachinesTable() {
                     <td class="px-4 py-3 whitespace-nowrap">${machine.area.toLocaleString()}</td>
                     <td class="px-4 py-3 whitespace-nowrap">${formatSOPDisplay(machine.cleaningSOP, machine.id)}</td>
                     <td class="px-4 py-3">${productsCellHTML}</td>
+                    <td class="px-4 py-3">${formatSampleLocationsDisplay(machine)}</td>
                     <td class="px-4 py-3 whitespace-nowrap">
                         <div class="flex items-center gap-x-2 no-print">
                             <button onclick="showAddProductsToMachineModal(${machine.id})" class="p-1 text-blue-500" title="Assign Products to this Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></button>
-                            <button onclick="generateSampleLocationReport(${machine.id})" class="p-1 text-purple-600" title="Generate Sample Location Report"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M3 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/></svg></button>
+                            <button onclick="generateSampleLocationReport(${machine.id})" class="p-1 text-purple-600" title="Generate Cleaning Protocol"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M3 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/></svg></button>
                             <button onclick="showMachineModal(${machine.id})" class="p-1" style="color: var(--text-secondary);" title="Edit Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zM12.879 4.379L11 2.5 4.939 8.561a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.121L12.879 4.379z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg></button>
                             <button onclick="deleteMachine(${machine.id})" class="p-1 text-red-500" title="Delete Machine"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3V2h11v1h-11z"/></svg></button>
                         </div>
@@ -333,13 +419,35 @@ export function renderMachinesTable() {
                 </tr>`;
         });
 
-        tableHTML += `</tbody></table></div></div>`;
+    tableHTML += `</tbody></table></div>`;
         tableCard.innerHTML = tableHTML;
         container.appendChild(tableCard);
-    });
-
-    updateMachineSortIndicators();
 }
+
+// Change active machine line tab
+export function changeMachineLineTab(lineKey, element) {
+    activeMachineLineTab = lineKey;
+    
+    // Update tab button styles
+    document.querySelectorAll('.machine-line-tab-button').forEach(btn => {
+        btn.classList.remove('active-machine-line-tab');
+    });
+    if (element) {
+        element.classList.add('active-machine-line-tab');
+    }
+    
+    // Show/hide tab content
+    document.querySelectorAll('.machine-line-tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+    const activeTabContent = document.getElementById(`machine-tab-${lineKey}`);
+    if (activeTabContent) {
+        activeTabContent.style.display = 'block';
+    }
+}
+
+// Make function available globally
+window.changeMachineLineTab = changeMachineLineTab;
 
 export function showMachineModal(id = null) {
       const form = document.getElementById('machineForm');
@@ -348,6 +456,7 @@ export function showMachineModal(id = null) {
             const machineIdInput = document.getElementById('machineId');
             const machineNumberInput = document.getElementById('machineNumber');
             const machineNameInput = document.getElementById('machineName');
+            const machineDescriptionInput = document.getElementById('machineDescription');
             const machineLineSelect = document.getElementById('machineLine');
             
             // Check if the element exists (for backward compatibility)
@@ -386,6 +495,9 @@ export function showMachineModal(id = null) {
                     machineIdInput.value = machine.id;
                     machineNumberInput.value = machine.machineNumber;
                     machineNameInput.value = machine.name;
+                    if (machineDescriptionInput) {
+                        machineDescriptionInput.value = machine.description || '';
+                    }
                     
                     // Line selection will be handled after populateMachineLineOptions() is called
                     
@@ -521,11 +633,12 @@ export function showMachineModal(id = null) {
             document.getElementById('machineModal').style.display = 'flex';
 }
 
-export function saveMachine(event) {
+export async function saveMachine(event) {
    event.preventDefault();
             const id = document.getElementById('machineId').value;
             const number = document.getElementById('machineNumber').value.trim();
             const name = document.getElementById('machineName').value.trim();
+            const description = document.getElementById('machineDescription') ? document.getElementById('machineDescription').value.trim() : '';
             // Get line assignment type
             const lineTypeRadios = document.querySelectorAll('input[name="machineLineType"]');
             const selectedType = Array.from(lineTypeRadios).find(radio => radio.checked)?.value;
@@ -587,7 +700,8 @@ export function saveMachine(event) {
                     } else {
                         state.machineStageDisplayOrder.push(stage); // Fallback
                     }
-                    localStorage.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder));
+                    db.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder)).catch(e => console.error('Error saving machine stage order:', e));
+                    localStorage.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder)); // Also save to localStorage
                 }
             }
 
@@ -603,7 +717,8 @@ export function saveMachine(event) {
                 // Add the new group to the list if it doesn't exist
                 if (!state.machineGroups.includes(group)) {
                     state.machineGroups.push(group);
-                    localStorage.setItem('machineGroups', JSON.stringify(state.machineGroups));
+                    db.setItem('machineGroups', JSON.stringify(state.machineGroups)).catch(e => console.error('Error saving machine groups:', e));
+                    localStorage.setItem('machineGroups', JSON.stringify(state.machineGroups)); // Also save to localStorage
                 }
             }
 
@@ -644,33 +759,108 @@ export function saveMachine(event) {
             }
             
             
+            // Store SOP file in IndexedDB if it's an upload
+            const machineId = id ? parseInt(id, 10) : state.nextMachineId + 1;
+            if (cleaningSOPData.attachmentType === 'upload' && cleaningSOPData.fileData) {
+                try {
+                    await storeSOPFile(machineId.toString(), cleaningSOPData.fileName, cleaningSOPData.fileData);
+                    // Ensure fileName is in the cleaningSOP object for saving
+                    if (!cleaningSOPData.fileName && cleaningSOPData.attachmentValue) {
+                        cleaningSOPData.fileName = cleaningSOPData.attachmentValue;
+                    }
+                } catch (error) {
+                    console.error('Error storing SOP file in IndexedDB:', error);
+                    showCustomAlert('Warning', 'Machine saved but SOP file storage failed. Please try uploading again.');
+                }
+            } else if (cleaningSOPData.attachmentType !== 'upload') {
+                // Delete SOP file from IndexedDB if attachment type changed from upload
+                try {
+                    await deleteSOPFile(machineId.toString());
+                } catch (error) {
+                    console.error('Error deleting SOP file from IndexedDB:', error);
+                }
+            }
+            
+            // Ensure cleaningSOP object has all required fields before saving
+            if (cleaningSOPData.attachmentType === 'upload' && !cleaningSOPData.fileName && cleaningSOPData.attachmentValue) {
+                cleaningSOPData.fileName = cleaningSOPData.attachmentValue;
+            }
+            
+            // IMPORTANT: Create a clean copy of SOP data WITHOUT fileData for the machine object
+            // fileData is stored separately in IndexedDB sopFilesStore
+            const cleanSOPDataForMachine = {
+                sopName: cleaningSOPData.sopName,
+                attachmentType: cleaningSOPData.attachmentType,
+                attachmentValue: cleaningSOPData.attachmentValue,
+                fileName: cleaningSOPData.fileName
+                // DO NOT include fileData here - it's stored separately
+            };
+            
             if (id) { // Edit
                 const machine = state.machines.find(m => m.id === parseInt(id));
                 if (machine) {
+                    // Preserve existing sampleLocations if they exist
+                    const existingSampleLocations = machine.sampleLocations || [];
+                    
                     machine.machineNumber = number;
                     machine.name = name;
+                    machine.description = description;
                     machine.line = line;
                     machine.additionalLines = additionalLines;
                     machine.stage = stage;
                     machine.area = area;
-                    machine.cleaningSOP = cleaningSOPData;
+                    machine.cleaningSOP = cleanSOPDataForMachine; // Use clean copy without fileData
                     machine.group = group || '';
+                    machine.sampleLocations = existingSampleLocations; // Preserve sample locations
+                    
+                    console.log('Machine edited:', machine);
+                } else {
+                    console.error('Machine not found for editing:', id);
+                    showCustomAlert('Error', 'Machine not found. Please refresh and try again.');
+                    return;
                 }
             } else { // Add
                 state.setNextMachineId(state.nextMachineId+1);
-                state.machines.push({ 
+                const newMachine = { 
                     id: state.nextMachineId, 
                     machineNumber: number, 
-                    name: name, 
+                    name: name,
+                    description: description,
                     line: line, 
                     additionalLines: additionalLines,
                     stage: stage, 
                     area: area, 
-                    cleaningSOP: cleaningSOPData, 
-                    group: group || '' 
-                });
+                    cleaningSOP: cleanSOPDataForMachine, // Use clean copy without fileData
+                    group: group || '',
+                    sampleLocations: [] // Initialize empty array for new machines
+                };
+                state.machines.push(newMachine);
+                console.log('Machine added:', newMachine);
             }
+            
+            // Log state before saving
+            console.log('Machines state before save:', state.machines.length, 'machines');
+            console.log('Machine being saved:', state.machines.find(m => id ? m.id === parseInt(id) : m.id === state.nextMachineId));
+            
+            // Save state (this calls saveAllDataToLocalStorage internally)
             saveStateForUndo();
+            
+            // Explicitly save to IndexedDB to ensure SOP files and sample locations are persisted
+            // Make sure it's awaited so data is saved before continuing
+            const ui = await import('./ui.js');
+            console.log('Saving to IndexedDB...');
+            await ui.saveAllDataToLocalStorage();
+            console.log('Save to IndexedDB completed');
+            
+            // Verify save by reading back
+            const savedMachines = await db.getItem('macoMachines');
+            if (savedMachines) {
+                const parsed = JSON.parse(savedMachines);
+                console.log('Verified: Saved machines count:', parsed.length);
+                const savedMachine = parsed.find(m => id ? m.id === parseInt(id) : m.id === state.nextMachineId);
+                console.log('Verified: Saved machine:', savedMachine);
+            }
+            
             fullAppRender();
             hideModal('machineModal');
                console.log('Saving machines to Firestore');
@@ -683,8 +873,15 @@ export function saveMachine(event) {
             // }
 }
 
-export function deleteMachine(id) {
+export async function deleteMachine(id) {
     if (confirm("Are you sure you want to delete this machine? It will be removed from all products that use it.")) {
+        // Delete SOP file from IndexedDB
+        try {
+            await deleteSOPFile(id.toString());
+        } catch (error) {
+            console.error('Error deleting SOP file from IndexedDB:', error);
+        }
+        
         const newMachines = state.machines.filter(m => m.id !== id);
         state.setMachines(newMachines);
         // Remove the machine ID from all products
@@ -1164,18 +1361,20 @@ export function saveProductsToMachine(event) {
 }
 
 // Toggle line section visibility
-window.toggleLineSection = function(lineKey) {
+window.toggleLineSection = async function(lineKey) {
     const lineElement = document.getElementById(`line-${lineKey}`);
     const button = event.target;
     
     if (lineElement.style.display === 'none') {
         lineElement.style.display = 'block';
         button.textContent = 'Hide';
-        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'false');
+        await db.setItem(`machineLine-${lineKey}-hidden`, 'false');
+        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'false'); // Also save to localStorage
     } else {
         lineElement.style.display = 'none';
         button.textContent = 'Show';
-        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'true');
+        await db.setItem(`machineLine-${lineKey}-hidden`, 'true');
+        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'true'); // Also save to localStorage
     }
 };
 
@@ -1352,6 +1551,59 @@ function calculateMachineSummary(machines) {
 // ========== SOP MANAGEMENT FUNCTIONS ==========
 
 /**
+ * Format Sample Locations display for machine table
+ */
+function formatSampleLocationsDisplay(machine) {
+    const locations = machine.sampleLocations || [];
+    const locationCount = locations.length;
+    
+    let html = `<div class="flex items-center justify-center">`;
+    if (locationCount > 0) {
+        html += `
+            <button onclick="openSampleLocationsManager(${machine.id})" class="p-1 text-purple-600" title="Manage Sample Locations (${locationCount} location${locationCount !== 1 ? 's' : ''})">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Horizontal Serpentine Scan Pattern -->
+                    <path d="M2 2 L14 2 M14 2 L14 5 M14 5 L2 5 M2 5 L2 8 M2 8 L14 8 M14 8 L14 11 M14 11 L2 11 M2 11 L2 14 M2 14 L14 14"/>
+                    <!-- Right arrows -->
+                    <path d="M12 2 L14 2" stroke-width="1.5"/>
+                    <polygon points="13,1 14,2 13,3" fill="currentColor"/>
+                    <path d="M12 8 L14 8" stroke-width="1.5"/>
+                    <polygon points="13,7 14,8 13,9" fill="currentColor"/>
+                    <path d="M12 14 L14 14" stroke-width="1.5"/>
+                    <polygon points="13,13 14,14 13,15" fill="currentColor"/>
+                    <!-- Left arrows -->
+                    <path d="M4 5 L2 5" stroke-width="1.5"/>
+                    <polygon points="3,4 2,5 3,6" fill="currentColor"/>
+                    <path d="M4 11 L2 11" stroke-width="1.5"/>
+                    <polygon points="3,10 2,11 3,12" fill="currentColor"/>
+                </svg>
+            </button>`;
+    } else {
+        html += `
+            <button onclick="openSampleLocationsManager(${machine.id})" class="p-1 text-purple-600" title="Add Sample Locations">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Horizontal Serpentine Scan Pattern -->
+                    <path d="M2 2 L14 2 M14 2 L14 5 M14 5 L2 5 M2 5 L2 8 M2 8 L14 8 M14 8 L14 11 M14 11 L2 11 M2 11 L2 14 M2 14 L14 14"/>
+                    <!-- Right arrows -->
+                    <path d="M12 2 L14 2" stroke-width="1.5"/>
+                    <polygon points="13,1 14,2 13,3" fill="currentColor"/>
+                    <path d="M12 8 L14 8" stroke-width="1.5"/>
+                    <polygon points="13,7 14,8 13,9" fill="currentColor"/>
+                    <path d="M12 14 L14 14" stroke-width="1.5"/>
+                    <polygon points="13,13 14,14 13,15" fill="currentColor"/>
+                    <!-- Left arrows -->
+                    <path d="M4 5 L2 5" stroke-width="1.5"/>
+                    <polygon points="3,4 2,5 3,6" fill="currentColor"/>
+                    <path d="M4 11 L2 11" stroke-width="1.5"/>
+                    <polygon points="3,10 2,11 3,12" fill="currentColor"/>
+                </svg>
+            </button>`;
+    }
+    html += `</div>`;
+    return html;
+}
+
+/**
  * Format SOP display for machine table
  */
 function formatSOPDisplay(sopData, machineId) {
@@ -1506,7 +1758,7 @@ function removeSOPFile() {
 /**
  * Load existing SOP data into the form
  */
-function loadSOPData(machine) {
+async function loadSOPData(machine) {
     // Reset form
     document.getElementById('sopAttachmentNone').checked = true;
     document.getElementById('currentSOPDisplay').style.display = 'none';
@@ -1544,18 +1796,38 @@ function loadSOPData(machine) {
             break;
             
         case 'upload':
-            if (sopData.fileName && sopData.fileData) {
+            if (sopData.fileName) {
                 document.getElementById('sopAttachmentUpload').checked = true;
                 handleSOPAttachmentMethodChange({ target: { value: 'upload' } });
                 
-                // Show existing file
-                currentSOPFile = {
-                    name: sopData.fileName,
-                    data: sopData.fileData
-                };
-                document.getElementById('sopUploadArea').style.display = 'none';
-                document.getElementById('sopUploadedFile').style.display = 'block';
-                document.getElementById('sopFileName').textContent = sopData.fileName;
+                // Try to load file from IndexedDB first, then fall back to machine object
+                let fileData = sopData.fileData;
+                if (!fileData && machine.id) {
+                    try {
+                        const sopFile = await getSOPFile(machine.id.toString());
+                        if (sopFile && sopFile.fileData) {
+                            fileData = sopFile.fileData;
+                            // Update machine object with file data for immediate access
+                            sopData.fileData = fileData;
+                        }
+                    } catch (error) {
+                        console.error('Error loading SOP file from IndexedDB:', error);
+                    }
+                }
+                
+                if (fileData) {
+                    // Show existing file
+                    currentSOPFile = {
+                        name: sopData.fileName,
+                        data: fileData
+                    };
+                    document.getElementById('sopUploadArea').style.display = 'none';
+                    document.getElementById('sopUploadedFile').style.display = 'block';
+                    document.getElementById('sopFileName').textContent = sopData.fileName;
+                } else {
+                    // File not found - show warning but allow editing
+                    console.warn('SOP file data not found for machine', machine.id);
+                }
             }
             break;
             
@@ -1840,7 +2112,7 @@ function editCurrentSOP() {
 /**
  * Open SOP file for a specific machine (from the machine table)
  */
-window.openMachineSOPFile = function(machineId) {
+window.openMachineSOPFile = async function(machineId) {
     const machine = state.machines.find(m => m.id === machineId);
     if (!machine || !machine.cleaningSOP) {
         showCustomAlert('No SOP Found', 'No SOP file is attached to this machine.');
@@ -1853,7 +2125,22 @@ window.openMachineSOPFile = function(machineId) {
     if (sopData.attachmentType) {
         switch (sopData.attachmentType) {
             case 'upload':
-                if (sopData.fileData) {
+                // Try to get file data from machine object first, then IndexedDB
+                let fileData = sopData.fileData;
+                if (!fileData) {
+                    try {
+                        const sopFile = await getSOPFile(machineId.toString());
+                        if (sopFile && sopFile.fileData) {
+                            fileData = sopFile.fileData;
+                            // Update machine object for future access
+                            sopData.fileData = fileData;
+                        }
+                    } catch (error) {
+                        console.error('Error loading SOP file from IndexedDB:', error);
+                    }
+                }
+                
+                if (fileData) {
                     try {
                         // Determine MIME type based on file extension
                         const fileName = sopData.fileName || '';
@@ -1876,7 +2163,7 @@ window.openMachineSOPFile = function(machineId) {
                         }
                         
                         // Create blob URL and open in new tab
-                        const byteCharacters = atob(sopData.fileData.split(',')[1]);
+                        const byteCharacters = atob(fileData.split(',')[1]);
                         const byteNumbers = new Array(byteCharacters.length);
                         for (let i = 0; i < byteCharacters.length; i++) {
                             byteNumbers[i] = byteCharacters.charCodeAt(i);
@@ -2001,8 +2288,11 @@ window.openMachineSOPFile = function(machineId) {
 
 // Calculate RPN for a sample location
 function calculateLocationRPN(location) {
-    // RPN = Hard to Clean × Accessibility for Cleaning × Accessibility for Sampling × Visibility
-    return location.hardToClean * location.accessibilityForCleaning * location.accessibilityForSampling * location.visibility;
+    // RPN = Hard to Clean × Accessibility × Visibility
+    // Support both old format (accessibilityForCleaning/accessibilityForSampling) and new format (accessibility)
+    const accessibility = location.accessibility || (location.accessibilityForCleaning && location.accessibilityForSampling ? 
+        Math.max(location.accessibilityForCleaning, location.accessibilityForSampling) : 2);
+    return (location.hardToClean || 2) * accessibility * (location.visibility || 2);
 }
 
 // Determine number of samples based on RPN using the scoring criteria
@@ -2014,9 +2304,9 @@ function getNumberOfSamples(rpn) {
     else return 1; // Default
 }
 
-// Generate Sample Location Report for a machine
-export function generateSampleLocationReport(machineId) {
-    import('./ui.js').then(ui => {
+// Generate Cleaning Protocol for a machine
+export async function generateSampleLocationReport(machineId) {
+    import('./ui.js').then(async ui => {
         const { showLoader, hideLoader, showCustomAlert } = ui;
         
         showLoader();
@@ -2028,107 +2318,312 @@ export function generateSampleLocationReport(machineId) {
             }
             
             if (!machine.sampleLocations || machine.sampleLocations.length === 0) {
-                showCustomAlert("No Sample Locations", `No sample locations defined for ${machine.name}. Please contact administrator to add sample location data.`);
+                showCustomAlert("No Sample Locations", `No sample locations defined for ${machine.name}. Please add sample locations first.`);
+                hideLoader();
                 return;
             }
             
-            // Create a new window for the report
-            const reportWindow = window.open('', '_blank', 'width=1200,height=800');
+            // Get products assigned to this machine
+            const assignedProducts = state.products.filter(p => p.machineIds && p.machineIds.includes(parseInt(machineId)));
+            
+            // Calculate worst-case product (highest RPN)
+            let worstCaseProduct = null;
+            let worstCaseRPN = 0;
+            let worstCaseAPI = '';
+            const productsWithRPN = assignedProducts.map(product => {
+                let maxRPN = 0;
+                let worstIngredient = null;
+                if (product.activeIngredients && product.activeIngredients.length > 0) {
+                    product.activeIngredients.forEach(ing => {
+                        try {
+                            const scores = calculateScores(ing);
+                            if (scores.rpn > maxRPN) {
+                                maxRPN = scores.rpn;
+                                worstIngredient = ing;
+                            }
+                        } catch (e) {
+                            console.warn('Error calculating RPN:', e);
+                        }
+                    });
+                }
+                if (maxRPN > worstCaseRPN) {
+                    worstCaseRPN = maxRPN;
+                    worstCaseProduct = product;
+                    worstCaseAPI = worstIngredient?.name || '';
+                }
+                return { ...product, rpn: maxRPN, worstIngredient };
+            });
+            
+            // Get sample guidelines from scoring system
+            const sampleGuidelines = state.scoringCriteria.numberOfSamples?.criteria || [];
+            const guidelinesText = sampleGuidelines.map(criterion => {
+                if (criterion.rpnMin === criterion.rpnMax) {
+                    return `${criterion.rpnMin} RPN = ${criterion.samples} Sample${criterion.samples !== 1 ? 's' : ''}`;
+                } else {
+                    return `${criterion.rpnMin}-${criterion.rpnMax} RPN = ${criterion.samples} Sample${criterion.samples !== 1 ? 's' : ''}`;
+                }
+            }).join(' | ');
+            
+            // Get SOP information
+            const sopName = machine.cleaningSOP?.sopName || 'Not specified';
+            const sopAttachment = machine.cleaningSOP?.attachmentType || 'none';
+            const sopValue = machine.cleaningSOP?.value || machine.cleaningSOP?.attachmentValue || '';
+            
+            // Protocol settings (defaults - can be configured later)
+            const protocolSettings = {
+                companyName: 'Pharmaceutical Company',
+                companyAddress: 'Address not specified',
+                docNo: `CLV-${machine.machineNumber || machine.id.toString().padStart(3, '0')}`,
+                formNo: 'F1-VD-006',
+                issuedNo: '01',
+                preparedByName: 'Validation Engineer',
+                preparedByTitle: 'Validation Engineer',
+                reviewedByName: 'Validation Manager',
+                reviewedByTitle: 'Validation Manager',
+                qcManagerName: 'QC Manager',
+                productionManagerName: 'Production Manager',
+                qaManagerName: 'QA Manager',
+                detergentName: 'Alconox',
+                detergentConcentration: '1% w/v',
+                detergentSupplier: 'Alconox Inc.',
+                acceptanceCriteria: {
+                    visualInspection: 'No visible residue',
+                    residualAPI: 'As per MAC calculation',
+                    cleansingAgent: '≤ 10 ppm',
+                    phMin: '6.0',
+                    phMax: '8.0',
+                    conductivity: '< 5 μS/cm',
+                    toc: '< 500 ppb',
+                    microbial: '< 10 CFU/25 cm²'
+                }
+            };
+            
+            // Calculate MACO if worst-case product exists
+            let macoCalculation = null;
+            let macoValue = null;
+            let macoMethod = 'Not calculated';
+            if (worstCaseProduct && worstCaseProduct.activeIngredients && worstCaseProduct.activeIngredients.length > 0) {
+                const worstIngredient = worstCaseProduct.activeIngredients.find(ing => ing.name === worstCaseAPI) || worstCaseProduct.activeIngredients[0];
+                const swabArea = 25; // cm² (standard)
+                const sharedArea = machine.area || 1;
+                
+                // Get safety factor based on product type
+                const sfConfig = getSafetyFactorForDosageForm(worstCaseProduct.productType || 'Tablets');
+                const safetyFactor = sfConfig.max;
+                
+                // Find minimum batch size from other products
+                const otherProducts = assignedProducts.filter(p => p.id !== worstCaseProduct.id);
+                const minBatchSize = otherProducts.length > 0 
+                    ? Math.min(...otherProducts.map(p => p.batchSizeKg * 1000)) 
+                    : worstCaseProduct.batchSizeKg * 1000;
+                
+                // Calculate MACO using HBEL method if PDE available
+                if (worstIngredient.pde !== null && worstIngredient.pde !== undefined) {
+                    macoValue = (worstIngredient.pde * minBatchSize * swabArea) / (safetyFactor * sharedArea);
+                    macoMethod = 'HBEL Method';
+                    macoCalculation = {
+                        method: 'HBEL',
+                        formula: `MAC = (HBEL × Min Batch Size × Swab Area) / (Safety Factor × Shared Surface Area)`,
+                        calculation: `MAC = (${worstIngredient.pde} × ${minBatchSize.toLocaleString()} × ${swabArea}) / (${safetyFactor} × ${sharedArea.toLocaleString()})`,
+                        result: macoValue,
+                        hbel: worstIngredient.pde,
+                        minBatchSize: minBatchSize,
+                        swabArea: swabArea,
+                        safetyFactor: safetyFactor,
+                        sharedArea: sharedArea
+                    };
+                } else {
+                    // Use therapeutic dose method
+                    const macoDose = (worstIngredient.therapeuticDose * minBatchSize) / (safetyFactor * worstIngredient.mdd);
+                    macoValue = (macoDose * swabArea) / sharedArea;
+                    macoMethod = 'Therapeutic Dose Method';
+                    macoCalculation = {
+                        method: 'Therapeutic',
+                        formula: `MAC = (TD × Min Batch Size × Swab Area) / (Safety Factor × MDD × Shared Surface Area)`,
+                        calculation: `MAC = (${worstIngredient.therapeuticDose} × ${minBatchSize.toLocaleString()} × ${swabArea}) / (${safetyFactor} × ${worstIngredient.mdd} × ${sharedArea.toLocaleString()})`,
+                        result: macoValue,
+                        therapeuticDose: worstIngredient.therapeuticDose,
+                        minBatchSize: minBatchSize,
+                        swabArea: swabArea,
+                        safetyFactor: safetyFactor,
+                        mdd: worstIngredient.mdd,
+                        sharedArea: sharedArea
+                    };
+                }
+            }
             
             // Calculate RPN and samples for each location
             const processedLocations = machine.sampleLocations.map(location => {
                 const rpn = calculateLocationRPN(location);
                 const samples = getNumberOfSamples(rpn);
+                
+                // Get rating text from score
+                const getRatingText = (score) => {
+                    if (score === 1) return 'Low';
+                    if (score === 2) return 'Medium';
+                    if (score === 3) return 'High';
+                    return score;
+                };
+                
+                const hardToClean = location.hardToClean || (location.hardToClean || 2);
+                const accessibility = location.accessibility || (location.accessibilityForCleaning || 2);
+                const visibility = location.visibility || 2;
+                
                 return {
                     ...location,
                     rpn: rpn,
-                    numberOfSamples: samples
+                    numberOfSamples: samples,
+                    hardToCleanText: getRatingText(hardToClean),
+                    accessibilityText: getRatingText(accessibility),
+                    visibilityText: getRatingText(visibility)
                 };
             });
             
-            // Generate HTML report
-            const reportHTML = `
-<!DOCTYPE html>
-<html lang="en">
+            // Calculate totals
+            const totalLocations = processedLocations.length;
+            const totalSamples = processedLocations.reduce((sum, loc) => sum + loc.numberOfSamples, 0);
+            
+            // Generate dates
+            const currentDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const issuedDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+            
+            // Format MACO value for display
+            const macoDisplay = macoValue ? macoValue.toFixed(4) + ' mg' : 'Not calculated';
+            const macoResidualAPI = macoValue ? `≤ ${macoDisplay}` : protocolSettings.acceptanceCriteria.residualAPI;
+            
+            // Create a new window for the protocol
+            const formWindow = window.open('', '_blank', 'width=1200,height=800');
+            
+            // Generate HTML protocol form matching template structure (Word-compatible)
+            const formHTML = `
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Location Report - ${machine.name}</title>
+    <meta name="ProgId" content="Word.Document">
+    <meta name="Generator" content="Microsoft Word">
+    <meta name="Originator" content="Microsoft Word">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Cleaning Protocol - ${machine.name}</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Times New Roman', serif;
             margin: 20px;
             background-color: #f9f9f9;
+            font-size: 11pt;
+            line-height: 1.4;
         }
-        .report-container {
-            max-width: 1100px;
+        .protocol-container {
+            max-width: 210mm;
             margin: 0 auto;
             background-color: white;
-            padding: 30px;
-            border-radius: 8px;
+            padding: 20mm;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .report-header {
+        .protocol-header {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
         }
-        .report-title {
-            font-size: 20px;
+        .protocol-title {
+            font-size: 16pt;
             font-weight: bold;
             margin-bottom: 10px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .equipment-name {
-            font-size: 18px;
+        .protocol-subtitle {
+            font-size: 12pt;
             font-weight: bold;
-            margin: 15px 0;
-            color: #2563eb;
+            margin-top: 5px;
         }
-        .description {
-            font-size: 14px;
-            margin-bottom: 20px;
-            color: #555;
+        .info-section {
+            margin-bottom: 25px;
         }
-        .sample-table {
+        .info-row {
+            display: flex;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .info-label {
+            font-weight: bold;
+            width: 200px;
+            min-width: 200px;
+        }
+        .info-value {
+            flex: 1;
+        }
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .protocol-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 12px;
+            margin: 15px 0;
+            font-size: 10pt;
         }
-        .sample-table th,
-        .sample-table td {
-            border: 1px solid #333;
-            padding: 8px;
-            text-align: center;
-            vertical-align: middle;
+        .protocol-table th,
+        .protocol-table td {
+            border: 1px solid #000;
+            padding: 6px;
+            text-align: left;
+            vertical-align: top;
         }
-        .sample-table th {
-            background-color: #f0f0f0;
+        .protocol-table th {
+            background-color: #e0e0e0;
             font-weight: bold;
-            font-size: 11px;
+            text-align: center;
+            font-size: 9pt;
         }
-        .sample-table td {
+        .protocol-table td {
             background-color: white;
         }
         .location-cell {
-            text-align: left;
             font-weight: bold;
-            min-width: 120px;
-        }
-        .material-cell {
-            text-align: left;
-            min-width: 100px;
+            min-width: 150px;
         }
         .rpn-cell {
-            background-color: #fef3c7;
+            text-align: center;
             font-weight: bold;
+            background-color: #fff9c4;
         }
         .samples-cell {
-            background-color: #dbeafe;
+            text-align: center;
             font-weight: bold;
-            color: #1e40af;
+            background-color: #c5e1f5;
+        }
+        .center-cell {
+            text-align: center;
+        }
+        .summary-box {
+            border: 2px solid #000;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #f5f5f5;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
         .print-btn {
             background-color: #2563eb;
@@ -2138,83 +2633,718 @@ export function generateSampleLocationReport(machineId) {
             border-radius: 4px;
             cursor: pointer;
             margin-bottom: 20px;
+            font-size: 12pt;
         }
         .print-btn:hover {
             background-color: #1d4ed8;
         }
+        .notes-section {
+            margin-top: 20px;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+        .signature-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .signature-box {
+            width: 250px;
+            border-top: 1px solid #000;
+            padding-top: 5px;
+            text-align: center;
+        }
         @media print {
             .print-btn { display: none; }
-            body { background-color: white; }
-            .report-container { 
+            body { background-color: white; margin: 0; }
+            .protocol-container { 
                 box-shadow: none; 
-                padding: 0;
+                padding: 15mm;
                 max-width: none;
+            }
+            @page {
+                margin: 15mm;
             }
         }
     </style>
 </head>
 <body>
-    <div class="report-container">
-        <button class="print-btn" onclick="window.print()">🖨️ Print Report</button>
-        
-        <div class="report-header">
-            <div class="report-title">Sample Location and Number of Samples</div>
+    <div class="protocol-container">
+        <div style="margin-bottom: 20px; text-align: center;">
+            <button class="print-btn" onclick="window.print()" style="margin-right: 10px;">🖨️ Print Protocol</button>
+            <button class="print-btn" onclick="downloadProtocol()" style="background-color: #10b981;">📥 Download as Word Document</button>
         </div>
         
-        <div class="equipment-name">Equipment Name: ${machine.name.toUpperCase()}</div>
-        <div class="description">
-            Determine the Number of samples must be taken from each location in this machine according to RPN study.
+        <!-- Cover Page & Header -->
+        <div class="protocol-header">
+            <div class="protocol-title">Cleaning Validation Protocol</div>
+            <div class="protocol-subtitle">Equipment Cleaning and Sampling Protocol</div>
+            <div style="margin-top: 15px; font-size: 10pt;">
+                <div><strong>Document No:</strong> ${protocolSettings.docNo}</div>
+                <div><strong>Form No:</strong> ${protocolSettings.formNo}</div>
+                <div><strong>Issued Date:</strong> ${issuedDate}</div>
+                <div><strong>Issued No:</strong> ${protocolSettings.issuedNo}</div>
+            </div>
         </div>
         
-        <table class="sample-table">
-            <thead>
-                <tr>
-                    <th class="location-cell">Location</th>
-                    <th class="material-cell">Material of Construction</th>
-                    <th>Area<br/>(cm²)</th>
-                    <th>Hard to Clean</th>
-                    <th>Not Accessible<br/>for Cleaning</th>
-                    <th>Not Accessible<br/>for Sampling</th>
-                    <th>Not Visible</th>
-                    <th>RPN</th>
-                    <th>No. of samples</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${processedLocations.map(location => `
+        <!-- Company Information -->
+        <div class="info-section" style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd;">
+            <div><strong>Company:</strong> ${protocolSettings.companyName}</div>
+            <div><strong>Address:</strong> ${protocolSettings.companyAddress}</div>
+        </div>
+        
+        <!-- Equipment Information -->
+        <div class="info-section">
+            <div class="section-title">1. Equipment Information</div>
+            <div class="info-row">
+                <div class="info-label">Equipment Name ({{EQUIPMENT_NAME}}):</div>
+                <div class="info-value">${machine.name}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Equipment Number ({{EQUIPMENT_NO}} / {{MACHINE_NO}}):</div>
+                <div class="info-value">${machine.machineNumber || 'N/A'}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Manufacturer ({{EQUIPMENT_MANUFACTURER}} / {{MANUFACTURER}}):</div>
+                <div class="info-value">${machine.manufacturer || 'Not specified'}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Model ({{EQUIPMENT_MODEL}}):</div>
+                <div class="info-value">${machine.model || 'Not specified'}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Serial Number ({{EQUIPMENT_SERIAL}}):</div>
+                <div class="info-value">${machine.serialNumber || 'Not specified'}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Production Stage:</div>
+                <div class="info-value">${machine.stage || 'N/A'}</div>
+            </div>
+            ${machine.group ? `
+            <div class="info-row">
+                <div class="info-label">Machine Group ({{EQUIPMENT_GROUP}}):</div>
+                <div class="info-value">${machine.group}</div>
+            </div>
+            ` : ''}
+            <div class="info-row">
+                <div class="info-label">Production Line ({{MACHINE_LOCATION}}):</div>
+                <div class="info-value">${machine.line || 'N/A'}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Surface Area ({{EQUIPMENT_AREA}}):</div>
+                <div class="info-value">${machine.area ? machine.area.toLocaleString() + ' cm²' : 'N/A'}</div>
+            </div>
+            ${machine.description ? `
+            <div class="info-row">
+                <div class="info-label">Description ({{EQUIPMENT_DESCRIPTION}}):</div>
+                <div class="info-value">${machine.description}</div>
+            </div>
+            ` : ''}
+            <div class="info-row">
+                <div class="info-label">Installation Date ({{INSTALLATION_DATE}}):</div>
+                <div class="info-value">${machine.installationDate || 'Not specified'}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Cleaning SOP ({{CLEANING_SOP_NO}}):</div>
+                <div class="info-value">${sopName}${sopAttachment === 'link' && sopValue ? ' (Link: ' + sopValue + ')' : ''}${sopAttachment === 'upload' ? ' (File attached)' : ''}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Protocol Date ({{ISSUED_DATE}}):</div>
+                <div class="info-value">${currentDate}</div>
+            </div>
+        </div>
+        
+        <!-- Scope and Purpose -->
+        <div class="info-section">
+            <div class="section-title">2. Scope and Purpose</div>
+            <div style="margin-bottom: 10px; font-size: 10pt; line-height: 1.6;">
+                <p><strong>Scope ({{SCOPE_TEXT}}):</strong> This protocol describes the cleaning validation for ${machine.name} used in the production of pharmaceutical products at ${protocolSettings.companyName}.</p>
+                <p><strong>Purpose ({{PURPOSE_TEXT}}):</strong> To establish documented evidence that the cleaning procedure for the equipment is effective and reproducible.</p>
+            </div>
+        </div>
+        
+        <!-- Products List & Worst-Case Product -->
+        ${assignedProducts.length > 0 ? `
+        <div class="info-section">
+            <div class="section-title">3. Products List and Worst-Case Product</div>
+            <div style="margin-bottom: 10px; font-size: 10pt;">
+                <p><strong>Total Products ({{TOTAL_PRODUCTS}}):</strong> ${assignedProducts.length}</p>
+            </div>
+            <table class="protocol-table">
+                <thead>
                     <tr>
-                        <td class="location-cell">${location.location}</td>
-                        <td class="material-cell">${location.material}</td>
-                        <td>${location.area || '_'}</td>
-                        <td>${location.hardToClean}</td>
-                        <td>${location.accessibilityForCleaning}</td>
-                        <td>${location.accessibilityForSampling}</td>
-                        <td>${location.visibility}</td>
-                        <td class="rpn-cell">${location.rpn}</td>
-                        <td class="samples-cell">${location.numberOfSamples}</td>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Product Type</th>
+                        <th>Batch Size (Kg)</th>
+                        <th>RPN</th>
                     </tr>
-                `).join('')}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    ${productsWithRPN.map(product => `
+                        <tr>
+                            <td>${product.productCode || 'N/A'}</td>
+                            <td>${product.name || 'N/A'}</td>
+                            <td class="center-cell">${product.productType || 'N/A'}</td>
+                            <td class="center-cell">${product.batchSizeKg ? product.batchSizeKg.toLocaleString(undefined, {maximumFractionDigits: 2}) : 'N/A'}</td>
+                            <td class="center-cell rpn-cell">${product.rpn || 'N/A'}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            
+            ${worstCaseProduct ? `
+            <div class="summary-box" style="margin-top: 15px;">
+                <div class="section-title" style="margin-top: 0; border: none; padding: 0;">Worst-Case Product</div>
+                <div class="summary-row">
+                    <span>Worst-Case Product ({{WORST_CASE_PRODUCT}}):</span>
+                    <span>${worstCaseProduct.name}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Worst-Case RPN ({{WORST_CASE_RPN}}):</span>
+                    <span>${worstCaseRPN}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Worst-Case API ({{WORST_CASE_API}}):</span>
+                    <span>${worstCaseAPI}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Dosage Form ({{WORST_CASE_DOSAGE_FORM}}):</span>
+                    <span>${worstCaseProduct.productType || 'N/A'}</span>
+                </div>
+            </div>
+            ` : ''}
+        </div>
+        ` : ''}
         
-        <div style="margin-top: 30px; font-size: 12px; color: #666;">
-            <p><strong>Note:</strong> RPN is calculated as: Hard to Clean × Not Accessible for Cleaning × Not Accessible for Sampling × Not Visible</p>
-            <p><strong>Sample Guidelines:</strong> 1-27 RPN = 1 Sample | 36-54 RPN = 2 Samples | 81+ RPN = 3 Samples</p>
+        <!-- Cleaning Procedure -->
+        <div class="info-section">
+            <div class="section-title">4. Cleaning Procedure</div>
+            <div style="margin-bottom: 10px; font-size: 10pt; line-height: 1.6;">
+                <div class="info-row">
+                    <div class="info-label">SOP Number ({{CLEANING_SOP_NO}}):</div>
+                    <div class="info-value">${sopName}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">SOP Title ({{CLEANING_SOP_TITLE}}):</div>
+                    <div class="info-value">Cleaning Procedure for ${machine.name}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Detergent Name ({{DETERGENT_NAME}}):</div>
+                    <div class="info-value">${protocolSettings.detergentName}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Detergent Concentration ({{DETERGENT_CONCENTRATION}}):</div>
+                    <div class="info-value">${protocolSettings.detergentConcentration}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Detergent Supplier ({{DETERGENT_SUPPLIER}}):</div>
+                    <div class="info-value">${protocolSettings.detergentSupplier}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MAC Calculation -->
+        ${macoCalculation ? `
+        <div class="info-section">
+            <div class="section-title">5. Maximum Allowable Carryover (MAC) Calculation</div>
+            <div style="margin-bottom: 10px; font-size: 10pt; line-height: 1.6;">
+                <div class="info-row">
+                    <div class="info-label">Product Name ({{MAC_PRODUCT_NAME}}):</div>
+                    <div class="info-value">${worstCaseProduct.name}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">API ({{MAC_API}}):</div>
+                    <div class="info-value">${worstCaseAPI}</div>
+                </div>
+                ${macoCalculation.hbel ? `
+                <div class="info-row">
+                    <div class="info-label">HBEL ({{MAC_HBEL}}):</div>
+                    <div class="info-value">${macoCalculation.hbel} mg/day</div>
+                </div>
+                ` : ''}
+                <div class="info-row">
+                    <div class="info-label">Safety Factor ({{MAC_SAFETY_FACTOR}}):</div>
+                    <div class="info-value">${macoCalculation.safetyFactor}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Batch Size ({{MAC_BATCH_SIZE}}):</div>
+                    <div class="info-value">${worstCaseProduct.batchSizeKg ? (worstCaseProduct.batchSizeKg * 1000).toLocaleString() + ' units' : 'N/A'}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Min Batch Size ({{MAC_MIN_BATCH}}):</div>
+                    <div class="info-value">${macoCalculation.minBatchSize.toLocaleString()} units</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Shared Surface Area ({{MAC_SHARED_AREA}}):</div>
+                    <div class="info-value">${macoCalculation.sharedArea.toLocaleString()} cm²</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Swab Area ({{MAC_SWAB_AREA}}):</div>
+                    <div class="info-value">${macoCalculation.swabArea} cm²</div>
+                </div>
+                <div class="summary-box" style="margin-top: 15px;">
+                    <div><strong>MAC Calculation ({{MAC_CALCULATION}} / {{MAC_METHOD}}):</strong></div>
+                    <div style="margin-top: 10px; font-family: 'Courier New', monospace; font-size: 9pt;">
+                        <div>${macoCalculation.formula}</div>
+                        <div style="margin-top: 5px;">${macoCalculation.calculation}</div>
+                        <div style="margin-top: 10px; font-weight: bold; font-size: 11pt;">
+                            MAC = ${macoDisplay}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        ` : ''}
+        
+        <!-- Sample Locations Table -->
+        <div class="info-section">
+            <div class="section-title">6. Sample Locations and Number of Samples</div>
+            <div style="margin-bottom: 10px; font-size: 10pt;">
+                <strong>Purpose:</strong> Determine the number of samples that must be taken from each location in this equipment according to RPN study.
+            </div>
+            <table class="protocol-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Location</th>
+                        <th style="width: 10%;">Area (cm²)</th>
+                        <th style="width: 12%;">Hard to Clean</th>
+                        <th style="width: 12%;">Accessibility</th>
+                        <th style="width: 12%;">Visibility</th>
+                        <th style="width: 10%;">RPN</th>
+                        <th style="width: 10%;">No. of Samples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${processedLocations.map(location => `
+                        <tr>
+                            <td class="location-cell">${location.location || ''}</td>
+                            <td class="center-cell">${location.area ? location.area.toLocaleString() : '-'}</td>
+                            <td class="center-cell">${location.hardToCleanText}</td>
+                            <td class="center-cell">${location.accessibilityText}</td>
+                            <td class="center-cell">${location.visibilityText}</td>
+                            <td class="rpn-cell">${location.rpn}</td>
+                            <td class="samples-cell">${location.numberOfSamples}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            
+            <div class="summary-box">
+                <div class="summary-row">
+                    <span>Total Number of Locations:</span>
+                    <span>${totalLocations}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Total Number of Samples Required:</span>
+                    <span>${totalSamples}</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Acceptance Criteria -->
+        <div class="info-section">
+            <div class="section-title">7. Acceptance Criteria</div>
+            <table class="protocol-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Test Parameter</th>
+                        <th style="width: 60%;">Acceptance Criteria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Visual Inspection</strong></td>
+                        <td>${protocolSettings.acceptanceCriteria.visualInspection}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Residual API ({{AC_RESIDUAL_API}})</strong></td>
+                        <td>${macoResidualAPI}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cleansing Agent ({{AC_CLEANSING_AGENT}})</strong></td>
+                        <td>${protocolSettings.acceptanceCriteria.cleansingAgent}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>pH ({{AC_PH_MIN}} - {{AC_PH_MAX}})</strong></td>
+                        <td>${protocolSettings.acceptanceCriteria.phMin} - ${protocolSettings.acceptanceCriteria.phMax}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conductivity ({{AC_CONDUCTIVITY}})</strong></td>
+                        <td>${protocolSettings.acceptanceCriteria.conductivity}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOC ({{AC_TOC}})</strong></td>
+                        <td>${protocolSettings.acceptanceCriteria.toc}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Microbial ({{AC_MICROBIAL}})</strong></td>
+                        <td>${protocolSettings.acceptanceCriteria.microbial}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Notes and Guidelines -->
+        <div class="notes-section">
+            <div class="section-title">8. Notes and Guidelines</div>
+            <p><strong>RPN Calculation:</strong> Risk Priority Number (RPN) is calculated as: Hard to Clean × Accessibility × Visibility</p>
+            <p><strong>Sample Guidelines ({{SAMPLE_GUIDELINES}}):</strong> ${guidelinesText}</p>
+            <p><strong>Rating Scale:</strong></p>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li><strong>Hard to Clean:</strong> Low (1) = Easy to clean, Medium (2) = Moderate difficulty, High (3) = Difficult to clean</li>
+                <li><strong>Accessibility:</strong> Low (1) = Easily accessible, Medium (2) = Moderately accessible, High (3) = Hard to access</li>
+                <li><strong>Visibility:</strong> Low (1) = Easily visible, Medium (2) = Moderately visible, High (3) = Hard to see</li>
+            </ul>
+        </div>
+        
+        <!-- Approval Signatures -->
+        <div class="signature-section">
+            <div class="signature-box">
+                <div style="margin-bottom: 30px;"><strong>Prepared By ({{PREPARED_BY_NAME}}):</strong></div>
+                <div style="margin-bottom: 10px;">${protocolSettings.preparedByName}</div>
+                <div style="margin-bottom: 30px;"><strong>Title:</strong> ${protocolSettings.preparedByTitle}</div>
+                <div style="margin-bottom: 30px;">Signature: _______________</div>
+                <div>Date: _______________</div>
+            </div>
+            <div class="signature-box">
+                <div style="margin-bottom: 30px;"><strong>Reviewed By ({{REVIEWED_BY_NAME}}):</strong></div>
+                <div style="margin-bottom: 10px;">${protocolSettings.reviewedByName}</div>
+                <div style="margin-bottom: 30px;"><strong>Title:</strong> ${protocolSettings.reviewedByTitle}</div>
+                <div style="margin-bottom: 30px;">Signature: _______________</div>
+                <div>Date: _______________</div>
+            </div>
+            <div class="signature-box">
+                <div style="margin-bottom: 30px;"><strong>Approved By:</strong></div>
+                <div style="margin-bottom: 10px;"><strong>QC Manager ({{QC_MANAGER_NAME}}):</strong> ${protocolSettings.qcManagerName}</div>
+                <div style="margin-bottom: 10px;"><strong>Production Manager ({{PRODUCTION_MANAGER_NAME}}):</strong> ${protocolSettings.productionManagerName}</div>
+                <div style="margin-bottom: 10px;"><strong>QA Manager ({{QA_MANAGER_NAME}}):</strong> ${protocolSettings.qaManagerName}</div>
+                <div style="margin-top: 20px;">Signatures: _______________</div>
+                <div>Date: _______________</div>
+            </div>
         </div>
     </div>
 </body>
 </html>`;
             
-            reportWindow.document.write(reportHTML);
-            reportWindow.document.close();
+            // Write HTML to the window
+            formWindow.document.write(formHTML);
+            formWindow.document.close();
+            
+            // Also download as Word document
+            const blob = new Blob(['\ufeff', formHTML], { 
+                type: 'application/msword' 
+            });
+            const url = URL.createObjectURL(blob);
+            const fileName = `Cleaning_Protocol_${machine.machineNumber || machine.id}_${issuedDate.replace(/-/g, '')}.doc`;
+            
+            // Create download link and trigger download
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Clean up
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+            }, 100);
             
         } catch (error) {
-            console.error('Error generating sample location report:', error);
-            showCustomAlert("Error", "Failed to generate sample location report: " + error.message);
+            console.error('Error generating cleaning protocol:', error);
+            showCustomAlert("Error", "Failed to generate cleaning protocol: " + error.message);
         } finally {
             hideLoader();
         }
     });
+}
+
+// ========== SAMPLE LOCATIONS MANAGEMENT ==========
+
+let currentSampleLocationsData = [];
+let currentMachineForLocations = null;
+
+/**
+ * Open the sample locations manager modal
+ */
+export function openSampleLocationsManager(machineId) {
+    const machine = state.machines.find(m => m.id === parseInt(machineId));
+    if (!machine) {
+        showCustomAlert('Error', 'Machine not found.');
+        return;
+    }
+    
+    currentMachineForLocations = machine;
+    document.getElementById('sampleLocationsManagerMachineId').value = machineId;
+    document.getElementById('sampleLocationsManagerModalTitle').textContent = `Manage Sample Locations - ${machine.name}`;
+    
+    // Load existing locations
+    currentSampleLocationsData = machine.sampleLocations ? JSON.parse(JSON.stringify(machine.sampleLocations)) : [];
+    
+    // Hide form initially
+    hideLocationForm();
+    
+    // Render locations
+    renderLocationsTable();
+    
+    // Update button visibility
+    updateModalButtons();
+    
+    // Show modal
+    showModal('sampleLocationsManagerModal');
+}
+
+/**
+ * Render locations table
+ */
+function renderLocationsTable() {
+    const tableContainer = document.getElementById('locationsTableContainer');
+    const tableBody = document.getElementById('locationsTableBody');
+    const noLocationsMsg = document.getElementById('noLocationsMessage');
+    
+    if (currentSampleLocationsData.length === 0) {
+        if (tableContainer) tableContainer.style.display = 'none';
+        if (noLocationsMsg) noLocationsMsg.style.display = 'block';
+        return;
+    }
+    
+    if (noLocationsMsg) noLocationsMsg.style.display = 'none';
+    if (tableContainer) tableContainer.style.display = 'block';
+    
+    if (tableBody) {
+        let totalSamples = 0;
+        
+        tableBody.innerHTML = currentSampleLocationsData.map((loc, index) => {
+            const rpn = calculateLocationRPN(loc);
+            const samples = getNumberOfSamples(rpn);
+            totalSamples += samples;
+            
+            // Get RPN color class
+            let rpnClass = '';
+            if (rpn >= 1 && rpn <= 20) rpnClass = 'text-green-700 bg-green-50';
+            else if (rpn >= 21 && rpn <= 50) rpnClass = 'text-yellow-700 bg-yellow-50';
+            else rpnClass = 'text-red-700 bg-red-50';
+            
+            // Get rating text from score
+            const getRatingText = (score) => {
+                if (score === 1) return 'Low';
+                if (score === 2) return 'Medium';
+                if (score === 3) return 'High';
+                return score;
+            };
+            
+            const hardToClean = loc.hardToClean || 2;
+            const accessibility = loc.accessibility || (loc.accessibilityForCleaning || 2);
+            const visibility = loc.visibility || 2;
+            
+            return `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="p-3 font-semibold" style="color: var(--text-primary);">${loc.location || ''}</td>
+                    <td class="p-3 text-center" style="color: var(--text-primary);">${loc.area ? loc.area.toLocaleString() : '-'}</td>
+                    <td class="p-3 text-center" style="color: var(--text-primary);">${getRatingText(hardToClean)}</td>
+                    <td class="p-3 text-center" style="color: var(--text-primary);">${getRatingText(accessibility)}</td>
+                    <td class="p-3 text-center" style="color: var(--text-primary);">${getRatingText(visibility)}</td>
+                    <td class="p-3 text-center">
+                        <span class="px-3 py-1 rounded-full font-bold ${rpnClass}">${rpn}</span>
+                    </td>
+                    <td class="p-3 text-center">
+                        <span class="px-3 py-1 rounded-full font-bold" style="background-color: #dbeafe; color: #1e40af;">${samples}</span>
+                    </td>
+                    <td class="p-3 text-center">
+                        <button onclick="editSampleLocation(${index})" class="text-blue-500 hover:text-blue-700 mr-2" title="Edit">✏️</button>
+                        <button onclick="deleteSampleLocation(${index})" class="text-red-500 hover:text-red-700" title="Delete">🗑️</button>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+        
+        // Update summary
+        document.getElementById('summaryTotalLocations').textContent = currentSampleLocationsData.length;
+        document.getElementById('summaryTotalSamples').textContent = totalSamples;
+    }
+}
+
+/**
+ * Show add location form
+ */
+function showAddLocationForm() {
+    document.getElementById('locationFormContainer').classList.remove('hidden');
+    document.getElementById('locationFormTitle').textContent = '➕ Add New Sample Location';
+    document.getElementById('locationEditIndex').value = '-1';
+    
+    // Reset form
+    document.getElementById('locationNameInput').value = '';
+    document.getElementById('locationAreaInput').value = '';
+    document.getElementById('hardToCleanSelect').value = '2';
+    document.getElementById('accessibilitySelect').value = '2';
+    document.getElementById('visibilitySelect').value = '2';
+    
+    updateLocationCalculation();
+}
+
+/**
+ * Hide location form
+ */
+function hideLocationForm() {
+    document.getElementById('locationFormContainer').classList.add('hidden');
+}
+
+/**
+ * Edit a sample location
+ */
+function editSampleLocation(index) {
+    const loc = currentSampleLocationsData[index];
+    if (!loc) return;
+    
+    document.getElementById('locationFormContainer').classList.remove('hidden');
+    document.getElementById('locationFormTitle').textContent = '✏️ Edit Sample Location';
+    document.getElementById('locationEditIndex').value = index;
+    
+    // Populate form
+    document.getElementById('locationNameInput').value = loc.location || '';
+    document.getElementById('locationAreaInput').value = loc.area || '';
+    document.getElementById('hardToCleanSelect').value = loc.hardToClean || '2';
+    document.getElementById('accessibilitySelect').value = loc.accessibility || (loc.accessibilityForCleaning || '2');
+    document.getElementById('visibilitySelect').value = loc.visibility || '2';
+    
+    updateLocationCalculation();
+    
+    // Scroll to form
+    document.getElementById('locationFormContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/**
+ * Update RPN and samples calculation
+ */
+function updateLocationCalculation() {
+    const hardToClean = parseInt(document.getElementById('hardToCleanSelect').value);
+    const accessibility = parseInt(document.getElementById('accessibilitySelect').value);
+    const visibility = parseInt(document.getElementById('visibilitySelect').value);
+    
+    const rpn = hardToClean * accessibility * visibility;
+    const samples = getNumberOfSamples(rpn);
+    
+    document.getElementById('calculatedRPN').textContent = rpn;
+    document.getElementById('calculatedSamples').textContent = samples;
+    
+    // Update RPN color
+    const rpnElement = document.getElementById('calculatedRPN');
+    if (rpn >= 1 && rpn <= 20) {
+        rpnElement.style.backgroundColor = '#10b981';
+    } else if (rpn >= 21 && rpn <= 50) {
+        rpnElement.style.backgroundColor = '#eab308';
+    } else {
+        rpnElement.style.backgroundColor = '#ef4444';
+    }
+}
+
+/**
+ * Handle save location (add or edit)
+ */
+async function handleSaveLocation(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('locationNameInput').value.trim();
+    const area = document.getElementById('locationAreaInput').value.trim();
+    const hardToClean = parseInt(document.getElementById('hardToCleanSelect').value);
+    const accessibility = parseInt(document.getElementById('accessibilitySelect').value);
+    const visibility = parseInt(document.getElementById('visibilitySelect').value);
+    const editIndex = parseInt(document.getElementById('locationEditIndex').value);
+    
+    if (!name) {
+        showCustomAlert('Validation Error', 'Please enter location name.');
+        return;
+    }
+    
+    const locationData = {
+        location: name,
+        area: area ? parseFloat(area) : null,
+        hardToClean: hardToClean,
+        accessibility: accessibility,
+        visibility: visibility
+    };
+    
+    if (editIndex >= 0 && editIndex < currentSampleLocationsData.length) {
+        // Update existing
+        currentSampleLocationsData[editIndex] = locationData;
+    } else {
+        // Add new
+        currentSampleLocationsData.push(locationData);
+    }
+    
+    // Hide form and re-render (don't save yet - user will click Save button)
+    hideLocationForm();
+    renderLocationsTable();
+    
+    // Update button visibility
+    updateModalButtons();
+}
+
+/**
+ * Delete a sample location
+ */
+async function deleteSampleLocation(index) {
+    if (confirm('Are you sure you want to delete this sample location?')) {
+        currentSampleLocationsData.splice(index, 1);
+        
+        // Re-render (don't save yet - user will click Save button)
+        renderLocationsTable();
+        
+        // Update button visibility
+        updateModalButtons();
+    }
+}
+
+/**
+ * Save all sample locations to machine and IndexedDB
+ */
+async function saveSampleLocations() {
+    if (!currentMachineForLocations) {
+        showCustomAlert('Error', 'No machine selected.');
+        return;
+    }
+    
+    // Save to machine
+    currentMachineForLocations.sampleLocations = JSON.parse(JSON.stringify(currentSampleLocationsData));
+    
+    // Save state
+    saveStateForUndo();
+    fullAppRender();
+    
+    // Save to IndexedDB
+    import('./ui.js').then(ui => {
+        ui.saveAllDataToLocalStorage();
+        showCustomAlert('Success', 'Sample locations saved successfully!');
+    });
+}
+
+/**
+ * Update modal button visibility
+ */
+function updateModalButtons() {
+    const generateReportBtn = document.getElementById('generateReportBtn');
+    const saveLocationsBtn = document.getElementById('saveLocationsBtn');
+    
+    if (generateReportBtn) {
+        generateReportBtn.style.display = currentSampleLocationsData.length > 0 ? 'inline-block' : 'none';
+    }
+    
+    if (saveLocationsBtn) {
+        // Always show save button if there are locations
+        saveLocationsBtn.style.display = currentSampleLocationsData.length > 0 ? 'inline-block' : 'none';
+    }
+}
+
+/**
+ * Generate form from manager modal
+ */
+function generateReportFromManager() {
+    const machineId = parseInt(document.getElementById('sampleLocationsManagerMachineId').value);
+    hideModal('sampleLocationsManagerModal');
+    setTimeout(() => {
+        generateSampleLocationReport(machineId);
+    }, 100);
 }
 
 // Make functions globally available
@@ -2225,3 +3355,12 @@ window.removeSOPFile = removeSOPFile;
 window.openCurrentSOP = openCurrentSOP;
 window.editCurrentSOP = editCurrentSOP;
 window.generateSampleLocationReport = generateSampleLocationReport;
+window.openSampleLocationsManager = openSampleLocationsManager;
+window.showAddLocationForm = showAddLocationForm;
+window.hideLocationForm = hideLocationForm;
+window.updateLocationCalculation = updateLocationCalculation;
+window.handleSaveLocation = handleSaveLocation;
+window.editSampleLocation = editSampleLocation;
+window.deleteSampleLocation = deleteSampleLocation;
+window.generateReportFromManager = generateReportFromManager;
+window.saveSampleLocations = saveSampleLocations;
