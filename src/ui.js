@@ -49,14 +49,32 @@ export const showModal = (modalId) => document.getElementById(modalId).style.dis
 
 export async function saveAllDataToLocalStorage() {
     try {
+        console.log('saveAllDataToLocalStorage: Starting save...');
+        console.log('saveAllDataToLocalStorage: Machines count:', state.machines.length);
+        
+        const machinesJson = JSON.stringify(state.machines);
+        console.log('saveAllDataToLocalStorage: Machines JSON length:', machinesJson.length);
+        
         await db.setItem('macoProducts', JSON.stringify(state.products));
-        await db.setItem('macoMachines', JSON.stringify(state.machines));
+        await db.setItem('macoMachines', machinesJson);
         await db.setItem('macoScoringCriteria', JSON.stringify(state.scoringCriteria));
         await db.setItem('macoDetergentIngredients', JSON.stringify(state.detergentIngredients));
         await db.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder));
+        
+        console.log('saveAllDataToLocalStorage: Save completed successfully');
+        
+        // Verify the save
+        const verify = await db.getItem('macoMachines');
+        if (verify) {
+            const parsed = JSON.parse(verify);
+            console.log('saveAllDataToLocalStorage: Verification - saved machines count:', parsed.length);
+        } else {
+            console.error('saveAllDataToLocalStorage: Verification failed - no data found after save!');
+        }
     } catch (e) {
         console.error("Failed to save data to IndexedDB", e);
         showCustomAlert("Save Error", "Could not save data. Storage might be full.");
+        throw e; // Re-throw to allow caller to handle
     }
 }
 
@@ -69,7 +87,50 @@ export async function loadAllDataFromLocalStorage() {
         const savedStageOrder = await db.getItem('machineStageDisplayOrder');
 
         if (savedProducts) { try { state.setProducts(JSON.parse(savedProducts)); } catch (e) { console.error("Error loading products", e); } }
-        if (savedMachines) { try { state.setMachines(JSON.parse(savedMachines)); } catch (e) { console.error("Error loading machines", e); } }
+        if (savedMachines) { 
+            try { 
+                const machines = JSON.parse(savedMachines);
+                console.log('loadAllDataFromLocalStorage: Loading', machines.length, 'machines from IndexedDB');
+                
+                // Restore fileName for uploaded SOP files from IndexedDB
+                for (const machine of machines) {
+                    if (machine.cleaningSOP && machine.cleaningSOP.attachmentType === 'upload' && machine.id) {
+                        console.log(`Checking SOP for machine ${machine.id}:`, machine.cleaningSOP);
+                        
+                        // If fileName is missing, try to restore it from IndexedDB
+                        if (!machine.cleaningSOP.fileName) {
+                            console.log(`Machine ${machine.id} - fileName missing, attempting to restore from IndexedDB`);
+                            try {
+                                const { getSOPFile } = await import('./indexedDB.js');
+                                const sopFile = await getSOPFile(machine.id.toString());
+                                console.log(`Machine ${machine.id} - SOP file from IndexedDB:`, sopFile);
+                                
+                                if (sopFile && sopFile.fileName) {
+                                    machine.cleaningSOP.fileName = sopFile.fileName;
+                                    // Also restore fileData if available
+                                    if (sopFile.fileData) {
+                                        machine.cleaningSOP.fileData = sopFile.fileData;
+                                    }
+                                    console.log(`Machine ${machine.id} - fileName restored:`, machine.cleaningSOP.fileName);
+                                } else {
+                                    console.warn(`Machine ${machine.id} - No SOP file found in IndexedDB`);
+                                }
+                            } catch (error) {
+                                console.warn(`Could not restore SOP file name for machine ${machine.id}:`, error);
+                            }
+                        } else {
+                            console.log(`Machine ${machine.id} - fileName already present:`, machine.cleaningSOP.fileName);
+                        }
+                    }
+                }
+                state.setMachines(machines);
+                console.log('loadAllDataFromLocalStorage: Machines loaded successfully. Count:', state.machines.length);
+            } catch (e) { 
+                console.error("Error loading machines", e); 
+            } 
+        } else {
+            console.log('loadAllDataFromLocalStorage: No saved machines found in IndexedDB');
+        }
         
         // Check if saved criteria has the new scoring criteria, if not, use defaults
         if (savedCriteria) { 

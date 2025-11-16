@@ -70,13 +70,13 @@ function initializeColorMapping() {
 function getColorForCombination(line, dosageForm) {
     const colorMapping = initializeColorMapping();
     const color = colorMapping.get(line) || CHART_COLORS[0];
-    console.log(`Getting color for ${line} - ${dosageForm}: ${color} (using line color)`);
+    // console.log(`Getting color for ${line} - ${dosageForm}: ${color} (using line color)`);
     return color;
 }
 
 // Reset color mapping (call when data changes)
 export function resetColorMapping() {
-    console.log('Resetting color mapping for consistency');
+    // console.log('Resetting color mapping for consistency');
     globalColorMapping = null;
 }
 
