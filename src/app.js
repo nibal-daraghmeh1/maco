@@ -604,30 +604,39 @@ async function initializeApp() {
         // Import IndexedDB module
         const db = await import('./indexedDB.js');
         
-        // Migrate data from localStorage to IndexedDB (one-time migration)
-        await db.migrateFromLocalStorage();
+        // Migration disabled - IndexedDB is now the primary storage
+        // await db.migrateFromLocalStorage();
         
         // Prompt for org and user ID (replace with a real login UI for production)
-        // let orgId = localStorage.getItem('orgId') || prompt('Enter your organization ID:');
-        // let userId = localStorage.getItem('userId') || prompt('Enter your user ID:');
-        let orgId = await db.getItem('orgId') || localStorage.getItem('orgId');
-        let userId = await db.getItem('userId') || localStorage.getItem('userId');
+        let orgId = await db.getItem('orgId');
+        let userId = await db.getItem('userId');
         if (!orgId) orgId = 'defaultOrg';
         if (!userId) userId = 'defaultUser';
         await db.setItem('orgId', orgId);
         await db.setItem('userId', userId);
-        localStorage.setItem('orgId', orgId); // Keep in localStorage for immediate access
-        localStorage.setItem('userId', userId);
         window.orgId = orgId;
         window.userId = userId;
 
-        // Set theme from IndexedDB (with localStorage fallback)
-        const theme = await db.getItem('theme') || localStorage.getItem('theme');
+        // Set theme from IndexedDB
+        const theme = await db.getItem('theme');
         if (theme === 'dark') { ui.toggleDarkMode(true); } 
         else { ui.toggleDarkMode(false); }
 
         // Load all data from IndexedDB
         await ui.loadAllDataFromLocalStorage();
+        
+        // CRITICAL CHECK: Verify state immediately after loading
+        console.log('🔄 IMMEDIATE POST-LOAD CHECK:');
+        const postLoadMachinesWithSampleLocations = state.machines.filter(m => m.sampleLocations && m.sampleLocations.length > 0).length;
+        console.log(`📊 POST-LOAD: ${postLoadMachinesWithSampleLocations} machines in state have sample locations`);
+        if (postLoadMachinesWithSampleLocations > 0) {
+            state.machines.forEach(machine => {
+                if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+                    console.log(`🧪 POST-LOAD: Machine ${machine.name} (ID: ${machine.id}) has ${machine.sampleLocations.length} sample locations`);
+                }
+            });
+        }
+        
         // After loading, recalculate dynamic "nextId" counters
         if (state.products.length > 0) {
             state.setNextProductId(Math.max(0, ...state.products.map(p => p.id)) + 1);
@@ -643,7 +652,11 @@ async function initializeApp() {
         });
 
         // Save the initial loaded state as the first step in the undo/redo history
+        console.log('🔄 INITIALIZATION: About to create initial undo state');
+        const machinesWithSampleLocations = state.machines.filter(m => m.sampleLocations && m.sampleLocations.length > 0).length;
+        console.log(`📊 INITIALIZATION: ${machinesWithSampleLocations} machines have sample locations before undo state creation`);
         ui.saveStateForUndo();
+        console.log('✅ INITIALIZATION: Initial undo state created (without saving to IndexedDB)');
 
         try {
             if (typeof state.ensureProductsHaveLine === 'function') {
@@ -665,6 +678,20 @@ async function initializeApp() {
         // Perform any final UI setup after the initial render
         ui.updateToggleIcons('productRegister');
         scoringView.toggleScoringEditMode(false);
+        
+        // FINAL CHECK: Verify state at the very end of initialization
+        console.log('🔄 FINAL INITIALIZATION CHECK:');
+        const finalMachinesWithSampleLocations = state.machines.filter(m => m.sampleLocations && m.sampleLocations.length > 0).length;
+        console.log(`📊 FINAL: ${finalMachinesWithSampleLocations} machines in state have sample locations`);
+        if (finalMachinesWithSampleLocations > 0) {
+            state.machines.forEach(machine => {
+                if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+                    console.log(`🧪 FINAL: Machine ${machine.name} (ID: ${machine.id}) has ${machine.sampleLocations.length} sample locations`);
+                }
+            });
+        }
+        console.log('🎯 INITIALIZATION COMPLETE - State should be ready for use');
+        
         ui.hideLoader();
     } catch (error) {
         console.error('Error during application initialization:', error);
@@ -716,7 +743,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const theme = !isDark ? 'dark' : 'light';
         const db = await import('./indexedDB.js');
         await db.setItem('theme', theme);
-        localStorage.setItem('theme', theme); // Also save to localStorage for immediate access
     });
 
     window.addEventListener('beforeprint', () => {

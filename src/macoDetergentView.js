@@ -271,28 +271,28 @@ export function recalculateDetergentMacoForTrain(trainId, lineLargestEssa, dosag
     const bodyWeight = parseFloat(document.getElementById('bodyWeight')?.value) || 70; // Default to 70 if not found
     const sf = parseFloat(document.getElementById(`sf-input-train-${uniqueTrainId}`)?.value) || 1;
 
-    console.log(`=== DETERGENT MACO CALCULATION DEBUG - Train ${trainId} ===`);
-    console.log(`Detergent ingredients:`, state.detergentIngredients);
-    console.log(`LD50 values:`, ld50Values);
-    console.log(`Min LD50: ${minLd50}`);
-    console.log(`Body weight: ${bodyWeight}`);
-    console.log(`Safety factor: ${sf}`);
-    console.log(`Train minBsMddRatio: ${train.minBsMddRatio}`);
-    console.log(`Line largest ESSA: ${lineLargestEssa}`);
-    console.log(`Train assumedSsa: ${train.assumedSsa}`);
+    // console.log(`=== DETERGENT MACO CALCULATION DEBUG - Train ${trainId} ===`);
+    // console.log(`Detergent ingredients:`, state.detergentIngredients);
+    // console.log(`LD50 values:`, ld50Values);
+    // console.log(`Min LD50: ${minLd50}`);
+    // console.log(`Body weight: ${bodyWeight}`);
+    // console.log(`Safety factor: ${sf}`);
+    // console.log(`Train minBsMddRatio: ${train.minBsMddRatio}`);
+    // console.log(`Line largest ESSA: ${lineLargestEssa}`);
+    // console.log(`Train assumedSsa: ${train.assumedSsa}`);
 
     const adi = (5e-4 * minLd50 * bodyWeight) / sf;
-    console.log(`ADI calculation: (5e-4 * ${minLd50} * ${bodyWeight}) / ${sf} = ${adi}`);
+    // console.log(`ADI calculation: (5e-4 * ${minLd50} * ${bodyWeight}) / ${sf} = ${adi}`);
     
     const maco = adi * train.minBsMddRatio;
-    console.log(`MACO calculation: ${adi} * ${train.minBsMddRatio} = ${maco}`);
+    // console.log(`MACO calculation: ${adi} * ${train.minBsMddRatio} = ${maco}`);
     
     const macoPerArea = lineLargestEssa > 0 ? maco / lineLargestEssa : 0;
-    console.log(`MACO per Area: ${maco} / ${lineLargestEssa} = ${macoPerArea}`);
+    // console.log(`MACO per Area: ${maco} / ${lineLargestEssa} = ${macoPerArea}`);
     
     const macoPerSwab = macoPerArea * train.assumedSsa;
-    console.log(`MACO per Swab: ${macoPerArea} * ${train.assumedSsa} = ${macoPerSwab}`);
-    console.log(`=== END DETERGENT MACO CALCULATION DEBUG ===`);
+    // console.log(`MACO per Swab: ${macoPerArea} * ${train.assumedSsa} = ${macoPerSwab}`);
+    // console.log(`=== END DETERGENT MACO CALCULATION DEBUG ===`);
 
     // Check if elements exist before updating
     const minLd50Element = document.getElementById(`min-ld50-train-${uniqueTrainId}`);

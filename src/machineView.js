@@ -701,7 +701,6 @@ export async function saveMachine(event) {
                         state.machineStageDisplayOrder.push(stage); // Fallback
                     }
                     db.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder)).catch(e => console.error('Error saving machine stage order:', e));
-                    localStorage.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder)); // Also save to localStorage
                 }
             }
 
@@ -718,7 +717,6 @@ export async function saveMachine(event) {
                 if (!state.machineGroups.includes(group)) {
                     state.machineGroups.push(group);
                     db.setItem('machineGroups', JSON.stringify(state.machineGroups)).catch(e => console.error('Error saving machine groups:', e));
-                    localStorage.setItem('machineGroups', JSON.stringify(state.machineGroups)); // Also save to localStorage
                 }
             }
 
@@ -759,18 +757,19 @@ export async function saveMachine(event) {
             }
             
             
-            // Store SOP file in IndexedDB if it's an upload
+            // Handle SOP file data
             const machineId = id ? parseInt(id, 10) : state.nextMachineId + 1;
-            if (cleaningSOPData.attachmentType === 'upload' && cleaningSOPData.fileData) {
+            // Store SOP file in IndexedDB if it's an upload
+            if (cleaningSOPData.attachmentType === 'upload' && cleaningSOPData.fileData && cleaningSOPData.fileName) {
                 try {
+                    console.log('Storing SOP file in IndexedDB for machine:', machineId);
                     await storeSOPFile(machineId.toString(), cleaningSOPData.fileName, cleaningSOPData.fileData);
-                    // Ensure fileName is in the cleaningSOP object for saving
-                    if (!cleaningSOPData.fileName && cleaningSOPData.attachmentValue) {
-                        cleaningSOPData.fileName = cleaningSOPData.attachmentValue;
-                    }
+                    
+                    // Don't store fileData in the main machine object to keep it clean
+                    // fileData is stored separately in IndexedDB sopFilesStore
+                    delete cleaningSOPData.fileData;
                 } catch (error) {
                     console.error('Error storing SOP file in IndexedDB:', error);
-                    showCustomAlert('Warning', 'Machine saved but SOP file storage failed. Please try uploading again.');
                 }
             } else if (cleaningSOPData.attachmentType !== 'upload') {
                 // Delete SOP file from IndexedDB if attachment type changed from upload
@@ -1361,20 +1360,18 @@ export function saveProductsToMachine(event) {
 }
 
 // Toggle line section visibility
-window.toggleLineSection = async function(lineKey) {
+window.toggleLineSection = function(lineKey) {
     const lineElement = document.getElementById(`line-${lineKey}`);
     const button = event.target;
     
     if (lineElement.style.display === 'none') {
         lineElement.style.display = 'block';
         button.textContent = 'Hide';
-        await db.setItem(`machineLine-${lineKey}-hidden`, 'false');
-        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'false'); // Also save to localStorage
+        db.setItem(`machineLine-${lineKey}-hidden`, 'false').catch(e => console.error('Error saving line visibility:', e));
     } else {
         lineElement.style.display = 'none';
         button.textContent = 'Show';
-        await db.setItem(`machineLine-${lineKey}-hidden`, 'true');
-        localStorage.setItem(`machineLine-${lineKey}-hidden`, 'true'); // Also save to localStorage
+        db.setItem(`machineLine-${lineKey}-hidden`, 'true').catch(e => console.error('Error saving line visibility:', e));
     }
 };
 
@@ -3069,10 +3066,22 @@ let currentMachineForLocations = null;
  * Open the sample locations manager modal
  */
 export function openSampleLocationsManager(machineId) {
+    console.log('🔄 OPENING SAMPLE LOCATIONS MANAGER');
+    console.log('Machine ID:', machineId);
+    
     const machine = state.machines.find(m => m.id === parseInt(machineId));
     if (!machine) {
+        console.error('❌ Machine not found for ID:', machineId);
         showCustomAlert('Error', 'Machine not found.');
         return;
+    }
+    
+    console.log('✅ Machine found:', machine.name);
+    console.log('Sample locations in machine:', machine.sampleLocations?.length || 0);
+    if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+        console.log('Sample locations data:', machine.sampleLocations);
+    } else {
+        console.log('📍 No sample locations found for this machine');
     }
     
     currentMachineForLocations = machine;
@@ -3081,6 +3090,7 @@ export function openSampleLocationsManager(machineId) {
     
     // Load existing locations
     currentSampleLocationsData = machine.sampleLocations ? JSON.parse(JSON.stringify(machine.sampleLocations)) : [];
+    console.log('✅ Loaded', currentSampleLocationsData.length, 'sample locations into manager');
     
     // Hide form initially
     hideLocationForm();
@@ -3093,6 +3103,8 @@ export function openSampleLocationsManager(machineId) {
     
     // Show modal
     showModal('sampleLocationsManagerModal');
+    
+    console.log('🎉 Sample locations manager opened successfully');
 }
 
 /**
@@ -3305,18 +3317,130 @@ async function saveSampleLocations() {
         return;
     }
     
-    // Save to machine
-    currentMachineForLocations.sampleLocations = JSON.parse(JSON.stringify(currentSampleLocationsData));
-    
-    // Save state
-    saveStateForUndo();
-    fullAppRender();
-    
-    // Save to IndexedDB
-    import('./ui.js').then(ui => {
-        ui.saveAllDataToLocalStorage();
+    try {
+        console.log('🔄 SAVING SAMPLE LOCATIONS - START');
+        console.log('Machine:', currentMachineForLocations.name, 'ID:', currentMachineForLocations.id);
+        console.log('Sample locations to save:', currentSampleLocationsData.length, 'locations');
+        console.log('Sample locations data:', JSON.stringify(currentSampleLocationsData, null, 2));
+        
+        // Save to machine state - CRITICAL: Update the actual machine in the state array
+        console.log('🔄 Before update: currentMachineForLocations is reference?', currentMachineForLocations === state.machines.find(m => m.id === currentMachineForLocations.id));
+        
+        currentMachineForLocations.sampleLocations = JSON.parse(JSON.stringify(currentSampleLocationsData));
+        console.log('✅ Updated currentMachineForLocations.sampleLocations:', currentMachineForLocations.sampleLocations);
+        
+        // CRITICAL: Make sure the machine in the state array is actually updated
+        const machineInState = state.machines.find(m => m.id === currentMachineForLocations.id);
+        if (machineInState) {
+            // Force update the machine in state
+            machineInState.sampleLocations = JSON.parse(JSON.stringify(currentSampleLocationsData));
+            console.log('✅ FORCED UPDATE: Machine in state updated, sample locations count:', machineInState.sampleLocations?.length || 0);
+            console.log('✅ FORCED UPDATE: Machine in state sampleLocations:', machineInState.sampleLocations);
+            
+            // Verify the update worked
+            const verifyMachine = state.machines.find(m => m.id === currentMachineForLocations.id);
+            if (verifyMachine && verifyMachine.sampleLocations && verifyMachine.sampleLocations.length > 0) {
+                console.log('✅ VERIFICATION: Machine in state definitely has sample locations:', verifyMachine.sampleLocations.length);
+            } else {
+                console.error('❌ VERIFICATION FAILED: Machine in state still has no sample locations!');
+            }
+        } else {
+            console.error('❌ Machine not found in state!');
+        }
+        
+        // Save state for undo/redo
+        console.log('🔄 About to call saveStateForUndo...');
+        saveStateForUndo();
+        console.log('✅ State saved for undo/redo');
+        
+        // CHECK: Verify machine state AFTER saveStateForUndo
+        const machineAfterUndo = state.machines.find(m => m.id === currentMachineForLocations.id);
+        if (machineAfterUndo && machineAfterUndo.sampleLocations && machineAfterUndo.sampleLocations.length > 0) {
+            console.log('✅ AFTER UNDO: Machine in state still has sample locations:', machineAfterUndo.sampleLocations.length);
+        } else {
+            console.error('❌ AFTER UNDO: Machine in state lost sample locations after saveStateForUndo!');
+            if (machineAfterUndo) {
+                console.error('❌ AFTER UNDO: Machine found but sampleLocations:', machineAfterUndo.sampleLocations);
+            }
+        }
+        
+        // FINAL CHECK: Verify machine state just before saving to IndexedDB
+        const finalCheckMachine = state.machines.find(m => m.id === currentMachineForLocations.id);
+        if (finalCheckMachine && finalCheckMachine.sampleLocations && finalCheckMachine.sampleLocations.length > 0) {
+            console.log('✅ FINAL CHECK: Machine in state HAS sample locations before IndexedDB save:', finalCheckMachine.sampleLocations.length);
+            console.log('✅ FINAL CHECK: Sample locations:', finalCheckMachine.sampleLocations);
+        } else {
+            console.error('❌ FINAL CHECK: Machine in state has NO sample locations before IndexedDB save!');
+            console.error('❌ FINAL CHECK: This means the state was not updated properly!');
+            if (finalCheckMachine) {
+                console.error('❌ FINAL CHECK: Machine found but sampleLocations:', finalCheckMachine.sampleLocations);
+            } else {
+                console.error('❌ FINAL CHECK: Machine not found in state at all!');
+            }
+        }
+        
+        // Save to IndexedDB
+        const ui = await import('./ui.js');
+        console.log('🔄 Starting save to IndexedDB...');
+        await ui.saveAllDataToLocalStorage();
+        console.log('✅ Data saved to IndexedDB successfully');
+        
+        // Verification: Check if data was actually saved
+        const db = await import('./indexedDB.js');
+        const savedMachines = await db.getItem('macoMachines');
+        if (savedMachines) {
+            const parsedMachines = JSON.parse(savedMachines);
+            const savedMachine = parsedMachines.find(m => m.id === currentMachineForLocations.id);
+            if (savedMachine && savedMachine.sampleLocations && savedMachine.sampleLocations.length > 0) {
+                console.log('✅ VERIFICATION: Machine saved in IndexedDB with', savedMachine.sampleLocations.length, 'sample locations');
+                console.log('✅ VERIFICATION: Sample locations:', savedMachine.sampleLocations);
+            } else {
+                console.error('❌ VERIFICATION FAILED: Machine not found in IndexedDB or no sample locations');
+                if (savedMachine) {
+                    console.error('❌ VERIFICATION: Machine found but sampleLocations:', savedMachine.sampleLocations);
+                } else {
+                    console.error('❌ VERIFICATION: Machine not found at all');
+                }
+            }
+        } else {
+            console.error('❌ VERIFICATION FAILED: No machines data in IndexedDB');
+        }
+        
+        // IMMEDIATE RELOAD TEST: Try to load the data back immediately
+        console.log('🔄 IMMEDIATE TEST: Trying to load data back from IndexedDB...');
+        try {
+            const testLoad = await db.getItem('macoMachines');
+            if (testLoad) {
+                const testParsed = JSON.parse(testLoad);
+                const testMachine = testParsed.find(m => m.id === currentMachineForLocations.id);
+                if (testMachine && testMachine.sampleLocations && testMachine.sampleLocations.length > 0) {
+                    console.log('✅ IMMEDIATE TEST: Successfully loaded machine with', testMachine.sampleLocations.length, 'sample locations');
+                } else {
+                    console.error('❌ IMMEDIATE TEST: Failed to load sample locations');
+                }
+            } else {
+                console.error('❌ IMMEDIATE TEST: No data found');
+            }
+        } catch (error) {
+            console.error('❌ IMMEDIATE TEST: Error loading data:', error);
+        }
+        
+        // Update UI
+        console.log('🔄 Updating UI...');
+        fullAppRender();
+        console.log('✅ UI updated');
+        
         showCustomAlert('Success', 'Sample locations saved successfully!');
-    });
+        
+        // Close the modal
+        hideModal('sampleLocationsManagerModal');
+        
+        console.log('🎉 SAVING SAMPLE LOCATIONS - COMPLETED SUCCESSFULLY');
+        
+    } catch (error) {
+        console.error('❌ Error saving sample locations:', error);
+        showCustomAlert('Error', 'Failed to save sample locations: ' + error.message);
+    }
 }
 
 /**

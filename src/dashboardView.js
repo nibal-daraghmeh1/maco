@@ -43,13 +43,13 @@ function initializeColorMapping() {
     // Sort lines for consistent ordering, ensuring each gets a unique color
     const sortedLines = Array.from(lines).sort();
     
-    console.log('Creating color mapping for lines:', sortedLines);
+    // console.log('Creating color mapping for lines:', sortedLines);
     
     // Assign colors to each line ensuring no duplicates
     sortedLines.forEach((line, index) => {
         const color = CHART_COLORS[index % CHART_COLORS.length];
         colorMapping.set(line, color);
-        console.log(`Line "${line}" -> Color ${color} (index: ${index})`);
+        // console.log(`Line "${line}" -> Color ${color} (index: ${index})`);
         colorIndex++;
     });
     
@@ -58,8 +58,8 @@ function initializeColorMapping() {
     const uniqueColors = [...new Set(assignedColors)];
     if (assignedColors.length !== uniqueColors.length) {
         console.warn('WARNING: Duplicate colors detected in mapping!');
-        console.log('Assigned colors:', assignedColors);
-        console.log('Unique colors:', uniqueColors);
+        // console.log('Assigned colors:', assignedColors);
+        // console.log('Unique colors:', uniqueColors);
     }
     
     globalColorMapping = colorMapping;
@@ -1367,17 +1367,17 @@ function getMinMacosDistributionByLineAndDosageForm() {
     
     // Get all trains grouped by line
     const linesWithTrains = getTrainsGroupedByLine();
-    console.log('Lines with trains:', linesWithTrains);
+    // console.log('Lines with trains:', linesWithTrains);
     
     // Use real data from existing train calculations
-    console.log('Using real MACO data for minimum MACO chart');
+    // console.log('Using real MACO data for minimum MACO chart');
     
     // Get all trains with their calculated MACO values
     const trainData = getTrainData();
-    console.log('Train data for MACO calculation:', trainData);
+    // console.log('Train data for MACO calculation:', trainData);
     
     if (!trainData || trainData.length === 0) {
-        console.log('No train data available, using mock data');
+        // console.log('No train data available, using mock data');
         distribution['Solids'] = {
             'Tablets': 0.000123,
             'Capsules': 0.000456
@@ -1400,20 +1400,20 @@ function getMinMacosDistributionByLineAndDosageForm() {
         });
         
         window.minMacosValues = macoValues;
-        console.log('Mock distribution:', distribution);
+        // console.log('Mock distribution:', distribution);
         return distribution;
     }
     
     // Group trains by line and dosage form
     const lineGroups = {};
     
-    console.log('Processing train data for MACO distribution:', trainData.length, 'trains');
+    // console.log('Processing train data for MACO distribution:', trainData.length, 'trains');
     
     trainData.forEach(train => {
         const line = train.line || train.productLine || 'Unassigned';
         const dosageForms = [...new Set(train.products.map(p => p.productType || 'Other'))];
         
-        console.log(`Train ${train.id}: Line = ${line}, Dosage Forms = [${dosageForms.join(', ')}]`);
+        // console.log(`Train ${train.id}: Line = ${line}, Dosage Forms = [${dosageForms.join(', ')}]`);
         
         if (!lineGroups[line]) {
             lineGroups[line] = {};
@@ -1424,17 +1424,17 @@ function getMinMacosDistributionByLineAndDosageForm() {
                 lineGroups[line][dosageForm] = [];
             }
             lineGroups[line][dosageForm].push(train);
-            console.log(`Added train ${train.id} to ${line} - ${dosageForm} group`);
+            // console.log(`Added train ${train.id} to ${line} - ${dosageForm} group`);
         });
     });
     
-    console.log('Final line groups structure:', lineGroups);
+    // console.log('Final line groups structure:', lineGroups);
     
     // Log summary
     Object.keys(lineGroups).forEach(line => {
         Object.keys(lineGroups[line]).forEach(dosageForm => {
             const trainCount = lineGroups[line][dosageForm].length;
-            console.log(`${line} - ${dosageForm}: ${trainCount} trains`);
+            // console.log(`${line} - ${dosageForm}: ${trainCount} trains`);
         });
     });
     
@@ -1452,13 +1452,13 @@ function getMinMacosDistributionByLineAndDosageForm() {
             // Calculate MACO for each train in this group using the same logic as Product MACO view
             const trainMacos = trainsInGroup.map(train => {
                 try {
-                    console.log(`Calculating MACO for train ${train.id} in ${line} - ${dosageForm}:`, train);
+                    // console.log(`Calculating MACO for train ${train.id} in ${line} - ${dosageForm}:`, train);
                     
                     const worstCaseType = getWorstCaseProductType(train.products.map(p=>p.productType));
             const sfConfig = getSafetyFactorForDosageForm(worstCaseType);
                     const sf = sfConfig.max;
                     
-                    console.log(`Safety factor config for ${dosageForm}:`, sfConfig);
+                    // console.log(`Safety factor config for ${dosageForm}:`, sfConfig);
                     
                     // Calculate line-specific largest ESSA for this train
                     const lineLargestEssa = getLargestEssaForLineAndDosageForm(train, trainData);
@@ -1497,7 +1497,7 @@ function getMinMacosDistributionByLineAndDosageForm() {
                     // Calculate PDE-based MACO if PDE is available and not hidden
                     if (train.lowestPde !== null && train.lowestPde > 0 && !pdeHidden) {
                         macoHealth = train.lowestPde * train.minBsMddRatio;
-                        console.log(`Train ${train.id}: PDE-based MACO = ${macoHealth}`);
+                        // console.log(`Train ${train.id}: PDE-based MACO = ${macoHealth}`);
                     }
                     
                     // Calculate NOEL-based MACO if LD50 is available and not hidden
@@ -1510,7 +1510,7 @@ function getMinMacosDistributionByLineAndDosageForm() {
                         if (minMdd > 0 && isFinite(minMdd)) {
                             // MACO = (NOEL g × min batch size g × 1000) ÷ (safety factor × MDD g)
                             macoNoel = (noel * train.minMbsKg * 1000) / (sf * minMdd);
-                            console.log(`Train ${train.id}: NOEL-based MACO = ${macoNoel}`);
+                            // console.log(`Train ${train.id}: NOEL-based MACO = ${macoNoel}`);
                         }
                     }
                     
@@ -1553,19 +1553,19 @@ function getMinMacosDistributionByLineAndDosageForm() {
                     const macoPerArea = lineLargestEssa > 0 ? finalMaco / lineLargestEssa : finalMaco / 10000; // Default area if missing
                     const macoPerSwab = macoPerArea * train.assumedSsa;
                     
-                    console.log(`Train ${train.id} final MACO calculation:`, {
-                        macoDose, maco10ppm, macoHealth, macoNoel, macoVisual, 
-                        finalMaco, macoPerArea, macoPerSwab, 
-                        selectedLimit: finalMacoResult.name,
-                        lineLargestEssa, assumedSsa: train.assumedSsa
-                    });
+                    // console.log(`Train ${train.id} final MACO calculation:`, {
+                    //     macoDose, maco10ppm, macoHealth, macoNoel, macoVisual, 
+                    //     finalMaco, macoPerArea, macoPerSwab, 
+                    //     selectedLimit: finalMacoResult.name,
+                    //     lineLargestEssa, assumedSsa: train.assumedSsa
+                    // });
                     
                     // Ensure we return a valid positive number
                     const resultMaco = (macoPerSwab > 0 && isFinite(macoPerSwab) && !isNaN(macoPerSwab)) 
                         ? macoPerSwab 
                         : 0.001; // Default small value
                     
-                    console.log(`Train ${train.id} result MACO: ${resultMaco}`);
+                    // console.log(`Train ${train.id} result MACO: ${resultMaco}`);
                     
                     return { train, maco: resultMaco };
                 } catch (error) {
@@ -1580,7 +1580,7 @@ function getMinMacosDistributionByLineAndDosageForm() {
                     current.maco < min.maco ? current : min
                 );
                 
-                console.log(`Minimum MACO for ${line} - ${dosageForm}:`, minMacoData.maco);
+                // console.log(`Minimum MACO for ${line} - ${dosageForm}:`, minMacoData.maco);
                 distribution[line][dosageForm] = minMacoData.maco;
                 
                 // Store MACO value for tooltip
@@ -1590,8 +1590,8 @@ function getMinMacosDistributionByLineAndDosageForm() {
         });
     });
     
-    console.log('Real MACO distribution:', distribution);
-    console.log('MACO values for tooltips:', macoValues);
+    // console.log('Real MACO distribution:', distribution);
+    // console.log('MACO values for tooltips:', macoValues);
     
     // Store MACO values globally for tooltip access
     window.minMacosValues = macoValues;
@@ -1983,15 +1983,15 @@ function renderSpecialCasesDistributionPieChart() {
 }
 
 function renderMinMacosDistributionPieChart() {
-    console.log('renderMinMacosDistributionPieChart called');
+    // console.log('renderMinMacosDistributionPieChart called');
     const canvas = document.getElementById('minMacosPieChart');
     
     // Ensure color mapping is initialized
     initializeColorMapping();
     
-    console.log('Rendering minimum MACO chart...');
+    // console.log('Rendering minimum MACO chart...');
     const minMacosDistribution = getMinMacosDistributionByLineAndDosageForm();
-    console.log('Distribution data:', minMacosDistribution);
+    // console.log('Distribution data:', minMacosDistribution);
     const ctx = canvas.getContext('2d');
     
     // Clear previous chart
@@ -2009,10 +2009,10 @@ function renderMinMacosDistributionPieChart() {
     const linesInLegend = new Set();
     
     // Process each line and dosage form combination with consistent colors
-    console.log('Processing distribution data...');
+    // console.log('Processing distribution data...');
     Object.keys(minMacosDistribution).forEach(line => {
         const lineData = minMacosDistribution[line];
-        console.log(`Processing line: ${line}`, lineData);
+        // console.log(`Processing line: ${line}`, lineData);
         if (!lineData || typeof lineData !== 'object') {
             console.log(`Skipping line ${line}: Invalid data`);
             return;
@@ -2021,24 +2021,24 @@ function renderMinMacosDistributionPieChart() {
         // Add each dosage form as a separate segment with consistent colors
         Object.keys(lineData).forEach(dosageForm => {
             const macoValue = lineData[dosageForm];
-            console.log(`Processing ${line} - ${dosageForm}: MACO value = ${macoValue}`);
+            // console.log(`Processing ${line} - ${dosageForm}: MACO value = ${macoValue}`);
             
             // More lenient validation - accept very small positive numbers
             if (macoValue && macoValue > 0 && !isNaN(macoValue) && isFinite(macoValue)) {
                 const label = `${line} - ${dosageForm}`;
                 const color = getColorForCombination(line, dosageForm);
-                console.log(`Line ${line} - ${dosageForm} color: ${color}`);
+                // console.log(`Line ${line} - ${dosageForm} color: ${color}`);
                 labels.push(label);
                 data.push(macoValue); // Minimum MACO value
                 backgroundColors.push(color);
                 borderColors.push('#fff'); // White borders
                 linesInLegend.add(line); // Track unique lines for legend
-                console.log(`Added segment: ${label} = ${macoValue}`);
+                // console.log(`Added segment: ${label} = ${macoValue}`);
             } else {
                 console.warn(`Skipping ${line} - ${dosageForm}: Invalid MACO value (${macoValue})`);
                 // If we have invalid data but should have valid data, add a small default
                 if (dosageForm && line) {
-                    console.log(`Adding default MACO value for ${line} - ${dosageForm}`);
+                    // console.log(`Adding default MACO value for ${line} - ${dosageForm}`);
                     const label = `${line} - ${dosageForm}`;
                     const color = getColorForCombination(line, dosageForm);
                     labels.push(label);
@@ -2046,13 +2046,13 @@ function renderMinMacosDistributionPieChart() {
                     backgroundColors.push(color);
                     borderColors.push('#fff');
                     linesInLegend.add(line);
-                    console.log(`Added default segment: ${label} = 0.001`);
+                    // console.log(`Added default segment: ${label} = 0.001`);
                 }
             }
         });
     });
     
-    console.log('Final chart data:', { labels, data, backgroundColors, borderColors });
+    // console.log('Final chart data:', { labels, data, backgroundColors, borderColors });
     
     // Check if we have any data to display
     if (labels.length === 0 || data.length === 0) {
@@ -2063,7 +2063,7 @@ function renderMinMacosDistributionPieChart() {
         return;
     }
     
-    console.log('Creating Chart.js chart with data:', { labels, data, backgroundColors, borderColors });
+    // console.log('Creating Chart.js chart with data:', { labels, data, backgroundColors, borderColors });
     
     // Create a simple test chart first
     try {
@@ -2142,7 +2142,7 @@ function renderMinMacosDistributionPieChart() {
             }
         });
         
-    console.log('Chart created successfully!');
+    // console.log('Chart created successfully!');
     
     
 } catch (error) {
@@ -2152,7 +2152,7 @@ function renderMinMacosDistributionPieChart() {
 }
 
 function renderTrainsByLineAndDosageChart() {
-    console.log('renderTrainsByLineAndDosageChart called');
+    // console.log('renderTrainsByLineAndDosageChart called');
     const canvas = document.getElementById('trainsByLineAndDosageChart');
     if (!canvas) {
         console.log('Canvas element not found: trainsByLineAndDosageChart - skipping chart');
@@ -2248,7 +2248,7 @@ function renderTrainsByLineAndDosageChart() {
         });
     });
     
-    console.log('Grouped data:', groupedData);
+    // console.log('Grouped data:', groupedData);
     
     // Prepare data for Chart.js - Show individual trains with correct labels
     const labels = [];
@@ -2407,11 +2407,11 @@ function renderTrainsByLineAndDosageChart() {
         }
     });
     
-    console.log('Trains by Line and Dosage chart created successfully!');
+    // console.log('Trains by Line and Dosage chart created successfully!');
 }
 
 function renderHighestRpnByTrainChart() {
-    console.log('renderHighestRpnByTrainChart called');
+    // console.log('renderHighestRpnByTrainChart called');
     const canvas = document.getElementById('highestRpnByTrainChart');
     if (!canvas) {
         console.log('Canvas element not found: highestRpnByTrainChart - skipping chart');
@@ -2478,7 +2478,7 @@ function renderHighestRpnByTrainChart() {
         return a.trainName.localeCompare(b.trainName);
     });
     
-    console.log('Train RPN data:', trainRpnData);
+    // console.log('Train RPN data:', trainRpnData);
     
     // Prepare chart data
     const labels = [];
@@ -2606,7 +2606,7 @@ function renderHighestRpnByTrainChart() {
         }
     });
     
-    console.log('Highest RPN by Train chart created successfully!');
+    // console.log('Highest RPN by Train chart created successfully!');
 }
 
 function renderTopRpnProductsChart() {

@@ -49,11 +49,21 @@ export const showModal = (modalId) => document.getElementById(modalId).style.dis
 
 export async function saveAllDataToLocalStorage() {
     try {
-        console.log('saveAllDataToLocalStorage: Starting save...');
-        console.log('saveAllDataToLocalStorage: Machines count:', state.machines.length);
+        console.log('🔄 INDEXEDDB SAVE: Starting save...');
+        console.log('INDEXEDDB SAVE: Machines count:', state.machines.length);
+        
+        // Debug: Log sample locations before saving
+        let machinesWithSampleLocations = 0;
+        state.machines.forEach(machine => {
+            if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+                machinesWithSampleLocations++;
+                console.log(`💾 INDEXEDDB SAVE: Machine ${machine.name} (ID: ${machine.id}) with ${machine.sampleLocations.length} sample locations:`, machine.sampleLocations);
+            }
+        });
+        console.log(`📊 INDEXEDDB SAVE: ${machinesWithSampleLocations} machines have sample locations`);
         
         const machinesJson = JSON.stringify(state.machines);
-        console.log('saveAllDataToLocalStorage: Machines JSON length:', machinesJson.length);
+        console.log('INDEXEDDB SAVE: Machines JSON length:', machinesJson.length);
         
         await db.setItem('macoProducts', JSON.stringify(state.products));
         await db.setItem('macoMachines', machinesJson);
@@ -61,25 +71,42 @@ export async function saveAllDataToLocalStorage() {
         await db.setItem('macoDetergentIngredients', JSON.stringify(state.detergentIngredients));
         await db.setItem('machineStageDisplayOrder', JSON.stringify(state.machineStageDisplayOrder));
         
-        console.log('saveAllDataToLocalStorage: Save completed successfully');
+        console.log('✅ INDEXEDDB SAVE: All data saved to IndexedDB');
         
         // Verify the save
         const verify = await db.getItem('macoMachines');
         if (verify) {
             const parsed = JSON.parse(verify);
-            console.log('saveAllDataToLocalStorage: Verification - saved machines count:', parsed.length);
+            console.log('✅ INDEXEDDB SAVE: Verification - saved machines count:', parsed.length);
+            
+            // Verify sample locations were saved
+            const savedMachinesWithSampleLocations = parsed.filter(m => m.sampleLocations && m.sampleLocations.length > 0).length;
+            console.log(`✅ INDEXEDDB SAVE: Verification - ${savedMachinesWithSampleLocations} machines have sample locations in IndexedDB`);
+            
         } else {
-            console.error('saveAllDataToLocalStorage: Verification failed - no data found after save!');
+            console.error('❌ INDEXEDDB SAVE: Verification failed - no data found after save!');
         }
     } catch (e) {
-        console.error("Failed to save data to IndexedDB", e);
+        console.error("❌ Failed to save data to IndexedDB", e);
         showCustomAlert("Save Error", "Could not save data. Storage might be full.");
         throw e; // Re-throw to allow caller to handle
     }
 }
 
+// Global flag to prevent concurrent loading
+let isLoadingData = false;
+
 export async function loadAllDataFromLocalStorage() {
+    // Prevent concurrent loading
+    if (isLoadingData) {
+        console.log('⏳ INDEXEDDB LOAD: Already loading, skipping...');
+        return;
+    }
+    
+    isLoadingData = true;
+    
     try {
+        console.log('🔄 INDEXEDDB LOAD: Starting from IndexedDB...');
         const savedProducts = await db.getItem('macoProducts');
         const savedMachines = await db.getItem('macoMachines');
         const savedCriteria = await db.getItem('macoScoringCriteria');
@@ -90,46 +117,59 @@ export async function loadAllDataFromLocalStorage() {
         if (savedMachines) { 
             try { 
                 const machines = JSON.parse(savedMachines);
-                console.log('loadAllDataFromLocalStorage: Loading', machines.length, 'machines from IndexedDB');
+                console.log('🔄 INDEXEDDB LOAD: Loading', machines.length, 'machines from IndexedDB');
                 
-                // Restore fileName for uploaded SOP files from IndexedDB
-                for (const machine of machines) {
-                    if (machine.cleaningSOP && machine.cleaningSOP.attachmentType === 'upload' && machine.id) {
-                        console.log(`Checking SOP for machine ${machine.id}:`, machine.cleaningSOP);
-                        
-                        // If fileName is missing, try to restore it from IndexedDB
-                        if (!machine.cleaningSOP.fileName) {
-                            console.log(`Machine ${machine.id} - fileName missing, attempting to restore from IndexedDB`);
-                            try {
-                                const { getSOPFile } = await import('./indexedDB.js');
-                                const sopFile = await getSOPFile(machine.id.toString());
-                                console.log(`Machine ${machine.id} - SOP file from IndexedDB:`, sopFile);
-                                
-                                if (sopFile && sopFile.fileName) {
-                                    machine.cleaningSOP.fileName = sopFile.fileName;
-                                    // Also restore fileData if available
-                                    if (sopFile.fileData) {
-                                        machine.cleaningSOP.fileData = sopFile.fileData;
-                                    }
-                                    console.log(`Machine ${machine.id} - fileName restored:`, machine.cleaningSOP.fileName);
-                                } else {
-                                    console.warn(`Machine ${machine.id} - No SOP file found in IndexedDB`);
-                                }
-                            } catch (error) {
-                                console.warn(`Could not restore SOP file name for machine ${machine.id}:`, error);
-                            }
-                        } else {
-                            console.log(`Machine ${machine.id} - fileName already present:`, machine.cleaningSOP.fileName);
-                        }
+                // Debug: Log sample locations for each machine
+                let machinesWithSampleLocations = 0;
+                machines.forEach(machine => {
+                    if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+                        machinesWithSampleLocations++;
+                        console.log(`🧪 INDEXEDDB LOAD: Machine ${machine.name} (ID: ${machine.id}) loaded with ${machine.sampleLocations.length} sample locations:`, machine.sampleLocations);
+                    } else {
+                        console.log(`📍 INDEXEDDB LOAD: Machine ${machine.name} (ID: ${machine.id}) has no sample locations`);
                     }
+                });
+                console.log(`📊 INDEXEDDB LOAD: ${machinesWithSampleLocations} machines loaded with sample locations`);
+                
+                // CRITICAL: Check machines BEFORE setting in state
+                console.log('🔄 BEFORE state.setMachines():');
+                const beforeMachinesWithSampleLocations = machines.filter(m => m.sampleLocations && m.sampleLocations.length > 0).length;
+                console.log(`📊 BEFORE: ${beforeMachinesWithSampleLocations} machines from IndexedDB have sample locations`);
+                if (beforeMachinesWithSampleLocations > 0) {
+                    machines.forEach(machine => {
+                        if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+                            console.log(`🧪 BEFORE: Machine ${machine.name} (ID: ${machine.id}) from IndexedDB has ${machine.sampleLocations.length} sample locations`);
+                        }
+                    });
                 }
+                
+                // Set machines directly without merging defaults
                 state.setMachines(machines);
-                console.log('loadAllDataFromLocalStorage: Machines loaded successfully. Count:', state.machines.length);
+                console.log('✅ INDEXEDDB LOAD: Machines set in state. Count:', state.machines.length);
+                
+                // CRITICAL: Check machines AFTER setting in state
+                console.log('🔄 AFTER state.setMachines():');
+                const afterMachinesWithSampleLocations = state.machines.filter(m => m.sampleLocations && m.sampleLocations.length > 0).length;
+                console.log(`📊 AFTER: ${afterMachinesWithSampleLocations} machines in state have sample locations`);
+                if (afterMachinesWithSampleLocations > 0) {
+                    state.machines.forEach(machine => {
+                        if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+                            console.log(`🧪 AFTER: Machine ${machine.name} (ID: ${machine.id}) in state has ${machine.sampleLocations.length} sample locations`);
+                        }
+                    });
+                } else if (beforeMachinesWithSampleLocations > 0) {
+                    console.error('❌ CRITICAL: Sample locations were LOST during state.setMachines()!');
+                    console.error('❌ This means state.setMachines() is not working correctly!');
+                }
+                
+                // Verify that state was updated correctly
+                console.log(`✅ INDEXEDDB LOAD: STATE VERIFICATION - ${afterMachinesWithSampleLocations} machines in state have sample locations`);
+                
             } catch (e) { 
-                console.error("Error loading machines", e); 
+                console.error("❌ Error loading machines", e); 
             } 
         } else {
-            console.log('loadAllDataFromLocalStorage: No saved machines found in IndexedDB');
+            console.log('⚠️ INDEXEDDB LOAD: No saved machines found in IndexedDB');
         }
         
         // Check if saved criteria has the new scoring criteria, if not, use defaults
@@ -150,8 +190,12 @@ export async function loadAllDataFromLocalStorage() {
         
         if (savedDetergents) { try { state.setDetergentIngredients(JSON.parse(savedDetergents)); } catch (e) { console.error("Error loading detergent ingredients", e); } }
         if (savedStageOrder) { try { state.setMachineStageDisplayOrder(JSON.parse(savedStageOrder)); } catch (e) { console.error("Error loading machine stage order", e); } }
+        
+        console.log('🎉 INDEXEDDB LOAD: Completed successfully');
     } catch (e) {
-        console.error("Error loading data from IndexedDB", e);
+        console.error("❌ Error loading data from IndexedDB", e);
+    } finally {
+        isLoadingData = false;
     }
 }
 
@@ -168,7 +212,15 @@ export function saveStateForUndo() {
     newHistory.push(currentState);
     state.setHistory(newHistory, newHistory.length - 1);
     updateUndoRedoButtons();
-    saveAllDataToLocalStorage();
+    
+    console.log('🔄 saveStateForUndo: Creating undo state WITHOUT saving to IndexedDB');
+    console.log('📊 saveStateForUndo: Machines in undo state:', currentState.machines.length);
+    const machinesWithSampleLocations = currentState.machines.filter(m => m.sampleLocations && m.sampleLocations.length > 0).length;
+    console.log(`📊 saveStateForUndo: ${machinesWithSampleLocations} machines have sample locations in undo state`);
+    
+    // DON'T save to IndexedDB during undo state creation
+    // Only save during actual user actions
+    // saveAllDataToLocalStorage();
 }
 
 export function updateUndoRedoButtons() {
@@ -509,7 +561,7 @@ export function printCurrentView(viewName, selectedTrain = 'all') {
 }
 
 // --- COLUMN VISIBILITY ---
-export function toggleColumn(col, tabId) {
+export async function toggleColumn(col, tabId) {
     // For toxicity columns (pde/ld50), synchronize between Product Register and Worst Case views
     if (col === 'pde' || col === 'ld50') {
         // Toggle on both Product Register and Worst Case views
@@ -528,7 +580,7 @@ export function toggleColumn(col, tabId) {
         
         // Store the state using productRegister as the master reference
         const anyTableHidden = document.querySelector(`#productRegister .mainTable.hide-${col}`) !== null;
-        db.setItem(`productRegister-${col}Hidden`, anyTableHidden).catch(e => console.error('Error saving column visibility:', e));
+        await db.setItem(`productRegister-${col}Hidden`, anyTableHidden);
         
         // Update toggle icons for both tabs
         updateToggleIcons('productRegister');
@@ -552,7 +604,7 @@ export function toggleColumn(col, tabId) {
         });
         
         const anyTableHidden = document.querySelector(`#${tabId} .mainTable.hide-${col}`) !== null;
-        db.setItem(`${tabId}-${col}Hidden`, anyTableHidden).catch(e => console.error('Error saving column visibility:', e));
+        await db.setItem(`${tabId}-${col}Hidden`, anyTableHidden);
         updateToggleIcons(tabId);
     }
 }
@@ -577,15 +629,13 @@ export function updateToggleIcons(tabId) {
 
     // For toxicity columns, always use productRegister as the master reference
     let pdeHidden, ld50Hidden;
-    // Note: This function is called synchronously, so we'll use a synchronous fallback
-    // For async operations, we'll need to refactor this function
+    
     if (tabId === 'worstCaseProducts') {
         // Use productRegister state as master for toxicity columns
-        // Default to false (visible) if no storage value exists
         // Use async with fallback to localStorage for immediate access
         (async () => {
-            const pdeStorage = await db.getItem('productRegister-pdeHidden') || localStorage.getItem('productRegister-pdeHidden');
-            const ld50Storage = await db.getItem('productRegister-ld50Hidden') || localStorage.getItem('productRegister-ld50Hidden');
+            const pdeStorage = await db.getItem('productRegister-pdeHidden').catch(() => null);
+            const ld50Storage = await db.getItem('productRegister-ld50Hidden').catch(() => null);
             
             // If no storage values exist (first visit), both should be visible
             if (pdeStorage === null && ld50Storage === null) {
@@ -605,30 +655,35 @@ export function updateToggleIcons(tabId) {
                     ld50Hidden = masterLd50Hidden;
                 }
             }
+            
+            // Update icons after getting data
+            const pdeToggle = tabContainer.querySelector('.toggle-pde');
+            const ld50Toggle = tabContainer.querySelector('.toggle-ld50');
+            if (pdeToggle) pdeToggle.innerHTML = pdeHidden ? `Show PDE` : `Hide PDE`;
+            if (ld50Toggle) ld50Toggle.innerHTML = ld50Hidden ? `Show LD50` : `Hide LD50`;
         })();
-        // Fallback to localStorage for immediate synchronous access
-        const pdeStorage = localStorage.getItem('productRegister-pdeHidden');
-        const ld50Storage = localStorage.getItem('productRegister-ld50Hidden');
-        if (pdeStorage === null && ld50Storage === null) {
-            pdeHidden = false;
-            ld50Hidden = false;
-        } else {
-            const masterPdeHidden = pdeStorage === 'true';
-            const masterLd50Hidden = ld50Storage === 'true';
-            if (masterPdeHidden && masterLd50Hidden) {
-                pdeHidden = false;
-                ld50Hidden = true;
-            } else {
-                pdeHidden = masterPdeHidden;
-                ld50Hidden = masterLd50Hidden;
-            }
-        }
+        
+        // Fallback for immediate display
+        pdeHidden = false;
+        ld50Hidden = false;
     } else {
-        // For productRegister or other tabs, check storage values, defaulting to false (visible)
-        const pdeStorage = localStorage.getItem(`${tabId}-pdeHidden`);
-        const ld50Storage = localStorage.getItem(`${tabId}-ld50Hidden`);
-        pdeHidden = pdeStorage === 'true';
-        ld50Hidden = ld50Storage === 'true';
+        // For productRegister or other tabs, use async loading
+        (async () => {
+            const pdeStorage = await db.getItem(`${tabId}-pdeHidden`).catch(() => null);
+            const ld50Storage = await db.getItem(`${tabId}-ld50Hidden`).catch(() => null);
+            pdeHidden = pdeStorage === 'true';
+            ld50Hidden = ld50Storage === 'true';
+            
+            // Update icons after getting data
+            const pdeToggle = tabContainer.querySelector('.toggle-pde');
+            const ld50Toggle = tabContainer.querySelector('.toggle-ld50');
+            if (pdeToggle) pdeToggle.innerHTML = pdeHidden ? `Show PDE` : `Hide PDE`;
+            if (ld50Toggle) ld50Toggle.innerHTML = ld50Hidden ? `Show LD50` : `Hide LD50`;
+        })();
+        
+        // Fallback for immediate display
+        pdeHidden = false;
+        ld50Hidden = false;
     }
 
     const pdeToggle = tabContainer.querySelector('.toggle-pde');
@@ -791,7 +846,6 @@ export async function resetScoringCriteriaToDefaults() {
     try {
         // Remove the storage item to force using new defaults
         await db.removeItem('macoScoringCriteria');
-        localStorage.removeItem('macoScoringCriteria'); // Also remove from localStorage for migration
         
         // The criteria will be loaded from state.js defaults
         import('./state.js').then(stateModule => {
@@ -809,8 +863,311 @@ export async function resetScoringCriteriaToDefaults() {
     }
 }
 
-// Expose the reset function globally
+// Merge sample locations from default state.js into loaded machines
+// Removed automatic merging - users will manage sample locations manually
+
+// Debug function to test sample locations persistence
+export async function testSampleLocationsPersistence() {
+    console.log('\n🔍 === TESTING SAMPLE LOCATIONS PERSISTENCE ===');
+    
+    // Check current state
+    console.log('📊 Current machines in state:', state.machines.length);
+    let stateCount = 0;
+    state.machines.forEach(machine => {
+        if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+            stateCount++;
+            console.log(`✅ STATE: ${machine.name} (ID: ${machine.id}) has ${machine.sampleLocations.length} sample locations`);
+        } else {
+            console.log(`❌ STATE: ${machine.name} (ID: ${machine.id}) has no sample locations`);
+        }
+    });
+    console.log(`📈 STATE SUMMARY: ${stateCount}/${state.machines.length} machines have sample locations`);
+    
+    // Check IndexedDB
+    try {
+        const savedMachines = await db.getItem('macoMachines');
+        if (savedMachines) {
+            const parsed = JSON.parse(savedMachines);
+            console.log('\n📊 Machines in IndexedDB storage:', parsed.length);
+            let storageCount = 0;
+            parsed.forEach(machine => {
+                if (machine.sampleLocations && machine.sampleLocations.length > 0) {
+                    storageCount++;
+                    console.log(`✅ STORAGE: ${machine.name} (ID: ${machine.id}) has ${machine.sampleLocations.length} sample locations`);
+                } else {
+                    console.log(`❌ STORAGE: ${machine.name} (ID: ${machine.id}) has no sample locations`);
+                }
+            });
+            console.log(`📈 STORAGE SUMMARY: ${storageCount}/${parsed.length} machines have sample locations`);
+        } else {
+            console.log('❌ No machines found in IndexedDB storage');
+        }
+    } catch (error) {
+        console.error('❌ Error reading from IndexedDB storage:', error);
+    }
+    
+    console.log('🎯 === TEST COMPLETED ===\n');
+}
+
+// Complete diagnostic function
+export async function fullSampleLocationsDiagnostic() {
+    console.log('\n🩺 === FULL SAMPLE LOCATIONS DIAGNOSTIC ===');
+    
+    try {
+        // 1. Test IndexedDB availability
+        console.log('1️⃣ Testing IndexedDB availability...');
+        if ('indexedDB' in window) {
+            console.log('✅ IndexedDB is available');
+        } else {
+            console.log('❌ IndexedDB is NOT available');
+            return;
+        }
+        
+        // 2. Test database connection
+        console.log('2️⃣ Testing IndexedDB connection...');
+        try {
+            await db.getItem('test');
+            console.log('✅ IndexedDB connection working');
+        } catch (error) {
+            console.log('❌ IndexedDB connection failed:', error);
+            return;
+        }
+        
+        // 3. Check current state vs storage
+        await testSampleLocationsPersistence();
+        
+        // 4. Manual save test
+        console.log('3️⃣ Testing manual save...');
+        try {
+            await saveAllDataToLocalStorage();
+            console.log('✅ Manual save completed');
+        } catch (error) {
+            console.log('❌ Manual save failed:', error);
+        }
+        
+        // 5. Manual load test
+        console.log('4️⃣ Testing manual load...');
+        try {
+            // Reset loading flag
+            isLoadingData = false;
+            await loadAllDataFromLocalStorage();
+            console.log('✅ Manual load completed');
+        } catch (error) {
+            console.log('❌ Manual load failed:', error);
+        }
+        
+        console.log('🎯 === FULL DIAGNOSTIC COMPLETED ===\n');
+        
+    } catch (error) {
+        console.error('❌ Diagnostic failed:', error);
+    }
+}
+
+// Force reset sample locations to defaults from state.js
+export async function clearAllSampleLocations() {
+    if (!confirm('⚠️ This will clear ALL sample locations from all machines. Are you sure?')) {
+        return;
+    }
+    
+    try {
+        showLoader();
+        console.log('🧹 Clearing all sample locations...');
+        
+        // Clear sample locations from all machines
+        const currentMachines = state.machines.map(machine => ({
+            ...machine,
+            sampleLocations: []
+        }));
+        
+        // Update state and save
+        state.setMachines(currentMachines);
+        await saveAllDataToLocalStorage();
+        
+        // Refresh UI
+        const { fullAppRender } = await import('./app.js');
+        fullAppRender();
+        
+        showCustomAlert('Success', 'All sample locations have been cleared from all machines.');
+        console.log('✅ Sample locations cleared successfully');
+        
+    } catch (error) {
+        console.error('❌ Error clearing sample locations:', error);
+        showCustomAlert('Error', 'Failed to clear sample locations: ' + error.message);
+    } finally {
+        hideLoader();
+    }
+}
+
+// Force clear all data and reload from defaults (nuclear option)
+export async function forceResetAllData() {
+    if (!confirm('⚠️ This will clear ALL saved data and reload from defaults. Are you sure?')) {
+        return;
+    }
+    
+    try {
+        showLoader();
+        console.log('🧹 Force reset: Clearing all IndexedDB data...');
+        
+        // Clear all IndexedDB data
+        await db.clear();
+        console.log('✅ All IndexedDB data cleared');
+        
+        // Clear localStorage as fallback
+        localStorage.clear();
+        console.log('✅ LocalStorage cleared');
+        
+        showCustomAlert('Reset Complete', 'All data cleared. The page will reload with fresh default data.');
+        
+        // Reload the page to start fresh
+        setTimeout(() => {
+            location.reload();
+        }, 2000);
+        
+    } catch (error) {
+        console.error('❌ Error during force reset:', error);
+        showCustomAlert('Error', 'Failed to clear data: ' + error.message);
+    } finally {
+        hideLoader();
+    }
+}
+
+// Quick fix for persistent sample location issues
+export async function quickFixSampleLocations() {
+    try {
+        showLoader();
+        console.log('🔧 Quick fix: Forcing sample locations update...');
+        
+        // Force reload the data without cache
+        isLoadingData = false; // Reset the flag
+        
+        // Clear current state
+        state.setMachines([]);
+        
+        // Force reload and re-render
+        await loadAllDataFromLocalStorage();
+        
+        console.log('✅ Quick fix completed');
+        
+    } catch (error) {
+        console.error('❌ Quick fix failed:', error);
+        showCustomAlert('Error', 'Quick fix failed: ' + error.message);
+    } finally {
+        hideLoader();
+    }
+}
+
+// Function to check what's actually in IndexedDB right now
+export async function checkIndexedDBContents() {
+    console.log('\n🔍 === CHECKING INDEXEDDB CONTENTS ===');
+    
+    try {
+        const db = await import('./indexedDB.js');
+        const savedMachines = await db.getItem('macoMachines');
+        
+        if (savedMachines) {
+            const machines = JSON.parse(savedMachines);
+            console.log('📊 IndexedDB contains', machines.length, 'machines');
+            
+            const machinesWithSampleLocations = machines.filter(m => m.sampleLocations && m.sampleLocations.length > 0);
+            console.log(`📊 ${machinesWithSampleLocations.length} machines have sample locations in IndexedDB:`);
+            
+            machinesWithSampleLocations.forEach(machine => {
+                console.log(`🧪 IndexedDB: ${machine.name} (ID: ${machine.id}) has ${machine.sampleLocations.length} sample locations:`, machine.sampleLocations);
+            });
+            
+            if (machinesWithSampleLocations.length === 0) {
+                console.log('📍 No machines with sample locations found in IndexedDB');
+            }
+        } else {
+            console.log('❌ No machine data found in IndexedDB');
+        }
+        
+        console.log('🎯 === INDEXEDDB CHECK COMPLETE ===\n');
+        
+    } catch (error) {
+        console.error('❌ Error checking IndexedDB:', error);
+    }
+}
+
+// Create a test function to directly test sample location saving
+export async function directSampleLocationTest() {
+    console.log('\n🧪 === DIRECT SAMPLE LOCATION TEST ===');
+    
+    try {
+        // Find a machine to test with
+        const testMachine = state.machines[0];
+        if (!testMachine) {
+            console.error('❌ No machines found for testing');
+            return;
+        }
+        
+        console.log('🔄 Testing with machine:', testMachine.name, 'ID:', testMachine.id);
+        
+        // Create test sample location
+        const testSampleLocation = {
+            id: Date.now(),
+            location: 'Direct Test Location',
+            material: 'Stainless Steel',
+            area: 999,
+            hardToClean: 3,
+            accessibility: 2,
+            visibility: 1,
+            rpn: 6,
+            numberOfSamples: 1
+        };
+        
+        console.log('🔄 Adding test sample location:', testSampleLocation);
+        
+        // Update machine directly in state
+        const machineInState = state.machines.find(m => m.id === testMachine.id);
+        if (!machineInState) {
+            console.error('❌ Machine not found in state');
+            return;
+        }
+        
+        machineInState.sampleLocations = machineInState.sampleLocations || [];
+        machineInState.sampleLocations.push(testSampleLocation);
+        
+        console.log('✅ Machine updated in state with', machineInState.sampleLocations.length, 'sample locations');
+        
+        // Save to IndexedDB
+        console.log('🔄 Saving to IndexedDB...');
+        await saveAllDataToLocalStorage();
+        console.log('✅ Save completed');
+        
+        // Verify save
+        const db = await import('./indexedDB.js');
+        const savedData = await db.getItem('macoMachines');
+        if (savedData) {
+            const machines = JSON.parse(savedData);
+            const savedMachine = machines.find(m => m.id === testMachine.id);
+            if (savedMachine && savedMachine.sampleLocations && savedMachine.sampleLocations.length > 0) {
+                console.log('✅ VERIFICATION: Machine saved with', savedMachine.sampleLocations.length, 'sample locations');
+                return true;
+            } else {
+                console.error('❌ VERIFICATION FAILED: No sample locations found in saved data');
+                return false;
+            }
+        } else {
+            console.error('❌ VERIFICATION FAILED: No data found in IndexedDB');
+            return false;
+        }
+        
+    } catch (error) {
+        console.error('❌ Test failed with error:', error);
+        return false;
+    }
+}
+
+// Expose functions globally
 window.resetScoringCriteriaToDefaults = resetScoringCriteriaToDefaults;
+window.testSampleLocationsPersistence = testSampleLocationsPersistence;
+window.fullSampleLocationsDiagnostic = fullSampleLocationsDiagnostic;
+window.checkIndexedDBContents = checkIndexedDBContents;
+window.directSampleLocationTest = directSampleLocationTest;
+window.clearAllSampleLocations = clearAllSampleLocations;
+window.forceResetAllData = forceResetAllData;
+window.quickFixSampleLocations = quickFixSampleLocations;
 
 
 // --- FORM HELPERS ---
@@ -1258,22 +1615,11 @@ export function exportProductMacoToExcel(selectedTrain = 'all') {
             let macoNoel = Infinity;
             
             // Check toxicity preference to determine which equations to show
-            // Use localStorage as fallback for immediate access, IndexedDB will be checked in background
+            // Check toxicity preference from localStorage
             const pdeStorage = localStorage.getItem('productRegister-pdeHidden');
             const ld50Storage = localStorage.getItem('productRegister-ld50Hidden');
             const pdeHidden = pdeStorage === 'true';
             const ld50Hidden = ld50Storage === 'true';
-            // Update from IndexedDB in background
-            db.getItem('productRegister-pdeHidden').then(val => {
-                if (val !== null && val !== pdeStorage) {
-                    localStorage.setItem('productRegister-pdeHidden', val);
-                }
-            }).catch(() => {});
-            db.getItem('productRegister-ld50Hidden').then(val => {
-                if (val !== null && val !== ld50Storage) {
-                    localStorage.setItem('productRegister-ld50Hidden', val);
-                }
-            }).catch(() => {});
             
             // Calculate PDE-based MACO if PDE is available and not hidden
             if (train.lowestPde !== null && !pdeHidden) {
@@ -2439,8 +2785,6 @@ export function toggleStageSection(stageKey) {
     
     // Save the state to IndexedDB
     db.setItem(`machineStage-${stageKey}-hidden`, !isHidden).catch(e => console.error('Error saving machine stage visibility:', e));
-    // Also save to localStorage for immediate access
-    localStorage.setItem(`machineStage-${stageKey}-hidden`, !isHidden);
     
     // Update the toggle button text
     const button = section.parentElement.querySelector('button');

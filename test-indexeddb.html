@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test IndexedDB Sample Locations</title>
+</head>
+<body>
+    <h1>IndexedDB Sample Locations Test</h1>
+    <button onclick="testSave()">Test Save Sample Locations</button>
+    <button onclick="testLoad()">Test Load Sample Locations</button>
+    <button onclick="clearData()">Clear All Data</button>
+    <div id="output"></div>
+
+    <script type="module">
+        // Import IndexedDB module
+        import * as db from './src/indexedDB.js';
+        import * as state from './src/state.js';
+
+        window.testSave = async function() {
+            const output = document.getElementById('output');
+            try {
+                // Create test machine with sample locations
+                const testMachine = {
+                    id: 999,
+                    name: 'Test Machine',
+                    sampleLocations: [
+                        {
+                            id: 1,
+                            location: 'Test Location 1',
+                            material: 'Stainless Steel',
+                            area: 100,
+                            hardToClean: 2,
+                            accessibility: 1,
+                            visibility: 3,
+                            rpn: 6,
+                            numberOfSamples: 1
+                        },
+                        {
+                            id: 2,
+                            location: 'Test Location 2',
+                            material: 'Plastic',
+                            area: 50,
+                            hardToClean: 1,
+                            accessibility: 2,
+                            visibility: 2,
+                            rpn: 4,
+                            numberOfSamples: 1
+                        }
+                    ]
+                };
+
+                // Save to IndexedDB
+                const machines = [testMachine];
+                await db.setItem('macoMachines', JSON.stringify(machines));
+                
+                output.innerHTML = `<p style="color: green;">✅ Test data saved successfully!</p>
+                    <pre>${JSON.stringify(testMachine, null, 2)}</pre>`;
+                
+            } catch (error) {
+                output.innerHTML = `<p style="color: red;">❌ Error saving: ${error.message}</p>`;
+                console.error('Save error:', error);
+            }
+        };
+
+        window.testLoad = async function() {
+            const output = document.getElementById('output');
+            try {
+                // Load from IndexedDB
+                const savedMachines = await db.getItem('macoMachines');
+                
+                if (savedMachines) {
+                    const machines = JSON.parse(savedMachines);
+                    const testMachine = machines.find(m => m.id === 999);
+                    
+                    if (testMachine && testMachine.sampleLocations) {
+                        output.innerHTML = `<p style="color: green;">✅ Test data loaded successfully!</p>
+                            <p><strong>Machine:</strong> ${testMachine.name}</p>
+                            <p><strong>Sample Locations:</strong> ${testMachine.sampleLocations.length}</p>
+                            <pre>${JSON.stringify(testMachine.sampleLocations, null, 2)}</pre>`;
+                    } else {
+                        output.innerHTML = `<p style="color: orange;">⚠️ Test machine found but no sample locations</p>`;
+                    }
+                } else {
+                    output.innerHTML = `<p style="color: red;">❌ No data found in IndexedDB</p>`;
+                }
+                
+            } catch (error) {
+                output.innerHTML = `<p style="color: red;">❌ Error loading: ${error.message}</p>`;
+                console.error('Load error:', error);
+            }
+        };
+
+        window.clearData = async function() {
+            const output = document.getElementById('output');
+            try {
+                await db.clear();
+                output.innerHTML = `<p style="color: blue;">🧹 All IndexedDB data cleared</p>`;
+            } catch (error) {
+                output.innerHTML = `<p style="color: red;">❌ Error clearing: ${error.message}</p>`;
+                console.error('Clear error:', error);
+            }
+        };
+
+        // Test IndexedDB availability
+        document.addEventListener('DOMContentLoaded', () => {
+            const output = document.getElementById('output');
+            if ('indexedDB' in window) {
+                output.innerHTML = `<p style="color: green;">✅ IndexedDB is available</p>`;
+            } else {
+                output.innerHTML = `<p style="color: red;">❌ IndexedDB is not available</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

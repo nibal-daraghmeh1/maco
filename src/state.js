@@ -12,64 +12,10 @@ export let products = [
 ];
 
 export let machines = [
-    { 
-        id: 1, 
-        machineNumber: 'M-001', 
-        name: "weighing tool", 
-        stage: "Weighing", 
-        area: 55000, 
-        group: "", 
-        line: "Shared", 
-        cleaningSOP: { sopName: 'SOP-001', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
-        sampleLocations: [
-            { location: "Scale Platform", material: "Stainless steel", area: 2500, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 },
-            { location: "Load Cell Area", material: "Stainless steel", area: 800, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
-            { location: "Display Unit", material: "Plastic/Steel", area: 400, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 },
-            { location: "Calibration Weights Holder", material: "Stainless steel", area: 600, hardToClean: 2, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 2 }
-        ]
-    },
-    { 
-        id: 2, 
-        machineNumber: 'M-002', 
-        name: "nin mill", 
-        stage: "Milling", 
-        area: 35000, 
-        group: "", 
-        line: "Solids Line A", 
-        cleaningSOP: { sopName: 'SOP-002', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
-        sampleLocations: [
-            { location: "Left blade edge", material: "Stainless steel", area: 3136, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 1 },
-            { location: "Blade holder surface", material: "Stainless steel", area: 2000, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
-            { location: "Blades box inside", material: "Stainless steel", area: 1500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
-            { location: "Right blade edge", material: "Stainless steel", area: 3136, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 2, visibility: 1 },
-            { location: "Nin mill Stainless Steel sieve", material: "Stainless steel", area: 1904, hardToClean: 3, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
-            { location: "External Hopper", material: "Stainless steel", area: 5596, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 3 },
-            { location: "Inlet Hopper", material: "Stainless steel", area: 3000, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 3 },
-            { location: "Inlet Valve", material: "Stainless steel", area: 800, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
-            { location: "Discharge Tube", material: "Stainless steel", area: 1200, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
-            { location: "Wall", material: "_", area: null, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 }
-        ]
-    },
+    { id: 1, machineNumber: 'M-001', name: "weighing tool", stage: "Weighing", area: 55000, group: "", line: "Shared", cleaningSOP: { sopName: 'SOP-001', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
+    { id: 2, machineNumber: 'M-002', name: "nin mill", stage: "Milling", area: 35000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-002', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
     { id: 3, machineNumber: 'M-003', name: "fitz mill", stage: "Milling", area: 42000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-003', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
-    { 
-        id: 4, 
-        machineNumber: 'M-004', 
-        name: "FBD", 
-        stage: "Mixing", 
-        area: 120000, 
-        group: "", 
-        line: "Solids Line A", 
-        cleaningSOP: { sopName: 'SOP-004', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null },
-        sampleLocations: [
-            { location: "Product Bowl Interior", material: "Stainless steel", area: 8500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
-            { location: "Air Distribution Plate", material: "Stainless steel", area: 1200, hardToClean: 3, accessibilityForCleaning: 3, accessibilityForSampling: 2, visibility: 3 },
-            { location: "Expansion Chamber", material: "Stainless steel", area: 4500, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
-            { location: "Filter Bags", material: "Polyester/PTFE", area: 2400, hardToClean: 3, accessibilityForCleaning: 2, accessibilityForSampling: 1, visibility: 2 },
-            { location: "Inlet Air Ducts", material: "Stainless steel", area: 1800, hardToClean: 2, accessibilityForCleaning: 3, accessibilityForSampling: 3, visibility: 3 },
-            { location: "Discharge Valve", material: "Stainless steel", area: 600, hardToClean: 2, accessibilityForCleaning: 2, accessibilityForSampling: 2, visibility: 2 },
-            { location: "Product Container", material: "Stainless steel", area: 3200, hardToClean: 1, accessibilityForCleaning: 1, accessibilityForSampling: 1, visibility: 1 }
-        ]
-    },
+    { id: 4, machineNumber: 'M-004', name: "FBD", stage: "Mixing", area: 120000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-004', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
     { id: 5, machineNumber: 'M-005', name: "Glatt", stage: "Mixing", area: 95000, group: "", line: "Capsules Line", cleaningSOP: { sopName: 'SOP-005', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
     { id: 6, machineNumber: 'M-006', name: "Compactor", stage: "Mixing", area: 85000, group: "", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-006', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
     { id: 7, machineNumber: 'M-007', name: "Bin 200", stage: "Mixing", area: 45000, group: "Mixing Bins", line: "Solids Line A", cleaningSOP: { sopName: 'SOP-007', attachmentType: 'none', attachmentValue: null, fileName: null, fileData: null }, sampleLocations: [] },
@@ -316,25 +262,24 @@ export function setIngredientFormCounter(count) { ingredientFormCounter = count;
  * Call this once at app start (or after loading saved state).
  */
 export function ensureProductsHaveLine() {
-    if (!Array.isArray(exports.products) && !Array.isArray(window.state?.products) && !Array.isArray(products)) {
-        // best-effort: check common names used in this project
+    // Simple check: if we don't have products array, return early
+    if (!Array.isArray(products)) {
+        console.warn('ensureProductsHaveLine: No products array found');
+        return;
     }
 
-    // Attempt to access the products array from known exports/variables
-    const prodHolder = (typeof state !== 'undefined' && state.products) ? state
-                    : (typeof exports !== 'undefined' && exports.products) ? exports
-                    : (typeof window !== 'undefined' && window.state && window.state.products) ? window.state
-                    : null;
+    // Use the local products array directly (ES6 modules)
+    const prodHolder = { products: products, setProducts: setProducts };
     if (!prodHolder) return;
 
-    const products = prodHolder.products || [];
+    const productsArray = prodHolder.products || [];
     let changed = false;
 
     const solids = ['Tablets', 'Capsules', 'Powder'];
     const semisolids = ['Ointment', 'Cream', 'Gel'];
     const liquids = ['Syrup', 'Solution', 'Suspension'];
 
-    const migrated = products.map(p => {
+    const migrated = productsArray.map(p => {
         // if product already has a line (non-empty), keep as is
         if (p.line !== undefined && p.line !== null && p.line !== '') return p;
         const copy = Object.assign({}, p);

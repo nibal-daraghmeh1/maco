@@ -112,22 +112,22 @@ class SimplifiedMachineCoverageTable {
                 rpn: train.rpn || 0
             })).sort((a, b) => b.rpn - a.rpn);
             
-            console.log(`Machine Coverage: Processing ${trainsInGroup.length} trains in dosage form: ${dosageForm}`);
-            console.log(`Machine Coverage: RPN-sorted order:`, trainsWithRPN.map(t => {
-                const internalId = t.train.trainInternalId || t.train.originalTrain?.id;
-                return `${t.train.trainId} (Internal ID: ${internalId}, RPN: ${t.rpn})`;
-            }));
+            // console.log(`Machine Coverage: Processing ${trainsInGroup.length} trains in dosage form: ${dosageForm}`);
+            // console.log(`Machine Coverage: RPN-sorted order:`, trainsWithRPN.map(t => {
+            //     const internalId = t.train.trainInternalId || t.train.originalTrain?.id;
+            //     return `${t.train.trainId} (Internal ID: ${internalId}, RPN: ${t.rpn})`;
+            // }));
             
             for (const { train, rpn } of trainsWithRPN) {
                 const trainMachines = new Set(train.usedMachines);
                 const newMachines = [...trainMachines].filter(m => !coveredMachines.has(m));
                 const internalId = train.trainInternalId || train.originalTrain?.id;
                 
-                console.log(`Machine Coverage: Checking train ${train.trainId} (Internal ID: ${internalId}) - RPN: ${rpn}, new machines: ${newMachines.length}`);
+                // console.log(`Machine Coverage: Checking train ${train.trainId} (Internal ID: ${internalId}) - RPN: ${rpn}, new machines: ${newMachines.length}`);
                 
                 if (newMachines.length > 0) {
                     globalStudyIndex++;
-                    console.log(`Machine Coverage: Selected train ${train.trainId} for study ${globalStudyIndex}`);
+                    // console.log(`Machine Coverage: Selected train ${train.trainId} for study ${globalStudyIndex}`);
                     
                     this.selectedTrains.push({
                         ...train,
@@ -142,13 +142,11 @@ class SimplifiedMachineCoverageTable {
                     if (coveredMachines.size === machinesInGroup.length) {
                         break;
                     }
-                } else {
-                    console.log(`Machine Coverage: Skipped train ${train.trainId} - no new machines`);
-                }
+                } 
             }
         });
         
-        console.log(`Machine Coverage: Selected ${this.selectedTrains.length} studies total`);
+        // console.log(`Machine Coverage: Selected ${this.selectedTrains.length} studies total`);
     }
 
     /**
@@ -457,8 +455,8 @@ class SimplifiedMachineCoverageTable {
             const group = train.productGroup || '-';
             const wcp = train.worstCaseProduct || '-';
             
-            console.log(`Train ${train.trainId} (${train.productGroup}): selectedTrain =`, selectedTrain);
-            console.log(`Train ${train.trainId} (${train.productGroup}): newMachinesCovered =`, selectedTrain?.newMachinesCovered);
+            // console.log(`Train ${train.trainId} (${train.productGroup}): selectedTrain =`, selectedTrain);
+            // console.log(`Train ${train.trainId} (${train.productGroup}): newMachinesCovered =`, selectedTrain?.newMachinesCovered);
             
             return `
             <tr>
@@ -506,7 +504,7 @@ class SimplifiedMachineCoverageTable {
             ? Math.round((1 - selectedCount / totalProducts) * 100)
             : 0;
         
-        console.log(`Machine Coverage Stats: ${selectedCount} studies from ${totalProducts} trains`);
+        // console.log(`Machine Coverage Stats: ${selectedCount} studies from ${totalProducts} trains`);
         
         return `
         <div class="summary-stats">
@@ -678,7 +676,7 @@ window.testMachineCoverage = function() {
     const container = document.getElementById('machineCoverageContainer');
     if (container) {
         container.innerHTML = createHorizontalMachineCoverageTable();
-        console.log('Machine coverage table rendered!');
+        // console.log('Machine coverage table rendered!');
     } else {
         console.log('Container not found!');
     }
