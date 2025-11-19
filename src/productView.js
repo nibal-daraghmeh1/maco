@@ -683,7 +683,7 @@ export function showEditProductModal(productId) {
     }).catch(error => console.error('Error initializing proper case:', error));
 }
 
-export function saveProductChanges(event) {
+export async function saveProductChanges(event) {
     event.preventDefault();
     const productId = parseInt(document.getElementById('editProductId').value);
     const product = state.products.find(p => p.id === productId);
@@ -763,6 +763,11 @@ export function saveProductChanges(event) {
     product.activeIngredients.push(...newlyAddedIngredients);
 
     saveStateForUndo();
+    
+    // Save to IndexedDB for persistence
+    const ui = await import('./ui.js');
+    await ui.saveAllDataToLocalStorage();
+    
     fullAppRender();
     hideModal('editProductModal');
     showCustomAlert('Success', 'Product updated successfully.');
@@ -788,7 +793,7 @@ export function showEditIngredientModal(productId, ingredientId) {
 }
 
 
-export function saveIngredientChanges(event) {
+export async function saveIngredientChanges(event) {
     event.preventDefault();
     const productId = parseInt(document.getElementById('editIngredientProductId').value);
     const ingredientId = parseInt(document.getElementById('editIngredientId').value);
@@ -805,22 +810,32 @@ export function saveIngredientChanges(event) {
     ingredient.ld50 = ld50Val ? parseFloat(ld50Val) : null;
     if (!ingredient.name || isNaN(ingredient.therapeuticDose) || isNaN(ingredient.mdd) || !ingredient.solubility || !ingredient.cleanability || (ingredient.pde === null && ingredient.ld50 === null)) { showCustomAlert("Validation Error", "Please fill all required fields."); return; }
     saveStateForUndo();
+    
+    // Save to IndexedDB for persistence
+    const ui = await import('./ui.js');
+    await ui.saveAllDataToLocalStorage();
+    
     hideModal('editIngredientModal');
     fullAppRender();
     showCustomAlert("Success", `${ingredient.name} was updated successfully.`);
 
 }
 
-export function deleteProduct(productId) {
+export async function deleteProduct(productId) {
     if (confirm("Are you sure you want to delete this entire product?")) {
         const newProducts = state.products.filter(product => product.id !== productId);
         state.setProducts(newProducts);
         saveStateForUndo();
+        
+        // Save to IndexedDB for persistence
+        const ui = await import('./ui.js');
+        await ui.saveAllDataToLocalStorage();
+        
         fullAppRender();
     }
 }
 
-export function deleteIngredient(productId, ingredientId) {
+export async function deleteIngredient(productId, ingredientId) {
     const product = state.products.find(p => p.id === productId);
 
     if (product) {
@@ -831,6 +846,11 @@ export function deleteIngredient(productId, ingredientId) {
         if (confirm("Are you sure you want to remove this ingredient?")) {
             product.activeIngredients = product.activeIngredients.filter(ing => ing.id !== ingredientId);
             saveStateForUndo();
+            
+            // Save to IndexedDB for persistence
+            const ui = await import('./ui.js');
+            await ui.saveAllDataToLocalStorage();
+            
             fullAppRender();
         }
     }
@@ -949,7 +969,7 @@ export function resetFilters(tabId) {
     handleSearchAndFilter(tabId); 
 }
 
-export function addNewProduct(event) {
+export async function addNewProduct(event) {
     event.preventDefault(); 
     const productCode = document.getElementById('addProductCode').value.trim(); 
     const productName = document.getElementById('addProductName').value.trim(); 
@@ -1011,6 +1031,11 @@ export function addNewProduct(event) {
     const newProducts = [...state.products, newProduct];
     state.setProducts(newProducts);
     saveStateForUndo(); 
+    
+    // Save to IndexedDB for persistence
+    const ui = await import('./ui.js');
+    await ui.saveAllDataToLocalStorage();
+    
     fullAppRender(); 
     hideModal('addProductModal'); 
 }

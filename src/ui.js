@@ -172,20 +172,22 @@ export async function loadAllDataFromLocalStorage() {
             console.log('⚠️ INDEXEDDB LOAD: No saved machines found in IndexedDB');
         }
         
-        // Check if saved criteria has the new scoring criteria, if not, use defaults
+        // Load saved criteria from IndexedDB
         if (savedCriteria) { 
             try { 
                 const parsedCriteria = JSON.parse(savedCriteria);
-                // Check if new criteria exist
-                if (!parsedCriteria.hardToClean || !parsedCriteria.accessibility || !parsedCriteria.visibility || !parsedCriteria.numberOfSamples) {
-                    console.log("Missing new scoring criteria, using defaults from state");
-                    // Don't load from storage, keep the new criteria from state.js
-                } else {
-                    state.setScoringCriteria(parsedCriteria); 
-                }
+                console.log('🔄 SCORING CRITERIA: Loading from IndexedDB');
+                console.log('🔄 SCORING CRITERIA: Loaded criteria keys:', Object.keys(parsedCriteria));
+                
+                // Always load saved criteria - user modifications should be preserved
+                state.setScoringCriteria(parsedCriteria);
+                console.log('✅ SCORING CRITERIA: Loaded successfully from IndexedDB');
+                
             } catch (e) { 
-                console.error("Error loading scoring criteria", e); 
+                console.error("❌ Error loading scoring criteria from IndexedDB, using defaults:", e);
             } 
+        } else {
+            console.log('📍 SCORING CRITERIA: No saved criteria found, using defaults from state.js');
         }
         
         if (savedDetergents) { try { state.setDetergentIngredients(JSON.parse(savedDetergents)); } catch (e) { console.error("Error loading detergent ingredients", e); } }
@@ -1168,6 +1170,7 @@ window.directSampleLocationTest = directSampleLocationTest;
 window.clearAllSampleLocations = clearAllSampleLocations;
 window.forceResetAllData = forceResetAllData;
 window.quickFixSampleLocations = quickFixSampleLocations;
+window.comprehensiveDataDiagnostic = comprehensiveDataDiagnostic;
 
 
 // --- FORM HELPERS ---
@@ -2790,5 +2793,184 @@ export function toggleStageSection(stageKey) {
     const button = section.parentElement.querySelector('button');
     if (button) {
         button.textContent = isHidden ? 'Hide' : 'Show';
+    }
+}
+
+/**
+ * Comprehensive data persistence diagnostic
+ */
+export async function comprehensiveDataDiagnostic() {
+    console.log('🏥 COMPREHENSIVE DATA PERSISTENCE DIAGNOSTIC');
+    console.log('==========================================');
+    
+    const report = {
+        timestamp: new Date().toISOString(),
+        indexedDbAvailable: false,
+        dataTypes: {},
+        issues: [],
+        recommendations: []
+    };
+    
+    try {
+        // Check IndexedDB availability
+        report.indexedDbAvailable = typeof indexedDB !== 'undefined';
+        console.log(`🔧 IndexedDB Available: ${report.indexedDbAvailable}`);
+        
+        if (!report.indexedDbAvailable) {
+            report.issues.push('IndexedDB not available - falling back to localStorage');
+            report.recommendations.push('Use a modern browser with IndexedDB support');
+        }
+        
+        // Check all data types
+        const dataChecks = [
+            { name: 'Products', key: 'macoProducts', stateData: state.products },
+            { name: 'Machines', key: 'macoMachines', stateData: state.machines },
+            { name: 'Scoring Criteria', key: 'macoScoringCriteria', stateData: state.scoringCriteria },
+            { name: 'Detergent Ingredients', key: 'macoDetergentIngredients', stateData: state.detergentIngredients },
+            { name: 'Machine Stage Display Order', key: 'machineStageDisplayOrder', stateData: state.machineStageDisplayOrder }
+        ];
+        
+        for (const check of dataChecks) {
+            console.log(`\n📋 Checking ${check.name}...`);
+            
+            const checkResult = {
+                hasStateData: false,
+                stateCount: 0,
+                hasStoredData: false,
+                storedCount: 0,
+                synced: false,
+                sampleData: null
+            };
+            
+            // Check state data
+            if (check.stateData) {
+                if (Array.isArray(check.stateData)) {
+                    checkResult.hasStateData = check.stateData.length > 0;
+                    checkResult.stateCount = check.stateData.length;
+                } else if (typeof check.stateData === 'object') {
+                    checkResult.hasStateData = Object.keys(check.stateData).length > 0;
+                    checkResult.stateCount = Object.keys(check.stateData).length;
+                }
+            }
+            
+            // Check stored data
+            try {
+                const storedData = await db.getItem(check.key);
+                if (storedData) {
+                    const parsed = JSON.parse(storedData);
+                    checkResult.hasStoredData = true;
+                    
+                    if (Array.isArray(parsed)) {
+                        checkResult.storedCount = parsed.length;
+                    } else if (typeof parsed === 'object') {
+                        checkResult.storedCount = Object.keys(parsed).length;
+                    }
+                    
+                    // Check if data is synced
+                    checkResult.synced = checkResult.stateCount === checkResult.storedCount;
+                    
+                    // Sample data for verification
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        checkResult.sampleData = {
+                            firstItem: parsed[0].name || parsed[0].id || parsed[0].productCode || 'Unknown',
+                            lastItem: parsed[parsed.length - 1].name || parsed[parsed.length - 1].id || parsed[parsed.length - 1].productCode || 'Unknown'
+                        };
+                    }
+                }
+            } catch (e) {
+                console.error(`❌ Error checking stored ${check.name}:`, e);
+                report.issues.push(`Failed to read stored ${check.name}: ${e.message}`);
+            }
+            
+            report.dataTypes[check.name] = checkResult;
+            
+            // Log results
+            console.log(`   State: ${checkResult.hasStateData ? '✅' : '❌'} (Count: ${checkResult.stateCount})`);
+            console.log(`   Storage: ${checkResult.hasStoredData ? '✅' : '❌'} (Count: ${checkResult.storedCount})`);
+            console.log(`   Synced: ${checkResult.synced ? '✅' : '⚠️'}`);
+            
+            if (checkResult.sampleData) {
+                console.log(`   Sample: ${checkResult.sampleData.firstItem} ... ${checkResult.sampleData.lastItem}`);
+            }
+            
+            // Identify issues
+            if (!checkResult.hasStateData && !checkResult.hasStoredData) {
+                report.issues.push(`No ${check.name} data found in state or storage`);
+            } else if (!checkResult.synced) {
+                report.issues.push(`${check.name} data not synced: State(${checkResult.stateCount}) vs Storage(${checkResult.storedCount})`);
+                report.recommendations.push(`Save ${check.name} data to ensure synchronization`);
+            }
+        }
+        
+        // Special checks for complex data
+        console.log('\n🔍 Special Data Checks...');
+        
+        // Check sample locations specifically
+        const machinesWithSampleLocations = state.machines.filter(m => m.sampleLocations && m.sampleLocations.length > 0);
+        console.log(`   Sample Locations: ${machinesWithSampleLocations.length} machines have sample locations`);
+        report.dataTypes['Sample Locations'] = {
+            machinesWithSampleLocations: machinesWithSampleLocations.length,
+            totalSampleLocations: machinesWithSampleLocations.reduce((sum, m) => sum + m.sampleLocations.length, 0)
+        };
+        
+        // Check SOP files
+        const machinesWithSOPs = state.machines.filter(m => m.cleaningSOP && (m.cleaningSOP.attachmentValue || m.cleaningSOP.sopName));
+        console.log(`   SOP Files: ${machinesWithSOPs.length} machines have SOP data`);
+        report.dataTypes['SOP Files'] = {
+            machinesWithSOPs: machinesWithSOPs.length
+        };
+        
+        // Check scoring criteria completeness
+        const scoringKeys = ['solubility', 'therapeuticDose', 'cleanability', 'toxicity', 'hardToClean', 'accessibility', 'visibility', 'numberOfSamples'];
+        const missingScoringKeys = scoringKeys.filter(key => !state.scoringCriteria[key]);
+        if (missingScoringKeys.length > 0) {
+            report.issues.push(`Missing scoring criteria: ${missingScoringKeys.join(', ')}`);
+            report.recommendations.push('Reset scoring criteria to defaults to ensure all criteria are available');
+        }
+        
+        // Check localStorage usage (should be minimal)
+        const localStorageKeys = Object.keys(localStorage);
+        const macoKeys = localStorageKeys.filter(key => key.startsWith('maco') || key.includes('product'));
+        if (macoKeys.length > 0) {
+            console.log(`   ⚠️ localStorage still has ${macoKeys.length} MACO-related keys: ${macoKeys.join(', ')}`);
+            report.issues.push(`localStorage contains ${macoKeys.length} MACO-related keys that should be in IndexedDB`);
+            report.recommendations.push('Consider migrating remaining localStorage data to IndexedDB');
+        }
+        
+        // Overall assessment
+        console.log('\n📊 OVERALL ASSESSMENT:');
+        const totalDataTypes = Object.keys(report.dataTypes).length;
+        const syncedDataTypes = Object.values(report.dataTypes).filter(dt => dt.synced !== false).length;
+        const dataIntegrity = (syncedDataTypes / totalDataTypes) * 100;
+        
+        console.log(`   Data Integrity: ${dataIntegrity.toFixed(1)}% (${syncedDataTypes}/${totalDataTypes} synchronized)`);
+        console.log(`   Issues Found: ${report.issues.length}`);
+        console.log(`   Recommendations: ${report.recommendations.length}`);
+        
+        if (report.issues.length === 0) {
+            console.log('✅ All data appears to be properly synchronized!');
+        } else {
+            console.log('⚠️ Some issues detected. See recommendations below.');
+        }
+        
+        // Display issues and recommendations
+        if (report.issues.length > 0) {
+            console.log('\n❌ ISSUES FOUND:');
+            report.issues.forEach((issue, i) => console.log(`   ${i + 1}. ${issue}`));
+        }
+        
+        if (report.recommendations.length > 0) {
+            console.log('\n💡 RECOMMENDATIONS:');
+            report.recommendations.forEach((rec, i) => console.log(`   ${i + 1}. ${rec}`));
+        }
+        
+        console.log('\n🎯 DATA PERSISTENCE STATUS: ' + (report.issues.length === 0 ? 'EXCELLENT' : report.issues.length <= 2 ? 'GOOD' : 'NEEDS ATTENTION'));
+        
+        return report;
+        
+    } catch (error) {
+        console.error('❌ Error during diagnostic:', error);
+        report.issues.push(`Diagnostic failed: ${error.message}`);
+        return report;
     }
 }

@@ -145,10 +145,21 @@ function createCriterionFieldRow(key, crit) {
             itemDiv.style.gridTemplateColumns = '2fr 1fr 1fr 1fr 0.5fr'; 
             itemDiv.innerHTML = `<input type="text" value="${crit.text}" class="w-full px-2 py-1 border rounded-md text-sm" data-field="text"><input type="number" step="any" value="${crit.lowerBound ?? ''}" placeholder="Min" class="w-full px-2 py-1 border rounded-md text-sm" data-field="lowerBound" min="0"><input type="number" step="any" value="${crit.upperBound ?? ''}" placeholder="Max" class="w-full px-2 py-1 border rounded-md text-sm" data-field="upperBound" min="0"><input type="number" value="${crit.score}" class="w-full px-2 py-1 border rounded-md text-sm" data-field="score" min="0">`;
          } else if (type === 'rpn_threshold') { 
-            itemDiv.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 0.5fr'; const maxVal = crit.max === Infinity ? '' : crit.max; itemDiv.innerHTML = `<input type="number" value="${crit.min}" placeholder="Min RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="minRpn" min="0"><input type="number" value="${maxVal}" placeholder="Max RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="maxRpn" min="0"><input type="text" value="${crit.rating}" placeholder="Rating" class="w-full px-2 py-1 border rounded-md text-sm" data-field="ratingText"><span class="text-xs self-center" style="color:var(--text-secondary);">${crit.rangeDescription}</span>`; 
+            itemDiv.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 0.5fr';
+            const maxVal = crit.max === Infinity ? '' : crit.max;
+            itemDiv.innerHTML = `
+                <input type="number" value="${crit.min}" placeholder="Min RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="minRpn" min="0">
+                <input type="number" value="${maxVal}" placeholder="Max RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="maxRpn" min="0">
+                <input type="text" value="${crit.rating}" placeholder="Rating" class="w-full px-2 py-1 border rounded-md text-sm" data-field="ratingText">
+                <span class="text-xs self-center" style="color:var(--text-secondary);">${crit.rangeDescription || ''}</span>
+            `;
         } else if (type === 'rpn_samples') {
             itemDiv.style.gridTemplateColumns = '1fr 1fr 1fr 0.5fr';
-            itemDiv.innerHTML = `<input type="number" value="${crit.rpnMin}" placeholder="Min RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="rpnMin" min="0"><input type="number" value="${crit.rpnMax}" placeholder="Max RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="rpnMax" min="0"><input type="number" value="${crit.samples}" placeholder="Samples" class="w-full px-2 py-1 border rounded-md text-sm" data-field="samples" min="1">`;
+            itemDiv.innerHTML = `
+                <input type="number" value="${crit.rpnMin}" placeholder="Min RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="rpnMin" min="0">
+                <input type="number" value="${crit.rpnMax}" placeholder="Max RPN" class="w-full px-2 py-1 border rounded-md text-sm" data-field="rpnMax" min="0">
+                <input type="number" value="${crit.samples}" placeholder="Samples" class="w-full px-2 py-1 border rounded-md text-sm" data-field="samples" min="1">
+            `;
         } itemDiv.innerHTML += `<button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700 p-1" title="Remove"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/></svg></button>`;
     return itemDiv;
 }
@@ -158,9 +169,9 @@ export function addCriterionToScoringTab(key) {
    const cat = state.scoringCriteria[key]; 
    let newCrit; 
    if (cat.type === 'rpn_threshold') { 
-    newCrit = { min: 0, max: 10, rating: 'NEW', rangeDescription: '0-10' }; 
+    newCrit = { min: 1, max: 27, rating: 'Low', rangeDescription: '1-27' }; 
    } else if (cat.type === 'rpn_samples') {
-    newCrit = { text: 'New RPN Range = New Samples', samples: 1, rpnMin: 0, rpnMax: 10 };
+    newCrit = { text: '1-27 RPN = 1 Sample', samples: 1, rpnMin: 1, rpnMax: 27 };
    } else { 
     newCrit = { ...(cat.criteria[0] || {text: "", score: 0}), text: "New Criterion",
       score: cat.defaultScore || 1 }; 
@@ -173,7 +184,7 @@ export function addCriterionToScoringTab(key) {
 }
     
 
-export function saveScoringCriteria(event) {
+export async function saveScoringCriteria(event) {
     const saveButton = event.target;
     showLoader();
     saveButton.disabled = true;
@@ -224,23 +235,80 @@ export function saveScoringCriteria(event) {
                         else crit.comparison = state.scoringCriteria[key].criteria.find(c => c.text === crit.text)?.comparison || "between_exclusive_lower_inclusive_upper";
                     }
                 } else if (type === 'rpn_threshold') {
-                    crit.min = parseFloat(row.querySelector('[data-field="minRpn"]').value);
-                    const maxStr = row.querySelector('[data-field="maxRpn"]').value;
+                    const minRpnField = row.querySelector('[data-field="minRpn"]');
+                    const maxRpnField = row.querySelector('[data-field="maxRpn"]');
+                    const ratingField = row.querySelector('[data-field="ratingText"]');
+                    
+                    if (!minRpnField || !maxRpnField || !ratingField) {
+                        console.error('RPN Threshold fields not found in row');
+                        isValid = false;
+                        return;
+                    }
+                    
+                    crit.min = parseFloat(minRpnField.value);
+                    const maxStr = maxRpnField.value.trim();
                     crit.max = (maxStr === '' || maxStr === null) ? Infinity : parseFloat(maxStr);
-                    crit.rating = row.querySelector('[data-field="ratingText"]').value.trim();
-                    if (isNaN(crit.min) || (maxStr !== '' && isNaN(crit.max)) || !crit.rating || crit.min >= crit.max) {
+                    crit.rating = ratingField.value.trim();
+                    
+                    if (isNaN(crit.min)) {
+                        console.error('Invalid Min RPN value:', minRpnField.value);
                         isValid = false;
                         return;
                     }
+                    if (maxStr !== '' && isNaN(crit.max)) {
+                        console.error('Invalid Max RPN value:', maxStr);
+                        isValid = false;
+                        return;
+                    }
+                    if (!crit.rating) {
+                        console.error('Rating text is required');
+                        isValid = false;
+                        return;
+                    }
+                    if (crit.max !== Infinity && crit.min >= crit.max) {
+                        console.error('Min RPN must be less than Max RPN');
+                        isValid = false;
+                        return;
+                    }
+                    
                     crit.rangeDescription = `${crit.min} - ${maxStr || 'Infinity'}`;
+                    
                 } else if (type === 'rpn_samples') {
-                    crit.rpnMin = parseFloat(row.querySelector('[data-field="rpnMin"]').value);
-                    crit.rpnMax = parseFloat(row.querySelector('[data-field="rpnMax"]').value);
-                    crit.samples = parseInt(row.querySelector('[data-field="samples"]').value);
-                    if (isNaN(crit.rpnMin) || isNaN(crit.rpnMax) || isNaN(crit.samples) || crit.rpnMin >= crit.rpnMax || crit.samples < 1) {
+                    const rpnMinField = row.querySelector('[data-field="rpnMin"]');
+                    const rpnMaxField = row.querySelector('[data-field="rpnMax"]');
+                    const samplesField = row.querySelector('[data-field="samples"]');
+                    
+                    if (!rpnMinField || !rpnMaxField || !samplesField) {
+                        console.error('RPN Samples fields not found in row');
                         isValid = false;
                         return;
                     }
+                    
+                    crit.rpnMin = parseFloat(rpnMinField.value);
+                    crit.rpnMax = parseFloat(rpnMaxField.value);
+                    crit.samples = parseInt(samplesField.value);
+                    
+                    if (isNaN(crit.rpnMin)) {
+                        console.error('Invalid Min RPN value:', rpnMinField.value);
+                        isValid = false;
+                        return;
+                    }
+                    if (isNaN(crit.rpnMax)) {
+                        console.error('Invalid Max RPN value:', rpnMaxField.value);
+                        isValid = false;
+                        return;
+                    }
+                    if (isNaN(crit.samples) || crit.samples < 1) {
+                        console.error('Invalid number of samples (must be >= 1):', samplesField.value);
+                        isValid = false;
+                        return;
+                    }
+                    if (crit.rpnMin >= crit.rpnMax) {
+                        console.error('Min RPN must be less than Max RPN');
+                        isValid = false;
+                        return;
+                    }
+                    
                     crit.text = `${crit.rpnMin}-${crit.rpnMax} RPN = ${crit.samples} Sample${crit.samples > 1 ? 's' : ''}`;
                 }
                 cat.criteria.push(crit);
@@ -250,11 +318,18 @@ export function saveScoringCriteria(event) {
         if (isValid) {
             state.setScoringCriteria(newCriteria);
             saveStateForUndo();
+            
+            // Save to IndexedDB for persistence
+            console.log('🔄 SCORING CRITERIA: Saving to IndexedDB...');
+            const ui = await import('./ui.js');
+            await ui.saveAllDataToLocalStorage();
+            console.log('✅ SCORING CRITERIA: Saved to IndexedDB successfully');
+            
             toggleScoringEditMode(false); // Switch back to view mode
             fullAppRender();
             showCustomAlert("Success", "Changes saved successfully.");
         } else {
-            showCustomAlert("Validation Error", "Please check your input. Some fields may be invalid.");
+            showCustomAlert("Validation Error", "Please check your input. Check the browser console for detailed error information. Common issues:\n\n• Min RPN must be less than Max RPN\n• Rating text is required\n• Number of samples must be at least 1\n• All numeric fields must have valid numbers");
         }
     } catch (error) {
         console.error("Error saving scoring criteria:", error);
